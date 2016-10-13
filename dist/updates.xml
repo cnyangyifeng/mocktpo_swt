@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateDescriptor baseUrl="">
+  <entry targetMediaFileId="74" updatableVersionMin="" updatableVersionMax="" fileName="MockTPO_windows_1_0_1.exe" newVersion="1.0.1" newMediaFileId="74" fileSize="37282304" bundledJre="windows-x86-1.8.0_102" archive="false">
+    <comment language="en" />
+  </entry>
+</updateDescriptor>
