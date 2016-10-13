@@ -1,3 +1,0 @@
-# List of generated media files. The columns are tab-separated:
-# id | media file type | display name | media file path
-74	windows	Windows	/Users/yangyifeng/SWTWorkspace/MockTPO/dist/MockTPO_windows_1_0_1.exe
