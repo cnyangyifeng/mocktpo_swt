@@ -4,6 +4,8 @@ import com.mocktpo.orm.mapper.ActivationCodeMapper;
 import com.mocktpo.orm.mapper.UserMapper;
 import com.mocktpo.util.constants.ResourceConstants;
 
+import java.net.URLDecoder;
+
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,11 +19,16 @@ public class DbUtils {
     }
 
     public static void init() {
-        factory = new SqlSessionFactoryBuilder().build(DbUtils.class.getResourceAsStream(ResourceConstants.CONFIG_DIR + ResourceConstants.DATABASE_CONFIG_FILE));
-        Configuration c = factory.getConfiguration();
+        try {
+            factory = new SqlSessionFactoryBuilder().build(DbUtils.class.getResourceAsStream(URLDecoder.decode(ResourceConstants.CONFIG_DIR + ResourceConstants.DATABASE_CONFIG_FILE, "utf-8")));
+            Configuration c = factory.getConfiguration();
 
-        c.addMapper(ActivationCodeMapper.class);
-        c.addMapper(UserMapper.class);
+            c.addMapper(ActivationCodeMapper.class);
+            c.addMapper(UserMapper.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static SqlSession getSqlSession() {
