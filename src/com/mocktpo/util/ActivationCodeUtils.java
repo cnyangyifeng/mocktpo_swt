@@ -62,9 +62,12 @@ public class ActivationCodeUtils {
         String path = ActivationCodeUtils.class.getResource(ResourceConstants.CONFIG_DIR).getPath();
         try {
             final License license;
+            logger.info("pubring: " + path + ResourceConstants.PUBLIC_KEY_FILE);
             if ((license = new License()).loadKeyRing(path + ResourceConstants.PUBLIC_KEY_FILE, null).setLicenseEncoded(acc).isVerified()) {
                 String actual = license.getFeature("hardware");
+                logger.info("actual hardware: " + actual);
                 String expected = HardwareBinderUtils.uuid();
+                logger.info("expected hardware: " + expected);
                 if (null != actual && actual.equals(expected)) {
                     return true;
                 }

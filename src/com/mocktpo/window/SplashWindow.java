@@ -65,7 +65,7 @@ public class SplashWindow {
     }
 
     private void init() {
-        s = new Shell(d, SWT.TOOL);
+        s = new Shell(d, SWT.TOOL | SWT.ON_TOP);
         alloc();
         global();
         initBackground();
