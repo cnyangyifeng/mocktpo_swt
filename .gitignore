@@ -1,2 +1,3 @@
 /bin/
-/dist/win32/
+/dist/dist-macosx/
+/dist/dist-win32/
