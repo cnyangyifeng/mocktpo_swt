@@ -3,6 +3,7 @@ package com.mocktpo.util;
 import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
@@ -12,25 +13,45 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.Display;
 import org.junit.Assert;
 
-public class SWTFontUtils {
+public class FontUtils {
 
     private static final ConcurrentMap<Device, Font> MONOSPACED_FONTS = new ConcurrentHashMap<Device, Font>();
 
-    private SWTFontUtils() {
+    private FontUtils() {
     }
 
-    public static Font getMonospacedFont() {
-        Display d = Display.getCurrent();
-        if (null == d) {
-            throw new IllegalStateException();
+    public static Font getSystemFont(Display d, int height) {
+        final AtomicReference<FontData> afd = new AtomicReference<FontData>();
+        d.syncExec(new Runnable() {
+            @Override
+            public void run() {
+                afd.set(d.getSystemFont().getFontData()[0]);
+            }
+        });
+        FontData fd = afd.get();
+        fd.setHeight(height);
+        return new Font(d, fd);
+    }
+
+    public static Font getSystemFont(Display d, int height, int style) {
+        final AtomicReference<FontData> afd = new AtomicReference<FontData>();
+        d.syncExec(new Runnable() {
+            @Override
+            public void run() {
+                afd.set(d.getSystemFont().getFontData()[0]);
+            }
+        });
+        FontData fd = afd.get();
+        fd.setHeight(height);
+        fd.setStyle(style);
+        return new Font(d, fd);
+    }
+
+    public static Font getMonospacedFont(Display d) {
+        Font cache = MONOSPACED_FONTS.get(d);
+        if (null != cache) {
+            return cache;
         }
-        return getMonospacedFont(d);
-    }
-
-    public static Font getMonospacedFont(final Display d) {
-        Font cachedFont = MONOSPACED_FONTS.get(d);
-        if (cachedFont != null)
-            return cachedFont;
         String os = System.getProperty("os.name");
         String ws = SWT.getPlatform();
         os = StringUtils.deleteWhitespace(os).toLowerCase(Locale.US);
@@ -39,7 +60,7 @@ public class SWTFontUtils {
         String[] fontDataTxts = null;
         for (String name : names) {
             if (name.equals("macosx")) {
-                fontDataTxts = new String[] { "Monaco|normal|11", "Courier|normal|12", "Courier New|normal|12" };
+                fontDataTxts = new String[] { "Monaco|normal|12", "Courier|normal|12", "Courier New|normal|12" };
                 break;
             } else if (name.equals("windows98")) {
                 fontDataTxts = new String[] { "Courier New|normal|10", "Courier|normal|10", "Lucida Console|normal|9" };
@@ -67,11 +88,11 @@ public class SWTFontUtils {
                 break;
             }
         }
-        if (fontDataTxts == null) {
+        if (null == fontDataTxts) {
             throw new AssertionError();
         }
-        FontData[] fontDatas = new FontData[fontDataTxts.length];
-        for (int i = 0; i < fontDatas.length; i++) {
+        FontData[] fds = new FontData[fontDataTxts.length];
+        for (int i = 0; i < fds.length; i++) {
             String txt = fontDataTxts[i];
             int bar2 = txt.lastIndexOf('|');
             Assert.assertTrue(bar2 != -1);
@@ -93,19 +114,19 @@ public class SWTFontUtils {
                 }
             }
             int height = Integer.parseInt(txt.substring(bar2 + 1));
-            fontDatas[i] = new FontData(name, height, style);
+            fds[i] = new FontData(name, height, style);
         }
-        final Font font = new Font(d, fontDatas);
+        final Font f = new Font(d, fds);
         d.disposeExec(new Runnable() {
             @Override
             public void run() {
                 synchronized (MONOSPACED_FONTS) {
                     MONOSPACED_FONTS.remove(d);
-                    font.dispose();
+                    f.dispose();
                 }
             }
         });
-        MONOSPACED_FONTS.put(d, font);
-        return font;
+        MONOSPACED_FONTS.put(d, f);
+        return f;
     }
 }

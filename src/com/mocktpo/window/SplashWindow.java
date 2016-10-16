@@ -133,6 +133,9 @@ public class SplashWindow {
                 @Override
                 public void run() {
                     s.setVisible(v);
+                    if (v) {
+                        s.setFocus();
+                    }
                 }
             });
         }

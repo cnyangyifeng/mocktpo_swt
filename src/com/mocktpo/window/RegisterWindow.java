@@ -28,7 +28,7 @@ import com.mocktpo.util.HardwareBinderUtils;
 import com.mocktpo.util.KeyBindingSet;
 import com.mocktpo.util.RegexUtils;
 import com.mocktpo.util.ResourceManager;
-import com.mocktpo.util.SWTFontUtils;
+import com.mocktpo.util.FontUtils;
 import com.mocktpo.util.WindowUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.vo.RequireActivationVo;
@@ -102,20 +102,25 @@ public class RegisterWindow {
 
         final Label title = new Label(header, SWT.NONE);
         FormDataSet.attach(title).atLeft(20).atTop(20);
-        title.setText(msgs.getString("app_name"));
+        title.setText(msgs.getString("register"));
+        title.setFont(ResourceManager.getFont(MT.FONT_TITLE));
         title.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
 
         final Label desc = new Label(header, SWT.WRAP);
-        FormDataSet.attach(desc).atLeft(20).atTopTo(title, 10).atRight(20);
+        FormDataSet.attach(desc).atLeft(20).atTopTo(title, 10).fromRight(20);
         desc.setText(msgs.getString("register_desc"));
         desc.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
+
+        final Label logo = new Label(header, SWT.NONE);
+        FormDataSet.attach(logo).atTop(20).atRight(20);
+        logo.setImage(ResourceManager.getImage(MT.IMAGE_LOGO));
     }
 
     private void initBody() {
         final Composite body = new Composite(s, SWT.NONE);
         FormDataSet.attach(body).atLeft(100).atTop(140).atRight(100).atBottom(120);
         body.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
-        FormLayoutSet.layout(body).marginWidth(20).marginHeight(20).spacing(10);
+        FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(10);
 
         final Label el = new Label(body, SWT.NONE);
         FormDataSet.attach(el).atLeft().atTop().atRight();
@@ -153,7 +158,7 @@ public class RegisterWindow {
         FormDataSet.attach(at).atLeft().atTopTo(al).atRight().atBottomTo(am, 0, SWT.TOP);
         KeyBindingSet.bind(at).traverse().selectAll();
         at.setMargins(10, 10, 10, 10);
-        at.setFont(SWTFontUtils.getMonospacedFont(d));
+        at.setFont(FontUtils.getMonospacedFont(d));
         at.addKeyListener(new ActivationCodeTextKeyListener());
     }
 

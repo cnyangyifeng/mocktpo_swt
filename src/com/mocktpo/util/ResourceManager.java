@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentMap;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Resource;
 import org.eclipse.swt.widgets.Display;
@@ -36,9 +37,14 @@ public class ResourceManager {
 
         caches.putIfAbsent(MT.CURSOR_HAND, new Cursor(d, SWT.CURSOR_HAND));
 
+        /* Fonts */
+
+        caches.putIfAbsent(MT.FONT_TITLE, FontUtils.getSystemFont(d, 20));
+
         /* Images */
 
         caches.putIfAbsent(MT.IMAGE_APP_ICON, ImageUtils.load(d, RC.APP_ICON_IMAGE_FILE));
+        caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, RC.LOGO_IMAGE_FILE));
         caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, RC.SPLASH_IMAGE_FILE));
 
     }
@@ -57,6 +63,10 @@ public class ResourceManager {
 
     public static Cursor getCursor(int key) {
         return (Cursor) caches.get(key);
+    }
+
+    public static Font getFont(int key) {
+        return (Font) caches.get(key);
     }
 
     public static Image getImage(int key) {

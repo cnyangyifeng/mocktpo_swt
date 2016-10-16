@@ -98,16 +98,19 @@ public class MainWindow {
         final CLabel title = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(title).atLeft().atTop().atRight().withHeight(80);
         title.setText(msgs.getString("app_name_alt"));
+        title.setFont(ResourceManager.getFont(MT.FONT_TITLE));
+        title.setImage(ResourceManager.getImage(MT.IMAGE_LOGO));
         title.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
         title.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
         title.setLeftMargin(10);
+        title.setRightMargin(20);
 
         tl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(tl).atLeft().atTopTo(title).atRight().withHeight(SIDEBAR_ITEM_HEIGHT);
         tl.setText(msgs.getString("tests"));
         tl.setBackground(ResourceManager.getColor(MT.COLOR_BLUE));
         tl.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
-        tl.setLeftMargin(20);
+        tl.setLeftMargin(30);
         tl.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
         tl.addMouseListener(new SidebarItemListener());
 
@@ -116,7 +119,7 @@ public class MainWindow {
         rl.setText(msgs.getString("reports"));
         rl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
         rl.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
-        rl.setLeftMargin(20);
+        rl.setLeftMargin(30);
         rl.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
         rl.addMouseListener(new SidebarItemListener());
 
@@ -125,7 +128,7 @@ public class MainWindow {
         sl.setText(msgs.getString("settings"));
         sl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
         sl.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
-        sl.setLeftMargin(20);
+        sl.setLeftMargin(30);
         sl.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
         sl.addMouseListener(new SidebarItemListener());
     }

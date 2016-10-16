@@ -62,7 +62,7 @@ public class AppLoader extends Thread {
             e.printStackTrace();
         }
         splash.setVisible(true);
-        splash.proceed(60);
+        splash.proceed(80);
 
         if (licensed) {
             try {
