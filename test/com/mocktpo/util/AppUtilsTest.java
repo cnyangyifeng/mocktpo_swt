@@ -7,6 +7,6 @@ public class AppUtilsTest {
 
     @Test
     public void testIsMac() {
-        Assert.assertEquals(true, AppUtils.isMac());
+        Assert.assertEquals(true, PlatformUtils.isMac());
     }
 }

@@ -9,7 +9,7 @@ import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.ImageDataProvider;
 import org.eclipse.swt.widgets.Display;
 
-import com.mocktpo.util.constants.ResourceConstants;
+import com.mocktpo.util.constants.RC;
 
 public class ImageUtils {
 
@@ -25,10 +25,10 @@ public class ImageUtils {
                 try {
                     switch (zoom) {
                     case 200:
-                        return new Image(Display.getCurrent(), ImageUtils.class.getResourceAsStream(URLDecoder.decode(ResourceConstants.IMAGES_DIR + ResourceConstants.HIDPI_IMAGE_PREFIX + fileName, "utf-8"))).getImageData();
+                        return new Image(Display.getCurrent(), ImageUtils.class.getResourceAsStream(URLDecoder.decode(RC.IMAGES_DIR + RC.HIDPI_PREFIX + fileName, "utf-8"))).getImageData();
                     case 100:
                     default:
-                        return new Image(Display.getCurrent(), ImageUtils.class.getResourceAsStream(URLDecoder.decode(ResourceConstants.IMAGES_DIR + fileName, "utf-8"))).getImageData();
+                        return new Image(Display.getCurrent(), ImageUtils.class.getResourceAsStream(URLDecoder.decode(RC.IMAGES_DIR + fileName, "utf-8"))).getImageData();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

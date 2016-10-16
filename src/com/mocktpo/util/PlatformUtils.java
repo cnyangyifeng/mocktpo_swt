@@ -4,9 +4,9 @@ import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class AppUtils {
+public class PlatformUtils {
 
-    private AppUtils() {
+    private PlatformUtils() {
     }
 
     public static boolean isMac() {

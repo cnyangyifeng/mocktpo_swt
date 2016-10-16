@@ -9,7 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.alibaba.fastjson.JSON;
-import com.mocktpo.util.constants.ResourceConstants;
+import com.mocktpo.util.constants.RC;
 import com.mocktpo.vo.RequireActivationVo;
 import com.verhas.licensor.License;
 
@@ -42,7 +42,7 @@ public class ActivationCodeUtils {
             w.close();
             int code = c.getResponseCode();
             String message = c.getResponseMessage();
-            logger.info("Http Response Code: " + code + "; message: " + message);
+            logger.debug("Http Response Code: " + code + "; message: " + message);
             switch (code) {
             case 200:
                 return EMAIL_HARDWARE_OK;
@@ -60,15 +60,15 @@ public class ActivationCodeUtils {
     }
 
     public static boolean isLicensed(String acc) {
-        String path = ActivationCodeUtils.class.getResource(ResourceConstants.CONFIG_DIR).getPath();
+        String path = ActivationCodeUtils.class.getResource(RC.CONFIG_DIR).getPath();
         try {
             final License license;
-            final String pubring = URLDecoder.decode(path + ResourceConstants.PUBLIC_KEY_FILE, "utf-8");
+            final String pubring = URLDecoder.decode(path + RC.PUBRING_FILE, "utf-8");
             if ((license = new License()).loadKeyRing(pubring, null).setLicenseEncoded(acc).isVerified()) {
                 String actual = license.getFeature("hardware");
-                logger.info("actual hardware: " + actual);
+                logger.debug("actual hardware: " + actual);
                 String expected = HardwareBinderUtils.uuid();
-                logger.info("expected hardware: " + expected);
+                logger.debug("expected hardware: " + expected);
                 if (null != actual && actual.equals(expected)) {
                     return true;
                 }

@@ -1,6 +1,11 @@
 package com.mocktpo.util.constants;
 
-public interface LayoutConstants {
+/**
+ * 
+ * Layout Constants
+ *
+ */
+public interface LC {
 
     int HEADER_PANEL_HEIGHT = 92;
     int TITLE_PANE_WIDTH = 360;

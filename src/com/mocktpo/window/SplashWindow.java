@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Shell;
 import com.mocktpo.MyApplication;
 import com.mocktpo.util.ImageUtils;
 import com.mocktpo.util.WindowUtils;
-import com.mocktpo.util.constants.ResourceConstants;
+import com.mocktpo.util.constants.RC;
 
 public class SplashWindow {
 
@@ -33,10 +33,10 @@ public class SplashWindow {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Display and Application */
+    /* Application and Display */
 
-    private Display d;
-    private MyApplication app;
+    protected MyApplication app;
+    protected Display d;
 
     /* Shell */
 
@@ -127,6 +127,17 @@ public class SplashWindow {
         }
     }
 
+    public void setVisible(boolean v) {
+        if (!d.isDisposed()) {
+            d.asyncExec(new Runnable() {
+                @Override
+                public void run() {
+                    s.setVisible(v);
+                }
+            });
+        }
+    }
+
     public void proceed(int status) {
         if (!d.isDisposed()) {
             d.asyncExec(new Runnable() {
@@ -146,8 +157,8 @@ public class SplashWindow {
 
     private void alloc() {
         white = new Color(d, 255, 255, 255);
-        b = ImageUtils.load(d, ResourceConstants.SPLASH_FILE);
-        ico = ImageUtils.load(d, ResourceConstants.APP_ICON_UNIVERSAL_FILE);
+        b = ImageUtils.load(d, RC.SPLASH_IMAGE_FILE);
+        ico = ImageUtils.load(d, RC.APP_ICON_IMAGE_FILE);
     }
 
     private void release() {
@@ -162,20 +173,20 @@ public class SplashWindow {
      * 
      **************************************************/
 
-    public Display getDisplay() {
-        return d;
-    }
-
-    public void setDisplay(Display d) {
-        this.d = d;
-    }
-
     public MyApplication getApp() {
         return app;
     }
 
     public void setApp(MyApplication app) {
         this.app = app;
+    }
+
+    public Display getDisplay() {
+        return d;
+    }
+
+    public void setDisplay(Display d) {
+        this.d = d;
     }
 
     public Shell getShell() {

@@ -1,15 +1,15 @@
 package com.mocktpo.util;
 
-import com.alibaba.fastjson.JSON;
-import com.mocktpo.util.constants.ResourceConstants;
+import java.io.File;
+import java.net.URL;
+import java.net.URLDecoder;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.net.URL;
-import java.net.URLDecoder;
+import com.alibaba.fastjson.JSON;
+import com.mocktpo.util.constants.RC;
 
 public class ConfigUtils {
 
@@ -20,7 +20,7 @@ public class ConfigUtils {
 
     public static <T> T load(String fileName, Class<T> clazz) {
         try {
-            URL url = ConfigUtils.class.getResource(URLDecoder.decode(ResourceConstants.CONFIG_DIR + fileName, "utf-8"));
+            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.CONFIG_DIR + fileName, "utf-8"));
             String json = FileUtils.readFileToString(new File(url.toURI()));
             return JSON.parseObject(json, clazz);
         } catch (Exception e) {
@@ -31,7 +31,7 @@ public class ConfigUtils {
 
     public static void save(String fileName, Object object) {
         try {
-            URL url = ConfigUtils.class.getResource(URLDecoder.decode(ResourceConstants.CONFIG_DIR + fileName, "utf-8"));
+            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.CONFIG_DIR + fileName, "utf-8"));
             File file = new File(url.toURI());
             if (file.createNewFile()) {
                 logger.debug("File '" + fileName + "' saved successfully.");

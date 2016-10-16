@@ -11,10 +11,6 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Cursor;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -29,12 +25,12 @@ import com.mocktpo.util.ActivationCodeUtils;
 import com.mocktpo.util.FormDataSet;
 import com.mocktpo.util.FormLayoutSet;
 import com.mocktpo.util.HardwareBinderUtils;
-import com.mocktpo.util.ImageUtils;
 import com.mocktpo.util.KeyBindingSet;
 import com.mocktpo.util.RegexUtils;
+import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.SWTFontUtils;
 import com.mocktpo.util.WindowUtils;
-import com.mocktpo.util.constants.ResourceConstants;
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.vo.RequireActivationVo;
 
 public class RegisterWindow {
@@ -43,7 +39,7 @@ public class RegisterWindow {
 
     private static final int SHELL_WIDTH = 800;
     private static final int SHELL_HEIGHT = 600;
-    private static final int BUTTON_WIDTH = 120;
+    private static final int BUTTON_WIDTH = 100;
     private static final int BUTTON_HEIGHT = 40;
 
     /* Logger and Messages */
@@ -51,10 +47,10 @@ public class RegisterWindow {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Display and Application */
+    /* Application and Display */
 
-    private Display d;
-    private MyApplication app;
+    protected MyApplication app;
+    protected Display d;
 
     /* Shell */
 
@@ -69,16 +65,6 @@ public class RegisterWindow {
     private Label am;
     private Button r;
 
-    /* Resources */
-
-    private Color gray;
-    private Color green;
-    private Color red;
-    private Color white;
-    private Cursor hand;
-    private Font tf;
-    private Image ico;
-
     /**************************************************
      * 
      * Constructors
@@ -92,8 +78,7 @@ public class RegisterWindow {
     }
 
     private void init() {
-        s = new Shell(d, SWT.TOOL | SWT.ON_TOP);
-        alloc();
+        s = new Shell(d, SWT.TOP | SWT.ON_TOP);
         global();
         initHeader();
         initBody();
@@ -102,37 +87,40 @@ public class RegisterWindow {
 
     private void global() {
         s.setText(msgs.getString("app_name"));
-        s.setImage(ico);
+        s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
         s.setSize(SHELL_WIDTH, SHELL_HEIGHT);
-        s.setBackground(white);
+        s.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
+        WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s);
     }
 
     private void initHeader() {
         final Composite header = new Composite(s, SWT.NONE);
-        header.setBackground(gray);
+        header.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
         FormDataSet.attach(header).atLeft().atTop().atRight().withHeight(120);
         FormLayoutSet.layout(header);
 
         final Label title = new Label(header, SWT.NONE);
         FormDataSet.attach(title).atLeft(20).atTop(20);
         title.setText(msgs.getString("app_name"));
-        title.setFont(tf);
+        title.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
 
         final Label desc = new Label(header, SWT.WRAP);
         FormDataSet.attach(desc).atLeft(20).atTopTo(title, 10).atRight(20);
         desc.setText(msgs.getString("register_desc"));
+        desc.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
     }
 
     private void initBody() {
         final Composite body = new Composite(s, SWT.NONE);
         FormDataSet.attach(body).atLeft(100).atTop(140).atRight(100).atBottom(120);
-        body.setBackground(white);
+        body.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
         FormLayoutSet.layout(body).marginWidth(20).marginHeight(20).spacing(10);
 
         final Label el = new Label(body, SWT.NONE);
         FormDataSet.attach(el).atLeft().atTop().atRight();
         el.setText(msgs.getString("email"));
+        el.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
 
         et = new StyledText(body, SWT.BORDER | SWT.SINGLE);
         FormDataSet.attach(et).atLeft().atTopTo(el).fromRight(40);
@@ -144,19 +132,22 @@ public class RegisterWindow {
         eb = new Button(body, SWT.PUSH);
         FormDataSet.attach(eb).atLeftTo(et).atTopTo(el).atRight().atBottomTo(et, 0, SWT.BOTTOM);
         eb.setText(msgs.getString("send_email"));
-        eb.setCursor(hand);
+        eb.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
         eb.setEnabled(false);
         eb.addSelectionListener(new SendSelectionListener());
 
         em = new Label(body, SWT.NONE);
         FormDataSet.attach(em).atLeft().atTopTo(et).atRight();
+        em.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
 
         final Label al = new Label(body, SWT.NONE);
         FormDataSet.attach(al).atLeft().atTopTo(em).atRight();
         al.setText(msgs.getString("activation_code"));
+        al.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
 
         am = new Label(body, SWT.NONE);
         FormDataSet.attach(am).atLeft().atRight().atBottom();
+        am.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
 
         at = new StyledText(body, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(at).atLeft().atTopTo(al).atRight().atBottomTo(am, 0, SWT.TOP);
@@ -169,20 +160,20 @@ public class RegisterWindow {
     private void initFooter() {
         final Composite footer = new Composite(s, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atTop(500).atRight().atBottom();
-        footer.setBackground(gray);
+        footer.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
         FormLayoutSet.layout(footer);
 
         r = new Button(footer, SWT.PUSH);
         FormDataSet.attach(r).fromLeft(50, -BUTTON_WIDTH - 10).fromTop(50, -BUTTON_HEIGHT / 2).withWidth(BUTTON_WIDTH).withHeight(BUTTON_HEIGHT);
         r.setText(msgs.getString("register"));
-        r.setCursor(hand);
+        r.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
         r.setEnabled(false);
         r.addSelectionListener(new RegisterSelectionListener());
 
         final Button c = new Button(footer, SWT.PUSH);
         FormDataSet.attach(c).fromLeft(50, 10).fromTop(50, -BUTTON_HEIGHT / 2).withWidth(BUTTON_WIDTH).withHeight(BUTTON_HEIGHT);
         c.setText(msgs.getString("close"));
-        c.setCursor(hand);
+        c.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
         c.addSelectionListener(new CancelSelectionListener());
     }
 
@@ -194,7 +185,6 @@ public class RegisterWindow {
                 d.sleep();
             }
         }
-        release();
     }
 
     public void dispose() {
@@ -218,32 +208,6 @@ public class RegisterWindow {
                 }
             });
         }
-    }
-
-    /**************************************************
-     * 
-     * Native Resource Operations
-     * 
-     **************************************************/
-
-    private void alloc() {
-        gray = new Color(d, 246, 246, 246);
-        green = new Color(d, 92, 184, 92);
-        red = new Color(d, 217, 83, 79);
-        white = new Color(d, 255, 255, 255);
-        hand = new Cursor(d, SWT.CURSOR_HAND);
-        tf = new Font(d, "Arial", 20, SWT.BOLD);
-        ico = ImageUtils.load(d, ResourceConstants.APP_ICON_UNIVERSAL_FILE);
-    }
-
-    private void release() {
-        gray.dispose();
-        green.dispose();
-        red.dispose();
-        white.dispose();
-        hand.dispose();
-        tf.dispose();
-        ico.dispose();
     }
 
     /**************************************************
@@ -319,7 +283,7 @@ public class RegisterWindow {
                             @Override
                             public void run() {
                                 em.setText(msgs.getString("email_hardware_ok"));
-                                em.setForeground(green);
+                                em.setForeground(ResourceManager.getColor(MT.COLOR_GREEN));
                                 eb.setEnabled(true);
                             }
                         });
@@ -329,7 +293,7 @@ public class RegisterWindow {
                             @Override
                             public void run() {
                                 em.setText(msgs.getString("registered_email_not_found"));
-                                em.setForeground(red);
+                                em.setForeground(ResourceManager.getColor(MT.COLOR_RED));
                                 eb.setEnabled(true);
                             }
                         });
@@ -339,7 +303,7 @@ public class RegisterWindow {
                             @Override
                             public void run() {
                                 em.setText(msgs.getString("registered_hardware_unmatched"));
-                                em.setForeground(red);
+                                em.setForeground(ResourceManager.getColor(MT.COLOR_RED));
                                 eb.setEnabled(true);
                             }
                         });
@@ -350,7 +314,7 @@ public class RegisterWindow {
                             @Override
                             public void run() {
                                 em.setText(msgs.getString("network_failure"));
-                                em.setForeground(red);
+                                em.setForeground(ResourceManager.getColor(MT.COLOR_RED));
                                 eb.setEnabled(true);
                             }
                         });
@@ -396,7 +360,7 @@ public class RegisterWindow {
                     @Override
                     public void run() {
                         am.setText(msgs.getString("register_failure"));
-                        am.setForeground(red);
+                        am.setForeground(ResourceManager.getColor(MT.COLOR_RED));
                         r.setEnabled(true);
                     }
                 });
@@ -424,20 +388,20 @@ public class RegisterWindow {
      * 
      **************************************************/
 
-    public Display getDisplay() {
-        return d;
-    }
-
-    public void setDisplay(Display d) {
-        this.d = d;
-    }
-
     public MyApplication getApp() {
         return app;
     }
 
     public void setApp(MyApplication app) {
         this.app = app;
+    }
+
+    public Display getDisplay() {
+        return d;
+    }
+
+    public void setDisplay(Display d) {
+        this.d = d;
     }
 
     public Shell getShell() {
