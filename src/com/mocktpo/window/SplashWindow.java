@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Shell;
 import com.mocktpo.MyApplication;
 import com.mocktpo.util.ImageUtils;
 import com.mocktpo.util.WindowUtils;
-import com.mocktpo.util.constants.RC;
 
 public class SplashWindow {
 
@@ -160,8 +159,8 @@ public class SplashWindow {
 
     private void alloc() {
         white = new Color(d, 255, 255, 255);
-        b = ImageUtils.load(d, RC.SPLASH_IMAGE_FILE);
-        ico = ImageUtils.load(d, RC.APP_ICON_IMAGE_FILE);
+        b = ImageUtils.load(d, "splash");
+        ico = ImageUtils.load(d, "icon");
     }
 
     private void release() {

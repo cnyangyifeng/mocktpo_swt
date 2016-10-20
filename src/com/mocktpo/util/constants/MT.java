@@ -29,7 +29,7 @@ public interface MT {
      **************************************************/
 
     int CURSOR_HAND = 9;
-    
+
     int FONT_TITLE = 10;
 
     /**************************************************
@@ -39,6 +39,8 @@ public interface MT {
      **************************************************/
 
     int IMAGE_APP_ICON = 11;
-    int IMAGE_LOGO = 12;
-    int IMAGE_SPLASH = 13;
+    int IMAGE_ARROW_RIGHT = 12;
+    int IMAGE_LOGO = 13;
+    int IMAGE_SETTINGS = 14;
+    int IMAGE_SPLASH = 15;
 }

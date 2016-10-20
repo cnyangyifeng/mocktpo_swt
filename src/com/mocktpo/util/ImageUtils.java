@@ -25,10 +25,10 @@ public class ImageUtils {
                 try {
                     switch (zoom) {
                     case 200:
-                        return new Image(Display.getCurrent(), ImageUtils.class.getResourceAsStream(URLDecoder.decode(RC.IMAGES_DIR + RC.HIDPI_PREFIX + fileName, "utf-8"))).getImageData();
+                        return new Image(Display.getCurrent(), ImageUtils.class.getResourceAsStream(URLDecoder.decode(RC.IMAGES_DIR + fileName + RC.HIDPI_SUFFIX + RC.PNG_FILE_TYPE_SUFFIX, "utf-8"))).getImageData();
                     case 100:
                     default:
-                        return new Image(Display.getCurrent(), ImageUtils.class.getResourceAsStream(URLDecoder.decode(RC.IMAGES_DIR + fileName, "utf-8"))).getImageData();
+                        return new Image(Display.getCurrent(), ImageUtils.class.getResourceAsStream(URLDecoder.decode(RC.IMAGES_DIR + fileName + RC.PNG_FILE_TYPE_SUFFIX, "utf-8"))).getImageData();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

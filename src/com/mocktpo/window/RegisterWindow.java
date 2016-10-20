@@ -100,14 +100,14 @@ public class RegisterWindow {
         FormDataSet.attach(header).atLeft().atTop().atRight().withHeight(120);
         FormLayoutSet.layout(header);
 
-        final Label title = new Label(header, SWT.NONE);
-        FormDataSet.attach(title).atLeft(20).atTop(20);
-        title.setText(msgs.getString("register"));
-        title.setFont(ResourceManager.getFont(MT.FONT_TITLE));
-        title.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
+        final Label brand = new Label(header, SWT.NONE);
+        FormDataSet.attach(brand).atLeft(20).atTop(20);
+        brand.setText(msgs.getString("register"));
+        brand.setFont(ResourceManager.getFont(MT.FONT_TITLE));
+        brand.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
 
         final Label desc = new Label(header, SWT.WRAP);
-        FormDataSet.attach(desc).atLeft(20).atTopTo(title, 10).fromRight(20);
+        FormDataSet.attach(desc).atLeft(20).atTopTo(brand, 10).fromRight(20);
         desc.setText(msgs.getString("register_desc"));
         desc.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
 

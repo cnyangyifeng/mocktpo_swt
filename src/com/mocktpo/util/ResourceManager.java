@@ -12,7 +12,6 @@ import org.eclipse.swt.graphics.Resource;
 import org.eclipse.swt.widgets.Display;
 
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.RC;
 
 public class ResourceManager {
 
@@ -29,7 +28,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.COLOR_GRAY, new Color(d, 220, 220, 220));
         caches.putIfAbsent(MT.COLOR_GREEN, new Color(d, 92, 184, 92));
         caches.putIfAbsent(MT.COLOR_LIGHT_GRAY, new Color(d, 239, 239, 239));
-        caches.putIfAbsent(MT.COLOR_LIGHT_GRAY, new Color(d, 246, 246, 246));
+        caches.putIfAbsent(MT.COLOR_LIGHTER_GRAY, new Color(d, 246, 246, 246));
         caches.putIfAbsent(MT.COLOR_RED, new Color(d, 217, 83, 79));
         caches.putIfAbsent(MT.COLOR_WHITE, new Color(d, 255, 255, 255));
 
@@ -43,9 +42,11 @@ public class ResourceManager {
 
         /* Images */
 
-        caches.putIfAbsent(MT.IMAGE_APP_ICON, ImageUtils.load(d, RC.APP_ICON_IMAGE_FILE));
-        caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, RC.LOGO_IMAGE_FILE));
-        caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, RC.SPLASH_IMAGE_FILE));
+        caches.putIfAbsent(MT.IMAGE_APP_ICON, ImageUtils.load(d, "icon"));
+        caches.putIfAbsent(MT.IMAGE_ARROW_RIGHT, ImageUtils.load(d, "arrow_right"));
+        caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, "logo"));
+        caches.putIfAbsent(MT.IMAGE_SETTINGS, ImageUtils.load(d, "settings"));
+        caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, "splash"));
 
     }
 

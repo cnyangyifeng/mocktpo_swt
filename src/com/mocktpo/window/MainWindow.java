@@ -111,6 +111,7 @@ public class MainWindow {
         tl.setBackground(ResourceManager.getColor(MT.COLOR_BLUE));
         tl.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
         tl.setLeftMargin(30);
+        // tl.setImage(ResourceManager.getImage(MT.IMAGE_ARROW_RIGHT));
         tl.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
         tl.addMouseListener(new SidebarItemListener());
 
@@ -120,6 +121,7 @@ public class MainWindow {
         rl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
         rl.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
         rl.setLeftMargin(30);
+        // rl.setImage(ResourceManager.getImage(MT.IMAGE_ARROW_RIGHT));
         rl.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
         rl.addMouseListener(new SidebarItemListener());
 
@@ -129,6 +131,7 @@ public class MainWindow {
         sl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
         sl.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
         sl.setLeftMargin(30);
+        // sl.setImage(ResourceManager.getImage(MT.IMAGE_ARROW_RIGHT));
         sl.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
         sl.addMouseListener(new SidebarItemListener());
     }

@@ -35,12 +35,8 @@ public interface RC {
 
     /* Hidpi prefix */
 
-    String HIDPI_PREFIX = "hidpi_";
-
-    String APP_ICON_IMAGE_FILE = "icon.png";
-    String LOGO_IMAGE_FILE = "logo.png";
-    String SPLASH_IMAGE_FILE = "splash.png";
-    String SYNC_IMAGE_FILE = "cached.png";
+    String HIDPI_SUFFIX = "@2x";
+    String PNG_FILE_TYPE_SUFFIX = ".png";
 
     /**************************************************
      * 
