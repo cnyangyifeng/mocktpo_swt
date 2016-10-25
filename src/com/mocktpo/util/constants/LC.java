@@ -7,11 +7,15 @@ package com.mocktpo.util.constants;
  */
 public interface LC {
 
-    int HEADER_PANEL_HEIGHT = 92;
-    int TITLE_PANE_WIDTH = 360;
-    int TITLE_PANE_HEIGHT = 40;
+    int SHELL_MIN_WIDTH = 900;
+    int SHELL_MIN_HEIGHT = 600;
 
-    int FOOTER_PANEL_HEIGHT = 40;
-    int COPYRIGHT_PANE_WIDTH = 660;
-    int COPYRIGHT_PANE_HEIGHT = 28;
+    int VIEW_PORT_WIDTH = 880;
+
+    int DEFAULT_BUTTON_HEIGHT = 36;
+
+    int SIDEBAR_ITEM_HEIGHT = 50;
+
+    int TEST_HEADER_HEIGHT = 92;
+    int TEST_FOOTER_HEIGHT = 40;
 }

@@ -22,13 +22,13 @@ import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.ActivationCode;
 import com.mocktpo.orm.mapper.ActivationCodeMapper;
 import com.mocktpo.util.ActivationCodeUtils;
+import com.mocktpo.util.FontUtils;
 import com.mocktpo.util.FormDataSet;
 import com.mocktpo.util.FormLayoutSet;
 import com.mocktpo.util.HardwareBinderUtils;
 import com.mocktpo.util.KeyBindingSet;
 import com.mocktpo.util.RegexUtils;
 import com.mocktpo.util.ResourceManager;
-import com.mocktpo.util.FontUtils;
 import com.mocktpo.util.WindowUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.vo.RequireActivationVo;
@@ -47,13 +47,13 @@ public class RegisterWindow {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Application and Display */
+    /* Application */
 
     protected MyApplication app;
+
+    /* Display and Shell */
+
     protected Display d;
-
-    /* Shell */
-
     private Shell s;
 
     /* Widgets */
@@ -71,8 +71,8 @@ public class RegisterWindow {
      * 
      **************************************************/
 
-    public RegisterWindow(MyApplication app) {
-        this.app = app;
+    public RegisterWindow() {
+        this.app = MyApplication.get();
         this.d = app.getDisplay();
         init();
     }
@@ -100,20 +100,20 @@ public class RegisterWindow {
         FormDataSet.attach(header).atLeft().atTop().atRight().withHeight(120);
         FormLayoutSet.layout(header);
 
-        final Label brand = new Label(header, SWT.NONE);
-        FormDataSet.attach(brand).atLeft(20).atTop(20);
-        brand.setText(msgs.getString("register"));
-        brand.setFont(ResourceManager.getFont(MT.FONT_TITLE));
-        brand.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
+        final Label bl = new Label(header, SWT.NONE);
+        FormDataSet.attach(bl).atLeft(20).atTop(20);
+        bl.setText(msgs.getString("register"));
+        bl.setFont(ResourceManager.getFont(MT.FONT_TITLE));
+        bl.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
 
-        final Label desc = new Label(header, SWT.WRAP);
-        FormDataSet.attach(desc).atLeft(20).atTopTo(brand, 10).fromRight(20);
-        desc.setText(msgs.getString("register_desc"));
-        desc.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
+        final Label dl = new Label(header, SWT.WRAP);
+        FormDataSet.attach(dl).atLeft(20).atTopTo(bl, 10).fromRight(20);
+        dl.setText(msgs.getString("register_desc"));
+        dl.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
 
-        final Label logo = new Label(header, SWT.NONE);
-        FormDataSet.attach(logo).atTop(20).atRight(20);
-        logo.setImage(ResourceManager.getImage(MT.IMAGE_LOGO));
+        final Label ll = new Label(header, SWT.NONE);
+        FormDataSet.attach(ll).atTop(20).atRight(20);
+        ll.setImage(ResourceManager.getImage(MT.IMAGE_LOGO));
     }
 
     private void initBody() {
@@ -192,18 +192,6 @@ public class RegisterWindow {
         }
     }
 
-    public void dispose() {
-        if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    s.dispose();
-                    d.dispose();
-                }
-            });
-        }
-    }
-
     public void close() {
         if (!d.isDisposed()) {
             d.asyncExec(new Runnable() {
@@ -276,7 +264,7 @@ public class RegisterWindow {
             });
             String email = et.getText();
             String hardware = HardwareBinderUtils.uuid();
-            RequireActivationVo vo = new RequireActivationVo();
+            final RequireActivationVo vo = new RequireActivationVo();
             vo.setEmail(email);
             vo.setHardware(hardware);
             new Thread() {
@@ -381,10 +369,9 @@ public class RegisterWindow {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-            dispose();
+            close();
             System.exit(0);
         }
-
     }
 
     /**************************************************
@@ -393,27 +380,11 @@ public class RegisterWindow {
      * 
      **************************************************/
 
-    public MyApplication getApp() {
-        return app;
-    }
-
-    public void setApp(MyApplication app) {
-        this.app = app;
-    }
-
     public Display getDisplay() {
         return d;
     }
 
-    public void setDisplay(Display d) {
-        this.d = d;
-    }
-
     public Shell getShell() {
         return s;
-    }
-
-    public void setShell(Shell s) {
-        this.s = s;
     }
 }

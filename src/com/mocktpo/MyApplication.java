@@ -19,22 +19,23 @@ public class MyApplication {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
+    protected MainWindow win;
     protected Display d;
 
-    private SqlSession sqlSession;
+    protected SqlSession sqlSession;
 
-    public void init() {
+    private void init() {
         Display.setAppName(msgs.getString("app_name"));
         d = Display.getDefault();
-        final SplashWindow splash = new SplashWindow(this);
-        new AppLoader(this, splash).start();
+        final SplashWindow splash = new SplashWindow();
+        new AppLoader(splash).start();
         splash.openAndWaitForDisposal();
-        final MainWindow main = new MainWindow(this);
-        main.openAndWaitForDisposal();
+        win = new MainWindow();
+        win.openAndWaitForDisposal();
         exitApplication();
     }
 
-    private void exitApplication() {
+    public void exitApplication() {
         ResourceManager.dispose();
         if (null != d) {
             d.dispose();
@@ -48,12 +49,12 @@ public class MyApplication {
      * Getters and Setters
      **************************************************/
 
-    public Display getDisplay() {
-        return d;
+    public MainWindow getWindow() {
+        return win;
     }
 
-    public void setDisplay(Display d) {
-        this.d = d;
+    public Display getDisplay() {
+        return d;
     }
 
     public SqlSession getSqlSession() {
@@ -65,10 +66,30 @@ public class MyApplication {
     }
 
     /**************************************************
+     * The Application Singleton
+     **************************************************/
+
+    private static MyApplication inst = null;
+
+    private MyApplication() {
+    }
+
+    public static MyApplication get() {
+        if (null == inst) {
+            synchronized (MyApplication.class) {
+                if (null == inst) {
+                    inst = new MyApplication();
+                }
+            }
+        }
+        return inst;
+    }
+
+    /**************************************************
      * The Application Main Method
      **************************************************/
 
     public static void main(String[] args) {
-        new MyApplication().init();
+        MyApplication.get().init();
     }
 }

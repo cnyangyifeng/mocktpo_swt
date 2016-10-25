@@ -18,7 +18,7 @@ public class ImageUtils {
     private ImageUtils() {
     }
 
-    public static Image load(Display d, String fileName) {
+    public static Image load(final Display d, final String fileName) {
         return new Image(d, new ImageDataProvider() {
             @Override
             public ImageData getImageData(int zoom) {

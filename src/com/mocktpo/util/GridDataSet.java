@@ -16,16 +16,29 @@ public class GridDataSet {
         c.setLayoutData(data);
     }
 
-    public GridDataSet horizontalAlignment(int style) {
-        data.horizontalAlignment = style;
-        return this;
-    }
-
     public GridDataSet fillBoth() {
         data.horizontalAlignment = GridData.FILL;
         data.verticalAlignment = GridData.FILL;
         data.grabExcessHorizontalSpace = true;
         data.grabExcessVerticalSpace = true;
+        return this;
+    }
+
+    public GridDataSet centerBoth() {
+        data.horizontalAlignment = GridData.CENTER;
+        data.verticalAlignment = GridData.CENTER;
+        data.grabExcessHorizontalSpace = true;
+        data.grabExcessVerticalSpace = true;
+        return this;
+    }
+
+    public GridDataSet withWidth(int width) {
+        data.widthHint = width;
+        return this;
+    }
+
+    public GridDataSet withHeight(int height) {
+        data.heightHint = height;
         return this;
     }
 }

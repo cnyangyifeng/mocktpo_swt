@@ -32,13 +32,13 @@ public class SplashWindow {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Application and Display */
+    /* Application */
 
     protected MyApplication app;
+
+    /* Display and Shell */
+
     protected Display d;
-
-    /* Shell */
-
     private Shell s;
 
     /* Widgets */
@@ -57,8 +57,8 @@ public class SplashWindow {
      * 
      **************************************************/
 
-    public SplashWindow(MyApplication app) {
-        this.app = app;
+    public SplashWindow() {
+        this.app = MyApplication.get();
         this.d = app.getDisplay();
         init();
     }
@@ -103,18 +103,6 @@ public class SplashWindow {
         release();
     }
 
-    public void dispose() {
-        if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    s.dispose();
-                    d.dispose();
-                }
-            });
-        }
-    }
-
     public void close() {
         if (!d.isDisposed()) {
             d.asyncExec(new Runnable() {
@@ -126,7 +114,7 @@ public class SplashWindow {
         }
     }
 
-    public void setVisible(boolean v) {
+    public void setVisible(final boolean v) {
         if (!d.isDisposed()) {
             d.asyncExec(new Runnable() {
                 @Override
@@ -140,7 +128,7 @@ public class SplashWindow {
         }
     }
 
-    public void proceed(int status) {
+    public void proceed(final int status) {
         if (!d.isDisposed()) {
             d.asyncExec(new Runnable() {
                 @Override
@@ -175,27 +163,11 @@ public class SplashWindow {
      * 
      **************************************************/
 
-    public MyApplication getApp() {
-        return app;
-    }
-
-    public void setApp(MyApplication app) {
-        this.app = app;
-    }
-
     public Display getDisplay() {
         return d;
     }
 
-    public void setDisplay(Display d) {
-        this.d = d;
-    }
-
     public Shell getShell() {
         return s;
-    }
-
-    public void setShell(Shell s) {
-        this.s = s;
     }
 }

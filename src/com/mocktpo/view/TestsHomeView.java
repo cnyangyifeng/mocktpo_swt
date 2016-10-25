@@ -1,5 +1,6 @@
-package com.mocktpo.widgets;
+package com.mocktpo.view;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,12 +12,17 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
+import com.mocktpo.MyApplication;
+import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.util.FormDataSet;
 import com.mocktpo.util.FormLayoutSet;
 import com.mocktpo.util.GridDataSet;
 import com.mocktpo.util.GridLayoutSet;
 import com.mocktpo.util.ResourceManager;
+import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.widget.TestCard;
 
 public class TestsHomeView extends Composite {
 
@@ -58,7 +64,7 @@ public class TestsHomeView extends Composite {
 
     private void initToolBar() {
         toolBar = new Composite(this, SWT.NONE);
-        FormDataSet.attach(toolBar).atLeft().atTop().atRight().withHeight(50);
+        FormDataSet.attach(toolBar).atLeft().atTop().atRight();
         toolBar.setBackground(ResourceManager.getColor(MT.COLOR_LIGHTER_GRAY));
         FormLayoutSet.layout(toolBar).marginWidth(10).marginHeight(5).spacing(5);
 
@@ -67,7 +73,7 @@ public class TestsHomeView extends Composite {
         divider.setBackground(ResourceManager.getColor(MT.COLOR_GRAY));
 
         final Button sb = new Button(toolBar, SWT.PUSH);
-        FormDataSet.attach(sb).atLeft().atTop().atBottom();
+        FormDataSet.attach(sb).atLeft().atTop().withWidth(100).withHeight(LC.DEFAULT_BUTTON_HEIGHT);
         sb.setText(msgs.getString("sort_by_name"));
         sb.setForeground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
         sb.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
@@ -83,11 +89,13 @@ public class TestsHomeView extends Composite {
         sc.setContent(body);
 
         body.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
-        GridLayoutSet.layout(body).numColumns(5).makeColumnsEqualWidth(true).marginWidth(10).marginHeight(10).horizontalSpacing(10).verticalSpacing(10);
+        GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
 
-        for (int i = 0; i < 50; i++) {
-            CardView cv = new CardView(body, SWT.NONE, "TPO " + i);
-            GridDataSet.attach(cv).fillBoth();
+        UserTestMapper utm = MyApplication.get().getSqlSession().getMapper(UserTestMapper.class);
+        List<UserTest> list = utm.find();
+        for (UserTest ut : list) {
+            TestCard tc = new TestCard(body, SWT.NONE, ut);
+            GridDataSet.attach(tc).fillBoth();
         }
 
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));

@@ -20,7 +20,7 @@ public class FontUtils {
     private FontUtils() {
     }
 
-    public static Font getSystemFont(Display d, int height) {
+    public static Font getSystemFont(final Display d, final int height) {
         final AtomicReference<FontData> afd = new AtomicReference<FontData>();
         d.syncExec(new Runnable() {
             @Override
@@ -33,7 +33,7 @@ public class FontUtils {
         return new Font(d, fd);
     }
 
-    public static Font getSystemFont(Display d, int height, int style) {
+    public static Font getSystemFont(final Display d, final int height, final int style) {
         final AtomicReference<FontData> afd = new AtomicReference<FontData>();
         d.syncExec(new Runnable() {
             @Override
@@ -47,7 +47,7 @@ public class FontUtils {
         return new Font(d, fd);
     }
 
-    public static Font getMonospacedFont(Display d) {
+    public static Font getMonospacedFont(final Display d) {
         Font cache = MONOSPACED_FONTS.get(d);
         if (null != cache) {
             return cache;

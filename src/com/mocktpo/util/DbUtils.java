@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.mocktpo.orm.mapper.ActivationCodeMapper;
-import com.mocktpo.orm.mapper.UserMapper;
+import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.util.constants.RC;
 
 public class DbUtils {
@@ -24,7 +24,7 @@ public class DbUtils {
             Configuration c = factory.getConfiguration();
 
             c.addMapper(ActivationCodeMapper.class);
-            c.addMapper(UserMapper.class);
+            c.addMapper(UserTestMapper.class);
 
         } catch (Exception e) {
             e.printStackTrace();

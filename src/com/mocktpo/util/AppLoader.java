@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Display;
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.ActivationCode;
 import com.mocktpo.orm.mapper.ActivationCodeMapper;
+import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.window.RegisterWindow;
 import com.mocktpo.window.SplashWindow;
 
@@ -20,8 +21,8 @@ public class AppLoader extends Thread {
     private boolean licensed;
     private CountDownLatch latch;
 
-    public AppLoader(MyApplication app, SplashWindow splash) {
-        this.app = app;
+    public AppLoader(final SplashWindow splash) {
+        this.app = MyApplication.get();
         this.d = app.getDisplay();
         this.splash = splash;
         this.licensed = false;
@@ -46,7 +47,7 @@ public class AppLoader extends Thread {
                     List<ActivationCode> lz = acm.find();
                     while (lz.isEmpty()) {
                         splash.setVisible(false);
-                        RegisterWindow register = new RegisterWindow(app);
+                        RegisterWindow register = new RegisterWindow();
                         register.openAndWaitForDisposal();
                         lz = acm.find();
                     }
@@ -70,6 +71,9 @@ public class AppLoader extends Thread {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            // TODO If first run, initialize application data. Otherwise, skip.
+            final UserTestMapper utm = app.getSqlSession().getMapper(UserTestMapper.class);
+            utm.schema();
             splash.proceed(100);
             try {
                 Thread.sleep(500);
