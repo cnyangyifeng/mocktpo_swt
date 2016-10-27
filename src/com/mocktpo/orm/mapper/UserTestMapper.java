@@ -15,8 +15,7 @@ public interface UserTestMapper {
             "MT_TID INT,",
             "MT_TITLE VARCHAR(64),",
             "MT_USER_NAME VARCHAR(64),",
-            "MT_LAST_VIEW_ID INT,",
-            "MT_PROGRESS INT",
+            "MT_LAST_VIEW_ID INT",
             ")"
     })
     void schema();
@@ -32,14 +31,12 @@ public interface UserTestMapper {
             "MT_TID,",
             "MT_TITLE,",
             "MT_USER_NAME,",
-            "MT_LAST_VIEW_ID,",
-            "MT_PROGRESS",
+            "MT_LAST_VIEW_ID",
             ") VALUES (",
             "#{tid},",
             "#{title},",
             "#{userName},",
-            "#{lastViewId},",
-            "#{progress}",
+            "#{lastViewId}",
             ")"
     })
     void insert(UserTest ut);
@@ -49,8 +46,7 @@ public interface UserTestMapper {
             "MT_TID AS tid,",
             "MT_TITLE AS title,",
             "MT_USER_NAME AS userName,",
-            "MT_LAST_VIEW_ID AS lastViewId,",
-            "MT_PROGRESS AS progress",
+            "MT_LAST_VIEW_ID AS lastViewId",
             "FROM MT_USER_TEST",
             "ORDER BY MT_TID ASC"
     })
@@ -61,8 +57,7 @@ public interface UserTestMapper {
             "SET",
             "MT_TITLE = #{title},",
             "MT_USER_NAME = #{userName},",
-            "MT_LAST_VIEW_ID = #{lastViewId},",
-            "MT_PROGRESS = #{progress}",
+            "MT_LAST_VIEW_ID = #{lastViewId}",
             "WHERE",
             "MT_TID = #{tid}"
     })

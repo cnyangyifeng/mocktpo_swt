@@ -28,6 +28,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.COLOR_DARK_BLUE, new Color(d, 47, 82, 140)); // #2f528c
         caches.putIfAbsent(MT.COLOR_DARK_GRAY, new Color(d, 65, 74, 78)); // #414a4e
         caches.putIfAbsent(MT.COLOR_DARK_RED, new Color(d, 135, 33, 52)); // #872134
+        caches.putIfAbsent(MT.COLOR_DUST_RED, new Color(d, 234, 203, 192)); // #eacbc0
         caches.putIfAbsent(MT.COLOR_GRAY, new Color(d, 220, 220, 220)); // #dcdcdc
         caches.putIfAbsent(MT.COLOR_GREEN, new Color(d, 92, 184, 92)); // #5cb85c
         caches.putIfAbsent(MT.COLOR_LIGHT_GRAY, new Color(d, 239, 239, 239)); // #efefef
@@ -53,6 +54,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_ARROW_RIGHT, ImageUtils.load(d, "arrow_right"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE, ImageUtils.load(d, "continue"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_HOVER, ImageUtils.load(d, "continue_hover"));
+        caches.putIfAbsent(MT.IMAGE_ETS_TOEFL, ImageUtils.load(d, "ets_toefl"));
         caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, "logo"));
         caches.putIfAbsent(MT.IMAGE_PAUSE_TEST, ImageUtils.load(d, "pause_test"));
         caches.putIfAbsent(MT.IMAGE_PAUSE_TEST_HOVER, ImageUtils.load(d, "pause_test_hover"));

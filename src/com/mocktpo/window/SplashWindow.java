@@ -76,6 +76,7 @@ public class SplashWindow {
         s.setImage(ico);
         s.setSize(SHELL_WIDTH, SHELL_HEIGHT);
         s.setBackground(white);
+        s.setBackgroundMode(SWT.INHERIT_FORCE);
     }
 
     private void initBackground() {

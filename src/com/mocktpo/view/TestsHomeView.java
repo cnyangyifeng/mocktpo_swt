@@ -1,5 +1,6 @@
 package com.mocktpo.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -39,6 +40,7 @@ public class TestsHomeView extends Composite {
 
     private Composite toolBar;
     private Composite body;
+    private List<TestCard> cards;
 
     /**************************************************
      * 
@@ -93,11 +95,29 @@ public class TestsHomeView extends Composite {
 
         UserTestMapper utm = MyApplication.get().getSqlSession().getMapper(UserTestMapper.class);
         List<UserTest> list = utm.find();
+        cards = new ArrayList<TestCard>();
         for (UserTest ut : list) {
             TestCard tc = new TestCard(body, SWT.NONE, ut);
             GridDataSet.attach(tc).fillBoth();
+            cards.add(tc);
         }
 
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+    }
+
+    /**************************************************
+     * 
+     * Reset
+     * 
+     **************************************************/
+
+    public void reset(UserTest ut) {
+        for (TestCard tc : cards) {
+            if (ut.getTid() == tc.getUserTest().getTid()) {
+                tc.setUserTest(ut);
+                tc.reset();
+                return;
+            }
+        }
     }
 }

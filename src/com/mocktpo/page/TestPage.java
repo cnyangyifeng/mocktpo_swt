@@ -4,13 +4,13 @@ import java.util.ResourceBundle;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
 import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.view.GeneralTestInfoView;
+import com.mocktpo.util.TestViewManager;
+import com.mocktpo.view.TestView;
 
 public class TestPage extends Composite {
 
@@ -27,10 +27,6 @@ public class TestPage extends Composite {
 
     protected StackLayout stack;
 
-    /* Widgets */
-
-    protected GeneralTestInfoView gtiv;
-
     /* Properties */
 
     protected UserTest ut;
@@ -41,39 +37,32 @@ public class TestPage extends Composite {
      * 
      **************************************************/
 
-    public TestPage(Composite parent, int style, UserTest ut) {
+    public TestPage(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
-        this.ut = ut;
         init();
     }
 
     private void init() {
         golbal();
-        initViews();
     }
 
     private void golbal() {
-    }
-
-    private void initViews() {
         stack = new StackLayout();
         this.setLayout(stack);
-
-        // TODO Return the first view
-        gtiv = new GeneralTestInfoView(this, SWT.NONE);
-
-        stack.topControl = gtiv;
-        this.layout();
     }
 
-    public void updateViews(UserTest ut) {
-        this.ut = ut;
+    /**************************************************
+     * 
+     * Resume
+     * 
+     **************************************************/
 
-        // TODO Return last visited view
-        gtiv = new GeneralTestInfoView(this, SWT.NONE);
+    public void resume(UserTest ut) {
+        setUserTest(ut);
+        TestView tv = TestViewManager.getTestView(this);
 
-        stack.topControl = gtiv;
+        stack.topControl = tv;
         this.layout();
     }
 
@@ -85,5 +74,9 @@ public class TestPage extends Composite {
 
     public UserTest getUserTest() {
         return ut;
+    }
+
+    public void setUserTest(UserTest ut) {
+        this.ut = ut;
     }
 }

@@ -90,6 +90,7 @@ public class RegisterWindow {
         s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
         s.setSize(SHELL_WIDTH, SHELL_HEIGHT);
         s.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
+        s.setBackgroundMode(SWT.INHERIT_FORCE);
         WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s);
     }
@@ -104,12 +105,10 @@ public class RegisterWindow {
         FormDataSet.attach(bl).atLeft(20).atTop(20);
         bl.setText(msgs.getString("register"));
         bl.setFont(ResourceManager.getFont(MT.FONT_TITLE));
-        bl.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
 
         final Label dl = new Label(header, SWT.WRAP);
         FormDataSet.attach(dl).atLeft(20).atTopTo(bl, 10).fromRight(20);
         dl.setText(msgs.getString("register_desc"));
-        dl.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
 
         final Label ll = new Label(header, SWT.NONE);
         FormDataSet.attach(ll).atTop(20).atRight(20);
@@ -125,7 +124,6 @@ public class RegisterWindow {
         final Label el = new Label(body, SWT.NONE);
         FormDataSet.attach(el).atLeft().atTop().atRight();
         el.setText(msgs.getString("email"));
-        el.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
 
         et = new StyledText(body, SWT.BORDER | SWT.SINGLE);
         FormDataSet.attach(et).atLeft().atTopTo(el).fromRight(40);
@@ -143,16 +141,13 @@ public class RegisterWindow {
 
         em = new Label(body, SWT.NONE);
         FormDataSet.attach(em).atLeft().atTopTo(et).atRight();
-        em.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
 
         final Label al = new Label(body, SWT.NONE);
         FormDataSet.attach(al).atLeft().atTopTo(em).atRight();
         al.setText(msgs.getString("activation_code"));
-        al.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
 
         am = new Label(body, SWT.NONE);
         FormDataSet.attach(am).atLeft().atRight().atBottom();
-        am.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
 
         at = new StyledText(body, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(at).atLeft().atTopTo(al).atRight().atBottomTo(am, 0, SWT.TOP);

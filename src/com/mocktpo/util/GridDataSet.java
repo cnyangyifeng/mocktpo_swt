@@ -32,6 +32,14 @@ public class GridDataSet {
         return this;
     }
 
+    public GridDataSet topCenter() {
+        data.horizontalAlignment = GridData.CENTER;
+        data.verticalAlignment = GridData.BEGINNING;
+        data.grabExcessHorizontalSpace = true;
+        data.grabExcessVerticalSpace = true;
+        return this;
+    }
+
     public GridDataSet withWidth(int width) {
         data.widthHint = width;
         return this;

@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.util.DbUtils;
+import com.mocktpo.util.constants.TV;
 
 public class UserTestMapperTest {
 
@@ -39,8 +40,7 @@ public class UserTestMapperTest {
             ut.setTid(i);
             ut.setTitle("TPO " + i);
             ut.setUserName("165239796@qq.com");
-            ut.setLastViewId(i);
-            ut.setProgress(i);
+            ut.setLastViewId(TV.VIEW_TEST_INTRO);
             mapper.insert(ut);
         }
     }
@@ -60,7 +60,6 @@ public class UserTestMapperTest {
         ut.setTitle("TPO 01");
         ut.setUserName("165239796@qq.com");
         ut.setLastViewId(3);
-        ut.setProgress(30);
         mapper.update(ut);
     }
 

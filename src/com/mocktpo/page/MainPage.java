@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
+import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.util.FormDataSet;
 import com.mocktpo.util.FormLayoutSet;
 import com.mocktpo.util.ResourceManager;
@@ -123,12 +124,7 @@ public class MainPage extends Composite {
         stack = new StackLayout();
         body.setLayout(stack);
 
-        tv = new TestsHomeView(body, SWT.NONE);
-        rv = new ReportsHomeView(body, SWT.NONE);
-        sv = new SettingsHomeView(body, SWT.NONE);
-
-        stack.topControl = tv;
-        body.layout();
+        toTestsHomeView();
     }
 
     /**************************************************
@@ -137,17 +133,39 @@ public class MainPage extends Composite {
      * 
      **************************************************/
 
-    public void toTestsView() {
+    public void toTestsHomeView() {
+        if (null == tv) {
+            tv = new TestsHomeView(body, SWT.NONE);
+        }
+
         stack.topControl = tv;
         body.layout();
     }
 
-    public void toReportsView() {
+    public void resetToTestsHomeView(UserTest ut) {
+        if (null == tv) {
+            tv = new TestsHomeView(body, SWT.NONE);
+        }
+        tv.reset(ut);
+
+        stack.topControl = tv;
+        body.layout();
+    }
+
+    public void toReportsHomeView() {
+        if (null == rv) {
+            rv = new ReportsHomeView(body, SWT.NONE);
+        }
+
         stack.topControl = rv;
         body.layout();
     }
 
-    public void toSettingsView() {
+    public void toSettingsHomeView() {
+        if (null == sv) {
+            sv = new SettingsHomeView(body, SWT.NONE);
+        }
+
         stack.topControl = sv;
         body.layout();
     }
@@ -179,17 +197,17 @@ public class MainPage extends Composite {
                 tl.setBackground(ResourceManager.getColor(MT.COLOR_BLUE));
                 rl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
                 sl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
-                toTestsView();
+                toTestsHomeView();
             } else if (msgs.getString("reports").equals(text)) {
                 rl.setBackground(ResourceManager.getColor(MT.COLOR_BLUE));
                 sl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
                 tl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
-                toReportsView();
+                toReportsHomeView();
             } else if (msgs.getString("settings").equals(text)) {
                 sl.setBackground(ResourceManager.getColor(MT.COLOR_BLUE));
                 tl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
                 rl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
-                toSettingsView();
+                toSettingsHomeView();
             }
         }
 

@@ -21,6 +21,7 @@ import com.mocktpo.util.FormLayoutSet;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.TV;
 
 public class TestCard extends Composite {
 
@@ -36,6 +37,7 @@ public class TestCard extends Composite {
     /* Widgets */
 
     private Composite header;
+    private ProgressBar bar;
 
     /* Properties */
 
@@ -77,11 +79,11 @@ public class TestCard extends Composite {
         tl.setFont(ResourceManager.getFont(MT.FONT_SUBTITLE));
         tl.setForeground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
 
-        final ProgressBar bar = new ProgressBar(header, SWT.NONE);
+        bar = new ProgressBar(header, SWT.NONE);
         FormDataSet.attach(bar).atLeft().atTopTo(tl, 15).atRight();
         bar.setMinimum(0);
         bar.setMaximum(100);
-        bar.setSelection(ut.getProgress());
+        bar.setSelection(100 * ut.getLastViewId() / TV.TOTAL_VIEW_COUNT);
 
         final Label divider = new Label(header, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(bar, 10).atRight().withHeight(1);
@@ -121,6 +123,41 @@ public class TestCard extends Composite {
         b.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
         b.addSelectionListener(new StartSelectionListener());
     }
+
+    /**************************************************
+     * 
+     * Reset
+     * 
+     **************************************************/
+
+    public void reset() {
+        d.asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                bar.setSelection(100 * ut.getLastViewId() / TV.TOTAL_VIEW_COUNT);
+            }
+        });
+    }
+
+    /**************************************************
+     * 
+     * Getters and Setters
+     * 
+     **************************************************/
+
+    public UserTest getUserTest() {
+        return ut;
+    }
+
+    public void setUserTest(UserTest ut) {
+        this.ut = ut;
+    }
+
+    /**************************************************
+     * 
+     * Listeners
+     * 
+     **************************************************/
 
     private class StartSelectionListener implements SelectionListener {
 

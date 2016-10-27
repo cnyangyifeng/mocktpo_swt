@@ -2,6 +2,7 @@ package com.mocktpo.view;
 
 import java.util.ResourceBundle;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -10,16 +11,19 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
+import com.mocktpo.MyApplication;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.FormDataSet;
 import com.mocktpo.util.FormLayoutSet;
+import com.mocktpo.util.GridDataSet;
+import com.mocktpo.util.GridLayoutSet;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.widget.TestFooter;
 import com.mocktpo.widget.TestHeader;
 
-public abstract class TestTemplateView extends Composite {
+public abstract class TestView extends Composite {
 
     /* Logger and Messages */
 
@@ -38,7 +42,18 @@ public abstract class TestTemplateView extends Composite {
 
     protected TestHeader header;
     protected Composite body;
+    protected Composite viewPort;
     protected TestFooter footer;
+
+    private Label tl;
+
+    /* Properties */
+
+    protected int nextViewId;
+
+    /* Persistence */
+
+    protected SqlSession sqlSession;
 
     /**************************************************
      * 
@@ -46,10 +61,11 @@ public abstract class TestTemplateView extends Composite {
      * 
      **************************************************/
 
-    public TestTemplateView(TestPage page, int style) {
+    public TestView(TestPage page, int style) {
         super(page, style);
         this.d = page.getDisplay();
         this.page = page;
+        this.sqlSession = MyApplication.get().getSqlSession();
         init();
     }
 
@@ -69,7 +85,7 @@ public abstract class TestTemplateView extends Composite {
         FormDataSet.attach(header).atLeft().atTop().atRight().withHeight(LC.TEST_HEADER_HEIGHT);
         FormLayoutSet.layout(header);
 
-        final Label tl = new Label(header, SWT.NONE);
+        tl = new Label(header, SWT.NONE);
         FormDataSet.attach(tl).atLeft(10).atTop(10);
         tl.setText(page.getUserTest().getTitle());
         tl.setFont(ResourceManager.getFont(MT.FONT_SUBTITLE));
@@ -90,9 +106,17 @@ public abstract class TestTemplateView extends Composite {
         sc.setExpandVertical(true);
 
         body = new Composite(sc, SWT.NONE);
-        sc.setContent(body);
+        body.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
+        GridLayoutSet.layout(body);
+
+        viewPort = new Composite(body, SWT.NONE);
+        GridDataSet.attach(viewPort).topCenter().withWidth(LC.VIEW_PORT_WIDTH);
+        FormLayoutSet.layout(viewPort);
 
         updateBody();
+
+        sc.setContent(body);
+        sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
 
     /**************************************************
@@ -104,4 +128,19 @@ public abstract class TestTemplateView extends Composite {
     public abstract void updateHeader();
 
     public abstract void updateBody();
+
+    /**************************************************
+     * 
+     * Reset
+     * 
+     **************************************************/
+
+    public void reset() {
+        d.asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                tl.setText(page.getUserTest().getTitle());
+            }
+        });
+    }
 }

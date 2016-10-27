@@ -6,7 +6,6 @@ public class UserTest {
     private String title;
     private String userName;
     private int lastViewId;
-    private int progress;
 
     public int getTid() {
         return tid;
@@ -40,16 +39,8 @@ public class UserTest {
         this.lastViewId = lastViewId;
     }
 
-    public int getProgress() {
-        return progress;
-    }
-
-    public void setProgress(int progress) {
-        this.progress = progress;
-    }
-
     @Override
     public String toString() {
-        return "{\ntid:" + this.getTid() + ";\ntitle:" + this.getTitle() + ";\nuserName:" + this.getUserName() + ";\nlastViewId:" + this.getLastViewId() + ";\nprogress:" + this.getProgress() + "\n}";
+        return "{\ntid:" + this.getTid() + ";\ntitle:" + this.getTitle() + ";\nuserName:" + this.getUserName() + ";\nlastViewId:" + this.getLastViewId() + "\n}";
     }
 }

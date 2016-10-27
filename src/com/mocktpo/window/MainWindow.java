@@ -67,6 +67,7 @@ public class MainWindow {
         s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
         s.setMaximized(true);
         s.setMinimumSize(LC.SHELL_MIN_WIDTH, LC.SHELL_MIN_HEIGHT);
+        s.setBackgroundMode(SWT.INHERIT_FORCE);
         s.addShellListener(new MainWindowListener());
     }
 
@@ -74,10 +75,7 @@ public class MainWindow {
         stack = new StackLayout();
         s.setLayout(stack);
 
-        mp = new MainPage(s, SWT.NONE);
-
-        stack.topControl = mp;
-        s.layout();
+        toMainPage();
     }
 
     public void openAndWaitForDisposal() {
@@ -107,16 +105,31 @@ public class MainWindow {
      **************************************************/
 
     public void toMainPage() {
+        if (null == mp) {
+            mp = new MainPage(s, SWT.NONE);
+        }
+        mp.toTestsHomeView();
+
+        stack.topControl = mp;
+        s.layout();
+    }
+
+    public void resetToMainPage(UserTest ut) {
+        if (null == mp) {
+            mp = new MainPage(s, SWT.NONE);
+        }
+        mp.resetToTestsHomeView(ut);
+
         stack.topControl = mp;
         s.layout();
     }
 
     public void toTestPage(UserTest ut) {
         if (null == tp) {
-            tp = new TestPage(s, SWT.NONE, ut);
-        } else {
-            tp.updateViews(ut);
+            tp = new TestPage(s, SWT.NONE);
         }
+        tp.resume(ut);
+
         stack.topControl = tp;
         s.layout();
     }
