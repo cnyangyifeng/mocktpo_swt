@@ -1,0 +1,55 @@
+{
+  "text": "This test measures your ability to understand conversations and lectures in English.\n\nThe Listening section is divided into 2 separately timed parts. In each part you will listen to 1 conversation and 2 lectures. You will hear each conversation or lecture only one time.\n\nAfter each conversation or lecture, you will answer some questions about it. The questions typically ask about the main idea and supporting details. Some questions ask about a speaker's purpose or attitude. Answer the questions based on what is stated or implied by the speakers.\n\nYou may take notes while you listen. You may use your notes to help you answer the questions. Your notes will not be scored.\n\nIf you need to change the volume while you listen, click on the Volume icon at the top of the screen.\n\nIn some questions you will see this icon:   This means that you will hear, but not see, part of the question.\n\nSome of the questions have special directions. These directions appear in a gray box on the screen.\n\nMost questions are worth 1 point. If a question is worth more than 1 point, it will have special directions that indicate how many points you can receive.\n\nYou must answer each question. After you answer, click on Next. Then click on OK to confirm your answer and go on to the next question. After you click on OK, you cannot return to previous questions. If you are using the Untimed Mode, you may return to previous questions and you may listen to each conversation and lecture again. Remember that prior exposure to the conversations, lectures, and questions could lead to an increase in your section scores and may not reflect a score you would get when seeing them for the first time.\n\nDuring this practice test, you may click the Pause icon at any time. This will stop the test until you decide to continue. You may continue the test in a few minutes or at any time during the period that your test is activated.\n\nIn an actual test, and if you are using Timed Mode, a clock at the top of the screen will show you how much time is remaining. The clock will not count down while you are listening. The clock will count down only while you are answering the questions.\n\n(Click on Continue at any time to dismiss these directions.)",
+  "styles": [
+    {
+      "start": 261,
+      "length": 3,
+      "fontStyle": 1
+    },
+    {
+      "start": 663,
+      "length": 3,
+      "fontStyle": 1
+    },
+    {
+      "start": 743,
+      "length": 6,
+      "fontStyle": 1
+    },
+    {
+      "start": 824,
+      "length": 1,
+      "image": "earphone"
+    },
+    {
+      "start": 1208,
+      "length": 4,
+      "fontStyle": 1
+    },
+    {
+      "start": 1228,
+      "length": 2,
+      "fontStyle": 1
+    },
+    {
+      "start": 1305,
+      "length": 2,
+      "fontStyle": 1
+    },
+    {
+      "start": 1371,
+      "length": 12,
+      "fontStyle": 1
+    },
+    {
+      "start": 1954,
+      "length": 10,
+      "fontStyle": 1
+    },
+    {
+      "start": 2177,
+      "length": 8,
+      "fontStyle": 1
+    }
+  ]
+}

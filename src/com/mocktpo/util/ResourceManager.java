@@ -28,14 +28,15 @@ public class ResourceManager {
         caches.putIfAbsent(MT.COLOR_DARK_BLUE, new Color(d, 47, 82, 140)); // #2f528c
         caches.putIfAbsent(MT.COLOR_DARK_GRAY, new Color(d, 65, 74, 78)); // #414a4e
         caches.putIfAbsent(MT.COLOR_DARK_RED, new Color(d, 135, 33, 52)); // #872134
+        caches.putIfAbsent(MT.COLOR_DARK_TEXT_GRAY, new Color(d, 51, 51, 51)); // #333333
         caches.putIfAbsent(MT.COLOR_DUST_RED, new Color(d, 234, 203, 192)); // #eacbc0
         caches.putIfAbsent(MT.COLOR_GRAY, new Color(d, 220, 220, 220)); // #dcdcdc
         caches.putIfAbsent(MT.COLOR_GREEN, new Color(d, 92, 184, 92)); // #5cb85c
         caches.putIfAbsent(MT.COLOR_LIGHT_GRAY, new Color(d, 239, 239, 239)); // #efefef
+        caches.putIfAbsent(MT.COLOR_LIGHT_TEXT_GRAY, new Color(d, 203, 213, 221)); // #cbd5dd
         caches.putIfAbsent(MT.COLOR_LIGHT_YELLOW, new Color(d, 242, 232, 200)); // #f2e8c8
         caches.putIfAbsent(MT.COLOR_LIGHTER_GRAY, new Color(d, 244, 244, 244)); // #f4f4f4
         caches.putIfAbsent(MT.COLOR_RED, new Color(d, 217, 83, 79)); // #d9534f
-        caches.putIfAbsent(MT.COLOR_TEXT_GRAY, new Color(d, 203, 213, 221)); // #cbd5dd
         caches.putIfAbsent(MT.COLOR_WHITE, new Color(d, 255, 255, 255)); // #ffffff
 
         /* Cursors */
@@ -44,9 +45,10 @@ public class ResourceManager {
 
         /* Fonts */
 
-        caches.putIfAbsent(MT.FONT_TITLE, FontUtils.getSystemFont(d, 20));
-        caches.putIfAbsent(MT.FONT_SUBTITLE, FontUtils.getSystemFont(d, 16));
-        caches.putIfAbsent(MT.FONT_SMALL, FontUtils.getSystemFont(d, 10));
+        caches.putIfAbsent(MT.FONT_SERIF_TITLE, FontUtils.getFont(d, "georgia", 20, SWT.BOLD));
+        caches.putIfAbsent(MT.FONT_SMALL, FontUtils.getFont(d, 10));
+        caches.putIfAbsent(MT.FONT_SUBTITLE, FontUtils.getFont(d, 16));
+        caches.putIfAbsent(MT.FONT_TITLE, FontUtils.getFont(d, 20));
 
         /* Images */
 

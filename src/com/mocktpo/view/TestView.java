@@ -107,7 +107,7 @@ public abstract class TestView extends Composite {
 
         body = new Composite(sc, SWT.NONE);
         body.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
-        GridLayoutSet.layout(body);
+        GridLayoutSet.layout(body).marginBottom(50);
 
         viewPort = new Composite(body, SWT.NONE);
         GridDataSet.attach(viewPort).topCenter().withWidth(LC.VIEW_PORT_WIDTH);

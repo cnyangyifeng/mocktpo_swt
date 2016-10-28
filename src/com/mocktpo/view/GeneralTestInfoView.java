@@ -1,21 +1,30 @@
 package com.mocktpo.view;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Label;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
+import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.FormDataSet;
 import com.mocktpo.util.ResourceManager;
+import com.mocktpo.util.StyleRangeUtils;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.RC;
+import com.mocktpo.util.constants.TV;
+import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.widget.ImageButton;
 
 public class GeneralTestInfoView extends TestView {
 
     public GeneralTestInfoView(TestPage page, int style) {
         super(page, style);
+        nextViewId = TV.VIEW_READING_DIRECTIONS;
     }
 
     @Override
@@ -33,15 +42,21 @@ public class GeneralTestInfoView extends TestView {
     public void updateBody() {
         body.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_YELLOW));
 
-        final Label et = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(et).atLeft().atTop(50).atRight();
-        et.setImage(ResourceManager.getImage(MT.IMAGE_ETS_TOEFL));
+        final Label tl = new Label(viewPort, SWT.CENTER);
+        FormDataSet.attach(tl).atLeft().atTop(50).atRight();
+        tl.setText(msgs.getString("general_test_info"));
+        tl.setFont(ResourceManager.getFont(MT.FONT_SERIF_TITLE));
+        tl.setForeground(ResourceManager.getColor(MT.COLOR_BLUE_PURPLE));
 
-        final Label dt = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTopTo(et, 50).atRight();
+        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(dt).atLeft().atTopTo(tl, 50).atRight();
         dt.setFont(ResourceManager.getFont(MT.FONT_SUBTITLE));
-        String content = "EDUCATIONAL TESTING SERVICE, ETS, the ETS logo, TOEFL and TOEFL iBT are registered trademarks of Educational Testing Service (ETS) in the United States and other countries.\n\nClick on Continue to go on.";
-        dt.setText(content);
+        dt.setForeground(ResourceManager.getColor(MT.COLOR_DARK_TEXT_GRAY));
+        dt.setEditable(false);
+
+        StyledTextVo vo = ConfigUtils.load(RC.GENERAL_TEST_INFO_FILE, StyledTextVo.class);
+        dt.setText(vo.getText());
+        StyleRangeUtils.decorate(dt, vo.getStyles());
     }
 
     /**************************************************
@@ -74,7 +89,11 @@ public class GeneralTestInfoView extends TestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            // TODO Switch to the next view
+            UserTest ut = page.getUserTest();
+            ut.setLastViewId(nextViewId);
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
+            page.resume(ut);
         }
 
         @Override

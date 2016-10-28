@@ -8,6 +8,8 @@ import org.eclipse.swt.SWT;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.constants.TV;
 import com.mocktpo.view.GeneralTestInfoView;
+import com.mocktpo.view.ListeningDirectionsView;
+import com.mocktpo.view.ReadingDirectionsView;
 import com.mocktpo.view.TestIntroView;
 import com.mocktpo.view.TestView;
 
@@ -35,6 +37,14 @@ public class TestViewManager {
         case TV.VIEW_GENERAL_TEST_INFO:
             tv = new GeneralTestInfoView(page, SWT.NONE);
             caches.put(TV.VIEW_GENERAL_TEST_INFO, tv);
+            break;
+        case TV.VIEW_READING_DIRECTIONS:
+            tv = new ReadingDirectionsView(page, SWT.NONE);
+            caches.put(TV.VIEW_READING_DIRECTIONS, tv);
+            break;
+        case TV.VIEW_LISTENING_DIRECTIONS:
+            tv = new ListeningDirectionsView(page, SWT.NONE);
+            caches.put(TV.VIEW_LISTENING_DIRECTIONS, tv);
             break;
         }
         return tv;

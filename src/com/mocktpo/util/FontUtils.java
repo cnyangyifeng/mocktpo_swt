@@ -20,20 +20,15 @@ public class FontUtils {
     private FontUtils() {
     }
 
-    public static Font getSystemFont(final Display d, final int height) {
-        final AtomicReference<FontData> afd = new AtomicReference<FontData>();
-        d.syncExec(new Runnable() {
-            @Override
-            public void run() {
-                afd.set(d.getSystemFont().getFontData()[0]);
-            }
-        });
-        FontData fd = afd.get();
-        fd.setHeight(height);
-        return new Font(d, fd);
+    public static Font getFont(final Display d, final int height) {
+        return getFont(d, null, height, SWT.NORMAL);
     }
 
-    public static Font getSystemFont(final Display d, final int height, final int style) {
+    public static Font getFont(final Display d, final int height, final int style) {
+        return getFont(d, null, height, style);
+    }
+
+    public static Font getFont(final Display d, final String name, final int height, final int style) {
         final AtomicReference<FontData> afd = new AtomicReference<FontData>();
         d.syncExec(new Runnable() {
             @Override
@@ -42,8 +37,15 @@ public class FontUtils {
             }
         });
         FontData fd = afd.get();
-        fd.setHeight(height);
-        fd.setStyle(style);
+        if (null != name) {
+            fd.setName(name);
+        }
+        if (0 != height) {
+            fd.setHeight(height);
+        }
+        if (SWT.NORMAL != style) {
+            fd.setStyle(style);
+        }
         return new Font(d, fd);
     }
 

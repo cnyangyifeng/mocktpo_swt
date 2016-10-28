@@ -1,0 +1,35 @@
+{
+  "text": "This test measures your ability to use English in an academic context. There are 4 sections.\n\nIn the Reading section, you will read several passages and answer questions about them.\n\nIn the Listening section, you will hear several conversations and lectures and answer questions about them.\n\nIn the Speaking section, you will answer 6 questions. Some of the questions ask you to speak about your own experience. Other questions ask you to speak about lectures and reading passages.\n\nIn the Writing section, you will answer 2 questions. The first question asks you to write about the relationship between a lecture you will hear and a passage you will read. The second question asks you to write an essay about a topic of general interest based on your experience.\n\nDuring this practice test, you may click Pause icon at any time. This will stop the test until you decide to continue. You may continue the test in a few minutes, or at any time during the period that your test is activated.\n\nThere will be directions for each section which explain how to answer the questions in that section.\n\nYou should work quickly but carefully on the Reading and Listening questions. Some questions are more difficult than others, but try to answer every one to the best of your ability. If you are not sure of the answer to a question, make the best guess that you can. The questions that you answer by speaking and by writing are each separately timed. Try to answer every one of these questions as completely as possible in the time allowed.\n\nClick on Continue to go on.",
+  "styles": [
+    {
+      "start": 101,
+      "length": 7,
+      "fontStyle": 1
+    },
+    {
+      "start": 190,
+      "length": 9,
+      "fontStyle": 1
+    },
+    {
+      "start": 299,
+      "length": 8,
+      "fontStyle": 1
+    },
+    {
+      "start": 490,
+      "length": 7,
+      "fontStyle": 1
+    },
+    {
+      "start": 806,
+      "length": 5,
+      "fontStyle": 1
+    },
+    {
+      "start": 1542,
+      "length": 8,
+      "fontStyle": 1
+    }
+  ]
+}

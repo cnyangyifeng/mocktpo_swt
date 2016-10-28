@@ -20,11 +20,11 @@ import com.mocktpo.util.constants.TV;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.widget.ImageButton;
 
-public class TestIntroView extends TestView {
+public class ReadingDirectionsView extends TestView {
 
-    public TestIntroView(TestPage page, int style) {
+    public ReadingDirectionsView(TestPage page, int style) {
         super(page, style);
-        nextViewId = TV.VIEW_GENERAL_TEST_INFO;
+        nextViewId = TV.VIEW_LISTENING_DIRECTIONS;
     }
 
     @Override
@@ -40,19 +40,21 @@ public class TestIntroView extends TestView {
 
     @Override
     public void updateBody() {
-        body.setBackground(ResourceManager.getColor(MT.COLOR_DUST_RED));
+        body.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_YELLOW));
 
-        final Label et = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(et).atLeft().atTop(50).atRight();
-        et.setImage(ResourceManager.getImage(MT.IMAGE_ETS_TOEFL));
+        final Label tl = new Label(viewPort, SWT.CENTER);
+        FormDataSet.attach(tl).atLeft().atTop(50).atRight();
+        tl.setText(msgs.getString("reading_directions"));
+        tl.setFont(ResourceManager.getFont(MT.FONT_SERIF_TITLE));
+        tl.setForeground(ResourceManager.getColor(MT.COLOR_BLUE_PURPLE));
 
-        final StyledText dt = new StyledText(viewPort, SWT.WRAP | SWT.CENTER);
-        FormDataSet.attach(dt).atLeft().atTopTo(et, 50).atRight();
+        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(dt).atLeft().atTopTo(tl, 50).atRight();
         dt.setFont(ResourceManager.getFont(MT.FONT_SUBTITLE));
         dt.setForeground(ResourceManager.getColor(MT.COLOR_DARK_TEXT_GRAY));
         dt.setEditable(false);
 
-        StyledTextVo vo = ConfigUtils.load(RC.TEST_INTRO_FILE, StyledTextVo.class);
+        StyledTextVo vo = ConfigUtils.load(RC.READING_DIRECTIONS_FILE, StyledTextVo.class);
         dt.setText(vo.getText());
         StyleRangeUtils.decorate(dt, vo.getStyles());
     }

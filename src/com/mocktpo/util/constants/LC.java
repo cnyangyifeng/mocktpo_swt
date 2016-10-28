@@ -10,7 +10,7 @@ public interface LC {
     int SHELL_MIN_WIDTH = 900;
     int SHELL_MIN_HEIGHT = 600;
 
-    int VIEW_PORT_WIDTH = 880;
+    int VIEW_PORT_WIDTH = 860;
 
     int DEFAULT_BUTTON_HEIGHT = 36;
 
