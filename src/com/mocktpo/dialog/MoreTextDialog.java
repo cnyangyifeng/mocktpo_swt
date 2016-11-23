@@ -77,7 +77,7 @@ public class MoreTextDialog {
 
         final Label tl = new Label(background, SWT.CENTER);
         FormDataSet.attach(tl).atLeft().atTop().atRight();
-        LabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
+        LabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
 
         final ImageButton cb = new ImageButton(background, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE), ResourceManager.getImage(MT.IMAGE_CONTINUE_HOVER));
         FormDataSet.attach(cb).fromLeft(50, -LC.CONTINUE_BUTTON_WIDTH / 2).atBottom();

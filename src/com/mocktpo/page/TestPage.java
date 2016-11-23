@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class TestPage extends Composite {
 
-    public static final int TOTAL_VIEW_COUNT = 64;
+    public static final int TOTAL_VIEW_COUNT = 99;
 
     /* Logger and Messages */
 

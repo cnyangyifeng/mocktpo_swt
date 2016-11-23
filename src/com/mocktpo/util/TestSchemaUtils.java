@@ -39,7 +39,7 @@ public class TestSchemaUtils {
             break;
         case ST.SECTION_TYPE_READING:
             // TODO temporary next timed view id
-            nextViewId = 19;
+            nextViewId = 99;
             break;
         case ST.SECTION_TYPE_SPEAKING:
             // TODO handles next timed view id

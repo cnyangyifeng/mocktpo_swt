@@ -40,16 +40,15 @@ public interface MT {
     int COLOR_DARK_ORANGE = 3;
     int COLOR_DARK_BLUE = 4;
     int COLOR_GAINSBORO = 5;
-    int COLOR_GRANITE_GRAY = 6;
-    int COLOR_GREEN = 7;
-    int COLOR_INDIGO = 8;
-    int COLOR_KHAKI = 9;
-    int COLOR_ORANGE = 10;
-    int COLOR_ORANGE_RED = 11;
-    int COLOR_OXFORD_BLUE = 12;
-    int COLOR_SADDLE_BROWN = 13;
-    int COLOR_WHITE = 14;
-    int COLOR_WHITE_SMOKE = 15;
+    int COLOR_GREEN = 6;
+    int COLOR_INDIGO = 7;
+    int COLOR_KHAKI = 8;
+    int COLOR_ORANGE = 9;
+    int COLOR_ORANGE_RED = 10;
+    int COLOR_OXFORD_BLUE = 11;
+    int COLOR_SADDLE_BROWN = 12;
+    int COLOR_WHITE = 13;
+    int COLOR_WHITE_SMOKE = 14;
 
     /* Others */
 
@@ -126,18 +125,17 @@ public interface MT {
     int IMAGE_REVIEW_OVAL = 333;
     int IMAGE_REVIEW_OVAL_HOVER = 334;
     int IMAGE_REVIEW_OVAL_DISABLED = 335;
-    int IMAGE_SETTINGS = 336;
-    int IMAGE_SHOW_TIME = 337;
-    int IMAGE_SHOW_TIME_HOVER = 338;
-    int IMAGE_SHOW_TIME_DISABLED = 339;
-    int IMAGE_SPLASH = 340;
-    int IMAGE_VIEW_QUESTION = 341;
-    int IMAGE_VIEW_QUESTION_HOVER = 342;
-    int IMAGE_VIEW_TEXT = 343;
-    int IMAGE_VIEW_TEXT_HOVER = 344;
-    int IMAGE_VOLUME_OVAL = 345;
-    int IMAGE_VOLUME_OVAL_HOVER = 346;
-    int IMAGE_UNCHECKED = 347;
+    int IMAGE_SHOW_TIME = 336;
+    int IMAGE_SHOW_TIME_HOVER = 337;
+    int IMAGE_SHOW_TIME_DISABLED = 338;
+    int IMAGE_SPLASH = 339;
+    int IMAGE_VIEW_QUESTION = 340;
+    int IMAGE_VIEW_QUESTION_HOVER = 341;
+    int IMAGE_VIEW_TEXT = 342;
+    int IMAGE_VIEW_TEXT_HOVER = 343;
+    int IMAGE_VOLUME_OVAL = 344;
+    int IMAGE_VOLUME_OVAL_HOVER = 345;
+    int IMAGE_UNCHECKED = 346;
 
     /**************************************************
      * 

@@ -21,6 +21,7 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.*;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.*;
 
 import java.util.ResourceBundle;
@@ -29,9 +30,10 @@ import java.util.TimerTask;
 
 public class ReadingReviewView extends Composite {
 
-    private static final String STRING_READING = "Reading";
-    private static final int TABLE_COLUMN_NUMBER_WIDTH = 150;
-    private static final int TABLE_COLUMN_STATUS_WIDTH = 300;
+    private static final String STRING_IS_TABLE_HEADER = "isTableHeader";
+    private static final int TABLE_COLUMN_NUMBER_WIDTH = 100;
+    private static final int TABLE_COLUMN_STATUS_WIDTH = 200;
+    private static final int TABLE_ITEM_HEIGHT = 32;
 
     /* Logger and Messages */
 
@@ -77,11 +79,13 @@ public class ReadingReviewView extends Composite {
 
     protected boolean timed;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public ReadingReviewView(TestPage page, int style, boolean timed) {
         super(page, style);
@@ -128,7 +132,7 @@ public class ReadingReviewView extends Composite {
 
         final Label titleLabel = new Label(header, SWT.WRAP);
         FormDataSet.attach(titleLabel).atLeft(10).atTop(10);
-        LabelSet.decorate(titleLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestSchema().getTitle() + MT.STRING_SPACE + STRING_READING);
+        LabelSet.decorate(titleLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestSchema().getTitle() + MT.STRING_SPACE + "Reading");
 
         /*
          * ==================================================
@@ -213,13 +217,14 @@ public class ReadingReviewView extends Composite {
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(dt).atLeft().atTop(20).atRight();
         StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(msgs.getString("reading_review_directions"));
-        dt.setStyleRanges(new StyleRange[] { new StyleRange(461, 14, null, null, SWT.BOLD), new StyleRange(676, 6, null, null, SWT.BOLD) });
+        dt.setStyleRanges(new StyleRange[]{new StyleRange(461, 14, null, null, SWT.BOLD), new StyleRange(676, 6, null, null, SWT.BOLD)});
 
-        table = new Table(viewPort, SWT.BORDER | SWT.FULL_SELECTION);
+        table = new Table(viewPort, SWT.BORDER | SWT.FULL_SELECTION | SWT.NO_SCROLL);
         FormDataSet.attach(table).atLeft().atTopTo(dt, 20).atRight();
         TableSet.decorate(table).setBackground(MT.COLOR_KHAKI).setFont(MT.FONT_MEDIUM).setLineVisible(true);
         table.addControlListener(new ReadingReviewTableControlListener());
         table.addSelectionListener(new ReadingReviewTableSelectionListener());
+        table.addListener(SWT.MouseWheel, new ReadingReviewTableMouseWheelListener());
 
         final TableColumn numberColumn = new TableColumn(table, SWT.CENTER);
         numberColumn.setText(msgs.getString("number"));
@@ -233,9 +238,10 @@ public class ReadingReviewView extends Composite {
         statusColumn.setWidth(TABLE_COLUMN_STATUS_WIDTH);
 
         final TableItem tableHeader = new TableItem(table, SWT.NONE);
-        TableItemSet.decorate(tableHeader).setBackground(MT.COLOR_SADDLE_BROWN).setData("isTableHeader", true).setForeground(MT.COLOR_WHITE).setText(new String[] { msgs.getString("number"), msgs.getString("description"), msgs.getString("status") });
+        TableItemSet.decorate(tableHeader).setBackground(MT.COLOR_SADDLE_BROWN).setData(STRING_IS_TABLE_HEADER, true).setForeground(MT.COLOR_WHITE).setImage(new Image(d, 1, TABLE_ITEM_HEIGHT)).setText(new String[]{msgs.getString("number"), msgs.getString("description"), msgs.getString("status")});
 
         for (TestViewVo tvv : page.getTestSchema().getViews()) {
+
             if (ST.SECTION_TYPE_READING == tvv.getSectionType() && tvv.isWithQuestion()) {
 
                 final TableItem item = new TableItem(table, SWT.NONE);
@@ -247,21 +253,22 @@ public class ReadingReviewView extends Composite {
                     question = tvv.getStyledText("question").getText();
                 }
                 String status = "not answered";
-                TableItemSet.decorate(item).setText(new String[] { number, question, status });
+                TableItemSet.decorate(item).setText(new String[]{number, question, status});
 
                 if (selectedViewId == tvv.getViewId()) {
                     table.setSelection(item);
                 }
-
             }
         }
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Timer
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public void startTimer() {
 
@@ -306,19 +313,24 @@ public class ReadingReviewView extends Composite {
     }
 
     public void stopTimer() {
+
         if (null != timerTask) {
             timerTask.cancel();
         }
+
         if (null != timer) {
             timer.purge();
         }
+
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Timer Tasks
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class TestTimerTask extends TimerTask {
 
@@ -360,11 +372,13 @@ public class ReadingReviewView extends Composite {
         }
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class ReadingReviewPauseTestButtonMouseListener implements MouseListener {
 
@@ -380,7 +394,6 @@ public class ReadingReviewView extends Composite {
             }
 
             UserTest ut = page.getUserTest();
-            ut.setLastViewId(9);
 
             MyApplication.get().getWindow().toMainPage(ut);
 
@@ -481,8 +494,8 @@ public class ReadingReviewView extends Composite {
         @Override
         public void controlResized(ControlEvent e) {
 
-            int tableWidth = table.getBounds().width, numberColumnWidth = table.getColumn(0).getWidth(), statusColumnWidth = table.getColumn(2).getWidth(), reserved = 2;
-            table.getColumn(1).setWidth(tableWidth - numberColumnWidth - statusColumnWidth - reserved);
+            int tableWidth = table.getBounds().width, numberColumnWidth = table.getColumn(0).getWidth(), statusColumnWidth = table.getColumn(2).getWidth();
+            table.getColumn(1).setWidth(tableWidth - numberColumnWidth - statusColumnWidth);
 
         }
     }
@@ -498,7 +511,7 @@ public class ReadingReviewView extends Composite {
 
             TableItem item = (TableItem) e.item;
 
-            Object b = item.getData("isTableHeader");
+            Object b = item.getData(STRING_IS_TABLE_HEADER);
             if (null != b && (Boolean) b) {
                 return;
             }
@@ -512,6 +525,16 @@ public class ReadingReviewView extends Composite {
                         return;
                     }
                 }
+            }
+        }
+    }
+
+    private class ReadingReviewTableMouseWheelListener implements Listener {
+
+        public void handleEvent(Event e) {
+
+            if (table == e.widget && SWT.MouseWheel == e.type) {
+                e.doit = false;
             }
         }
     }

@@ -29,7 +29,6 @@ public class ResourceManager {
         caches.putIfAbsent(MT.COLOR_DARK_ORANGE, new Color(d, 255, 140, 0)); // #ff8c00
         caches.putIfAbsent(MT.COLOR_DARK_BLUE, new Color(d, 47, 82, 140)); // #2f528c
         caches.putIfAbsent(MT.COLOR_GAINSBORO, new Color(d, 229, 218, 218)); // #e5dada
-        caches.putIfAbsent(MT.COLOR_GRANITE_GRAY, new Color(d, 96, 95, 94)); // #605f5e
         caches.putIfAbsent(MT.COLOR_GREEN, new Color(d, 0, 128, 0)); // #008000
         caches.putIfAbsent(MT.COLOR_INDIGO, new Color(d, 55, 50, 125)); // #37327d
         caches.putIfAbsent(MT.COLOR_KHAKI, new Color(d, 242, 232, 200)); // #f2e8c8
