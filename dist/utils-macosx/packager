@@ -6,6 +6,11 @@ export DIST_DIR=$BASE_DIR/../dist-macosx
 
 reset
 
+if [ -d $DIST_DIR ]; then
+  rm -rf $DIST_DIR
+fi
+mkdir $DIST_DIR
+
 cd $DIST_DIR
 if [ -d MockTPO.app ]; then
   rm -rf MockTPO.app
