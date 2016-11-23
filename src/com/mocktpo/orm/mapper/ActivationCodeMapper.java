@@ -1,17 +1,17 @@
 package com.mocktpo.orm.mapper;
 
-import java.util.List;
-
+import com.mocktpo.orm.domain.ActivationCode;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.mocktpo.orm.domain.ActivationCode;
+import java.util.List;
 
 public interface ActivationCodeMapper {
 
     @Update({
             "CREATE TABLE IF NOT EXISTS MT_ACTIVATION_CODE (",
+            "MT_EMAIL VARCHAR(64),",
             "MT_CONTENT VARCHAR(1024),",
             "MT_DATE_CREATED TIMESTAMP,",
             "MT_DATE_UPDATED TIMESTAMP",
@@ -27,10 +27,12 @@ public interface ActivationCodeMapper {
 
     @Insert({
             "INSERT INTO MT_ACTIVATION_CODE (",
+            "MT_EMAIL,",
             "MT_CONTENT,",
             "MT_DATE_CREATED,",
             "MT_DATE_UPDATED",
             ") VALUES (",
+            "#{email},",
             "#{content},",
             "#{dateCreated},",
             "#{dateUpdated}",
@@ -40,6 +42,7 @@ public interface ActivationCodeMapper {
 
     @Select({
             "SELECT",
+            "MT_EMAIL AS email,",
             "MT_CONTENT AS content,",
             "MT_DATE_CREATED AS dateCreated,",
             "MT_DATE_UPDATED AS dateUpdated",
@@ -51,6 +54,7 @@ public interface ActivationCodeMapper {
     @Update({
             "UPDATE MT_ACTIVATION_CODE",
             "SET",
+            "MT_EMAIL = #{email},",
             "MT_CONTENT = #{content},",
             "MT_DATE_CREATED = #{dateCreated},",
             "MT_DATE_UPDATED = #{dateUpdated}"

@@ -1,15 +1,14 @@
 package com.mocktpo.orm.mapper;
 
-import java.util.Date;
-import java.util.List;
-
+import com.mocktpo.orm.domain.ActivationCode;
+import com.mocktpo.util.DbUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.mocktpo.orm.domain.ActivationCode;
-import com.mocktpo.util.DbUtils;
+import java.util.Date;
+import java.util.List;
 
 public class ActivationCodeMapperTest {
 
@@ -33,16 +32,14 @@ public class ActivationCodeMapperTest {
             "bqmMy9R/Xpb6587Y9vxujGw4OeeH3udGjcuymo/kuAwOM7CXXc2vvMM8K6ROwN9Q\n" +
             "RLi31FVkup+I2ZW47PjUHyypFxpmZMoe2ifKHH7oMFO6z9nqfLeP4VVZd77NcCyJ\n" +
             "eOIgtEno/vsZLPem98e1TZFgzTQJyAmLUI/fyq8paGUq+3H2Jv1ns+rEGbKLn81Z\n" +
-            "ZDQnlk8KAMYTz0I=\n" +
-            "=/sNk\n"
-        ;
+            "ZDQnlk8KAMYTz0I=\n" + "=/sNk\n";
     }
 
     @Test
     public void testSchema() {
         mapper.schema();
     }
-    
+
     @Test
     public void testDrop() {
         mapper.drop();
@@ -51,6 +48,7 @@ public class ActivationCodeMapperTest {
     @Test
     public void testInsert() {
         ActivationCode lic = new ActivationCode();
+        lic.setEmail("cnyangyifeng@163.com");
         lic.setContent(c);
         lic.setDateCreated(new Date());
         lic.setDateUpdated(new Date());
@@ -68,6 +66,7 @@ public class ActivationCodeMapperTest {
     @Test
     public void testUpdate() {
         ActivationCode lic = new ActivationCode();
+        lic.setEmail("cnyangyifeng@163.com");
         String c = "n/a";
         lic.setContent(c);
         mapper.update(lic);

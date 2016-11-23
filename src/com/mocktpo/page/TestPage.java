@@ -1,18 +1,23 @@
 package com.mocktpo.page;
 
-import java.util.ResourceBundle;
-
+import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.util.ConfigUtils;
+import com.mocktpo.util.constants.RC;
+import com.mocktpo.util.constants.VT;
+import com.mocktpo.view.test.*;
+import com.mocktpo.vo.TestSchemaVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.util.TestViewManager;
-import com.mocktpo.view.TestView;
+import java.util.ResourceBundle;
 
 public class TestPage extends Composite {
+
+    public static final int TOTAL_VIEW_COUNT = 64;
 
     /* Logger and Messages */
 
@@ -27,9 +32,14 @@ public class TestPage extends Composite {
 
     protected StackLayout stack;
 
+    /* Standalone Views */
+
+    private ReadingReviewView readingReview;
+
     /* Properties */
 
-    protected UserTest ut;
+    private TestSchemaVo testSchema;
+    private UserTest userTest;
 
     /**************************************************
      * 
@@ -37,9 +47,11 @@ public class TestPage extends Composite {
      * 
      **************************************************/
 
-    public TestPage(Composite parent, int style) {
+    public TestPage(Composite parent, int style, UserTest userTest) {
         super(parent, style);
         this.d = parent.getDisplay();
+        this.userTest = userTest;
+        this.testSchema = ConfigUtils.load(this.userTest.getAlias() + RC.JSON_FILE_TYPE_SUFFIX, TestSchemaVo.class);
         init();
     }
 
@@ -59,11 +71,71 @@ public class TestPage extends Composite {
      **************************************************/
 
     public void resume(UserTest ut) {
-        setUserTest(ut);
-        TestView tv = TestViewManager.getTestView(this);
+
+        if (this.userTest.getTid() != ut.getTid()) {
+            this.setVo(ConfigUtils.load(ut.getAlias() + RC.JSON_FILE_TYPE_SUFFIX, TestSchemaVo.class));
+        }
+        this.userTest = ut;
+
+        TestView tv = getLastTestView();
+        tv.startTimer();
 
         stack.topControl = tv;
         this.layout();
+
+    }
+
+    private TestView getLastTestView() {
+
+        int lastViewId = userTest.getLastViewId();
+        int lastViewType = testSchema.getView(lastViewId).getViewType();
+
+        TestView tv = null;
+        switch (lastViewType) {
+        case VT.VIEW_TYPE_GENERAL_TEST_INFO:
+            tv = new GeneralTestInfoView(this, SWT.NONE);
+            break;
+        case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
+            tv = new ListeningDirectionsView(this, SWT.NONE);
+            break;
+        case VT.VIEW_TYPE_READING_DIRECTIONS:
+            tv = new ReadingDirectionsView(this, SWT.NONE);
+            break;
+        case VT.VIEW_TYPE_READING_FILL_TABLE_QUESTION:
+            tv = new ReadingFillTableQuestionView(this, SWT.NONE);
+            break;
+        case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
+            tv = new ReadingProseSummaryQuestionView(this, SWT.NONE);
+            break;
+        case VT.VIEW_TYPE_READING_TEXT:
+            tv = new ReadingTextView(this, SWT.NONE);
+            break;
+        case VT.VIEW_TYPE_READING_TEXT_WITH_QUESTION:
+            tv = new ReadingTextWithQuestionView(this, SWT.NONE);
+            break;
+        case VT.VIEW_TYPE_TEST_INTRO:
+            tv = new TestIntroView(this, SWT.NONE);
+            break;
+        }
+
+        return tv;
+
+    }
+
+    /**************************************************
+     * 
+     * To Reading Review View
+     * 
+     **************************************************/
+
+    public void toReadingReview() {
+
+        readingReview = new ReadingReviewView(this, SWT.NONE, true);
+        readingReview.startTimer();
+
+        stack.topControl = readingReview;
+        this.layout();
+
     }
 
     /**************************************************
@@ -72,11 +144,19 @@ public class TestPage extends Composite {
      * 
      **************************************************/
 
-    public UserTest getUserTest() {
-        return ut;
+    public TestSchemaVo getTestSchema() {
+        return testSchema;
     }
 
-    public void setUserTest(UserTest ut) {
-        this.ut = ut;
+    public void setVo(TestSchemaVo testSchema) {
+        this.testSchema = testSchema;
+    }
+
+    public UserTest getUserTest() {
+        return userTest;
+    }
+
+    public void setUserTest(UserTest userTest) {
+        this.userTest = userTest;
     }
 }

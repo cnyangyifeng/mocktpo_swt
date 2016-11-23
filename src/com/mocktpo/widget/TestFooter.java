@@ -1,7 +1,7 @@
 package com.mocktpo.widget;
 
-import java.util.ResourceBundle;
-
+import com.mocktpo.util.*;
+import com.mocktpo.util.constants.MT;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -9,11 +9,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
-import com.mocktpo.util.GridDataSet;
-import com.mocktpo.util.GridLayoutSet;
-import com.mocktpo.util.ResourceManager;
-import com.mocktpo.util.constants.LC;
-import com.mocktpo.util.constants.MT;
+import java.util.ResourceBundle;
 
 public class TestFooter extends Composite {
 
@@ -48,15 +44,13 @@ public class TestFooter extends Composite {
     }
 
     private void golbal() {
-        setBackground(ResourceManager.getColor(MT.COLOR_BLUE_PURPLE));
+        setBackground(ResourceManager.getColor(MT.COLOR_DARK_BLUE));
         GridLayoutSet.layout(this);
     }
 
     private void initCopyright() {
         copyright = new Label(this, SWT.WRAP | SWT.CENTER);
-        GridDataSet.attach(copyright).centerBoth().withWidth(LC.VIEW_PORT_WIDTH);
-        copyright.setText(msgs.getString("copyright"));
-        copyright.setFont(ResourceManager.getFont(MT.FONT_SMALL));
-        copyright.setForeground(ResourceManager.getColor(MT.COLOR_LIGHTER_GRAY));
+        GridDataSet.attach(copyright).centerBoth().withWidth(ScreenUtils.getViewPort(d).x);
+        LabelSet.decorate(copyright).setForeground(MT.COLOR_WHITE_SMOKE).setFont(MT.FONT_X_SMALL).setText(msgs.getString("copyright"));
     }
 }

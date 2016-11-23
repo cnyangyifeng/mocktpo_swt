@@ -9,8 +9,8 @@ public class StyleRangeVo implements Serializable {
     private int start;
     private int length;
     private int fontStyle;
-    private String foreground;
-    private String background;
+    private int foreground;
+    private int background;
     private boolean underline;
     private String image;
 
@@ -38,19 +38,19 @@ public class StyleRangeVo implements Serializable {
         this.fontStyle = fontStyle;
     }
 
-    public String getForeground() {
+    public int getForeground() {
         return foreground;
     }
 
-    public void setForeground(String foreground) {
+    public void setForeground(int foreground) {
         this.foreground = foreground;
     }
 
-    public String getBackground() {
+    public int getBackground() {
         return background;
     }
 
-    public void setBackground(String background) {
+    public void setBackground(int background) {
         this.background = background;
     }
 

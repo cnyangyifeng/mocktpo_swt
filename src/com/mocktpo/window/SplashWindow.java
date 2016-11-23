@@ -1,31 +1,20 @@
 package com.mocktpo.window;
 
-import java.util.ResourceBundle;
-
+import com.mocktpo.MyApplication;
+import com.mocktpo.util.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Shell;
 
-import com.mocktpo.MyApplication;
-import com.mocktpo.util.ImageUtils;
-import com.mocktpo.util.WindowUtils;
+import java.util.ResourceBundle;
 
 public class SplashWindow {
-
-    /* Constants */
-
-    private static final int SHELL_WIDTH = 480;
-    private static final int SHELL_HEIGHT = 290;
-    private static final int BACKGROUND_WIDTH = 480;
-    private static final int BACKGROUND_HEIGHT = 270;
-    private static final int PROGRESS_BAR_WIDTH = 460;
-    private static final int PROGRESS_BAR_HEIGHT = 10;
 
     /* Logger and Messages */
 
@@ -43,7 +32,8 @@ public class SplashWindow {
 
     /* Widgets */
 
-    private ProgressBar bar;
+    private Label background;
+    private CLabel message;
 
     /* Resources */
 
@@ -68,29 +58,34 @@ public class SplashWindow {
         alloc();
         global();
         initBackground();
-        initProgressBar();
+        initMessage();
+        s.pack();
     }
 
     private void global() {
+
         s.setText(msgs.getString("app_name"));
         s.setImage(ico);
-        s.setSize(SHELL_WIDTH, SHELL_HEIGHT);
         s.setBackground(white);
         s.setBackgroundMode(SWT.INHERIT_FORCE);
+        FormLayoutSet.layout(s);
+
     }
 
     private void initBackground() {
-        final Label label = new Label(s, SWT.NONE);
-        label.setBounds(0, 0, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
-        label.setImage(b);
+
+        background = new Label(s, SWT.NONE);
+        FormDataSet.attach(background).atLeft().atTop().atRight();
+        LabelSet.decorate(background).setImage(b);
+
     }
 
-    private void initProgressBar() {
-        bar = new ProgressBar(s, SWT.SMOOTH);
-        bar.setBounds(10, BACKGROUND_HEIGHT, PROGRESS_BAR_WIDTH, PROGRESS_BAR_HEIGHT);
-        bar.setMinimum(0);
-        bar.setMaximum(100);
-        bar.setSelection(0);
+    private void initMessage() {
+
+        message = new CLabel(s, SWT.CENTER);
+        FormDataSet.attach(message).atLeft().atTopTo(background).atRight().atBottom(20);
+        CLabelSet.decorate(message).setText(msgs.getString("launching"));
+
     }
 
     public void openAndWaitForDisposal() {
@@ -129,12 +124,12 @@ public class SplashWindow {
         }
     }
 
-    public void proceed(final int status) {
+    public void proceed(final String text) {
         if (!d.isDisposed()) {
             d.asyncExec(new Runnable() {
                 @Override
                 public void run() {
-                    bar.setSelection(status);
+                    message.setText(text);
                 }
             });
         }

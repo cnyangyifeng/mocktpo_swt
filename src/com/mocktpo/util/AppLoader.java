@@ -1,23 +1,38 @@
 package com.mocktpo.util;
 
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-
-import org.eclipse.swt.widgets.Display;
-
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.ActivationCode;
+import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.mapper.ActivationCodeMapper;
 import com.mocktpo.orm.mapper.UserTestMapper;
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.window.RegisterWindow;
 import com.mocktpo.window.SplashWindow;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.eclipse.swt.widgets.Display;
+
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.concurrent.CountDownLatch;
 
 public class AppLoader extends Thread {
 
+    /* Logger and Messages */
+
+    protected static final Logger logger = LogManager.getLogger();
+    protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
+
+    /* Application */
+
     protected MyApplication app;
+
+    /* Display and Splash Window */
+
     protected Display d;
     protected SplashWindow splash;
 
+    private String email;
     private boolean licensed;
     private CountDownLatch latch;
 
@@ -31,13 +46,14 @@ public class AppLoader extends Thread {
 
     @Override
     public void run() {
+        splash.proceed(msgs.getString("loading_resources"));
         ResourceManager.alloc(d);
-        splash.proceed(20);
 
+        splash.proceed(msgs.getString("initializing_database"));
         DbUtils.init();
         app.setSqlSession(DbUtils.getSqlSession());
-        splash.proceed(40);
 
+        splash.proceed(msgs.getString("validating"));
         final ActivationCodeMapper acm = app.getSqlSession().getMapper(ActivationCodeMapper.class);
         acm.schema();
         if (!d.isDisposed()) {
@@ -51,8 +67,8 @@ public class AppLoader extends Thread {
                         register.openAndWaitForDisposal();
                         lz = acm.find();
                     }
-                    final String acc = ((ActivationCode) lz.get(0)).getContent();
-                    licensed = ActivationCodeUtils.isLicensed(acc);
+                    email = lz.get(0).getEmail();
+                    licensed = ActivationCodeUtils.isLicensed(email, lz.get(0).getContent());
                     latch.countDown();
                 }
             });
@@ -63,24 +79,29 @@ public class AppLoader extends Thread {
             e.printStackTrace();
         }
         splash.setVisible(true);
-        splash.proceed(80);
 
         if (licensed) {
-            try {
-                Thread.sleep(500);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            // TODO If first run, initialize application data. Otherwise, skip.
             final UserTestMapper utm = app.getSqlSession().getMapper(UserTestMapper.class);
             utm.schema();
-            splash.proceed(100);
-            try {
-                Thread.sleep(500);
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (utm.count() <= 0) {
+                splash.proceed(msgs.getString("configuring_database"));
+                for (int i = 1; i <= 48; i++) {
+                    UserTest ut = new UserTest();
+                    ut.setEmail(email);
+                    ut.setTid(i);
+                    ut.setTitle(msgs.getString("tpo") + MT.STRING_SPACE + i);
+                    ut.setAlias(msgs.getString("tpo") + i);
+                    ut.setTimerHidden(false);
+                    ut.setReadingTime(MT.TIME_READING_SECTION);
+                    ut.setLastViewId(1);
+                    utm.insert(ut);
+                }
+                app.getSqlSession().commit();
             }
+            splash.proceed(msgs.getString("welcome"));
             splash.close();
+        } else {
+            System.exit(0);
         }
     }
 }

@@ -1,16 +1,15 @@
 package com.mocktpo;
 
-import java.util.ResourceBundle;
-
+import com.mocktpo.util.AppLoader;
+import com.mocktpo.util.ResourceManager;
+import com.mocktpo.window.MainWindow;
+import com.mocktpo.window.SplashWindow;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.widgets.Display;
 
-import com.mocktpo.util.AppLoader;
-import com.mocktpo.util.ResourceManager;
-import com.mocktpo.window.MainWindow;
-import com.mocktpo.window.SplashWindow;
+import java.util.ResourceBundle;
 
 public class MyApplication {
 
@@ -43,6 +42,7 @@ public class MyApplication {
         if (null != sqlSession) {
             sqlSession.close();
         }
+        System.exit(0);
     }
 
     /**************************************************

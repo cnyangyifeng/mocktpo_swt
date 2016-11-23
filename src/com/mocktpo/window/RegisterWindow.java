@@ -1,46 +1,28 @@
 package com.mocktpo.window;
 
-import java.util.ResourceBundle;
-
+import com.mocktpo.MyApplication;
+import com.mocktpo.orm.domain.ActivationCode;
+import com.mocktpo.orm.mapper.ActivationCodeMapper;
+import com.mocktpo.util.*;
+import com.mocktpo.util.constants.LC;
+import com.mocktpo.util.constants.MT;
+import com.mocktpo.vo.RequireActivationVo;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.*;
 import org.h2.util.StringUtils;
 
-import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.ActivationCode;
-import com.mocktpo.orm.mapper.ActivationCodeMapper;
-import com.mocktpo.util.ActivationCodeUtils;
-import com.mocktpo.util.FontUtils;
-import com.mocktpo.util.FormDataSet;
-import com.mocktpo.util.FormLayoutSet;
-import com.mocktpo.util.HardwareBinderUtils;
-import com.mocktpo.util.KeyBindingSet;
-import com.mocktpo.util.RegexUtils;
-import com.mocktpo.util.ResourceManager;
-import com.mocktpo.util.WindowUtils;
-import com.mocktpo.util.constants.MT;
-import com.mocktpo.vo.RequireActivationVo;
+import java.util.ResourceBundle;
 
 public class RegisterWindow {
-
-    /* Constants */
-
-    private static final int SHELL_WIDTH = 800;
-    private static final int SHELL_HEIGHT = 600;
-    private static final int BUTTON_WIDTH = 100;
-    private static final int BUTTON_HEIGHT = 40;
 
     /* Logger and Messages */
 
@@ -58,11 +40,14 @@ public class RegisterWindow {
 
     /* Widgets */
 
+    private Composite header;
+    private Composite footer;
+
     private StyledText et;
     private Button eb;
-    private Label em;
+    private CLabel em;
     private StyledText at;
-    private Label am;
+    private CLabel am;
     private Button r;
 
     /**************************************************
@@ -78,103 +63,105 @@ public class RegisterWindow {
     }
 
     private void init() {
-        s = new Shell(d, SWT.TOP | SWT.ON_TOP);
+        s = new Shell(d, SWT.TOP);
         global();
         initHeader();
-        initBody();
         initFooter();
+        initBody();
     }
 
     private void global() {
+
         s.setText(msgs.getString("app_name"));
         s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
-        s.setSize(SHELL_WIDTH, SHELL_HEIGHT);
+        WindowUtils.setDefaultWindowSize(s);
         s.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
         s.setBackgroundMode(SWT.INHERIT_FORCE);
         WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s);
+
     }
 
     private void initHeader() {
-        final Composite header = new Composite(s, SWT.NONE);
-        header.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
-        FormDataSet.attach(header).atLeft().atTop().atRight().withHeight(120);
+
+        header = new Composite(s, SWT.NONE);
+        header.setBackground(ResourceManager.getColor(MT.COLOR_MAJOR_BACKGROUND));
+        FormDataSet.attach(header).atLeft().atTop().atRight();
         FormLayoutSet.layout(header);
 
-        final Label bl = new Label(header, SWT.NONE);
-        FormDataSet.attach(bl).atLeft(20).atTop(20);
-        bl.setText(msgs.getString("register"));
-        bl.setFont(ResourceManager.getFont(MT.FONT_TITLE));
+        final StyledText bt = new StyledText(header, SWT.SINGLE);
+        FormDataSet.attach(bt).atLeft(20).atTop(20);
+        StyledTextSet.decorate(bt).setEditable(false).setEnabled(false).setFont(MT.FONT_LARGE).setText(msgs.getString("register"));
 
-        final Label dl = new Label(header, SWT.WRAP);
-        FormDataSet.attach(dl).atLeft(20).atTopTo(bl, 10).fromRight(20);
-        dl.setText(msgs.getString("register_desc"));
+        final StyledText dt = new StyledText(header, SWT.WRAP);
+        FormDataSet.attach(dt).atLeft(20).atTopTo(bt, 20).fromRight(20).atBottom(20);
+        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setLineSpacing(10).setText(msgs.getString("register_desc"));
 
         final Label ll = new Label(header, SWT.NONE);
         FormDataSet.attach(ll).atTop(20).atRight(20);
-        ll.setImage(ResourceManager.getImage(MT.IMAGE_LOGO));
+        LabelSet.decorate(ll).setImage(MT.IMAGE_LOGO);
+
+    }
+
+    private void initFooter() {
+
+        footer = new Composite(s, SWT.NONE);
+        FormDataSet.attach(footer).atLeft().atRight().atBottom().withHeight(LC.BUTTON_HEIGHT_HINT * 2);
+        footer.setBackground(ResourceManager.getColor(MT.COLOR_MAJOR_BACKGROUND));
+        FormLayoutSet.layout(footer);
+
+        r = new Button(footer, SWT.PUSH);
+        FormDataSet.attach(r).fromLeft(50, -LC.BUTTON_WIDTH_HINT - 10).fromTop(50, -LC.BUTTON_HEIGHT_HINT / 2).withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
+        ButtonSet.decorate(r).setCursor(MT.CURSOR_HAND).setEnabled(false).setText(msgs.getString("register"));
+        r.addSelectionListener(new RegisterSelectionListener());
+
+        final Button c = new Button(footer, SWT.PUSH);
+        FormDataSet.attach(c).fromLeft(50, 10).fromTop(50, -LC.BUTTON_HEIGHT_HINT / 2).withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
+        ButtonSet.decorate(c).setCursor(MT.CURSOR_HAND).setText(msgs.getString("close"));
+        c.addSelectionListener(new CancelSelectionListener());
+
     }
 
     private void initBody() {
+
         final Composite body = new Composite(s, SWT.NONE);
-        FormDataSet.attach(body).atLeft(100).atTop(140).atRight(100).atBottom(120);
+        FormDataSet.attach(body).atLeft(100).atTopTo(header, 20).atRight(100).atBottomTo(footer, 20);
         body.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
         FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(10);
 
-        final Label el = new Label(body, SWT.NONE);
+        final CLabel el = new CLabel(body, SWT.NONE);
         FormDataSet.attach(el).atLeft().atTop().atRight();
-        el.setText(msgs.getString("email"));
+        CLabelSet.decorate(el).setLeftMargin(0).setText(msgs.getString("email"));
 
         et = new StyledText(body, SWT.BORDER | SWT.SINGLE);
         FormDataSet.attach(et).atLeft().atTopTo(el).fromRight(40);
         KeyBindingSet.bind(et).traverse().selectAll();
-        et.setMargins(10, 10, 10, 10);
-        et.setFocus();
+        StyledTextSet.decorate(et).setFocus().setMargins(10);
         et.addKeyListener(new EmailTextKeyListener());
 
         eb = new Button(body, SWT.PUSH);
         FormDataSet.attach(eb).atLeftTo(et).atTopTo(el).atRight().atBottomTo(et, 0, SWT.BOTTOM);
-        eb.setText(msgs.getString("send_email"));
-        eb.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
-        eb.setEnabled(false);
+        ButtonSet.decorate(eb).setCursor(MT.CURSOR_HAND).setEnabled(false).setText(msgs.getString("send_email"));
         eb.addSelectionListener(new SendSelectionListener());
 
-        em = new Label(body, SWT.NONE);
+        em = new CLabel(body, SWT.NONE);
         FormDataSet.attach(em).atLeft().atTopTo(et).atRight();
+        CLabelSet.decorate(em).setLeftMargin(0);
 
-        final Label al = new Label(body, SWT.NONE);
+        final CLabel al = new CLabel(body, SWT.NONE);
         FormDataSet.attach(al).atLeft().atTopTo(em).atRight();
-        al.setText(msgs.getString("activation_code"));
+        CLabelSet.decorate(al).setLeftMargin(0).setText(msgs.getString("activation_code"));
 
-        am = new Label(body, SWT.NONE);
+        am = new CLabel(body, SWT.NONE);
         FormDataSet.attach(am).atLeft().atRight().atBottom();
+        CLabelSet.decorate(am).setLeftMargin(0);
 
         at = new StyledText(body, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(at).atLeft().atTopTo(al).atRight().atBottomTo(am, 0, SWT.TOP);
         KeyBindingSet.bind(at).traverse().selectAll();
-        at.setMargins(10, 10, 10, 10);
-        at.setFont(FontUtils.getMonospacedFont(d));
+        StyledTextSet.decorate(at).setFont(MT.FONT_ACTIVATION_CODE).setMargins(10);
         at.addKeyListener(new ActivationCodeTextKeyListener());
-    }
 
-    private void initFooter() {
-        final Composite footer = new Composite(s, SWT.NONE);
-        FormDataSet.attach(footer).atLeft().atTop(500).atRight().atBottom();
-        footer.setBackground(ResourceManager.getColor(MT.COLOR_LIGHT_GRAY));
-        FormLayoutSet.layout(footer);
-
-        r = new Button(footer, SWT.PUSH);
-        FormDataSet.attach(r).fromLeft(50, -BUTTON_WIDTH - 10).fromTop(50, -BUTTON_HEIGHT / 2).withWidth(BUTTON_WIDTH).withHeight(BUTTON_HEIGHT);
-        r.setText(msgs.getString("register"));
-        r.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
-        r.setEnabled(false);
-        r.addSelectionListener(new RegisterSelectionListener());
-
-        final Button c = new Button(footer, SWT.PUSH);
-        FormDataSet.attach(c).fromLeft(50, 10).fromTop(50, -BUTTON_HEIGHT / 2).withWidth(BUTTON_WIDTH).withHeight(BUTTON_HEIGHT);
-        c.setText(msgs.getString("close"));
-        c.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
-        c.addSelectionListener(new CancelSelectionListener());
     }
 
     public void openAndWaitForDisposal() {
@@ -281,7 +268,7 @@ public class RegisterWindow {
                             @Override
                             public void run() {
                                 em.setText(msgs.getString("registered_email_not_found"));
-                                em.setForeground(ResourceManager.getColor(MT.COLOR_RED));
+                                em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
                                 eb.setEnabled(true);
                             }
                         });
@@ -291,7 +278,7 @@ public class RegisterWindow {
                             @Override
                             public void run() {
                                 em.setText(msgs.getString("registered_hardware_unmatched"));
-                                em.setForeground(ResourceManager.getColor(MT.COLOR_RED));
+                                em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
                                 eb.setEnabled(true);
                             }
                         });
@@ -302,7 +289,7 @@ public class RegisterWindow {
                             @Override
                             public void run() {
                                 em.setText(msgs.getString("network_failure"));
-                                em.setForeground(ResourceManager.getColor(MT.COLOR_RED));
+                                em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
                                 eb.setEnabled(true);
                             }
                         });
@@ -327,13 +314,15 @@ public class RegisterWindow {
                     r.setEnabled(false);
                 }
             });
-            String content = at.getText();
-            if (ActivationCodeUtils.isLicensed(content)) {
+            String email = et.getText();
+            String acc = at.getText();
+            if (ActivationCodeUtils.isLicensed(email, acc)) {
                 SqlSession sqlSession = app.getSqlSession();
                 ActivationCodeMapper mapper = sqlSession.getMapper(ActivationCodeMapper.class);
-                ActivationCode code = new ActivationCode();
-                code.setContent(content);
-                mapper.insert(code);
+                ActivationCode ac = new ActivationCode();
+                ac.setEmail(email);
+                ac.setContent(acc);
+                mapper.insert(ac);
                 sqlSession.commit();
                 d.asyncExec(new Runnable() {
                     @Override
@@ -348,7 +337,7 @@ public class RegisterWindow {
                     @Override
                     public void run() {
                         am.setText(msgs.getString("register_failure"));
-                        am.setForeground(ResourceManager.getColor(MT.COLOR_RED));
+                        am.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
                         r.setEnabled(true);
                     }
                 });

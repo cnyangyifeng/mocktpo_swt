@@ -9,25 +9,52 @@ public interface MT {
 
     /**************************************************
      * 
-     * Keys
+     * Characters
      * 
      **************************************************/
 
-    int COLOR_BLUE = 1;
-    int COLOR_BLUE_PURPLE = 2;
-    int COLOR_DARK_BLUE = 3;
-    int COLOR_DARK_GRAY = 4;
-    int COLOR_DARK_RED = 5;
-    int COLOR_DARK_TEXT_GRAY = 6;
-    int COLOR_DUST_RED = 7;
-    int COLOR_GRAY = 8;
-    int COLOR_GREEN = 9;
-    int COLOR_LIGHT_GRAY = 10;
-    int COLOR_LIGHT_TEXT_GRAY = 11;
-    int COLOR_LIGHT_YELLOW = 12;
-    int COLOR_LIGHTER_GRAY = 13;
-    int COLOR_RED = 14;
-    int COLOR_WHITE = 15;
+    char CHAR_SEMICOLON = ';';
+
+    /**************************************************
+     * 
+     * Choices
+     * 
+     **************************************************/
+
+    int CHOICE_NONE = 0;
+    int CHOICE_A = 1;
+    int CHOICE_B = 2;
+    int CHOICE_C = 3;
+    int CHOICE_D = 4;
+    int CHOICE_E = 5;
+    int CHOICE_F = 6;
+
+    /**************************************************
+     * 
+     * Colors
+     * 
+     **************************************************/
+
+    int COLOR_BLACK = 1;
+    int COLOR_BURGUNDY = 2;
+    int COLOR_DARK_ORANGE = 3;
+    int COLOR_DARK_BLUE = 4;
+    int COLOR_GAINSBORO = 5;
+    int COLOR_GRANITE_GRAY = 6;
+    int COLOR_GREEN = 7;
+    int COLOR_INDIGO = 8;
+    int COLOR_KHAKI = 9;
+    int COLOR_ORANGE = 10;
+    int COLOR_ORANGE_RED = 11;
+    int COLOR_OXFORD_BLUE = 12;
+    int COLOR_SADDLE_BROWN = 13;
+    int COLOR_WHITE = 14;
+    int COLOR_WHITE_SMOKE = 15;
+
+    /* Others */
+
+    int COLOR_BORDER = 91;
+    int COLOR_MAJOR_BACKGROUND = 92;
 
     /**************************************************
      * 
@@ -35,7 +62,8 @@ public interface MT {
      * 
      **************************************************/
 
-    int CURSOR_HAND = 21;
+    int CURSOR_ARROW = 101;
+    int CURSOR_HAND = 102;
 
     /**************************************************
      * 
@@ -43,10 +71,19 @@ public interface MT {
      * 
      **************************************************/
 
-    int FONT_SERIF_TITLE = 31;
-    int FONT_SMALL = 32;
-    int FONT_SUBTITLE = 33;
-    int FONT_TITLE = 34;
+    int FONT_XX_SMALL = 201;
+    int FONT_X_SMALL = 202;
+    int FONT_SMALL = 203;
+    int FONT_SMALL_BOLD = 204;
+    int FONT_MEDIUM = 205;
+    int FONT_MEDIUM_BOLD = 206;
+    int FONT_LARGE = 207;
+    int FONT_LARGE_BOLD = 208;
+    int FONT_X_LARGE = 209;
+    int FONT_XX_LARGE = 210;
+
+    int FONT_ACTIVATION_CODE = 211;
+    int FONT_SERIF_HEADING = 212;
 
     /**************************************************
      * 
@@ -54,14 +91,78 @@ public interface MT {
      * 
      **************************************************/
 
-    int IMAGE_APP_ICON = 41;
-    int IMAGE_ARROW_RIGHT = 42;
-    int IMAGE_CONTINUE = 43;
-    int IMAGE_CONTINUE_HOVER = 44;
-    int IMAGE_ETS_TOEFL = 45;
-    int IMAGE_LOGO = 46;
-    int IMAGE_PAUSE_TEST = 47;
-    int IMAGE_PAUSE_TEST_HOVER = 48;
-    int IMAGE_SETTINGS = 49;
-    int IMAGE_SPLASH = 50;
+    int IMAGE_APP_ICON = 301;
+    int IMAGE_ARROW_RIGHT = 302;
+    int IMAGE_BACK_OVAL = 303;
+    int IMAGE_BACK_OVAL_HOVER = 304;
+    int IMAGE_BACK_OVAL_DISABLED = 305;
+    int IMAGE_BULLET = 306;
+    int IMAGE_CHECKED = 307;
+    int IMAGE_CONTINUE = 308;
+    int IMAGE_CONTINUE_HOVER = 309;
+    int IMAGE_CONTINUE_OVAL = 310;
+    int IMAGE_CONTINUE_OVAL_HOVER = 311;
+    int IMAGE_CONTINUE_OVAL_DISABLED = 312;
+    int IMAGE_ETS_TOEFL = 313;
+    int IMAGE_GO_TO_QUESTION = 314;
+    int IMAGE_GO_TO_QUESTION_HOVER = 315;
+    int IMAGE_HELP_OVAL = 316;
+    int IMAGE_HELP_OVAL_HOVER = 317;
+    int IMAGE_HELP_OVAL_DISABLED = 318;
+    int IMAGE_HIDE_TIME = 319;
+    int IMAGE_HIDE_TIME_HOVER = 320;
+    int IMAGE_HIDE_TIME_DISABLED = 321;
+    int IMAGE_LOGO = 322;
+    int IMAGE_NEXT_OVAL = 323;
+    int IMAGE_NEXT_OVAL_HOVER = 324;
+    int IMAGE_NEXT_OVAL_DISABLED = 325;
+    int IMAGE_OK_OVAL = 326;
+    int IMAGE_OK_OVAL_HOVER = 327;
+    int IMAGE_OK_OVAL_DISABLED = 328;
+    int IMAGE_PAUSE_TEST = 329;
+    int IMAGE_PAUSE_TEST_HOVER = 330;
+    int IMAGE_RETURN = 331;
+    int IMAGE_RETURN_HOVER = 332;
+    int IMAGE_REVIEW_OVAL = 333;
+    int IMAGE_REVIEW_OVAL_HOVER = 334;
+    int IMAGE_REVIEW_OVAL_DISABLED = 335;
+    int IMAGE_SETTINGS = 336;
+    int IMAGE_SHOW_TIME = 337;
+    int IMAGE_SHOW_TIME_HOVER = 338;
+    int IMAGE_SHOW_TIME_DISABLED = 339;
+    int IMAGE_SPLASH = 340;
+    int IMAGE_VIEW_QUESTION = 341;
+    int IMAGE_VIEW_QUESTION_HOVER = 342;
+    int IMAGE_VIEW_TEXT = 343;
+    int IMAGE_VIEW_TEXT_HOVER = 344;
+    int IMAGE_VOLUME_OVAL = 345;
+    int IMAGE_VOLUME_OVAL_HOVER = 346;
+    int IMAGE_UNCHECKED = 347;
+
+    /**************************************************
+     * 
+     * Key-Value Pairs
+     * 
+     **************************************************/
+
+    String KEY_CHOICE = "choice";
+
+    /**************************************************
+     * 
+     * Strings
+     * 
+     **************************************************/
+
+    String STRING_QUESTION = "Question";
+    String STRING_OF = "of";
+    String STRING_SPACE = " ";
+
+    /**************************************************
+     * 
+     * Time
+     * 
+     **************************************************/
+
+    int TIME_READING_SECTION = 3600;
+
 }

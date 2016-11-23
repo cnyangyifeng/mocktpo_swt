@@ -1,7 +1,12 @@
 package com.mocktpo.window;
 
-import java.util.ResourceBundle;
-
+import com.mocktpo.MyApplication;
+import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.page.MainPage;
+import com.mocktpo.page.TestPage;
+import com.mocktpo.util.ResourceManager;
+import com.mocktpo.util.WindowUtils;
+import com.mocktpo.util.constants.MT;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -11,13 +16,7 @@ import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.page.MainPage;
-import com.mocktpo.page.TestPage;
-import com.mocktpo.util.ResourceManager;
-import com.mocktpo.util.constants.LC;
-import com.mocktpo.util.constants.MT;
+import java.util.ResourceBundle;
 
 public class MainWindow {
 
@@ -63,19 +62,23 @@ public class MainWindow {
     }
 
     private void golbal() {
+
         s.setText(msgs.getString("app_name"));
         s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
         s.setMaximized(true);
-        s.setMinimumSize(LC.SHELL_MIN_WIDTH, LC.SHELL_MIN_HEIGHT);
         s.setBackgroundMode(SWT.INHERIT_FORCE);
+        WindowUtils.setMinimumWindowSize(s);
         s.addShellListener(new MainWindowListener());
+
     }
 
     private void initViews() {
+
         stack = new StackLayout();
         s.setLayout(stack);
 
         toMainPage();
+
     }
 
     public void openAndWaitForDisposal() {
@@ -105,6 +108,7 @@ public class MainWindow {
      **************************************************/
 
     public void toMainPage() {
+
         if (null == mp) {
             mp = new MainPage(s, SWT.NONE);
         }
@@ -112,26 +116,31 @@ public class MainWindow {
 
         stack.topControl = mp;
         s.layout();
+
     }
 
-    public void resetToMainPage(UserTest ut) {
+    public void toMainPage(UserTest ut) {
+
         if (null == mp) {
             mp = new MainPage(s, SWT.NONE);
         }
-        mp.resetToTestsHomeView(ut);
+        mp.toTestsHomeView(ut);
 
         stack.topControl = mp;
         s.layout();
+
     }
 
     public void toTestPage(UserTest ut) {
+
         if (null == tp) {
-            tp = new TestPage(s, SWT.NONE);
+            tp = new TestPage(s, SWT.NONE, ut);
         }
         tp.resume(ut);
 
         stack.topControl = tp;
         s.layout();
+
     }
 
     /**************************************************

@@ -1,15 +1,14 @@
 package com.mocktpo.orm.mapper;
 
-import java.util.List;
-
+import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.util.DbUtils;
+import com.mocktpo.util.constants.MT;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.util.DbUtils;
-import com.mocktpo.util.constants.TV;
+import java.util.List;
 
 public class UserTestMapperTest {
 
@@ -37,10 +36,13 @@ public class UserTestMapperTest {
     public void testInsert() {
         for (int i = 1; i <= 48; i++) {
             UserTest ut = new UserTest();
+            ut.setEmail("165239796@qq.com");
             ut.setTid(i);
-            ut.setTitle("TPO " + i);
-            ut.setUserName("165239796@qq.com");
-            ut.setLastViewId(TV.VIEW_TEST_INTRO);
+            ut.setTitle("TPO" + MT.STRING_SPACE + i);
+            ut.setAlias("TPO" + i);
+            ut.setTimerHidden(false);
+            ut.setReadingTime(3600);
+            ut.setLastViewId(1);
             mapper.insert(ut);
         }
     }
@@ -57,9 +59,10 @@ public class UserTestMapperTest {
     public void testUpdate() {
         UserTest ut = new UserTest();
         ut.setTid(1);
-        ut.setTitle("TPO 01");
-        ut.setUserName("165239796@qq.com");
-        ut.setLastViewId(3);
+        ut.setTitle("Title X");
+        ut.setAlias("Alias X");
+        ut.setEmail("Email X");
+        ut.setLastViewId(1);
         mapper.update(ut);
     }
 

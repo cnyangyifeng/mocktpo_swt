@@ -1,20 +1,20 @@
 package com.mocktpo.widget;
 
-import java.util.ResourceBundle;
-
+import com.mocktpo.util.ResourceManager;
+import com.mocktpo.util.ScreenUtils;
+import com.mocktpo.util.constants.LC;
+import com.mocktpo.util.constants.MT;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
-import com.mocktpo.util.FormDataSet;
-import com.mocktpo.util.FormLayoutSet;
-import com.mocktpo.util.ResourceManager;
-import com.mocktpo.util.constants.MT;
+import java.util.ResourceBundle;
 
-public class TestHeader extends CLabel {
+public class TestHeader extends Composite {
 
     /* Logger and Messages */
 
@@ -42,10 +42,20 @@ public class TestHeader extends CLabel {
     }
 
     private void golbal() {
-        FormDataSet.attach(this).atLeft().atTop().atRight().atBottom();
+
+        // TODO DISPOSE IMAGE RESOURCE
+        Image image = new Image(d, ScreenUtils.getClientWidth(d), LC.TEST_HEADER_HEIGHT);
+        GC gc = new GC(image);
+
         Color start = ResourceManager.getColor(MT.COLOR_DARK_BLUE);
-        Color end = ResourceManager.getColor(MT.COLOR_DARK_RED);
-        this.setBackground(new Color[] { start, end }, new int[] { 100 });
-        FormLayoutSet.layout(this);
+        Color end = ResourceManager.getColor(MT.COLOR_BURGUNDY);
+
+        gc.setForeground(start);
+        gc.setBackground(end);
+        gc.fillGradientRectangle(0, 0, ScreenUtils.getClientWidth(d), LC.TEST_HEADER_HEIGHT, false);
+        gc.dispose();
+
+        this.setBackgroundImage(image);
+
     }
 }

@@ -38,6 +38,10 @@ public interface RC {
     String HIDPI_SUFFIX = "@2x";
     String PNG_FILE_TYPE_SUFFIX = ".png";
 
+    String SMALL_SUFFIX = "";
+    String MEDIUM_SUFFIX = "_m";
+    String LARGE_SUFFIX = "_l";
+
     /**************************************************
      * 
      * Licensing Files
@@ -49,12 +53,10 @@ public interface RC {
 
     /**************************************************
      * 
-     * Styled Text Files
+     * Test Schema Files
      * 
      **************************************************/
 
-    String TEST_INTRO_FILE = "test_intro.json";
-    String GENERAL_TEST_INFO_FILE = "general_test_info.json";
-    String READING_DIRECTIONS_FILE = "reading_directions.json";
-    String LISTENING_DIRECTIONS_FILE = "listening_directions.json";
+    String JSON_FILE_TYPE_SUFFIX = ".json";
+
 }

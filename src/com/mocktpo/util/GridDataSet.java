@@ -40,6 +40,14 @@ public class GridDataSet {
         return this;
     }
 
+    public GridDataSet rightCenter() {
+        data.horizontalAlignment = GridData.END;
+        data.verticalAlignment = GridData.CENTER;
+        data.grabExcessHorizontalSpace = true;
+        data.grabExcessVerticalSpace = true;
+        return this;
+    }
+
     public GridDataSet withWidth(int width) {
         data.widthHint = width;
         return this;

@@ -1,7 +1,16 @@
 package com.mocktpo.page;
 
-import java.util.ResourceBundle;
-
+import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.util.CLabelSet;
+import com.mocktpo.util.FormDataSet;
+import com.mocktpo.util.FormLayoutSet;
+import com.mocktpo.util.ResourceManager;
+import com.mocktpo.util.constants.LC;
+import com.mocktpo.util.constants.MT;
+import com.mocktpo.view.home.ReportsHomeView;
+import com.mocktpo.view.home.SettingsHomeView;
+import com.mocktpo.view.home.TestEditorHomeView;
+import com.mocktpo.view.home.TestsHomeView;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -14,15 +23,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.util.FormDataSet;
-import com.mocktpo.util.FormLayoutSet;
-import com.mocktpo.util.ResourceManager;
-import com.mocktpo.util.constants.LC;
-import com.mocktpo.util.constants.MT;
-import com.mocktpo.view.ReportsHomeView;
-import com.mocktpo.view.SettingsHomeView;
-import com.mocktpo.view.TestsHomeView;
+import java.util.ResourceBundle;
 
 public class MainPage extends Composite {
 
@@ -47,9 +48,14 @@ public class MainPage extends Composite {
     private CLabel sl;
 
     private Composite body;
-    private TestsHomeView tv;
-    private ReportsHomeView rv;
-    private SettingsHomeView sv;
+    private TestsHomeView thv;
+    private ReportsHomeView rhv;
+    private SettingsHomeView shv;
+
+    /* Advanced Features: Test Editor */
+
+    private CLabel el;
+    private TestEditorHomeView chv;
 
     /**************************************************
      * 
@@ -75,47 +81,38 @@ public class MainPage extends Composite {
     }
 
     private void initSidebar() {
+
         sidebar = new Composite(this, SWT.NONE);
         FormDataSet.attach(sidebar).atLeft().atTop().atBottom().withWidth(this.getBounds().width / 6);
-        sidebar.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
+        sidebar.setBackground(ResourceManager.getColor(MT.COLOR_OXFORD_BLUE));
         FormLayoutSet.layout(sidebar);
 
         final CLabel bl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(bl).atLeft().atTop().atRight().withHeight(80);
-        bl.setText(msgs.getString("app_name_alt"));
-        bl.setFont(ResourceManager.getFont(MT.FONT_TITLE));
-        bl.setImage(ResourceManager.getImage(MT.IMAGE_LOGO));
-        bl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
-        bl.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
-        bl.setLeftMargin(10);
-        bl.setRightMargin(20);
+        CLabelSet.decorate(bl).setBackground(MT.COLOR_OXFORD_BLUE).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_LOGO).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("app_name_alt"));
 
         tl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(tl).atLeft().atTopTo(bl).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        tl.setText(msgs.getString("tests"));
-        tl.setBackground(ResourceManager.getColor(MT.COLOR_BLUE));
-        tl.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
-        tl.setLeftMargin(30);
-        tl.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
+        CLabelSet.decorate(tl).setBackground(MT.COLOR_DARK_BLUE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_ARROW_RIGHT).setLeftMargin(20).setText(msgs.getString("tests"));
         tl.addMouseListener(new SidebarItemListener());
 
         rl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(rl).atLeft().atTopTo(tl).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        rl.setText(msgs.getString("reports"));
-        rl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
-        rl.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
-        rl.setLeftMargin(30);
-        rl.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
+        CLabelSet.decorate(rl).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_ARROW_RIGHT).setLeftMargin(20).setText(msgs.getString("reports"));
         rl.addMouseListener(new SidebarItemListener());
 
         sl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(sl).atLeft().atTopTo(rl).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        sl.setText(msgs.getString("settings"));
-        sl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
-        sl.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
-        sl.setLeftMargin(30);
-        sl.setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
+        CLabelSet.decorate(sl).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_ARROW_RIGHT).setLeftMargin(20).setText(msgs.getString("settings"));
         sl.addMouseListener(new SidebarItemListener());
+
+        /* Advanced Features: Test Editor */
+
+        el = new CLabel(sidebar, SWT.CENTER);
+        FormDataSet.attach(el).atLeft(10).atRight(10).atBottom(10).withHeight(LC.SIDEBAR_TEST_EDITOR_HEIGHT);
+        CLabelSet.decorate(el).setBackground(MT.COLOR_DARK_ORANGE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_WHITE).setLeftMargin(30).setText(msgs.getString("test_editor"));
+        el.addMouseListener(new SidebarItemListener());
+
     }
 
     private void initPages() {
@@ -134,39 +131,48 @@ public class MainPage extends Composite {
      **************************************************/
 
     public void toTestsHomeView() {
-        if (null == tv) {
-            tv = new TestsHomeView(body, SWT.NONE);
+        if (null == thv) {
+            thv = new TestsHomeView(body, SWT.NONE);
         }
 
-        stack.topControl = tv;
+        stack.topControl = thv;
         body.layout();
     }
 
-    public void resetToTestsHomeView(UserTest ut) {
-        if (null == tv) {
-            tv = new TestsHomeView(body, SWT.NONE);
+    public void toTestsHomeView(UserTest ut) {
+        if (null == thv) {
+            thv = new TestsHomeView(body, SWT.NONE);
         }
-        tv.reset(ut);
+        thv.reset(ut);
 
-        stack.topControl = tv;
+        stack.topControl = thv;
         body.layout();
     }
 
     public void toReportsHomeView() {
-        if (null == rv) {
-            rv = new ReportsHomeView(body, SWT.NONE);
+        if (null == rhv) {
+            rhv = new ReportsHomeView(body, SWT.NONE);
         }
 
-        stack.topControl = rv;
+        stack.topControl = rhv;
         body.layout();
     }
 
     public void toSettingsHomeView() {
-        if (null == sv) {
-            sv = new SettingsHomeView(body, SWT.NONE);
+        if (null == shv) {
+            shv = new SettingsHomeView(body, SWT.NONE);
         }
 
-        stack.topControl = sv;
+        stack.topControl = shv;
+        body.layout();
+    }
+
+    public void toTestEditorHomeView() {
+        if (null == chv) {
+            chv = new TestEditorHomeView(body, SWT.NONE);
+        }
+
+        stack.topControl = chv;
         body.layout();
     }
 
@@ -194,20 +200,29 @@ public class MainPage extends Composite {
         public void mouseDown(MouseEvent e) {
             String text = ((CLabel) e.widget).getText();
             if (msgs.getString("tests").equals(text)) {
-                tl.setBackground(ResourceManager.getColor(MT.COLOR_BLUE));
-                rl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
-                sl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
+                CLabelSet.decorate(tl).setBackground(MT.COLOR_DARK_BLUE);
+                CLabelSet.decorate(rl).setBackground(MT.COLOR_OXFORD_BLUE);
+                CLabelSet.decorate(sl).setBackground(MT.COLOR_OXFORD_BLUE);
+                CLabelSet.decorate(el).setBackground(MT.COLOR_DARK_ORANGE).setForeground(MT.COLOR_WHITE);
                 toTestsHomeView();
             } else if (msgs.getString("reports").equals(text)) {
-                rl.setBackground(ResourceManager.getColor(MT.COLOR_BLUE));
-                sl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
-                tl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
+                CLabelSet.decorate(tl).setBackground(MT.COLOR_OXFORD_BLUE);
+                CLabelSet.decorate(rl).setBackground(MT.COLOR_DARK_BLUE);
+                CLabelSet.decorate(sl).setBackground(MT.COLOR_OXFORD_BLUE);
+                CLabelSet.decorate(el).setBackground(MT.COLOR_DARK_ORANGE).setForeground(MT.COLOR_WHITE);
                 toReportsHomeView();
             } else if (msgs.getString("settings").equals(text)) {
-                sl.setBackground(ResourceManager.getColor(MT.COLOR_BLUE));
-                tl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
-                rl.setBackground(ResourceManager.getColor(MT.COLOR_DARK_GRAY));
+                CLabelSet.decorate(tl).setBackground(MT.COLOR_OXFORD_BLUE);
+                CLabelSet.decorate(rl).setBackground(MT.COLOR_OXFORD_BLUE);
+                CLabelSet.decorate(sl).setBackground(MT.COLOR_DARK_BLUE);
+                CLabelSet.decorate(el).setBackground(MT.COLOR_DARK_ORANGE).setForeground(MT.COLOR_WHITE);
                 toSettingsHomeView();
+            } else if (msgs.getString("test_editor").equals(text)) {
+                CLabelSet.decorate(tl).setBackground(MT.COLOR_OXFORD_BLUE);
+                CLabelSet.decorate(rl).setBackground(MT.COLOR_OXFORD_BLUE);
+                CLabelSet.decorate(sl).setBackground(MT.COLOR_OXFORD_BLUE);
+                CLabelSet.decorate(el).setBackground(MT.COLOR_BURGUNDY).setForeground(MT.COLOR_WHITE);
+                toTestEditorHomeView();
             }
         }
 

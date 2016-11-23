@@ -1,17 +1,16 @@
 package com.mocktpo.util;
 
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLDecoder;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.alibaba.fastjson.JSON;
 import com.mocktpo.util.constants.RC;
 import com.mocktpo.vo.RequireActivationVo;
 import com.verhas.licensor.License;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLDecoder;
 
 public class ActivationCodeUtils {
 
@@ -22,7 +21,7 @@ public class ActivationCodeUtils {
     public static final int REGISTERED_EMAIL_NOT_FOUND = 2;
     public static final int REGISTERED_HARDWARE_UNMATCHED = 3;
 
-    private static final String REMOTE_SERVICE = "http://cnmengma.com:8080/cmp/api/licenses/require";
+    private static final String REMOTE_SERVICE = "http://cnmengma.com/cmp/api/licenses/require";
 
     private ActivationCodeUtils() {
     }
@@ -59,22 +58,23 @@ public class ActivationCodeUtils {
         return NETWORK_FAILURE;
     }
 
-    public static boolean isLicensed(String acc) {
+    public static boolean isLicensed(String email, String acc) {
+        boolean licensed = false;
+
         String path = ActivationCodeUtils.class.getResource(RC.CONFIG_DIR).getPath();
         try {
-            final License license;
+            final License lic;
             final String pubring = URLDecoder.decode(path + RC.PUBRING_FILE, "utf-8");
-            if ((license = new License()).loadKeyRing(pubring, null).setLicenseEncoded(acc).isVerified()) {
-                String actual = license.getFeature("hardware");
-                logger.debug("actual hardware: " + actual);
-                String expected = HardwareBinderUtils.uuid();
-                logger.debug("expected hardware: " + expected);
-                if (null != actual && actual.equals(expected)) {
-                    return true;
+            if ((lic = new License()).loadKeyRing(pubring, null).setLicenseEncoded(acc).isVerified()) {
+                String licensedEmail = lic.getFeature("email");
+                String licensedHardware = lic.getFeature("hardware");
+                String hardware = HardwareBinderUtils.uuid();
+                if (hardware.equals(licensedHardware) && email.equals(licensedEmail)) {
+                    licensed = true;
                 }
             }
         } catch (Exception e) {
         }
-        return false;
+        return licensed;
     }
 }

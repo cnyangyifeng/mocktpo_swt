@@ -1,8 +1,6 @@
 package com.mocktpo.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.mocktpo.vo.StyleRangeVo;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
@@ -10,7 +8,8 @@ import org.eclipse.swt.graphics.GlyphMetrics;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 
-import com.mocktpo.vo.StyleRangeVo;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StyleRangeUtils {
 
@@ -21,17 +20,68 @@ public class StyleRangeUtils {
         List<StyleRange> srs = new ArrayList<StyleRange>();
 
         for (StyleRangeVo srv : srvs) {
+
             StyleRange sr = new StyleRange();
+
             sr.start = srv.getStart();
             sr.length = srv.getLength();
-            sr.fontStyle = srv.getFontStyle();
-            if (StringUtils.isNotEmpty(srv.getForeground())) {
-                sr.foreground = ColorUtils.fromHex(st.getDisplay(), srv.getForeground());
+
+            /*
+             * ==================================================
+             * 
+             * Font Style
+             * 
+             * ==================================================
+             */
+
+            if (0 != srv.getFontStyle()) {
+                sr.fontStyle = srv.getFontStyle();
             }
-            if (StringUtils.isNotEmpty(srv.getBackground())) {
-                sr.background = ColorUtils.fromHex(st.getDisplay(), srv.getBackground());
+
+            /*
+             * ==================================================
+             * 
+             * Foreground
+             * 
+             * ==================================================
+             */
+
+            if (0 != srv.getForeground()) {
+                sr.foreground = ResourceManager.getColor(srv.getForeground());
             }
-            sr.underline = srv.isUnderline();
+
+            /*
+             * ==================================================
+             * 
+             * Background
+             * 
+             * ==================================================
+             */
+
+            if (0 != srv.getBackground()) {
+                sr.background = ResourceManager.getColor(srv.getBackground());
+            }
+
+            /*
+             * ==================================================
+             * 
+             * Underline
+             * 
+             * ==================================================
+             */
+
+            if (false != srv.isUnderline()) {
+                sr.underline = srv.isUnderline();
+            }
+
+            /*
+             * ==================================================
+             * 
+             * Image
+             * 
+             * ==================================================
+             */
+
             if (StringUtils.isNotEmpty(srv.getImage())) {
                 Image image = ImageUtils.load(st.getDisplay(), srv.getImage());
                 if (null != image) {
@@ -40,6 +90,7 @@ public class StyleRangeUtils {
                     sr.metrics = new GlyphMetrics(bounds.height, 0, bounds.width);
                 }
             }
+
             srs.add(sr);
         }
 

@@ -1,20 +1,22 @@
 package com.mocktpo.orm.mapper;
 
-import java.util.List;
-
+import com.mocktpo.orm.domain.UserTest;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.mocktpo.orm.domain.UserTest;
+import java.util.List;
 
 public interface UserTestMapper {
 
     @Update({
             "CREATE TABLE IF NOT EXISTS MT_USER_TEST (",
+            "MT_EMAIL VARCHAR(64),",
             "MT_TID INT,",
             "MT_TITLE VARCHAR(64),",
-            "MT_USER_NAME VARCHAR(64),",
+            "MT_ALIAS VARCHAR(64),",
+            "MT_TIMER_HIDDEN BOOLEAN,",
+            "MT_READING_TIME INT,",
             "MT_LAST_VIEW_ID INT",
             ")"
     })
@@ -28,14 +30,20 @@ public interface UserTestMapper {
 
     @Insert({
             "INSERT INTO MT_USER_TEST (",
+            "MT_EMAIL,",
             "MT_TID,",
             "MT_TITLE,",
-            "MT_USER_NAME,",
+            "MT_ALIAS,",
+            "MT_TIMER_HIDDEN,",
+            "MT_READING_TIME,",
             "MT_LAST_VIEW_ID",
             ") VALUES (",
+            "#{email},",
             "#{tid},",
             "#{title},",
-            "#{userName},",
+            "#{alias},",
+            "#{timerHidden},",
+            "#{readingTime},",
             "#{lastViewId}",
             ")"
     })
@@ -43,9 +51,12 @@ public interface UserTestMapper {
 
     @Select({
             "SELECT",
+            "MT_EMAIL AS email,",
             "MT_TID AS tid,",
             "MT_TITLE AS title,",
-            "MT_USER_NAME AS userName,",
+            "MT_ALIAS AS alias,",
+            "MT_TIMER_HIDDEN AS timerHidden,",
+            "MT_READING_TIME AS readingTime,",
             "MT_LAST_VIEW_ID AS lastViewId",
             "FROM MT_USER_TEST",
             "ORDER BY MT_TID ASC"
@@ -55,8 +66,12 @@ public interface UserTestMapper {
     @Update({
             "UPDATE MT_USER_TEST",
             "SET",
+            "MT_EMAIL = #{email},",
+            "MT_TID = #{tid},",
             "MT_TITLE = #{title},",
-            "MT_USER_NAME = #{userName},",
+            "MT_ALIAS = #{alias},",
+            "MT_TIMER_HIDDEN = #{timerHidden},",
+            "MT_READING_TIME = #{readingTime},",
             "MT_LAST_VIEW_ID = #{lastViewId}",
             "WHERE",
             "MT_TID = #{tid}"
