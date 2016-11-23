@@ -89,6 +89,7 @@ public class ResourceManager {
         /* 24px, 18pt, 150% */
 
         caches.putIfAbsent(MT.FONT_X_LARGE, FontUtils.getFont(d, 24));
+        caches.putIfAbsent(MT.FONT_X_LARGE_BOLD, FontUtils.getFont(d, 24, SWT.BOLD));
 
         /* 32px, 24pt, 200% */
 

@@ -79,7 +79,8 @@ public interface MT {
     int FONT_LARGE = 207;
     int FONT_LARGE_BOLD = 208;
     int FONT_X_LARGE = 209;
-    int FONT_XX_LARGE = 210;
+    int FONT_X_LARGE_BOLD = 210;
+    int FONT_XX_LARGE = 211;
 
     int FONT_ACTIVATION_CODE = 211;
     int FONT_SERIF_HEADING = 212;
