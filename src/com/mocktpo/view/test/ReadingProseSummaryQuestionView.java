@@ -165,7 +165,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         StyledTextSet.decorate(qt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("question").getText());
 
         final Label bullet1 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(bullet1).atLeft().atTopTo(qt, 14);
+        FormDataSet.attach(bullet1).atLeft().atTopTo(qt, 18);
         LabelSet.decorate(bullet1).setImage(MT.IMAGE_BULLET);
 
         final DroppableAnswerComposite blank1 = new DroppableAnswerComposite(ac, SWT.WRAP | SWT.TOP);
@@ -175,7 +175,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         blank1.addMouseListener(new AnswerCompositeMouseListener(ANSWER_1));
 
         final Label bullet2 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(bullet2).atLeft().atTopTo(blank1, 14);
+        FormDataSet.attach(bullet2).atLeft().atTopTo(blank1, 18);
         LabelSet.decorate(bullet2).setImage(MT.IMAGE_BULLET);
 
         final DroppableAnswerComposite blank2 = new DroppableAnswerComposite(ac, SWT.WRAP);
@@ -185,7 +185,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         blank2.addMouseListener(new AnswerCompositeMouseListener(ANSWER_2));
 
         final Label bullet3 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(bullet3).atLeft().atTopTo(blank2, 14);
+        FormDataSet.attach(bullet3).atLeft().atTopTo(blank2, 18);
         LabelSet.decorate(bullet3).setImage(MT.IMAGE_BULLET);
 
         final DroppableAnswerComposite blank3 = new DroppableAnswerComposite(ac, SWT.WRAP);
