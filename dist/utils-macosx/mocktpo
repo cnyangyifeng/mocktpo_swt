@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export JAVA_HOME=`/usr/libexec/java_home`
+export BASE_DIR=`dirname $0`
+$JAVA_HOME/bin/java -cp $BASE_DIR:$BASE_DIR/* -XstartOnFirstThread com.mocktpo.MyApplication
