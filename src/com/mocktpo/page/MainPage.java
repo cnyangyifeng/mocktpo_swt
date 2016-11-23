@@ -58,9 +58,7 @@ public class MainPage extends Composite {
     private TestEditorHomeView chv;
 
     /**************************************************
-     * 
      * Constructors
-     * 
      **************************************************/
 
     public MainPage(Composite parent, int style) {
@@ -93,17 +91,17 @@ public class MainPage extends Composite {
 
         tl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(tl).atLeft().atTopTo(bl).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(tl).setBackground(MT.COLOR_DARK_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_ARROW_RIGHT).setLeftMargin(20).setText(msgs.getString("tests"));
+        CLabelSet.decorate(tl).setBackground(MT.COLOR_DARK_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("tests"));
         tl.addMouseListener(new SidebarItemListener());
 
         rl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(rl).atLeft().atTopTo(tl).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(rl).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_ARROW_RIGHT).setLeftMargin(20).setText(msgs.getString("reports"));
+        CLabelSet.decorate(rl).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("reports"));
         rl.addMouseListener(new SidebarItemListener());
 
         sl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(sl).atLeft().atTopTo(rl).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(sl).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_ARROW_RIGHT).setLeftMargin(20).setText(msgs.getString("settings"));
+        CLabelSet.decorate(sl).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("settings"));
         sl.addMouseListener(new SidebarItemListener());
 
         /* Advanced Features: Test Editor */
@@ -125,9 +123,7 @@ public class MainPage extends Composite {
     }
 
     /**************************************************
-     * 
      * Page Controls
-     * 
      **************************************************/
 
     public void toTestsHomeView() {
@@ -177,9 +173,7 @@ public class MainPage extends Composite {
     }
 
     /**************************************************
-     * 
      * Listeners
-     * 
      **************************************************/
 
     private class AppWindowResizeListener implements Listener {

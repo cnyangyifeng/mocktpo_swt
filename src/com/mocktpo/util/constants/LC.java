@@ -50,7 +50,7 @@ public interface LC {
     int READING_PROSE_SUMMARY_QUESTION_WIDTH = 480;
     int READING_PROSE_SUMMARY_QUESTION_HEIGHT = 60;
     int SIDEBAR_TEST_EDITOR_HEIGHT = 40;
-    int SIDEBAR_ITEM_HEIGHT = 50;
+    int SIDEBAR_ITEM_HEIGHT = 60;
     int TEST_HEADER_HEIGHT = 90;
 
     /**************************************************
