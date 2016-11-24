@@ -87,7 +87,6 @@ public class UserTest {
         }
 
         return viewTime;
-
     }
 
     public void setRemainingViewTime(int sectionType, int viewTime) {
@@ -105,7 +104,6 @@ public class UserTest {
         case ST.SECTION_TYPE_WRITING:
             break;
         }
-
     }
 
     @Override

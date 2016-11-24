@@ -18,11 +18,13 @@ public abstract class StackTestView extends TestView {
 
     protected Composite body;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public StackTestView(TestPage page, int style) {
         super(page, style);
@@ -39,14 +41,15 @@ public abstract class StackTestView extends TestView {
         body.setLayout(stack);
 
         updateBody();
-
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Widget Updates
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     protected abstract void updateBody();
 }

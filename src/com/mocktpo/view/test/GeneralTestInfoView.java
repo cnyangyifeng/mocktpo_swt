@@ -16,29 +16,31 @@ import org.eclipse.swt.events.MouseListener;
 
 public class GeneralTestInfoView extends ResponsiveTestView {
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public GeneralTestInfoView(TestPage page, int style) {
         super(page, style);
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Widget Updates
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     @Override
     public void updateHeader() {
-
         final ImageButton cb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE), ResourceManager.getImage(MT.IMAGE_CONTINUE_HOVER));
         FormDataSet.attach(cb).atRight(10).atTop(10);
         cb.addMouseListener(new ContinueButtonMouseListener());
-
     }
 
     @Override
@@ -54,14 +56,15 @@ public class GeneralTestInfoView extends ResponsiveTestView {
         FormDataSet.attach(dt).atLeft().atTopTo(ht, 50).atRight();
         StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
         StyleRangeUtils.decorate(dt, vo.getStyledText("description").getStyles());
-
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class ContinueButtonMouseListener implements MouseListener {
 
@@ -79,7 +82,6 @@ public class GeneralTestInfoView extends ResponsiveTestView {
             sqlSession.commit();
 
             page.resume(ut);
-
         }
 
         @Override

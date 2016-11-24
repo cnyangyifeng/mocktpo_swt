@@ -14,29 +14,31 @@ import org.eclipse.swt.widgets.Label;
 
 public class TestIntroView extends ResponsiveTestView {
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public TestIntroView(TestPage page, int style) {
         super(page, style);
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Widget Updates
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     @Override
     public void updateHeader() {
-
         final ImageButton cb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE), ResourceManager.getImage(MT.IMAGE_CONTINUE_HOVER));
         FormDataSet.attach(cb).atRight(10).atTop(10);
         cb.addMouseListener(new ContinueButtonMouseListener());
-
     }
 
     @Override
@@ -52,14 +54,15 @@ public class TestIntroView extends ResponsiveTestView {
         FormDataSet.attach(dt).atLeft().atTopTo(l, 50).atRight();
         StyledTextSet.decorate(dt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
         StyleRangeUtils.decorate(dt, vo.getStyledText("description").getStyles());
-
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class ContinueButtonMouseListener implements MouseListener {
 

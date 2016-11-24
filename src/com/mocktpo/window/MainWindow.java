@@ -43,11 +43,13 @@ public class MainWindow {
     private MainPage mp;
     private TestPage tp;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public MainWindow() {
         this.app = MyApplication.get();
@@ -62,14 +64,12 @@ public class MainWindow {
     }
 
     private void golbal() {
-
         s.setText(msgs.getString("app_name"));
         s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
         s.setMaximized(true);
         s.setBackgroundMode(SWT.INHERIT_FORCE);
         WindowUtils.setMinimumWindowSize(s);
         s.addShellListener(new MainWindowListener());
-
     }
 
     private void initViews() {
@@ -78,7 +78,6 @@ public class MainWindow {
         s.setLayout(stack);
 
         toMainPage();
-
     }
 
     public void openAndWaitForDisposal() {
@@ -101,11 +100,13 @@ public class MainWindow {
         }
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Page Controls
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public void toMainPage() {
 
@@ -116,7 +117,6 @@ public class MainWindow {
 
         stack.topControl = mp;
         s.layout();
-
     }
 
     public void toMainPage(UserTest ut) {
@@ -128,7 +128,6 @@ public class MainWindow {
 
         stack.topControl = mp;
         s.layout();
-
     }
 
     public void toTestPage(UserTest ut) {
@@ -140,14 +139,15 @@ public class MainWindow {
 
         stack.topControl = tp;
         s.layout();
-
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class MainWindowListener implements ShellListener {
 
@@ -174,17 +174,15 @@ public class MainWindow {
         }
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Getters and Setters
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public Display getDisplay() {
         return d;
-    }
-
-    public Shell getShell() {
-        return s;
     }
 }

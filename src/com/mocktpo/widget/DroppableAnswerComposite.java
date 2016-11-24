@@ -66,11 +66,13 @@ public class DroppableAnswerComposite extends Composite {
         label.addMouseListener(listener);
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Getters and Setters
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public int getAnswer() {
         return answer;

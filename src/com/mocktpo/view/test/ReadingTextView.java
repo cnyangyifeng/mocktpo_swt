@@ -28,45 +28,43 @@ public class ReadingTextView extends SashTestView {
 
     protected boolean goneThrough;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public ReadingTextView(TestPage page, int style) {
         super(page, style);
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Widget Updates
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     @Override
     public void updateHeader() {
-
         final ImageButton cob = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE_OVAL), ResourceManager.getImage(MT.IMAGE_CONTINUE_OVAL_HOVER), ResourceManager.getImage(MT.IMAGE_CONTINUE_OVAL_DISABLED));
         FormDataSet.attach(cob).atRight(10).atTop(10);
         cob.addMouseListener(new ContinueOvalButtonMouseListener());
-
     }
 
     @Override
     public void updateRight() {
-
         initIndicator();
         initRightBody();
-
     }
 
     private void initIndicator() {
-
         indicator = new CLabel(right, SWT.RIGHT);
         FormDataSet.attach(indicator).atLeft().atTop().atRight();
         CLabelSet.decorate(indicator).setBackground(MT.COLOR_INDIGO).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_WHITE);
-
     }
 
     private void initRightBody() {
@@ -91,18 +89,19 @@ public class ReadingTextView extends SashTestView {
 
         sc.setContent(c);
         sc.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
     }
 
     @Override
     public void updateLeft() {
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class ContinueOvalButtonMouseListener implements MouseListener {
 
@@ -161,7 +160,6 @@ public class ReadingTextView extends SashTestView {
             } else {
                 indicator.setText(msgs.getString("more_available"));
             }
-
         }
     }
 }

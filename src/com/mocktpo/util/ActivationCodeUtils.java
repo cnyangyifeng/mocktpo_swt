@@ -27,6 +27,7 @@ public class ActivationCodeUtils {
     }
 
     public static int post(RequireActivationVo vo) {
+
         try {
             URL url = new URL(REMOTE_SERVICE);
             HttpURLConnection c = (HttpURLConnection) url.openConnection();
@@ -43,22 +44,24 @@ public class ActivationCodeUtils {
             String message = c.getResponseMessage();
             logger.debug("Http Response Code: " + code + "; message: " + message);
             switch (code) {
-            case 200:
-                return EMAIL_HARDWARE_OK;
-            case 404:
-                return REGISTERED_EMAIL_NOT_FOUND;
-            case 409:
-                return REGISTERED_HARDWARE_UNMATCHED;
-            default:
-                return NETWORK_FAILURE;
+                case 200:
+                    return EMAIL_HARDWARE_OK;
+                case 404:
+                    return REGISTERED_EMAIL_NOT_FOUND;
+                case 409:
+                    return REGISTERED_HARDWARE_UNMATCHED;
+                default:
+                    return NETWORK_FAILURE;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return NETWORK_FAILURE;
     }
 
     public static boolean isLicensed(String email, String acc) {
+
         boolean licensed = false;
 
         String path = ActivationCodeUtils.class.getResource(RC.CONFIG_DIR).getPath();
@@ -74,7 +77,9 @@ public class ActivationCodeUtils {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return licensed;
     }
 }

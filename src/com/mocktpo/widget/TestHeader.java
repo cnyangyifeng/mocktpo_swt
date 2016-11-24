@@ -25,11 +25,13 @@ public class TestHeader extends Composite {
 
     protected Display d;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public TestHeader(Composite parent, int style) {
         super(parent, style);
@@ -56,6 +58,5 @@ public class TestHeader extends Composite {
         gc.dispose();
 
         this.setBackgroundImage(image);
-
     }
 }

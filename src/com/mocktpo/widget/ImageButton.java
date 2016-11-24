@@ -86,11 +86,13 @@ public class ImageButton extends Composite {
         return new Point(width, height);
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Background Images
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public void setBackgroundImages(int normal, int hover) {
         this.setBackgroundImages(ResourceManager.getImage(normal), ResourceManager.getImage(hover), null);
@@ -111,11 +113,13 @@ public class ImageButton extends Composite {
         this.setBackgroundImage(this.normal);
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class ImageButtonMouseTrackListener implements MouseTrackListener {
 

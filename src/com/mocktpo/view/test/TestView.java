@@ -64,11 +64,13 @@ public abstract class TestView extends Composite {
     protected Timer timer;
     protected TestTimerTask timerTask;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public TestView(TestPage page, int style) {
         super(page, style);
@@ -137,31 +139,32 @@ public abstract class TestView extends Composite {
          */
 
         updateHeader();
-
     }
 
     private void initFooter() {
-
         footer = new TestFooter(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atRight().atBottom();
-
     }
 
     protected abstract void initBody();
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Widget Updates
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     protected abstract void updateHeader();
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Timer
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public void startTimer() {
 
@@ -201,7 +204,6 @@ public abstract class TestView extends Composite {
             timer = new Timer();
             timerTask = new TestTimerTask();
             timer.scheduleAtFixedRate(timerTask, 0, 1000);
-
         }
     }
 
@@ -214,14 +216,15 @@ public abstract class TestView extends Composite {
         if (null != timer) {
             timer.purge();
         }
-
     }
 
-    /**************************************************
-     * 
-     * Timer Tasks
-     * 
-     **************************************************/
+    /*
+     * ==================================================
+     *
+     * Timer Task
+     *
+     * ==================================================
+     */
 
     private class TestTimerTask extends TimerTask {
 
@@ -263,11 +266,13 @@ public abstract class TestView extends Composite {
         }
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class PauseTestButtonMouseListener implements MouseListener {
 
@@ -289,7 +294,6 @@ public abstract class TestView extends Composite {
             sqlSession.commit();
 
             MyApplication.get().getWindow().toMainPage(ut);
-
         }
 
         @Override
@@ -321,18 +325,10 @@ public abstract class TestView extends Composite {
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);
             sqlSession.commit();
-
         }
 
         @Override
         public void mouseUp(MouseEvent e) {
         }
     }
-
-    /**************************************************
-     * 
-     * Getters and Setters
-     * 
-     **************************************************/
-
 }

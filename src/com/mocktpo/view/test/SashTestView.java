@@ -17,11 +17,13 @@ public abstract class SashTestView extends TestView {
     protected Composite left;
     protected Composite right;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public SashTestView(TestPage page, int style) {
         super(page, style);
@@ -50,14 +52,15 @@ public abstract class SashTestView extends TestView {
         FormLayoutSet.layout(right);
 
         updateRight();
-
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Widget Updates
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     protected abstract void updateLeft();
 

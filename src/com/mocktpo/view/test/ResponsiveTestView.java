@@ -13,11 +13,13 @@ public abstract class ResponsiveTestView extends TestView {
     protected Composite body;
     protected Composite viewPort;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public ResponsiveTestView(TestPage page, int style) {
         super(page, style);
@@ -50,14 +52,15 @@ public abstract class ResponsiveTestView extends TestView {
 
         sc.setContent(body);
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Widget Updates
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     protected abstract void updateBody();
 }

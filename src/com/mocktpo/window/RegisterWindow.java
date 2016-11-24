@@ -50,11 +50,13 @@ public class RegisterWindow {
     private CLabel am;
     private Button r;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public RegisterWindow() {
         this.app = MyApplication.get();
@@ -71,7 +73,6 @@ public class RegisterWindow {
     }
 
     private void global() {
-
         s.setText(msgs.getString("app_name"));
         s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
         WindowUtils.setDefaultWindowSize(s);
@@ -79,7 +80,6 @@ public class RegisterWindow {
         s.setBackgroundMode(SWT.INHERIT_FORCE);
         WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s);
-
     }
 
     private void initHeader() {
@@ -100,7 +100,6 @@ public class RegisterWindow {
         final Label ll = new Label(header, SWT.NONE);
         FormDataSet.attach(ll).atTop(20).atRight(20);
         LabelSet.decorate(ll).setImage(MT.IMAGE_LOGO);
-
     }
 
     private void initFooter() {
@@ -119,7 +118,6 @@ public class RegisterWindow {
         FormDataSet.attach(c).fromLeft(50, 10).fromTop(50, -LC.BUTTON_HEIGHT_HINT / 2).withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(c).setCursor(MT.CURSOR_HAND).setText(msgs.getString("close"));
         c.addSelectionListener(new CancelSelectionListener());
-
     }
 
     private void initBody() {
@@ -161,7 +159,6 @@ public class RegisterWindow {
         KeyBindingSet.bind(at).traverse().selectAll();
         StyledTextSet.decorate(at).setFont(MT.FONT_ACTIVATION_CODE).setMargins(10);
         at.addKeyListener(new ActivationCodeTextKeyListener());
-
     }
 
     public void openAndWaitForDisposal() {
@@ -185,11 +182,13 @@ public class RegisterWindow {
         }
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class EmailTextKeyListener implements KeyListener {
 
@@ -253,46 +252,46 @@ public class RegisterWindow {
                 @Override
                 public void run() {
                     switch (ActivationCodeUtils.post(vo)) {
-                    case ActivationCodeUtils.EMAIL_HARDWARE_OK:
-                        d.asyncExec(new Runnable() {
-                            @Override
-                            public void run() {
-                                em.setText(msgs.getString("email_hardware_ok"));
-                                em.setForeground(ResourceManager.getColor(MT.COLOR_GREEN));
-                                eb.setEnabled(true);
-                            }
-                        });
-                        break;
-                    case ActivationCodeUtils.REGISTERED_EMAIL_NOT_FOUND:
-                        d.asyncExec(new Runnable() {
-                            @Override
-                            public void run() {
-                                em.setText(msgs.getString("registered_email_not_found"));
-                                em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
-                                eb.setEnabled(true);
-                            }
-                        });
-                        break;
-                    case ActivationCodeUtils.REGISTERED_HARDWARE_UNMATCHED:
-                        d.asyncExec(new Runnable() {
-                            @Override
-                            public void run() {
-                                em.setText(msgs.getString("registered_hardware_unmatched"));
-                                em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
-                                eb.setEnabled(true);
-                            }
-                        });
-                        break;
-                    case ActivationCodeUtils.NETWORK_FAILURE:
-                    default:
-                        d.asyncExec(new Runnable() {
-                            @Override
-                            public void run() {
-                                em.setText(msgs.getString("network_failure"));
-                                em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
-                                eb.setEnabled(true);
-                            }
-                        });
+                        case ActivationCodeUtils.EMAIL_HARDWARE_OK:
+                            d.asyncExec(new Runnable() {
+                                @Override
+                                public void run() {
+                                    em.setText(msgs.getString("email_hardware_ok"));
+                                    em.setForeground(ResourceManager.getColor(MT.COLOR_GREEN));
+                                    eb.setEnabled(true);
+                                }
+                            });
+                            break;
+                        case ActivationCodeUtils.REGISTERED_EMAIL_NOT_FOUND:
+                            d.asyncExec(new Runnable() {
+                                @Override
+                                public void run() {
+                                    em.setText(msgs.getString("registered_email_not_found"));
+                                    em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
+                                    eb.setEnabled(true);
+                                }
+                            });
+                            break;
+                        case ActivationCodeUtils.REGISTERED_HARDWARE_UNMATCHED:
+                            d.asyncExec(new Runnable() {
+                                @Override
+                                public void run() {
+                                    em.setText(msgs.getString("registered_hardware_unmatched"));
+                                    em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
+                                    eb.setEnabled(true);
+                                }
+                            });
+                            break;
+                        case ActivationCodeUtils.NETWORK_FAILURE:
+                        default:
+                            d.asyncExec(new Runnable() {
+                                @Override
+                                public void run() {
+                                    em.setText(msgs.getString("network_failure"));
+                                    em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
+                                    eb.setEnabled(true);
+                                }
+                            });
                     }
                 }
             }.start();
@@ -358,17 +357,15 @@ public class RegisterWindow {
         }
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Getters and Setters
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public Display getDisplay() {
         return d;
-    }
-
-    public Shell getShell() {
-        return s;
     }
 }

@@ -41,11 +41,13 @@ public class TestPage extends Composite {
     private TestSchemaVo testSchema;
     private UserTest userTest;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public TestPage(Composite parent, int style, UserTest userTest) {
         super(parent, style);
@@ -64,11 +66,13 @@ public class TestPage extends Composite {
         this.setLayout(stack);
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Resume
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public void resume(UserTest ut) {
 
@@ -82,7 +86,6 @@ public class TestPage extends Composite {
 
         stack.topControl = tv;
         this.layout();
-
     }
 
     private TestView getLastTestView() {
@@ -119,14 +122,16 @@ public class TestPage extends Composite {
         }
 
         return tv;
-
     }
 
-    /**************************************************
-     * 
+
+    /*
+     * ==================================================
+     *
      * To Reading Review View
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public void toReadingReview() {
 
@@ -138,11 +143,13 @@ public class TestPage extends Composite {
 
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Getters and Setters
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public TestSchemaVo getTestSchema() {
         return testSchema;

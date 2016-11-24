@@ -18,22 +18,26 @@ public class CLabelSet {
         this.c = c;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Alignment Settings
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public CLabelSet setAlignment(int i) {
         c.setAlignment(i);
         return this;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Background Settings
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public CLabelSet setBackground(int i) {
         c.setBackground(ResourceManager.getColor(i));
@@ -48,20 +52,22 @@ public class CLabelSet {
     public CLabelSet setGradientBackground(int start, int end, boolean vertical) {
         Color sc = ResourceManager.getColor(start);
         Color ec = ResourceManager.getColor(end);
-        c.setBackground(new Color[] { sc, ec }, new int[] { 100 }, vertical);
+        c.setBackground(new Color[]{sc, ec}, new int[]{100}, vertical);
         return this;
     }
 
     public CLabelSet setGradientBackground(Color start, Color end, boolean vertical) {
-        c.setBackground(new Color[] { start, end }, new int[] { 100 }, vertical);
+        c.setBackground(new Color[]{start, end}, new int[]{100}, vertical);
         return this;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Cursor Settings
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public CLabelSet setCursor(int i) {
         c.setCursor(ResourceManager.getCursor(i));
@@ -73,44 +79,52 @@ public class CLabelSet {
         return this;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Data Settings
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public CLabelSet setData(String key, Object value) {
         c.setData(key, value);
         return this;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Enable Settings
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public CLabelSet setEnabled(boolean b) {
         c.setEnabled(b);
         return this;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Focus Settings
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public CLabelSet setFocus() {
         c.setFocus();
         return this;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Font Settings
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public CLabelSet setFont(int i) {
         c.setFont(ResourceManager.getFont(i));
@@ -122,11 +136,13 @@ public class CLabelSet {
         return this;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Foreground Settings
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public CLabelSet setForeground(int i) {
         c.setForeground(ResourceManager.getColor(i));
@@ -138,11 +154,13 @@ public class CLabelSet {
         return this;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Image Settings
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public CLabelSet setImage(int i) {
         c.setImage(ResourceManager.getImage(i));
@@ -154,11 +172,13 @@ public class CLabelSet {
         return this;
     }
 
-    /**************************************************
-     * 
-     * Margin Settings
-     * 
-     **************************************************/
+    /*
+     * ==================================================
+     *
+     * Margins Settings
+     *
+     * ==================================================
+     */
 
     public CLabelSet setMargins(int margin) {
         c.setMargins(margin, margin, margin, margin);
@@ -202,22 +222,26 @@ public class CLabelSet {
         return this;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Text Settings
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public CLabelSet setText(String text) {
         c.setText(text);
         return this;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Visible Settings
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public CLabelSet setVisible(boolean b) {
         c.setVisible(b);

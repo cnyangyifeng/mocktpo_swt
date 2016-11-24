@@ -21,7 +21,6 @@ public class TestSchemaUtils {
         }
 
         return count;
-
     }
 
     public static int getNextViewIdWhileTimeOut(TestSchemaVo vo, int viewId) {
@@ -50,6 +49,5 @@ public class TestSchemaUtils {
         }
 
         return nextViewId;
-
     }
 }

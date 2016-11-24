@@ -57,9 +57,13 @@ public class MainPage extends Composite {
     private CLabel el;
     private TestEditorHomeView chv;
 
-    /**************************************************
+    /*
+     * ==================================================
+     *
      * Constructors
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public MainPage(Composite parent, int style) {
         super(parent, style);
@@ -110,10 +114,10 @@ public class MainPage extends Composite {
         FormDataSet.attach(el).atLeft(10).atRight(10).atBottom(10).withHeight(LC.SIDEBAR_TEST_EDITOR_HEIGHT);
         CLabelSet.decorate(el).setBackground(MT.COLOR_DARK_ORANGE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_WHITE).setLeftMargin(30).setText(msgs.getString("test_editor"));
         el.addMouseListener(new SidebarItemListener());
-
     }
 
     private void initPages() {
+
         body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeftTo(sidebar).atTop().atRight().atBottom();
         stack = new StackLayout();
@@ -122,11 +126,16 @@ public class MainPage extends Composite {
         toTestsHomeView();
     }
 
-    /**************************************************
+    /*
+     * ==================================================
+     *
      * Page Controls
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public void toTestsHomeView() {
+
         if (null == thv) {
             thv = new TestsHomeView(body, SWT.NONE);
         }
@@ -136,6 +145,7 @@ public class MainPage extends Composite {
     }
 
     public void toTestsHomeView(UserTest ut) {
+
         if (null == thv) {
             thv = new TestsHomeView(body, SWT.NONE);
         }
@@ -146,6 +156,7 @@ public class MainPage extends Composite {
     }
 
     public void toReportsHomeView() {
+
         if (null == rhv) {
             rhv = new ReportsHomeView(body, SWT.NONE);
         }
@@ -155,6 +166,7 @@ public class MainPage extends Composite {
     }
 
     public void toSettingsHomeView() {
+
         if (null == shv) {
             shv = new SettingsHomeView(body, SWT.NONE);
         }
@@ -164,6 +176,7 @@ public class MainPage extends Composite {
     }
 
     public void toTestEditorHomeView() {
+
         if (null == chv) {
             chv = new TestEditorHomeView(body, SWT.NONE);
         }
@@ -172,9 +185,13 @@ public class MainPage extends Composite {
         body.layout();
     }
 
-    /**************************************************
+    /*
+     * ==================================================
+     *
      * Listeners
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class AppWindowResizeListener implements Listener {
 
@@ -192,7 +209,9 @@ public class MainPage extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
             String text = ((CLabel) e.widget).getText();
+            
             if (msgs.getString("tests").equals(text)) {
                 CLabelSet.decorate(tl).setBackground(MT.COLOR_DARK_BLUE);
                 CLabelSet.decorate(rl).setBackground(MT.COLOR_OXFORD_BLUE);

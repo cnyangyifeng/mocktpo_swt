@@ -17,21 +17,25 @@ import org.eclipse.swt.events.MouseListener;
 
 public class ListeningDirectionsView extends ResponsiveTestView {
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public ListeningDirectionsView(TestPage page, int style) {
         super(page, style);
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Widget Updates
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     @Override
     public void updateHeader() {
@@ -58,7 +62,6 @@ public class ListeningDirectionsView extends ResponsiveTestView {
         final ImageButton cb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE), ResourceManager.getImage(MT.IMAGE_CONTINUE_HOVER));
         FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(nob, 8, SWT.TOP);
         cb.addMouseListener(new ContinueButtonMouseListener());
-
     }
 
     @Override
@@ -75,14 +78,15 @@ public class ListeningDirectionsView extends ResponsiveTestView {
         StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
         StyleRangeUtils.decorate(dt, vo.getStyledText("description").getStyles());
         dt.addPaintObjectListener(new StyledTextPaintImageListener());
-
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class NextOvalButtonMouseListener implements MouseListener {
 

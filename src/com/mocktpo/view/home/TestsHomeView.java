@@ -39,11 +39,13 @@ public class TestsHomeView extends Composite {
     private Composite body;
     private List<TestCard> cards;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public TestsHomeView(Composite parent, int style) {
         super(parent, style);
@@ -81,7 +83,6 @@ public class TestsHomeView extends Composite {
         FormDataSet.attach(ib).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(ib).setCursor(MT.CURSOR_HAND).setText(msgs.getString("import"));
         ib.addMouseListener(new ImportButtonMouseListener());
-
     }
 
     private void initBody() {
@@ -107,14 +108,15 @@ public class TestsHomeView extends Composite {
         }
 
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Reset
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public void reset(UserTest ut) {
         for (TestCard tc : cards) {
@@ -125,11 +127,13 @@ public class TestsHomeView extends Composite {
         }
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class SortButtonMouseListener implements MouseListener {
 

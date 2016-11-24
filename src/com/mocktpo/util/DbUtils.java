@@ -1,15 +1,14 @@
 package com.mocktpo.util;
 
-import java.net.URLDecoder;
-
+import com.mocktpo.orm.mapper.ActivationCodeMapper;
+import com.mocktpo.orm.mapper.UserTestMapper;
+import com.mocktpo.util.constants.RC;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import com.mocktpo.orm.mapper.ActivationCodeMapper;
-import com.mocktpo.orm.mapper.UserTestMapper;
-import com.mocktpo.util.constants.RC;
+import java.net.URLDecoder;
 
 public class DbUtils {
 
@@ -20,6 +19,7 @@ public class DbUtils {
 
     public static void init() {
         try {
+
             factory = new SqlSessionFactoryBuilder().build(DbUtils.class.getResourceAsStream(URLDecoder.decode(RC.CONFIG_DIR + RC.DATABASE_CONFIG_FILE, "utf-8")));
             Configuration c = factory.getConfiguration();
 

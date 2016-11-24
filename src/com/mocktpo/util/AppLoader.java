@@ -46,6 +46,7 @@ public class AppLoader extends Thread {
 
     @Override
     public void run() {
+
         splash.proceed(msgs.getString("loading_resources"));
         ResourceManager.alloc(d);
 

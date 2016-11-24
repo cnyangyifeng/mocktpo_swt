@@ -39,11 +39,13 @@ public class TestCard extends Composite {
 
     private UserTest ut;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public TestCard(Composite parent, int style, UserTest ut) {
         super(parent, style);
@@ -85,7 +87,6 @@ public class TestCard extends Composite {
         final Label divider = new Label(header, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(pl, 10).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(ResourceManager.getColor(MT.COLOR_WHITE_SMOKE));
-
     }
 
     private void initActionBar() {
@@ -111,14 +112,15 @@ public class TestCard extends Composite {
         FormDataSet.attach(b).atLeft().atTopTo(bd, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(b).setCursor(MT.CURSOR_HAND).setText(msgs.getString("start"));
         b.addSelectionListener(new StartSelectionListener());
-
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Reset
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public void reset(UserTest ut) {
         this.ut = ut;
@@ -134,11 +136,13 @@ public class TestCard extends Composite {
         return (ut.getLastViewId() - 1) * 100 / TestPage.TOTAL_VIEW_COUNT + "%";
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Getters and Setters
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public UserTest getUserTest() {
         return ut;
@@ -148,11 +152,13 @@ public class TestCard extends Composite {
         this.ut = ut;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class StartSelectionListener implements SelectionListener {
 

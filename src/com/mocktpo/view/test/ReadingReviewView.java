@@ -171,14 +171,11 @@ public class ReadingReviewView extends Composite {
         final ImageButton rb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_RETURN), ResourceManager.getImage(MT.IMAGE_RETURN_HOVER));
         FormDataSet.attach(rb).atRightTo(gb, 10).atTop(10);
         rb.addMouseListener(new ReadingReviewReturnButtonMouseListener());
-
     }
 
     private void initFooter() {
-
         footer = new TestFooter(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atRight().atBottom();
-
     }
 
     private void initBody() {
@@ -207,7 +204,6 @@ public class ReadingReviewView extends Composite {
 
         sc.setContent(body);
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
     }
 
     private void updateBody() {
@@ -308,7 +304,6 @@ public class ReadingReviewView extends Composite {
             timer = new Timer();
             timerTask = new TestTimerTask();
             timer.scheduleAtFixedRate(timerTask, 0, 1000);
-
         }
     }
 
@@ -321,7 +316,6 @@ public class ReadingReviewView extends Composite {
         if (null != timer) {
             timer.purge();
         }
-
     }
 
     /*
@@ -396,7 +390,6 @@ public class ReadingReviewView extends Composite {
             UserTest ut = page.getUserTest();
 
             MyApplication.get().getWindow().toMainPage(ut);
-
         }
 
         @Override
@@ -428,7 +421,6 @@ public class ReadingReviewView extends Composite {
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);
             sqlSession.commit();
-
         }
 
         @Override
@@ -453,7 +445,6 @@ public class ReadingReviewView extends Composite {
             ut.setLastViewId(selectedViewId);
 
             page.resume(ut);
-
         }
 
         @Override
@@ -477,7 +468,6 @@ public class ReadingReviewView extends Composite {
             UserTest ut = page.getUserTest();
 
             page.resume(ut);
-
         }
 
         @Override
@@ -493,10 +483,8 @@ public class ReadingReviewView extends Composite {
 
         @Override
         public void controlResized(ControlEvent e) {
-
             int tableWidth = table.getBounds().width, numberColumnWidth = table.getColumn(0).getWidth(), statusColumnWidth = table.getColumn(2).getWidth();
             table.getColumn(1).setWidth(tableWidth - numberColumnWidth - statusColumnWidth);
-
         }
     }
 

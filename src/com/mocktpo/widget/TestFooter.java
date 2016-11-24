@@ -26,11 +26,13 @@ public class TestFooter extends Composite {
 
     private Label copyright;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public TestFooter(Composite parent, int style) {
         super(parent, style);

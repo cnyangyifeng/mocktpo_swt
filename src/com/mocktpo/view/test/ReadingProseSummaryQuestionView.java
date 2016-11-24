@@ -46,21 +46,25 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
     private int subViewId;
     private int answer1, answer2, answer3;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public ReadingProseSummaryQuestionView(TestPage page, int style) {
         super(page, style);
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Widget Updates
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     @Override
     public void updateHeader() {
@@ -88,7 +92,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         viewTextOrQuestionButton = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_VIEW_TEXT), ResourceManager.getImage(MT.IMAGE_VIEW_TEXT_HOVER));
         FormDataSet.attach(viewTextOrQuestionButton).atRightTo(hob, 6).atTopTo(nob, 6, SWT.TOP);
         viewTextOrQuestionButton.addMouseListener(new ViewTextOrQuestionButtonMouseListener());
-
     }
 
     @Override
@@ -100,7 +103,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
         stack.topControl = subView;
         body.layout();
-
     }
 
     private Composite getSubView(int subViewId) {
@@ -119,14 +121,15 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         }
 
         return null;
-
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Sub Views
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private Composite initQuestionSubView() {
 
@@ -232,7 +235,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         sc.setMinSize(inner.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
         return c;
-
     }
 
     private Composite initTextSubView() {
@@ -255,7 +257,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         initRightBody();
 
         return c;
-
     }
 
     private void initRightBody() {
@@ -279,14 +280,15 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
         sc.setContent(c);
         sc.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class NextOvalButtonMouseListener implements MouseListener {
 
@@ -308,7 +310,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
             sqlSession.commit();
 
             page.resume(ut);
-
         }
 
         @Override
@@ -336,7 +337,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
             sqlSession.commit();
 
             page.resume(ut);
-
         }
 
         @Override
@@ -358,7 +358,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
             }
 
             page.toReadingReview();
-
         }
 
         @Override
@@ -405,7 +404,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
             stack.topControl = subView;
             body.layout();
-
         }
 
         @Override
@@ -462,7 +460,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
             }
 
             logger.debug("Reading Prose Summary Question Answers: ({}, {}, {}).", answer1, answer2, answer3);
-
         }
     }
 
@@ -520,7 +517,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
             }
 
             logger.debug("Reading Prose Summary Question Answers: ({}, {}, {}).", answer1, answer2, answer3);
-
         }
 
         @Override

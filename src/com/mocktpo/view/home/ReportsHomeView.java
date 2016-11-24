@@ -28,11 +28,13 @@ public class ReportsHomeView extends Composite {
 
     private Composite body;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public ReportsHomeView(Composite parent, int style) {
         super(parent, style);
@@ -50,6 +52,7 @@ public class ReportsHomeView extends Composite {
     }
 
     private void initBody() {
+
         final ScrolledComposite sc = new ScrolledComposite(this, SWT.H_SCROLL | SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
         sc.setExpandHorizontal(true);

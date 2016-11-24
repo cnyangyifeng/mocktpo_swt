@@ -34,22 +34,26 @@ public class ReadingTextWithQuestionView extends SashTestView {
     private String insertText;
     private int insertPointA, insertPointB, insertPointC, insertPointD;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public ReadingTextWithQuestionView(TestPage page, int style) {
         super(page, style);
         this.answer = MT.CHOICE_NONE;
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     @Override
     public void updateHeader() {
@@ -73,15 +77,12 @@ public class ReadingTextWithQuestionView extends SashTestView {
         final ImageButton hob = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_HELP_OVAL), ResourceManager.getImage(MT.IMAGE_HELP_OVAL_HOVER), ResourceManager.getImage(MT.IMAGE_HELP_OVAL_DISABLED));
         FormDataSet.attach(hob).atRightTo(rob).atTop(10);
         hob.addMouseListener(new HelpOvalButtonMouseListener());
-
     }
 
     @Override
     public void updateRight() {
-
         initIndicator();
         initRightBody();
-
     }
 
     private void initIndicator() {
@@ -89,7 +90,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
         indicator = new CLabel(right, SWT.RIGHT);
         FormDataSet.attach(indicator).atLeft().atTop().atRight();
         CLabelSet.decorate(indicator).setBackground(MT.COLOR_INDIGO).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_WHITE);
-
     }
 
     private void initRightBody() {
@@ -115,7 +115,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
 
         rightScrolled.setContent(c);
         rightScrolled.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
     }
 
     @Override
@@ -185,9 +184,7 @@ public class ReadingTextWithQuestionView extends SashTestView {
                 FormDataSet.attach(fn).atLeft().atTopTo(ld, 40).atRight();
                 StyledTextSet.decorate(fn).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());
             }
-
         } else {
-
             if (null != vo.getStyledText("insertText") && null != vo.getStyledText("insertPointA") && null != vo.getStyledText("insertPointB") && null != vo.getStyledText("insertPointC") && null != vo.getStyledText("insertPointD")) {
 
                 final StyledText it = new StyledText(c, SWT.WRAP);
@@ -209,11 +206,13 @@ public class ReadingTextWithQuestionView extends SashTestView {
         }
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class NextOvalButtonMouseListener implements MouseListener {
 
@@ -235,7 +234,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
             sqlSession.commit();
 
             page.resume(ut);
-
         }
 
         @Override
@@ -263,7 +261,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
             sqlSession.commit();
 
             page.resume(ut);
-
         }
 
         @Override
@@ -285,7 +282,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
             }
 
             page.toReadingReview();
-
         }
 
         @Override
@@ -345,7 +341,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
                 LabelSet.decorate(choiceD).setImage(MT.IMAGE_CHECKED);
                 break;
             }
-
         }
 
         @Override
@@ -371,7 +366,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
             if (offsetY > quarter) {
                 rightScrolled.setOrigin(0, offsetY - quarter);
             }
-
         }
     }
 
@@ -395,7 +389,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
             int offset = st.getCaretOffset();
 
             if (offset == insertPointA || offset == insertPointA + 1) {
-
                 if (answer != MT.CHOICE_A) {
 
                     /*
@@ -445,7 +438,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
                      */
 
                     answer = MT.CHOICE_A;
-
                 }
             } else if (offset == insertPointB || offset == insertPointB + 1) {
                 if (answer != MT.CHOICE_B) {
@@ -497,7 +489,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
                      */
 
                     answer = MT.CHOICE_B;
-
                 }
             } else if (offset == insertPointC || offset == insertPointC + 1) {
                 if (answer != MT.CHOICE_C) {
@@ -549,7 +540,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
                      */
 
                     answer = MT.CHOICE_C;
-
                 }
             } else if (offset == insertPointD || offset == insertPointD + 1) {
                 if (answer != MT.CHOICE_D) {
@@ -601,7 +591,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
                      */
 
                     answer = MT.CHOICE_D;
-
                 }
             }
         }

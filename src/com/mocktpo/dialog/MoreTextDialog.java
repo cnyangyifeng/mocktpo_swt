@@ -38,11 +38,13 @@ public class MoreTextDialog {
 
     private CLabel background;
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public MoreTextDialog() {
         this.app = MyApplication.get();
@@ -65,12 +67,10 @@ public class MoreTextDialog {
     }
 
     private void initBackground() {
-
         background = new CLabel(s, SWT.NONE);
         FormDataSet.attach(background).atLeft().atTop().atRight().atBottom();
         CLabelSet.decorate(background).setGradientBackground(MT.COLOR_INDIGO, MT.COLOR_WHITE_SMOKE, true);
         FormLayoutSet.layout(background).marginHeight(20);
-
     }
 
     private void initWidgets() {
@@ -86,7 +86,6 @@ public class MoreTextDialog {
         final StyledText p = new StyledText(background, SWT.WRAP);
         FormDataSet.attach(p).atLeft(20).atTopTo(tl, 20).atRight(20).atBottomTo(cb, 20, SWT.TOP);
         StyledTextSet.decorate(p).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(10).setText(msgs.getString("use_scroll_bar"));
-
     }
 
     public void openAndWaitForDisposal() {
@@ -109,11 +108,13 @@ public class MoreTextDialog {
         }
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class ContinueButtonMouseListener implements MouseListener {
 

@@ -16,21 +16,25 @@ import org.eclipse.swt.events.MouseListener;
 
 public class ReadingDirectionsView extends ResponsiveTestView {
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Constructors
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     public ReadingDirectionsView(TestPage page, int style) {
         super(page, style);
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Widget Updates
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     @Override
     public void updateHeader() {
@@ -57,11 +61,13 @@ public class ReadingDirectionsView extends ResponsiveTestView {
 
     }
 
-    /**************************************************
-     * 
+    /*
+     * ==================================================
+     *
      * Listeners
-     * 
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private class ContinueButtonMouseListener implements MouseListener {
 
@@ -79,7 +85,6 @@ public class ReadingDirectionsView extends ResponsiveTestView {
             sqlSession.commit();
 
             page.resume(ut);
-
         }
 
         @Override
