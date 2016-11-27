@@ -17,9 +17,9 @@ public class ConfigUtils {
     private ConfigUtils() {
     }
 
-    public static <T> T load(String fileName, Class<T> clazz) {
+    public static <T> T load(String testAlias, Class<T> clazz) {
         try {
-            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.CONFIG_DIR + fileName, "utf-8"));
+            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_ROOT_DIR + testAlias + "/" + testAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
             String json = FileUtils.readFileToString(new File(url.toURI()), "utf-8");
             return JSON.parseObject(json, clazz);
         } catch (Exception e) {
@@ -28,12 +28,12 @@ public class ConfigUtils {
         return null;
     }
 
-    public static void save(String fileName, Object object) {
+    public static void save(String testAlias, Object object) {
         try {
-            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.CONFIG_DIR + fileName, "utf-8"));
+            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_ROOT_DIR + testAlias + "/" + testAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
             File file = new File(url.toURI());
             if (file.createNewFile()) {
-                logger.debug("File '" + fileName + "' saved successfully.");
+                logger.debug("File '" + testAlias + RC.JSON_FILE_TYPE_SUFFIX + "' saved successfully.");
             }
             FileUtils.writeStringToFile(file, JSON.toJSONString(object), "utf-8", false);
         } catch (Exception e) {

@@ -85,7 +85,7 @@ public class AppLoader extends Thread {
             final UserTestMapper utm = app.getSqlSession().getMapper(UserTestMapper.class);
             utm.schema();
             if (utm.count() <= 0) {
-                splash.proceed(msgs.getString("configuring_database"));
+                splash.proceed(msgs.getString("configuring_data"));
                 for (int i = 1; i <= 48; i++) {
                     UserTest ut = new UserTest();
                     ut.setEmail(email);

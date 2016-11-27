@@ -1,9 +1,7 @@
 package com.mocktpo.util.constants;
 
 /**
- * 
  * View Type Constants
- *
  */
 public interface VT {
 
@@ -15,5 +13,4 @@ public interface VT {
     int VIEW_TYPE_READING_TEXT_WITH_QUESTION = 6;
     int VIEW_TYPE_LISTENING_DIRECTIONS = 7;
     int VIEW_TYPE_TEST_INTRO = 8;
-
 }

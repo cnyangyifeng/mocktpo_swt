@@ -2,7 +2,6 @@ package com.mocktpo.page;
 
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.util.ConfigUtils;
-import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.view.test.*;
 import com.mocktpo.vo.TestSchemaVo;
@@ -53,7 +52,7 @@ public class TestPage extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTest = userTest;
-        this.testSchema = ConfigUtils.load(this.userTest.getAlias() + RC.JSON_FILE_TYPE_SUFFIX, TestSchemaVo.class);
+        this.testSchema = ConfigUtils.load(this.userTest.getAlias(), TestSchemaVo.class);
         init();
     }
 
@@ -77,12 +76,13 @@ public class TestPage extends Composite {
     public void resume(UserTest ut) {
 
         if (this.userTest.getTid() != ut.getTid()) {
-            this.setVo(ConfigUtils.load(ut.getAlias() + RC.JSON_FILE_TYPE_SUFFIX, TestSchemaVo.class));
+            this.setVo(ConfigUtils.load(ut.getAlias(), TestSchemaVo.class));
         }
         this.userTest = ut;
 
         TestView tv = getLastTestView();
         tv.startTimer();
+        tv.startAudio();
 
         stack.topControl = tv;
         this.layout();
@@ -95,30 +95,30 @@ public class TestPage extends Composite {
 
         TestView tv = null;
         switch (lastViewType) {
-        case VT.VIEW_TYPE_GENERAL_TEST_INFO:
-            tv = new GeneralTestInfoView(this, SWT.NONE);
-            break;
-        case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
-            tv = new ListeningDirectionsView(this, SWT.NONE);
-            break;
-        case VT.VIEW_TYPE_READING_DIRECTIONS:
-            tv = new ReadingDirectionsView(this, SWT.NONE);
-            break;
-        case VT.VIEW_TYPE_READING_FILL_TABLE_QUESTION:
-            tv = new ReadingFillTableQuestionView(this, SWT.NONE);
-            break;
-        case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
-            tv = new ReadingProseSummaryQuestionView(this, SWT.NONE);
-            break;
-        case VT.VIEW_TYPE_READING_TEXT:
-            tv = new ReadingTextView(this, SWT.NONE);
-            break;
-        case VT.VIEW_TYPE_READING_TEXT_WITH_QUESTION:
-            tv = new ReadingTextWithQuestionView(this, SWT.NONE);
-            break;
-        case VT.VIEW_TYPE_TEST_INTRO:
-            tv = new TestIntroView(this, SWT.NONE);
-            break;
+            case VT.VIEW_TYPE_GENERAL_TEST_INFO:
+                tv = new GeneralTestInfoView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
+                tv = new ListeningDirectionsView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_READING_DIRECTIONS:
+                tv = new ReadingDirectionsView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_READING_FILL_TABLE_QUESTION:
+                tv = new ReadingFillTableQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
+                tv = new ReadingProseSummaryQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_READING_TEXT:
+                tv = new ReadingTextView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_READING_TEXT_WITH_QUESTION:
+                tv = new ReadingTextWithQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_TEST_INTRO:
+                tv = new TestIntroView(this, SWT.NONE);
+                break;
         }
 
         return tv;

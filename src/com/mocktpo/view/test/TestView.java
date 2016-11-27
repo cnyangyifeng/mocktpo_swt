@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Label;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicReference;
 
 public abstract class TestView extends Composite {
 
@@ -63,6 +64,10 @@ public abstract class TestView extends Composite {
     protected int countDown;
     protected Timer timer;
     protected TestTimerTask timerTask;
+
+    /* Audio Player */
+
+    protected AudioPlayer audioPlayer;
 
     /*
      * ==================================================
@@ -266,6 +271,57 @@ public abstract class TestView extends Composite {
         }
     }
 
+
+    /*
+     * ==================================================
+     *
+     * Audio Player
+     *
+     * ==================================================
+     */
+
+    public void startAudio() {
+
+        if (vo.isWithAudio()) {
+
+            final AtomicReference<AudioPlayer> ref = new AtomicReference<AudioPlayer>();
+            audioPlayer = new AudioPlayer();
+            ref.set(audioPlayer);
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    AudioPlayer player = ref.get();
+                    player.play(page.getUserTest(), vo.getAudioFileName());
+                }
+            }).start();
+        }
+    }
+
+    public void stopAudio() {
+        if (vo.isWithAudio() && null != audioPlayer) {
+            audioPlayer.stop();
+        }
+    }
+
+    public void pauseAudio() {
+        if (vo.isWithAudio() && null != audioPlayer) {
+            audioPlayer.pause();
+        }
+    }
+
+    public void resumeAudio() {
+        if (vo.isWithAudio() && null != audioPlayer) {
+            audioPlayer.resume();
+        }
+    }
+
+    public void setAudioVolume(double value) {
+        if (vo.isWithAudio() && null != audioPlayer) {
+            audioPlayer.setVolume(value);
+        }
+    }
+
     /*
      * ==================================================
      *
@@ -285,6 +341,10 @@ public abstract class TestView extends Composite {
 
             if (vo.isTimed()) {
                 stopTimer();
+            }
+
+            if (vo.isWithAudio()) {
+                stopAudio();
             }
 
             UserTest ut = page.getUserTest();

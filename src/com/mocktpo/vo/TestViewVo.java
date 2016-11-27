@@ -20,6 +20,8 @@ public class TestViewVo implements Serializable {
     private int questionNumberInSection;
     private boolean timed;
     private int passageOffset;
+    private boolean withAudio;
+    private String audioFileName;
 
     public StyledTextVo getStyledText(String key) {
         for (String i : body.keySet()) {
@@ -108,5 +110,21 @@ public class TestViewVo implements Serializable {
 
     public void setPassageOffset(int passageOffset) {
         this.passageOffset = passageOffset;
+    }
+
+    public boolean isWithAudio() {
+        return withAudio;
+    }
+
+    public void setWithAudio(boolean withAudio) {
+        this.withAudio = withAudio;
+    }
+
+    public String getAudioFileName() {
+        return audioFileName;
+    }
+
+    public void setAudioFileName(String audioFileName) {
+        this.audioFileName = audioFileName;
     }
 }
