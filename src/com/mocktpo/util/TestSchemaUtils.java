@@ -1,6 +1,7 @@
 package com.mocktpo.util;
 
 import com.mocktpo.util.constants.ST;
+import com.mocktpo.util.constants.VT;
 import com.mocktpo.vo.TestSchemaVo;
 import com.mocktpo.vo.TestViewVo;
 
@@ -30,24 +31,36 @@ public class TestSchemaUtils {
         int nextViewId = viewId;
 
         switch (tvv.getSectionType()) {
-        case ST.SECTION_TYPE_NONE:
-            // TODO handles next timed view id
-            break;
-        case ST.SECTION_TYPE_LISTENING:
-            // TODO handles next timed view id
-            break;
-        case ST.SECTION_TYPE_READING:
-            // TODO temporary next timed view id
-            nextViewId = 99;
-            break;
-        case ST.SECTION_TYPE_SPEAKING:
-            // TODO handles next timed view id
-            break;
-        case ST.SECTION_TYPE_WRITING:
-            // TODO handles next timed view id
-            break;
+            case ST.SECTION_TYPE_NONE:
+                // TODO handles next timed view id
+                break;
+            case ST.SECTION_TYPE_LISTENING:
+                // TODO handles next timed view id
+                break;
+            case ST.SECTION_TYPE_READING:
+                nextViewId = getFirstViewIdByViewType(vo, VT.VIEW_TYPE_LISTENING_DIRECTIONS);
+                break;
+            case ST.SECTION_TYPE_SPEAKING:
+                // TODO handles next timed view id
+                break;
+            case ST.SECTION_TYPE_WRITING:
+                // TODO handles next timed view id
+                break;
         }
 
         return nextViewId;
+    }
+
+    public static int getFirstViewIdByViewType(TestSchemaVo vo, int viewType) {
+
+        int viewId = 0;
+
+        for (TestViewVo tvv : vo.getViews()) {
+            if (viewType == tvv.getViewType()) {
+                viewId = tvv.getViewId();
+            }
+        }
+
+        return viewId;
     }
 }

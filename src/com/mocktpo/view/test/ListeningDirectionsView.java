@@ -164,7 +164,6 @@ public class ListeningDirectionsView extends ResponsiveTestView {
             sqlSession.commit();
 
             page.resume(ut);
-
         }
 
         @Override

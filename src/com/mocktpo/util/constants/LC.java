@@ -31,7 +31,7 @@ public interface LC {
 
     int REF_SMALL_SCREEN_WIDTH = 1440;
     int REF_MEDIUM_SCREEN_WIDTH = 1920;
-    int REF_LARGE_SCREEN_WIDTH = 2560;
+    // int REF_LARGE_SCREEN_WIDTH = 2560;
 
     /*
      * ==================================================
@@ -45,8 +45,8 @@ public interface LC {
     int BUTTON_HEIGHT_HINT = 40;
     int CAPTION_WIDTH = 180;
     int CONTINUE_BUTTON_WIDTH = 74;
-    int READING_PROSE_SUMMARY_QUESTION_WIDTH = 480;
-    int READING_PROSE_SUMMARY_QUESTION_HEIGHT = 60;
+    int READING_DND_QUESTION_WIDTH = 480;
+    int READING_DND_QUESTION_HEIGHT = 60;
     int SIDEBAR_TEST_EDITOR_HEIGHT = 40;
     int SIDEBAR_ITEM_HEIGHT = 60;
     int TEST_HEADER_HEIGHT = 90;

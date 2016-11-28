@@ -38,7 +38,6 @@ public class ReadingDirectionsView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
-
         final ImageButton cb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE), ResourceManager.getImage(MT.IMAGE_CONTINUE_HOVER));
         FormDataSet.attach(cb).atRight(10).atTop(10);
         cb.addMouseListener(new ContinueButtonMouseListener());
@@ -58,7 +57,6 @@ public class ReadingDirectionsView extends ResponsiveTestView {
         FormDataSet.attach(dt).atLeft().atTopTo(ht, 50).atRight();
         StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
         StyleRangeUtils.decorate(dt, vo.getStyledText("description").getStyles());
-
     }
 
     /*

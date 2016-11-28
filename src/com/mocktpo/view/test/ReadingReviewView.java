@@ -155,7 +155,6 @@ public class ReadingReviewView extends Composite {
          */
 
         updateHeader();
-
     }
 
     private void updateHeader() {
@@ -220,7 +219,6 @@ public class ReadingReviewView extends Composite {
         TableSet.decorate(table).setBackground(MT.COLOR_KHAKI).setFont(MT.FONT_MEDIUM).setLineVisible(true);
         table.addControlListener(new ReadingReviewTableControlListener());
         table.addSelectionListener(new ReadingReviewTableSelectionListener());
-        table.addListener(SWT.MouseWheel, new ReadingReviewTableMouseWheelListener());
 
         final TableColumn numberColumn = new TableColumn(table, SWT.CENTER);
         numberColumn.setText(msgs.getString("number"));
@@ -237,7 +235,6 @@ public class ReadingReviewView extends Composite {
         TableItemSet.decorate(tableHeader).setBackground(MT.COLOR_SADDLE_BROWN).setData(STRING_IS_TABLE_HEADER, true).setForeground(MT.COLOR_WHITE).setImage(new Image(d, 1, TABLE_ITEM_HEIGHT)).setText(new String[]{msgs.getString("number"), msgs.getString("description"), msgs.getString("status")});
 
         for (TestViewVo tvv : page.getTestSchema().getViews()) {
-
             if (ST.SECTION_TYPE_READING == tvv.getSectionType() && tvv.isWithQuestion()) {
 
                 final TableItem item = new TableItem(table, SWT.NONE);
@@ -513,16 +510,6 @@ public class ReadingReviewView extends Composite {
                         return;
                     }
                 }
-            }
-        }
-    }
-
-    private class ReadingReviewTableMouseWheelListener implements Listener {
-
-        public void handleEvent(Event e) {
-
-            if (table == e.widget && SWT.MouseWheel == e.type) {
-                e.doit = false;
             }
         }
     }

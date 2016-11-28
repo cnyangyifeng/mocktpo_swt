@@ -31,10 +31,6 @@ public class TestPage extends Composite {
 
     protected StackLayout stack;
 
-    /* Standalone Views */
-
-    private ReadingReviewView readingReview;
-
     /* Properties */
 
     private TestSchemaVo testSchema;
@@ -135,12 +131,11 @@ public class TestPage extends Composite {
 
     public void toReadingReview() {
 
-        readingReview = new ReadingReviewView(this, SWT.NONE, true);
+        final ReadingReviewView readingReview = new ReadingReviewView(this, SWT.NONE, true);
         readingReview.startTimer();
 
         stack.topControl = readingReview;
         this.layout();
-
     }
 
     /*
@@ -161,9 +156,5 @@ public class TestPage extends Composite {
 
     public UserTest getUserTest() {
         return userTest;
-    }
-
-    public void setUserTest(UserTest userTest) {
-        this.userTest = userTest;
     }
 }

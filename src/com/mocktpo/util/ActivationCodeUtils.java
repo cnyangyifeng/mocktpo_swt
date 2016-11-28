@@ -72,7 +72,7 @@ public class ActivationCodeUtils {
                 String licensedEmail = lic.getFeature("email");
                 String licensedHardware = lic.getFeature("hardware");
                 String hardware = HardwareBinderUtils.uuid();
-                if (hardware.equals(licensedHardware) && email.equals(licensedEmail)) {
+                if (null != hardware && hardware.equals(licensedHardware) && email.equals(licensedEmail)) {
                     licensed = true;
                 }
             }

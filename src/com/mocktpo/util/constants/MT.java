@@ -30,6 +30,7 @@ public interface MT {
     int CHOICE_D = 4;
     int CHOICE_E = 5;
     int CHOICE_F = 6;
+    int CHOICE_G = 7;
 
     /*
      * ==================================================

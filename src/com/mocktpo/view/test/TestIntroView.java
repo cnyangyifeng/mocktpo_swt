@@ -72,6 +72,7 @@ public class TestIntroView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId() + 1);
 

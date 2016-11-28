@@ -85,7 +85,7 @@ public class MoreTextDialog {
 
         final StyledText p = new StyledText(background, SWT.WRAP);
         FormDataSet.attach(p).atLeft(20).atTopTo(tl, 20).atRight(20).atBottomTo(cb, 20, SWT.TOP);
-        StyledTextSet.decorate(p).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(10).setText(msgs.getString("use_scroll_bar"));
+        StyledTextSet.decorate(p).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setMargins(10).setText(msgs.getString("use_scroll_bar"));
     }
 
     public void openAndWaitForDisposal() {

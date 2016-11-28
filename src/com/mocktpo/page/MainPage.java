@@ -211,7 +211,7 @@ public class MainPage extends Composite {
         public void mouseDown(MouseEvent e) {
 
             String text = ((CLabel) e.widget).getText();
-            
+
             if (msgs.getString("tests").equals(text)) {
                 CLabelSet.decorate(tl).setBackground(MT.COLOR_DARK_BLUE);
                 CLabelSet.decorate(rl).setBackground(MT.COLOR_OXFORD_BLUE);

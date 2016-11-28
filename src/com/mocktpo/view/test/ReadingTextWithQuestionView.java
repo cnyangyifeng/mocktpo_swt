@@ -86,7 +86,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
     }
 
     private void initIndicator() {
-
         indicator = new CLabel(right, SWT.RIGHT);
         FormDataSet.attach(indicator).atLeft().atTop().atRight();
         CLabelSet.decorate(indicator).setBackground(MT.COLOR_INDIGO).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_WHITE);

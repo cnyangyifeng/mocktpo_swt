@@ -69,9 +69,13 @@ public class MyApplication {
         this.sqlSession = sqlSession;
     }
 
-    /**************************************************
+    /*
+     * ==================================================
+     *
      * The Application Singleton
-     **************************************************/
+     *
+     * ==================================================
+     */
 
     private static MyApplication inst = null;
 

@@ -34,12 +34,14 @@ public class DroppableAnswerComposite extends Composite {
 
     /* Properties */
 
+    private int id;
     private int answer;
 
-    public DroppableAnswerComposite(Composite parent, int style) {
+    public DroppableAnswerComposite(Composite parent, int style, int id) {
         super(parent, style);
         this.d = parent.getDisplay();
         this.support = new PropertyChangeSupport(this);
+        this.id = id;
         init();
     }
 
@@ -73,6 +75,14 @@ public class DroppableAnswerComposite extends Composite {
      *
      * ==================================================
      */
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getAnswer() {
         return answer;

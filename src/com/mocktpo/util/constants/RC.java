@@ -26,7 +26,7 @@ public interface RC {
     String CONFIG_DIR = "/config/";
     String IMAGES_DIR = "/resources/images/";
     String TESTS_DATA_ROOT_DIR = "/data/tests/";
-    String USERS_DATA_ROOT_DIR = "/data/users/";
+    // String USERS_DATA_ROOT_DIR = "/data/users/";
 
     /*
      * ==================================================
@@ -54,7 +54,7 @@ public interface RC {
      */
 
     String PUBRING_FILE = "pubring.gpg";
-    String SECRING_FILE = "secring.gpg";
+    // String SECRING_FILE = "secring.gpg";
 
     /*
      * ==================================================

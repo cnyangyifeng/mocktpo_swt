@@ -10,6 +10,7 @@ import com.mocktpo.util.constants.MT;
 import com.mocktpo.widget.DroppableAnswerComposite;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
@@ -30,13 +31,17 @@ public class ReadingFillTableQuestionView extends StackTestView {
     private static final int ANSWER_1 = 1;
     private static final int ANSWER_2 = 2;
     private static final int ANSWER_3 = 3;
+    private static final int ANSWER_4 = 4;
+    private static final int ANSWER_5 = 5;
+    private static final int ANSWER_6 = 6;
+    private static final int ANSWER_7 = 7;
 
     /* Widgets */
 
     private ImageButton viewTextOrQuestionButton;
 
     private Composite questionView;
-    private Label choiceA, choiceB, choiceC, choiceD, choiceE, choiceF;
+    private Label choiceA, choiceB, choiceC, choiceD, choiceE, choiceF, choiceG;
 
     private Composite textView;
     private Composite rightTextView;
@@ -44,7 +49,7 @@ public class ReadingFillTableQuestionView extends StackTestView {
     /* Properties */
 
     private int subViewId;
-    private int answer1, answer2, answer3;
+    private int answer1, answer2, answer3, answer4, answer5, answer6, answer7;
 
     /*
      * ==================================================
@@ -96,28 +101,24 @@ public class ReadingFillTableQuestionView extends StackTestView {
 
     @Override
     public void updateBody() {
-
         subViewId = SUB_VIEW_QUESTION;
-
-        Composite subView = getSubView(subViewId);
-
-        stack.topControl = subView;
+        stack.topControl = getSubView(subViewId);
         body.layout();
     }
 
     private Composite getSubView(int subViewId) {
 
         switch (subViewId) {
-        case SUB_VIEW_QUESTION:
-            if (null == questionView) {
-                questionView = initQuestionSubView();
-            }
-            return questionView;
-        case SUB_VIEW_TEXT:
-            if (null == textView) {
-                textView = initTextSubView();
-            }
-            return textView;
+            case SUB_VIEW_QUESTION:
+                if (null == questionView) {
+                    questionView = initQuestionSubView();
+                }
+                return questionView;
+            case SUB_VIEW_TEXT:
+                if (null == textView) {
+                    textView = initTextSubView();
+                }
+                return textView;
         }
 
         return null;
@@ -148,88 +149,137 @@ public class ReadingFillTableQuestionView extends StackTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x);
         FormLayoutSet.layout(viewPort);
 
+        /*
+         * ==================================================
+         *
+         * Directions
+         *
+         * ==================================================
+         */
+
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(dt).atLeft().atTop(5).atRight();
         StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("directions").getText());
         StyleRangeUtils.decorate(dt, vo.getStyledText("directions").getStyles());
+
+        /*
+         * ==================================================
+         *
+         * Tips
+         *
+         * ==================================================
+         */
 
         final StyledText tt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(tt).atLeft().atTopTo(dt, 5).atRight();
         StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setBackground(MT.COLOR_BORDER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips").getText());
         StyleRangeUtils.decorate(tt, vo.getStyledText("tips").getStyles());
 
+        /*
+         * ==================================================
+         *
+         * Answer Composite
+         *
+         * ==================================================
+         */
+
         final Composite ac = new Composite(viewPort, SWT.CENTER);
         FormDataSet.attach(ac).fromLeft(50, -ScreenUtils.getClientWidth(d) / 4).atTopTo(tt, 10).withWidth(ScreenUtils.getClientWidth(d) / 2);
-        FormLayoutSet.layout(ac).marginWidth(10).marginHeight(10);
+        FormLayoutSet.layout(ac).marginHeight(10).spacing(10);
         ac.addPaintListener(new BorderedCompositePaintListener());
 
-        final StyledText qt = new StyledText(ac, SWT.WRAP);
-        FormDataSet.attach(qt).atLeft(10).atTop().atRight(10);
-        StyledTextSet.decorate(qt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("question").getText());
+        String question = vo.getStyledText("question").getText();
+        String[] questions = question.split(";");
 
-        final Label bullet1 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(bullet1).atLeft().atTopTo(qt, 14);
-        LabelSet.decorate(bullet1).setImage(MT.IMAGE_BULLET);
+        /* Category 1 */
 
-        final DroppableAnswerComposite blank1 = new DroppableAnswerComposite(ac, SWT.WRAP | SWT.TOP);
-        FormDataSet.attach(blank1).atLeftTo(bullet1, 10).atTopTo(qt, 10).atRight().withHeight(LC.READING_PROSE_SUMMARY_QUESTION_HEIGHT);
-        AnswerCompositeDropTargetSet.drop(blank1);
-        blank1.addPropertyChangeListener(new AnswerCompositePropertyChangeListener(ANSWER_1));
-        blank1.addMouseListener(new AnswerCompositeMouseListener(ANSWER_1));
+        final String categoryName1 = questions[0].split(":")[0];
+        final int totalAnswerCountInCategory1 = Integer.parseInt(questions[0].split(":")[1]);
+        final CLabel cl1 = new CLabel(ac, SWT.NONE);
+        FormDataSet.attach(cl1).atLeft(10).atTop().withWidth(120);
+        CLabelSet.decorate(cl1).setFont(MT.FONT_MEDIUM).setText(categoryName1);
+        for (int i = 0; i < totalAnswerCountInCategory1; i++) {
+            /* Bullet */
+            final Label bullet = new Label(ac, SWT.NONE);
+            FormDataSet.attach(bullet).atLeftTo(cl1).atTop(8 + i * LC.READING_DND_QUESTION_HEIGHT);
+            LabelSet.decorate(bullet).setImage(MT.IMAGE_BULLET);
+            /* Blank */
+            final DroppableAnswerComposite blank = new DroppableAnswerComposite(ac, SWT.WRAP | SWT.TOP, i + 1);
+            FormDataSet.attach(blank).atLeftTo(bullet).atTop(i * LC.READING_DND_QUESTION_HEIGHT).atRight(10).withHeight(LC.READING_DND_QUESTION_HEIGHT);
+            AnswerCompositeDropTargetSet.drop(blank);
+            blank.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
+            blank.addMouseListener(new AnswerCompositeMouseListener());
+        }
+        final Label divider1 = new Label(ac, SWT.NONE);
+        FormDataSet.attach(divider1).atLeft(1).atTopTo(cl1, totalAnswerCountInCategory1 * LC.READING_DND_QUESTION_HEIGHT, SWT.TOP).atRight(1).withHeight(1);
+        LabelSet.decorate(divider1).setBackground(ResourceManager.getColor(MT.COLOR_BLACK));
 
-        final Label bullet2 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(bullet2).atLeft().atTopTo(blank1, 14);
-        LabelSet.decorate(bullet2).setImage(MT.IMAGE_BULLET);
+        /* Category 2 */
 
-        final DroppableAnswerComposite blank2 = new DroppableAnswerComposite(ac, SWT.WRAP);
-        FormDataSet.attach(blank2).atLeftTo(bullet2, 10).atTopTo(blank1, 10).atRight().withHeight(LC.READING_PROSE_SUMMARY_QUESTION_HEIGHT);
-        AnswerCompositeDropTargetSet.drop(blank2);
-        blank2.addPropertyChangeListener(new AnswerCompositePropertyChangeListener(ANSWER_2));
-        blank2.addMouseListener(new AnswerCompositeMouseListener(ANSWER_2));
+        final String categoryName2 = questions[1].split(":")[0];
+        final int totalAnswerCountInCategory2 = Integer.parseInt(questions[1].split(":")[1]);
+        final CLabel cl2 = new CLabel(ac, SWT.NONE);
+        FormDataSet.attach(cl2).atLeft(10).atTopTo(divider1).withWidth(120);
+        CLabelSet.decorate(cl2).setFont(MT.FONT_MEDIUM).setText(categoryName2);
+        for (int j = 0; j < totalAnswerCountInCategory2; j++) {
+            /* Bullet */
+            final Label bullet = new Label(ac, SWT.NONE);
+            FormDataSet.attach(bullet).atLeftTo(cl2).atTopTo(divider1, 8 + j * LC.READING_DND_QUESTION_HEIGHT);
+            LabelSet.decorate(bullet).setImage(MT.IMAGE_BULLET);
+            /* Blank */
+            final DroppableAnswerComposite blank = new DroppableAnswerComposite(ac, SWT.WRAP | SWT.TOP, totalAnswerCountInCategory1 + j + 1);
+            FormDataSet.attach(blank).atLeftTo(bullet).atTopTo(divider1, j * LC.READING_DND_QUESTION_HEIGHT).atRight(10).withHeight(LC.READING_DND_QUESTION_HEIGHT);
+            AnswerCompositeDropTargetSet.drop(blank);
+            blank.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
+            blank.addMouseListener(new AnswerCompositeMouseListener());
+        }
 
-        final Label bullet3 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(bullet3).atLeft().atTopTo(blank2, 14);
-        LabelSet.decorate(bullet3).setImage(MT.IMAGE_BULLET);
-
-        final DroppableAnswerComposite blank3 = new DroppableAnswerComposite(ac, SWT.WRAP);
-        FormDataSet.attach(blank3).atLeftTo(bullet3, 10).atTopTo(blank2, 10).atRight().withHeight(LC.READING_PROSE_SUMMARY_QUESTION_HEIGHT);
-        AnswerCompositeDropTargetSet.drop(blank3);
-        blank3.addPropertyChangeListener(new AnswerCompositePropertyChangeListener(ANSWER_3));
-        blank3.addMouseListener(new AnswerCompositeMouseListener(ANSWER_3));
+        /*
+         * ==================================================
+         *
+         * Answer Choices
+         *
+         * ==================================================
+         */
 
         final Label l = new Label(viewPort, SWT.CENTER);
         FormDataSet.attach(l).atLeft().atTopTo(ac, 10).atRight();
         LabelSet.decorate(l).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("answer_choices"));
 
         choiceA = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceA).fromLeft(50, -LC.READING_PROSE_SUMMARY_QUESTION_WIDTH - 10).atTopTo(l, 10).withWidth(LC.READING_PROSE_SUMMARY_QUESTION_WIDTH).withHeight(LC.READING_PROSE_SUMMARY_QUESTION_HEIGHT);
+        FormDataSet.attach(choiceA).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(l, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
         LabelSet.decorate(choiceA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA").getText());
         ChoiceLabelDragSourceSet.drag(choiceA);
 
         choiceB = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceB).fromLeft(50, 10).atTopTo(l, 10).withWidth(LC.READING_PROSE_SUMMARY_QUESTION_WIDTH).withHeight(LC.READING_PROSE_SUMMARY_QUESTION_HEIGHT);
+        FormDataSet.attach(choiceB).fromLeft(50, 10).atTopTo(l, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
         LabelSet.decorate(choiceB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB").getText());
         ChoiceLabelDragSourceSet.drag(choiceB);
 
         choiceC = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceC).fromLeft(50, -LC.READING_PROSE_SUMMARY_QUESTION_WIDTH - 10).atTopTo(choiceA, 10).withWidth(LC.READING_PROSE_SUMMARY_QUESTION_WIDTH).withHeight(LC.READING_PROSE_SUMMARY_QUESTION_HEIGHT);
+        FormDataSet.attach(choiceC).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(choiceA, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
         LabelSet.decorate(choiceC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC").getText());
         ChoiceLabelDragSourceSet.drag(choiceC);
 
         choiceD = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceD).fromLeft(50, 10).atTopTo(choiceB, 10).withWidth(LC.READING_PROSE_SUMMARY_QUESTION_WIDTH).withHeight(LC.READING_PROSE_SUMMARY_QUESTION_HEIGHT);
+        FormDataSet.attach(choiceD).fromLeft(50, 10).atTopTo(choiceB, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
         LabelSet.decorate(choiceD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD").getText());
         ChoiceLabelDragSourceSet.drag(choiceD);
 
         choiceE = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceE).fromLeft(50, -LC.READING_PROSE_SUMMARY_QUESTION_WIDTH - 10).atTopTo(choiceC, 10).withWidth(LC.READING_PROSE_SUMMARY_QUESTION_WIDTH).withHeight(LC.READING_PROSE_SUMMARY_QUESTION_HEIGHT);
+        FormDataSet.attach(choiceE).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(choiceC, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
         LabelSet.decorate(choiceE).setData(MT.KEY_CHOICE, MT.CHOICE_E).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceE").getText());
         ChoiceLabelDragSourceSet.drag(choiceE);
 
         choiceF = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceF).fromLeft(50, 10).atTopTo(choiceD, 10).withWidth(LC.READING_PROSE_SUMMARY_QUESTION_WIDTH).withHeight(LC.READING_PROSE_SUMMARY_QUESTION_HEIGHT);
+        FormDataSet.attach(choiceF).fromLeft(50, 10).atTopTo(choiceD, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
         LabelSet.decorate(choiceF).setData(MT.KEY_CHOICE, MT.CHOICE_F).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceF").getText());
         ChoiceLabelDragSourceSet.drag(choiceF);
+
+        choiceG = new Label(viewPort, SWT.WRAP);
+        FormDataSet.attach(choiceG).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(choiceE, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
+        LabelSet.decorate(choiceG).setData(MT.KEY_CHOICE, MT.CHOICE_G).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceG").getText());
+        ChoiceLabelDragSourceSet.drag(choiceG);
 
         sc.setContent(inner);
         sc.setMinSize(inner.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -390,19 +440,17 @@ public class ReadingFillTableQuestionView extends StackTestView {
         public void mouseDown(MouseEvent e) {
 
             switch (subViewId) {
-            case SUB_VIEW_QUESTION:
-                viewTextOrQuestionButton.setBackgroundImages(MT.IMAGE_VIEW_QUESTION, MT.IMAGE_VIEW_QUESTION_HOVER);
-                subViewId = SUB_VIEW_TEXT;
-                break;
-            case SUB_VIEW_TEXT:
-                viewTextOrQuestionButton.setBackgroundImages(MT.IMAGE_VIEW_TEXT, MT.IMAGE_VIEW_TEXT_HOVER);
-                subViewId = SUB_VIEW_QUESTION;
-                break;
+                case SUB_VIEW_QUESTION:
+                    viewTextOrQuestionButton.setBackgroundImages(MT.IMAGE_VIEW_QUESTION, MT.IMAGE_VIEW_QUESTION_HOVER);
+                    subViewId = SUB_VIEW_TEXT;
+                    break;
+                case SUB_VIEW_TEXT:
+                    viewTextOrQuestionButton.setBackgroundImages(MT.IMAGE_VIEW_TEXT, MT.IMAGE_VIEW_TEXT_HOVER);
+                    subViewId = SUB_VIEW_QUESTION;
+                    break;
             }
 
-            Composite subView = getSubView(subViewId);
-
-            stack.topControl = subView;
+            stack.topControl = getSubView(subViewId);
             body.layout();
         }
 
@@ -413,63 +461,66 @@ public class ReadingFillTableQuestionView extends StackTestView {
 
     private class AnswerCompositePropertyChangeListener implements PropertyChangeListener {
 
-        private int answerId;
-
-        AnswerCompositePropertyChangeListener(int answerId) {
-            this.answerId = answerId;
-        }
-
         @Override
         public void propertyChange(PropertyChangeEvent e) {
 
             int oldAnswer = (Integer) e.getOldValue();
 
             switch (oldAnswer) {
-            case MT.CHOICE_A:
-                LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
-                break;
-            case MT.CHOICE_B:
-                LabelSet.decorate(choiceB).setText(vo.getStyledText("choiceB").getText());
-                break;
-            case MT.CHOICE_C:
-                LabelSet.decorate(choiceC).setText(vo.getStyledText("choiceC").getText());
-                break;
-            case MT.CHOICE_D:
-                LabelSet.decorate(choiceD).setText(vo.getStyledText("choiceD").getText());
-                break;
-            case MT.CHOICE_E:
-                LabelSet.decorate(choiceE).setText(vo.getStyledText("choiceE").getText());
-                break;
-            case MT.CHOICE_F:
-                LabelSet.decorate(choiceF).setText(vo.getStyledText("choiceF").getText());
-                break;
+                case MT.CHOICE_A:
+                    LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
+                    break;
+                case MT.CHOICE_B:
+                    LabelSet.decorate(choiceB).setText(vo.getStyledText("choiceB").getText());
+                    break;
+                case MT.CHOICE_C:
+                    LabelSet.decorate(choiceC).setText(vo.getStyledText("choiceC").getText());
+                    break;
+                case MT.CHOICE_D:
+                    LabelSet.decorate(choiceD).setText(vo.getStyledText("choiceD").getText());
+                    break;
+                case MT.CHOICE_E:
+                    LabelSet.decorate(choiceE).setText(vo.getStyledText("choiceE").getText());
+                    break;
+                case MT.CHOICE_F:
+                    LabelSet.decorate(choiceF).setText(vo.getStyledText("choiceF").getText());
+                    break;
+                case MT.CHOICE_G:
+                    LabelSet.decorate(choiceG).setText(vo.getStyledText("choiceG").getText());
+                    break;
             }
 
             int newAnswer = (Integer) e.getNewValue();
-
-            switch (answerId) {
-            case ANSWER_1:
-                answer1 = newAnswer;
-                break;
-            case ANSWER_2:
-                answer2 = newAnswer;
-                break;
-            case ANSWER_3:
-                answer3 = newAnswer;
-                break;
+            DroppableAnswerComposite blank = (DroppableAnswerComposite) e.getSource();
+            switch (blank.getId()) {
+                case ANSWER_1:
+                    answer1 = newAnswer;
+                    break;
+                case ANSWER_2:
+                    answer2 = newAnswer;
+                    break;
+                case ANSWER_3:
+                    answer3 = newAnswer;
+                    break;
+                case ANSWER_4:
+                    answer4 = newAnswer;
+                    break;
+                case ANSWER_5:
+                    answer5 = newAnswer;
+                    break;
+                case ANSWER_6:
+                    answer6 = newAnswer;
+                    break;
+                case ANSWER_7:
+                    answer7 = newAnswer;
+                    break;
             }
 
-            logger.debug("Reading Prose Summary Question Answers: ({}, {}, {}).", answer1, answer2, answer3);
+            logger.info("Reading Fill in a Table Question Answers: ({}, {}, {}, {}, {}, {}, {}).", answer1, answer2, answer3, answer4, answer5, answer6, answer7);
         }
     }
 
     private class AnswerCompositeMouseListener implements MouseListener {
-
-        private int answerId;
-
-        AnswerCompositeMouseListener(int answerId) {
-            this.answerId = answerId;
-        }
 
         @Override
         public void mouseDoubleClick(MouseEvent e) {
@@ -478,45 +529,36 @@ public class ReadingFillTableQuestionView extends StackTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            Label innerAnswerLabel = (Label) e.widget;
-            int answer = (Integer) innerAnswerLabel.getData(MT.KEY_CHOICE);
+            Label answerLabel = (Label) e.widget;
+            int answer = (Integer) answerLabel.getData(MT.KEY_CHOICE);
 
             switch (answer) {
-            case MT.CHOICE_A:
-                LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
-                break;
-            case MT.CHOICE_B:
-                LabelSet.decorate(choiceB).setText(vo.getStyledText("choiceB").getText());
-                break;
-            case MT.CHOICE_C:
-                LabelSet.decorate(choiceC).setText(vo.getStyledText("choiceC").getText());
-                break;
-            case MT.CHOICE_D:
-                LabelSet.decorate(choiceD).setText(vo.getStyledText("choiceD").getText());
-                break;
-            case MT.CHOICE_E:
-                LabelSet.decorate(choiceE).setText(vo.getStyledText("choiceE").getText());
-                break;
-            case MT.CHOICE_F:
-                LabelSet.decorate(choiceF).setText(vo.getStyledText("choiceF").getText());
-                break;
+                case MT.CHOICE_A:
+                    LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
+                    break;
+                case MT.CHOICE_B:
+                    LabelSet.decorate(choiceB).setText(vo.getStyledText("choiceB").getText());
+                    break;
+                case MT.CHOICE_C:
+                    LabelSet.decorate(choiceC).setText(vo.getStyledText("choiceC").getText());
+                    break;
+                case MT.CHOICE_D:
+                    LabelSet.decorate(choiceD).setText(vo.getStyledText("choiceD").getText());
+                    break;
+                case MT.CHOICE_E:
+                    LabelSet.decorate(choiceE).setText(vo.getStyledText("choiceE").getText());
+                    break;
+                case MT.CHOICE_F:
+                    LabelSet.decorate(choiceF).setText(vo.getStyledText("choiceF").getText());
+                    break;
+                case MT.CHOICE_G:
+                    LabelSet.decorate(choiceG).setText(vo.getStyledText("choiceG").getText());
+                    break;
             }
 
-            innerAnswerLabel.setText("");
-
-            switch (answerId) {
-            case ANSWER_1:
-                answer1 = 0;
-                break;
-            case ANSWER_2:
-                answer2 = 0;
-                break;
-            case ANSWER_3:
-                answer3 = 0;
-                break;
-            }
-
-            logger.debug("Reading Prose Summary Question Answers: ({}, {}, {}).", answer1, answer2, answer3);
+            answerLabel.setText("");
+            DroppableAnswerComposite blank = (DroppableAnswerComposite) answerLabel.getParent();
+            blank.setAnswer(0);
         }
 
         @Override

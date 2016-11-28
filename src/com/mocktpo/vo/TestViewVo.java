@@ -16,6 +16,7 @@ public class TestViewVo implements Serializable {
     private String viewTypeName;
     private int sectionType;
     private String sectionTypeName;
+    private boolean firstPassage;
     private boolean withQuestion;
     private int questionNumberInSection;
     private boolean timed;
@@ -78,6 +79,14 @@ public class TestViewVo implements Serializable {
 
     public void setSectionTypeName(String sectionTypeName) {
         this.sectionTypeName = sectionTypeName;
+    }
+
+    public boolean isFirstPassage() {
+        return firstPassage;
+    }
+
+    public void setFirstPassage(boolean firstPassage) {
+        this.firstPassage = firstPassage;
     }
 
     public boolean isWithQuestion() {
