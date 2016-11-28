@@ -5,9 +5,9 @@ import com.mocktpo.util.constants.MT;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 
 import java.util.ResourceBundle;
 
@@ -21,10 +21,6 @@ public class TestFooter extends Composite {
     /* Display and Application */
 
     protected Display d;
-
-    /* Widgets */
-
-    private CLabel copyright;
 
     /*
      * ==================================================
@@ -51,8 +47,8 @@ public class TestFooter extends Composite {
     }
 
     private void initCopyright() {
-        copyright = new CLabel(this, SWT.WRAP | SWT.CENTER);
+        final Label copyright = new Label(this, SWT.WRAP | SWT.CENTER);
         GridDataSet.attach(copyright).centerBoth().withWidth(ScreenUtils.getViewPort(d).x);
-        CLabelSet.decorate(copyright).setForeground(MT.COLOR_WHITE_SMOKE).setFont(MT.FONT_X_SMALL).setText(msgs.getString("copyright"));
+        LabelSet.decorate(copyright).setForeground(MT.COLOR_WHITE_SMOKE).setFont(MT.FONT_X_SMALL).setText(msgs.getString("copyright"));
     }
 }

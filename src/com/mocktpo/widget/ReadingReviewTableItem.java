@@ -23,7 +23,8 @@ public class ReadingReviewTableItem extends Composite {
     /* Widgets */
 
     private CLabel numberLabel;
-    private CLabel pl;
+    private CLabel descriptionLabel;
+    private CLabel statusLabel;
 
     /*
      * ==================================================
