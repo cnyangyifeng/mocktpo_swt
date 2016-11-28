@@ -10,6 +10,7 @@ import com.mocktpo.util.constants.MT;
 import com.mocktpo.widget.DroppableAnswerComposite;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
@@ -193,9 +194,9 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         blank3.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
         blank3.addMouseListener(new AnswerCompositeMouseListener());
 
-        final Label l = new Label(viewPort, SWT.CENTER);
+        final CLabel l = new CLabel(viewPort, SWT.CENTER);
         FormDataSet.attach(l).atLeft().atTopTo(ac, 10).atRight();
-        LabelSet.decorate(l).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("answer_choices"));
+        CLabelSet.decorate(l).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("answer_choices"));
 
         choiceA = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceA).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(l, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);

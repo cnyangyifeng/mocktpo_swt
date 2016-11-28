@@ -13,7 +13,6 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
 import java.util.ResourceBundle;
@@ -75,9 +74,9 @@ public class MoreTextDialog {
 
     private void initWidgets() {
 
-        final Label tl = new Label(background, SWT.CENTER);
+        final CLabel tl = new CLabel(background, SWT.CENTER);
         FormDataSet.attach(tl).atLeft().atTop().atRight();
-        LabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
+        CLabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
 
         final ImageButton cb = new ImageButton(background, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE), ResourceManager.getImage(MT.IMAGE_CONTINUE_HOVER));
         FormDataSet.attach(cb).fromLeft(50, -LC.CONTINUE_BUTTON_WIDTH / 2).atBottom();

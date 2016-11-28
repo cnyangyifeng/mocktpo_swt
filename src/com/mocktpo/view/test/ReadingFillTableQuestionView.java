@@ -242,9 +242,9 @@ public class ReadingFillTableQuestionView extends StackTestView {
          * ==================================================
          */
 
-        final Label l = new Label(viewPort, SWT.CENTER);
+        final CLabel l = new CLabel(viewPort, SWT.CENTER);
         FormDataSet.attach(l).atLeft().atTopTo(ac, 10).atRight();
-        LabelSet.decorate(l).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("answer_choices"));
+        CLabelSet.decorate(l).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("answer_choices"));
 
         choiceA = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceA).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(l, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
