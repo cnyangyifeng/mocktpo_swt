@@ -100,6 +100,7 @@ public class ResourceManager {
 
         caches.putIfAbsent(MT.FONT_ACTIVATION_CODE, FontUtils.getFont(d, "Courier New", 12, SWT.NORMAL));
         caches.putIfAbsent(MT.FONT_SERIF_HEADING, FontUtils.getFont(d, "Georgia", 20, SWT.BOLD));
+        caches.putIfAbsent(MT.FONT_SERIF_ITALIC_TEXT, FontUtils.getFont(d, "Georgia", 16, SWT.ITALIC));
 
         /*
          * ==================================================
@@ -124,6 +125,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_ETS_TOEFL, ImageUtils.load(d, "ets_toefl"));
         caches.putIfAbsent(MT.IMAGE_GO_TO_QUESTION, ImageUtils.load(d, "go_to_question"));
         caches.putIfAbsent(MT.IMAGE_GO_TO_QUESTION_HOVER, ImageUtils.load(d, "go_to_question_h"));
+        caches.putIfAbsent(MT.IMAGE_HEADSET, ImageUtils.load(d, "headset"));
         caches.putIfAbsent(MT.IMAGE_HELP_OVAL, ImageUtils.load(d, "help_o"));
         caches.putIfAbsent(MT.IMAGE_HELP_OVAL_HOVER, ImageUtils.load(d, "help_o_h"));
         caches.putIfAbsent(MT.IMAGE_HELP_OVAL_DISABLED, ImageUtils.load(d, "help_o_d"));

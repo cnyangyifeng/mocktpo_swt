@@ -91,28 +91,28 @@ public class MainPage extends Composite {
 
         final CLabel bl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(bl).atLeft().atTop().atRight().withHeight(80);
-        CLabelSet.decorate(bl).setBackground(MT.COLOR_OXFORD_BLUE).setFont(MT.FONT_X_LARGE).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_LOGO).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("app_name_alt"));
+        CLabelSet.decorate(bl).setBackground(MT.COLOR_OXFORD_BLUE).setFont(MT.FONT_X_LARGE_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_LOGO).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("app_name_alt"));
 
         tl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(tl).atLeft().atTopTo(bl).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(tl).setBackground(MT.COLOR_DARK_BLUE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("tests"));
+        CLabelSet.decorate(tl).setBackground(MT.COLOR_DARK_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("tests"));
         tl.addMouseListener(new SidebarItemListener());
 
         rl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(rl).atLeft().atTopTo(tl).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(rl).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("reports"));
+        CLabelSet.decorate(rl).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("reports"));
         rl.addMouseListener(new SidebarItemListener());
 
         sl = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(sl).atLeft().atTopTo(rl).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(sl).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("settings"));
+        CLabelSet.decorate(sl).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("settings"));
         sl.addMouseListener(new SidebarItemListener());
 
         /* Advanced Features: Test Editor */
 
         el = new CLabel(sidebar, SWT.CENTER);
         FormDataSet.attach(el).atLeft(10).atRight(10).atBottom(10).withHeight(LC.SIDEBAR_TEST_EDITOR_HEIGHT);
-        CLabelSet.decorate(el).setBackground(MT.COLOR_DARK_ORANGE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_WHITE).setLeftMargin(30).setText(msgs.getString("test_editor"));
+        CLabelSet.decorate(el).setBackground(MT.COLOR_DARK_ORANGE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(30).setText(msgs.getString("test_editor"));
         el.addMouseListener(new SidebarItemListener());
     }
 

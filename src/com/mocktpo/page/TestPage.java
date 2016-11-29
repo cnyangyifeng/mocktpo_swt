@@ -91,11 +91,14 @@ public class TestPage extends Composite {
 
         TestView tv = null;
         switch (lastViewType) {
+            case VT.VIEW_TYPE_CHANGING_VOLUME:
+                tv = new ChangingVolumeView(this, SWT.NONE);
+                break;
             case VT.VIEW_TYPE_GENERAL_TEST_INFO:
                 tv = new GeneralTestInfoView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_HEADSET:
-                tv = new ListeningDirectionsView(this, SWT.NONE);
+                tv = new HeadsetView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
                 tv = new ListeningDirectionsView(this, SWT.NONE);

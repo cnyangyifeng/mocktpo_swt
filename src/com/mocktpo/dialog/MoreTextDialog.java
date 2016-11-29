@@ -84,7 +84,7 @@ public class MoreTextDialog {
         cb.addMouseListener(new ContinueButtonMouseListener());
 
         final Composite c = new Composite(background, SWT.NONE);
-        FormDataSet.attach(c).atLeft(20).atTopTo(tl, 20).atRight(20).atBottomTo(cb, 20, SWT.TOP);
+        FormDataSet.attach(c).atLeft(20).atTopTo(tl, 20).atRight(20).atBottomTo(cb, 50, SWT.TOP);
         CompositeSet.decorate(c).setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
         GridLayoutSet.layout(c).marginWidth(10).marginHeight(10);
 

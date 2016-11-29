@@ -7,8 +7,6 @@ import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -48,18 +46,18 @@ public class HeadsetView extends ResponsiveTestView {
 
         body.setBackground(ResourceManager.getColor(MT.COLOR_KHAKI));
 
-        final CLabel t = new CLabel(viewPort, SWT.NONE);
-        FormDataSet.attach(t).atLeft().atTop(50).atRight();
-        CLabelSet.decorate(t).setFont(MT.FONT_MEDIUM).setText("Now put on your headset.");
+        final StyledText tt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(tt).atLeft().atTop(100).atRight();
+        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("top").getText());
 
-        final Label i = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(i).atLeft().atTopTo(t, 10).atRight();
-        LabelSet.decorate(i).setImage(MT.IMAGE_ETS_TOEFL);
+        final Label il = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(il).atLeft().atTopTo(tt, 10).atRight();
+        LabelSet.decorate(il).setImage(MT.IMAGE_HEADSET);
 
-        final StyledText b = new StyledText(viewPort, SWT.NONE);
-        FormDataSet.attach(b).atLeft().atTopTo(i).atRight();
-        StyledTextSet.decorate(b).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText("Click on Continue to go on.");
-        b.setStyleRange(new StyleRange(9, 8, null, null, SWT.BOLD));
+        final StyledText bt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(bt).atLeft().atTopTo(il, 10).atRight();
+        StyledTextSet.decorate(bt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("bottom").getText());
+        StyleRangeUtils.decorate(bt, vo.getStyledText("bottom").getStyles());
     }
 
     /*
