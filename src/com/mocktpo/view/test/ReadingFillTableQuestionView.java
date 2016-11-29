@@ -172,7 +172,7 @@ public class ReadingFillTableQuestionView extends StackTestView {
 
         final StyledText tt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(tt).atLeft().atTopTo(dt, 5).atRight();
-        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setBackground(MT.COLOR_BORDER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips").getText());
+        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips").getText());
         StyleRangeUtils.decorate(tt, vo.getStyledText("tips").getStyles());
 
         /*
@@ -211,8 +211,8 @@ public class ReadingFillTableQuestionView extends StackTestView {
             blank.addMouseListener(new AnswerCompositeMouseListener());
         }
         final Label divider1 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(divider1).atLeft(1).atTopTo(cl1, totalAnswerCountInCategory1 * LC.READING_DND_QUESTION_HEIGHT, SWT.TOP).atRight(1).withHeight(1);
-        LabelSet.decorate(divider1).setBackground(ResourceManager.getColor(MT.COLOR_BLACK));
+        FormDataSet.attach(divider1).atLeft(0).atTopTo(cl1, totalAnswerCountInCategory1 * LC.READING_DND_QUESTION_HEIGHT, SWT.TOP).atRight().withHeight(1);
+        LabelSet.decorate(divider1).setBackground(ResourceManager.getColor(MT.COLOR_GRAY40));
 
         /* Category 2 */
 
@@ -298,7 +298,7 @@ public class ReadingFillTableQuestionView extends StackTestView {
 
         final Label divider = new Label(left, SWT.VERTICAL);
         FormDataSet.attach(divider).atTop().atRight().atBottom().withWidth(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_BORDER);
+        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
         rightTextView = new Composite(c, SWT.NONE);
         FormDataSet.attach(rightTextView).atLeftTo(left).atTop().atRight().atBottom();

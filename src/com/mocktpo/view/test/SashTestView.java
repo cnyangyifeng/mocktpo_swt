@@ -43,7 +43,7 @@ public abstract class SashTestView extends TestView {
 
         final Label divider = new Label(left, SWT.VERTICAL);
         FormDataSet.attach(divider).atTop().atRight().atBottom().withWidth(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_BORDER);
+        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
         updateLeft();
 

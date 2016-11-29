@@ -152,7 +152,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
         final StyledText tt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(tt).atLeft().atTopTo(dt, 5).atRight();
-        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setBackground(MT.COLOR_BORDER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips").getText());
+        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips").getText());
         StyleRangeUtils.decorate(tt, vo.getStyledText("tips").getStyles());
 
         final Composite ac = new Composite(viewPort, SWT.CENTER);
@@ -245,7 +245,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
         final Label divider = new Label(left, SWT.VERTICAL);
         FormDataSet.attach(divider).atTop().atRight().atBottom().withWidth(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_BORDER);
+        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
         rightTextView = new Composite(c, SWT.NONE);
         FormDataSet.attach(rightTextView).atLeftTo(left).atTop().atRight().atBottom();

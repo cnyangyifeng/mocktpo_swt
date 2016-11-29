@@ -61,6 +61,6 @@ public class ReportsHomeView extends Composite {
         body = new Composite(sc, SWT.NONE);
         sc.setContent(body);
 
-        body.setBackground(ResourceManager.getColor(MT.COLOR_MAJOR_BACKGROUND));
+        body.setBackground(ResourceManager.getColor(MT.COLOR_WINDOW_BACKGROUND));
     }
 }

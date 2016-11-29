@@ -45,20 +45,21 @@ public interface MT {
     int COLOR_DARK_ORANGE = 3;
     int COLOR_DARK_BLUE = 4;
     int COLOR_GAINSBORO = 5;
-    int COLOR_GREEN = 6;
-    int COLOR_INDIGO = 7;
-    int COLOR_KHAKI = 8;
-    int COLOR_ORANGE = 9;
-    int COLOR_ORANGE_RED = 10;
-    int COLOR_OXFORD_BLUE = 11;
-    int COLOR_SADDLE_BROWN = 12;
-    int COLOR_WHITE = 13;
-    int COLOR_WHITE_SMOKE = 14;
+    int COLOR_GRAY40 = 6;
+    int COLOR_GREEN = 7;
+    int COLOR_INDIGO = 8;
+    int COLOR_KHAKI = 9;
+    int COLOR_ORANGE = 10;
+    int COLOR_ORANGE_RED = 11;
+    int COLOR_OXFORD_BLUE = 12;
+    int COLOR_SADDLE_BROWN = 13;
+    int COLOR_WHITE = 14;
+    int COLOR_WHITE_SMOKE = 15;
 
     /* Others */
 
-    int COLOR_BORDER = 91;
-    int COLOR_MAJOR_BACKGROUND = 92;
+    int COLOR_HIGHLIGHTED = 91;
+    int COLOR_WINDOW_BACKGROUND = 92;
 
     /*
      * ==================================================

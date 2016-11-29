@@ -86,7 +86,7 @@ public class TestCard extends Composite {
 
         final Label divider = new Label(header, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(pl, 10).atRight().withHeight(1);
-        LabelSet.decorate(divider).setBackground(ResourceManager.getColor(MT.COLOR_WHITE_SMOKE));
+        LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
     }
 
     private void initActionBar() {

@@ -8,8 +8,10 @@ import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.ST;
+import com.mocktpo.util.constants.VT;
 import com.mocktpo.vo.TestViewVo;
 import com.mocktpo.widget.ImageButton;
+import com.mocktpo.widget.ReadingReviewTableRow;
 import com.mocktpo.widget.TestFooter;
 import com.mocktpo.widget.TestHeader;
 import org.apache.ibatis.session.SqlSession;
@@ -19,8 +21,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.*;
-import org.eclipse.swt.widgets.*;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.ControlListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -28,10 +35,9 @@ import java.util.TimerTask;
 
 public class ReadingReviewView extends Composite {
 
-    private static final String STRING_IS_TABLE_HEADER = "isTableHeader";
-    private static final int TABLE_COLUMN_NUMBER_WIDTH = 100;
-    private static final int TABLE_COLUMN_STATUS_WIDTH = 200;
-    private static final int TABLE_ITEM_HEIGHT = 32;
+    public static final int STATUS_NOT_SEEN = 0;
+    public static final int STATUS_NOT_ANSWERED = 1;
+    public static final int STATUS_ANSWERED = 2;
 
     /* Logger and Messages */
 
@@ -57,9 +63,11 @@ public class ReadingReviewView extends Composite {
 
     protected TestFooter footer;
 
+    protected ScrolledComposite sc;
     protected Composite body;
     protected Composite viewPort;
-    protected Table table;
+
+    protected ReadingReviewTableRow selectedTableRow;
 
     /* Properties */
 
@@ -177,7 +185,7 @@ public class ReadingReviewView extends Composite {
 
     private void initBody() {
 
-        final ScrolledComposite sc = new ScrolledComposite(this, SWT.V_SCROLL);
+        sc = new ScrolledComposite(this, SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTopTo(header).atRight().atBottomTo(footer);
         sc.setExpandHorizontal(true);
         sc.setExpandVertical(true);
@@ -187,7 +195,7 @@ public class ReadingReviewView extends Composite {
 
         viewPort = new Composite(body, SWT.NONE);
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x);
-        FormLayoutSet.layout(viewPort);
+        GridLayoutSet.layout(viewPort).verticalSpacing(0);
 
         /*
          * ==================================================
@@ -208,51 +216,62 @@ public class ReadingReviewView extends Composite {
         body.setBackground(ResourceManager.getColor(MT.COLOR_KHAKI));
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTop(20).atRight();
-        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(msgs.getString("reading_review_directions"));
+        GridDataSet.attach(dt).fillBoth();
+        StyledTextSet.decorate(dt).setBottomMargin(50).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(msgs.getString("reading_review_directions")).setTopMargin(20);
         dt.setStyleRanges(new StyleRange[]{new StyleRange(461, 14, null, null, SWT.BOLD), new StyleRange(676, 6, null, null, SWT.BOLD)});
 
+        final ReadingReviewTableRow tableHeader = new ReadingReviewTableRow(viewPort, SWT.NONE, msgs.getString("number"), msgs.getString("description"), msgs.getString("status"), 0, true);
+        GridDataSet.attach(tableHeader).fillBoth();
 
+        for (TestViewVo tvv : page.getTestSchema().getViews()) {
+            if (ST.SECTION_TYPE_READING == tvv.getSectionType() && tvv.isWithQuestion()) {
+                String statusText = getStatusText(0);
+                final ReadingReviewTableRow row = new ReadingReviewTableRow(viewPort, SWT.NONE, Integer.toString(tvv.getQuestionNumberInSection()), getDescriptionText(tvv), statusText, tvv.getViewId());
+                GridDataSet.attach(row).fillBoth();
+                row.addMouseListener(new ReadingReviewTableCellMouseListener());
+                if (selectedViewId == tvv.getViewId()) {
+                    selectedTableRow = row;
+                    selectedTableRow.setSelectionBackground();
+                    selectedTableRow.addControlListener(new ReadingReviewControlListener());
+                }
+            }
+        }
 
-//        table = new Table(viewPort, SWT.BORDER | SWT.FULL_SELECTION | SWT.NO_SCROLL);
-//        FormDataSet.attach(table).atLeft().atTopTo(dt, 20).atRight();
-//        TableSet.decorate(table).setBackground(MT.COLOR_KHAKI).setFont(MT.FONT_MEDIUM).setLineVisible(true);
-//        table.addControlListener(new ReadingReviewTableControlListener());
-//        table.addSelectionListener(new ReadingReviewTableSelectionListener());
-//
-//        final TableColumn numberColumn = new TableColumn(table, SWT.CENTER);
-//        numberColumn.setText(msgs.getString("number"));
-//        numberColumn.setWidth(TABLE_COLUMN_NUMBER_WIDTH);
-//
-//        final TableColumn descriptionColumn = new TableColumn(table, SWT.NONE);
-//        descriptionColumn.setText(msgs.getString("description"));
-//
-//        final TableColumn statusColumn = new TableColumn(table, SWT.CENTER);
-//        statusColumn.setText(msgs.getString("status"));
-//        statusColumn.setWidth(TABLE_COLUMN_STATUS_WIDTH);
-//
-//        final TableItem tableHeader = new TableItem(table, SWT.NONE);
-//        TableItemSet.decorate(tableHeader).setBackground(MT.COLOR_SADDLE_BROWN).setData(STRING_IS_TABLE_HEADER, true).setForeground(MT.COLOR_WHITE).setImage(new Image(d, 1, TABLE_ITEM_HEIGHT)).setText(new String[]{msgs.getString("number"), msgs.getString("description"), msgs.getString("status")});
-//
-//        for (TestViewVo tvv : page.getTestSchema().getViews()) {
-//            if (ST.SECTION_TYPE_READING == tvv.getSectionType() && tvv.isWithQuestion()) {
-//
-//                final TableItem item = new TableItem(table, SWT.NONE);
-//                String number = Integer.toString(tvv.getQuestionNumberInSection());
-//                String question;
-//                if (tvv.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION) {
-//                    question = tvv.getStyledText("directions").getText();
-//                } else {
-//                    question = tvv.getStyledText("question").getText();
-//                }
-//                String status = "not answered";
-//                TableItemSet.decorate(item).setText(new String[]{number, question, status});
-//
-//                if (selectedViewId == tvv.getViewId()) {
-//                    table.setSelection(item);
-//                }
-//            }
-//        }
+        final Label bottomTableBorder = new Label(viewPort, SWT.NONE);
+        GridDataSet.attach(bottomTableBorder).fillBoth().withHeight(1);
+        LabelSet.decorate(bottomTableBorder).setBackground(MT.COLOR_GRAY40);
+    }
+
+    private String getDescriptionText(TestViewVo tvv) {
+
+        String text;
+
+        if (tvv.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || tvv.getViewType() == VT.VIEW_TYPE_READING_FILL_TABLE_QUESTION) {
+            text = tvv.getStyledText("directions").getText();
+        } else {
+            text = tvv.getStyledText("question").getText();
+        }
+
+        return text;
+    }
+
+    private String getStatusText(int status) {
+
+        String text = "";
+
+        switch (status) {
+            case ReadingReviewView.STATUS_NOT_SEEN:
+                text = "Not Seen";
+                break;
+            case ReadingReviewView.STATUS_NOT_ANSWERED:
+                text = "Not Answered";
+                break;
+            case ReadingReviewView.STATUS_ANSWERED:
+                text = "Answered";
+                break;
+        }
+
+        return text;
     }
 
     /*
@@ -472,7 +491,30 @@ public class ReadingReviewView extends Composite {
         }
     }
 
-    private class ReadingReviewTableControlListener implements ControlListener {
+    private class ReadingReviewTableCellMouseListener implements MouseListener {
+
+        @Override
+        public void mouseDoubleClick(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            ReadingReviewTableRow c = (ReadingReviewTableRow) ((Label) e.widget).getParent();
+            if (selectedTableRow != c) {
+                c.setSelectionBackground();
+                selectedTableRow.resetBackground();
+                selectedTableRow = c;
+                selectedViewId = c.getViewId();
+            }
+        }
+
+        @Override
+        public void mouseUp(MouseEvent e) {
+
+        }
+    }
+
+    private class ReadingReviewControlListener implements ControlListener {
 
         @Override
         public void controlMoved(ControlEvent e) {
@@ -480,37 +522,9 @@ public class ReadingReviewView extends Composite {
 
         @Override
         public void controlResized(ControlEvent e) {
-            int tableWidth = table.getBounds().width, numberColumnWidth = table.getColumn(0).getWidth(), statusColumnWidth = table.getColumn(2).getWidth();
-            table.getColumn(1).setWidth(tableWidth - numberColumnWidth - statusColumnWidth);
-        }
-    }
-
-    private class ReadingReviewTableSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
-
-        @Override
-        public void widgetSelected(SelectionEvent e) {
-
-            TableItem item = (TableItem) e.item;
-
-            Object b = item.getData(STRING_IS_TABLE_HEADER);
-            if (null != b && (Boolean) b) {
-                return;
-            }
-
-            int questionId = Integer.valueOf(item.getText(0));
-
-            for (TestViewVo tvv : page.getTestSchema().getViews()) {
-                if (ST.SECTION_TYPE_READING == tvv.getSectionType() && tvv.isWithQuestion()) {
-                    if (questionId == tvv.getQuestionNumberInSection()) {
-                        selectedViewId = tvv.getViewId();
-                        return;
-                    }
-                }
-            }
+            ReadingReviewTableRow row = (ReadingReviewTableRow) e.widget;
+            int quarter = sc.getBounds().height / 4;
+            sc.setOrigin(0, row.getBounds().y - quarter);
         }
     }
 }

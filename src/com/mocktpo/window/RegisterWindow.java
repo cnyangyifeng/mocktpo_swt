@@ -85,7 +85,7 @@ public class RegisterWindow {
     private void initHeader() {
 
         header = new Composite(s, SWT.NONE);
-        header.setBackground(ResourceManager.getColor(MT.COLOR_MAJOR_BACKGROUND));
+        header.setBackground(ResourceManager.getColor(MT.COLOR_WINDOW_BACKGROUND));
         FormDataSet.attach(header).atLeft().atTop().atRight();
         FormLayoutSet.layout(header);
 
@@ -106,7 +106,7 @@ public class RegisterWindow {
 
         footer = new Composite(s, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atRight().atBottom().withHeight(LC.BUTTON_HEIGHT_HINT * 2);
-        footer.setBackground(ResourceManager.getColor(MT.COLOR_MAJOR_BACKGROUND));
+        footer.setBackground(ResourceManager.getColor(MT.COLOR_WINDOW_BACKGROUND));
         FormLayoutSet.layout(footer);
 
         r = new Button(footer, SWT.PUSH);

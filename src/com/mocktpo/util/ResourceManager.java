@@ -29,6 +29,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.COLOR_DARK_ORANGE, new Color(d, 255, 140, 0)); // #ff8c00
         caches.putIfAbsent(MT.COLOR_DARK_BLUE, new Color(d, 47, 82, 140)); // #2f528c
         caches.putIfAbsent(MT.COLOR_GAINSBORO, new Color(d, 229, 218, 218)); // #e5dada
+        caches.putIfAbsent(MT.COLOR_GRAY40, new Color(d, 102, 102, 102)); // #666666
         caches.putIfAbsent(MT.COLOR_GREEN, new Color(d, 0, 128, 0)); // #008000
         caches.putIfAbsent(MT.COLOR_INDIGO, new Color(d, 55, 50, 125)); // #37327d
         caches.putIfAbsent(MT.COLOR_KHAKI, new Color(d, 242, 232, 200)); // #f2e8c8
@@ -41,8 +42,8 @@ public class ResourceManager {
 
         /* Others */
 
-        caches.putIfAbsent(MT.COLOR_BORDER, new Color(d, 220, 220, 220)); // #dcdcdc
-        caches.putIfAbsent(MT.COLOR_MAJOR_BACKGROUND, new Color(d, 239, 239, 239)); // #efefef
+        caches.putIfAbsent(MT.COLOR_HIGHLIGHTED, new Color(d, 220, 220, 220)); // #dcdcdc
+        caches.putIfAbsent(MT.COLOR_WINDOW_BACKGROUND, new Color(d, 239, 239, 239)); // #efefef
 
         /*
          * ==================================================

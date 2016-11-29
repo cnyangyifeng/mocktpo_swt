@@ -72,7 +72,7 @@ public class TestEditorHomeView extends Composite {
 
         final Label divider = new Label(this, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_BORDER);
+        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
         final Button sb = new Button(toolBar, SWT.PUSH);
         FormDataSet.attach(sb).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT);
@@ -90,7 +90,7 @@ public class TestEditorHomeView extends Composite {
         body = new Composite(sc, SWT.NONE);
         sc.setContent(body);
 
-        body.setBackground(ResourceManager.getColor(MT.COLOR_MAJOR_BACKGROUND));
+        body.setBackground(ResourceManager.getColor(MT.COLOR_WINDOW_BACKGROUND));
         GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
 
         UserTestMapper utm = MyApplication.get().getSqlSession().getMapper(UserTestMapper.class);

@@ -14,7 +14,7 @@ public class BorderedCompositePaintListener implements PaintListener {
     public void paintControl(PaintEvent e) {
         GC gc = e.gc;
         Rectangle c = ((Control) e.widget).getBounds();
-        gc.setBackground(ResourceManager.getColor(MT.COLOR_BORDER));
-        gc.drawRectangle(1, 1, c.width - 2, c.height - 2);
+        gc.setForeground(ResourceManager.getColor(MT.COLOR_GRAY40));
+        gc.drawRectangle(0, 0, c.width - 1, c.height - 1);
     }
 }
