@@ -94,6 +94,9 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_GENERAL_TEST_INFO:
                 tv = new GeneralTestInfoView(this, SWT.NONE);
                 break;
+            case VT.VIEW_TYPE_HEADSET:
+                tv = new ListeningDirectionsView(this, SWT.NONE);
+                break;
             case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
                 tv = new ListeningDirectionsView(this, SWT.NONE);
                 break;

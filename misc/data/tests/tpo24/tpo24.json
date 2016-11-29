@@ -4,7 +4,7 @@
   "views": [
     {
       "viewId": 1,
-      "viewType": 8,
+      "viewType": 9,
       "viewTypeName": "Test Introduction",
       "sectionType": 0,
       "sectionTypeName": "",
@@ -42,7 +42,7 @@
     },
     {
       "viewId": 3,
-      "viewType": 2,
+      "viewType": 3,
       "viewTypeName": "Reading Directions",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -66,7 +66,7 @@
     },
     {
       "viewId": 4,
-      "viewType": 5,
+      "viewType": 6,
       "viewTypeName": "Reading Text",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -85,7 +85,7 @@
     },
     {
       "viewId": 5,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -125,7 +125,7 @@
     },
     {
       "viewId": 6,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -165,7 +165,7 @@
     },
     {
       "viewId": 7,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -206,7 +206,7 @@
     },
     {
       "viewId": 8,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -246,7 +246,7 @@
     },
     {
       "viewId": 9,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -286,7 +286,7 @@
     },
     {
       "viewId": 10,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -327,7 +327,7 @@
     },
     {
       "viewId": 11,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -368,7 +368,7 @@
     },
     {
       "viewId": 12,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -409,7 +409,7 @@
     },
     {
       "viewId": 13,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -450,7 +450,7 @@
     },
     {
       "viewId": 14,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -490,7 +490,7 @@
     },
     {
       "viewId": 15,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -531,7 +531,7 @@
     },
     {
       "viewId": 16,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -572,7 +572,7 @@
     },
     {
       "viewId": 17,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -628,7 +628,7 @@
     },
     {
       "viewId": 18,
-      "viewType": 4,
+      "viewType": 5,
       "viewTypeName": "Reading Prose Summary Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -682,7 +682,7 @@
     },
     {
       "viewId": 19,
-      "viewType": 5,
+      "viewType": 6,
       "viewTypeName": "Reading Text",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -700,7 +700,7 @@
     },
     {
       "viewId": 20,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -741,7 +741,7 @@
     },
     {
       "viewId": 21,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -782,7 +782,7 @@
     },
     {
       "viewId": 22,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -822,7 +822,7 @@
     },
     {
       "viewId": 23,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -863,7 +863,7 @@
     },
     {
       "viewId": 24,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -903,7 +903,7 @@
     },
     {
       "viewId": 25,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -944,7 +944,7 @@
     },
     {
       "viewId": 26,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -985,7 +985,7 @@
     },
     {
       "viewId": 27,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1026,7 +1026,7 @@
     },
     {
       "viewId": 28,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1066,7 +1066,7 @@
     },
     {
       "viewId": 29,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1106,7 +1106,7 @@
     },
     {
       "viewId": 30,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1145,7 +1145,7 @@
     },
     {
       "viewId": 31,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1201,7 +1201,7 @@
     },
     {
       "viewId": 32,
-      "viewType": 3,
+      "viewType": 4,
       "viewTypeName": "Reading Fill in a Table Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1258,7 +1258,7 @@
     },
     {
       "viewId": 33,
-      "viewType": 5,
+      "viewType": 6,
       "viewTypeName": "Reading Text",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1276,7 +1276,7 @@
     },
     {
       "viewId": 34,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1316,7 +1316,7 @@
     },
     {
       "viewId": 35,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1356,7 +1356,7 @@
     },
     {
       "viewId": 36,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1397,7 +1397,7 @@
     },
     {
       "viewId": 37,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1438,7 +1438,7 @@
     },
     {
       "viewId": 38,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1479,7 +1479,7 @@
     },
     {
       "viewId": 39,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1518,7 +1518,7 @@
     },
     {
       "viewId": 40,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1558,7 +1558,7 @@
     },
     {
       "viewId": 41,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1598,7 +1598,7 @@
     },
     {
       "viewId": 42,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1639,7 +1639,7 @@
     },
     {
       "viewId": 43,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1680,7 +1680,7 @@
     },
     {
       "viewId": 44,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1721,7 +1721,7 @@
     },
     {
       "viewId": 45,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1762,7 +1762,7 @@
     },
     {
       "viewId": 46,
-      "viewType": 6,
+      "viewType": 7,
       "viewTypeName": "Reading Text With Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1818,7 +1818,7 @@
     },
     {
       "viewId": 47,
-      "viewType": 4,
+      "viewType": 5,
       "viewTypeName": "Reading Prose Summary Question",
       "sectionType": 2,
       "sectionTypeName": "Reading",
@@ -1872,7 +1872,7 @@
     },
     {
       "viewId": 48,
-      "viewType": 7,
+      "viewType": 8,
       "viewTypeName": "Listening Directions",
       "sectionType": 1,
       "sectionTypeName": "Listening",

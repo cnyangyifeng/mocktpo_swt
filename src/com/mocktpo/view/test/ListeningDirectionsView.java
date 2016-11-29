@@ -141,6 +141,7 @@ public class ListeningDirectionsView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
         }
 
         @Override
