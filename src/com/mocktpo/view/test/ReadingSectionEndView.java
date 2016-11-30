@@ -3,21 +3,22 @@ package com.mocktpo.view.test;
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.util.FormDataSet;
+import com.mocktpo.util.ResourceManager;
+import com.mocktpo.util.StyledTextSet;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.widgets.Label;
 
-public class HeadsetView extends ResponsiveTestView {
+public class ReadingSectionEndView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int TOP_TEXT_Y = 50;
-    private static final int VERTICAL_SPACING = 10;
+    private static final int DESCRIPTION_TEXT_WIDTH = 720;
+    private static final int DESCRIPTION_TEXT_Y = 100;
 
     /*
      * ==================================================
@@ -27,7 +28,7 @@ public class HeadsetView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public HeadsetView(TestPage page, int style) {
+    public ReadingSectionEndView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -41,8 +42,13 @@ public class HeadsetView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
+
+        final ImageButton vob = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_VOLUME_OVAL), ResourceManager.getImage(MT.IMAGE_VOLUME_OVAL_HOVER));
+        FormDataSet.attach(vob).atRight(10).atTop(10);
+        vob.addMouseListener(new VolumeOvalButtonMouseListener());
+
         final ImageButton cb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE), ResourceManager.getImage(MT.IMAGE_CONTINUE_HOVER));
-        FormDataSet.attach(cb).atRight(10).atTop(10);
+        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(vob, 8, SWT.TOP);
         cb.addMouseListener(new ContinueButtonMouseListener());
     }
 
@@ -51,18 +57,9 @@ public class HeadsetView extends ResponsiveTestView {
 
         body.setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
 
-        final StyledText tt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(tt).atLeft().atTop(TOP_TEXT_Y).atRight();
-        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("top").getText());
-
-        final Label il = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(il).atLeft().atTopTo(tt, VERTICAL_SPACING).atRight();
-        LabelSet.decorate(il).setImage(MT.IMAGE_HEADSET);
-
-        final StyledText bt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(bt).atLeft().atTopTo(il, VERTICAL_SPACING).atRight();
-        StyledTextSet.decorate(bt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("bottom").getText());
-        StyleRangeUtils.decorate(bt, vo.getStyledText("bottom").getStyles());
+        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(dt).fromLeft(50, -DESCRIPTION_TEXT_WIDTH / 2).atTop(DESCRIPTION_TEXT_Y).withWidth(DESCRIPTION_TEXT_WIDTH);
+        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
     }
 
     /*
@@ -72,6 +69,22 @@ public class HeadsetView extends ResponsiveTestView {
      *
      * ==================================================
      */
+
+    private class VolumeOvalButtonMouseListener implements MouseListener {
+
+        @Override
+        public void mouseDoubleClick(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseUp(MouseEvent e) {
+        }
+    }
 
     private class ContinueButtonMouseListener implements MouseListener {
 

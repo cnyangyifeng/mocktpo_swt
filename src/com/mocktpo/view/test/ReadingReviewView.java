@@ -35,6 +35,8 @@ import java.util.TimerTask;
 
 public class ReadingReviewView extends Composite {
 
+    /* Constants */
+
     public static final int STATUS_NOT_SEEN = 0;
     public static final int STATUS_NOT_ANSWERED = 1;
     public static final int STATUS_ANSWERED = 2;

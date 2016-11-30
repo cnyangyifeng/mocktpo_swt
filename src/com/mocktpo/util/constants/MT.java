@@ -51,8 +51,8 @@ public interface MT {
     int COLOR_ORANGE = 9;
     int COLOR_ORANGE_RED = 10;
     int COLOR_OXFORD_BLUE = 11;
-    int COLOR_RED_WOOD = 12;
-    int COLOR_ROSY_BROWN = 13;
+    int COLOR_ROSY_BROWN = 12;
+    int COLOR_TOUPE = 13;
     int COLOR_WHITE = 14;
     int COLOR_WHITE_SMOKE = 15;
 

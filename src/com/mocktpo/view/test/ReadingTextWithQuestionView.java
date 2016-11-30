@@ -22,6 +22,8 @@ import org.eclipse.swt.widgets.Label;
 
 public class ReadingTextWithQuestionView extends SashTestView {
 
+    /* Constants */
+
     private static final String SQUARE = "\u2588";
 
     /* Widgets */

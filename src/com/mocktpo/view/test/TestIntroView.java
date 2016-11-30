@@ -14,6 +14,11 @@ import org.eclipse.swt.widgets.Label;
 
 public class TestIntroView extends ResponsiveTestView {
 
+    /* Constants */
+
+    private static final int IMAGE_TEXT_Y = 50;
+    private static final int VERTICAL_SPACING = 50;
+
     /*
      * ==================================================
      *
@@ -46,12 +51,12 @@ public class TestIntroView extends ResponsiveTestView {
 
         body.setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
 
-        final Label l = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(l).atLeft().atTop(50).atRight();
-        LabelSet.decorate(l).setImage(MT.IMAGE_ETS_TOEFL);
+        final Label il = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(il).atLeft().atTop(IMAGE_TEXT_Y).atRight();
+        LabelSet.decorate(il).setImage(MT.IMAGE_ETS_TOEFL);
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTopTo(l, 50).atRight();
+        FormDataSet.attach(dt).atLeft().atTopTo(il, VERTICAL_SPACING).atRight();
         StyledTextSet.decorate(dt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
         StyleRangeUtils.decorate(dt, vo.getStyledText("description").getStyles());
     }

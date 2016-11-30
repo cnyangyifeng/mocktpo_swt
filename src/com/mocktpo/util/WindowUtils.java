@@ -41,8 +41,8 @@ public class WindowUtils {
     }
 
     public static void setDialogBounds(Shell s) {
-        int x = 20;
         Point clientSize = ScreenUtils.getClientSize(s.getDisplay());
+        int x = (clientSize.x / 2 - LC.DIALOG_WIDTH_HINT) / 2;
         int y = (clientSize.y - LC.DIALOG_HEIGHT_HINT) / 2;
         s.setBounds(x, y, LC.DIALOG_WIDTH_HINT, LC.DIALOG_HEIGHT_HINT);
     }

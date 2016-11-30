@@ -84,7 +84,7 @@ public class ReadingReviewTableRow extends Composite {
         if (!isTableHeader()) {
             setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
         } else {
-            setBackground(ResourceManager.getColor(MT.COLOR_RED_WOOD));
+            setBackground(ResourceManager.getColor(MT.COLOR_TOUPE));
         }
 
         addPaintListener(new PaintListener() {
@@ -130,7 +130,7 @@ public class ReadingReviewTableRow extends Composite {
         FormDataSet.attach(descriptionCell).atLeftTo(divider1).atTop(1).atRightTo(divider2).atBottom(1);
         LabelSet dcs = LabelSet.decorate(descriptionCell).setFont(MT.FONT_MEDIUM).setText(descriptionText);
         if (isTableHeader()) {
-            dcs.setFont(MT.FONT_MEDIUM_BOLD);
+            dcs.setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM_BOLD);
         }
     }
 

@@ -112,6 +112,9 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
                 tv = new ReadingProseSummaryQuestionView(this, SWT.NONE);
                 break;
+            case VT.VIEW_TYPE_READING_SECTION_END:
+                tv = new ReadingSectionEndView(this, SWT.NONE);
+                break;
             case VT.VIEW_TYPE_READING_TEXT:
                 tv = new ReadingTextView(this, SWT.NONE);
                 break;

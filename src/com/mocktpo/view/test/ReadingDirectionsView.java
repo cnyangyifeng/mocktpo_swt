@@ -16,6 +16,11 @@ import org.eclipse.swt.events.MouseListener;
 
 public class ReadingDirectionsView extends ResponsiveTestView {
 
+    /* Constants */
+
+    private static final int HEADING_TEXT_Y = 50;
+    private static final int VERTICAL_SPACING = 50;
+
     /*
      * ==================================================
      *
@@ -50,11 +55,11 @@ public class ReadingDirectionsView extends ResponsiveTestView {
         body.setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
 
         final StyledText ht = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(ht).atLeft().atTop(50).atRight();
+        FormDataSet.attach(ht).atLeft().atTop(HEADING_TEXT_Y).atRight();
         StyledTextSet.decorate(ht).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledText("heading").getText());
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTopTo(ht, 50).atRight();
+        FormDataSet.attach(dt).atLeft().atTopTo(ht, VERTICAL_SPACING).atRight();
         StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
         StyleRangeUtils.decorate(dt, vo.getStyledText("description").getStyles());
     }
