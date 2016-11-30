@@ -1876,6 +1876,7 @@
       "viewTypeName": "Reading Section End",
       "sectionType": 2,
       "sectionTypeName": "Reading",
+      "timed": true,
       "body": {
         "description": {
           "text": "You have seen all of the questions in the Reading section. You may go back and review. As long as there is time remaining. You can check your work.\u000a\u000aClick on Return to go back to the last question.\u000a\u000aClick on Review to go to the Review screen.\u000a\u000aClick on Continue to go on to the next section of the test.\u000a\u000aOnce you leave the Reading section, you WILL NOT be able to return to it."

@@ -455,6 +455,10 @@ public class ReadingReviewView extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
 
+            if (selectedViewId == TestSchemaUtils.getFirstViewIdByViewType(page.getTestSchema(), VT.VIEW_TYPE_READING_SECTION_END)) {
+                return;
+            }
+
             if (timed) {
                 stopTimer();
             }
@@ -504,7 +508,9 @@ public class ReadingReviewView extends Composite {
             ReadingReviewTableRow c = (ReadingReviewTableRow) ((Label) e.widget).getParent();
             if (selectedTableRow != c) {
                 c.setSelectionBackground();
-                selectedTableRow.resetBackground();
+                if (null != selectedTableRow) {
+                    selectedTableRow.resetBackground();
+                }
                 selectedTableRow = c;
                 selectedViewId = c.getViewId();
             }

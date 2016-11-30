@@ -143,6 +143,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_PAUSE_TEST_HOVER, ImageUtils.load(d, "pause_test_h"));
         caches.putIfAbsent(MT.IMAGE_RETURN, ImageUtils.load(d, "return"));
         caches.putIfAbsent(MT.IMAGE_RETURN_HOVER, ImageUtils.load(d, "return_h"));
+        caches.putIfAbsent(MT.IMAGE_REVIEW, ImageUtils.load(d, "review"));
+        caches.putIfAbsent(MT.IMAGE_REVIEW_HOVER, ImageUtils.load(d, "review_h"));
         caches.putIfAbsent(MT.IMAGE_REVIEW_OVAL, ImageUtils.load(d, "review_o"));
         caches.putIfAbsent(MT.IMAGE_REVIEW_OVAL_HOVER, ImageUtils.load(d, "review_o_h"));
         caches.putIfAbsent(MT.IMAGE_REVIEW_OVAL_DISABLED, ImageUtils.load(d, "review_o_d"));

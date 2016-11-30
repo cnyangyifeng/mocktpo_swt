@@ -16,8 +16,8 @@ public class HeadsetView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int TOP_TEXT_Y = 50;
-    private static final int VERTICAL_SPACING = 10;
+    private static final int TOP_TEXT_Y = 100;
+    private static final int VERTICAL_SPACING = 20;
 
     /*
      * ==================================================

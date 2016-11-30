@@ -43,13 +43,18 @@ public class ReadingSectionEndView extends ResponsiveTestView {
     @Override
     public void updateHeader() {
 
-        final ImageButton vob = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_VOLUME_OVAL), ResourceManager.getImage(MT.IMAGE_VOLUME_OVAL_HOVER));
-        FormDataSet.attach(vob).atRight(10).atTop(10);
-        vob.addMouseListener(new VolumeOvalButtonMouseListener());
-
         final ImageButton cb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE), ResourceManager.getImage(MT.IMAGE_CONTINUE_HOVER));
-        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(vob, 8, SWT.TOP);
-        cb.addMouseListener(new ContinueButtonMouseListener());
+        FormDataSet.attach(cb).atRight(10).atTop(10);
+        cb.addMouseListener(new ReadingSectionEndContinueButtonMouseListener());
+
+        final ImageButton rvb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_REVIEW), ResourceManager.getImage(MT.IMAGE_REVIEW_HOVER));
+        FormDataSet.attach(rvb).atRightTo(cb, 10).atTop(10);
+        rvb.addMouseListener(new ReadingSectionEndReviewButtonMouseListener());
+
+
+        final ImageButton rtb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_RETURN), ResourceManager.getImage(MT.IMAGE_RETURN_HOVER));
+        FormDataSet.attach(rtb).atRightTo(rvb, 10).atTop(10);
+        rtb.addMouseListener(new ReadingSectionEndReturnButtonMouseListener());
     }
 
     @Override
@@ -70,23 +75,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
      * ==================================================
      */
 
-    private class VolumeOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
-    }
-
-    private class ContinueButtonMouseListener implements MouseListener {
+    private class ReadingSectionEndContinueButtonMouseListener implements MouseListener {
 
         @Override
         public void mouseDoubleClick(MouseEvent e) {
@@ -97,6 +86,54 @@ public class ReadingSectionEndView extends ResponsiveTestView {
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId() + 1);
+
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
+
+            page.resume(ut);
+        }
+
+        @Override
+        public void mouseUp(MouseEvent e) {
+        }
+    }
+
+    private class ReadingSectionEndReviewButtonMouseListener implements MouseListener {
+
+        @Override
+        public void mouseDoubleClick(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+
+            if (vo.isTimed()) {
+                stopTimer();
+            }
+
+            page.toReadingReview();
+        }
+
+        @Override
+        public void mouseUp(MouseEvent e) {
+        }
+    }
+
+    private class ReadingSectionEndReturnButtonMouseListener implements MouseListener {
+
+        @Override
+        public void mouseDoubleClick(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+
+            if (vo.isTimed()) {
+                stopTimer();
+            }
+
+            UserTest ut = page.getUserTest();
+            ut.setLastViewId(vo.getViewId() - 1);
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);
             sqlSession.commit();
