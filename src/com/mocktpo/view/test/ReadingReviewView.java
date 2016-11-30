@@ -213,7 +213,7 @@ public class ReadingReviewView extends Composite {
 
     private void updateBody() {
 
-        body.setBackground(ResourceManager.getColor(MT.COLOR_KHAKI));
+        body.setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
         GridDataSet.attach(dt).fillBoth();

@@ -44,7 +44,7 @@ public class HeadsetView extends ResponsiveTestView {
     @Override
     public void updateBody() {
 
-        body.setBackground(ResourceManager.getColor(MT.COLOR_KHAKI));
+        body.setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
 
         final StyledText tt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(tt).atLeft().atTop(100).atRight();

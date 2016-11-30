@@ -46,7 +46,7 @@ public class GeneralTestInfoView extends ResponsiveTestView {
     @Override
     public void updateBody() {
 
-        body.setBackground(ResourceManager.getColor(MT.COLOR_KHAKI));
+        body.setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
 
         final StyledText ht = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(ht).atLeft().atTop(50).atRight();

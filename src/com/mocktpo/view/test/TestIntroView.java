@@ -44,7 +44,7 @@ public class TestIntroView extends ResponsiveTestView {
     @Override
     public void updateBody() {
 
-        body.setBackground(ResourceManager.getColor(MT.COLOR_KHAKI));
+        body.setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
 
         final Label l = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(l).atLeft().atTop(50).atRight();

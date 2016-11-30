@@ -40,19 +40,19 @@ public interface MT {
      * ==================================================
      */
 
-    int COLOR_BLACK = 1;
-    int COLOR_BURGUNDY = 2;
-    int COLOR_DARK_ORANGE = 3;
-    int COLOR_DARK_BLUE = 4;
-    int COLOR_GAINSBORO = 5;
+    int COLOR_BEIGE = 1;
+    int COLOR_BLACK = 2;
+    int COLOR_BURGUNDY = 3;
+    int COLOR_DARK_ORANGE = 4;
+    int COLOR_DARK_BLUE = 5;
     int COLOR_GRAY40 = 6;
     int COLOR_GREEN = 7;
     int COLOR_INDIGO = 8;
-    int COLOR_KHAKI = 9;
-    int COLOR_ORANGE = 10;
-    int COLOR_ORANGE_RED = 11;
-    int COLOR_OXFORD_BLUE = 12;
-    int COLOR_SADDLE_BROWN = 13;
+    int COLOR_ORANGE = 9;
+    int COLOR_ORANGE_RED = 10;
+    int COLOR_OXFORD_BLUE = 11;
+    int COLOR_RED_WOOD = 12;
+    int COLOR_ROSY_BROWN = 13;
     int COLOR_WHITE = 14;
     int COLOR_WHITE_SMOKE = 15;
 

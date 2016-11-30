@@ -1935,6 +1935,9 @@
           "styles": [
             { "start": 35, "length": 6, "fontStyle": 1 }
           ]
+        },
+        "footnote": {
+          "text": "You may now change the volume.\u000aWhen you are finished, click on Continue."
         }
       }
     },

@@ -22,6 +22,8 @@ import org.eclipse.swt.widgets.Label;
 
 public class ReadingTextWithQuestionView extends SashTestView {
 
+    private static final String SQUARE = "\u2588";
+
     /* Widgets */
 
     private CLabel indicator;
@@ -315,30 +317,30 @@ public class ReadingTextWithQuestionView extends SashTestView {
             answer = (Integer) e.widget.getData(MT.KEY_CHOICE);
 
             switch (answer) {
-            case MT.CHOICE_A:
-                LabelSet.decorate(choiceA).setImage(MT.IMAGE_CHECKED);
-                LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                break;
-            case MT.CHOICE_B:
-                LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceB).setImage(MT.IMAGE_CHECKED);
-                LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                break;
-            case MT.CHOICE_C:
-                LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceC).setImage(MT.IMAGE_CHECKED);
-                LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                break;
-            case MT.CHOICE_D:
-                LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceD).setImage(MT.IMAGE_CHECKED);
-                break;
+                case MT.CHOICE_A:
+                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_CHECKED);
+                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                    break;
+                case MT.CHOICE_B:
+                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_CHECKED);
+                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                    break;
+                case MT.CHOICE_C:
+                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_CHECKED);
+                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                    break;
+                case MT.CHOICE_D:
+                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_CHECKED);
+                    break;
             }
         }
 
@@ -387,14 +389,14 @@ public class ReadingTextWithQuestionView extends SashTestView {
             StyledText st = (StyledText) e.widget;
             int offset = st.getCaretOffset();
 
-            if (offset == insertPointA || offset == insertPointA + 1) {
-                if (answer != MT.CHOICE_A) {
+            if (answer == MT.CHOICE_NONE) {
+                if (offset == insertPointA || offset == insertPointA + 1) {
 
                     /*
                      * ==================================================
-                     * 
+                     *
                      * Insert new text at point A
-                     * 
+                     *
                      * ==================================================
                      */
 
@@ -406,46 +408,21 @@ public class ReadingTextWithQuestionView extends SashTestView {
 
                     /*
                      * ==================================================
-                     * 
-                     * Remove old text from the other point
-                     * 
-                     * ==================================================
-                     */
-
-                    switch (answer) {
-                    case MT.CHOICE_B:
-                        st.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
-                        insertPointC -= change;
-                        insertPointD -= change;
-                        break;
-                    case MT.CHOICE_C:
-                        st.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
-                        insertPointD -= change;
-                        break;
-                    case MT.CHOICE_D:
-                        st.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
-                    default:
-                        break;
-                    }
-
-                    /*
-                     * ==================================================
-                     * 
+                     *
                      * Set choice to A
-                     * 
+                     *
                      * ==================================================
                      */
 
                     answer = MT.CHOICE_A;
-                }
-            } else if (offset == insertPointB || offset == insertPointB + 1) {
-                if (answer != MT.CHOICE_B) {
+
+                } else if (offset == insertPointB || offset == insertPointB + 1) {
 
                     /*
                      * ==================================================
-                     * 
+                     *
                      * Insert new text at point B
-                     * 
+                     *
                      * ==================================================
                      */
 
@@ -456,47 +433,21 @@ public class ReadingTextWithQuestionView extends SashTestView {
 
                     /*
                      * ==================================================
-                     * 
-                     * Remove old text from the other point
-                     * 
-                     * ==================================================
-                     */
-
-                    switch (answer) {
-                    case MT.CHOICE_A:
-                        st.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
-                        insertPointB -= change;
-                        insertPointC -= change;
-                        insertPointD -= change;
-                        break;
-                    case MT.CHOICE_C:
-                        st.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
-                        insertPointD -= change;
-                        break;
-                    case MT.CHOICE_D:
-                        st.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
-                    default:
-                        break;
-                    }
-
-                    /*
-                     * ==================================================
-                     * 
+                     *
                      * Set choice to B
-                     * 
+                     *
                      * ==================================================
                      */
 
                     answer = MT.CHOICE_B;
-                }
-            } else if (offset == insertPointC || offset == insertPointC + 1) {
-                if (answer != MT.CHOICE_C) {
+
+                } else if (offset == insertPointC || offset == insertPointC + 1) {
 
                     /*
                      * ==================================================
-                     * 
+                     *
                      * Insert new text at point C
-                     * 
+                     *
                      * ==================================================
                      */
 
@@ -506,48 +457,21 @@ public class ReadingTextWithQuestionView extends SashTestView {
 
                     /*
                      * ==================================================
-                     * 
-                     * Remove old text from the other point
-                     * 
-                     * ==================================================
-                     */
-
-                    switch (answer) {
-                    case MT.CHOICE_A:
-                        st.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
-                        insertPointB -= change;
-                        insertPointC -= change;
-                        insertPointD -= change;
-                        break;
-                    case MT.CHOICE_B:
-                        st.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
-                        insertPointC -= change;
-                        insertPointD -= change;
-                        break;
-                    case MT.CHOICE_D:
-                        st.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
-                    default:
-                        break;
-                    }
-
-                    /*
-                     * ==================================================
-                     * 
+                     *
                      * Set choice to C
-                     * 
+                     *
                      * ==================================================
                      */
 
                     answer = MT.CHOICE_C;
-                }
-            } else if (offset == insertPointD || offset == insertPointD + 1) {
-                if (answer != MT.CHOICE_D) {
+
+                } else if (offset == insertPointD || offset == insertPointD + 1) {
 
                     /*
                      * ==================================================
-                     * 
+                     *
                      * Insert new text at point D
-                     * 
+                     *
                      * ==================================================
                      */
 
@@ -556,42 +480,565 @@ public class ReadingTextWithQuestionView extends SashTestView {
 
                     /*
                      * ==================================================
-                     * 
-                     * Remove old text from the other point
-                     * 
-                     * ==================================================
-                     */
-
-                    switch (answer) {
-                    case MT.CHOICE_A:
-                        st.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
-                        insertPointB -= change;
-                        insertPointC -= change;
-                        insertPointD -= change;
-                        break;
-                    case MT.CHOICE_B:
-                        st.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
-                        insertPointC -= change;
-                        insertPointD -= change;
-                        break;
-                    case MT.CHOICE_C:
-                        st.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
-                        insertPointD -= change;
-                    default:
-                        break;
-                    }
-
-                    /*
-                     * ==================================================
-                     * 
+                     *
                      * Set choice to D
-                     * 
+                     *
                      * ==================================================
                      */
 
                     answer = MT.CHOICE_D;
+
+                }
+            } else if (answer == MT.CHOICE_A) {
+                if (offset >= insertPointA && offset <= insertPointA + insertTextLength) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point A
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointA, insertTextLength, SQUARE);
+                    st.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
+                    insertPointB -= change;
+                    insertPointC -= change;
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to NONE
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_NONE;
+
+                } else if (offset == insertPointB || offset == insertPointB + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point B
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointB, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
+                    insertPointC += change;
+                    insertPointD += change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point A
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
+                    st.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
+                    insertPointB -= change;
+                    insertPointC -= change;
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to B
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_B;
+
+                } else if (offset == insertPointC || offset == insertPointC + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point C
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointC, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
+                    insertPointD += change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point A
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
+                    st.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
+                    insertPointB -= change;
+                    insertPointC -= change;
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to C
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_C;
+
+                } else if (offset == insertPointD || offset == insertPointD + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point D
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointD, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point A
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
+                    st.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
+                    insertPointB -= change;
+                    insertPointC -= change;
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to D
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_D;
+
+                }
+            } else if (answer == MT.CHOICE_B) {
+                if (offset == insertPointA || offset == insertPointA + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point A
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointA, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
+                    insertPointB += change;
+                    insertPointC += change;
+                    insertPointD += change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point B
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
+                    st.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
+                    insertPointC -= change;
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to A
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_A;
+
+                } else if (offset >= insertPointB && offset <= insertPointB + insertTextLength) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point B
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointB, insertTextLength, SQUARE);
+                    st.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
+                    insertPointC -= change;
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to NONE
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_NONE;
+
+                } else if (offset == insertPointC || offset == insertPointC + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point C
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointC, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
+                    insertPointD += change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point B
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
+                    st.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
+                    insertPointC -= change;
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to C
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_C;
+
+                } else if (offset == insertPointD || offset == insertPointD + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point D
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointD, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point B
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
+                    st.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
+                    insertPointC -= change;
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to D
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_D;
+
+                }
+            } else if (answer == MT.CHOICE_C) {
+                if (offset == insertPointA || offset == insertPointA + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point A
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointA, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
+                    insertPointB += change;
+                    insertPointC += change;
+                    insertPointD += change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point C
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
+                    st.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to A
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_A;
+
+                } else if (offset == insertPointB || offset == insertPointB + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point B
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointB, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
+                    insertPointC += change;
+                    insertPointD += change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point C
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
+                    st.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to B
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_B;
+
+                } else if (offset >= insertPointC && offset <= insertPointC + insertTextLength) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point C
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointC, insertTextLength, SQUARE);
+                    st.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to NONE
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_NONE;
+
+                } else if (offset == insertPointD || offset == insertPointD + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point D
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointD, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point C
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
+                    st.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
+                    insertPointD -= change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to D
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_D;
+
+                }
+            } else if (answer == MT.CHOICE_D) {
+                if (offset == insertPointA || offset == insertPointA + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point A
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointA, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
+                    insertPointB += change;
+                    insertPointC += change;
+                    insertPointD += change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point D
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to A
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_A;
+
+                } else if (offset == insertPointB || offset == insertPointB + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point B
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointB, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
+                    insertPointC += change;
+                    insertPointD += change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point D
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to B
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_B;
+
+                } else if (offset == insertPointC || offset == insertPointC + 1) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Insert new text at point C
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointC, 1, insertText);
+                    st.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
+                    insertPointD += change;
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point D
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to C
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_C;
+
+                } else if (offset >= insertPointD && offset <= insertPointD + insertTextLength) {
+
+                    /*
+                     * ==================================================
+                     *
+                     * Remove old text from point D
+                     *
+                     * ==================================================
+                     */
+
+                    st.replaceTextRange(insertPointD, insertTextLength, SQUARE);
+                    st.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
+
+                    /*
+                     * ==================================================
+                     *
+                     * Set choice to NONE
+                     *
+                     * ==================================================
+                     */
+
+                    answer = MT.CHOICE_NONE;
+
                 }
             }
+
+            logger.info("Reading Insert Text Question Answer: {}.", answer);
         }
 
         @Override

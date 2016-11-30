@@ -82,9 +82,9 @@ public class ReadingReviewTableRow extends Composite {
     private void golbal() {
 
         if (!isTableHeader()) {
-            setBackground(ResourceManager.getColor(MT.COLOR_KHAKI));
+            setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
         } else {
-            setBackground(ResourceManager.getColor(MT.COLOR_SADDLE_BROWN));
+            setBackground(ResourceManager.getColor(MT.COLOR_RED_WOOD));
         }
 
         addPaintListener(new PaintListener() {
@@ -108,7 +108,7 @@ public class ReadingReviewTableRow extends Composite {
         FormDataSet.attach(numberCell).atLeft(1).atTop(1).atBottom(1).withWidth(NUMBER_Cell_WIDTH);
         LabelSet ncs = LabelSet.decorate(numberCell).setFont(MT.FONT_MEDIUM).setText(numberText);
         if (isTableHeader()) {
-            ncs.setForeground(MT.COLOR_WHITE_SMOKE);
+            ncs.setFont(MT.FONT_MEDIUM_BOLD);
         }
 
         final Label divider1 = new Label(this, SWT.VERTICAL);
@@ -119,7 +119,7 @@ public class ReadingReviewTableRow extends Composite {
         FormDataSet.attach(statusCell).atTop(1).atRight(1).atBottom(1).withWidth(STATUS_Cell_WIDTH);
         LabelSet scs = LabelSet.decorate(statusCell).setFont(MT.FONT_MEDIUM).setText(statusText);
         if (isTableHeader()) {
-            scs.setForeground(MT.COLOR_WHITE_SMOKE);
+            scs.setFont(MT.FONT_MEDIUM_BOLD);
         }
 
         final Label divider2 = new Label(this, SWT.VERTICAL);
@@ -130,7 +130,7 @@ public class ReadingReviewTableRow extends Composite {
         FormDataSet.attach(descriptionCell).atLeftTo(divider1).atTop(1).atRightTo(divider2).atBottom(1);
         LabelSet dcs = LabelSet.decorate(descriptionCell).setFont(MT.FONT_MEDIUM).setText(descriptionText);
         if (isTableHeader()) {
-            dcs.setForeground(MT.COLOR_WHITE_SMOKE);
+            dcs.setFont(MT.FONT_MEDIUM_BOLD);
         }
     }
 
@@ -142,14 +142,14 @@ public class ReadingReviewTableRow extends Composite {
     }
 
     public void setSelectionBackground() {
-        Color c = ResourceManager.getColor(MT.COLOR_GAINSBORO);
+        Color c = ResourceManager.getColor(MT.COLOR_ROSY_BROWN);
         LabelSet.decorate(numberCell).setBackground(c);
         LabelSet.decorate(descriptionCell).setBackground(c);
         LabelSet.decorate(statusCell).setBackground(c);
     }
 
     public void resetBackground() {
-        Color c = ResourceManager.getColor(MT.COLOR_KHAKI);
+        Color c = ResourceManager.getColor(MT.COLOR_BEIGE);
         LabelSet.decorate(numberCell).setBackground(c);
         LabelSet.decorate(descriptionCell).setBackground(c);
         LabelSet.decorate(statusCell).setBackground(c);

@@ -24,19 +24,19 @@ public class ResourceManager {
          * ==================================================
          */
 
+        caches.putIfAbsent(MT.COLOR_BEIGE, new Color(d, 242, 232, 200)); // #f2e8c8
         caches.putIfAbsent(MT.COLOR_BLACK, new Color(d, 0, 0, 0)); // #000000
         caches.putIfAbsent(MT.COLOR_BURGUNDY, new Color(d, 132, 0, 50)); // #840032
         caches.putIfAbsent(MT.COLOR_DARK_ORANGE, new Color(d, 255, 140, 0)); // #ff8c00
         caches.putIfAbsent(MT.COLOR_DARK_BLUE, new Color(d, 47, 82, 140)); // #2f528c
-        caches.putIfAbsent(MT.COLOR_GAINSBORO, new Color(d, 229, 218, 218)); // #e5dada
         caches.putIfAbsent(MT.COLOR_GRAY40, new Color(d, 102, 102, 102)); // #666666
         caches.putIfAbsent(MT.COLOR_GREEN, new Color(d, 0, 128, 0)); // #008000
         caches.putIfAbsent(MT.COLOR_INDIGO, new Color(d, 55, 50, 125)); // #37327d
-        caches.putIfAbsent(MT.COLOR_KHAKI, new Color(d, 242, 232, 200)); // #f2e8c8
         caches.putIfAbsent(MT.COLOR_ORANGE, new Color(d, 255, 165, 0)); // #ffa500
         caches.putIfAbsent(MT.COLOR_ORANGE_RED, new Color(d, 255, 69, 0)); // #ff4500
         caches.putIfAbsent(MT.COLOR_OXFORD_BLUE, new Color(d, 0, 38, 66)); // #002642
-        caches.putIfAbsent(MT.COLOR_SADDLE_BROWN, new Color(d, 139, 69, 19)); // #8b4513
+        caches.putIfAbsent(MT.COLOR_RED_WOOD, new Color(d, 164, 90, 82)); // #a45a52
+        caches.putIfAbsent(MT.COLOR_ROSY_BROWN, new Color(d, 188, 143, 143)); // #bc8f8f
         caches.putIfAbsent(MT.COLOR_WHITE, new Color(d, 255, 255, 255)); // #ffffff
         caches.putIfAbsent(MT.COLOR_WHITE_SMOKE, new Color(d, 245, 245, 245)); // #f5f5f5
 
@@ -77,10 +77,10 @@ public class ResourceManager {
         caches.putIfAbsent(MT.FONT_SMALL, FontUtils.getFont(d, 12));
         caches.putIfAbsent(MT.FONT_SMALL_BOLD, FontUtils.getFont(d, 12, SWT.BOLD));
 
-        /* 16px, 12pt, 100% */
+        /* 15px, 11pt, 95% */
 
-        caches.putIfAbsent(MT.FONT_MEDIUM, FontUtils.getFont(d, 16));
-        caches.putIfAbsent(MT.FONT_MEDIUM_BOLD, FontUtils.getFont(d, 16, SWT.BOLD));
+        caches.putIfAbsent(MT.FONT_MEDIUM, FontUtils.getFont(d, 15));
+        caches.putIfAbsent(MT.FONT_MEDIUM_BOLD, FontUtils.getFont(d, 15, SWT.BOLD));
 
         /* 20px, 15pt, 125% */
 

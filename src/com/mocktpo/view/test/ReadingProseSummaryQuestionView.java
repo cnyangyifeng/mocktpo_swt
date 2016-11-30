@@ -448,7 +448,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
                     break;
             }
 
-            logger.info("Reading Prose Summary Question Answers after Property Change: ({}, {}, {}).", answer1, answer2, answer3);
+            logger.info("Reading Prose Summary Question Answers: ({}, {}, {}).", answer1, answer2, answer3);
         }
     }
 
