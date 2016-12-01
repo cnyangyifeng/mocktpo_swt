@@ -79,13 +79,13 @@ public class MoreTextDialog {
         FormDataSet.attach(tl).atLeft().atTop().atRight();
         LabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
 
-        final ImageButton cb = new ImageButton(background, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE), ResourceManager.getImage(MT.IMAGE_CONTINUE_HOVER));
+        final ImageButton cb = new ImageButton(background, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(cb).fromLeft(50, -LC.CONTINUE_BUTTON_WIDTH / 2).atBottom(20);
         cb.addMouseListener(new ContinueButtonMouseListener());
 
         final Composite c = new Composite(background, SWT.NONE);
-        FormDataSet.attach(c).atLeft(20).atTopTo(tl, 20).atRight(20).atBottomTo(cb, 20, SWT.TOP);
-        CompositeSet.decorate(c).setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
+        FormDataSet.attach(c).atLeft(20).atTopTo(tl, 20).atRight(20).atBottomTo(cb, 40, SWT.TOP);
+        CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
         GridLayoutSet.layout(c).marginWidth(10).marginHeight(10);
 
         final Label p = new Label(c, SWT.WRAP);

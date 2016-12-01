@@ -1,10 +1,7 @@
 package com.mocktpo.page;
 
 import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.util.CLabelSet;
-import com.mocktpo.util.FormDataSet;
-import com.mocktpo.util.FormLayoutSet;
-import com.mocktpo.util.ResourceManager;
+import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.view.home.ReportsHomeView;
@@ -86,7 +83,7 @@ public class MainPage extends Composite {
 
         sidebar = new Composite(this, SWT.NONE);
         FormDataSet.attach(sidebar).atLeft().atTop().atBottom().withWidth(this.getBounds().width / 6);
-        sidebar.setBackground(ResourceManager.getColor(MT.COLOR_OXFORD_BLUE));
+        CompositeSet.decorate(sidebar).setBackground(MT.COLOR_OXFORD_BLUE);
         FormLayoutSet.layout(sidebar);
 
         final CLabel bl = new CLabel(sidebar, SWT.NONE);

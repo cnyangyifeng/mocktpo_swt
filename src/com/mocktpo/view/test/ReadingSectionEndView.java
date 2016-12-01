@@ -3,6 +3,7 @@ package com.mocktpo.view.test;
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
+import com.mocktpo.util.CompositeSet;
 import com.mocktpo.util.FormDataSet;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.StyledTextSet;
@@ -43,16 +44,16 @@ public class ReadingSectionEndView extends ResponsiveTestView {
     @Override
     public void updateHeader() {
 
-        final ImageButton cb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE), ResourceManager.getImage(MT.IMAGE_CONTINUE_HOVER));
+        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(cb).atRight(10).atTop(10);
         cb.addMouseListener(new ReadingSectionEndContinueButtonMouseListener());
 
-        final ImageButton rvb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_REVIEW), ResourceManager.getImage(MT.IMAGE_REVIEW_HOVER));
+        final ImageButton rvb = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW, MT.IMAGE_REVIEW_HOVER);
         FormDataSet.attach(rvb).atRightTo(cb, 10).atTop(10);
         rvb.addMouseListener(new ReadingSectionEndReviewButtonMouseListener());
 
 
-        final ImageButton rtb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_RETURN), ResourceManager.getImage(MT.IMAGE_RETURN_HOVER));
+        final ImageButton rtb = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
         FormDataSet.attach(rtb).atRightTo(rvb, 10).atTop(10);
         rtb.addMouseListener(new ReadingSectionEndReturnButtonMouseListener());
     }
@@ -60,7 +61,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
     @Override
     public void updateBody() {
 
-        body.setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
+        CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(dt).fromLeft(50, -DESCRIPTION_TEXT_WIDTH / 2).atTop(DESCRIPTION_TEXT_Y).withWidth(DESCRIPTION_TEXT_WIDTH);

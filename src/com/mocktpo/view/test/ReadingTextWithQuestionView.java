@@ -66,19 +66,19 @@ public class ReadingTextWithQuestionView extends SashTestView {
         FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
         StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + TestSchemaUtils.getTotalQuestionCountInSection(page.getTestSchema(), vo.getSectionType()));
 
-        final ImageButton nob = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_NEXT_OVAL), ResourceManager.getImage(MT.IMAGE_NEXT_OVAL_HOVER), ResourceManager.getImage(MT.IMAGE_NEXT_OVAL_DISABLED));
+        final ImageButton nob = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
         FormDataSet.attach(nob).atRight(10).atTop(10);
         nob.addMouseListener(new NextOvalButtonMouseListener());
 
-        final ImageButton bob = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_BACK_OVAL), ResourceManager.getImage(MT.IMAGE_BACK_OVAL_HOVER), ResourceManager.getImage(MT.IMAGE_BACK_OVAL_DISABLED));
+        final ImageButton bob = new ImageButton(header, SWT.NONE, MT.IMAGE_BACK_OVAL, MT.IMAGE_BACK_OVAL_HOVER, MT.IMAGE_BACK_OVAL_DISABLED);
         FormDataSet.attach(bob).atRightTo(nob).atTop(10);
         bob.addMouseListener(new BackOvalButtonMouseListener());
 
-        final ImageButton rob = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_REVIEW_OVAL), ResourceManager.getImage(MT.IMAGE_REVIEW_OVAL_HOVER), ResourceManager.getImage(MT.IMAGE_REVIEW_OVAL_DISABLED));
+        final ImageButton rob = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW_OVAL, MT.IMAGE_REVIEW_OVAL_HOVER, MT.IMAGE_REVIEW_OVAL_DISABLED);
         FormDataSet.attach(rob).atRightTo(bob).atTop(10);
         rob.addMouseListener(new ReviewOvalButtonMouseListener());
 
-        final ImageButton hob = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_HELP_OVAL), ResourceManager.getImage(MT.IMAGE_HELP_OVAL_HOVER), ResourceManager.getImage(MT.IMAGE_HELP_OVAL_DISABLED));
+        final ImageButton hob = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
         FormDataSet.attach(hob).atRightTo(rob).atTop(10);
         hob.addMouseListener(new HelpOvalButtonMouseListener());
     }

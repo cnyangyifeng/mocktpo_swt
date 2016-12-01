@@ -1,5 +1,6 @@
 package com.mocktpo.widget;
 
+import com.mocktpo.util.CompositeSet;
 import com.mocktpo.util.FormLayoutSet;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.constants.MT;
@@ -46,12 +47,10 @@ public class ImageButton extends Composite {
 
     public ImageButton(Composite parent, int style, Image normal, Image hover, Image disabled) {
         super(parent, style);
+        this.d = parent.getDisplay();
         this.normal = normal;
         this.hover = hover;
         this.disabled = disabled;
-        setBackgroundImage(normal);
-        setCursor(ResourceManager.getCursor(MT.CURSOR_HAND));
-        addMouseTrackListener(new ImageButtonMouseTrackListener());
         init();
     }
 
@@ -60,6 +59,8 @@ public class ImageButton extends Composite {
     }
 
     private void golbal() {
+        CompositeSet.decorate(this).setBackgroundImage(normal).setCursor(MT.CURSOR_HAND);
+        addMouseTrackListener(new ImageButtonMouseTrackListener());
         FormLayoutSet.layout(this);
     }
 

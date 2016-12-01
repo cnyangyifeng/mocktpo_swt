@@ -171,11 +171,11 @@ public class ReadingReviewView extends Composite {
         FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
         StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + page.getTestSchema().getView(page.getUserTest().getLastViewId()).getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + TestSchemaUtils.getTotalQuestionCountInSection(page.getTestSchema(), ST.SECTION_TYPE_READING));
 
-        final ImageButton gb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_GO_TO_QUESTION), ResourceManager.getImage(MT.IMAGE_GO_TO_QUESTION_HOVER));
+        final ImageButton gb = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
         FormDataSet.attach(gb).atRight(10).atTop(10);
         gb.addMouseListener(new ReadingReviewGoToQuestionButtonMouseListener());
 
-        final ImageButton rb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_RETURN), ResourceManager.getImage(MT.IMAGE_RETURN_HOVER));
+        final ImageButton rb = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
         FormDataSet.attach(rb).atRightTo(gb, 10).atTop(10);
         rb.addMouseListener(new ReadingReviewReturnButtonMouseListener());
     }
@@ -215,7 +215,7 @@ public class ReadingReviewView extends Composite {
 
     private void updateBody() {
 
-        body.setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
+        CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
         GridDataSet.attach(dt).fillBoth();

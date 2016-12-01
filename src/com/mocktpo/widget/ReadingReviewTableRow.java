@@ -1,9 +1,6 @@
 package com.mocktpo.widget;
 
-import com.mocktpo.util.FormDataSet;
-import com.mocktpo.util.FormLayoutSet;
-import com.mocktpo.util.LabelSet;
-import com.mocktpo.util.ResourceManager;
+import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -82,9 +79,9 @@ public class ReadingReviewTableRow extends Composite {
     private void golbal() {
 
         if (!isTableHeader()) {
-            setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
+            CompositeSet.decorate(this).setBackground(MT.COLOR_BEIGE);
         } else {
-            setBackground(ResourceManager.getColor(MT.COLOR_TOUPE));
+            CompositeSet.decorate(this).setBackground(MT.COLOR_TOUPE);
         }
 
         addPaintListener(new PaintListener() {

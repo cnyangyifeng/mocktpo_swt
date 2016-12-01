@@ -50,6 +50,7 @@ public interface LC {
     int SIDEBAR_TEST_EDITOR_HEIGHT = 40;
     int SIDEBAR_ITEM_HEIGHT = 60;
     int TEST_HEADER_HEIGHT = 90;
+    int VOLUME_CONTROL_WIDTH = 100;
 
     /*
      * ==================================================

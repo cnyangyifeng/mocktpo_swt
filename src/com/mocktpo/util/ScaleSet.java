@@ -3,18 +3,17 @@ package com.mocktpo.util;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Scale;
 
-public class CompositeSet {
+public class ScaleSet {
 
-    private Composite c;
+    private Scale c;
 
-    public static CompositeSet decorate(Composite c) {
-        return new CompositeSet(c);
+    public static ScaleSet decorate(Scale c) {
+        return new ScaleSet(c);
     }
 
-    private CompositeSet(Composite c) {
+    private ScaleSet(Scale c) {
         this.c = c;
     }
 
@@ -26,31 +25,13 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setBackground(int i) {
+    public ScaleSet setBackground(int i) {
         c.setBackground(ResourceManager.getColor(i));
         return this;
     }
 
-    public CompositeSet setBackground(Color color) {
+    public ScaleSet setBackground(Color color) {
         c.setBackground(color);
-        return this;
-    }
-
-    /*
-     * ==================================================
-     *
-     * Background Image Settings
-     *
-     * ==================================================
-     */
-
-    public CompositeSet setBackgroundImage(int i) {
-        c.setBackgroundImage(ResourceManager.getImage(i));
-        return this;
-    }
-
-    public CompositeSet setBackgroundImage(Image image) {
-        c.setBackgroundImage(image);
         return this;
     }
 
@@ -62,12 +43,12 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setCursor(int i) {
+    public ScaleSet setCursor(int i) {
         c.setCursor(ResourceManager.getCursor(i));
         return this;
     }
 
-    public CompositeSet setCursor(Cursor cursor) {
+    public ScaleSet setCursor(Cursor cursor) {
         c.setCursor(cursor);
         return this;
     }
@@ -80,7 +61,7 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setData(String key, Object value) {
+    public ScaleSet setData(String key, Object value) {
         c.setData(key, value);
         return this;
     }
@@ -93,7 +74,7 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setEnabled(boolean b) {
+    public ScaleSet setEnabled(boolean b) {
         c.setEnabled(b);
         return this;
     }
@@ -106,7 +87,7 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setFocus() {
+    public ScaleSet setFocus() {
         c.setFocus();
         return this;
     }
@@ -119,12 +100,12 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setFont(int i) {
+    public ScaleSet setFont(int i) {
         c.setFont(ResourceManager.getFont(i));
         return this;
     }
 
-    public CompositeSet setFont(Font f) {
+    public ScaleSet setFont(Font f) {
         c.setFont(f);
         return this;
     }
@@ -137,13 +118,78 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setForeground(int i) {
+    public ScaleSet setForeground(int i) {
         c.setForeground(ResourceManager.getColor(i));
         return this;
     }
 
-    public CompositeSet setForeground(Color color) {
+    public ScaleSet setForeground(Color color) {
         c.setForeground(color);
+        return this;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Increment Settings
+     *
+     * ==================================================
+     */
+
+    public ScaleSet setIncrement(int i) {
+        c.setIncrement(i);
+        return this;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Maximum Settings
+     *
+     * ==================================================
+     */
+
+    public ScaleSet setMaximum(int i) {
+        c.setMaximum(i);
+        return this;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Minimum Settings
+     *
+     * ==================================================
+     */
+
+    public ScaleSet setMinimum(int i) {
+        c.setMinimum(i);
+        return this;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Page Increment Settings
+     *
+     * ==================================================
+     */
+
+    public ScaleSet setPageIncrement(int i) {
+        c.setPageIncrement(i);
+        return this;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Selection Settings
+     *
+     * ==================================================
+     */
+
+    public ScaleSet setSelection(int i) {
+        c.setSelection(i);
         return this;
     }
 
@@ -155,7 +201,7 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setVisible(boolean b) {
+    public ScaleSet setVisible(boolean b) {
         c.setVisible(b);
         return this;
     }

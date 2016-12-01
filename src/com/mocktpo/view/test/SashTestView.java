@@ -1,10 +1,7 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.page.TestPage;
-import com.mocktpo.util.FormDataSet;
-import com.mocktpo.util.FormLayoutSet;
-import com.mocktpo.util.LabelSet;
-import com.mocktpo.util.ResourceManager;
+import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -34,7 +31,7 @@ public abstract class SashTestView extends TestView {
 
         final Composite body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight().atBottomTo(footer);
-        body.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
+        CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(body);
 
         left = new Composite(body, SWT.NONE);

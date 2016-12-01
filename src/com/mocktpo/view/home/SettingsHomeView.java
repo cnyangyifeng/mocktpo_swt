@@ -1,8 +1,8 @@
 package com.mocktpo.view.home;
 
+import com.mocktpo.util.CompositeSet;
 import com.mocktpo.util.FormDataSet;
 import com.mocktpo.util.FormLayoutSet;
-import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.constants.MT;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -61,6 +61,6 @@ public class SettingsHomeView extends Composite {
         body = new Composite(sc, SWT.NONE);
         sc.setContent(body);
 
-        body.setBackground(ResourceManager.getColor(MT.COLOR_WINDOW_BACKGROUND));
+        CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
     }
 }

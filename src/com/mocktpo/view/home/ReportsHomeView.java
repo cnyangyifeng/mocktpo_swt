@@ -1,5 +1,6 @@
 package com.mocktpo.view.home;
 
+import com.mocktpo.util.CompositeSet;
 import com.mocktpo.util.FormDataSet;
 import com.mocktpo.util.FormLayoutSet;
 import com.mocktpo.util.ResourceManager;
@@ -61,6 +62,6 @@ public class ReportsHomeView extends Composite {
         body = new Composite(sc, SWT.NONE);
         sc.setContent(body);
 
-        body.setBackground(ResourceManager.getColor(MT.COLOR_WINDOW_BACKGROUND));
+        CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
     }
 }

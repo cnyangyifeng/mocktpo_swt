@@ -51,12 +51,12 @@ public class ReadingTextView extends SashTestView {
     @Override
     public void updateHeader() {
 
-        final ImageButton cob = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE_OVAL), ResourceManager.getImage(MT.IMAGE_CONTINUE_OVAL_HOVER), ResourceManager.getImage(MT.IMAGE_CONTINUE_OVAL_DISABLED));
+        final ImageButton cob = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_OVAL, MT.IMAGE_CONTINUE_OVAL_HOVER, MT.IMAGE_CONTINUE_OVAL_DISABLED);
         FormDataSet.attach(cob).atRight(10).atTop(10);
         cob.addMouseListener(new ContinueOvalButtonMouseListener());
 
         if (!vo.isFirstPassage()) {
-            final ImageButton bob = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_BACK_OVAL), ResourceManager.getImage(MT.IMAGE_BACK_OVAL_HOVER), ResourceManager.getImage(MT.IMAGE_BACK_OVAL_DISABLED));
+            final ImageButton bob = new ImageButton(header, SWT.NONE, MT.IMAGE_BACK_OVAL, MT.IMAGE_BACK_OVAL_HOVER, MT.IMAGE_BACK_OVAL_DISABLED);
             FormDataSet.attach(bob).atRightTo(cob).atTop(10);
             bob.addMouseListener(new BackOvalButtonMouseListener());
         }

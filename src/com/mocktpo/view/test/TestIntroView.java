@@ -41,7 +41,7 @@ public class TestIntroView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
-        final ImageButton cb = new ImageButton(header, SWT.NONE, ResourceManager.getImage(MT.IMAGE_CONTINUE), ResourceManager.getImage(MT.IMAGE_CONTINUE_HOVER));
+        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(cb).atRight(10).atTop(10);
         cb.addMouseListener(new ContinueButtonMouseListener());
     }
@@ -49,7 +49,7 @@ public class TestIntroView extends ResponsiveTestView {
     @Override
     public void updateBody() {
 
-        body.setBackground(ResourceManager.getColor(MT.COLOR_BEIGE));
+        CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         final Label il = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(il).atLeft().atTop(IMAGE_TEXT_Y).atRight();

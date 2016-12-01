@@ -61,7 +61,7 @@ public class TestCard extends Composite {
     }
 
     private void golbal() {
-        setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
+        CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(this).marginWidth(10).marginHeight(10);
     }
 
@@ -69,7 +69,7 @@ public class TestCard extends Composite {
 
         header = new Composite(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight();
-        header.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
+        CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(header);
 
         final CLabel tl = new CLabel(header, SWT.NONE);
@@ -93,7 +93,7 @@ public class TestCard extends Composite {
 
         final Composite c = new Composite(this, SWT.NONE);
         FormDataSet.attach(c).atLeft().atTopTo(header, 10).atRight();
-        c.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
+        CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(c).marginWidth(0).marginHeight(0);
 
         final CLabel rl = new CLabel(c, SWT.NONE);
@@ -106,7 +106,7 @@ public class TestCard extends Composite {
 
         final Label bd = new Label(c, SWT.NONE);
         FormDataSet.attach(bd).atLeft().atTopTo(sl, 10).atRight().withHeight(1);
-        LabelSet.decorate(bd).setBackground(ResourceManager.getColor(MT.COLOR_WHITE_SMOKE));
+        LabelSet.decorate(bd).setBackground(MT.COLOR_WHITE_SMOKE);
 
         final Button b = new Button(c, SWT.PUSH);
         FormDataSet.attach(b).atLeft().atTopTo(bd, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);

@@ -85,7 +85,7 @@ public class RegisterWindow {
     private void initHeader() {
 
         header = new Composite(s, SWT.NONE);
-        header.setBackground(ResourceManager.getColor(MT.COLOR_WINDOW_BACKGROUND));
+        CompositeSet.decorate(header).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         FormDataSet.attach(header).atLeft().atTop().atRight();
         FormLayoutSet.layout(header);
 
@@ -106,7 +106,7 @@ public class RegisterWindow {
 
         footer = new Composite(s, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atRight().atBottom().withHeight(LC.BUTTON_HEIGHT_HINT * 2);
-        footer.setBackground(ResourceManager.getColor(MT.COLOR_WINDOW_BACKGROUND));
+        CompositeSet.decorate(footer).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         FormLayoutSet.layout(footer);
 
         r = new Button(footer, SWT.PUSH);
@@ -124,7 +124,7 @@ public class RegisterWindow {
 
         final Composite body = new Composite(s, SWT.NONE);
         FormDataSet.attach(body).atLeft(100).atTopTo(header, 20).atRight(100).atBottomTo(footer, 20);
-        body.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
+        CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(10);
 
         final CLabel el = new CLabel(body, SWT.NONE);

@@ -1,5 +1,6 @@
 package com.mocktpo.widget;
 
+import com.mocktpo.util.CompositeSet;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.constants.LC;
@@ -57,6 +58,6 @@ public class TestHeader extends Composite {
         gc.fillGradientRectangle(0, 0, ScreenUtils.getClientWidth(d), LC.TEST_HEADER_HEIGHT, false);
         gc.dispose();
 
-        this.setBackgroundImage(image);
+        CompositeSet.decorate(this).setBackgroundImage(image);
     }
 }
