@@ -24,7 +24,7 @@ public class ChangingVolumeView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int HEADING_TEXT_Y = 100;
+    private static final int VIEW_PORT_PADDING_TOP = 100;
     private static final int DESCRIPTION_TEXT_WIDTH = 720;
     private static final int FOOTNOTE_TEXT_WIDTH = 480;
     private static final int VERTICAL_SPACING = 50;
@@ -80,7 +80,7 @@ public class ChangingVolumeView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         final StyledText ht = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(ht).atLeft().atTop(HEADING_TEXT_Y).atRight();
+        FormDataSet.attach(ht).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
         StyledTextSet.decorate(ht).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledText("heading").getText());
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
@@ -143,6 +143,8 @@ public class ChangingVolumeView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
+            release();
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId() + 1);

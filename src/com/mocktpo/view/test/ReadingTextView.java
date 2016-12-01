@@ -121,9 +121,7 @@ public class ReadingTextView extends SashTestView {
 
             if (goneThrough) {
 
-                if (vo.isTimed()) {
-                    stopTimer();
-                }
+                release();
 
                 UserTest ut = page.getUserTest();
                 ut.setLastViewId(vo.getViewId() + 1);
@@ -132,6 +130,7 @@ public class ReadingTextView extends SashTestView {
                 sqlSession.commit();
 
                 page.resume(ut);
+
             } else {
                 new MoreTextDialog().openAndWaitForDisposal();
             }
@@ -152,9 +151,7 @@ public class ReadingTextView extends SashTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            if (vo.isTimed()) {
-                stopTimer();
-            }
+            release();
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId() - 1);

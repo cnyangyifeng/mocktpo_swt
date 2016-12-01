@@ -16,7 +16,7 @@ public class TestIntroView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int IMAGE_TEXT_Y = 50;
+    private static final int VIEW_PORT_PADDING_TOP = 50;
     private static final int VERTICAL_SPACING = 50;
 
     /*
@@ -52,7 +52,7 @@ public class TestIntroView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         final Label il = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(il).atLeft().atTop(IMAGE_TEXT_Y).atRight();
+        FormDataSet.attach(il).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
         LabelSet.decorate(il).setImage(MT.IMAGE_ETS_TOEFL);
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
@@ -77,6 +77,8 @@ public class TestIntroView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
+            release();
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId() + 1);

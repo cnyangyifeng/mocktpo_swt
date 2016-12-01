@@ -103,6 +103,7 @@ public class ReadingReviewView extends Composite {
         this.sqlSession = MyApplication.get().getSqlSession();
         this.timed = timed;
         init();
+        realloc();
     }
 
     private void init() {
@@ -279,6 +280,22 @@ public class ReadingReviewView extends Composite {
     /*
      * ==================================================
      *
+     * Native Resource Operations
+     *
+     * ==================================================
+     */
+
+    protected void realloc() {
+        startTimer();
+    }
+
+    protected void release() {
+        stopTimer();
+    }
+
+    /*
+     * ==================================================
+     *
      * Timer
      *
      * ==================================================
@@ -326,13 +343,13 @@ public class ReadingReviewView extends Composite {
     }
 
     public void stopTimer() {
-
-        if (null != timerTask) {
-            timerTask.cancel();
-        }
-
-        if (null != timer) {
-            timer.purge();
+        if (timed) {
+            if (null != timerTask) {
+                timerTask.cancel();
+            }
+            if (null != timer) {
+                timer.purge();
+            }
         }
     }
 
@@ -401,9 +418,7 @@ public class ReadingReviewView extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            if (timed) {
-                stopTimer();
-            }
+            release();
 
             UserTest ut = page.getUserTest();
 
@@ -459,9 +474,7 @@ public class ReadingReviewView extends Composite {
                 return;
             }
 
-            if (timed) {
-                stopTimer();
-            }
+            release();
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(selectedViewId);
@@ -483,9 +496,7 @@ public class ReadingReviewView extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            if (timed) {
-                stopTimer();
-            }
+            release();
 
             UserTest ut = page.getUserTest();
 

@@ -76,11 +76,7 @@ public class TestPage extends Composite {
         }
         this.userTest = ut;
 
-        TestView tv = getLastTestView();
-        tv.startTimer();
-        tv.startAudio();
-
-        stack.topControl = tv;
+        stack.topControl = getLastTestView();
         this.layout();
     }
 
@@ -100,9 +96,6 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_HEADSET:
                 tv = new HeadsetView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
-                tv = new ListeningDirectionsView(this, SWT.NONE);
-                break;
             case VT.VIEW_TYPE_READING_DIRECTIONS:
                 tv = new ReadingDirectionsView(this, SWT.NONE);
                 break;
@@ -120,6 +113,12 @@ public class TestPage extends Composite {
                 break;
             case VT.VIEW_TYPE_READING_TEXT_WITH_QUESTION:
                 tv = new ReadingTextWithQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
+                tv = new ListeningDirectionsView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_LISTENING_QUESTION:
+                tv = new ListeningQuestionView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_TEST_INTRO:
                 tv = new TestIntroView(this, SWT.NONE);
@@ -139,11 +138,7 @@ public class TestPage extends Composite {
      */
 
     public void toReadingReview() {
-
-        final ReadingReviewView readingReview = new ReadingReviewView(this, SWT.NONE, true);
-        readingReview.startTimer();
-
-        stack.topControl = readingReview;
+        stack.topControl = new ReadingReviewView(this, SWT.NONE, true);;
         this.layout();
     }
 

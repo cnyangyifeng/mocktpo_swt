@@ -17,10 +17,12 @@ import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -67,7 +69,11 @@ public abstract class TestView extends Composite {
 
     /* Audio Player */
 
-    protected AudioPlayer audioPlayer;
+    protected TestAudioPlayer audioPlayer;
+
+    /* Images */
+
+    protected List<Image> images;
 
     /*
      * ==================================================
@@ -84,6 +90,7 @@ public abstract class TestView extends Composite {
         this.vo = page.getTestSchema().getView(page.getUserTest().getLastViewId());
         this.sqlSession = MyApplication.get().getSqlSession();
         init();
+        realloc();
     }
 
     private void init() {
@@ -166,6 +173,25 @@ public abstract class TestView extends Composite {
     /*
      * ==================================================
      *
+     * Native Resource Operations
+     *
+     * ==================================================
+     */
+
+    protected void realloc() {
+        startTimer();
+        startAudio();
+    }
+
+    protected void release() {
+        stopTimer();
+        stopAudio();
+        unloadImages();
+    }
+
+    /*
+     * ==================================================
+     *
      * Timer
      *
      * ==================================================
@@ -213,13 +239,13 @@ public abstract class TestView extends Composite {
     }
 
     public void stopTimer() {
-
-        if (null != timerTask) {
-            timerTask.cancel();
-        }
-
-        if (null != timer) {
-            timer.purge();
+        if (vo.isTimed()) {
+            if (null != timerTask) {
+                timerTask.cancel();
+            }
+            if (null != timer) {
+                timer.purge();
+            }
         }
     }
 
@@ -271,7 +297,6 @@ public abstract class TestView extends Composite {
         }
     }
 
-
     /*
      * ==================================================
      *
@@ -284,14 +309,14 @@ public abstract class TestView extends Composite {
 
         if (vo.isWithAudio()) {
 
-            final AtomicReference<AudioPlayer> ref = new AtomicReference<AudioPlayer>();
-            audioPlayer = new AudioPlayer();
+            final AtomicReference<TestAudioPlayer> ref = new AtomicReference<TestAudioPlayer>();
+            audioPlayer = new TestAudioPlayer();
             ref.set(audioPlayer);
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    AudioPlayer player = ref.get();
+                    TestAudioPlayer player = ref.get();
                     player.play(page.getUserTest(), vo.getAudioFileName());
                 }
             }).start();
@@ -325,6 +350,30 @@ public abstract class TestView extends Composite {
     /*
      * ==================================================
      *
+     * Images
+     *
+     * ==================================================
+     */
+
+    public List<Image> loadImages() {
+        if (vo.isWithImages()) {
+            if (null == images || images.isEmpty()) {
+                images = TestImageUtils.load(d, page.getUserTest(), vo.getImageFileNames());
+            }
+        }
+        return images;
+    }
+
+    public void unloadImages() {
+        if (vo.isWithImages() && null != images) {
+            TestImageUtils.unload(images);
+            images = null;
+        }
+    }
+
+    /*
+     * ==================================================
+     *
      * Listeners
      *
      * ==================================================
@@ -345,6 +394,10 @@ public abstract class TestView extends Composite {
 
             if (vo.isWithAudio()) {
                 stopAudio();
+            }
+
+            if (vo.isWithImages()) {
+                unloadImages();
             }
 
             UserTest ut = page.getUserTest();

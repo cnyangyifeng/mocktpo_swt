@@ -17,6 +17,11 @@ public class StyleRangeUtils {
     }
 
     public static void decorate(StyledText st, List<StyleRangeVo> srvs) {
+
+        if (null == srvs) {
+            return;
+        }
+
         List<StyleRange> srs = new ArrayList<StyleRange>();
 
         for (StyleRangeVo srv : srvs) {
@@ -70,7 +75,7 @@ public class StyleRangeUtils {
              * ==================================================
              */
 
-            if (false != srv.isUnderline()) {
+            if (srv.isUnderline()) {
                 sr.underline = srv.isUnderline();
             }
 
@@ -84,16 +89,14 @@ public class StyleRangeUtils {
 
             if (StringUtils.isNotEmpty(srv.getImage())) {
                 Image image = ImageUtils.load(st.getDisplay(), srv.getImage());
-                if (null != image) {
-                    sr.data = image;
-                    Rectangle bounds = image.getBounds();
-                    sr.metrics = new GlyphMetrics(bounds.height, 0, bounds.width);
-                }
+                sr.data = image;
+                Rectangle bounds = image.getBounds();
+                sr.metrics = new GlyphMetrics(bounds.height, 0, bounds.width);
             }
 
             srs.add(sr);
         }
 
-        st.setStyleRanges(srs.toArray(new StyleRange[0]));
+        st.setStyleRanges(srs.toArray(new StyleRange[srs.size()]));
     }
 }

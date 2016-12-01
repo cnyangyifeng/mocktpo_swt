@@ -8,6 +8,16 @@ public interface RC {
     /*
      * ==================================================
      *
+     * Audios
+     *
+     * ==================================================
+     */
+
+    String MP3_FILE_TYPE_SUFFIX = ".mp3";
+
+    /*
+     * ==================================================
+     *
      * Database Configuration File
      *
      * ==================================================
@@ -25,8 +35,8 @@ public interface RC {
 
     String CONFIG_DIR = "/config/";
     String IMAGES_DIR = "/resources/images/";
-    String TESTS_DATA_ROOT_DIR = "/data/tests/";
-    // String USERS_DATA_ROOT_DIR = "/data/users/";
+    String TESTS_DATA_DIR = "/data/tests/";
+    String USERS_DATA_DIR = "/data/users/";
 
     /*
      * ==================================================
@@ -36,14 +46,8 @@ public interface RC {
      * ==================================================
      */
 
-    /* Hidpi prefix */
-
     String HIDPI_SUFFIX = "@2x";
     String PNG_FILE_TYPE_SUFFIX = ".png";
-
-    String SMALL_SUFFIX = "";
-    String MEDIUM_SUFFIX = "_m";
-    String LARGE_SUFFIX = "_l";
 
     /*
      * ==================================================
@@ -54,7 +58,6 @@ public interface RC {
      */
 
     String PUBRING_FILE = "pubring.gpg";
-    // String SECRING_FILE = "secring.gpg";
 
     /*
      * ==================================================

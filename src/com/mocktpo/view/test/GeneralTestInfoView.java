@@ -3,7 +3,10 @@ package com.mocktpo.view.test;
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.util.CompositeSet;
+import com.mocktpo.util.FormDataSet;
+import com.mocktpo.util.StyleRangeUtils;
+import com.mocktpo.util.StyledTextSet;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
@@ -15,7 +18,7 @@ public class GeneralTestInfoView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int HEADING_TEXT_Y = 50;
+    private static final int VIEW_PORT_PADDING_TOP = 50;
     private static final int VERTICAL_SPACING = 50;
 
     /*
@@ -51,7 +54,7 @@ public class GeneralTestInfoView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         final StyledText ht = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(ht).atLeft().atTop(HEADING_TEXT_Y).atRight();
+        FormDataSet.attach(ht).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
         StyledTextSet.decorate(ht).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledText("heading").getText());
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
@@ -76,6 +79,8 @@ public class GeneralTestInfoView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
+            release();
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId() + 1);

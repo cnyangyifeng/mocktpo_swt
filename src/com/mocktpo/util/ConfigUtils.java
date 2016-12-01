@@ -19,7 +19,7 @@ public class ConfigUtils {
 
     public static <T> T load(String testAlias, Class<T> clazz) {
         try {
-            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_ROOT_DIR + testAlias + "/" + testAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
+            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + testAlias + "/" + testAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
             String json = FileUtils.readFileToString(new File(url.toURI()), "utf-8");
             return JSON.parseObject(json, clazz);
         } catch (Exception e) {
@@ -30,7 +30,7 @@ public class ConfigUtils {
 
     public static void save(String testAlias, Object object) {
         try {
-            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_ROOT_DIR + testAlias + "/" + testAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
+            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + testAlias + "/" + testAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
             File file = new File(url.toURI());
             if (file.createNewFile()) {
                 logger.debug("File '" + testAlias + RC.JSON_FILE_TYPE_SUFFIX + "' saved successfully.");

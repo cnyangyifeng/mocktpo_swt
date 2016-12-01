@@ -4,7 +4,7 @@
   "views": [
     {
       "viewId": 1,
-      "viewType": 11,
+      "viewType": 12,
       "viewTypeName": "Test Introduction",
       "sectionType": 0,
       "sectionTypeName": "",
@@ -1961,7 +1961,7 @@
       "sectionType": 1,
       "sectionTypeName": "Listening",
       "withAudio": true,
-      "audioFileName": "listening_directions.mp3",
+      "audioFileName": "listening/d",
       "body": {
         "heading": {
           "text": "Listening Section Directions"
@@ -1982,6 +1982,17 @@
           ]
         }
       }
+    },
+    {
+      "viewId": 53,
+      "viewType": 11,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audioFileName": "listening/c1",
+      "withImages": true,
+      "imageFileNames": "listening/c1"
     }
   ]
 }

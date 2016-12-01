@@ -349,9 +349,7 @@ public class ReadingFillTableQuestionView extends StackTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            if (vo.isTimed()) {
-                stopTimer();
-            }
+            release();
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId() + 1);
@@ -376,9 +374,7 @@ public class ReadingFillTableQuestionView extends StackTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            if (vo.isTimed()) {
-                stopTimer();
-            }
+            release();
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId() - 1);
@@ -403,9 +399,7 @@ public class ReadingFillTableQuestionView extends StackTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            if (vo.isTimed()) {
-                stopTimer();
-            }
+            release();
 
             page.toReadingReview();
         }

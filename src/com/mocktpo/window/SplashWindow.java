@@ -65,29 +65,23 @@ public class SplashWindow {
     }
 
     private void global() {
-
         s.setText(msgs.getString("app_name"));
         s.setImage(ico);
         s.setBackground(white);
         s.setBackgroundMode(SWT.INHERIT_FORCE);
         FormLayoutSet.layout(s);
-
     }
 
     private void initBackground() {
-
         background = new Label(s, SWT.NONE);
         FormDataSet.attach(background).atLeft().atTop().atRight();
         LabelSet.decorate(background).setImage(b);
-
     }
 
     private void initMessage() {
-
         message = new CLabel(s, SWT.CENTER);
         FormDataSet.attach(message).atLeft().atTopTo(background).atRight().atBottom(20);
         CLabelSet.decorate(message).setText(msgs.getString("launching"));
-
     }
 
     public void openAndWaitForDisposal() {

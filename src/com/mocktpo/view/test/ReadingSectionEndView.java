@@ -5,7 +5,6 @@ import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.CompositeSet;
 import com.mocktpo.util.FormDataSet;
-import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.StyledTextSet;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.widget.ImageButton;
@@ -18,8 +17,8 @@ public class ReadingSectionEndView extends ResponsiveTestView {
 
     /* Constants */
 
+    private static final int VIEW_PORT_PADDING_TOP = 100;
     private static final int DESCRIPTION_TEXT_WIDTH = 720;
-    private static final int DESCRIPTION_TEXT_Y = 100;
 
     /*
      * ==================================================
@@ -52,7 +51,6 @@ public class ReadingSectionEndView extends ResponsiveTestView {
         FormDataSet.attach(rvb).atRightTo(cb, 10).atTop(10);
         rvb.addMouseListener(new ReadingSectionEndReviewButtonMouseListener());
 
-
         final ImageButton rtb = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
         FormDataSet.attach(rtb).atRightTo(rvb, 10).atTop(10);
         rtb.addMouseListener(new ReadingSectionEndReturnButtonMouseListener());
@@ -64,7 +62,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).fromLeft(50, -DESCRIPTION_TEXT_WIDTH / 2).atTop(DESCRIPTION_TEXT_Y).withWidth(DESCRIPTION_TEXT_WIDTH);
+        FormDataSet.attach(dt).fromLeft(50, -DESCRIPTION_TEXT_WIDTH / 2).atTop(VIEW_PORT_PADDING_TOP).withWidth(DESCRIPTION_TEXT_WIDTH);
         StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
     }
 
@@ -84,6 +82,8 @@ public class ReadingSectionEndView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
+            release();
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId() + 1);
@@ -108,9 +108,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            if (vo.isTimed()) {
-                stopTimer();
-            }
+            release();
 
             page.toReadingReview();
         }
@@ -129,9 +127,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            if (vo.isTimed()) {
-                stopTimer();
-            }
+            release();
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId() - 1);

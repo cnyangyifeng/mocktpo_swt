@@ -7,7 +7,7 @@ import javax.sound.sampled.*;
 import java.net.URL;
 import java.net.URLDecoder;
 
-public class AudioPlayer {
+public class TestAudioPlayer {
 
     private static final int BUFFER_SIZE = 4096;
 
@@ -16,13 +16,13 @@ public class AudioPlayer {
     private volatile boolean paused;
     private final Object lock = new Object();
 
-    public AudioPlayer() {
+    public TestAudioPlayer() {
     }
 
     public void play(UserTest ut, String fileName) {
 
         try {
-            URL url = this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_ROOT_DIR + ut.getAlias() + "/" + fileName, "utf-8"));
+            URL url = this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + ut.getAlias() + "/" + fileName + RC.MP3_FILE_TYPE_SUFFIX, "utf-8"));
             AudioInputStream encoded = AudioSystem.getAudioInputStream(url);
             AudioFormat encodedFormat = encoded.getFormat();
             AudioFormat decodedFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, encodedFormat.getSampleRate(), 16, encodedFormat.getChannels(), encodedFormat.getChannels() * 2, encodedFormat.getSampleRate(), false);

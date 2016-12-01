@@ -16,7 +16,7 @@ public class HeadsetView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int TOP_TEXT_Y = 100;
+    private static final int VIEW_PORT_PADDING_TOP = 100;
     private static final int VERTICAL_SPACING = 20;
 
     /*
@@ -52,7 +52,7 @@ public class HeadsetView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         final StyledText tt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(tt).atLeft().atTop(TOP_TEXT_Y).atRight();
+        FormDataSet.attach(tt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
         StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("top").getText());
 
         final Label il = new Label(viewPort, SWT.NONE);
@@ -81,6 +81,8 @@ public class HeadsetView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
+            release();
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId() + 1);

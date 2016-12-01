@@ -23,6 +23,8 @@ public class TestViewVo implements Serializable {
     private int passageOffset;
     private boolean withAudio;
     private String audioFileName;
+    private boolean withImages;
+    private String imageFileNames;
 
     public StyledTextVo getStyledText(String key) {
         for (String i : body.keySet()) {
@@ -135,5 +137,21 @@ public class TestViewVo implements Serializable {
 
     public void setAudioFileName(String audioFileName) {
         this.audioFileName = audioFileName;
+    }
+
+    public boolean isWithImages() {
+        return withImages;
+    }
+
+    public void setWithImages(boolean withImages) {
+        this.withImages = withImages;
+    }
+
+    public String getImageFileNames() {
+        return imageFileNames;
+    }
+
+    public void setImageFileNames(String imageFileNames) {
+        this.imageFileNames = imageFileNames;
     }
 }
