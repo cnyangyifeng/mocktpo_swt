@@ -30,10 +30,10 @@ public class DroppableAnswerComposite extends Composite {
     /* Widgets */
 
     private Label label;
-    private PropertyChangeSupport support;
 
     /* Properties */
 
+    private PropertyChangeSupport support;
     private int id;
     private int answer;
 

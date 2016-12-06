@@ -102,7 +102,7 @@ public class ReadingReviewTableRow extends Composite {
     private void initTableCells() {
 
         numberCell = new Label(this, SWT.CENTER);
-        FormDataSet.attach(numberCell).atLeft(1).atTop(1).atBottom(1).withWidth(NUMBER_Cell_WIDTH);
+        FormDataSet.attach(numberCell).atLeft(1).atTop(1).atBottom().withWidth(NUMBER_Cell_WIDTH);
         LabelSet ncs = LabelSet.decorate(numberCell).setFont(MT.FONT_MEDIUM).setText(numberText);
         if (isTableHeader()) {
             ncs.setFont(MT.FONT_MEDIUM_BOLD);
@@ -113,7 +113,7 @@ public class ReadingReviewTableRow extends Composite {
         LabelSet.decorate(divider1).setBackground(MT.COLOR_GRAY40);
 
         statusCell = new Label(this, SWT.CENTER);
-        FormDataSet.attach(statusCell).atTop(1).atRight(1).atBottom(1).withWidth(STATUS_Cell_WIDTH);
+        FormDataSet.attach(statusCell).atTop(1).atRight(1).atBottom().withWidth(STATUS_Cell_WIDTH);
         LabelSet scs = LabelSet.decorate(statusCell).setFont(MT.FONT_MEDIUM).setText(statusText);
         if (isTableHeader()) {
             scs.setFont(MT.FONT_MEDIUM_BOLD);
@@ -124,7 +124,7 @@ public class ReadingReviewTableRow extends Composite {
         LabelSet.decorate(divider2).setBackground(MT.COLOR_GRAY40);
 
         descriptionCell = new Label(this, SWT.NONE);
-        FormDataSet.attach(descriptionCell).atLeftTo(divider1).atTop(1).atRightTo(divider2).atBottom(1);
+        FormDataSet.attach(descriptionCell).atLeftTo(divider1).atTop(1).atRightTo(divider2).atBottom();
         LabelSet dcs = LabelSet.decorate(descriptionCell).setFont(MT.FONT_MEDIUM).setText(descriptionText);
         if (isTableHeader()) {
             dcs.setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM_BOLD);
@@ -151,7 +151,6 @@ public class ReadingReviewTableRow extends Composite {
         LabelSet.decorate(descriptionCell).setBackground(c);
         LabelSet.decorate(statusCell).setBackground(c);
     }
-
 
     /*
      * ==================================================

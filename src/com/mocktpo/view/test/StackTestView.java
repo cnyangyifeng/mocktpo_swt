@@ -3,7 +3,6 @@ package com.mocktpo.view.test;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.CompositeSet;
 import com.mocktpo.util.FormDataSet;
-import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.constants.MT;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
@@ -53,4 +52,20 @@ public abstract class StackTestView extends TestView {
      */
 
     protected abstract void updateBody();
+
+    /*
+     * ==================================================
+     *
+     * Audio Visualization
+     *
+     * ==================================================
+     */
+
+    @Override
+    public void startAudioVisualization() {
+    }
+
+    @Override
+    public void stopAudioVisualization() {
+    }
 }

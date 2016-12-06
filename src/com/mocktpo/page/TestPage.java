@@ -117,6 +117,9 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
                 tv = new ListeningDirectionsView(this, SWT.NONE);
                 break;
+            case VT.VIEW_TYPE_LISTENING_MATERIAL:
+                tv = new ListeningMaterialView(this, SWT.NONE);
+                break;
             case VT.VIEW_TYPE_LISTENING_QUESTION:
                 tv = new ListeningQuestionView(this, SWT.NONE);
                 break;

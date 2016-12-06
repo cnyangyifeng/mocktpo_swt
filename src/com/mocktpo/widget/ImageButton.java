@@ -66,7 +66,6 @@ public class ImageButton extends Composite {
 
     @Override
     public void setEnabled(boolean b) {
-        super.setEnabled(b);
         if (b) {
             setBackgroundImage(normal);
         } else {
@@ -74,6 +73,7 @@ public class ImageButton extends Composite {
                 setBackgroundImage(disabled);
             }
         }
+        super.setEnabled(b);
     }
 
     @Override
@@ -126,12 +126,16 @@ public class ImageButton extends Composite {
 
         @Override
         public void mouseEnter(MouseEvent e) {
-            setBackgroundImage(hover);
+            if (isEnabled()) {
+                setBackgroundImage(hover);
+            }
         }
 
         @Override
         public void mouseExit(MouseEvent e) {
-            setBackgroundImage(normal);
+            if (isEnabled()) {
+                setBackgroundImage(normal);
+            }
         }
 
         @Override

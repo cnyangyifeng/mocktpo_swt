@@ -4,7 +4,7 @@
   "views": [
     {
       "viewId": 1,
-      "viewType": 12,
+      "viewType": 13,
       "viewTypeName": "Test Introduction",
       "sectionType": 0,
       "sectionTypeName": "",
@@ -1821,7 +1821,7 @@
       "sectionType": 1,
       "sectionTypeName": "Listening",
       "withAudio": true,
-      "audioFileName": "listening/d",
+      "audio": "listening/d",
       "body": {
         "heading": {
           "text": "Listening Section Directions"
@@ -1846,13 +1846,338 @@
     {
       "viewId": 52,
       "viewType": 11,
+      "viewTypeName": "Listening Material",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c1",
+      "audioVisualized": true,
+      "audioDuration": 158,
+      "illustrations": "listening/c1:0"
+    },
+    {
+      "viewId": 53,
+      "viewType": 12,
       "viewTypeName": "Listening Question",
       "sectionType": 1,
       "sectionTypeName": "Listening",
       "withAudio": true,
-      "audioFileName": "listening/c1",
-      "withImages": true,
-      "imageFileNames": "listening/c1"
+      "audio": "listening/c1q1",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 1,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "Why can the man NOT find the book he needs?"
+        },
+        "choiceA": {
+          "text": "The bookstore is sold out of the book."
+        },
+        "choiceB": {
+          "text": "The bookstore he is in does not carry the book."
+        },
+        "choiceC": {
+          "text": "His professor did not order enough copies of the book."
+        },
+        "choiceD": {
+          "text": "The book is not being used for any course offered at the university."
+        }
+      }
+    },
+    {
+      "viewId": 54,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c1q2",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 2,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "What are two possible reasons that the speakers consider for why the man cannot find the book?"
+        },
+        "choiceA": {
+          "text": "It is for a graduate-level course."
+        },
+        "choiceB": {
+          "text": "Information about the book was entered incorrectly into the computer system."
+        },
+        "choiceC": {
+          "text": "The man has given the woman an incorrect title for the book."
+        },
+        "choiceD": {
+          "text": "The professor forgot to submit the book order."
+        },
+        "footnote": {
+          "text": "Click on 2 answers"
+        }
+      }
+    },
+    {
+      "viewId": 55,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c1q3",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 3,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "What does the woman offer to do for the student?"
+        },
+        "choiceA": {
+          "text": "Save a copy of the book for him as soon as it comes in"
+        },
+        "choiceB": {
+          "text": "Order more copies of the book"
+        },
+        "choiceC": {
+          "text": "Call the computer store across the street"
+        },
+        "choiceD": {
+          "text": "Find a store that sells the book if he cannot find it"
+        }
+      }
+    },
+    {
+      "viewId": 56,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c1q4",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 4,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "How does the man react to the information the woman gives him about where computer science books are sold?"
+        },
+        "choiceA": {
+          "text": "He is embarrassed that he did not think of it himself."
+        },
+        "choiceB": {
+          "text": "He suggests that the information be posted in the store."
+        },
+        "choiceC": {
+          "text": "He apologizes for bothering the woman."
+        },
+        "choiceD": {
+          "text": "He is annoyed that the woman did not tell him sooner."
+        }
+      }
+    },
+    {
+      "viewId": 57,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c1q5",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 5,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "What does the woman offer to do for the student: \u2423",
+          "styles": [
+            { "start": 49, "length": 1, "image": "earphone" }
+          ]
+        },
+        "choiceA": {
+          "text": "To determine how urgent the student s need is"
+        },
+        "choiceB": {
+          "text": "To figure out why the book is not listed on the computer"
+        },
+        "choiceC": {
+          "text": "To find out what level computer science course the man is taking"
+        },
+        "choiceD": {
+          "text": "To explain why the book might be sold out"
+        }
+      }
+    },
+    {
+      "viewId": 58,
+      "viewType": 11,
+      "viewTypeName": "Listening Material",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l1",
+      "audioVisualized": true,
+      "audioDuration": 158,
+      "illustrations": "listening/l1:0"
+    },
+    {
+      "viewId": 59,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l1q1",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 1,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "Why can the man NOT find the book he needs?"
+        },
+        "choiceA": {
+          "text": "The bookstore is sold out of the book."
+        },
+        "choiceB": {
+          "text": "The bookstore he is in does not carry the book."
+        },
+        "choiceC": {
+          "text": "His professor did not order enough copies of the book."
+        },
+        "choiceD": {
+          "text": "The book is not being used for any course offered at the university."
+        }
+      }
+    },
+    {
+      "viewId": 60,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l1q2",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 2,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "What are two possible reasons that the speakers consider for why the man cannot find the book?"
+        },
+        "choiceA": {
+          "text": "It is for a graduate-level course."
+        },
+        "choiceB": {
+          "text": "Information about the book was entered incorrectly into the computer system."
+        },
+        "choiceC": {
+          "text": "The man has given the woman an incorrect title for the book."
+        },
+        "choiceD": {
+          "text": "The professor forgot to submit the book order."
+        },
+        "footnote": {
+          "text": "Click on 2 answers"
+        }
+      }
+    },
+    {
+      "viewId": 61,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l1q3",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 3,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "What does the woman offer to do for the student?"
+        },
+        "choiceA": {
+          "text": "Save a copy of the book for him as soon as it comes in"
+        },
+        "choiceB": {
+          "text": "Order more copies of the book"
+        },
+        "choiceC": {
+          "text": "Call the computer store across the street"
+        },
+        "choiceD": {
+          "text": "Find a store that sells the book if he cannot find it"
+        }
+      }
+    },
+    {
+      "viewId": 62,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l1q4",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 4,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "How does the man react to the information the woman gives him about where computer science books are sold?"
+        },
+        "choiceA": {
+          "text": "He is embarrassed that he did not think of it himself."
+        },
+        "choiceB": {
+          "text": "He suggests that the information be posted in the store."
+        },
+        "choiceC": {
+          "text": "He apologizes for bothering the woman."
+        },
+        "choiceD": {
+          "text": "He is annoyed that the woman did not tell him sooner."
+        }
+      }
+    },
+    {
+      "viewId": 63,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l1q5",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 5,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "What does the woman offer to do for the student: \u2423",
+          "styles": [
+            { "start": 49, "length": 1, "image": "earphone" }
+          ]
+        },
+        "choiceA": {
+          "text": "To determine how urgent the student s need is"
+        },
+        "choiceB": {
+          "text": "To figure out why the book is not listed on the computer"
+        },
+        "choiceC": {
+          "text": "To find out what level computer science course the man is taking"
+        },
+        "choiceD": {
+          "text": "To explain why the book might be sold out"
+        }
+      }
     }
   ]
 }

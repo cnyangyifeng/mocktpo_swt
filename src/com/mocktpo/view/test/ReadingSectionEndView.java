@@ -17,7 +17,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int VIEW_PORT_PADDING_TOP = 100;
+    private static final int VIEW_PORT_PADDING_TOP = 150;
     private static final int DESCRIPTION_TEXT_WIDTH = 720;
 
     /*

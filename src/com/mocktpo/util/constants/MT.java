@@ -92,9 +92,9 @@ public interface MT {
     int FONT_X_LARGE_BOLD = 210;
     int FONT_XX_LARGE = 211;
 
-    int FONT_ACTIVATION_CODE = 211;
-    int FONT_SERIF_HEADING = 212;
-    int FONT_SERIF_ITALIC_TEXT = 213;
+    int FONT_ACTIVATION_CODE = 212;
+    int FONT_SERIF_HEADING = 213;
+    int FONT_SERIF_ITALIC_TEXT = 214;
 
     /*
      * ==================================================
@@ -184,5 +184,6 @@ public interface MT {
      * ==================================================
      */
 
+    int TIME_LISTENING_SECTION = 600;
     int TIME_READING_SECTION = 3600;
 }

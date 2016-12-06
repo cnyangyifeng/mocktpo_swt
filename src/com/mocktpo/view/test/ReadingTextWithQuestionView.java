@@ -62,10 +62,6 @@ public class ReadingTextWithQuestionView extends SashTestView {
     @Override
     public void updateHeader() {
 
-        final StyledText caption = new StyledText(header, SWT.SINGLE);
-        FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-        StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + TestSchemaUtils.getTotalQuestionCountInSection(page.getTestSchema(), vo.getSectionType()));
-
         final ImageButton nob = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
         FormDataSet.attach(nob).atRight(10).atTop(10);
         nob.addMouseListener(new NextOvalButtonMouseListener());
@@ -136,50 +132,42 @@ public class ReadingTextWithQuestionView extends SashTestView {
 
             choiceA = new Label(c, SWT.NONE);
             FormDataSet.attach(choiceA).atLeft(10).atTopTo(question, 25);
-            LabelSet.decorate(choiceA).setCursor(MT.CURSOR_HAND).setImage(MT.IMAGE_UNCHECKED);
-            choiceA.setData(MT.KEY_CHOICE, MT.CHOICE_A);
+            LabelSet.decorate(choiceA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED);
             choiceA.addMouseListener(new ChooseAnswerListener());
 
             final Label la = new Label(c, SWT.WRAP);
             FormDataSet.attach(la).atLeftTo(choiceA, 5).atTopTo(question, 20).atRight();
-            LabelSet.decorate(la).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceA").getText());
-            la.setData(MT.KEY_CHOICE, MT.CHOICE_A);
+            LabelSet.decorate(la).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceA").getText());
             la.addMouseListener(new ChooseAnswerListener());
 
             choiceB = new Label(c, SWT.NONE);
             FormDataSet.attach(choiceB).atLeft(10).atTopTo(la, 25);
-            LabelSet.decorate(choiceB).setCursor(MT.CURSOR_HAND).setImage(MT.IMAGE_UNCHECKED);
-            choiceB.setData(MT.KEY_CHOICE, MT.CHOICE_B);
+            LabelSet.decorate(choiceB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED);
             choiceB.addMouseListener(new ChooseAnswerListener());
 
             final Label lb = new Label(c, SWT.WRAP);
             FormDataSet.attach(lb).atLeftTo(choiceB, 5).atTopTo(la, 20).atRight();
-            LabelSet.decorate(lb).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceB").getText());
-            lb.setData(MT.KEY_CHOICE, MT.CHOICE_B);
+            LabelSet.decorate(lb).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceB").getText());
             lb.addMouseListener(new ChooseAnswerListener());
 
             choiceC = new Label(c, SWT.NONE);
             FormDataSet.attach(choiceC).atLeft(10).atTopTo(lb, 25);
-            LabelSet.decorate(choiceC).setCursor(MT.CURSOR_HAND).setImage(MT.IMAGE_UNCHECKED);
-            choiceC.setData(MT.KEY_CHOICE, MT.CHOICE_C);
+            LabelSet.decorate(choiceC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED);
             choiceC.addMouseListener(new ChooseAnswerListener());
 
             final Label lc = new Label(c, SWT.WRAP);
             FormDataSet.attach(lc).atLeftTo(choiceC, 5).atTopTo(lb, 20).atRight();
-            LabelSet.decorate(lc).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceC").getText());
-            lc.setData(MT.KEY_CHOICE, MT.CHOICE_C);
+            LabelSet.decorate(lc).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceC").getText());
             lc.addMouseListener(new ChooseAnswerListener());
 
             choiceD = new Label(c, SWT.NONE);
             FormDataSet.attach(choiceD).atLeft(10).atTopTo(lc, 25);
-            LabelSet.decorate(choiceD).setCursor(MT.CURSOR_HAND).setImage(MT.IMAGE_UNCHECKED);
-            choiceD.setData(MT.KEY_CHOICE, MT.CHOICE_D);
+            LabelSet.decorate(choiceD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED);
             choiceD.addMouseListener(new ChooseAnswerListener());
 
             final Label ld = new Label(c, SWT.WRAP);
             FormDataSet.attach(ld).atLeftTo(choiceD, 5).atTopTo(lc, 20).atRight();
-            LabelSet.decorate(ld).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText());
-            ld.setData(MT.KEY_CHOICE, MT.CHOICE_D);
+            LabelSet.decorate(ld).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText());
             ld.addMouseListener(new ChooseAnswerListener());
 
             if (null != vo.getStyledText("footnote")) {
@@ -187,24 +175,24 @@ public class ReadingTextWithQuestionView extends SashTestView {
                 FormDataSet.attach(fn).atLeft().atTopTo(ld, 40).atRight();
                 StyledTextSet.decorate(fn).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());
             }
-        } else {
-            if (null != vo.getStyledText("insertText") && null != vo.getStyledText("insertPointA") && null != vo.getStyledText("insertPointB") && null != vo.getStyledText("insertPointC") && null != vo.getStyledText("insertPointD")) {
+        }
 
-                final StyledText it = new StyledText(c, SWT.WRAP);
-                FormDataSet.attach(it).atLeft().atTopTo(question, 20).atRight();
-                StyledTextSet.decorate(it).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("insertText").getText());
+        if (null != vo.getStyledText("insertText") && null != vo.getStyledText("insertPointA") && null != vo.getStyledText("insertPointB") && null != vo.getStyledText("insertPointC") && null != vo.getStyledText("insertPointD")) {
 
-                insertText = vo.getStyledText("insertText").getText();
-                insertPointA = vo.getStyledText("insertPointA").getStyles().get(0).getStart();
-                insertPointB = vo.getStyledText("insertPointB").getStyles().get(0).getStart();
-                insertPointC = vo.getStyledText("insertPointC").getStyles().get(0).getStart();
-                insertPointD = vo.getStyledText("insertPointD").getStyles().get(0).getStart();
+            final StyledText it = new StyledText(c, SWT.WRAP);
+            FormDataSet.attach(it).atLeft().atTopTo(question, 20).atRight();
+            StyledTextSet.decorate(it).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("insertText").getText());
 
-                if (null != vo.getStyledText("footnote")) {
-                    final StyledText fn = new StyledText(c, SWT.WRAP);
-                    FormDataSet.attach(fn).atLeft().atTopTo(it, 20).atRight();
-                    StyledTextSet.decorate(fn).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());
-                }
+            insertText = vo.getStyledText("insertText").getText();
+            insertPointA = vo.getStyledText("insertPointA").getStyles().get(0).getStart();
+            insertPointB = vo.getStyledText("insertPointB").getStyles().get(0).getStart();
+            insertPointC = vo.getStyledText("insertPointC").getStyles().get(0).getStart();
+            insertPointD = vo.getStyledText("insertPointD").getStyles().get(0).getStart();
+
+            if (null != vo.getStyledText("footnote")) {
+                final StyledText fn = new StyledText(c, SWT.WRAP);
+                FormDataSet.attach(fn).atLeft().atTopTo(it, 20).atRight();
+                StyledTextSet.decorate(fn).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());
             }
         }
     }

@@ -19,7 +19,6 @@ public class ReadingDirectionsView extends ResponsiveTestView {
     /* Constants */
 
     private static final int VIEW_PORT_PADDING_TOP = 50;
-    private static final int VERTICAL_SPACING = 50;
 
     /*
      * ==================================================
@@ -59,7 +58,7 @@ public class ReadingDirectionsView extends ResponsiveTestView {
         StyledTextSet.decorate(ht).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledText("heading").getText());
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTopTo(ht, VERTICAL_SPACING).atRight();
+        FormDataSet.attach(dt).atLeft().atTopTo(ht, 50).atRight();
         StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
         StyleRangeUtils.decorate(dt, vo.getStyledText("description").getStyles());
     }

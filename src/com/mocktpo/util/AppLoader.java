@@ -93,6 +93,7 @@ public class AppLoader extends Thread {
                     ut.setTitle(msgs.getString("tpo") + MT.STRING_SPACE + i);
                     ut.setAlias(msgs.getString("tpo") + i);
                     ut.setTimerHidden(false);
+                    ut.setListeningTime(MT.TIME_LISTENING_SECTION);
                     ut.setReadingTime(MT.TIME_READING_SECTION);
                     ut.setLastViewId(1);
                     utm.insert(ut);

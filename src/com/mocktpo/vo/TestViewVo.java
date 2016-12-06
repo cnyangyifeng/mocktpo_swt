@@ -22,9 +22,11 @@ public class TestViewVo implements Serializable {
     private boolean timed;
     private int passageOffset;
     private boolean withAudio;
-    private String audioFileName;
-    private boolean withImages;
-    private String imageFileNames;
+    private String audio;
+    private boolean audioVisualized;
+    private long audioDuration;
+    private String illustrations;
+    private boolean audioAsyncExecutable;
 
     public StyledTextVo getStyledText(String key) {
         for (String i : body.keySet()) {
@@ -131,27 +133,43 @@ public class TestViewVo implements Serializable {
         this.withAudio = withAudio;
     }
 
-    public String getAudioFileName() {
-        return audioFileName;
+    public String getAudio() {
+        return audio;
     }
 
-    public void setAudioFileName(String audioFileName) {
-        this.audioFileName = audioFileName;
+    public void setAudio(String audio) {
+        this.audio = audio;
     }
 
-    public boolean isWithImages() {
-        return withImages;
+    public boolean isAudioVisualized() {
+        return audioVisualized;
     }
 
-    public void setWithImages(boolean withImages) {
-        this.withImages = withImages;
+    public void setAudioVisualized(boolean audioVisualized) {
+        this.audioVisualized = audioVisualized;
     }
 
-    public String getImageFileNames() {
-        return imageFileNames;
+    public long getAudioDuration() {
+        return audioDuration;
     }
 
-    public void setImageFileNames(String imageFileNames) {
-        this.imageFileNames = imageFileNames;
+    public void setAudioDuration(long audioDuration) {
+        this.audioDuration = audioDuration;
+    }
+
+    public String getIllustrations() {
+        return illustrations;
+    }
+
+    public void setIllustrations(String illustrations) {
+        this.illustrations = illustrations;
+    }
+
+    public boolean isAudioAsyncExecutable() {
+        return audioAsyncExecutable;
+    }
+
+    public void setAudioAsyncExecutable(boolean audioAsyncExecutable) {
+        this.audioAsyncExecutable = audioAsyncExecutable;
     }
 }

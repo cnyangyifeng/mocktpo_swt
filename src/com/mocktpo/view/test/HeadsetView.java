@@ -17,7 +17,6 @@ public class HeadsetView extends ResponsiveTestView {
     /* Constants */
 
     private static final int VIEW_PORT_PADDING_TOP = 100;
-    private static final int VERTICAL_SPACING = 20;
 
     /*
      * ==================================================
@@ -56,11 +55,11 @@ public class HeadsetView extends ResponsiveTestView {
         StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("top").getText());
 
         final Label il = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(il).atLeft().atTopTo(tt, VERTICAL_SPACING).atRight();
+        FormDataSet.attach(il).atLeft().atTopTo(tt, 20).atRight();
         LabelSet.decorate(il).setImage(MT.IMAGE_HEADSET);
 
         final StyledText bt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(bt).atLeft().atTopTo(il, VERTICAL_SPACING).atRight();
+        FormDataSet.attach(bt).atLeft().atTopTo(il, 20).atRight();
         StyledTextSet.decorate(bt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("bottom").getText());
         StyleRangeUtils.decorate(bt, vo.getStyledText("bottom").getStyles());
     }

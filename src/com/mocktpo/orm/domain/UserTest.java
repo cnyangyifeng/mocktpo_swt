@@ -10,6 +10,7 @@ public class UserTest {
     private String alias;
     private boolean timerHidden;
     private int readingTime;
+    private int listeningTime;
     private int lastViewId;
 
     public String getEmail() {
@@ -60,6 +61,14 @@ public class UserTest {
         this.readingTime = readingTime;
     }
 
+    public int getListeningTime() {
+        return listeningTime;
+    }
+
+    public void setListeningTime(int listeningTime) {
+        this.listeningTime = listeningTime;
+    }
+
     public int getLastViewId() {
         return lastViewId;
     }
@@ -73,17 +82,18 @@ public class UserTest {
         int viewTime = 0;
 
         switch (sectionType) {
-        case ST.SECTION_TYPE_NONE:
-            break;
-        case ST.SECTION_TYPE_LISTENING:
-            break;
-        case ST.SECTION_TYPE_READING:
-            viewTime = this.getReadingTime();
-            break;
-        case ST.SECTION_TYPE_SPEAKING:
-            break;
-        case ST.SECTION_TYPE_WRITING:
-            break;
+            case ST.SECTION_TYPE_NONE:
+                break;
+            case ST.SECTION_TYPE_LISTENING:
+                viewTime = this.getListeningTime();
+                break;
+            case ST.SECTION_TYPE_READING:
+                viewTime = this.getReadingTime();
+                break;
+            case ST.SECTION_TYPE_SPEAKING:
+                break;
+            case ST.SECTION_TYPE_WRITING:
+                break;
         }
 
         return viewTime;
@@ -92,17 +102,18 @@ public class UserTest {
     public void setRemainingViewTime(int sectionType, int viewTime) {
 
         switch (sectionType) {
-        case ST.SECTION_TYPE_NONE:
-            break;
-        case ST.SECTION_TYPE_LISTENING:
-            break;
-        case ST.SECTION_TYPE_READING:
-            this.setReadingTime(viewTime);
-            break;
-        case ST.SECTION_TYPE_SPEAKING:
-            break;
-        case ST.SECTION_TYPE_WRITING:
-            break;
+            case ST.SECTION_TYPE_NONE:
+                break;
+            case ST.SECTION_TYPE_LISTENING:
+                this.setListeningTime(viewTime);
+                break;
+            case ST.SECTION_TYPE_READING:
+                this.setReadingTime(viewTime);
+                break;
+            case ST.SECTION_TYPE_SPEAKING:
+                break;
+            case ST.SECTION_TYPE_WRITING:
+                break;
         }
     }
 

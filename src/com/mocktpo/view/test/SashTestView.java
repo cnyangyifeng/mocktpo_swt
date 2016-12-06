@@ -1,7 +1,10 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.page.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.util.CompositeSet;
+import com.mocktpo.util.FormDataSet;
+import com.mocktpo.util.FormLayoutSet;
+import com.mocktpo.util.LabelSet;
 import com.mocktpo.util.constants.MT;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -62,4 +65,20 @@ public abstract class SashTestView extends TestView {
     protected abstract void updateLeft();
 
     protected abstract void updateRight();
+
+    /*
+     * ==================================================
+     *
+     * Audio Visualization
+     *
+     * ==================================================
+     */
+
+    @Override
+    public void startAudioVisualization() {
+    }
+
+    @Override
+    public void stopAudioVisualization() {
+    }
 }

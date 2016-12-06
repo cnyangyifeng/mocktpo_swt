@@ -4,7 +4,7 @@
   "views": [
     {
       "viewId": 1,
-      "viewType": 12,
+      "viewType": 13,
       "viewTypeName": "Test Introduction",
       "sectionType": 0,
       "sectionTypeName": "",
@@ -103,9 +103,7 @@
           ]
         },
         "question": {
-          "text": "Which of the following can be inferred from paragraph 1 about the ground that we walk on?",
-          "styles": [
-          ]
+          "text": "Which of the following can be inferred from paragraph 1 about the ground that we walk on?"
         },
         "choiceA": {
           "text": "It cannot hold rainwater for long periods of time."
@@ -224,9 +222,7 @@
           ]
         },
         "question": {
-          "text": "According to paragraph 2, where is groundwater usually found?",
-          "styles": [
-          ]
+          "text": "According to paragraph 2, where is groundwater usually found?"
         },
         "choiceA": {
           "text": "Inside pieces of sand and gravel"
@@ -305,9 +301,7 @@
           ]
         },
         "question": {
-          "text": "All of the following are mentioned in paragraph 3 as places that sediment-laden rivers can deposit their sediments EXCEPT",
-          "styles": [
-          ]
+          "text": "All of the following are mentioned in paragraph 3 as places that sediment-laden rivers can deposit their sediments EXCEPT"
         },
         "choiceA": {
           "text": "A mountain valley"
@@ -466,9 +460,7 @@
           ]
         },
         "question": {
-          "text": "According to paragraphs 6 and 7, why is basalt unlike most crystalline forms of rock?",
-          "styles": [
-          ]
+          "text": "According to paragraphs 6 and 7, why is basalt unlike most crystalline forms of rock?"
         },
         "choiceA": {
           "text": "It is unusually solid."
@@ -507,9 +499,7 @@
           ]
         },
         "question": {
-          "text": "What is the main purpose of paragraph 7?",
-          "styles": [
-          ]
+          "text": "What is the main purpose of paragraph 7?"
         },
         "choiceA": {
           "text": "To explain why water can flow through rock"
@@ -549,9 +539,7 @@
           ]
         },
         "question": {
-          "text": "Which of the sentences below best expresses the essential information in the highlighted sentence in the passage? Incorrect choices change the meaning in important ways or leave out essential information.",
-          "styles": [
-          ]
+          "text": "Which of the sentences below best expresses the essential information in the highlighted sentence in the passage? Incorrect choices change the meaning in important ways or leave out essential information."
         },
         "choiceA": {
           "text": "Surface tension is not strong enough to retain drops of water in rocks with large pores but it strong enough to hold on to thin films of water in rocks with small pores."
@@ -587,9 +575,7 @@
           ]
         },
         "question": {
-          "text": "Look at the four squares [\u0020\u2588\u0020] that indicate where the following sentence could be added to the passage.",
-          "styles": [
-          ]
+          "text": "Look at the four squares [\u0020\u2588\u0020] that indicate where the following sentence could be added to the passage."
         },
         "insertText": {
           "text": "What, then, determines what proportion of the water stays and what proportion drains away?"
@@ -795,9 +781,7 @@
           ]
         },
         "question": {
-          "text": "According to paragraph 1, theories of the origins of theater",
-          "styles": [
-          ]
+          "text": "According to paragraph 1, theories of the origins of theater"
         },
         "choiceA": {
           "text": "are mainly hypothetical"
@@ -836,9 +820,7 @@
           ]
         },
         "question": {
-          "text": "According to paragraph 1, why did some societies develop and repeat ceremonial actions?",
-          "styles": [
-          ]
+          "text": "According to paragraph 1, why did some societies develop and repeat ceremonial actions?"
         },
         "choiceA": {
           "text": "To establish a positive connection between the members of the society"
@@ -957,9 +939,7 @@
           ]
         },
         "question": {
-          "text": "According to paragraph 2, what may cause societies to abandon certain rites?",
-          "styles": [
-          ]
+          "text": "According to paragraph 2, what may cause societies to abandon certain rites?"
         },
         "choiceA": {
           "text": "Emphasizing theater as entertainment"
@@ -998,9 +978,7 @@
           ]
         },
         "question": {
-          "text": "All of following are mentioned in paragraph 5 as possible reasons that led societies to develop theater EXCEPT:",
-          "styles": [
-          ]
+          "text": "All of following are mentioned in paragraph 5 as possible reasons that led societies to develop theater EXCEPT:"
         },
         "choiceA": {
           "text": "Theater allows people to face that they are afraid of."
@@ -1039,9 +1017,7 @@
           ]
         },
         "question": {
-          "text": "Which of the following best describes the organization of paragraph 5?",
-          "styles": [
-          ]
+          "text": "Which of the following best describes the organization of paragraph 5?"
         },
         "choiceA": {
           "text": "The author presents two theories for a historical phenomenon."
@@ -1161,9 +1137,7 @@
           ]
         },
         "question": {
-          "text": "Which of the sentences below best expresses the essential information in the highlighted sentence in the passage? Incorrect choices change the meaning in important ways or leave out essential information.",
-          "styles": [
-          ]
+          "text": "Which of the sentences below best expresses the essential information in the highlighted sentence in the passage? Incorrect choices change the meaning in important ways or leave out essential information."
         },
         "choiceA": {
           "text": "A society’s rites were more likely to be retained in the oral tradition if its myths were admired for artistic qualities."
@@ -1199,9 +1173,7 @@
           ]
         },
         "question": {
-          "text": "Look at the four squares [\u0020\u2588\u0020] that indicate where the following sentence could be added to the passage.",
-          "styles": [
-          ]
+          "text": "Look at the four squares [\u0020\u2588\u0020] that indicate where the following sentence could be added to the passage."
         },
         "insertText": {
           "text": "To enhance their listeners’ enjoyment, storytellers continually make their stories more engaging and memorable."
@@ -1367,9 +1339,7 @@
           ]
         },
         "question": {
-          "text": "Where is the lower timberline mentioned in paragraph 1 likely to be found?",
-          "styles": [
-          ]
+          "text": "Where is the lower timberline mentioned in paragraph 1 likely to be found?"
         },
         "choiceA": {
           "text": "In an area that has little water"
@@ -1408,9 +1378,7 @@
           ]
         },
         "question": {
-          "text": "Which of the following can be inferred from paragraph 1 about both the upper and lower timberlines?",
-          "styles": [
-          ]
+          "text": "Which of the following can be inferred from paragraph 1 about both the upper and lower timberlines?"
         },
         "choiceA": {
           "text": "Both are treeless zones."
@@ -1449,9 +1417,7 @@
           ]
         },
         "question": {
-          "text": "Paragraph 2 supports which of the following statements about deciduous trees?",
-          "styles": [
-          ]
+          "text": "Paragraph 2 supports which of the following statements about deciduous trees?"
         },
         "choiceA": {
           "text": "They cannot grow in cold climates."
@@ -1610,9 +1576,7 @@
           ]
         },
         "question": {
-          "text": "According to paragraph 3, which of the following is true of trees in the middle and upper latitudes?",
-          "styles": [
-          ]
+          "text": "According to paragraph 3, which of the following is true of trees in the middle and upper latitudes?"
         },
         "choiceA": {
           "text": "Tree growth is negatively affected by the snow cover in valleys."
@@ -1652,9 +1616,7 @@
           ]
         },
         "question": {
-          "text": "Which of the sentences below best expresses the essential information in the highlighted sentence in the passage? In correct choices change the meaning in important ways or leave out essential information.",
-          "styles": [
-          ]
+          "text": "Which of the sentences below best expresses the essential information in the highlighted sentence in the passage? In correct choices change the meaning in important ways or leave out essential information."
         },
         "choiceA": {
           "text": "Because of their deformed shapes at high altitudes, trees are not likely to be seriously harmed by the strong winds typical of those altitudes."
@@ -1690,9 +1652,7 @@
           ]
         },
         "question": {
-          "text": "In paragraph 4, what is the author’s main purpose in the discussion of the dramatic cessation of tree growth at the upper timberline?",
-          "styles": [
-          ]
+          "text": "In paragraph 4, what is the author’s main purpose in the discussion of the dramatic cessation of tree growth at the upper timberline?"
         },
         "choiceA": {
           "text": "To argue that none of several environment factors that are believed to contribute to that phenomenon do in fact play a role in causing it"
@@ -1771,9 +1731,7 @@
           ]
         },
         "question": {
-          "text": "According to paragraph 6, all of the following statements are true of plants in the alpine zone EXCEPT:",
-          "styles": [
-          ]
+          "text": "According to paragraph 6, all of the following statements are true of plants in the alpine zone EXCEPT:"
         },
         "choiceA": {
           "text": "Because they are low, they are less exposed to strong winds."
@@ -1812,9 +1770,7 @@
           ]
         },
         "question": {
-          "text": "Look at the four squares [\u0020\u2588\u0020] that indicate where the following sentence could be added to the passage.",
-          "styles": [
-          ]
+          "text": "Look at the four squares [\u0020\u2588\u0020] that indicate where the following sentence could be added to the passage."
         },
         "insertText": {
           "text": "This explains how, for example, alpine cushion plants have been found growing at an altitude of 6,180 meters."
@@ -1961,7 +1917,7 @@
       "sectionType": 1,
       "sectionTypeName": "Listening",
       "withAudio": true,
-      "audioFileName": "listening/d",
+      "audio": "listening/d",
       "body": {
         "heading": {
           "text": "Listening Section Directions"
@@ -1986,13 +1942,167 @@
     {
       "viewId": 53,
       "viewType": 11,
+      "viewTypeName": "Listening Material",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c1",
+      "audioVisualized": true,
+      "audioDuration": 160,
+      "illustrations": "listening/c1:0"
+    },
+    {
+      "viewId": 54,
+      "viewType": 12,
       "viewTypeName": "Listening Question",
       "sectionType": 1,
       "sectionTypeName": "Listening",
       "withAudio": true,
-      "audioFileName": "listening/c1",
-      "withImages": true,
-      "imageFileNames": "listening/c1"
+      "audio": "listening/c1q1",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 1,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "Why does the student go to see the librarian?"
+        },
+        "choiceA": {
+          "text": "To sign up for a seminar on using electronic sources for research"
+        },
+        "choiceB": {
+          "text": "To report that a journal is missing from the reference area"
+        },
+        "choiceC": {
+          "text": "To find out the procedure for checking out journal articles"
+        },
+        "choiceD": {
+          "text": "To ask about how to look for resources for a class paper"
+        }
+      }
+    },
+    {
+      "viewId": 55,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c1q2",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 2,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "What does the librarian say about the availability of journals and articles in the library?"
+        },
+        "choiceA": {
+          "text": "They are not easy to find if a professor put them on reserve."
+        },
+        "choiceB": {
+          "text": "Most of them are accessible in an electronic format."
+        },
+        "choiceC": {
+          "text": "Most of them can be checked out for three weeks."
+        },
+        "choiceD": {
+          "text": "Printed versions from the past three years are located in the reference section."
+        }
+      }
+    },
+    {
+      "viewId": 56,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c1q3",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 3,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "What does the librarian suggest the student should do to save time?"
+        },
+        "choiceA": {
+          "text": "Choose an easier research topic"
+        },
+        "choiceB": {
+          "text": "Concentrate on five journals"
+        },
+        "choiceC": {
+          "text": "Read the summaries of the articles first"
+        },
+        "choiceD": {
+          "text": "Install a new program on her home computer"
+        }
+      }
+    },
+    {
+      "viewId": 57,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c1q4",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 4,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "What can be inferred about why the woman decides to use the computer in the library?"
+        },
+        "choiceA": {
+          "text": "She thinks she might need additional help from the man."
+        },
+        "choiceB": {
+          "text": "She does not have a computer at home."
+        },
+        "choiceC": {
+          "text": "She has to hand in her assignment by the end of the day."
+        },
+        "choiceD": {
+          "text": "She will be meeting a friend in the library later on."
+        }
+      }
+    },
+    {
+      "viewId": 58,
+      "viewType": 12,
+      "viewTypeName": "Listening Question",
+      "sectionType": 1,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c1q5",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 5,
+      "timed": true,
+      "body": {
+        "question": {
+          "text": "Why does the woman say this: \u2423",
+          "styles": [
+            { "start": 29, "length": 1, "image": "earphone" }
+          ]
+        },
+        "choiceA": {
+          "text": "She had forgotten about the information."
+        },
+        "choiceB": {
+          "text": "She is surprised she was not aware of the information."
+        },
+        "choiceC": {
+          "text": "She is annoyed that the information was published only recently."
+        },
+        "choiceD": {
+          "text": "She is concerned that the librarian gave her incorrect information."
+        }
+      }
     }
   ]
 }

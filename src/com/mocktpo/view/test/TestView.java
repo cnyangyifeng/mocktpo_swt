@@ -15,14 +15,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -70,10 +69,6 @@ public abstract class TestView extends Composite {
     /* Audio Player */
 
     protected TestAudioPlayer audioPlayer;
-
-    /* Images */
-
-    protected List<Image> images;
 
     /*
      * ==================================================
@@ -144,6 +139,20 @@ public abstract class TestView extends Composite {
 
         /*
          * ==================================================
+         *
+         * Caption
+         *
+         * ==================================================
+         */
+
+        if (vo.isWithQuestion()) {
+            final StyledText caption = new StyledText(header, SWT.SINGLE);
+            FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + TestSchemaUtils.getTotalQuestionCountInSection(page.getTestSchema(), vo.getSectionType()));
+        }
+
+        /*
+         * ==================================================
          * 
          * Header Updates
          * 
@@ -181,12 +190,15 @@ public abstract class TestView extends Composite {
     protected void realloc() {
         startTimer();
         startAudio();
+        startAudioVisualization();
+        startAudioAsyncExecution();
     }
 
     protected void release() {
         stopTimer();
         stopAudio();
-        unloadImages();
+        stopAudioVisualization();
+        stopAudioAsyncExecution();
     }
 
     /*
@@ -278,9 +290,7 @@ public abstract class TestView extends Composite {
 
                 if (0 >= countDown) {
 
-                    if (vo.isTimed()) {
-                        stopTimer();
-                    }
+                    release();
 
                     ut.setLastViewId(TestSchemaUtils.getNextViewIdWhileTimeOut(page.getTestSchema(), vo.getViewId()));
                     sqlSession.getMapper(UserTestMapper.class).update(ut);
@@ -317,7 +327,7 @@ public abstract class TestView extends Composite {
                 @Override
                 public void run() {
                     TestAudioPlayer player = ref.get();
-                    player.play(page.getUserTest(), vo.getAudioFileName());
+                    player.play(page.getUserTest(), vo.getAudio());
                 }
             }).start();
         }
@@ -326,18 +336,6 @@ public abstract class TestView extends Composite {
     public void stopAudio() {
         if (vo.isWithAudio() && null != audioPlayer) {
             audioPlayer.stop();
-        }
-    }
-
-    public void pauseAudio() {
-        if (vo.isWithAudio() && null != audioPlayer) {
-            audioPlayer.pause();
-        }
-    }
-
-    public void resumeAudio() {
-        if (vo.isWithAudio() && null != audioPlayer) {
-            audioPlayer.resume();
         }
     }
 
@@ -350,25 +348,29 @@ public abstract class TestView extends Composite {
     /*
      * ==================================================
      *
-     * Images
+     * Audio Visualization
      *
      * ==================================================
      */
 
-    public List<Image> loadImages() {
-        if (vo.isWithImages()) {
-            if (null == images || images.isEmpty()) {
-                images = TestImageUtils.load(d, page.getUserTest(), vo.getImageFileNames());
-            }
-        }
-        return images;
+    public void startAudioVisualization() {
     }
 
-    public void unloadImages() {
-        if (vo.isWithImages() && null != images) {
-            TestImageUtils.unload(images);
-            images = null;
-        }
+    public void stopAudioVisualization() {
+    }
+
+    /*
+     * ==================================================
+     *
+     * Audio Async Execution
+     *
+     * ==================================================
+     */
+
+    public void startAudioAsyncExecution() {
+    }
+
+    public void stopAudioAsyncExecution() {
     }
 
     /*
@@ -388,17 +390,7 @@ public abstract class TestView extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            if (vo.isTimed()) {
-                stopTimer();
-            }
-
-            if (vo.isWithAudio()) {
-                stopAudio();
-            }
-
-            if (vo.isWithImages()) {
-                unloadImages();
-            }
+            release();
 
             UserTest ut = page.getUserTest();
             ut.setLastViewId(vo.getViewId());
