@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Label;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class ReadingFillTableQuestionView extends StackTestView {
+public class ReadingFillinTableQuestionView extends StackTestView {
 
     /* Constants */
 
@@ -59,7 +59,7 @@ public class ReadingFillTableQuestionView extends StackTestView {
      * ==================================================
      */
 
-    public ReadingFillTableQuestionView(TestPage page, int style) {
+    public ReadingFillinTableQuestionView(TestPage page, int style) {
         super(page, style);
     }
 

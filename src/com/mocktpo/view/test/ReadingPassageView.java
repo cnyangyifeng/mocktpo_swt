@@ -18,7 +18,7 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ScrollBar;
 
-public class ReadingTextView extends SashTestView {
+public class ReadingPassageView extends SashTestView {
 
     /* Widgets */
 
@@ -36,7 +36,7 @@ public class ReadingTextView extends SashTestView {
      * ==================================================
      */
 
-    public ReadingTextView(TestPage page, int style) {
+    public ReadingPassageView(TestPage page, int style) {
         super(page, style);
     }
 

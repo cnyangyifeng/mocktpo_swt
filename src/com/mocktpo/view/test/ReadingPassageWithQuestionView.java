@@ -20,7 +20,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class ReadingTextWithQuestionView extends SashTestView {
+public class ReadingPassageWithQuestionView extends SashTestView {
 
     /* Constants */
 
@@ -46,7 +46,7 @@ public class ReadingTextWithQuestionView extends SashTestView {
      * ==================================================
      */
 
-    public ReadingTextWithQuestionView(TestPage page, int style) {
+    public ReadingPassageWithQuestionView(TestPage page, int style) {
         super(page, style);
         this.answer = MT.CHOICE_NONE;
     }

@@ -249,7 +249,7 @@ public class ReadingReviewView extends Composite {
 
         String text;
 
-        if (tvv.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || tvv.getViewType() == VT.VIEW_TYPE_READING_FILL_TABLE_QUESTION) {
+        if (tvv.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || tvv.getViewType() == VT.VIEW_TYPE_READING_FILLIN_TABLE_QUESTION) {
             text = tvv.getStyledText("directions").getText();
         } else {
             text = tvv.getStyledText("question").getText();

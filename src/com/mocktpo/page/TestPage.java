@@ -102,17 +102,17 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_READING_SECTION_DIRECTIONS:
                 tv = new ReadingSectionDirectionsView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_READING_TEXT:
-                tv = new ReadingTextView(this, SWT.NONE);
+            case VT.VIEW_TYPE_READING_PASSAGE:
+                tv = new ReadingPassageView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_READING_TEXT_WITH_QUESTION:
-                tv = new ReadingTextWithQuestionView(this, SWT.NONE);
+            case VT.VIEW_TYPE_READING_PASSAGE_WITH_QUESTION:
+                tv = new ReadingPassageWithQuestionView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
                 tv = new ReadingProseSummaryQuestionView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_READING_FILL_TABLE_QUESTION:
-                tv = new ReadingFillTableQuestionView(this, SWT.NONE);
+            case VT.VIEW_TYPE_READING_FILLIN_TABLE_QUESTION:
+                tv = new ReadingFillinTableQuestionView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_READING_SECTION_END:
                 tv = new ReadingSectionEndView(this, SWT.NONE);
