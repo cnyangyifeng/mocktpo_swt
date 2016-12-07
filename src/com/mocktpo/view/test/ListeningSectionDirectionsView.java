@@ -20,7 +20,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Scale;
 
-public class ListeningDirectionsView extends ResponsiveTestView {
+public class ListeningSectionDirectionsView extends ResponsiveTestView {
 
     /* Constants */
 
@@ -42,7 +42,7 @@ public class ListeningDirectionsView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public ListeningDirectionsView(TestPage page, int style) {
+    public ListeningSectionDirectionsView(TestPage page, int style) {
         super(page, style);
     }
 

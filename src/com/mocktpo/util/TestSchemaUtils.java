@@ -34,11 +34,11 @@ public class TestSchemaUtils {
             case ST.SECTION_TYPE_NONE:
                 // TODO handles next timed view id
                 break;
-            case ST.SECTION_TYPE_LISTENING:
-                // TODO handles next timed view id
-                break;
             case ST.SECTION_TYPE_READING:
                 nextViewId = getFirstViewIdByViewType(vo, VT.VIEW_TYPE_HEADSET);
+                break;
+            case ST.SECTION_TYPE_LISTENING:
+                // TODO handles next timed view id
                 break;
             case ST.SECTION_TYPE_SPEAKING:
                 // TODO handles next timed view id

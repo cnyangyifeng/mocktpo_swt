@@ -148,10 +148,6 @@ public class TestCard extends Composite {
         return ut;
     }
 
-    public void setUserTest(UserTest ut) {
-        this.ut = ut;
-    }
-
     /*
      * ==================================================
      *

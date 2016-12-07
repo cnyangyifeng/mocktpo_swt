@@ -41,8 +41,8 @@ public class UserTestMapperTest {
             ut.setTitle("TPO" + MT.STRING_SPACE + i);
             ut.setAlias("TPO" + i);
             ut.setTimerHidden(false);
-            ut.setListeningTime(MT.TIME_LISTENING_SECTION);
             ut.setReadingTime(MT.TIME_READING_SECTION);
+            ut.setListeningTime(MT.TIME_LISTENING_SECTION);
             ut.setLastViewId(1);
             mapper.insert(ut);
         }

@@ -323,6 +323,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
         public void propertyChange(PropertyChangeEvent e) {
 
             if (audioPlayer.isStopped()) {
+
                 if (!d.isDisposed()) {
                     d.asyncExec(new Runnable() {
                         @Override

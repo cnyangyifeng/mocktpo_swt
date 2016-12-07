@@ -16,8 +16,8 @@ public interface UserTestMapper {
             "MT_TITLE VARCHAR(64),",
             "MT_ALIAS VARCHAR(64),",
             "MT_TIMER_HIDDEN BOOLEAN,",
-            "MT_LISTENING_TIME INT,",
             "MT_READING_TIME INT,",
+            "MT_LISTENING_TIME INT,",
             "MT_LAST_VIEW_ID INT",
             ")"
     })
@@ -36,8 +36,8 @@ public interface UserTestMapper {
             "MT_TITLE,",
             "MT_ALIAS,",
             "MT_TIMER_HIDDEN,",
-            "MT_LISTENING_TIME,",
             "MT_READING_TIME,",
+            "MT_LISTENING_TIME,",
             "MT_LAST_VIEW_ID",
             ") VALUES (",
             "#{email},",
@@ -45,8 +45,8 @@ public interface UserTestMapper {
             "#{title},",
             "#{alias},",
             "#{timerHidden},",
-            "#{listeningTime},",
             "#{readingTime},",
+            "#{listeningTime},",
             "#{lastViewId}",
             ")"
     })
@@ -59,8 +59,8 @@ public interface UserTestMapper {
             "MT_TITLE AS title,",
             "MT_ALIAS AS alias,",
             "MT_TIMER_HIDDEN AS timerHidden,",
-            "MT_LISTENING_TIME AS listeningTime,",
             "MT_READING_TIME AS readingTime,",
+            "MT_LISTENING_TIME AS listeningTime,",
             "MT_LAST_VIEW_ID AS lastViewId",
             "FROM MT_USER_TEST",
             "ORDER BY MT_TID ASC"
@@ -75,8 +75,8 @@ public interface UserTestMapper {
             "MT_TITLE = #{title},",
             "MT_ALIAS = #{alias},",
             "MT_TIMER_HIDDEN = #{timerHidden},",
-            "MT_LISTENING_TIME = #{listeningTime},",
             "MT_READING_TIME = #{readingTime},",
+            "MT_LISTENING_TIME = #{listeningTime},",
             "MT_LAST_VIEW_ID = #{lastViewId}",
             "WHERE",
             "MT_TID = #{tid}"

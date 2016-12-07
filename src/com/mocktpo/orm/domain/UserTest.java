@@ -84,11 +84,11 @@ public class UserTest {
         switch (sectionType) {
             case ST.SECTION_TYPE_NONE:
                 break;
-            case ST.SECTION_TYPE_LISTENING:
-                viewTime = this.getListeningTime();
-                break;
             case ST.SECTION_TYPE_READING:
                 viewTime = this.getReadingTime();
+                break;
+            case ST.SECTION_TYPE_LISTENING:
+                viewTime = this.getListeningTime();
                 break;
             case ST.SECTION_TYPE_SPEAKING:
                 break;
@@ -104,11 +104,11 @@ public class UserTest {
         switch (sectionType) {
             case ST.SECTION_TYPE_NONE:
                 break;
-            case ST.SECTION_TYPE_LISTENING:
-                this.setListeningTime(viewTime);
-                break;
             case ST.SECTION_TYPE_READING:
                 this.setReadingTime(viewTime);
+                break;
+            case ST.SECTION_TYPE_LISTENING:
+                this.setListeningTime(viewTime);
                 break;
             case ST.SECTION_TYPE_SPEAKING:
                 break;

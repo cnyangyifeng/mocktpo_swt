@@ -87,26 +87,20 @@ public class TestPage extends Composite {
 
         TestView tv = null;
         switch (lastViewType) {
-            case VT.VIEW_TYPE_CHANGING_VOLUME:
-                tv = new ChangingVolumeView(this, SWT.NONE);
+
+            /* General View Types */
+
+            case VT.VIEW_TYPE_TEST_INTRO:
+                tv = new TestIntroView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_GENERAL_TEST_INFO:
                 tv = new GeneralTestInfoView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_HEADSET:
-                tv = new HeadsetView(this, SWT.NONE);
-                break;
-            case VT.VIEW_TYPE_READING_DIRECTIONS:
-                tv = new ReadingDirectionsView(this, SWT.NONE);
-                break;
-            case VT.VIEW_TYPE_READING_FILL_TABLE_QUESTION:
-                tv = new ReadingFillTableQuestionView(this, SWT.NONE);
-                break;
-            case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
-                tv = new ReadingProseSummaryQuestionView(this, SWT.NONE);
-                break;
-            case VT.VIEW_TYPE_READING_SECTION_END:
-                tv = new ReadingSectionEndView(this, SWT.NONE);
+
+            /* Reading Section View Types */
+
+            case VT.VIEW_TYPE_READING_SECTION_DIRECTIONS:
+                tv = new ReadingSectionDirectionsView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_READING_TEXT:
                 tv = new ReadingTextView(this, SWT.NONE);
@@ -114,17 +108,32 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_READING_TEXT_WITH_QUESTION:
                 tv = new ReadingTextWithQuestionView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
-                tv = new ListeningDirectionsView(this, SWT.NONE);
+            case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
+                tv = new ReadingProseSummaryQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_READING_FILL_TABLE_QUESTION:
+                tv = new ReadingFillTableQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_READING_SECTION_END:
+                tv = new ReadingSectionEndView(this, SWT.NONE);
+                break;
+
+            /* Listening Section View Types */
+
+            case VT.VIEW_TYPE_HEADSET:
+                tv = new HeadsetView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_CHANGING_VOLUME:
+                tv = new ChangingVolumeView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_LISTENING_SECTION_DIRECTIONS:
+                tv = new ListeningSectionDirectionsView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_LISTENING_MATERIAL:
                 tv = new ListeningMaterialView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_LISTENING_QUESTION:
                 tv = new ListeningQuestionView(this, SWT.NONE);
-                break;
-            case VT.VIEW_TYPE_TEST_INTRO:
-                tv = new TestIntroView(this, SWT.NONE);
                 break;
         }
 

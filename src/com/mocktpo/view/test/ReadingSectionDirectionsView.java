@@ -14,7 +14,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 
-public class ReadingDirectionsView extends ResponsiveTestView {
+public class ReadingSectionDirectionsView extends ResponsiveTestView {
 
     /* Constants */
 
@@ -28,7 +28,7 @@ public class ReadingDirectionsView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public ReadingDirectionsView(TestPage page, int style) {
+    public ReadingSectionDirectionsView(TestPage page, int style) {
         super(page, style);
     }
 
