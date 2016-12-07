@@ -138,6 +138,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
     @Override
     public void stopAudioVisualization() {
         if (vo.isAudioVisualized() && null != illustrations) {
+            audioPlayer.removePropertyChangeListener();
         }
     }
 

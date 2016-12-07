@@ -243,10 +243,12 @@ public abstract class TestView extends Composite {
              * ==================================================
              */
 
-            countDown = page.getUserTest().getRemainingViewTime(vo.getSectionType());
-            timer = new Timer();
-            timerTask = new TestTimerTask();
-            timer.scheduleAtFixedRate(timerTask, 0, 1000);
+            if (!vo.isTimerTaskDelayed()) {
+                countDown = page.getUserTest().getRemainingViewTime(vo.getSectionType());
+                timer = new Timer();
+                timerTask = new TestTimerTask();
+                timer.scheduleAtFixedRate(timerTask, 0, 1000);
+            }
         }
     }
 
@@ -269,7 +271,7 @@ public abstract class TestView extends Composite {
      * ==================================================
      */
 
-    private class TestTimerTask extends TimerTask {
+    public class TestTimerTask extends TimerTask {
 
         @Override
         public void run() {

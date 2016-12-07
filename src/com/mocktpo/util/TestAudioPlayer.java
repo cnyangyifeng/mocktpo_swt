@@ -20,6 +20,7 @@ public class TestAudioPlayer {
     private long timeElapsed;
 
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
+    private PropertyChangeListener listener;
 
     public TestAudioPlayer() {
     }
@@ -110,6 +111,13 @@ public class TestAudioPlayer {
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
+        this.listener = listener;
+    }
+
+    public void removePropertyChangeListener() {
+        if (null != listener) {
+            support.removePropertyChangeListener(this.listener);
+        }
     }
 
     /*

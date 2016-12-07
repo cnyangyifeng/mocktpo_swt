@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Scale;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Timer;
 
 public class ListeningQuestionView extends ResponsiveTestView {
 
@@ -171,6 +172,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
     @Override
     public void stopAudioAsyncExecution() {
         if (vo.isAudioAsyncExecutable()) {
+            audioPlayer.removePropertyChangeListener();
         }
     }
 
@@ -343,6 +345,22 @@ public class ListeningQuestionView extends ResponsiveTestView {
                             }
                         }
                     });
+                }
+
+                /*
+                 * ==================================================
+                 *
+                 * Schedules a new Timer and a Timer Task here if the
+                 * view is marked as timerTaskDelayed, rather than
+                 * TestView.startTimer().
+                 *
+                 * ==================================================
+                 */
+                if (vo.isTimerTaskDelayed()) {
+                    countDown = page.getUserTest().getRemainingViewTime(vo.getSectionType());
+                    timer = new Timer();
+                    timerTask = new TestTimerTask();
+                    timer.scheduleAtFixedRate(timerTask, 0, 1000);
                 }
             }
         }

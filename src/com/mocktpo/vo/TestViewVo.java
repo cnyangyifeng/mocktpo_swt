@@ -17,9 +17,6 @@ public class TestViewVo implements Serializable {
     private int sectionType;
     private String sectionTypeName;
     private boolean firstPassage;
-    private boolean withQuestion;
-    private int questionNumberInSection;
-    private boolean timed;
     private int passageOffset;
     private boolean withAudio;
     private String audio;
@@ -27,6 +24,10 @@ public class TestViewVo implements Serializable {
     private long audioDuration;
     private String illustrations;
     private boolean audioAsyncExecutable;
+    private boolean withQuestion;
+    private int questionNumberInSection;
+    private boolean timed;
+    private boolean timerTaskDelayed;
 
     public StyledTextVo getStyledText(String key) {
         for (String i : body.keySet()) {
@@ -93,30 +94,6 @@ public class TestViewVo implements Serializable {
         this.firstPassage = firstPassage;
     }
 
-    public boolean isWithQuestion() {
-        return withQuestion;
-    }
-
-    public void setWithQuestion(boolean withQuestion) {
-        this.withQuestion = withQuestion;
-    }
-
-    public int getQuestionNumberInSection() {
-        return questionNumberInSection;
-    }
-
-    public void setQuestionNumberInSection(int questionNumberInSection) {
-        this.questionNumberInSection = questionNumberInSection;
-    }
-
-    public boolean isTimed() {
-        return timed;
-    }
-
-    public void setTimed(boolean timed) {
-        this.timed = timed;
-    }
-
     public int getPassageOffset() {
         return passageOffset;
     }
@@ -171,5 +148,37 @@ public class TestViewVo implements Serializable {
 
     public void setAudioAsyncExecutable(boolean audioAsyncExecutable) {
         this.audioAsyncExecutable = audioAsyncExecutable;
+    }
+
+    public boolean isWithQuestion() {
+        return withQuestion;
+    }
+
+    public void setWithQuestion(boolean withQuestion) {
+        this.withQuestion = withQuestion;
+    }
+
+    public int getQuestionNumberInSection() {
+        return questionNumberInSection;
+    }
+
+    public void setQuestionNumberInSection(int questionNumberInSection) {
+        this.questionNumberInSection = questionNumberInSection;
+    }
+
+    public boolean isTimed() {
+        return timed;
+    }
+
+    public void setTimed(boolean timed) {
+        this.timed = timed;
+    }
+
+    public boolean isTimerTaskDelayed() {
+        return timerTaskDelayed;
+    }
+
+    public void setTimerTaskDelayed(boolean timerTaskDelayed) {
+        this.timerTaskDelayed = timerTaskDelayed;
     }
 }

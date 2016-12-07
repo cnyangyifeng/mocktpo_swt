@@ -87,10 +87,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 367,
       "withQuestion": true,
       "questionNumberInSection": 1,
       "timed": true,
-      "passageOffset": 367,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -127,10 +127,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 724,
       "withQuestion": true,
       "questionNumberInSection": 2,
       "timed": true,
-      "passageOffset": 724,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -167,10 +167,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 367,
       "withQuestion": true,
       "questionNumberInSection": 3,
       "timed": true,
-      "passageOffset": 367,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -204,10 +204,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1230,
       "withQuestion": true,
       "questionNumberInSection": 4,
       "timed": true,
-      "passageOffset": 1230,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -244,10 +244,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1975,
       "withQuestion": true,
       "questionNumberInSection": 5,
       "timed": true,
-      "passageOffset": 1975,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -284,10 +284,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1410,
       "withQuestion": true,
       "questionNumberInSection": 6,
       "timed": true,
-      "passageOffset": 1410,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -321,10 +321,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2123,
       "withQuestion": true,
       "questionNumberInSection": 7,
       "timed": true,
-      "passageOffset": 2123,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -358,10 +358,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2803,
       "withQuestion": true,
       "questionNumberInSection": 8,
       "timed": true,
-      "passageOffset": 2803,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -395,10 +395,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2803,
       "withQuestion": true,
       "questionNumberInSection": 9,
       "timed": true,
-      "passageOffset": 2803,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -432,10 +432,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 4113,
       "withQuestion": true,
       "questionNumberInSection": 10,
       "timed": true,
-      "passageOffset": 4113,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -472,10 +472,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3332,
       "withQuestion": true,
       "questionNumberInSection": 11,
       "timed": true,
-      "passageOffset": 3332,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -509,10 +509,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3332,
       "withQuestion": true,
       "questionNumberInSection": 12,
       "timed": true,
-      "passageOffset": 3332,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -546,10 +546,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1597,
       "withQuestion": true,
       "questionNumberInSection": 13,
       "timed": true,
-      "passageOffset": 1597,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -666,10 +666,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 0,
       "withQuestion": true,
       "questionNumberInSection": 15,
       "timed": true,
-      "passageOffset": 0,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -703,10 +703,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 657,
       "withQuestion": true,
       "questionNumberInSection": 16,
       "timed": true,
-      "passageOffset": 657,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -740,10 +740,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1567,
       "withQuestion": true,
       "questionNumberInSection": 17,
       "timed": true,
-      "passageOffset": 1567,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -780,10 +780,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1277,
       "withQuestion": true,
       "questionNumberInSection": 18,
       "timed": true,
-      "passageOffset": 1277,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -817,10 +817,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2719,
       "withQuestion": true,
       "questionNumberInSection": 19,
       "timed": true,
-      "passageOffset": 2719,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -857,10 +857,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2200,
       "withQuestion": true,
       "questionNumberInSection": 20,
       "timed": true,
-      "passageOffset": 2200,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -894,10 +894,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3156,
       "withQuestion": true,
       "questionNumberInSection": 21,
       "timed": true,
-      "passageOffset": 3156,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -931,10 +931,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3156,
       "withQuestion": true,
       "questionNumberInSection": 22,
       "timed": true,
-      "passageOffset": 3156,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -968,10 +968,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3575,
       "withQuestion": true,
       "questionNumberInSection": 23,
       "timed": true,
-      "passageOffset": 3575,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1008,10 +1008,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3906,
       "withQuestion": true,
       "questionNumberInSection": 24,
       "timed": true,
-      "passageOffset": 3906,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1048,10 +1048,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 4073,
       "withQuestion": true,
       "questionNumberInSection": 25,
       "timed": true,
-      "passageOffset": 4073,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1085,10 +1085,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 430,
       "withQuestion": true,
       "questionNumberInSection": 26,
       "timed": true,
-      "passageOffset": 430,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1208,10 +1208,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 410,
       "withQuestion": true,
       "questionNumberInSection": 28,
       "timed": true,
-      "passageOffset": 410,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1248,10 +1248,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 964,
       "withQuestion": true,
       "questionNumberInSection": 29,
       "timed": true,
-      "passageOffset": 964,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1288,10 +1288,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 0,
       "withQuestion": true,
       "questionNumberInSection": 30,
       "timed": true,
-      "passageOffset": 0,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1325,10 +1325,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 0,
       "withQuestion": true,
       "questionNumberInSection": 31,
       "timed": true,
-      "passageOffset": 0,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1362,10 +1362,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1419,
       "withQuestion": true,
       "questionNumberInSection": 32,
       "timed": true,
-      "passageOffset": 1419,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1399,10 +1399,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1878,
       "withQuestion": true,
       "questionNumberInSection": 33,
       "timed": true,
-      "passageOffset": 1878,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1436,10 +1436,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2601,
       "withQuestion": true,
       "questionNumberInSection": 34,
       "timed": true,
-      "passageOffset": 2601,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1476,10 +1476,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2744,
       "withQuestion": true,
       "questionNumberInSection": 35,
       "timed": true,
-      "passageOffset": 2744,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1516,10 +1516,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2255,
       "withQuestion": true,
       "questionNumberInSection": 36,
       "timed": true,
-      "passageOffset": 2255,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1553,10 +1553,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3172,
       "withQuestion": true,
       "questionNumberInSection": 37,
       "timed": true,
-      "passageOffset": 3172,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1590,10 +1590,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3172,
       "withQuestion": true,
       "questionNumberInSection": 38,
       "timed": true,
-      "passageOffset": 3172,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1627,10 +1627,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3172,
       "withQuestion": true,
       "questionNumberInSection": 39,
       "timed": true,
-      "passageOffset": 3172,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1664,10 +1664,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 632,
       "withQuestion": true,
       "questionNumberInSection": 40,
       "timed": true,
-      "passageOffset": 632,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1724,7 +1724,7 @@
           "text": "Moving into Pueblos"
         },
         "passage": {
-          "text": "\u0009In the Mesa Verde area of the ancient North American Southwest, living patterns changed in the thirteenth century, with large numbers of people moving into large communal dwellings called pueblos, often constructed at the edges of canyons, especially on the sides of cliffs. Abandoning small extended-family households to move into these large pueblos with dozens if not hundreds of other people was probably traumatic. Few of the cultural traditions and rules that today allow us to deal with dense populations existed for these people accustomed to household autonomy and the ability to move around the landscape almost at will. And besides the awkwardness of having to share walls with neighbors, living in aggregated pueblos introduced other problems. For people in cliff dwellings, hauling water, wood, and food to their homes was a major chore. The stress on local resources, especially in the firewood needed for daily cooking and warmth, was particularly intense, and conditions in aggregated pueblos were not very hygienic.\u000a\u0009Given all the disadvantages of living in aggregated towns, why did people in the thirteenth century move into these closely packed quarters? For transitions of such suddenness, archaeologists consider either pull factors (benefits that drew families together) or push factors (some external threat or crisis that forced people to aggregate). In this case, push explanations dominate.\u000a\u0009Population growth is considered a particularly influential push. After several generations of population growth, people packed the landscape in densities so high that communal pueblos may have been a necessary outcome. Around Sand Canyon, for example, populations grew from 5 -12 people per square kilometer in the tenth century to as many as 30 - 50 by the 1200s. As densities increased, domestic architecture became larger, culminating in crowded pueblos. Some scholars expand on this idea by emphasizing a corresponding need for arable land to feed growing numbers of people: construction of small dams, reservoirs, terraces, and field houses indicates that farmers were intensifying their efforts during the 1200s. Competition for good farmland may also have prompted people to bond together to assert rights over the best fields.\u000a\u0009Another important push was the onset of the Little Ice Age, a climatic phenomenon that led to cooler temperatures in the Northern Hemisphere. Although the height of the Little Ice Age was still around the corner, some evidence suggests that temperatures were falling during the thirteenth century. The environmental changes associated with this transition are not fully understood, but people living closest to the San Juan Mountains, to the northeast of Mesa Verde, were affected first. Growing food at these elevations is always difficult because of the short growing season. As the Little Ice Age progressed, farmers probably moved their fields to lower elevations, infringing on the lands of other farmers and pushing people together, thus contributing to the aggregations. Archaeologists identify a corresponding shift in populations toward the south and west toward Mesa Verde and away from higher elevations.\u000a\u0009In the face of all these pushes, people in the Mesa Verde area had yet another reason to move into communal villages: the need for greater cooperation. Sharing and cooperation were almost certainly part of early Puebloan life, even for people living in largely independent single-household residences scattered across the landscape. Archaeologists find that even the most isolated residences during the eleventh and twelfth centuries obtained some pottery, and probably food, from some distance away, while major ceremonial events were opportunities for sharing food and crafts. Scholars believe that this cooperation allowed people to contend with a patchy environment in which precipitation and other resources varied across the landscape: if you produce a lot of food one year, you might trade it for pottery made by a distant ally who is having difficulty with crops—and the next year, the flow of goods might go in the opposite direction. But all of this appears to have changed thirteenth century. Although the climate remained as unpredictable as ever between one year and the next, it became much less locally diverse. In a bad year for farming, everyone was equally affected. No longer was it helpful to share widely. Instead, the most sensible thing would be for neighbors to combine efforts to produce as much food as possible, and thus aggregated towns were a sensible arrangement.",
+          "text": "\u0009In the Mesa Verde area of the ancient North American Southwest, living patterns changed in the thirteenth century, with large numbers of people moving into large communal dwellings called pueblos, often constructed at the edges of canyons, especially on the sides of cliffs. Abandoning small extended-family households to move into these large pueblos with dozens if not hundreds of other people was probably traumatic. Few of the cultural traditions and rules that today allow us to deal with dense populations existed for these people accustomed to household autonomy and the ability to move around the landscape almost at will. And besides the awkwardness of having to share walls with neighbors, living in aggregated pueblos introduced other problems. For people in cliff dwellings, hauling water, wood, and food to their homes was a major chore. The stress on local resources, especially in the firewood needed for daily cooking and warmth, was particularly intense, and conditions in aggregated pueblos were not very hygienic.\u000a\u0009Given all the disadvantages of living in aggregated towns, why did people in the thirteenth century move into these closely packed quarters? For transitions of such suddenness, archaeologists consider either pull factors (benefits that drew families together) or push factors (some external threat or crisis that forced people to aggregate). In this case, push explanations dominate.\u000a\u0009Population growth is considered a particularly influential push. After several generations of population growth, people packed the landscape in densities so high that communal pueblos may have been a necessary outcome. Around Sand Canyon, for example, populations grew from 5 -12 people per square kilometer in the tenth century to as many as 30 - 50 by the 1200s. As densities increased, domestic architecture became larger, culminating in crowded pueblos. Some scholars expand on this idea by emphasizing a corresponding need for arable land to feed growing numbers of people: construction of small dams, reservoirs, terraces, and field houses indicates that farmers were intensifying their efforts during the 1200s. Competition for good farmland may also have prompted people to bond together to assert rights over the best fields.\u000a\u0009Another important push was the onset of the Little Ice Age, a climatic phenomenon that led to cooler temperatures in the Northern Hemisphere. Although the height of the Little Ice Age was still around the corner, some evidence suggests that temperatures were falling during the thirteenth century. The environmental changes associated with this transition are not fully understood, but people living closest to the San Juan Mountains, to the northeast of Mesa Verde, were affected first. Growing food at these elevations is always difficult because of the short growing season. As the Little Ice Age progressed, farmers probably moved their fields to lower elevations, infringing on the lands of other farmers and pushing people together, thus contributing to the aggregations. Archaeologists identify a corresponding shift in populations toward the south and west toward Mesa Verde and away from higher elevations.\u000a\u0009In the face of all these pushes, people in the Mesa Verde area had yet another reason to move into communal villages: the need for greater cooperation. Sharing and cooperation were almost certainly part of early Puebloan life, even for people living in largely independent single-household residences scattered across the landscape. Archaeologists find that even the most isolated residences during the eleventh and twelfth centuries obtained some pottery, and probably food, from some distance away, while major ceremonial events were opportunities for sharing food and crafts. Scholars believe that this cooperation allowed people to contend with a patchy environment in which precipitation and other resources varied across the landscape: if you produce a lot of food one year, you might trade it for pottery made by a distant ally who is having difficulty with crops—and the next year, the flow of goods might go in the opposite direction. But all of this appears to have changed thirteenth century. Although the climate remained as unpredictable as ever between one year and the next, it became much less locally diverse. In a bad year for farming, everyone was equally affected. No longer was it helpful to share widely. Instead, the most sensible thing would be for neighbors to combine efforts to produce as much food as possible, and thus aggregated towns were a sensible arrangement."
         },
         "directions": {
           "text": "Directions: An introductory sentence for a brief summary of the passage is provided below. Complete the summary by selecting the THREE answer choices that express the most important ideas in the passage. Some sentences do not belong in the summary because they express ideas that are not presented in the passage or are minor ideas in the passage. This question is worth 2 points.",
@@ -1867,6 +1867,7 @@
       "withQuestion": true,
       "questionNumberInSection": 1,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "Why can the man NOT find the book he needs?"
@@ -1897,6 +1898,7 @@
       "withQuestion": true,
       "questionNumberInSection": 2,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What are two possible reasons that the speakers consider for why the man cannot find the book?"
@@ -1930,6 +1932,7 @@
       "withQuestion": true,
       "questionNumberInSection": 3,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What does the woman offer to do for the student?"
@@ -1960,6 +1963,7 @@
       "withQuestion": true,
       "questionNumberInSection": 4,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "How does the man react to the information the woman gives him about where computer science books are sold?"
@@ -1990,6 +1994,7 @@
       "withQuestion": true,
       "questionNumberInSection": 5,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What does the woman offer to do for the student: \u2423",
@@ -2035,6 +2040,7 @@
       "withQuestion": true,
       "questionNumberInSection": 1,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "Why can the man NOT find the book he needs?"
@@ -2065,6 +2071,7 @@
       "withQuestion": true,
       "questionNumberInSection": 2,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What are two possible reasons that the speakers consider for why the man cannot find the book?"
@@ -2098,6 +2105,7 @@
       "withQuestion": true,
       "questionNumberInSection": 3,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What does the woman offer to do for the student?"
@@ -2128,6 +2136,7 @@
       "withQuestion": true,
       "questionNumberInSection": 4,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "How does the man react to the information the woman gives him about where computer science books are sold?"
@@ -2158,6 +2167,7 @@
       "withQuestion": true,
       "questionNumberInSection": 5,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What does the woman offer to do for the student: \u2423",
@@ -2203,6 +2213,7 @@
       "withQuestion": true,
       "questionNumberInSection": 1,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "Why can the man NOT find the book he needs?"
@@ -2233,6 +2244,7 @@
       "withQuestion": true,
       "questionNumberInSection": 2,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What are two possible reasons that the speakers consider for why the man cannot find the book?"
@@ -2266,6 +2278,7 @@
       "withQuestion": true,
       "questionNumberInSection": 3,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What does the woman offer to do for the student?"
@@ -2296,6 +2309,7 @@
       "withQuestion": true,
       "questionNumberInSection": 4,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "How does the man react to the information the woman gives him about where computer science books are sold?"
@@ -2326,6 +2340,7 @@
       "withQuestion": true,
       "questionNumberInSection": 5,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What does the woman offer to do for the student: \u2423",

@@ -89,10 +89,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 0,
       "withQuestion": true,
       "questionNumberInSection": 1,
       "timed": true,
-      "passageOffset": 0,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -128,10 +128,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 497,
       "withQuestion": true,
       "questionNumberInSection": 2,
       "timed": true,
-      "passageOffset": 497,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -168,10 +168,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 795,
       "withQuestion": true,
       "questionNumberInSection": 3,
       "timed": true,
-      "passageOffset": 795,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -208,10 +208,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 595,
       "withQuestion": true,
       "questionNumberInSection": 4,
       "timed": true,
-      "passageOffset": 595,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -247,10 +247,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1139,
       "withQuestion": true,
       "questionNumberInSection": 5,
       "timed": true,
-      "passageOffset": 1139,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -287,10 +287,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1200,
       "withQuestion": true,
       "questionNumberInSection": 6,
       "timed": true,
-      "passageOffset": 1200,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -326,10 +326,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1855,
       "withQuestion": true,
       "questionNumberInSection": 7,
       "timed": true,
-      "passageOffset": 1855,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -366,10 +366,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2102,
       "withQuestion": true,
       "questionNumberInSection": 8,
       "timed": true,
-      "passageOffset": 2102,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -406,10 +406,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2304,
       "withQuestion": true,
       "questionNumberInSection": 9,
       "timed": true,
-      "passageOffset": 2304,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -446,10 +446,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2596,
       "withQuestion": true,
       "questionNumberInSection": 10,
       "timed": true,
-      "passageOffset": 2596,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -485,10 +485,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2872,
       "withQuestion": true,
       "questionNumberInSection": 11,
       "timed": true,
-      "passageOffset": 2872,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -524,10 +524,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3810,
       "withQuestion": true,
       "questionNumberInSection": 12,
       "timed": true,
-      "passageOffset": 3810,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -561,10 +561,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3281,
       "withQuestion": true,
       "questionNumberInSection": 13,
       "timed": true,
-      "passageOffset": 3281,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -687,10 +687,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 179,
       "withQuestion": true,
       "questionNumberInSection": 15,
       "timed": true,
-      "passageOffset": 179,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -727,10 +727,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 587,
       "withQuestion": true,
       "questionNumberInSection": 16,
       "timed": true,
-      "passageOffset": 587,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -767,10 +767,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 0,
       "withQuestion": true,
       "questionNumberInSection": 17,
       "timed": true,
-      "passageOffset": 0,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -806,10 +806,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 0,
       "withQuestion": true,
       "questionNumberInSection": 18,
       "timed": true,
-      "passageOffset": 0,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -845,10 +845,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1604,
       "withQuestion": true,
       "questionNumberInSection": 19,
       "timed": true,
-      "passageOffset": 1604,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -885,10 +885,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1668,
       "withQuestion": true,
       "questionNumberInSection": 20,
       "timed": true,
-      "passageOffset": 1668,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -925,10 +925,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 935,
       "withQuestion": true,
       "questionNumberInSection": 21,
       "timed": true,
-      "passageOffset": 935,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -964,10 +964,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2620,
       "withQuestion": true,
       "questionNumberInSection": 22,
       "timed": true,
-      "passageOffset": 2620,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1003,10 +1003,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2620,
       "withQuestion": true,
       "questionNumberInSection": 23,
       "timed": true,
-      "passageOffset": 2620,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1042,10 +1042,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3665,
       "withQuestion": true,
       "questionNumberInSection": 24,
       "timed": true,
-      "passageOffset": 3665,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1082,10 +1082,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3940,
       "withQuestion": true,
       "questionNumberInSection": 25,
       "timed": true,
-      "passageOffset": 3940,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1122,10 +1122,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 4218,
       "withQuestion": true,
       "questionNumberInSection": 26,
       "timed": true,
-      "passageOffset": 4218,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1159,10 +1159,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1818,
       "withQuestion": true,
       "questionNumberInSection": 27,
       "timed": true,
-      "passageOffset": 1818,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1285,10 +1285,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 78,
       "withQuestion": true,
       "questionNumberInSection": 29,
       "timed": true,
-      "passageOffset": 78,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1325,10 +1325,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 0,
       "withQuestion": true,
       "questionNumberInSection": 30,
       "timed": true,
-      "passageOffset": 0,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1364,10 +1364,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 0,
       "withQuestion": true,
       "questionNumberInSection": 31,
       "timed": true,
-      "passageOffset": 0,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1403,10 +1403,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 467,
       "withQuestion": true,
       "questionNumberInSection": 32,
       "timed": true,
-      "passageOffset": 467,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1442,10 +1442,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1215,
       "withQuestion": true,
       "questionNumberInSection": 33,
       "timed": true,
-      "passageOffset": 1215,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1482,10 +1482,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1570,
       "withQuestion": true,
       "questionNumberInSection": 34,
       "timed": true,
-      "passageOffset": 1570,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1522,10 +1522,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1721,
       "withQuestion": true,
       "questionNumberInSection": 35,
       "timed": true,
-      "passageOffset": 1721,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1562,10 +1562,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1057,
       "withQuestion": true,
       "questionNumberInSection": 36,
       "timed": true,
-      "passageOffset": 1057,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1601,10 +1601,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 2195,
       "withQuestion": true,
       "questionNumberInSection": 37,
       "timed": true,
-      "passageOffset": 2195,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1638,10 +1638,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 1789,
       "withQuestion": true,
       "questionNumberInSection": 38,
       "timed": true,
-      "passageOffset": 1789,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1677,10 +1677,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3909,
       "withQuestion": true,
       "questionNumberInSection": 39,
       "timed": true,
-      "passageOffset": 3909,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1717,10 +1717,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3363,
       "withQuestion": true,
       "questionNumberInSection": 40,
       "timed": true,
-      "passageOffset": 3363,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1756,10 +1756,10 @@
       "viewTypeName": "Reading Text With Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
+      "passageOffset": 3363,
       "withQuestion": true,
       "questionNumberInSection": 41,
       "timed": true,
-      "passageOffset": 3363,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1963,6 +1963,7 @@
       "withQuestion": true,
       "questionNumberInSection": 1,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "Why does the student go to see the librarian?"
@@ -1993,6 +1994,7 @@
       "withQuestion": true,
       "questionNumberInSection": 2,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What does the librarian say about the availability of journals and articles in the library?"
@@ -2023,6 +2025,7 @@
       "withQuestion": true,
       "questionNumberInSection": 3,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What does the librarian suggest the student should do to save time?"
@@ -2053,6 +2056,7 @@
       "withQuestion": true,
       "questionNumberInSection": 4,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What can be inferred about why the woman decides to use the computer in the library?"
@@ -2083,6 +2087,7 @@
       "withQuestion": true,
       "questionNumberInSection": 5,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "Why does the woman say this: \u2423",
@@ -2128,6 +2133,7 @@
       "withQuestion": true,
       "questionNumberInSection": 6,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What is the purpose of the lecture?"
@@ -2158,6 +2164,7 @@
       "withQuestion": true,
       "questionNumberInSection": 7,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What does the professor say about Frantzen's painting of a farm scene?"
@@ -2188,6 +2195,7 @@
       "withQuestion": true,
       "questionNumberInSection": 8,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "Why did Frantzen go to the Sales Barn?"
@@ -2218,6 +2226,7 @@
       "withQuestion": true,
       "questionNumberInSection": 9,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What does the professor imply about the painting of the young woman surrounded by pumpkins?"
@@ -2248,6 +2257,7 @@
       "withQuestion": true,
       "questionNumberInSection": 10,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "Why does the professor discuss Frantzen's difficulties as a young painter?"
@@ -2278,6 +2288,7 @@
       "withQuestion": true,
       "questionNumberInSection": 11,
       "timed": true,
+      "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What does the professor imply when he says this: \u2423",
