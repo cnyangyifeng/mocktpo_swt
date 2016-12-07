@@ -2025,7 +2025,7 @@
       "withAudio": true,
       "audio": "listening/l1",
       "audioVisualized": true,
-      "audioDuration": 158,
+      "audioDuration": 300,
       "illustrations": "listening/l1:0"
     },
     {
@@ -2038,7 +2038,7 @@
       "audio": "listening/l1q1",
       "audioAsyncExecutable": true,
       "withQuestion": true,
-      "questionNumberInSection": 1,
+      "questionNumberInSection": 6,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
@@ -2069,7 +2069,7 @@
       "audio": "listening/l1q2",
       "audioAsyncExecutable": true,
       "withQuestion": true,
-      "questionNumberInSection": 2,
+      "questionNumberInSection": 7,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
@@ -2103,7 +2103,7 @@
       "audio": "listening/l1q3",
       "audioAsyncExecutable": true,
       "withQuestion": true,
-      "questionNumberInSection": 3,
+      "questionNumberInSection": 8,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
@@ -2134,7 +2134,7 @@
       "audio": "listening/l1q4",
       "audioAsyncExecutable": true,
       "withQuestion": true,
-      "questionNumberInSection": 4,
+      "questionNumberInSection": 9,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
@@ -2165,7 +2165,7 @@
       "audio": "listening/l1q5",
       "audioAsyncExecutable": true,
       "withQuestion": true,
-      "questionNumberInSection": 5,
+      "questionNumberInSection": 10,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
@@ -2191,6 +2191,40 @@
     },
     {
       "viewId": 64,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l1q6",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 11,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What does the woman offer to do for the student: \u2423",
+          "styles": [
+            { "start": 49, "length": 1, "image": "earphone" }
+          ]
+        },
+        "choiceA": {
+          "text": "To determine how urgent the student s need is"
+        },
+        "choiceB": {
+          "text": "To figure out why the book is not listed on the computer"
+        },
+        "choiceC": {
+          "text": "To find out what level computer science course the man is taking"
+        },
+        "choiceD": {
+          "text": "To explain why the book might be sold out"
+        }
+      }
+    },
+    {
+      "viewId": 65,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2198,11 +2232,11 @@
       "withAudio": true,
       "audio": "listening/l2",
       "audioVisualized": true,
-      "audioDuration": 158,
+      "audioDuration": 275,
       "illustrations": "listening/l2:0"
     },
     {
-      "viewId": 65,
+      "viewId": 66,
       "viewType": 25,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2211,7 +2245,7 @@
       "audio": "listening/l2q1",
       "audioAsyncExecutable": true,
       "withQuestion": true,
-      "questionNumberInSection": 1,
+      "questionNumberInSection": 12,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
@@ -2233,7 +2267,7 @@
       }
     },
     {
-      "viewId": 66,
+      "viewId": 67,
       "viewType": 25,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2242,7 +2276,7 @@
       "audio": "listening/l2q2",
       "audioAsyncExecutable": true,
       "withQuestion": true,
-      "questionNumberInSection": 2,
+      "questionNumberInSection": 13,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
@@ -2267,7 +2301,7 @@
       }
     },
     {
-      "viewId": 67,
+      "viewId": 68,
       "viewType": 25,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2276,7 +2310,7 @@
       "audio": "listening/l2q3",
       "audioAsyncExecutable": true,
       "withQuestion": true,
-      "questionNumberInSection": 3,
+      "questionNumberInSection": 14,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
@@ -2298,7 +2332,7 @@
       }
     },
     {
-      "viewId": 68,
+      "viewId": 69,
       "viewType": 25,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2307,7 +2341,7 @@
       "audio": "listening/l2q4",
       "audioAsyncExecutable": true,
       "withQuestion": true,
-      "questionNumberInSection": 4,
+      "questionNumberInSection": 15,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
@@ -2329,7 +2363,7 @@
       }
     },
     {
-      "viewId": 69,
+      "viewId": 70,
       "viewType": 25,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2338,7 +2372,7 @@
       "audio": "listening/l2q5",
       "audioAsyncExecutable": true,
       "withQuestion": true,
-      "questionNumberInSection": 5,
+      "questionNumberInSection": 16,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
