@@ -17,11 +17,6 @@ public abstract class ResponsiveTestView extends TestView {
     protected Composite body;
     protected Composite viewPort;
 
-    /* Audio Visualization */
-
-    protected ProgressBar audioBar;
-    protected List<Image> illustrations;
-
     /*
      * ==================================================
      *

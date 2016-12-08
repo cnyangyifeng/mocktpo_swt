@@ -14,6 +14,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.ProgressBar;
@@ -21,6 +22,7 @@ import org.eclipse.swt.widgets.Scale;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ListeningMaterialView extends ResponsiveTestView {
@@ -35,10 +37,13 @@ public class ListeningMaterialView extends ResponsiveTestView {
     /* Widgets */
 
     private VolumeControl vc;
+    private Label il;
+    private ProgressBar audioBar;
 
     /* Properties */
 
     private boolean volumeControlVisible;
+    private Map<Integer, Image> illustrations;
 
     /*
      * ==================================================
@@ -103,7 +108,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
 
             illustrations = IllustrationUtils.load(d, page.getUserTest(), vo.getIllustrations());
 
-            final Label il = new Label(viewPort, SWT.NONE);
+            il = new Label(viewPort, SWT.NONE);
             FormDataSet.attach(il).fromLeft(50, -IMAGE_WIDTH / 2).atTop(ILLUSTRATIONS_MARGIN_TOP);
             LabelSet.decorate(il).setImage(illustrations.get(0));
             il.addPaintListener(new BorderedCompositePaintListener());
@@ -186,17 +191,32 @@ public class ListeningMaterialView extends ResponsiveTestView {
         @Override
         public void propertyChange(PropertyChangeEvent e) {
 
-            long duration = vo.getAudioDuration() * 1000;
             long timeElapsed = (Long) e.getNewValue();
 
-            final AtomicReference<Long> ref = new AtomicReference<Long>();
+            final AtomicReference<Integer> rl = new AtomicReference<Integer>();
+            for (Integer location : illustrations.keySet()) {
+                if (timeElapsed / 1000 == location) {
+                    rl.set(location);
+                    if (!d.isDisposed()) {
+                        d.asyncExec(new Runnable() {
+                            @Override
+                            public void run() {
+                                LabelSet.decorate(il).setImage(illustrations.get(rl.get()));
+                            }
+                        });
+                    }
+                }
+            }
+
+            final AtomicReference<Long> rv = new AtomicReference<Long>();
+            long duration = vo.getAudioDuration() * 1000;
             long val = 100 * timeElapsed / duration;
-            ref.set(val);
+            rv.set(val);
             if (!d.isDisposed()) {
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
-                        audioBar.setSelection(ref.get().intValue());
+                        audioBar.setSelection(rv.get().intValue());
                     }
                 });
             }

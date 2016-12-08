@@ -10,8 +10,8 @@ import org.eclipse.swt.graphics.ImageDataProvider;
 import org.eclipse.swt.widgets.Display;
 
 import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class IllustrationUtils {
 
@@ -20,8 +20,8 @@ public class IllustrationUtils {
     private IllustrationUtils() {
     }
 
-    public static List<Image> load(final Display d, final UserTest ut, final String fileNames) {
-        List<Image> illustrations = new ArrayList<Image>();
+    public static Map<Integer, Image> load(final Display d, final UserTest ut, final String fileNames) {
+        Map<Integer, Image> map = new HashMap<Integer, Image>();
         String[] arr = fileNames.split(";");
         for (final String fileNameWithLocation : arr) {
             final String[] fa = fileNameWithLocation.split(":");
@@ -48,8 +48,8 @@ public class IllustrationUtils {
                     return data;
                 }
             });
-            illustrations.add(image);
+            map.put(Integer.parseInt(fa[1]), image);
         }
-        return illustrations;
+        return map;
     }
 }

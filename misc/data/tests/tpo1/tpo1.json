@@ -2320,7 +2320,7 @@
       "audio": "listening/l2",
       "audioVisualized": true,
       "audioDuration": 316,
-      "illustrations": "listening/l2_1:0;listening/l2_2:30;listening/l2_3:60;listening/l2_4:0;listening/l2_5:30"
+      "illustrations": "listening/l2_1:0;listening/l2_2:30;listening/l2_3:60;listening/l2_4:90;listening/l2_5:120"
     },
     {
       "viewId": 67,
@@ -2337,19 +2337,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What is the purpose of the lecture?"
+          "text": "What does the professor mainly discuss?"
         },
         "choiceA": {
-          "text": "To explain the difference between two artistic styles"
+          "text": "The difference in age among American mountain ranges"
         },
         "choiceB": {
-          "text": "To describe a new art gallery to the class"
+          "text": "The importance of a technique used for dating geological materials"
         },
         "choiceC": {
-          "text": "To introduce an artist's work to the class"
+          "text": "The recent discovery of an ancient canyon"
         },
         "choiceD": {
-          "text": "To show how artists' styles can evolve over time"
+          "text": "A comparison of various minerals used for dating"
         }
       }
     },
@@ -2368,19 +2368,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the professor say about Frantzen's painting of a farm scene?"
+          "text": "Before the use of uranium-lead analysis, where did most geologists think the Grand Canyon sandstone came from?"
         },
         "choiceA": {
-          "text": "It resembles a photograph."
+          "text": "An ancient lake located in the American Southwest"
         },
         "choiceB": {
-          "text": "It may be Frantzen's best-known painting."
+          "text": "A desert that once connected two continents"
         },
         "choiceC": {
-          "text": "It was painted in the Impressionist style."
+          "text": "Sands carried by a river from the Appalachian Mountains"
         },
         "choiceD": {
-          "text": "It was painted while Frantzen lived abroad."
+          "text": "A nearby mountain range that had flattened out over time"
         }
       }
     },
@@ -2399,19 +2399,22 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "Why did Frantzen go to the Sales Barn?"
+          "text": "In the talk, the professor describes the sequence of uranium-lead dating. Summarize the sequence by putting the events in the correct order."
+        },
+        "tips": {
+          "text": "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\u000aTo review the passage, click VIEW TEXT.",
+          "styles": [
+            { "start": 128, "length": 9, "fontStyle": 1 }
+          ]
         },
         "choiceA": {
-          "text": "To study human form and movement"
+          "text": "Zircon in the sandstone is matched to the zircon in a particular mountain range."
         },
         "choiceB": {
-          "text": "To earn money by painting portraits"
+          "text": "The amount of lead in sandstone zircon is measured."
         },
         "choiceC": {
-          "text": "To paint farm animals in an outdoor setting"
-        },
-        "choiceD": {
-          "text": "To meet people who could model for her paining"
+          "text": "The age of zircon in a sandstone sample is determined."
         }
       }
     },
@@ -2430,19 +2433,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the professor imply about the painting of the young woman surrounded by pumpkins?"
+          "text": "According to the professor, what change has caused uranium-lead dating to gain popularity recently?"
         },
         "choiceA": {
-          "text": "It was painted at an art fair."
+          "text": "It can be performed outside a laboratory."
         },
         "choiceB": {
-          "text": "It combines Impressionism with Realism."
+          "text": "It can now be done more efficiently."
         },
         "choiceC": {
-          "text": "It convinced Frantzen that she was a good illustrator."
+          "text": "It no longer involves radioactive elements."
         },
         "choiceD": {
-          "text": "It was originally meant to be used in an advertisement."
+          "text": "It can be used in fields other than geology."
         }
       }
     },
@@ -2461,19 +2464,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "Why does the professor discuss Frantzen's difficulties as a young painter?"
+          "text": "Why does the professor talk about the breaking apart of Earth's continents?"
         },
         "choiceA": {
-          "text": "He wants to point out mistakes that young artists commonly make."
+          "text": "To give another example of how uranium-lead dating might be useful"
         },
         "choiceB": {
-          "text": "He thinks her example can inspire the students in their own lives."
+          "text": "To explain how the Grand Canyon was formed"
         },
         "choiceC": {
-          "text": "Her difficulties remind him of the difficulties he himself experienced as a young artist."
+          "text": "To demonstrate how difficult uranium-lead dating is"
         },
         "choiceD": {
-          "text": "Her difficulties are the subject of some of the paintings in the gallery that the students will visit."
+          "text": "To disprove a theory about the age of Earth's first mountain ranges"
         }
       }
     },
@@ -2498,16 +2501,16 @@
           ]
         },
         "choiceA": {
-          "text": "The students can understand Frantzen's art without knowing about her life."
+          "text": "The class is easier than other geology classes."
         },
         "choiceB": {
-          "text": "The students should pay very close attention to what he is going to say."
+          "text": "The class has already studied the information he is discussing."
         },
         "choiceC": {
-          "text": "Some of his students are already familiar with Frantzen's life story."
+          "text": "Some students should take a course in geological dating techniques."
         },
         "choiceD": {
-          "text": "Some of his students may not appreciate Frantzen's work."
+          "text": "He will discuss the topic later in the class."
         }
       }
     }
