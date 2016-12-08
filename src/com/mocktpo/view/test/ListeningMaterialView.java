@@ -32,7 +32,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
     private static final int ILLUSTRATIONS_MARGIN_TOP = 40;
     private static final int IMAGE_WIDTH = 600;
     private static final int AUDIO_PROGRESS_INDICATOR_WIDTH = 360;
-    private static final int AUDIO_PROGRESS_INDICATOR_HEIGHT = 20;
+    private static final int AUDIO_PROGRESS_INDICATOR_HEIGHT = 26;
 
     /* Widgets */
 
@@ -111,12 +111,11 @@ public class ListeningMaterialView extends ResponsiveTestView {
             il = new Label(viewPort, SWT.NONE);
             FormDataSet.attach(il).fromLeft(50, -IMAGE_WIDTH / 2).atTop(ILLUSTRATIONS_MARGIN_TOP);
             LabelSet.decorate(il).setImage(illustrations.get(0));
-            il.addPaintListener(new BorderedCompositePaintListener());
 
             final Composite pc = new Composite(viewPort, SWT.NONE);
             FormDataSet.attach(pc).fromLeft(50, -AUDIO_PROGRESS_INDICATOR_WIDTH / 2).atTopTo(il, 30).withWidth(AUDIO_PROGRESS_INDICATOR_WIDTH).withHeight(AUDIO_PROGRESS_INDICATOR_HEIGHT);
             CompositeSet.decorate(pc).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-            FormLayoutSet.layout(pc).marginWidth(5).marginHeight(2);
+            FormLayoutSet.layout(pc).marginWidth(10).marginHeight(8);
             pc.addPaintListener(new BorderedCompositePaintListener());
 
             audioBar = new ProgressBar(pc, SWT.NONE);
@@ -228,8 +227,15 @@ public class ListeningMaterialView extends ResponsiveTestView {
                         @Override
                         public void run() {
                             audioBar.setSelection(100);
+                            LabelSet.decorate(il).setImage(MT.IMAGE_READY_TO_ANSWER);
                         }
                     });
+                }
+
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
                 }
 
                 release();

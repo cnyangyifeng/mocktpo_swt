@@ -1,5 +1,6 @@
 package com.mocktpo.view.test;
 
+import com.mocktpo.dialog.RequiredAnswerDialog;
 import com.mocktpo.listener.StyledTextPaintImageListener;
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.mapper.UserTestMapper;
@@ -29,6 +30,10 @@ public class ListeningQuestionView extends ResponsiveTestView {
     private static final int VIEW_PORT_PADDING_TOP = 150;
     private static final int VIEW_PORT_PADDING_WIDTH = 200;
 
+    private static final int VIEW_STATUS_INITIAL = 0;
+    private static final int VIEW_STATUS_NEXT_BUTTON_ENABLED = 1;
+    private static final int VIEW_STATUS_OK_BUTTON_ENABLED = 2;
+
     /* Widgets */
 
     private ImageButton nextOvalButton, okOvalButton;
@@ -36,12 +41,13 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
     private Label choiceA, choiceB, choiceC, choiceD;
     private Label la, lb, lc, ld;
-    private StyledText footnote;
+    private StyledText tips;
 
     /* Properties */
 
     private boolean volumeControlVisible;
-    private int answer;
+    private int viewStatus;
+    private int answer1, answer2;
 
     /*
      * ==================================================
@@ -53,6 +59,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
     public ListeningQuestionView(TestPage page, int style) {
         super(page, style);
+        this.viewStatus = VIEW_STATUS_INITIAL;
     }
 
     /*
@@ -98,60 +105,90 @@ public class ListeningQuestionView extends ResponsiveTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText question = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(question).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(question).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
-        StyleRangeUtils.decorate(question, vo.getStyledText("question").getStyles());
-        question.addPaintObjectListener(new StyledTextPaintImageListener());
+        final StyledText qt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(qt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        StyledTextSet.decorate(qt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
+        StyleRangeUtils.decorate(qt, vo.getStyledText("question").getStyles());
+        qt.addPaintObjectListener(new StyledTextPaintImageListener());
 
-        if (null != vo.getStyledText("choiceA") && null != vo.getStyledText("choiceB") && null != vo.getStyledText("choiceC") && null != vo.getStyledText("choiceD")) {
+        if (null != vo.getStyledText("tips")) {
+
+            tips = new StyledText(viewPort, SWT.WRAP);
+            FormDataSet.attach(tips).atLeft().atTopTo(qt, 20).atRight();
+            StyledTextSet.decorate(tips).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips").getText()).setVisible(false);
+            StyleRangeUtils.decorate(tips, vo.getStyledText("tips").getStyles());
 
             choiceA = new Label(viewPort, SWT.NONE);
-            FormDataSet.attach(choiceA).atLeft().atTopTo(question, 25);
-            LabelSet.decorate(choiceA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
+            FormDataSet.attach(choiceA).atLeft(5).atTopTo(tips, 25);
+            if (2 == vo.getTotalAnswerCount()) {
+                LabelSet.decorate(choiceA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNBOXED).setVisible(false);
+            } else {
+                LabelSet.decorate(choiceA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
+            }
             choiceA.addMouseListener(new ChooseAnswerListener());
 
             la = new Label(viewPort, SWT.WRAP);
-            FormDataSet.attach(la).atLeftTo(choiceA, 5).atTopTo(question, 20).atRight();
+            FormDataSet.attach(la).atLeftTo(choiceA, 5).atTopTo(tips, 20).atRight();
             LabelSet.decorate(la).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceA").getText()).setVisible(false);
             la.addMouseListener(new ChooseAnswerListener());
+        } else {
 
-            choiceB = new Label(viewPort, SWT.NONE);
-            FormDataSet.attach(choiceB).atLeft().atTopTo(la, 25);
-            LabelSet.decorate(choiceB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
-            choiceB.addMouseListener(new ChooseAnswerListener());
-
-            lb = new Label(viewPort, SWT.WRAP);
-            FormDataSet.attach(lb).atLeftTo(choiceB, 5).atTopTo(la, 20).atRight();
-            LabelSet.decorate(lb).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceB").getText()).setVisible(false);
-            lb.addMouseListener(new ChooseAnswerListener());
-
-            choiceC = new Label(viewPort, SWT.NONE);
-            FormDataSet.attach(choiceC).atLeft().atTopTo(lb, 25);
-            LabelSet.decorate(choiceC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
-            choiceC.addMouseListener(new ChooseAnswerListener());
-
-            lc = new Label(viewPort, SWT.WRAP);
-            FormDataSet.attach(lc).atLeftTo(choiceC, 5).atTopTo(lb, 20).atRight();
-            LabelSet.decorate(lc).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceC").getText()).setVisible(false);
-            lc.addMouseListener(new ChooseAnswerListener());
-
-            choiceD = new Label(viewPort, SWT.NONE);
-            FormDataSet.attach(choiceD).atLeft().atTopTo(lc, 25);
-            LabelSet.decorate(choiceD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
-            choiceD.addMouseListener(new ChooseAnswerListener());
-
-            ld = new Label(viewPort, SWT.WRAP);
-            FormDataSet.attach(ld).atLeftTo(choiceD, 5).atTopTo(lc, 20).atRight();
-            LabelSet.decorate(ld).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText()).setVisible(false);
-            ld.addMouseListener(new ChooseAnswerListener());
-
-            if (null != vo.getStyledText("footnote")) {
-                footnote = new StyledText(viewPort, SWT.WRAP);
-                FormDataSet.attach(footnote).atLeft().atTopTo(ld, 40).atRight();
-                StyledTextSet.decorate(footnote).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText()).setVisible(false);
+            choiceA = new Label(viewPort, SWT.NONE);
+            FormDataSet.attach(choiceA).atLeft(5).atTopTo(qt, 25);
+            if (2 == vo.getTotalAnswerCount()) {
+                LabelSet.decorate(choiceA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNBOXED).setVisible(false);
+            } else {
+                LabelSet.decorate(choiceA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
             }
+            choiceA.addMouseListener(new ChooseAnswerListener());
+
+            la = new Label(viewPort, SWT.WRAP);
+            FormDataSet.attach(la).atLeftTo(choiceA, 5).atTopTo(qt, 20).atRight();
+            LabelSet.decorate(la).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceA").getText()).setVisible(false);
+            la.addMouseListener(new ChooseAnswerListener());
         }
+
+        choiceB = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(choiceB).atLeft(5).atTopTo(la, 25);
+        if (2 == vo.getTotalAnswerCount()) {
+            LabelSet.decorate(choiceB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNBOXED).setVisible(false);
+        } else {
+            LabelSet.decorate(choiceB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
+        }
+        choiceB.addMouseListener(new ChooseAnswerListener());
+
+        lb = new Label(viewPort, SWT.WRAP);
+        FormDataSet.attach(lb).atLeftTo(choiceB, 5).atTopTo(la, 20).atRight();
+        LabelSet.decorate(lb).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceB").getText()).setVisible(false);
+        lb.addMouseListener(new ChooseAnswerListener());
+
+        choiceC = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(choiceC).atLeft(5).atTopTo(lb, 25);
+        if (2 == vo.getTotalAnswerCount()) {
+            LabelSet.decorate(choiceC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNBOXED).setVisible(false);
+        } else {
+            LabelSet.decorate(choiceC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
+        }
+        choiceC.addMouseListener(new ChooseAnswerListener());
+
+        lc = new Label(viewPort, SWT.WRAP);
+        FormDataSet.attach(lc).atLeftTo(choiceC, 5).atTopTo(lb, 20).atRight();
+        LabelSet.decorate(lc).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceC").getText()).setVisible(false);
+        lc.addMouseListener(new ChooseAnswerListener());
+
+        choiceD = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(choiceD).atLeft(5).atTopTo(lc, 25);
+        if (2 == vo.getTotalAnswerCount()) {
+            LabelSet.decorate(choiceD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNBOXED).setVisible(false);
+        } else {
+            LabelSet.decorate(choiceD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
+        }
+        choiceD.addMouseListener(new ChooseAnswerListener());
+
+        ld = new Label(viewPort, SWT.WRAP);
+        FormDataSet.attach(ld).atLeftTo(choiceD, 5).atTopTo(lc, 20).atRight();
+        LabelSet.decorate(ld).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText()).setVisible(false);
+        ld.addMouseListener(new ChooseAnswerListener());
     }
 
     /*
@@ -165,6 +202,16 @@ public class ListeningQuestionView extends ResponsiveTestView {
     @Override
     public void startAudioAsyncExecution() {
         if (vo.isAudioAsyncExecutable()) {
+
+            if (!d.isDisposed()) {
+                d.asyncExec(new Runnable() {
+                    @Override
+                    public void run() {
+                        timerButton.setEnabled(false);
+                    }
+                });
+            }
+
             audioPlayer.addPropertyChangeListener(new AudioAsyncExecutionListener());
         }
     }
@@ -173,6 +220,23 @@ public class ListeningQuestionView extends ResponsiveTestView {
     public void stopAudioAsyncExecution() {
         if (vo.isAudioAsyncExecutable()) {
             audioPlayer.removePropertyChangeListener();
+        }
+    }
+
+
+    /*
+     * ==================================================
+     *
+     * Answer Status
+     *
+     * ==================================================
+     */
+
+    public boolean isOk() {
+        if (2 == vo.getTotalAnswerCount()) {
+            return 0 != answer1 && 0 != answer2;
+        } else {
+            return 0 != answer1;
         }
     }
 
@@ -194,6 +258,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             nextOvalButton.setEnabled(false);
             okOvalButton.setEnabled(true);
+            viewStatus = VIEW_STATUS_OK_BUTTON_ENABLED;
         }
 
         @Override
@@ -210,15 +275,26 @@ public class ListeningQuestionView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            release();
+            if (isOk()) {
 
-            UserTest ut = page.getUserTest();
-            ut.setLastViewId(vo.getViewId() + 1);
+                release();
 
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
+                UserTest ut = page.getUserTest();
+                ut.setLastViewId(vo.getViewId() + 1);
 
-            page.resume(ut);
+                sqlSession.getMapper(UserTestMapper.class).update(ut);
+                sqlSession.commit();
+
+                page.resume(ut);
+
+            } else {
+
+                nextOvalButton.setEnabled(true);
+                okOvalButton.setEnabled(false);
+                viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
+
+                new RequiredAnswerDialog().openAndWaitForDisposal();
+            }
         }
 
         @Override
@@ -281,36 +357,100 @@ public class ListeningQuestionView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            answer = (Integer) e.widget.getData(MT.KEY_CHOICE);
+            int answer = (Integer) e.widget.getData(MT.KEY_CHOICE);
 
-            nextOvalButton.setEnabled(true);
-            okOvalButton.setEnabled(false);
+            if (VIEW_STATUS_INITIAL == viewStatus) {
+                nextOvalButton.setEnabled(true);
+                okOvalButton.setEnabled(false);
+                viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
+            }
 
-            switch (answer) {
-                case MT.CHOICE_A:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                    break;
-                case MT.CHOICE_B:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                    break;
-                case MT.CHOICE_C:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                    break;
-                case MT.CHOICE_D:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_CHECKED);
-                    break;
+            if (2 == vo.getTotalAnswerCount()) {
+
+                if (answer == answer1) {
+                    answer1 = 0;
+                } else if (answer == answer2) {
+                    answer2 = 0;
+                } else {
+                    if (0 == answer1 && 0 == answer2) {
+                        answer1 = answer;
+                    } else if (0 != answer1 && 0 == answer2) {
+                        answer2 = answer;
+                    } else if (0 == answer1 /* && 0 != answer2 */) {
+                        answer1 = answer;
+                    } else /* if (0 != answer1 && 0 != answer2) */ {
+                        nextOvalButton.setEnabled(true);
+                        okOvalButton.setEnabled(false);
+                        viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
+                        new RequiredAnswerDialog().openAndWaitForDisposal();
+                    }
+                }
+                logger.info("Listening Question Answers: ({}, {}).", answer1, answer2);
+
+                LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNBOXED);
+
+                switch (answer1) {
+                    case MT.CHOICE_A:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_B:
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_C:
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_D:
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_BOXED);
+                        break;
+                }
+                switch (answer2) {
+                    case MT.CHOICE_A:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_B:
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_C:
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_D:
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_BOXED);
+                        break;
+                }
+            } else {
+
+                answer1 = answer;
+                logger.info("Listening Question Answer: {}.", answer1);
+
+                switch (answer1) {
+                    case MT.CHOICE_A:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_CHECKED);
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                        break;
+                    case MT.CHOICE_B:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_CHECKED);
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                        break;
+                    case MT.CHOICE_C:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_CHECKED);
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                        break;
+                    case MT.CHOICE_D:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_CHECKED);
+                        break;
+                }
             }
         }
 
@@ -330,19 +470,19 @@ public class ListeningQuestionView extends ResponsiveTestView {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-                            if (null != vo.getStyledText("choiceA") && null != vo.getStyledText("choiceB") && null != vo.getStyledText("choiceC") && null != vo.getStyledText("choiceD")) {
-                                LabelSet.decorate(choiceA).setVisible(true);
-                                LabelSet.decorate(la).setVisible(true);
-                                LabelSet.decorate(choiceB).setVisible(true);
-                                LabelSet.decorate(lb).setVisible(true);
-                                LabelSet.decorate(choiceC).setVisible(true);
-                                LabelSet.decorate(lc).setVisible(true);
-                                LabelSet.decorate(choiceD).setVisible(true);
-                                LabelSet.decorate(ld).setVisible(true);
-                                if (null != vo.getStyledText("footnote")) {
-                                    StyledTextSet.decorate(footnote).setVisible(true);
-                                }
+
+                            if (null != vo.getStyledText("tips")) {
+                                StyledTextSet.decorate(tips).setVisible(true);
                             }
+
+                            LabelSet.decorate(choiceA).setVisible(true);
+                            LabelSet.decorate(la).setVisible(true);
+                            LabelSet.decorate(choiceB).setVisible(true);
+                            LabelSet.decorate(lb).setVisible(true);
+                            LabelSet.decorate(choiceC).setVisible(true);
+                            LabelSet.decorate(lc).setVisible(true);
+                            LabelSet.decorate(choiceD).setVisible(true);
+                            LabelSet.decorate(ld).setVisible(true);
                         }
                     });
                 }
@@ -357,6 +497,16 @@ public class ListeningQuestionView extends ResponsiveTestView {
                  * ==================================================
                  */
                 if (vo.isTimerTaskDelayed()) {
+
+                    if (!d.isDisposed()) {
+                        d.asyncExec(new Runnable() {
+                            @Override
+                            public void run() {
+                                timerButton.setEnabled(true);
+                            }
+                        });
+                    }
+
                     countDown = page.getUserTest().getRemainingViewTime(vo.getSectionType());
                     timer = new Timer();
                     timerTask = new TestTimerTask();

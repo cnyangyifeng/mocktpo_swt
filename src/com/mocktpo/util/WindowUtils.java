@@ -40,9 +40,16 @@ public class WindowUtils {
         s.setMinimumSize(p.x + reserved, p.y);
     }
 
-    public static void setDialogBounds(Shell s) {
+    public static void setLeftDialogBounds(Shell s) {
         Point clientSize = ScreenUtils.getClientSize(s.getDisplay());
         int x = (clientSize.x / 2 - LC.DIALOG_WIDTH_HINT) / 2;
+        int y = (clientSize.y - LC.DIALOG_HEIGHT_HINT) / 2;
+        s.setBounds(x, y, LC.DIALOG_WIDTH_HINT, LC.DIALOG_HEIGHT_HINT);
+    }
+
+    public static void setCenterDialogBounds(Shell s) {
+        Point clientSize = ScreenUtils.getClientSize(s.getDisplay());
+        int x = (clientSize.x - LC.DIALOG_WIDTH_HINT) / 2;
         int y = (clientSize.y - LC.DIALOG_HEIGHT_HINT) / 2;
         s.setBounds(x, y, LC.DIALOG_WIDTH_HINT, LC.DIALOG_HEIGHT_HINT);
     }

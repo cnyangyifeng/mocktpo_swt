@@ -1897,11 +1897,15 @@
       "audioAsyncExecutable": true,
       "withQuestion": true,
       "questionNumberInSection": 2,
+      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What are two possible reasons that the speakers consider for why the man cannot find the book?"
+        },
+        "tips": {
+          "text": "Click on 2 answers."
         },
         "choiceA": {
           "text": "It is for a graduate-level course."
@@ -1914,9 +1918,6 @@
         },
         "choiceD": {
           "text": "The professor forgot to submit the book order."
-        },
-        "footnote": {
-          "text": "Click on 2 answers"
         }
       }
     },
@@ -2070,11 +2071,15 @@
       "audioAsyncExecutable": true,
       "withQuestion": true,
       "questionNumberInSection": 7,
+      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What are two possible reasons that the speakers consider for why the man cannot find the book?"
+        },
+        "tips": {
+          "text": "Click on 2 answers."
         },
         "choiceA": {
           "text": "It is for a graduate-level course."
@@ -2087,9 +2092,6 @@
         },
         "choiceD": {
           "text": "The professor forgot to submit the book order."
-        },
-        "footnote": {
-          "text": "Click on 2 answers"
         }
       }
     },
@@ -2277,11 +2279,15 @@
       "audioAsyncExecutable": true,
       "withQuestion": true,
       "questionNumberInSection": 13,
+      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
         "question": {
           "text": "What are two possible reasons that the speakers consider for why the man cannot find the book?"
+        },
+        "tips": {
+          "text": "Click on 2 answers."
         },
         "choiceA": {
           "text": "It is for a graduate-level course."
@@ -2294,9 +2300,6 @@
         },
         "choiceD": {
           "text": "The professor forgot to submit the book order."
-        },
-        "footnote": {
-          "text": "Click on 2 answers"
         }
       }
     },

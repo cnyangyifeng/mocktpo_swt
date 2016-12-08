@@ -115,6 +115,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL, ImageUtils.load(d, "back_o"));
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL_HOVER, ImageUtils.load(d, "back_o_h"));
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL_DISABLED, ImageUtils.load(d, "back_o_d"));
+        caches.putIfAbsent(MT.IMAGE_BOXED, ImageUtils.load(d, "boxed"));
         caches.putIfAbsent(MT.IMAGE_BULLET, ImageUtils.load(d, "bullet"));
         caches.putIfAbsent(MT.IMAGE_CHECKED, ImageUtils.load(d, "checked"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE, ImageUtils.load(d, "continue"));
@@ -132,6 +133,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_HIDE_TIME, ImageUtils.load(d, "hide_time"));
         caches.putIfAbsent(MT.IMAGE_HIDE_TIME_HOVER, ImageUtils.load(d, "hide_time_h"));
         caches.putIfAbsent(MT.IMAGE_HIDE_TIME_DISABLED, ImageUtils.load(d, "hide_time_d"));
+        caches.putIfAbsent(MT.IMAGE_LISTEN_AGAIN, ImageUtils.load(d, "listen_again"));
         caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, "logo"));
         caches.putIfAbsent(MT.IMAGE_NEXT_OVAL, ImageUtils.load(d, "next_o"));
         caches.putIfAbsent(MT.IMAGE_NEXT_OVAL_HOVER, ImageUtils.load(d, "next_o_h"));
@@ -141,8 +143,11 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_OK_OVAL_DISABLED, ImageUtils.load(d, "ok_o_d"));
         caches.putIfAbsent(MT.IMAGE_PAUSE_TEST, ImageUtils.load(d, "pause_test"));
         caches.putIfAbsent(MT.IMAGE_PAUSE_TEST_HOVER, ImageUtils.load(d, "pause_test_h"));
+        caches.putIfAbsent(MT.IMAGE_READY_TO_ANSWER, ImageUtils.load(d, "ready_to_answer"));
         caches.putIfAbsent(MT.IMAGE_RETURN, ImageUtils.load(d, "return"));
         caches.putIfAbsent(MT.IMAGE_RETURN_HOVER, ImageUtils.load(d, "return_h"));
+        caches.putIfAbsent(MT.IMAGE_RETURN_TO_QUESTION, ImageUtils.load(d, "return_to_question"));
+        caches.putIfAbsent(MT.IMAGE_RETURN_TO_QUESTION_HOVER, ImageUtils.load(d, "return_to_question_h"));
         caches.putIfAbsent(MT.IMAGE_REVIEW, ImageUtils.load(d, "review"));
         caches.putIfAbsent(MT.IMAGE_REVIEW_HOVER, ImageUtils.load(d, "review_h"));
         caches.putIfAbsent(MT.IMAGE_REVIEW_OVAL, ImageUtils.load(d, "review_o"));
@@ -158,6 +163,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_VIEW_QUESTION_HOVER, ImageUtils.load(d, "view_question_h"));
         caches.putIfAbsent(MT.IMAGE_VIEW_TEXT, ImageUtils.load(d, "view_text"));
         caches.putIfAbsent(MT.IMAGE_VIEW_TEXT_HOVER, ImageUtils.load(d, "view_text_h"));
+        caches.putIfAbsent(MT.IMAGE_UNBOXED, ImageUtils.load(d, "unboxed"));
         caches.putIfAbsent(MT.IMAGE_UNCHECKED, ImageUtils.load(d, "unchecked"));
     }
 

@@ -26,6 +26,7 @@ public class TestViewVo implements Serializable {
     private boolean audioAsyncExecutable;
     private boolean withQuestion;
     private int questionNumberInSection;
+    private int totalAnswerCount;
     private boolean timed;
     private boolean timerTaskDelayed;
 
@@ -164,6 +165,14 @@ public class TestViewVo implements Serializable {
 
     public void setQuestionNumberInSection(int questionNumberInSection) {
         this.questionNumberInSection = questionNumberInSection;
+    }
+
+    public int getTotalAnswerCount() {
+        return totalAnswerCount;
+    }
+
+    public void setTotalAnswerCount(int totalAnswerCount) {
+        this.totalAnswerCount = totalAnswerCount;
     }
 
     public boolean isTimed() {

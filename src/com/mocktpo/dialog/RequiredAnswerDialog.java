@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.util.ResourceBundle;
 
-public class MoreTextDialog {
+public class RequiredAnswerDialog {
 
     /* Logger and Messages */
 
@@ -46,7 +46,7 @@ public class MoreTextDialog {
      * ==================================================
      */
 
-    public MoreTextDialog() {
+    public RequiredAnswerDialog() {
         this.app = MyApplication.get();
         this.d = app.getDisplay();
         init();
@@ -61,7 +61,7 @@ public class MoreTextDialog {
 
     private void golbal() {
         s.setBackgroundMode(SWT.INHERIT_FORCE);
-        WindowUtils.setLeftDialogBounds(s);
+        WindowUtils.setCenterDialogBounds(s);
         WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s);
     }
@@ -77,11 +77,11 @@ public class MoreTextDialog {
 
         final Label tl = new Label(background, SWT.CENTER);
         FormDataSet.attach(tl).atLeft().atTop().atRight();
-        LabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
+        LabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("required_answer"));
 
-        final ImageButton cb = new ImageButton(background, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
-        FormDataSet.attach(cb).fromLeft(50, -LC.CONTINUE_BUTTON_WIDTH / 2).atBottom(20);
-        cb.addMouseListener(new ContinueButtonMouseListener());
+        final ImageButton cb = new ImageButton(background, SWT.NONE, MT.IMAGE_RETURN_TO_QUESTION, MT.IMAGE_RETURN_TO_QUESTION_HOVER);
+        FormDataSet.attach(cb).fromLeft(50, -LC.RETURN_TO_QUESTION_BUTTON_WIDTH / 2).atBottom(20);
+        cb.addMouseListener(new ReturnToQuestionButtonMouseListener());
 
         final Composite c = new Composite(background, SWT.NONE);
         FormDataSet.attach(c).atLeft(20).atTopTo(tl, 20).atRight(20).atBottomTo(cb, 40, SWT.TOP);
@@ -90,7 +90,7 @@ public class MoreTextDialog {
 
         final Label p = new Label(c, SWT.WRAP);
         GridDataSet.attach(p).centerBoth();
-        LabelSet.decorate(p).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("use_scroll_bar"));
+        LabelSet.decorate(p).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("select_exact_number_of_choices"));
     }
 
     public void openAndWaitForDisposal() {
@@ -121,7 +121,7 @@ public class MoreTextDialog {
      * ==================================================
      */
 
-    private class ContinueButtonMouseListener implements MouseListener {
+    private class ReturnToQuestionButtonMouseListener implements MouseListener {
 
         @Override
         public void mouseDoubleClick(MouseEvent e) {
