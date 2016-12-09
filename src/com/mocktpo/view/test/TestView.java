@@ -148,7 +148,7 @@ public abstract class TestView extends Composite {
         if (vo.isWithQuestion()) {
             final StyledText caption = new StyledText(header, SWT.SINGLE);
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + TestSchemaUtils.getTotalQuestionCountInSection(page.getTestSchema(), vo.getSectionType()));
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + TestSchemaUtils.getTotalQuestionCountInSectionAndGroup(page.getTestSchema(), vo.getSectionType(), vo.getGroupId()));
         }
 
         /*
@@ -225,7 +225,7 @@ public abstract class TestView extends Composite {
 
             timerLabel = new Label(header, SWT.NONE);
             FormDataSet.attach(timerLabel).atRight(10).atBottomTo(pauseTestButton, 0, SWT.BOTTOM);
-            LabelSet.decorate(timerLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE).setText(TimeUtils.displayTime(page.getUserTest().getRemainingViewTime(vo.getSectionType()))).setVisible(!hidden);
+            LabelSet.decorate(timerLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE).setText(TimeUtils.displayTime(page.getUserTest().getRemainingViewTime(vo.getSectionType(), vo.getGroupId()))).setVisible(!hidden);
 
             if (hidden) {
                 timerButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SHOW_TIME, MT.IMAGE_SHOW_TIME_HOVER, MT.IMAGE_SHOW_TIME_DISABLED);
@@ -244,7 +244,7 @@ public abstract class TestView extends Composite {
              */
 
             if (!vo.isTimerTaskDelayed()) {
-                countDown = page.getUserTest().getRemainingViewTime(vo.getSectionType());
+                countDown = page.getUserTest().getRemainingViewTime(vo.getSectionType(), vo.getGroupId());
                 timer = new Timer();
                 timerTask = new TestTimerTask();
                 timer.scheduleAtFixedRate(timerTask, 0, 1000);
@@ -279,7 +279,7 @@ public abstract class TestView extends Composite {
             if (!d.isDisposed()) {
 
                 final UserTest ut = page.getUserTest();
-                ut.setRemainingViewTime(vo.getSectionType(), countDown);
+                ut.setRemainingViewTime(vo.getSectionType(), vo.getGroupId(), countDown);
                 sqlSession.getMapper(UserTestMapper.class).update(ut);
                 sqlSession.commit();
 
@@ -332,6 +332,8 @@ public abstract class TestView extends Composite {
                     player.play(page.getUserTest(), vo.getAudio());
                 }
             }).start();
+
+            audioPlayer.setVolume(page.getUserTest().getVolume());
         }
     }
 

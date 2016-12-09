@@ -45,6 +45,8 @@ public class ListeningMaterialView extends ResponsiveTestView {
     private boolean volumeControlVisible;
     private Map<Integer, Image> illustrations;
 
+    private PropertyChangeListener listener;
+
     /*
      * ==================================================
      *
@@ -95,33 +97,21 @@ public class ListeningMaterialView extends ResponsiveTestView {
 
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
 
+        illustrations = IllustrationUtils.load(d, page.getUserTest(), vo.getIllustrations());
 
-        /*
-         * ==================================================
-         *
-         * Audio Visualization
-         *
-         * ==================================================
-         */
+        il = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(il).fromLeft(50, -IMAGE_WIDTH / 2).atTop(ILLUSTRATIONS_MARGIN_TOP);
+        LabelSet.decorate(il).setImage(illustrations.get(0));
 
-        if (vo.isAudioVisualized()) {
+        final Composite pc = new Composite(viewPort, SWT.NONE);
+        FormDataSet.attach(pc).fromLeft(50, -AUDIO_PROGRESS_INDICATOR_WIDTH / 2).atTopTo(il, 30).withWidth(AUDIO_PROGRESS_INDICATOR_WIDTH).withHeight(AUDIO_PROGRESS_INDICATOR_HEIGHT);
+        CompositeSet.decorate(pc).setBackground(MT.COLOR_WINDOW_BACKGROUND);
+        FormLayoutSet.layout(pc).marginWidth(10).marginHeight(8);
+        pc.addPaintListener(new BorderedCompositePaintListener());
 
-            illustrations = IllustrationUtils.load(d, page.getUserTest(), vo.getIllustrations());
-
-            il = new Label(viewPort, SWT.NONE);
-            FormDataSet.attach(il).fromLeft(50, -IMAGE_WIDTH / 2).atTop(ILLUSTRATIONS_MARGIN_TOP);
-            LabelSet.decorate(il).setImage(illustrations.get(0));
-
-            final Composite pc = new Composite(viewPort, SWT.NONE);
-            FormDataSet.attach(pc).fromLeft(50, -AUDIO_PROGRESS_INDICATOR_WIDTH / 2).atTopTo(il, 30).withWidth(AUDIO_PROGRESS_INDICATOR_WIDTH).withHeight(AUDIO_PROGRESS_INDICATOR_HEIGHT);
-            CompositeSet.decorate(pc).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-            FormLayoutSet.layout(pc).marginWidth(10).marginHeight(8);
-            pc.addPaintListener(new BorderedCompositePaintListener());
-
-            audioBar = new ProgressBar(pc, SWT.NONE);
-            FormDataSet.attach(audioBar).atLeft().atTop().atRight().atBottom();
-            ProgressBarSet.decorate(audioBar).setMaximum(100).setMinimum(0).setSelection(0);
-        }
+        audioBar = new ProgressBar(pc, SWT.NONE);
+        FormDataSet.attach(audioBar).atLeft().atTop().atRight().atBottom();
+        ProgressBarSet.decorate(audioBar).setMaximum(100).setMinimum(0).setSelection(0);
     }
 
     /*
@@ -134,16 +124,13 @@ public class ListeningMaterialView extends ResponsiveTestView {
 
     @Override
     public void startAudioVisualization() {
-        if (vo.isAudioVisualized()) {
-            audioPlayer.addPropertyChangeListener(new AudioVisualizationListener());
-        }
+        listener = new AudioVisualizationListener();
+        audioPlayer.addPropertyChangeListener(listener);
     }
 
     @Override
     public void stopAudioVisualization() {
-        if (vo.isAudioVisualized() && null != illustrations) {
-            audioPlayer.removePropertyChangeListener();
-        }
+        audioPlayer.removePropertyChangeListener(listener);
     }
 
     /*
@@ -179,9 +166,22 @@ public class ListeningMaterialView extends ResponsiveTestView {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
+
             Scale s = (Scale) e.widget;
-            double selection = s.getSelection(), maximum = s.getMaximum();
-            setAudioVolume(selection / maximum);
+
+            if (null != audioPlayer) {
+
+                double selection = s.getSelection(), maximum = s.getMaximum();
+                double volume = selection / maximum;
+
+                UserTest ut = page.getUserTest();
+                ut.setVolume(volume);
+
+                sqlSession.getMapper(UserTestMapper.class).update(ut);
+                sqlSession.commit();
+
+                audioPlayer.setVolume(volume);
+            }
         }
     }
 
@@ -227,13 +227,18 @@ public class ListeningMaterialView extends ResponsiveTestView {
                         @Override
                         public void run() {
                             audioBar.setSelection(100);
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException ex) {
+                                ex.printStackTrace();
+                            }
                             LabelSet.decorate(il).setImage(MT.IMAGE_READY_TO_ANSWER);
                         }
                     });
                 }
 
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(4000);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }

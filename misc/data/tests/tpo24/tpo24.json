@@ -67,7 +67,7 @@
     {
       "viewId": 4,
       "viewType": 12,
-      "viewTypeName": "Reading Text",
+      "viewTypeName": "Reading Passage",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "firstPassage": true,
@@ -84,7 +84,7 @@
     {
       "viewId": 5,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 367,
@@ -124,7 +124,7 @@
     {
       "viewId": 6,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 724,
@@ -164,7 +164,7 @@
     {
       "viewId": 7,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 367,
@@ -201,7 +201,7 @@
     {
       "viewId": 8,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1230,
@@ -241,7 +241,7 @@
     {
       "viewId": 9,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1975,
@@ -281,7 +281,7 @@
     {
       "viewId": 10,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1410,
@@ -318,7 +318,7 @@
     {
       "viewId": 11,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2123,
@@ -355,7 +355,7 @@
     {
       "viewId": 12,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2803,
@@ -392,7 +392,7 @@
     {
       "viewId": 13,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2803,
@@ -429,7 +429,7 @@
     {
       "viewId": 14,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 4113,
@@ -469,7 +469,7 @@
     {
       "viewId": 15,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3332,
@@ -506,7 +506,7 @@
     {
       "viewId": 16,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3332,
@@ -543,12 +543,12 @@
     {
       "viewId": 17,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Insert Text Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1597,
       "withQuestion": true,
-      "questionNumberInSection": 13,
+      "questionNumberInSection": 14,
       "timed": true,
       "body": {
         "heading": {
@@ -594,7 +594,7 @@
     },
     {
       "viewId": 18,
-      "viewType": 14,
+      "viewType": 15,
       "viewTypeName": "Reading Prose Summary Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
@@ -647,7 +647,7 @@
     {
       "viewId": 19,
       "viewType": 12,
-      "viewTypeName": "Reading Text",
+      "viewTypeName": "Reading Passage",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "timed": true,
@@ -663,7 +663,7 @@
     {
       "viewId": 20,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 0,
@@ -700,7 +700,7 @@
     {
       "viewId": 21,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 657,
@@ -737,7 +737,7 @@
     {
       "viewId": 22,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1567,
@@ -777,7 +777,7 @@
     {
       "viewId": 23,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1277,
@@ -814,7 +814,7 @@
     {
       "viewId": 24,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2719,
@@ -854,7 +854,7 @@
     {
       "viewId": 25,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2200,
@@ -891,7 +891,7 @@
     {
       "viewId": 26,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3156,
@@ -928,7 +928,7 @@
     {
       "viewId": 27,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3156,
@@ -965,7 +965,7 @@
     {
       "viewId": 28,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3575,
@@ -1005,7 +1005,7 @@
     {
       "viewId": 29,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3906,
@@ -1045,7 +1045,7 @@
     {
       "viewId": 30,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 4073,
@@ -1081,8 +1081,8 @@
     },
     {
       "viewId": 31,
-      "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewType": 14,
+      "viewTypeName": "Reading Insert Text Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 430,
@@ -1133,8 +1133,8 @@
     },
     {
       "viewId": 32,
-      "viewType": 15,
-      "viewTypeName": "Reading Fill in a Table Question",
+      "viewType": 16,
+      "viewTypeName": "Reading Category Chart Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "withQuestion": true,
@@ -1189,7 +1189,7 @@
     {
       "viewId": 33,
       "viewType": 12,
-      "viewTypeName": "Reading Text",
+      "viewTypeName": "Reading Passage",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "timed": true,
@@ -1205,7 +1205,7 @@
     {
       "viewId": 34,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 410,
@@ -1245,7 +1245,7 @@
     {
       "viewId": 35,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 964,
@@ -1285,7 +1285,7 @@
     {
       "viewId": 36,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 0,
@@ -1322,7 +1322,7 @@
     {
       "viewId": 37,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 0,
@@ -1359,7 +1359,7 @@
     {
       "viewId": 38,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1419,
@@ -1396,7 +1396,7 @@
     {
       "viewId": 39,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1878,
@@ -1433,7 +1433,7 @@
     {
       "viewId": 40,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2601,
@@ -1473,7 +1473,7 @@
     {
       "viewId": 41,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2744,
@@ -1513,7 +1513,7 @@
     {
       "viewId": 42,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2255,
@@ -1550,7 +1550,7 @@
     {
       "viewId": 43,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3172,
@@ -1587,7 +1587,7 @@
     {
       "viewId": 44,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3172,
@@ -1624,7 +1624,7 @@
     {
       "viewId": 45,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3172,
@@ -1660,8 +1660,8 @@
     },
     {
       "viewId": 46,
-      "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewType": 14,
+      "viewTypeName": "Reading Insert Text Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 632,
@@ -1712,7 +1712,7 @@
     },
     {
       "viewId": 47,
-      "viewType": 14,
+      "viewType": 15,
       "viewTypeName": "Reading Prose Summary Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
@@ -1764,7 +1764,7 @@
     },
     {
       "viewId": 48,
-      "viewType": 16,
+      "viewType": 17,
       "viewTypeName": "Reading Section End",
       "sectionType": 1,
       "sectionTypeName": "Reading",
@@ -1821,7 +1821,7 @@
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "withAudio": true,
-      "audio": "listening/d",
+      "audio": "listening/lsd",
       "body": {
         "heading": {
           "text": "Listening Section Directions"
@@ -2044,19 +2044,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "Why can the man NOT find the book he needs?"
+          "text": "What does the professor mainly discuss?"
         },
         "choiceA": {
-          "text": "The bookstore is sold out of the book."
+          "text": "Factors that affect successful crocodile communication"
         },
         "choiceB": {
-          "text": "The bookstore he is in does not carry the book."
+          "text": "Some reasons for crocodile vocalizations"
         },
         "choiceC": {
-          "text": "His professor did not order enough copies of the book."
+          "text": "Ways that newborn crocodiles learn to communicate"
         },
         "choiceD": {
-          "text": "The book is not being used for any course offered at the university."
+          "text": "Reasons why crocodile vocalization is difficult to study"
         }
       }
     },
@@ -2076,22 +2076,22 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What are two possible reasons that the speakers consider for why the man cannot find the book?"
+          "text": "According to the professor, what are two functions of the sounds made by male alligators?"
         },
         "tips": {
           "text": "Click on 2 answers."
         },
         "choiceA": {
-          "text": "It is for a graduate-level course."
+          "text": "To frighten predators"
         },
         "choiceB": {
-          "text": "Information about the book was entered incorrectly into the computer system."
+          "text": "To attract mates"
         },
         "choiceC": {
-          "text": "The man has given the woman an incorrect title for the book."
+          "text": "To locate hatchlings"
         },
         "choiceD": {
-          "text": "The professor forgot to submit the book order."
+          "text": "To threaten other males"
         }
       }
     },
@@ -2110,19 +2110,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the woman offer to do for the student?"
+          "text": "Based on the discussion, what is one reason hatchlings make vocalizations to their mother while they are in the nest?"
         },
         "choiceA": {
-          "text": "Save a copy of the book for him as soon as it comes in"
+          "text": "To reassure her that they are safe"
         },
         "choiceB": {
-          "text": "Order more copies of the book"
+          "text": "To signal that they are ready to follow her"
         },
         "choiceC": {
-          "text": "Call the computer store across the street"
+          "text": "To make sure she does not forget them"
         },
         "choiceD": {
-          "text": "Find a store that sells the book if he cannot find it"
+          "text": "To indicate that they need to be relocated to a larger nest"
         }
       }
     },
@@ -2141,19 +2141,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "How does the man react to the information the woman gives him about where computer science books are sold?"
+          "text": "What is the professor's opinion about the television program that she mentions?"
         },
         "choiceA": {
-          "text": "He is embarrassed that he did not think of it himself."
+          "text": "She is concerned about the accuracy of some of the information the experts provided."
         },
         "choiceB": {
-          "text": "He suggests that the information be posted in the store."
+          "text": "She is hopeful that the class will be able to discuss it."
         },
         "choiceC": {
-          "text": "He apologizes for bothering the woman."
+          "text": "She thinks it was overly critical of some recent theories about crocodiles."
         },
         "choiceD": {
-          "text": "He is annoyed that the woman did not tell him sooner."
+          "text": "She is surprised that it did not include more examples of crocodile communication."
         }
       }
     },
@@ -2172,22 +2172,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the woman offer to do for the student: \u2423",
-          "styles": [
-            { "start": 49, "length": 1, "image": "earphone" }
-          ]
+          "text": "Why does the professor mention dogs?"
         },
         "choiceA": {
-          "text": "To determine how urgent the student s need is"
+          "text": "To explain that mammals are more complex than reptiles"
         },
         "choiceB": {
-          "text": "To figure out why the book is not listed on the computer"
+          "text": "To point out that crocodiles can communicate with dogs"
         },
         "choiceC": {
-          "text": "To find out what level computer science course the man is taking"
+          "text": "To give an example of mammals that care for their young"
         },
         "choiceD": {
-          "text": "To explain why the book might be sold out"
+          "text": "To emphasize that crocodiles have highly developed brains"
         }
       }
     },
@@ -2206,22 +2203,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the woman offer to do for the student: \u2423",
-          "styles": [
-            { "start": 49, "length": 1, "image": "earphone" }
-          ]
+          "text": "What happens when a hatchling makes a distress call?"
         },
         "choiceA": {
-          "text": "To determine how urgent the student s need is"
+          "text": "Its siblings answer back."
         },
         "choiceB": {
-          "text": "To figure out why the book is not listed on the computer"
+          "text": "The mother repeats the call."
         },
         "choiceC": {
-          "text": "To find out what level computer science course the man is taking"
+          "text": "The rest of its family waits near water."
         },
         "choiceD": {
-          "text": "To explain why the book might be sold out"
+          "text": "The mother calls to other adult crocodiles for assistance."
         }
       }
     },
@@ -2248,23 +2242,27 @@
       "audioAsyncExecutable": true,
       "withQuestion": true,
       "questionNumberInSection": 12,
+      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "Why can the man NOT find the book he needs?"
+          "text": "What is the lecture mainly about?"
+        },
+        "tips": {
+          "text": "Click on 2 answers."
         },
         "choiceA": {
-          "text": "The bookstore is sold out of the book."
+          "text": "Differences between apical ballet and modem dance"
         },
         "choiceB": {
-          "text": "The bookstore he is in does not carry the book."
+          "text": "Ways in which modern dance changed during the twentieth century"
         },
         "choiceC": {
-          "text": "His professor did not order enough copies of the book."
+          "text": "Factors that limited Isadora Duncan's opportunities to perform"
         },
         "choiceD": {
-          "text": "The book is not being used for any course offered at the university."
+          "text": "A pioneer of a new type of performing art"
         }
       }
     },
@@ -2279,27 +2277,23 @@
       "audioAsyncExecutable": true,
       "withQuestion": true,
       "questionNumberInSection": 13,
-      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What are two possible reasons that the speakers consider for why the man cannot find the book?"
-        },
-        "tips": {
-          "text": "Click on 2 answers."
+          "text": "Why does the professor mention modern art and modern music?"
         },
         "choiceA": {
-          "text": "It is for a graduate-level course."
+          "text": "To illustrate how different art forms can interact with one another"
         },
         "choiceB": {
-          "text": "Information about the book was entered incorrectly into the computer system."
+          "text": "To identity some characteristics shared by all forms of artistic expression"
         },
         "choiceC": {
-          "text": "The man has given the woman an incorrect title for the book."
+          "text": "To explain that modern dance also broke with traditions"
         },
         "choiceD": {
-          "text": "The professor forgot to submit the book order."
+          "text": "To compare the attitudes of European and American critics to modern dance"
         }
       }
     },
@@ -2314,23 +2308,27 @@
       "audioAsyncExecutable": true,
       "withQuestion": true,
       "questionNumberInSection": 14,
+      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the woman offer to do for the student?"
+          "text": "What were two characteristics of Isadora Duncan's dance performances?"
+        },
+        "tips": {
+          "text": "Click on 2 answers."
         },
         "choiceA": {
-          "text": "Save a copy of the book for him as soon as it comes in"
+          "text": "She danced to contemporary musical compositions."
         },
         "choiceB": {
-          "text": "Order more copies of the book"
+          "text": "She wore free-flowing costumes."
         },
         "choiceC": {
-          "text": "Call the computer store across the street"
+          "text": "She used set designs inspired by nature."
         },
         "choiceD": {
-          "text": "Find a store that sells the book if he cannot find it"
+          "text": "She danced without shoes."
         }
       }
     },
@@ -2349,19 +2347,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "How does the man react to the information the woman gives him about where computer science books are sold?"
+          "text": "Why does the professor mention that Duncan watched Anna Pavlova practice?"
         },
         "choiceA": {
-          "text": "He is embarrassed that he did not think of it himself."
+          "text": "To help explain how Duncan’s opinion of ballet was formed"
         },
         "choiceB": {
-          "text": "He suggests that the information be posted in the store."
+          "text": "To show how modern dance began to spread throughout the works"
         },
         "choiceC": {
-          "text": "He apologizes for bothering the woman."
+          "text": "To reinforce the importance of dancers working together"
         },
         "choiceD": {
-          "text": "He is annoyed that the woman did not tell him sooner."
+          "text": "To help explain why Duncan decided to become a professional dancer"
         }
       }
     },
@@ -2380,22 +2378,677 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the woman offer to do for the student: \u2423",
+          "text": "What does the professor imply about the rivalry between classical ballet and modern dance?"
+        },
+        "choiceA": {
+          "text": "Audiences have generally been unaware of it."
+        },
+        "choiceB": {
+          "text": "Critics tend to exaggerate Duncan's role in it."
+        },
+        "choiceC": {
+          "text": "It is not as strong now as it was in Duncan's time."
+        },
+        "choiceD": {
+          "text": "It increased as modern dance became more popular than classical ballet."
+        }
+      }
+    },
+    {
+      "viewId": 71,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l2q6",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 17,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "Why does the professor say this: \u2423",
           "styles": [
-            { "start": 49, "length": 1, "image": "earphone" }
+            { "start": 33, "length": 1, "image": "earphone" }
           ]
         },
         "choiceA": {
-          "text": "To determine how urgent the student s need is"
+          "text": "To explain why Duncan was invited to perform in Russia"
         },
         "choiceB": {
-          "text": "To figure out why the book is not listed on the computer"
+          "text": "To indicate that the Russian government strongly supported ballet"
         },
         "choiceC": {
-          "text": "To find out what level computer science course the man is taking"
+          "text": "To explain why there were more dance critics in Russia than in most other countries"
         },
         "choiceD": {
-          "text": "To explain why the book might be sold out"
+          "text": "To help explain why Duncan’s style was not appreciated by some dance critics"
+        }
+      }
+    },
+    {
+      "viewId": 72,
+      "viewType": 29,
+      "viewTypeName": "Listening Section End",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "timed": true,
+      "body": {
+        "description": {
+          "text": "This is the end of this part of the Listening section.\u000aClick on Continue to go on.\u000a\u000aOnce you leave this section and continue to the next,\u000ayou WILL NOT be able to return to it."
+        }
+      }
+    },
+    {
+      "viewId": 73,
+      "viewType": 210,
+      "viewTypeName": "Listening Directions",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/ld",
+      "body": {
+        "heading": {
+          "text": "Listening Directions"
+        },
+        "description": {
+          "text": "In this part you will listen to 1 conversation and 2 lectures.\u000a\u000aYou must answer each question. After you answer, click on Next. Then click on OK to confirm your answer and go on to the next question. After you click on OK, you cannot return to previous questions. If you are using the Untimed Mode, you may return to previous questions.\u000a\u000aYou will now begin this part of the Listening section. In an actual test, you will have 10 minutes to answer the questions. NOTE: Also in an actual test some test takers may receive a third part in their Listening section; they will have another 10 minutes to answer the questions about 1 conversation and 2 lectures.\u000a\u000aClick on Continue to go on.",
+          "styles": [
+            { "start": 122, "length": 4, "fontStyle": 1 },
+            { "start": 142, "length": 2, "fontStyle": 1 },
+            { "start": 219, "length": 2, "fontStyle": 1 },
+            { "start": 285, "length": 12, "fontStyle": 1 },
+            { "start": 426, "length": 10, "fontStyle": 1 },
+            { "start": 666, "length": 8, "fontStyle": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "viewId": 74,
+      "viewType": 24,
+      "viewTypeName": "Listening Material",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c2",
+      "audioVisualized": true,
+      "audioDuration": 158,
+      "illustrations": "listening/c2:0"
+    },
+    {
+      "viewId": 75,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c2q1",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 1,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "Why does the student go to speak with the professor?"
+        },
+        "choiceA": {
+          "text": "To discuss material that might be on the final exam"
+        },
+        "choiceB": {
+          "text": "To review his answers to the midterm exam"
+        },
+        "choiceC": {
+          "text": "To get information about a class he missed"
+        },
+        "choiceD": {
+          "text": "To find out about the services of the tutoring center"
+        }
+      }
+    },
+    {
+      "viewId": 76,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c2q2",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 2,
+      "totalAnswerCount": 2,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What does the professor tell the student about the tutoring center?"
+        },
+        "tips": {
+          "text": "Click on 2 answers."
+        },
+        "choiceA": {
+          "text": "It will have extended hours during the final-exam period."
+        },
+        "choiceB": {
+          "text": "It is located in a building near where he works."
+        },
+        "choiceC": {
+          "text": "He can improve his writing skills there."
+        },
+        "choiceD": {
+          "text": "He can get help with geography there."
+        }
+      }
+    },
+    {
+      "viewId": 77,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c2q3",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 3,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What aspect of the hydrologic cycle is the student confused about?"
+        },
+        "choiceA": {
+          "text": "How the process of evaporation works"
+        },
+        "choiceB": {
+          "text": "How topographical features affect precipitation"
+        },
+        "choiceC": {
+          "text": "How water vapor in the atmosphere becomes rain"
+        },
+        "choiceD": {
+          "text": "How lake water fits into the cycle"
+        }
+      }
+    },
+    {
+      "viewId": 78,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c2q4",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 4,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "In the conversation, the professor describes the process that causes lake-effect snowstorms. Indicate whether each of the following is a step in the process:"
+        },
+        "choiceA": {
+          "text": "."
+        },
+        "choiceB": {
+          "text": "."
+        },
+        "choiceC": {
+          "text": "."
+        },
+        "choiceD": {
+          "text": "."
+        }
+      }
+    },
+    {
+      "viewId": 79,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/c2q5",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 5,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "Why does the professor say this: \u2423",
+          "styles": [
+            { "start": 33, "length": 1, "image": "earphone" }
+          ]
+        },
+        "choiceA": {
+          "text": "To make sure the student knows he'll have to be familiar with topographical features for the final exam"
+        },
+        "choiceB": {
+          "text": "To remind the student of a diagram that she presented in class"
+        },
+        "choiceC": {
+          "text": "To point out the severity of weather conditions near the lakeshore"
+        },
+        "choiceD": {
+          "text": "To reinforce the connection between her example and the student's question"
+        }
+      }
+    },
+    {
+      "viewId": 80,
+      "viewType": 24,
+      "viewTypeName": "Listening Material",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l3",
+      "audioVisualized": true,
+      "audioDuration": 300,
+      "illustrations": "listening/l3:0"
+    },
+    {
+      "viewId": 81,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l3q1",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 6,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What is the lecture mainly about?"
+        },
+        "choiceA": {
+          "text": "Theories about how large animals were able to survive the most recent ice age"
+        },
+        "choiceB": {
+          "text": "Environmental changes that occur following an ice age"
+        },
+        "choiceC": {
+          "text": "Theories about the hunting methods used by early humans in North America"
+        },
+        "choiceD": {
+          "text": "Explanations for the disappearance of large animals in North America"
+        }
+      }
+    },
+    {
+      "viewId": 82,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l3q2",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 7,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "Why does the professor mention an archaeological site in Southern California?"
+        },
+        "choiceA": {
+          "text": "To present evidence that supports the hunting theory"
+        },
+        "choiceB": {
+          "text": "To present evidence that mammoths migrated southward to avoid cold winters"
+        },
+        "choiceC": {
+          "text": "To point out that mammoth bones are usually found near human debris"
+        },
+        "choiceD": {
+          "text": "To demonstrate that large animals were able to survive in a variety of habitats"
+        }
+      }
+    },
+    {
+      "viewId": 83,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l3q3",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 8,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What is the professor's opinion about the Clovis people?"
+        },
+        "choiceA": {
+          "text": "Their excessive hunting of mammoths was responsible for the extinction of these animals."
+        },
+        "choiceB": {
+          "text": "Their lack of tools for processing meat contradicts the hunting theory."
+        },
+        "choiceC": {
+          "text": "They were less accomplished at hunting mammoths than the hunting theory suggests."
+        },
+        "choiceD": {
+          "text": "They were probably too afraid of large animals to hunt them."
+        }
+      }
+    },
+    {
+      "viewId": 84,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l3q4",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 9,
+      "totalAnswerCount": 2,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "According to the climate change theory, how did the climate change at the end of the ice age make it more difficult for large animals to survive?"
+        },
+        "tips": {
+          "text": "Click on 2 answers."
+        },
+        "choiceA": {
+          "text": "By reducing the size of their habitats"
+        },
+        "choiceB": {
+          "text": "By forcing them to endure a wider range of temperatures"
+        },
+        "choiceC": {
+          "text": "By reducing the variety of food available to them"
+        },
+        "choiceD": {
+          "text": "By forcing them to live near humans"
+        }
+      }
+    },
+    {
+      "viewId": 85,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l3q5",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 10,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What does the professor imply is one problem with the climate change theory?"
+        },
+        "choiceA": {
+          "text": "Many large animals actually benefitted from the climate change."
+        },
+        "choiceB": {
+          "text": "Large animals had survived previous climate changes."
+        },
+        "choiceC": {
+          "text": "Large animals were probably already near extinction before the climate changed."
+        },
+        "choiceD": {
+          "text": "New evidence suggests that the climate change was not as extreme as scientists once believed."
+        }
+      }
+    },
+    {
+      "viewId": 86,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l3q6",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 11,
+      "totalAnswerCount": 2,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "The professor mentions a series of computer simulations. What did the simulations suggest?"
+        },
+        "tips": {
+          "text": "Click on 2 answers."
+        },
+        "choiceA": {
+          "text": "The killing of only a few mammoths could lead to a significant reduction in the mammoth population."
+        },
+        "choiceB": {
+          "text": "Many mammoths died as the result of an extended drought."
+        },
+        "choiceC": {
+          "text": "Female mammoths were less able than male mammoths to adapt to climate change."
+        },
+        "choiceD": {
+          "text": "Both hunting and climate change contributed to the extinction of the mammoths."
+        }
+      }
+    },
+    {
+      "viewId": 87,
+      "viewType": 24,
+      "viewTypeName": "Listening Material",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l4",
+      "audioVisualized": true,
+      "audioDuration": 275,
+      "illustrations": "listening/l4:0"
+    },
+    {
+      "viewId": 88,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l4q1",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 12,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What is the lecture mainly about?"
+        },
+        "choiceA": {
+          "text": "Conclusions about the surface of Venus drawn from recent observations"
+        },
+        "choiceB": {
+          "text": "The different types of volcanoes that have been found on Venus"
+        },
+        "choiceC": {
+          "text": "Similarities between geologic processes on Venus and on other planets"
+        },
+        "choiceD": {
+          "text": "New methods used to observe the surface of Venus"
+        }
+      }
+    },
+    {
+      "viewId": 89,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l4q2",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 13,
+      "totalAnswerCount": 2,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "How were scientists able to learn new information about Venus' surface?"
+        },
+        "tips": {
+          "text": "Click on 2 answers."
+        },
+        "choiceA": {
+          "text": "More powerful telescopes allowed astronomers to see more surface details."
+        },
+        "choiceB": {
+          "text": "Satellites were used to get radar images of Venus' surface."
+        },
+        "choiceC": {
+          "text": "Space modules sent photographs after landing on Venus."
+        },
+        "choiceD": {
+          "text": "A space probe was able to locate gaps among Venus' clouds."
+        }
+      }
+    },
+    {
+      "viewId": 90,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l4q3",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 14,
+      "totalAnswerCount": 2,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What differences between volcanoes on Venus and those on Earth does the professor mention?"
+        },
+        "tips": {
+          "text": "Click on 2 answers."
+        },
+        "choiceA": {
+          "text": "Volcanoes on Venus are mostly shield volcanoes."
+        },
+        "choiceB": {
+          "text": "Volcanoes on Venus emit thicker lava."
+        },
+        "choiceC": {
+          "text": "Many volcanoes on Earth are concentrated in specific zones."
+        },
+        "choiceD": {
+          "text": "Many volcanoes on Earth show no volcanic activity."
+        }
+      }
+    },
+    {
+      "viewId": 91,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l4q4",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 15,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "Why does the professor mention the fact that Venus has no surface water?"
+        },
+        "choiceA": {
+          "text": "To give an example of a discovery that was unexpected"
+        },
+        "choiceB": {
+          "text": "To illustrate the consequences of intense volcanic activity"
+        },
+        "choiceC": {
+          "text": "To question a theory about the origin of shield volcanoes"
+        },
+        "choiceD": {
+          "text": "To suggest an explanation for why Venus does not have moving tectonic plates"
+        }
+      }
+    },
+    {
+      "viewId": 92,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l4q5",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 16,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "According to the professor, what is a possible origin of Venus' clouds?"
+        },
+        "choiceA": {
+          "text": "Gases released as a result of volcanic activity"
+        },
+        "choiceB": {
+          "text": "Chemical reactions caused by high surface temperatures"
+        },
+        "choiceC": {
+          "text": "Bursts of radio energy from the plane's surface"
+        },
+        "choiceD": {
+          "text": "Strong winds that blow dust into the atmosphere"
+        }
+      }
+    },
+    {
+      "viewId": 93,
+      "viewType": 25,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/l4q6",
+      "audioAsyncExecutable": true,
+      "withQuestion": true,
+      "questionNumberInSection": 17,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What is the professor’s opinion about the theory that Venus' volcanoes are active?"
+        },
+        "choiceA": {
+          "text": "The theory has recently been proved by direct observation."
+        },
+        "choiceB": {
+          "text": "At least two kinds of evidence support the theory."
+        },
+        "choiceC": {
+          "text": "The data collected so far about the theory are contradictory."
+        },
+        "choiceD": {
+          "text": "New findings have made the theory quite unlikely."
         }
       }
     }

@@ -72,7 +72,7 @@ public class TestPage extends Composite {
     public void resume(UserTest ut) {
 
         if (this.userTest.getTid() != ut.getTid()) {
-            this.setVo(ConfigUtils.load(ut.getAlias(), TestSchemaVo.class));
+            this.testSchema = ConfigUtils.load(ut.getAlias(), TestSchemaVo.class);
         }
         this.userTest = ut;
 
@@ -105,14 +105,17 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_READING_PASSAGE:
                 tv = new ReadingPassageView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_READING_PASSAGE_WITH_QUESTION:
-                tv = new ReadingPassageWithQuestionView(this, SWT.NONE);
+            case VT.VIEW_TYPE_READING_QUESTION:
+                tv = new ReadingQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION:
+                tv = new ReadingInsertTextQuestionView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
                 tv = new ReadingProseSummaryQuestionView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_READING_FILLIN_TABLE_QUESTION:
-                tv = new ReadingFillinTableQuestionView(this, SWT.NONE);
+            case VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION:
+                tv = new ReadingCategoryChartQuestionView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_READING_SECTION_END:
                 tv = new ReadingSectionEndView(this, SWT.NONE);
@@ -132,8 +135,26 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_LISTENING_MATERIAL:
                 tv = new ListeningMaterialView(this, SWT.NONE);
                 break;
+            case VT.VIEW_TYPE_LISTENING_REPLAY:
+                tv = new ListeningReplayView(this, SWT.NONE);
+                break;
             case VT.VIEW_TYPE_LISTENING_QUESTION:
                 tv = new ListeningQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_LISTENING_MULTIPLE_ANSWERS_QUESTION:
+                tv = new ListeningMultipleAnswersQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_LISTENING_ORDER_EVENTS_QUESTION:
+                tv = new ListeningOrderEventsQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_LISTENING_MATCH_OBJECTS_QUESTION:
+                tv = new ListeningMatchObjectsQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_LISTENING_SECTION_END:
+                tv = new ListeningSectionEndView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
+                tv = new ListeningDirectionsView(this, SWT.NONE);
                 break;
         }
 
@@ -150,7 +171,8 @@ public class TestPage extends Composite {
      */
 
     public void toReadingReview() {
-        stack.topControl = new ReadingReviewView(this, SWT.NONE, true);;
+        stack.topControl = new ReadingReviewView(this, SWT.NONE, true);
+        ;
         this.layout();
     }
 
@@ -164,10 +186,6 @@ public class TestPage extends Composite {
 
     public TestSchemaVo getTestSchema() {
         return testSchema;
-    }
-
-    public void setVo(TestSchemaVo testSchema) {
-        this.testSchema = testSchema;
     }
 
     public UserTest getUserTest() {

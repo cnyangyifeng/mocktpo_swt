@@ -4,7 +4,6 @@ import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
-import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
@@ -18,9 +17,8 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 
-public class ReadingPassageWithQuestionView extends SashTestView {
+public class ReadingInsertTextQuestionView extends SashTestView {
 
     /* Constants */
 
@@ -30,13 +28,13 @@ public class ReadingPassageWithQuestionView extends SashTestView {
 
     private CLabel indicator;
     private ScrolledComposite rightScrolled;
-    private Label choiceA, choiceB, choiceC, choiceD;
 
     /* Properties */
 
-    private int answer;
     private String insertText;
     private int insertPointA, insertPointB, insertPointC, insertPointD;
+
+    private int answer;
 
     /*
      * ==================================================
@@ -46,7 +44,7 @@ public class ReadingPassageWithQuestionView extends SashTestView {
      * ==================================================
      */
 
-    public ReadingPassageWithQuestionView(TestPage page, int style) {
+    public ReadingInsertTextQuestionView(TestPage page, int style) {
         super(page, style);
         this.answer = MT.CHOICE_NONE;
     }
@@ -128,73 +126,19 @@ public class ReadingPassageWithQuestionView extends SashTestView {
         StyledTextSet.decorate(question).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
         StyleRangeUtils.decorate(question, vo.getStyledText("question").getStyles());
 
-        if (null != vo.getStyledText("choiceA") && null != vo.getStyledText("choiceB") && null != vo.getStyledText("choiceC") && null != vo.getStyledText("choiceD")) {
+        final StyledText it = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(it).atLeft().atTopTo(question, 20).atRight();
+        StyledTextSet.decorate(it).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("insertText").getText());
 
-            choiceA = new Label(c, SWT.NONE);
-            FormDataSet.attach(choiceA).atLeft(10).atTopTo(question, 25);
-            LabelSet.decorate(choiceA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED);
-            choiceA.addMouseListener(new ChooseAnswerListener());
+        insertText = vo.getStyledText("insertText").getText();
+        insertPointA = vo.getStyledText("insertPointA").getStyles().get(0).getStart();
+        insertPointB = vo.getStyledText("insertPointB").getStyles().get(0).getStart();
+        insertPointC = vo.getStyledText("insertPointC").getStyles().get(0).getStart();
+        insertPointD = vo.getStyledText("insertPointD").getStyles().get(0).getStart();
 
-            final Label la = new Label(c, SWT.WRAP);
-            FormDataSet.attach(la).atLeftTo(choiceA, 5).atTopTo(question, 20).atRight();
-            LabelSet.decorate(la).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceA").getText());
-            la.addMouseListener(new ChooseAnswerListener());
-
-            choiceB = new Label(c, SWT.NONE);
-            FormDataSet.attach(choiceB).atLeft(10).atTopTo(la, 25);
-            LabelSet.decorate(choiceB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED);
-            choiceB.addMouseListener(new ChooseAnswerListener());
-
-            final Label lb = new Label(c, SWT.WRAP);
-            FormDataSet.attach(lb).atLeftTo(choiceB, 5).atTopTo(la, 20).atRight();
-            LabelSet.decorate(lb).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceB").getText());
-            lb.addMouseListener(new ChooseAnswerListener());
-
-            choiceC = new Label(c, SWT.NONE);
-            FormDataSet.attach(choiceC).atLeft(10).atTopTo(lb, 25);
-            LabelSet.decorate(choiceC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED);
-            choiceC.addMouseListener(new ChooseAnswerListener());
-
-            final Label lc = new Label(c, SWT.WRAP);
-            FormDataSet.attach(lc).atLeftTo(choiceC, 5).atTopTo(lb, 20).atRight();
-            LabelSet.decorate(lc).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceC").getText());
-            lc.addMouseListener(new ChooseAnswerListener());
-
-            choiceD = new Label(c, SWT.NONE);
-            FormDataSet.attach(choiceD).atLeft(10).atTopTo(lc, 25);
-            LabelSet.decorate(choiceD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED);
-            choiceD.addMouseListener(new ChooseAnswerListener());
-
-            final Label ld = new Label(c, SWT.WRAP);
-            FormDataSet.attach(ld).atLeftTo(choiceD, 5).atTopTo(lc, 20).atRight();
-            LabelSet.decorate(ld).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText());
-            ld.addMouseListener(new ChooseAnswerListener());
-
-            if (null != vo.getStyledText("footnote")) {
-                final StyledText fn = new StyledText(c, SWT.WRAP);
-                FormDataSet.attach(fn).atLeft().atTopTo(ld, 40).atRight();
-                StyledTextSet.decorate(fn).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());
-            }
-        }
-
-        if (null != vo.getStyledText("insertText") && null != vo.getStyledText("insertPointA") && null != vo.getStyledText("insertPointB") && null != vo.getStyledText("insertPointC") && null != vo.getStyledText("insertPointD")) {
-
-            final StyledText it = new StyledText(c, SWT.WRAP);
-            FormDataSet.attach(it).atLeft().atTopTo(question, 20).atRight();
-            StyledTextSet.decorate(it).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("insertText").getText());
-
-            insertText = vo.getStyledText("insertText").getText();
-            insertPointA = vo.getStyledText("insertPointA").getStyles().get(0).getStart();
-            insertPointB = vo.getStyledText("insertPointB").getStyles().get(0).getStart();
-            insertPointC = vo.getStyledText("insertPointC").getStyles().get(0).getStart();
-            insertPointD = vo.getStyledText("insertPointD").getStyles().get(0).getStart();
-
-            if (null != vo.getStyledText("footnote")) {
-                final StyledText fn = new StyledText(c, SWT.WRAP);
-                FormDataSet.attach(fn).atLeft().atTopTo(it, 20).atRight();
-                StyledTextSet.decorate(fn).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());
-            }
-        }
+        final StyledText fn = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(fn).atLeft().atTopTo(it, 20).atRight();
+        StyledTextSet.decorate(fn).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());
     }
 
     /*
@@ -289,50 +233,6 @@ public class ReadingPassageWithQuestionView extends SashTestView {
         }
     }
 
-    private class ChooseAnswerListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-
-            answer = (Integer) e.widget.getData(MT.KEY_CHOICE);
-
-            switch (answer) {
-                case MT.CHOICE_A:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                    break;
-                case MT.CHOICE_B:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                    break;
-                case MT.CHOICE_C:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                    break;
-                case MT.CHOICE_D:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_CHECKED);
-                    break;
-            }
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
-    }
-
     private class ParagraphTextControlListener implements ControlListener {
 
         @Override
@@ -362,10 +262,6 @@ public class ReadingPassageWithQuestionView extends SashTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
-            if (null == vo.getStyledText("insertText") || null == vo.getStyledText("insertPointA") || null == vo.getStyledText("insertPointB") || null == vo.getStyledText("insertPointC") || null == vo.getStyledText("insertPointD")) {
-                return;
-            }
 
             int insertTextLength = insertText.length();
             int change = insertTextLength - 1;
@@ -1022,7 +918,7 @@ public class ReadingPassageWithQuestionView extends SashTestView {
                 }
             }
 
-            logger.info("Reading Insert Text Question Answer: {}.", answer);
+            logger.info("[Reading Insert Text Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
         }
 
         @Override

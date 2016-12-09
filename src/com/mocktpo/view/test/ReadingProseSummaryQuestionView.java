@@ -26,7 +26,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
     /* Constants */
 
     private static final int SUB_VIEW_QUESTION = 1;
-    private static final int SUB_VIEW_TEXT = 2;
+    private static final int SUB_VIEW_PASSAGE = 2;
 
     private static final int ANSWER_1 = 1;
     private static final int ANSWER_2 = 2;
@@ -39,12 +39,13 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
     private Composite questionView;
     private Label choiceA, choiceB, choiceC, choiceD, choiceE, choiceF;
 
-    private Composite textView;
-    private Composite rightTextView;
+    private Composite passageView;
+    private Composite rightPassageView;
 
     /* Properties */
 
     private int subViewId;
+
     private int answer1, answer2, answer3;
 
     /*
@@ -106,11 +107,11 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
                     questionView = initQuestionSubView();
                 }
                 return questionView;
-            case SUB_VIEW_TEXT:
-                if (null == textView) {
-                    textView = initTextSubView();
+            case SUB_VIEW_PASSAGE:
+                if (null == passageView) {
+                    passageView = initPassageSubView();
                 }
-                return textView;
+                return passageView;
         }
 
         return null;
@@ -230,7 +231,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         return c;
     }
 
-    private Composite initTextSubView() {
+    private Composite initPassageSubView() {
 
         final Composite c = new Composite(body, SWT.NONE);
         FormLayoutSet.layout(c);
@@ -243,9 +244,9 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         FormDataSet.attach(divider).atTop().atRight().atBottom().withWidth(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        rightTextView = new Composite(c, SWT.NONE);
-        FormDataSet.attach(rightTextView).atLeftTo(left).atTop().atRight().atBottom();
-        FormLayoutSet.layout(rightTextView);
+        rightPassageView = new Composite(c, SWT.NONE);
+        FormDataSet.attach(rightPassageView).atLeftTo(left).atTop().atRight().atBottom();
+        FormLayoutSet.layout(rightPassageView);
 
         initRightBody();
 
@@ -254,7 +255,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
     private void initRightBody() {
 
-        final ScrolledComposite sc = new ScrolledComposite(rightTextView, SWT.H_SCROLL | SWT.V_SCROLL);
+        final ScrolledComposite sc = new ScrolledComposite(rightPassageView, SWT.H_SCROLL | SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
         sc.setExpandHorizontal(true);
         sc.setExpandVertical(true);
@@ -379,9 +380,9 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
             switch (subViewId) {
                 case SUB_VIEW_QUESTION:
                     viewTextOrQuestionButton.setBackgroundImages(MT.IMAGE_VIEW_QUESTION, MT.IMAGE_VIEW_QUESTION_HOVER);
-                    subViewId = SUB_VIEW_TEXT;
+                    subViewId = SUB_VIEW_PASSAGE;
                     break;
-                case SUB_VIEW_TEXT:
+                case SUB_VIEW_PASSAGE:
                     viewTextOrQuestionButton.setBackgroundImages(MT.IMAGE_VIEW_TEXT, MT.IMAGE_VIEW_TEXT_HOVER);
                     subViewId = SUB_VIEW_QUESTION;
                     break;
@@ -438,7 +439,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
                     break;
             }
 
-            logger.info("Reading Prose Summary Question Answers: ({}, {}, {}).", answer1, answer2, answer3);
+            logger.info("[Reading Prose Summary Question {}] Answers: ({}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3);
         }
     }
 

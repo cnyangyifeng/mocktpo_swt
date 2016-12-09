@@ -67,7 +67,7 @@
     {
       "viewId": 4,
       "viewType": 12,
-      "viewTypeName": "Reading Text",
+      "viewTypeName": "Reading Passage",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "firstPassage": true,
@@ -86,7 +86,7 @@
     {
       "viewId": 5,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 0,
@@ -125,7 +125,7 @@
     {
       "viewId": 6,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 497,
@@ -165,7 +165,7 @@
     {
       "viewId": 7,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 795,
@@ -205,7 +205,7 @@
     {
       "viewId": 8,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 595,
@@ -244,7 +244,7 @@
     {
       "viewId": 9,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1139,
@@ -284,7 +284,7 @@
     {
       "viewId": 10,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1200,
@@ -323,7 +323,7 @@
     {
       "viewId": 11,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1855,
@@ -363,7 +363,7 @@
     {
       "viewId": 12,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2102,
@@ -403,7 +403,7 @@
     {
       "viewId": 13,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2304,
@@ -443,7 +443,7 @@
     {
       "viewId": 14,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2596,
@@ -482,7 +482,7 @@
     {
       "viewId": 15,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2872,
@@ -521,7 +521,7 @@
     {
       "viewId": 16,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3810,
@@ -557,8 +557,8 @@
     },
     {
       "viewId": 17,
-      "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewType": 14,
+      "viewTypeName": "Reading Insert Text Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3281,
@@ -611,7 +611,7 @@
     },
     {
       "viewId": 18,
-      "viewType": 14,
+      "viewType": 15,
       "viewTypeName": "Reading Prose Summary Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
@@ -666,7 +666,7 @@
     {
       "viewId": 19,
       "viewType": 12,
-      "viewTypeName": "Reading Text",
+      "viewTypeName": "Reading Passage",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "timed": true,
@@ -684,7 +684,7 @@
     {
       "viewId": 20,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 179,
@@ -724,7 +724,7 @@
     {
       "viewId": 21,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 587,
@@ -764,7 +764,7 @@
     {
       "viewId": 22,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 0,
@@ -803,7 +803,7 @@
     {
       "viewId": 23,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 0,
@@ -842,7 +842,7 @@
     {
       "viewId": 24,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1604,
@@ -882,7 +882,7 @@
     {
       "viewId": 25,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1668,
@@ -922,7 +922,7 @@
     {
       "viewId": 26,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 935,
@@ -961,7 +961,7 @@
     {
       "viewId": 27,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2620,
@@ -1000,7 +1000,7 @@
     {
       "viewId": 28,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2620,
@@ -1039,7 +1039,7 @@
     {
       "viewId": 29,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3665,
@@ -1079,7 +1079,7 @@
     {
       "viewId": 30,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3940,
@@ -1119,7 +1119,7 @@
     {
       "viewId": 31,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 4218,
@@ -1155,8 +1155,8 @@
     },
     {
       "viewId": 32,
-      "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewType": 14,
+      "viewTypeName": "Reading Insert Text Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1818,
@@ -1209,7 +1209,7 @@
     },
     {
       "viewId": 33,
-      "viewType": 14,
+      "viewType": 15,
       "viewTypeName": "Reading Prose Summary Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
@@ -1264,7 +1264,7 @@
     {
       "viewId": 34,
       "viewType": 12,
-      "viewTypeName": "Reading Text",
+      "viewTypeName": "Reading Passage",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "timed": true,
@@ -1282,7 +1282,7 @@
     {
       "viewId": 35,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 78,
@@ -1322,7 +1322,7 @@
     {
       "viewId": 36,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 0,
@@ -1361,7 +1361,7 @@
     {
       "viewId": 37,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 0,
@@ -1400,7 +1400,7 @@
     {
       "viewId": 38,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 467,
@@ -1439,7 +1439,7 @@
     {
       "viewId": 39,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1215,
@@ -1479,7 +1479,7 @@
     {
       "viewId": 40,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1570,
@@ -1519,7 +1519,7 @@
     {
       "viewId": 41,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1721,
@@ -1559,7 +1559,7 @@
     {
       "viewId": 42,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1057,
@@ -1598,7 +1598,7 @@
     {
       "viewId": 43,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2195,
@@ -1635,7 +1635,7 @@
     {
       "viewId": 44,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1789,
@@ -1674,7 +1674,7 @@
     {
       "viewId": 45,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3909,
@@ -1714,7 +1714,7 @@
     {
       "viewId": 46,
       "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewTypeName": "Reading Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3363,
@@ -1752,8 +1752,8 @@
     },
     {
       "viewId": 47,
-      "viewType": 13,
-      "viewTypeName": "Reading Text With Question",
+      "viewType": 14,
+      "viewTypeName": "Reading Insert Text Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3363,
@@ -1806,7 +1806,7 @@
     },
     {
       "viewId": 48,
-      "viewType": 14,
+      "viewType": 15,
       "viewTypeName": "Reading Prose Summary Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
@@ -1860,7 +1860,7 @@
     },
     {
       "viewId": 49,
-      "viewType": 16,
+      "viewType": 17,
       "viewTypeName": "Reading Section End",
       "sectionType": 1,
       "sectionTypeName": "Reading",
@@ -1917,7 +1917,7 @@
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "withAudio": true,
-      "audio": "listening/d",
+      "audio": "listening/lsd",
       "body": {
         "heading": {
           "text": "Listening Section Directions"
@@ -1945,21 +1945,22 @@
       "viewTypeName": "Listening Material",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/c1",
-      "audioVisualized": true,
       "audioDuration": 160,
       "illustrations": "listening/c1:0"
     },
     {
       "viewId": 54,
-      "viewType": 25,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/c1q1",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 1,
       "timed": true,
@@ -1984,13 +1985,14 @@
     },
     {
       "viewId": 55,
-      "viewType": 25,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/c1q2",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 2,
       "timed": true,
@@ -2015,13 +2017,14 @@
     },
     {
       "viewId": 56,
-      "viewType": 25,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/c1q3",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 3,
       "timed": true,
@@ -2046,13 +2049,14 @@
     },
     {
       "viewId": 57,
-      "viewType": 25,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/c1q4",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 4,
       "timed": true,
@@ -2078,12 +2082,25 @@
     {
       "viewId": 58,
       "viewType": 25,
+      "viewTypeName": "Listening Replay",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "listening/lrc1q5",
+      "audioDuration": 19,
+      "illustrations": "listening/lrc:0",
+      "questionNumberInSection": 5
+    },
+    {
+      "viewId": 59,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/c1q5",
-      "audioAsyncExecutable": true,
       "withQuestion": true,
       "questionNumberInSection": 5,
       "timed": true,
@@ -2110,26 +2127,28 @@
       }
     },
     {
-      "viewId": 59,
+      "viewId": 60,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l1",
-      "audioVisualized": true,
+      
       "audioDuration": 342,
       "illustrations": "listening/l1_1:0;listening/l1_2:30;listening/l1_3:60"
     },
     {
-      "viewId": 60,
-      "viewType": 25,
+      "viewId": 61,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l1q1",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 6,
       "timed": true,
@@ -2153,14 +2172,15 @@
       }
     },
     {
-      "viewId": 61,
-      "viewType": 25,
+      "viewId": 62,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l1q2",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 7,
       "timed": true,
@@ -2184,14 +2204,15 @@
       }
     },
     {
-      "viewId": 62,
-      "viewType": 25,
+      "viewId": 63,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l1q3",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 8,
       "timed": true,
@@ -2215,14 +2236,15 @@
       }
     },
     {
-      "viewId": 63,
-      "viewType": 25,
+      "viewId": 64,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l1q4",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 9,
       "timed": true,
@@ -2246,14 +2268,15 @@
       }
     },
     {
-      "viewId": 64,
-      "viewType": 25,
+      "viewId": 65,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l1q5",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 10,
       "timed": true,
@@ -2277,14 +2300,27 @@
       }
     },
     {
-      "viewId": 65,
+      "viewId": 66,
       "viewType": 25,
+      "viewTypeName": "Listening Replay",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "listening/lrl1q6",
+      "audioDuration": 29,
+      "illustrations": "listening/lrl:0",
+      "questionNumberInSection": 11
+    },
+    {
+      "viewId": 67,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l1q6",
-      "audioAsyncExecutable": true,
       "withQuestion": true,
       "questionNumberInSection": 11,
       "timed": true,
@@ -2311,26 +2347,28 @@
       }
     },
     {
-      "viewId": 66,
+      "viewId": 68,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l2",
-      "audioVisualized": true,
+      
       "audioDuration": 316,
       "illustrations": "listening/l2_1:0;listening/l2_2:30;listening/l2_3:60;listening/l2_4:90;listening/l2_5:120"
     },
     {
-      "viewId": 67,
-      "viewType": 25,
+      "viewId": 69,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l2q1",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 12,
       "timed": true,
@@ -2354,14 +2392,15 @@
       }
     },
     {
-      "viewId": 68,
-      "viewType": 25,
+      "viewId": 70,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l2q2",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 13,
       "timed": true,
@@ -2385,14 +2424,15 @@
       }
     },
     {
-      "viewId": 69,
-      "viewType": 25,
+      "viewId": 71,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l2q3",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 14,
       "timed": true,
@@ -2415,18 +2455,22 @@
         },
         "choiceC": {
           "text": "The age of zircon in a sandstone sample is determined."
+        },
+        "choiceD": {
+          "text": "."
         }
       }
     },
     {
-      "viewId": 70,
-      "viewType": 25,
+      "viewId": 72,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l2q4",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 15,
       "timed": true,
@@ -2450,14 +2494,15 @@
       }
     },
     {
-      "viewId": 71,
-      "viewType": 25,
+      "viewId": 73,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l2q5",
-      "audioAsyncExecutable": true,
+      
       "withQuestion": true,
       "questionNumberInSection": 16,
       "timed": true,
@@ -2481,14 +2526,683 @@
       }
     },
     {
-      "viewId": 72,
+      "viewId": 74,
       "viewType": 25,
+      "viewTypeName": "Listening Replay",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "listening/lrl2q6",
+      "audioDuration": 29,
+      "illustrations": "listening/lrl:0",
+      "questionNumberInSection": 17
+    },
+    {
+      "viewId": 75,
+      "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "withAudio": true,
       "audio": "listening/l2q6",
-      "audioAsyncExecutable": true,
+      
+      "withQuestion": true,
+      "questionNumberInSection": 17,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What does the professor imply when he says this: \u2423",
+          "styles": [
+            { "start": 49, "length": 1, "image": "earphone" }
+          ]
+        },
+        "choiceA": {
+          "text": "The class is easier than other geology classes."
+        },
+        "choiceB": {
+          "text": "The class has already studied the information he is discussing."
+        },
+        "choiceC": {
+          "text": "Some students should take a course in geological dating techniques."
+        },
+        "choiceD": {
+          "text": "He will discuss the topic later in the class."
+        }
+      }
+    },
+    {
+      "viewId": 76,
+      "viewType": 210,
+      "viewTypeName": "Listening Section End",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "timed": true,
+      "body": {
+        "description": {
+          "text": "This is the end of this part of the Listening section.\u000aClick on Continue to go on.\u000a\u000aOnce you leave this section and continue to the next,\u000ayou WILL NOT be able to return to it."
+        }
+      }
+    },
+    {
+      "viewId": 77,
+      "viewType": 211,
+      "viewTypeName": "Listening Directions",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "withAudio": true,
+      "audio": "listening/ld",
+      "body": {
+        "heading": {
+          "text": "Listening Directions"
+        },
+        "description": {
+          "text": "In this part you will listen to 1 conversation and 2 lectures.\u000a\u000aYou must answer each question. After you answer, click on Next. Then click on OK to confirm your answer and go on to the next question. After you click on OK, you cannot return to previous questions. If you are using the Untimed Mode, you may return to previous questions.\u000a\u000aYou will now begin this part of the Listening section. In an actual test, you will have 10 minutes to answer the questions. NOTE: Also in an actual test some test takers may receive a third part in their Listening section; they will have another 10 minutes to answer the questions about 1 conversation and 2 lectures.\u000a\u000aClick on Continue to go on.",
+          "styles": [
+            { "start": 122, "length": 4, "fontStyle": 1 },
+            { "start": 142, "length": 2, "fontStyle": 1 },
+            { "start": 219, "length": 2, "fontStyle": 1 },
+            { "start": 285, "length": 12, "fontStyle": 1 },
+            { "start": 426, "length": 10, "fontStyle": 1 },
+            { "start": 666, "length": 8, "fontStyle": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "viewId": 78,
+      "viewType": 24,
+      "viewTypeName": "Listening Material",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/c2",
+      "audioDuration": 170,
+      "illustrations": "listening/c2:0"
+    },
+    {
+      "viewId": 79,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/c2q1",
+      "withQuestion": true,
+      "questionNumberInSection": 1,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "Why does the student go to see the librarian?"
+        },
+        "choiceA": {
+          "text": "To sign up for a seminar on using electronic sources for research"
+        },
+        "choiceB": {
+          "text": "To report that a journal is missing from the reference area"
+        },
+        "choiceC": {
+          "text": "To find out the procedure for checking out journal articles"
+        },
+        "choiceD": {
+          "text": "To ask about how to look for resources for a class paper"
+        }
+      }
+    },
+    {
+      "viewId": 80,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/c2q2",
+      "withQuestion": true,
+      "questionNumberInSection": 2,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What does the librarian say about the availability of journals and articles in the library?"
+        },
+        "choiceA": {
+          "text": "They are not easy to find if a professor put them on reserve."
+        },
+        "choiceB": {
+          "text": "Most of them are accessible in an electronic format."
+        },
+        "choiceC": {
+          "text": "Most of them can be checked out for three weeks."
+        },
+        "choiceD": {
+          "text": "Printed versions from the past three years are located in the reference section."
+        }
+      }
+    },
+    {
+      "viewId": 81,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/c2q3",
+      "withQuestion": true,
+      "questionNumberInSection": 3,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What does the librarian suggest the student should do to save time?"
+        },
+        "choiceA": {
+          "text": "Choose an easier research topic"
+        },
+        "choiceB": {
+          "text": "Concentrate on five journals"
+        },
+        "choiceC": {
+          "text": "Read the summaries of the articles first"
+        },
+        "choiceD": {
+          "text": "Install a new program on her home computer"
+        }
+      }
+    },
+    {
+      "viewId": 82,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/c2q4",
+      "withQuestion": true,
+      "questionNumberInSection": 4,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What can be inferred about why the woman decides to use the computer in the library?"
+        },
+        "choiceA": {
+          "text": "She thinks she might need additional help from the man."
+        },
+        "choiceB": {
+          "text": "She does not have a computer at home."
+        },
+        "choiceC": {
+          "text": "She has to hand in her assignment by the end of the day."
+        },
+        "choiceD": {
+          "text": "She will be meeting a friend in the library later on."
+        }
+      }
+    },
+    {
+      "viewId": 83,
+      "viewType": 25,
+      "viewTypeName": "Listening Replay",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/lrc2q5",
+      "audioDuration": 15,
+      "illustrations": "listening/lrc:0",
+      "questionNumberInSection": 5
+    },
+    {
+      "viewId": 84,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/c2q5",
+      "withQuestion": true,
+      "questionNumberInSection": 5,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "Why does the woman say this: \u2423",
+          "styles": [
+            { "start": 29, "length": 1, "image": "earphone" }
+          ]
+        },
+        "choiceA": {
+          "text": "She had forgotten about the information."
+        },
+        "choiceB": {
+          "text": "She is surprised she was not aware of the information."
+        },
+        "choiceC": {
+          "text": "She is annoyed that the information was published only recently."
+        },
+        "choiceD": {
+          "text": "She is concerned that the librarian gave her incorrect information."
+        }
+      }
+    },
+    {
+      "viewId": 85,
+      "viewType": 24,
+      "viewTypeName": "Listening Material",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l3",
+      "audioDuration": 342,
+      "illustrations": "listening/l1_1:0;listening/l1_2:30;listening/l1_3:60"
+    },
+    {
+      "viewId": 86,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l3q1",
+      "withQuestion": true,
+      "questionNumberInSection": 6,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What is the purpose of the lecture?"
+        },
+        "choiceA": {
+          "text": "To explain the difference between two artistic styles"
+        },
+        "choiceB": {
+          "text": "To describe a new art gallery to the class"
+        },
+        "choiceC": {
+          "text": "To introduce an artist's work to the class"
+        },
+        "choiceD": {
+          "text": "To show how artists' styles can evolve over time"
+        }
+      }
+    },
+    {
+      "viewId": 87,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l3q2",
+      "withQuestion": true,
+      "questionNumberInSection": 7,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What does the professor say about Frantzen's painting of a farm scene?"
+        },
+        "choiceA": {
+          "text": "It resembles a photograph."
+        },
+        "choiceB": {
+          "text": "It may be Frantzen's best-known painting."
+        },
+        "choiceC": {
+          "text": "It was painted in the Impressionist style."
+        },
+        "choiceD": {
+          "text": "It was painted while Frantzen lived abroad."
+        }
+      }
+    },
+    {
+      "viewId": 88,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l3q3",
+      "withQuestion": true,
+      "questionNumberInSection": 8,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "Why did Frantzen go to the Sales Barn?"
+        },
+        "choiceA": {
+          "text": "To study human form and movement"
+        },
+        "choiceB": {
+          "text": "To earn money by painting portraits"
+        },
+        "choiceC": {
+          "text": "To paint farm animals in an outdoor setting"
+        },
+        "choiceD": {
+          "text": "To meet people who could model for her paining"
+        }
+      }
+    },
+    {
+      "viewId": 89,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l3q4",
+      "withQuestion": true,
+      "questionNumberInSection": 9,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What does the professor imply about the painting of the young woman surrounded by pumpkins?"
+        },
+        "choiceA": {
+          "text": "It was painted at an art fair."
+        },
+        "choiceB": {
+          "text": "It combines Impressionism with Realism."
+        },
+        "choiceC": {
+          "text": "It convinced Frantzen that she was a good illustrator."
+        },
+        "choiceD": {
+          "text": "It was originally meant to be used in an advertisement."
+        }
+      }
+    },
+    {
+      "viewId": 90,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l3q5",
+      "withQuestion": true,
+      "questionNumberInSection": 10,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "Why does the professor discuss Frantzen's difficulties as a young painter?"
+        },
+        "choiceA": {
+          "text": "He wants to point out mistakes that young artists commonly make."
+        },
+        "choiceB": {
+          "text": "He thinks her example can inspire the students in their own lives."
+        },
+        "choiceC": {
+          "text": "Her difficulties remind him of the difficulties he himself experienced as a young artist."
+        },
+        "choiceD": {
+          "text": "Her difficulties are the subject of some of the paintings in the gallery that the students will visit."
+        }
+      }
+    },
+    {
+      "viewId": 91,
+      "viewType": 25,
+      "viewTypeName": "Listening Replay",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/lrl3q6",
+      "audioDuration": 29,
+      "illustrations": "listening/lrl:0",
+      "questionNumberInSection": 11
+    },
+    {
+      "viewId": 92,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l3q6",
+      "withQuestion": true,
+      "questionNumberInSection": 11,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What does the professor imply when he says this: \u2423",
+          "styles": [
+            { "start": 49, "length": 1, "image": "earphone" }
+          ]
+        },
+        "choiceA": {
+          "text": "The students can understand Frantzen's art without knowing about her life."
+        },
+        "choiceB": {
+          "text": "The students should pay very close attention to what he is going to say."
+        },
+        "choiceC": {
+          "text": "Some of his students are already familiar with Frantzen's life story."
+        },
+        "choiceD": {
+          "text": "Some of his students may not appreciate Frantzen's work."
+        }
+      }
+    },
+    {
+      "viewId": 93,
+      "viewType": 24,
+      "viewTypeName": "Listening Material",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "listening/l4",
+      "audioDuration": 316,
+      "illustrations": "listening/l4_1:0;listening/l4_2:30;listening/l4_3:60;listening/l4_4:90;listening/l4_5:120"
+    },
+    {
+      "viewId": 94,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l4q1",
+      "withQuestion": true,
+      "questionNumberInSection": 12,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "What does the professor mainly discuss?"
+        },
+        "choiceA": {
+          "text": "The difference in age among American mountain ranges"
+        },
+        "choiceB": {
+          "text": "The importance of a technique used for dating geological materials"
+        },
+        "choiceC": {
+          "text": "The recent discovery of an ancient canyon"
+        },
+        "choiceD": {
+          "text": "A comparison of various minerals used for dating"
+        }
+      }
+    },
+    {
+      "viewId": 95,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l4q2",
+      "withQuestion": true,
+      "questionNumberInSection": 13,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "Before the use of uranium-lead analysis, where did most geologists think the Grand Canyon sandstone came from?"
+        },
+        "choiceA": {
+          "text": "An ancient lake located in the American Southwest"
+        },
+        "choiceB": {
+          "text": "A desert that once connected two continents"
+        },
+        "choiceC": {
+          "text": "Sands carried by a river from the Appalachian Mountains"
+        },
+        "choiceD": {
+          "text": "A nearby mountain range that had flattened out over time"
+        }
+      }
+    },
+    {
+      "viewId": 96,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l4q3",
+      "withQuestion": true,
+      "questionNumberInSection": 14,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "In the talk, the professor describes the sequence of uranium-lead dating. Summarize the sequence by putting the events in the correct order."
+        },
+        "tips": {
+          "text": "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\u000aTo review the passage, click VIEW TEXT.",
+          "styles": [
+            { "start": 128, "length": 9, "fontStyle": 1 }
+          ]
+        },
+        "choiceA": {
+          "text": "Zircon in the sandstone is matched to the zircon in a particular mountain range."
+        },
+        "choiceB": {
+          "text": "The amount of lead in sandstone zircon is measured."
+        },
+        "choiceC": {
+          "text": "The age of zircon in a sandstone sample is determined."
+        },
+        "choiceD": {
+          "text": "."
+        }
+      }
+    },
+    {
+      "viewId": 97,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l4q4",
+      "withQuestion": true,
+      "questionNumberInSection": 15,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "According to the professor, what change has caused uranium-lead dating to gain popularity recently?"
+        },
+        "choiceA": {
+          "text": "It can be performed outside a laboratory."
+        },
+        "choiceB": {
+          "text": "It can now be done more efficiently."
+        },
+        "choiceC": {
+          "text": "It no longer involves radioactive elements."
+        },
+        "choiceD": {
+          "text": "It can be used in fields other than geology."
+        }
+      }
+    },
+    {
+      "viewId": 98,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l4q5",
+      "withQuestion": true,
+      "questionNumberInSection": 16,
+      "timed": true,
+      "timerTaskDelayed": true,
+      "body": {
+        "question": {
+          "text": "Why does the professor talk about the breaking apart of Earth's continents?"
+        },
+        "choiceA": {
+          "text": "To give another example of how uranium-lead dating might be useful"
+        },
+        "choiceB": {
+          "text": "To explain how the Grand Canyon was formed"
+        },
+        "choiceC": {
+          "text": "To demonstrate how difficult uranium-lead dating is"
+        },
+        "choiceD": {
+          "text": "To disprove a theory about the age of Earth's first mountain ranges"
+        }
+      }
+    },
+    {
+      "viewId": 99,
+      "viewType": 25,
+      "viewTypeName": "Listening Replay",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/lrl4q6",
+      "audioDuration": 29,
+      "illustrations": "listening/lrl:0",
+      "questionNumberInSection": 17
+    },
+    {
+      "viewId": 100,
+      "viewType": 26,
+      "viewTypeName": "Listening Question",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/l4q6",
       "withQuestion": true,
       "questionNumberInSection": 17,
       "timed": true,

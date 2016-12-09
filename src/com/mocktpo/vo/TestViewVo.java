@@ -16,14 +16,13 @@ public class TestViewVo implements Serializable {
     private String viewTypeName;
     private int sectionType;
     private String sectionTypeName;
+    private int groupId;
     private boolean firstPassage;
     private int passageOffset;
     private boolean withAudio;
     private String audio;
-    private boolean audioVisualized;
     private long audioDuration;
     private String illustrations;
-    private boolean audioAsyncExecutable;
     private boolean withQuestion;
     private int questionNumberInSection;
     private int totalAnswerCount;
@@ -87,6 +86,14 @@ public class TestViewVo implements Serializable {
         this.sectionTypeName = sectionTypeName;
     }
 
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
+    }
+
     public boolean isFirstPassage() {
         return firstPassage;
     }
@@ -119,14 +126,6 @@ public class TestViewVo implements Serializable {
         this.audio = audio;
     }
 
-    public boolean isAudioVisualized() {
-        return audioVisualized;
-    }
-
-    public void setAudioVisualized(boolean audioVisualized) {
-        this.audioVisualized = audioVisualized;
-    }
-
     public long getAudioDuration() {
         return audioDuration;
     }
@@ -141,14 +140,6 @@ public class TestViewVo implements Serializable {
 
     public void setIllustrations(String illustrations) {
         this.illustrations = illustrations;
-    }
-
-    public boolean isAudioAsyncExecutable() {
-        return audioAsyncExecutable;
-    }
-
-    public void setAudioAsyncExecutable(boolean audioAsyncExecutable) {
-        this.audioAsyncExecutable = audioAsyncExecutable;
     }
 
     public boolean isWithQuestion() {

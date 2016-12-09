@@ -132,10 +132,21 @@ public class ListeningSectionDirectionsView extends ResponsiveTestView {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
+
             Scale s = (Scale) e.widget;
+
             if (null != audioPlayer) {
+
                 double selection = s.getSelection(), maximum = s.getMaximum();
-                audioPlayer.setVolume(selection / maximum);
+                double volume = selection / maximum;
+
+                UserTest ut = page.getUserTest();
+                ut.setVolume(volume);
+
+                sqlSession.getMapper(UserTestMapper.class).update(ut);
+                sqlSession.commit();
+
+                audioPlayer.setVolume(volume);
             }
         }
     }

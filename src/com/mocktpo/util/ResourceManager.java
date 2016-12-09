@@ -133,7 +133,6 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_HIDE_TIME, ImageUtils.load(d, "hide_time"));
         caches.putIfAbsent(MT.IMAGE_HIDE_TIME_HOVER, ImageUtils.load(d, "hide_time_h"));
         caches.putIfAbsent(MT.IMAGE_HIDE_TIME_DISABLED, ImageUtils.load(d, "hide_time_d"));
-        caches.putIfAbsent(MT.IMAGE_LISTEN_AGAIN, ImageUtils.load(d, "listen_again"));
         caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, "logo"));
         caches.putIfAbsent(MT.IMAGE_NEXT_OVAL, ImageUtils.load(d, "next_o"));
         caches.putIfAbsent(MT.IMAGE_NEXT_OVAL_HOVER, ImageUtils.load(d, "next_o_h"));

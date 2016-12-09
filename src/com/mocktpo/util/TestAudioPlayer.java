@@ -111,13 +111,10 @@ public class TestAudioPlayer {
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
-        this.listener = listener;
     }
 
-    public void removePropertyChangeListener() {
-        if (null != listener) {
-            support.removePropertyChangeListener(this.listener);
-        }
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
     }
 
     /*

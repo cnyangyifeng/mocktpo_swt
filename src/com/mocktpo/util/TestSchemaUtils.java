@@ -10,13 +10,12 @@ public class TestSchemaUtils {
     private TestSchemaUtils() {
     }
 
-    public static int getTotalQuestionCountInSection(TestSchemaVo vo, int sectionType) {
+    public static int getTotalQuestionCountInSectionAndGroup(TestSchemaVo testSchema, int sectionType, int groupId) {
 
         int count = 0;
 
-        for (TestViewVo tvv : vo.getViews()) {
-            if (tvv.getSectionType() == sectionType && tvv.isWithQuestion()) {
-                // TODO handles sub section type
+        for (TestViewVo vo : testSchema.getViews()) {
+            if (vo.getSectionType() == sectionType && vo.isWithQuestion() && vo.getGroupId() == groupId) {
                 count++;
             }
         }
@@ -24,21 +23,28 @@ public class TestSchemaUtils {
         return count;
     }
 
-    public static int getNextViewIdWhileTimeOut(TestSchemaVo vo, int viewId) {
+    public static int getNextViewIdWhileTimeOut(TestSchemaVo testSchema, int viewId) {
 
-        TestViewVo tvv = vo.getView(viewId);
+        TestViewVo vo = testSchema.getView(viewId);
 
         int nextViewId = viewId;
 
-        switch (tvv.getSectionType()) {
+        switch (vo.getSectionType()) {
             case ST.SECTION_TYPE_NONE:
                 // TODO handles next timed view id
                 break;
             case ST.SECTION_TYPE_READING:
-                nextViewId = getFirstViewIdByViewType(vo, VT.VIEW_TYPE_HEADSET);
+                nextViewId = getFirstViewIdByViewType(testSchema, VT.VIEW_TYPE_HEADSET);
                 break;
             case ST.SECTION_TYPE_LISTENING:
-                // TODO handles next timed view id
+                switch (vo.getGroupId()) {
+                    case 1:
+                        nextViewId = getFirstViewIdByViewType(testSchema, VT.VIEW_TYPE_LISTENING_DIRECTIONS);
+                        break;
+                    case 2:
+                        // TODO handles next timed view id
+                        break;
+                }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
                 // TODO handles next timed view id
@@ -51,11 +57,11 @@ public class TestSchemaUtils {
         return nextViewId;
     }
 
-    public static int getFirstViewIdByViewType(TestSchemaVo vo, int viewType) {
+    public static int getFirstViewIdByViewType(TestSchemaVo testSchema, int viewType) {
 
         int viewId = 0;
 
-        for (TestViewVo tvv : vo.getViews()) {
+        for (TestViewVo tvv : testSchema.getViews()) {
             if (viewType == tvv.getViewType()) {
                 viewId = tvv.getViewId();
             }

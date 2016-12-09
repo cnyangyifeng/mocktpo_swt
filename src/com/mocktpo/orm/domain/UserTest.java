@@ -10,7 +10,9 @@ public class UserTest {
     private String alias;
     private boolean timerHidden;
     private int readingTime;
-    private int listeningTime;
+    private int listeningTime1;
+    private int listeningTime2;
+    private double volume;
     private int lastViewId;
 
     public String getEmail() {
@@ -61,12 +63,29 @@ public class UserTest {
         this.readingTime = readingTime;
     }
 
-    public int getListeningTime() {
-        return listeningTime;
+    public int getListeningTime1() {
+        return listeningTime1;
     }
 
-    public void setListeningTime(int listeningTime) {
-        this.listeningTime = listeningTime;
+    public void setListeningTime1(int listeningTime1) {
+        this.listeningTime1 = listeningTime1;
+    }
+
+
+    public int getListeningTime2() {
+        return listeningTime2;
+    }
+
+    public void setListeningTime2(int listeningTime2) {
+        this.listeningTime2 = listeningTime2;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
     }
 
     public int getLastViewId() {
@@ -77,7 +96,7 @@ public class UserTest {
         this.lastViewId = lastViewId;
     }
 
-    public int getRemainingViewTime(int sectionType) {
+    public int getRemainingViewTime(int sectionType, int groupId) {
 
         int viewTime = 0;
 
@@ -88,7 +107,14 @@ public class UserTest {
                 viewTime = this.getReadingTime();
                 break;
             case ST.SECTION_TYPE_LISTENING:
-                viewTime = this.getListeningTime();
+                switch (groupId) {
+                    case 1:
+                        viewTime = this.getListeningTime1();
+                        break;
+                    case 2:
+                        viewTime = this.getListeningTime2();
+                        break;
+                }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
                 break;
@@ -99,7 +125,7 @@ public class UserTest {
         return viewTime;
     }
 
-    public void setRemainingViewTime(int sectionType, int viewTime) {
+    public void setRemainingViewTime(int sectionType, int groupId, int viewTime) {
 
         switch (sectionType) {
             case ST.SECTION_TYPE_NONE:
@@ -108,7 +134,14 @@ public class UserTest {
                 this.setReadingTime(viewTime);
                 break;
             case ST.SECTION_TYPE_LISTENING:
-                this.setListeningTime(viewTime);
+                switch (groupId) {
+                    case 1:
+                        this.setListeningTime1(viewTime);
+                        break;
+                    case 2:
+                        this.setListeningTime2(viewTime);
+                        break;
+                }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
                 break;
