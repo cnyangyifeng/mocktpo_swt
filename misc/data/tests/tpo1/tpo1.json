@@ -1962,7 +1962,6 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/C1Q1",
-      
       "withQuestion": true,
       "questionNumberInSection": 1,
       "timed": true,
@@ -1994,7 +1993,6 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/C1Q2",
-      
       "withQuestion": true,
       "questionNumberInSection": 2,
       "timed": true,
@@ -2026,7 +2024,6 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/C1Q3",
-      
       "withQuestion": true,
       "questionNumberInSection": 3,
       "timed": true,
@@ -2058,7 +2055,6 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/C1Q4",
-      
       "withQuestion": true,
       "questionNumberInSection": 4,
       "timed": true,
@@ -2549,6 +2545,7 @@
       "viewTypeName": "Listening Section End",
       "sectionType": 2,
       "sectionTypeName": "Listening",
+      "groupId": 1,
       "timed": true,
       "body": {
         "description": {
@@ -2608,19 +2605,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "Why does the student go to see the librarian?"
+          "text": "What is the conversation mainly about?"
         },
         "choiceA": {
-          "text": "To sign up for a seminar on using electronic sources for research"
+          "text": "A lesson Matthew prepared for his students"
         },
         "choiceB": {
-          "text": "To report that a journal is missing from the reference area"
+          "text": "A class Matthew has been observing"
         },
         "choiceC": {
-          "text": "To find out the procedure for checking out journal articles"
+          "text": "A term paper that Matthew has written"
         },
         "choiceD": {
-          "text": "To ask about how to look for resources for a class paper"
+          "text": "A problem in Matthew's classroom"
         }
       }
     },
@@ -2639,19 +2636,19 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the librarian say about the availability of journals and articles in the library?"
+          "text": "What is Matthew's opinion about observing Mr.Grabell's third-grade class?"
         },
         "choiceA": {
-          "text": "They are not easy to find if a professor put them on reserve."
+          "text": "It will help him become a more effective teacher."
         },
         "choiceB": {
-          "text": "Most of them are accessible in an electronic format."
+          "text": "It could help improve his study habits."
         },
         "choiceC": {
-          "text": "Most of them can be checked out for three weeks."
+          "text": "It has improved his public-speaking skills."
         },
         "choiceD": {
-          "text": "Printed versions from the past three years are located in the reference section."
+          "text": "It may be the most difficult assignment he has had."
         }
       }
     },
@@ -2670,26 +2667,26 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the librarian suggest the student should do to save time?"
+          "text": "Why does Matthew mention Greek and Roman mythology?"
         },
         "choiceA": {
-          "text": "Choose an easier research topic"
+          "text": "To identify a topic frequently discussed in third grade"
         },
         "choiceB": {
-          "text": "Concentrate on five journals"
+          "text": "To get the professor's opinion about a lesson he taught"
         },
         "choiceC": {
-          "text": "Read the summaries of the articles first"
+          "text": "To make a suggestion to improve the class he is taking"
         },
         "choiceD": {
-          "text": "Install a new program on her home computer"
+          "text": "To illustrate a technique used to teach a third-grade class"
         }
       }
     },
     {
       "viewId": 81,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
+      "viewType": 27,
+      "viewTypeName": "Listening Multiple-Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 2,
@@ -2697,41 +2694,35 @@
       "audio": "listening/C2Q4",
       "withQuestion": true,
       "questionNumberInSection": 4,
+      "totalAnswerCount": 3,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What can be inferred about why the woman decides to use the computer in the library?"
+          "text": "What important skills did Mr.Grabell introduce to his third-grade class?"
+        },
+        "tips": {
+          "text": "Click on 3 answers."
         },
         "choiceA": {
-          "text": "She thinks she might need additional help from the man."
+          "text": "Reviewing other student's reports"
         },
         "choiceB": {
-          "text": "She does not have a computer at home."
+          "text": "Using books in the library"
         },
         "choiceC": {
-          "text": "She has to hand in her assignment by the end of the day."
+          "text": "Interviewing their classmates"
         },
         "choiceD": {
-          "text": "She will be meeting a friend in the library later on."
+          "text": "Speaking in public"
+        },
+        "choiceE": {
+          "text": "Writing reports"
         }
       }
     },
     {
       "viewId": 82,
-      "viewType": 25,
-      "viewTypeName": "Listening Replay",
-      "sectionType": 2,
-      "sectionTypeName": "Listening",
-      "groupId": 2,
-      "withAudio": true,
-      "audio": "listening/RC2Q5",
-      "audioDuration": 15,
-      "illustrations": "listening/RC:0",
-      "questionNumberInSection": 5
-    },
-    {
-      "viewId": 83,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2745,27 +2736,24 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "Why does the woman say this: \u2423",
-          "styles": [
-            { "start": 29, "length": 1, "image": "earphone" }
-          ]
+          "text": "What will Matthew probably do in next Wednesday's class?"
         },
         "choiceA": {
-          "text": "She had forgotten about the information."
+          "text": "Hand in his assignment early"
         },
         "choiceB": {
-          "text": "She is surprised she was not aware of the information."
+          "text": "Try to start a study group"
         },
         "choiceC": {
-          "text": "She is annoyed that the information was published only recently."
+          "text": "Make a presentation to the class"
         },
         "choiceD": {
-          "text": "She is concerned that the librarian gave her incorrect information."
+          "text": "Choose a topic for his paper"
         }
       }
     },
     {
-      "viewId": 84,
+      "viewId": 83,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2777,7 +2765,7 @@
       "illustrations": "listening/L3:0"
     },
     {
-      "viewId": 85,
+      "viewId": 84,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2791,24 +2779,24 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What is the purpose of the lecture?"
+          "text": "What is the lecture mainly about?"
         },
         "choiceA": {
-          "text": "To explain the difference between two artistic styles"
+          "text": "Art in the Neolithic period"
         },
         "choiceB": {
-          "text": "To describe a new art gallery to the class"
+          "text": "The site of a Neolithic town"
         },
         "choiceC": {
-          "text": "To introduce an artist's work to the class"
+          "text": "Methods of making stone tools"
         },
         "choiceD": {
-          "text": "To show how artists' styles can evolve over time"
+          "text": "The domestication of plants and animals by early farmers"
         }
       }
     },
     {
-      "viewId": 86,
+      "viewId": 85,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2822,26 +2810,26 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the professor say about Frantzen's painting of a farm scene?"
+          "text": "What does the professor imply about the tools used by the people of Catalhoyuk?"
         },
         "choiceA": {
-          "text": "It resembles a photograph."
+          "text": "They were made of stone that came from Catalhoyuk."
         },
         "choiceB": {
-          "text": "It may be Frantzen's best-known painting."
+          "text": "They were among the sharpest tools available at the time."
         },
         "choiceC": {
-          "text": "It was painted in the Impressionist style."
+          "text": "They were often used in religious rituals."
         },
         "choiceD": {
-          "text": "It was painted while Frantzen lived abroad."
+          "text": "They were used primarily for agriculture."
         }
       }
     },
     {
-      "viewId": 87,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
+      "viewId": 86,
+      "viewType": 27,
+      "viewTypeName": "Listening Multiple-Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 2,
@@ -2849,28 +2837,32 @@
       "audio": "listening/L3Q3",
       "withQuestion": true,
       "questionNumberInSection": 8,
+      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "Why did Frantzen go to the Sales Barn?"
+          "text": "What does the professor say about the entrances to the houses in Catalhoyuk?"
+        },
+        "tips": {
+          "text": "Click on 2 answers."
         },
         "choiceA": {
-          "text": "To study human form and movement"
+          "text": "They were in the roof."
         },
         "choiceB": {
-          "text": "To earn money by painting portraits"
+          "text": "They were usually kept closed."
         },
         "choiceC": {
-          "text": "To paint farm animals in an outdoor setting"
+          "text": "They allowed smoke to escape from the house."
         },
         "choiceD": {
-          "text": "To meet people who could model for her paining"
+          "text": "They stood opposite one another across narrow streets."
         }
       }
     },
     {
-      "viewId": 88,
+      "viewId": 87,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2884,24 +2876,24 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the professor imply about the painting of the young woman surrounded by pumpkins?"
+          "text": "What does the professor say about Catalhoyuk graves?"
         },
         "choiceA": {
-          "text": "It was painted at an art fair."
+          "text": "The graves contained precious stones."
         },
         "choiceB": {
-          "text": "It combines Impressionism with Realism."
+          "text": "Many people were buried in each grave."
         },
         "choiceC": {
-          "text": "It convinced Frantzen that she was a good illustrator."
+          "text": "The grave were located under the house floors."
         },
         "choiceD": {
-          "text": "It was originally meant to be used in an advertisement."
+          "text": "The graves contained ashes rather than bones."
         }
       }
     },
     {
-      "viewId": 89,
+      "viewId": 88,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2915,39 +2907,26 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "Why does the professor discuss Frantzen's difficulties as a young painter?"
+          "text": "What does the professor think of the idea that the inhabitants of Catalhoyuk deliberately arranged their house so that they could live near their ancestors' graves?"
         },
         "choiceA": {
-          "text": "He wants to point out mistakes that young artists commonly make."
+          "text": "She thinks it is a good guess, but only a guess."
         },
         "choiceB": {
-          "text": "He thinks her example can inspire the students in their own lives."
+          "text": "She thinks some evidence supports it, but other evidence contradicts it."
         },
         "choiceC": {
-          "text": "Her difficulties remind him of the difficulties he himself experienced as a young artist."
+          "text": "She thinks that further excavations will soon disprove it."
         },
         "choiceD": {
-          "text": "Her difficulties are the subject of some of the paintings in the gallery that the students will visit."
+          "text": "She thinks that it is not appropriate to make such guesses about the distant past."
         }
       }
     },
     {
-      "viewId": 90,
-      "viewType": 25,
-      "viewTypeName": "Listening Replay",
-      "sectionType": 2,
-      "sectionTypeName": "Listening",
-      "groupId": 2,
-      "withAudio": true,
-      "audio": "listening/RL3Q6",
-      "audioDuration": 29,
-      "illustrations": "listening/RL:0",
-      "questionNumberInSection": 11
-    },
-    {
-      "viewId": 91,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
+      "viewId": 89,
+      "viewType": 27,
+      "viewTypeName": "Listening Multiple-Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 2,
@@ -2955,31 +2934,35 @@
       "audio": "listening/L3Q6",
       "withQuestion": true,
       "questionNumberInSection": 11,
+      "totalAnswerCount": 3,
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the professor imply when he says this: \u2423",
-          "styles": [
-            { "start": 49, "length": 1, "image": "earphone" }
-          ]
+          "text": "What are three things the professor says about the artwork of Catalhoyuk?"
+        },
+        "tips": {
+          "text": "Click on 3 answers."
         },
         "choiceA": {
-          "text": "The students can understand Frantzen's art without knowing about her life."
+          "text": "It was clearly important to the Catalhoyuk religion."
         },
         "choiceB": {
-          "text": "The students should pay very close attention to what he is going to say."
+          "text": "It became covered with soot."
         },
         "choiceC": {
-          "text": "Some of his students are already familiar with Frantzen's life story."
+          "text": "It often shows farmers at work."
         },
         "choiceD": {
-          "text": "Some of his students may not appreciate Frantzen's work."
+          "text": "Its significance is unknown."
+        },
+        "choiceE": {
+          "text": "It contains many hunting scenes."
         }
       }
     },
     {
-      "viewId": 92,
+      "viewId": 90,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2991,7 +2974,7 @@
       "illustrations": "listening/L4_1:0;listening/L4_2:30"
     },
     {
-      "viewId": 93,
+      "viewId": 91,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3005,24 +2988,24 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "What does the professor mainly discuss?"
+          "text": "What is the main topic of the lecture?"
         },
         "choiceA": {
-          "text": "The difference in age among American mountain ranges"
+          "text": "The types of habitats marmots prefer"
         },
         "choiceB": {
-          "text": "The importance of a technique used for dating geological materials"
+          "text": "Methods of observing marmot behavior"
         },
         "choiceC": {
-          "text": "The recent discovery of an ancient canyon"
+          "text": "Feeding habits of some marmot species"
         },
         "choiceD": {
-          "text": "A comparison of various minerals used for dating"
+          "text": "Differences in behavior between marmot species"
         }
       }
     },
     {
-      "viewId": 94,
+      "viewId": 92,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3036,24 +3019,24 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "Before the use of uranium-lead analysis, where did most geologists think the Grand Canyon sandstone came from?"
+          "text": "According to the case study, why are marmots ideal for observation?"
         },
         "choiceA": {
-          "text": "An ancient lake located in the American Southwest"
+          "text": "They do not hide from humans."
         },
         "choiceB": {
-          "text": "A desert that once connected two continents"
+          "text": "They reside in many regions throughout North America."
         },
         "choiceC": {
-          "text": "Sands carried by a river from the Appalachian Mountains"
+          "text": "They are active in open areas during the day."
         },
         "choiceD": {
-          "text": "A nearby mountain range that had flattened out over time"
+          "text": "Their burrows are easy to locate."
         }
       }
     },
     {
-      "viewId": 95,
+      "viewId": 93,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3067,30 +3050,37 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "In the talk, the professor describes the sequence of uranium-lead dating. Summarize the sequence by putting the events in the correct order."
-        },
-        "tips": {
-          "text": "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\u000aTo review the passage, click VIEW TEXT.",
-          "styles": [
-            { "start": 128, "length": 9, "fontStyle": 1 }
-          ]
+          "text": "What reason does the professor give for the difference in marmot behaviour patterns?"
         },
         "choiceA": {
-          "text": "Zircon in the sandstone is matched to the zircon in a particular mountain range."
+          "text": "Type of food available"
         },
         "choiceB": {
-          "text": "The amount of lead in sandstone zircon is measured."
+          "text": "The size of the population"
         },
         "choiceC": {
-          "text": "The age of zircon in a sandstone sample is determined."
+          "text": "Interaction with other marmot species"
         },
         "choiceD": {
-          "text": "."
+          "text": "Adaptations to the climate"
         }
       }
     },
     {
-      "viewId": 96,
+      "viewId": 94,
+      "viewType": 25,
+      "viewTypeName": "Listening Replay",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/RL4Q4",
+      "audioDuration": 29,
+      "illustrations": "listening/RL:0",
+      "questionNumberInSection": 15
+    },
+    {
+      "viewId": 95,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3104,21 +3094,37 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "According to the professor, what change has caused uranium-lead dating to gain popularity recently?"
+          "text": "Why does the professor say this: \u2423",
+          "styles": [
+            { "start": 49, "length": 1, "image": "earphone" }
+          ]
         },
         "choiceA": {
-          "text": "It can be performed outside a laboratory."
+          "text": "To inform the student that his definition is incorrect"
         },
         "choiceB": {
-          "text": "It can now be done more efficiently."
+          "text": "To suggest that the student did not do the reading"
         },
         "choiceC": {
-          "text": "It no longer involves radioactive elements."
+          "text": "To encourage the student to try again"
         },
         "choiceD": {
-          "text": "It can be used in fields other than geology."
+          "text": "To change the topic of discussion"
         }
       }
+    },
+    {
+      "viewId": 96,
+      "viewType": 25,
+      "viewTypeName": "Listening Replay",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 2,
+      "withAudio": true,
+      "audio": "listening/RL4Q5",
+      "audioDuration": 29,
+      "illustrations": "listening/RL:0",
+      "questionNumberInSection": 16
     },
     {
       "viewId": 97,
@@ -3135,71 +3141,24 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "Why does the professor talk about the breaking apart of Earth's continents?"
+          "text": "Why does the professor say this: \u2423"
         },
         "choiceA": {
-          "text": "To give another example of how uranium-lead dating might be useful"
+          "text": "To express a similar concern"
         },
         "choiceB": {
-          "text": "To explain how the Grand Canyon was formed"
+          "text": "To encourage the student to explain what she means"
         },
         "choiceC": {
-          "text": "To demonstrate how difficult uranium-lead dating is"
+          "text": "To address the student's concern"
         },
         "choiceD": {
-          "text": "To disprove a theory about the age of Earth's first mountain ranges"
+          "text": "To agree with the student"
         }
       }
     },
     {
       "viewId": 98,
-      "viewType": 25,
-      "viewTypeName": "Listening Replay",
-      "sectionType": 2,
-      "sectionTypeName": "Listening",
-      "groupId": 2,
-      "withAudio": true,
-      "audio": "listening/RL4Q6",
-      "audioDuration": 29,
-      "illustrations": "listening/RL:0",
-      "questionNumberInSection": 17
-    },
-    {
-      "viewId": 99,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
-      "sectionType": 2,
-      "sectionTypeName": "Listening",
-      "groupId": 2,
-      "withAudio": true,
-      "audio": "listening/L4Q6",
-      "withQuestion": true,
-      "questionNumberInSection": 17,
-      "timed": true,
-      "timerTaskDelayed": true,
-      "body": {
-        "question": {
-          "text": "What does the professor imply when he says this: \u2423",
-          "styles": [
-            { "start": 49, "length": 1, "image": "earphone" }
-          ]
-        },
-        "choiceA": {
-          "text": "The class is easier than other geology classes."
-        },
-        "choiceB": {
-          "text": "The class has already studied the information he is discussing."
-        },
-        "choiceC": {
-          "text": "Some students should take a course in geological dating techniques."
-        },
-        "choiceD": {
-          "text": "He will discuss the topic later in the class."
-        }
-      }
-    },
-    {
-      "viewId": 100,
       "viewType": 31,
       "viewTypeName": "Speaking Section Directions",
       "sectionType": 3,
@@ -3223,7 +3182,7 @@
       }
     },
     {
-      "viewId": 101,
+      "viewId": 99,
       "viewType": 41,
       "viewTypeName": "Writing Section Directions",
       "sectionType": 4,
