@@ -10,10 +10,7 @@ import com.mocktpo.util.constants.MT;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -92,9 +89,25 @@ public class ListeningMaterialView extends ResponsiveTestView {
         vc.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         vc.addSelectionListener(new VolumeControlSelectionListener());
 
+        // TODO Removes the continue button
+
         final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(nob, 8, SWT.TOP);
-        cb.addMouseListener(new ContinueButtonMouseListener());
+        cb.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseDown(MouseEvent mouseEvent) {
+
+                release();
+
+                UserTest ut = page.getUserTest();
+                ut.setLastViewId(vo.getViewId() + 1);
+
+                sqlSession.getMapper(UserTestMapper.class).update(ut);
+                sqlSession.commit();
+
+                page.resume(ut);
+            }
+        });
     }
 
     @Override
@@ -266,31 +279,6 @@ public class ListeningMaterialView extends ResponsiveTestView {
                     });
                 }
             }
-        }
-    }
-
-    private class ContinueButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-
-            release();
-
-            UserTest ut = page.getUserTest();
-            ut.setLastViewId(vo.getViewId() + 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 }

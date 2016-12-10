@@ -2297,19 +2297,6 @@
     },
     {
       "viewId": 66,
-      "viewType": 25,
-      "viewTypeName": "Listening Replay",
-      "sectionType": 2,
-      "sectionTypeName": "Listening",
-      "groupId": 1,
-      "withAudio": true,
-      "audio": "listening/RL1q6",
-      "audioDuration": 29,
-      "illustrations": "listening/RL:0",
-      "questionNumberInSection": 11
-    },
-    {
-      "viewId": 67,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2343,7 +2330,7 @@
       }
     },
     {
-      "viewId": 68,
+      "viewId": 67,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2355,7 +2342,7 @@
       "illustrations": "listening/L2_1:0;listening/L2_2:30;listening/L2_3:60;listening/L2_4:90;listening/L2_5:120"
     },
     {
-      "viewId": 69,
+      "viewId": 68,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2386,7 +2373,7 @@
       }
     },
     {
-      "viewId": 70,
+      "viewId": 69,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2417,9 +2404,9 @@
       }
     },
     {
-      "viewId": 71,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
+      "viewId": 70,
+      "viewType": 28,
+      "viewTypeName": "Listening Order Events Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 1,
@@ -2434,10 +2421,7 @@
           "text": "In the talk, the professor describes the sequence of uranium-lead dating. Summarize the sequence by putting the events in the correct order."
         },
         "tips": {
-          "text": "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\u000aTo review the passage, click VIEW TEXT.",
-          "styles": [
-            { "start": 128, "length": 9, "fontStyle": 1 }
-          ]
+          "text": "Drag your answer choices to the spaces where they belong.\u000aTo remove an answer choice, click on it."
         },
         "choiceA": {
           "text": "Zircon in the sandstone is matched to the zircon in a particular mountain range."
@@ -2447,14 +2431,11 @@
         },
         "choiceC": {
           "text": "The age of zircon in a sandstone sample is determined."
-        },
-        "choiceD": {
-          "text": "."
         }
       }
     },
     {
-      "viewId": 72,
+      "viewId": 71,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2485,7 +2466,7 @@
       }
     },
     {
-      "viewId": 73,
+      "viewId": 72,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2516,7 +2497,7 @@
       }
     },
     {
-      "viewId": 74,
+      "viewId": 73,
       "viewType": 25,
       "viewTypeName": "Listening Replay",
       "sectionType": 2,
@@ -2529,7 +2510,7 @@
       "questionNumberInSection": 17
     },
     {
-      "viewId": 75,
+      "viewId": 74,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2563,7 +2544,7 @@
       }
     },
     {
-      "viewId": 76,
+      "viewId": 75,
       "viewType": 210,
       "viewTypeName": "Listening Section End",
       "sectionType": 2,
@@ -2576,7 +2557,7 @@
       }
     },
     {
-      "viewId": 77,
+      "viewId": 76,
       "viewType": 211,
       "viewTypeName": "Listening Directions",
       "sectionType": 2,
@@ -2601,7 +2582,7 @@
       }
     },
     {
-      "viewId": 78,
+      "viewId": 77,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2613,7 +2594,7 @@
       "illustrations": "listening/C2:0"
     },
     {
-      "viewId": 79,
+      "viewId": 78,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2644,7 +2625,7 @@
       }
     },
     {
-      "viewId": 80,
+      "viewId": 79,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2675,7 +2656,7 @@
       }
     },
     {
-      "viewId": 81,
+      "viewId": 80,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2706,7 +2687,7 @@
       }
     },
     {
-      "viewId": 82,
+      "viewId": 81,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2737,7 +2718,7 @@
       }
     },
     {
-      "viewId": 83,
+      "viewId": 82,
       "viewType": 25,
       "viewTypeName": "Listening Replay",
       "sectionType": 2,
@@ -2750,7 +2731,7 @@
       "questionNumberInSection": 5
     },
     {
-      "viewId": 84,
+      "viewId": 83,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2784,7 +2765,7 @@
       }
     },
     {
-      "viewId": 85,
+      "viewId": 84,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2796,7 +2777,7 @@
       "illustrations": "listening/L3:0"
     },
     {
-      "viewId": 86,
+      "viewId": 85,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2827,7 +2808,7 @@
       }
     },
     {
-      "viewId": 87,
+      "viewId": 86,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2858,7 +2839,7 @@
       }
     },
     {
-      "viewId": 88,
+      "viewId": 87,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2889,7 +2870,7 @@
       }
     },
     {
-      "viewId": 89,
+      "viewId": 88,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2920,7 +2901,7 @@
       }
     },
     {
-      "viewId": 90,
+      "viewId": 89,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2951,7 +2932,7 @@
       }
     },
     {
-      "viewId": 91,
+      "viewId": 90,
       "viewType": 25,
       "viewTypeName": "Listening Replay",
       "sectionType": 2,
@@ -2964,7 +2945,7 @@
       "questionNumberInSection": 11
     },
     {
-      "viewId": 92,
+      "viewId": 91,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2998,7 +2979,7 @@
       }
     },
     {
-      "viewId": 93,
+      "viewId": 92,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -3010,7 +2991,7 @@
       "illustrations": "listening/L4_1:0;listening/L4_2:30"
     },
     {
-      "viewId": 94,
+      "viewId": 93,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3041,7 +3022,7 @@
       }
     },
     {
-      "viewId": 95,
+      "viewId": 94,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3072,7 +3053,7 @@
       }
     },
     {
-      "viewId": 96,
+      "viewId": 95,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3109,7 +3090,7 @@
       }
     },
     {
-      "viewId": 97,
+      "viewId": 96,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3140,7 +3121,7 @@
       }
     },
     {
-      "viewId": 98,
+      "viewId": 97,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3171,7 +3152,7 @@
       }
     },
     {
-      "viewId": 99,
+      "viewId": 98,
       "viewType": 25,
       "viewTypeName": "Listening Replay",
       "sectionType": 2,
@@ -3184,7 +3165,7 @@
       "questionNumberInSection": 17
     },
     {
-      "viewId": 100,
+      "viewId": 99,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3218,7 +3199,7 @@
       }
     },
     {
-      "viewId": 101,
+      "viewId": 100,
       "viewType": 31,
       "viewTypeName": "Speaking Section Directions",
       "sectionType": 3,
@@ -3242,7 +3223,7 @@
       }
     },
     {
-      "viewId": 201,
+      "viewId": 101,
       "viewType": 41,
       "viewTypeName": "Writing Section Directions",
       "sectionType": 4,

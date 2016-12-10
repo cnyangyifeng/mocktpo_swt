@@ -12,10 +12,7 @@ import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Scale;
 
@@ -36,7 +33,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
 
     /* Widgets */
 
-    private ImageButton nextOvalButton, okOvalButton;
+    private ImageButton nob, oob;
     private VolumeControl vc;
 
     private Label choiceA, choiceB, choiceC, choiceD;
@@ -75,22 +72,22 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
     @Override
     public void updateHeader() {
 
-        nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
-        FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
-        nextOvalButton.setEnabled(false);
-        nextOvalButton.addMouseListener(new NextOvalButtonMouseListener());
+        nob = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
+        FormDataSet.attach(nob).atRight(10).atTop(10);
+        nob.setEnabled(false);
+        nob.addMouseListener(new NextOvalButtonMouseListener());
 
-        okOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_OK_OVAL, MT.IMAGE_OK_OVAL_HOVER, MT.IMAGE_OK_OVAL_DISABLED);
-        FormDataSet.attach(okOvalButton).atRightTo(nextOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        okOvalButton.setEnabled(false);
-        okOvalButton.addMouseListener(new OkOvalButtonMouseListener());
+        oob = new ImageButton(header, SWT.NONE, MT.IMAGE_OK_OVAL, MT.IMAGE_OK_OVAL_HOVER, MT.IMAGE_OK_OVAL_DISABLED);
+        FormDataSet.attach(oob).atRightTo(nob).atTopTo(nob, 0, SWT.TOP);
+        oob.setEnabled(false);
+        oob.addMouseListener(new OkOvalButtonMouseListener());
 
         final ImageButton hob = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
-        FormDataSet.attach(hob).atRightTo(okOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        FormDataSet.attach(hob).atRightTo(oob).atTopTo(nob, 0, SWT.TOP);
         hob.addMouseListener(new HelpOvalButtonMouseListener());
 
         final ImageButton vob = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
-        FormDataSet.attach(vob).atRightTo(hob).atTopTo(nextOvalButton, 0, SWT.TOP);
+        FormDataSet.attach(vob).atRightTo(hob).atTopTo(nob, 0, SWT.TOP);
         vob.addMouseListener(new VolumeOvalButtonMouseListener());
 
         vc = new VolumeControl(header, SWT.NONE);
@@ -98,6 +95,26 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
         CompositeSet.decorate(vc).setVisible(volumeControlVisible);
         vc.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         vc.addSelectionListener(new VolumeControlSelectionListener());
+
+        // TODO Removes the continue button
+
+        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
+        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(nob, 8, SWT.TOP);
+        cb.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseDown(MouseEvent mouseEvent) {
+
+                release();
+
+                UserTest ut = page.getUserTest();
+                ut.setLastViewId(vo.getViewId() + 1);
+
+                sqlSession.getMapper(UserTestMapper.class).update(ut);
+                sqlSession.commit();
+
+                page.resume(ut);
+            }
+        });
     }
 
     @Override
@@ -217,8 +234,8 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            nextOvalButton.setEnabled(false);
-            okOvalButton.setEnabled(true);
+            nob.setEnabled(false);
+            oob.setEnabled(true);
             viewStatus = VIEW_STATUS_OK_BUTTON_ENABLED;
         }
 
@@ -250,8 +267,8 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
 
             } else {
 
-                nextOvalButton.setEnabled(true);
-                okOvalButton.setEnabled(false);
+                nob.setEnabled(true);
+                oob.setEnabled(false);
                 viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
 
                 new RequiredAnswerDialog().openAndWaitForDisposal();
@@ -321,8 +338,8 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
             int answer = (Integer) e.widget.getData(MT.KEY_CHOICE);
 
             if (VIEW_STATUS_INITIAL == viewStatus) {
-                nextOvalButton.setEnabled(true);
-                okOvalButton.setEnabled(false);
+                nob.setEnabled(true);
+                oob.setEnabled(false);
                 viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
             }
 
@@ -340,8 +357,8 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
                     } else if (0 == answer1 /* && 0 != answer2 */) {
                         answer1 = answer;
                     } else /* if (0 != answer1 && 0 != answer2) */ {
-                        nextOvalButton.setEnabled(true);
-                        okOvalButton.setEnabled(false);
+                        nob.setEnabled(true);
+                        oob.setEnabled(false);
                         viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
                         new RequiredAnswerDialog().openAndWaitForDisposal();
                     }
