@@ -80,6 +80,7 @@ public class ListeningDirectionsView extends ResponsiveTestView {
         vc = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(vc).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(vc).setVisible(volumeControlVisible);
+        vc.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         vc.addSelectionListener(new VolumeControlSelectionListener());
     }
 

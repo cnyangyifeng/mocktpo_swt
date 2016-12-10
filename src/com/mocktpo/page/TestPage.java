@@ -156,6 +156,18 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
                 tv = new ListeningDirectionsView(this, SWT.NONE);
                 break;
+
+            /* Speaking Section View Types */
+
+            case VT.VIEW_TYPE_SPEAKING_SECTION_DIRECTIONS:
+                tv = new SpeakingSectionDirectionsView(this, SWT.NONE);
+                break;
+
+            /* Writing Section View Types */
+
+            case VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS:
+                tv = new WritingSectionDirectionsView(this, SWT.NONE);
+                break;
         }
 
         return tv;

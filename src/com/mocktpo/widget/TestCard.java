@@ -76,12 +76,8 @@ public class TestCard extends Composite {
         FormDataSet.attach(tl).atLeft().atTop(5).atRight();
         CLabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setText(ut.getTitle());
 
-        final CLabel cl = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(cl).atLeft().atTopTo(tl, 15);
-        CLabelSet.decorate(cl).setText(msgs.getString("completion_rate"));
-
         pl = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(pl).atLeftTo(cl).atTopTo(tl, 15).atRight();
+        FormDataSet.attach(pl).atLeft().atTopTo(tl, 15).atRight();
         CLabelSet.decorate(pl).setForeground(MT.COLOR_DARK_BLUE).setText(getCompletionRate());
 
         final Label divider = new Label(header, SWT.NONE);

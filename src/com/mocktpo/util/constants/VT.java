@@ -33,4 +33,12 @@ public interface VT {
     int VIEW_TYPE_LISTENING_MATCH_OBJECTS_QUESTION = 29;
     int VIEW_TYPE_LISTENING_SECTION_END = 210;
     int VIEW_TYPE_LISTENING_DIRECTIONS = 211;
+
+    /* Speaking Section View Types */
+
+    int VIEW_TYPE_SPEAKING_SECTION_DIRECTIONS = 31;
+
+    /* Writing Section View Types */
+
+    int VIEW_TYPE_WRITING_SECTION_DIRECTIONS = 41;
 }

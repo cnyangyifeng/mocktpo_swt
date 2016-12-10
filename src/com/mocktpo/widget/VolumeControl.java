@@ -52,6 +52,10 @@ public class VolumeControl extends Composite {
         GridDataSet.attach(s).fillBoth();
     }
 
+    public void setSelection(int i) {
+        s.setSelection(i);
+    }
+
     public void addSelectionListener(SelectionListener listener) {
         s.addSelectionListener(listener);
     }

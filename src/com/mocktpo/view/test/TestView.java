@@ -322,18 +322,18 @@ public abstract class TestView extends Composite {
         if (vo.isWithAudio()) {
 
             final AtomicReference<TestAudioPlayer> ref = new AtomicReference<TestAudioPlayer>();
-            audioPlayer = new TestAudioPlayer();
+            audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getAudio());
             ref.set(audioPlayer);
+
+            audioPlayer.setVolume(page.getUserTest().getVolume());
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     TestAudioPlayer player = ref.get();
-                    player.play(page.getUserTest(), vo.getAudio());
+                    player.play();
                 }
             }).start();
-
-            audioPlayer.setVolume(page.getUserTest().getVolume());
         }
     }
 

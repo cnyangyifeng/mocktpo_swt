@@ -89,7 +89,12 @@ public class ListeningMaterialView extends ResponsiveTestView {
         vc = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(vc).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(vc).setVisible(volumeControlVisible);
+        vc.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         vc.addSelectionListener(new VolumeControlSelectionListener());
+
+        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
+        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(nob, 8, SWT.TOP);
+        cb.addMouseListener(new ContinueButtonMouseListener());
     }
 
     @Override
@@ -261,6 +266,31 @@ public class ListeningMaterialView extends ResponsiveTestView {
                     });
                 }
             }
+        }
+    }
+
+    private class ContinueButtonMouseListener implements MouseListener {
+
+        @Override
+        public void mouseDoubleClick(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+
+            release();
+
+            UserTest ut = page.getUserTest();
+            ut.setLastViewId(vo.getViewId() + 1);
+
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
+
+            page.resume(ut);
+        }
+
+        @Override
+        public void mouseUp(MouseEvent e) {
         }
     }
 }

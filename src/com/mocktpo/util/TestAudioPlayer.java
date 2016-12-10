@@ -13,6 +13,9 @@ public class TestAudioPlayer {
 
     private static final int BUFFER_SIZE = 4096;
 
+    private AudioInputStream encoded, decoded;
+    private AudioFormat decodedFormat;
+
     private SourceDataLine line;
     private volatile boolean stopped;
     private volatile boolean paused;
@@ -20,20 +23,23 @@ public class TestAudioPlayer {
     private long timeElapsed;
 
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
-    private PropertyChangeListener listener;
 
-    public TestAudioPlayer() {
-    }
-
-    public void play(UserTest ut, String fileName) {
+    public TestAudioPlayer(UserTest ut, String fileName) {
         try {
             URL url = this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + ut.getAlias() + "/" + fileName + RC.MP3_FILE_TYPE_SUFFIX, "utf-8"));
-            AudioInputStream encoded = AudioSystem.getAudioInputStream(url);
+            encoded = AudioSystem.getAudioInputStream(url);
             AudioFormat encodedFormat = encoded.getFormat();
-            AudioFormat decodedFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, encodedFormat.getSampleRate(), 16, encodedFormat.getChannels(), encodedFormat.getChannels() * 2, encodedFormat.getSampleRate(), false);
-            AudioInputStream decoded = AudioSystem.getAudioInputStream(decodedFormat, encoded);
+            decodedFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, encodedFormat.getSampleRate(), 16, encodedFormat.getChannels(), encodedFormat.getChannels() * 2, encodedFormat.getSampleRate(), false);
+            decoded = AudioSystem.getAudioInputStream(decodedFormat, encoded);
             line = AudioSystem.getSourceDataLine(decodedFormat);
             line.open(decodedFormat);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void play() {
+        try {
             long start = System.currentTimeMillis();
             line.start();
             byte[] buffer = new byte[BUFFER_SIZE];
@@ -100,9 +106,9 @@ public class TestAudioPlayer {
 
     public void setVolume(double value) {
 
-        if (!line.isOpen()) {
-            return;
-        }
+//        if (null == line || !line.isOpen()) {
+//            return;
+//        }
 
         value = (value <= 0.0) ? 0.0001 : ((value > 1.0) ? 1.0 : value);
         float dB = (float) (Math.log(value) / Math.log(10.0) * 20.0);
