@@ -1919,7 +1919,7 @@
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "withAudio": true,
-      "audio": "listening/lsd",
+      "audio": "listening/SD",
       "body": {
         "heading": {
           "text": "Listening Section Directions"
