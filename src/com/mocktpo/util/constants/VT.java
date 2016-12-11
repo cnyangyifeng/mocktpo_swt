@@ -22,7 +22,7 @@ public interface VT {
 
     /* Listening Section View Types */
 
-    int VIEW_TYPE_HEADSET = 21;
+    int VIEW_TYPE_LISTENING_HEADSET = 21;
     int VIEW_TYPE_CHANGING_VOLUME = 22;
     int VIEW_TYPE_LISTENING_SECTION_DIRECTIONS = 23;
     int VIEW_TYPE_LISTENING_MATERIAL = 24;
@@ -36,9 +36,12 @@ public interface VT {
 
     /* Speaking Section View Types */
 
-    int VIEW_TYPE_SPEAKING_SECTION_DIRECTIONS = 31;
+    int VIEW_TYPE_SPEAKING_HEADSET = 31;
+    int VIEW_TYPE_SPEAKING_SECTION_DIRECTIONS = 32;
 
     /* Writing Section View Types */
 
-    int VIEW_TYPE_WRITING_SECTION_DIRECTIONS = 41;
+    int VIEW_TYPE_WRITING_HEADSET = 41;
+    int VIEW_TYPE_INTEGRATED_WRITING_DIRECTIONS = 42;
+    int VIEW_TYPE_INDEPENDENT_WRITING_DIRECTIONS = 43;
 }

@@ -386,7 +386,9 @@ public class ReadingReviewView extends Composite {
                         stopTimer();
                     }
 
-                    ut.setLastViewId(TestSchemaUtils.getNextViewIdWhileTimeOut(page.getTestSchema(), page.getUserTest().getLastViewId()));
+                    int lastViewId = TestSchemaUtils.getNextViewIdWhileTimeOut(page.getTestSchema(), page.getUserTest().getLastViewId());
+                    ut.setCompletionRate(100 * (lastViewId - 1) / page.getTestSchema().getViews().size());
+                    ut.setLastViewId(lastViewId);
                     sqlSession.getMapper(UserTestMapper.class).update(ut);
                     sqlSession.commit();
 
@@ -477,6 +479,7 @@ public class ReadingReviewView extends Composite {
             release();
 
             UserTest ut = page.getUserTest();
+            ut.setCompletionRate(100 * (selectedViewId - 1) / page.getTestSchema().getViews().size());
             ut.setLastViewId(selectedViewId);
 
             page.resume(ut);

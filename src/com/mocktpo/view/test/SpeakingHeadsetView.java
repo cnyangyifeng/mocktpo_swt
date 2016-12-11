@@ -12,7 +12,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Label;
 
-public class HeadsetView extends ResponsiveTestView {
+public class SpeakingHeadsetView extends ResponsiveTestView {
 
     /* Constants */
 
@@ -26,7 +26,7 @@ public class HeadsetView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public HeadsetView(TestPage page, int style) {
+    public SpeakingHeadsetView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -84,6 +84,7 @@ public class HeadsetView extends ResponsiveTestView {
             release();
 
             UserTest ut = page.getUserTest();
+            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
             ut.setLastViewId(vo.getViewId() + 1);
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);

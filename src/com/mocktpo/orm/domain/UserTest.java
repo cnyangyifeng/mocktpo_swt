@@ -13,6 +13,7 @@ public class UserTest {
     private int listeningTime1;
     private int listeningTime2;
     private double volume;
+    private int completionRate;
     private int lastViewId;
 
     public String getEmail() {
@@ -88,6 +89,14 @@ public class UserTest {
         this.volume = volume;
     }
 
+    public int getCompletionRate() {
+        return completionRate;
+    }
+
+    public void setCompletionRate(int completionRate) {
+        this.completionRate = completionRate;
+    }
+
     public int getLastViewId() {
         return lastViewId;
     }
@@ -152,6 +161,6 @@ public class UserTest {
 
     @Override
     public String toString() {
-        return "{\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\nreadingTime:" + this.getReadingTime() + ",\nlastViewId:" + this.getLastViewId() + "\n}";
+        return "{\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nvolume:" + this.getVolume() + ",\ncompletionRate:" + this.getCompletionRate() + ",\nlastViewId:" + this.getLastViewId() + "\n}";
     }
 }

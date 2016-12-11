@@ -20,6 +20,7 @@ public interface UserTestMapper {
             "MT_LISTENING_TIME_1 INT,",
             "MT_LISTENING_TIME_2 INT,",
             "MT_VOLUME DOUBLE,",
+            "MT_COMPLETION_RATE INT,",
             "MT_LAST_VIEW_ID INT",
             ")"
     })
@@ -42,6 +43,7 @@ public interface UserTestMapper {
             "MT_LISTENING_TIME_1,",
             "MT_LISTENING_TIME_2,",
             "MT_VOLUME,",
+            "MT_COMPLETION_RATE,",
             "MT_LAST_VIEW_ID",
             ") VALUES (",
             "#{email},",
@@ -53,6 +55,7 @@ public interface UserTestMapper {
             "#{listeningTime1},",
             "#{listeningTime2},",
             "#{volume},",
+            "#{completionRate},",
             "#{lastViewId}",
             ")"
     })
@@ -69,6 +72,7 @@ public interface UserTestMapper {
             "MT_LISTENING_TIME_1 AS listeningTime1,",
             "MT_LISTENING_TIME_2 AS listeningTime2,",
             "MT_VOLUME AS volume,",
+            "MT_COMPLETION_RATE AS completionRate,",
             "MT_LAST_VIEW_ID AS lastViewId",
             "FROM MT_USER_TEST",
             "ORDER BY MT_TID ASC"
@@ -87,6 +91,7 @@ public interface UserTestMapper {
             "MT_LISTENING_TIME_1 = #{listeningTime1},",
             "MT_LISTENING_TIME_2 = #{listeningTime2},",
             "MT_VOLUME = #{volume},",
+            "MT_COMPLETION_RATE = #{completionRate},",
             "MT_LAST_VIEW_ID = #{lastViewId}",
             "WHERE",
             "MT_TID = #{tid}"

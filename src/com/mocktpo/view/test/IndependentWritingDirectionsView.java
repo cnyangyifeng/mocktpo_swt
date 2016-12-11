@@ -14,7 +14,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 
-public class WritingSectionDirectionsView extends ResponsiveTestView {
+public class IndependentWritingDirectionsView extends ResponsiveTestView {
 
     /* Constants */
 
@@ -28,7 +28,7 @@ public class WritingSectionDirectionsView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public WritingSectionDirectionsView(TestPage page, int style) {
+    public IndependentWritingDirectionsView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -83,6 +83,7 @@ public class WritingSectionDirectionsView extends ResponsiveTestView {
             release();
 
             UserTest ut = page.getUserTest();
+            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
             ut.setLastViewId(vo.getViewId() + 1);
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);

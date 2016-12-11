@@ -3,22 +3,20 @@ package com.mocktpo.view.test;
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
-import com.mocktpo.util.CompositeSet;
-import com.mocktpo.util.FormDataSet;
-import com.mocktpo.util.StyleRangeUtils;
-import com.mocktpo.util.StyledTextSet;
+import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.widgets.Label;
 
-public class ReadingSectionDirectionsView extends ResponsiveTestView {
+public class ListeningHeadsetView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int VIEW_PORT_PADDING_TOP = 50;
+    private static final int VIEW_PORT_PADDING_TOP = 100;
 
     /*
      * ==================================================
@@ -28,7 +26,7 @@ public class ReadingSectionDirectionsView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public ReadingSectionDirectionsView(TestPage page, int style) {
+    public ListeningHeadsetView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -45,7 +43,6 @@ public class ReadingSectionDirectionsView extends ResponsiveTestView {
         final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(cb).atRight(10).atTop(10);
         cb.addMouseListener(new ContinueButtonMouseListener());
-
     }
 
     @Override
@@ -53,14 +50,18 @@ public class ReadingSectionDirectionsView extends ResponsiveTestView {
 
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
-        final StyledText ht = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(ht).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(ht).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledText("heading").getText());
+        final StyledText tt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(tt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("top").getText());
 
-        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTopTo(ht, 50).atRight();
-        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
-        StyleRangeUtils.decorate(dt, vo.getStyledText("description").getStyles());
+        final Label il = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(il).atLeft().atTopTo(tt, 20).atRight();
+        LabelSet.decorate(il).setImage(MT.IMAGE_HEADSET);
+
+        final StyledText bt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(bt).atLeft().atTopTo(il, 20).atRight();
+        StyledTextSet.decorate(bt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("bottom").getText());
+        StyleRangeUtils.decorate(bt, vo.getStyledText("bottom").getStyles());
     }
 
     /*

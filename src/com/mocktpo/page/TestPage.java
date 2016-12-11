@@ -16,8 +16,6 @@ import java.util.ResourceBundle;
 
 public class TestPage extends Composite {
 
-    public static final int TOTAL_VIEW_COUNT = 99;
-
     /* Logger and Messages */
 
     protected static final Logger logger = LogManager.getLogger();
@@ -123,8 +121,8 @@ public class TestPage extends Composite {
 
             /* Listening Section View Types */
 
-            case VT.VIEW_TYPE_HEADSET:
-                tv = new HeadsetView(this, SWT.NONE);
+            case VT.VIEW_TYPE_LISTENING_HEADSET:
+                tv = new ListeningHeadsetView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_CHANGING_VOLUME:
                 tv = new ChangingVolumeView(this, SWT.NONE);
@@ -159,20 +157,28 @@ public class TestPage extends Composite {
 
             /* Speaking Section View Types */
 
+            case VT.VIEW_TYPE_SPEAKING_HEADSET:
+                tv = new SpeakingHeadsetView(this, SWT.NONE);
+                break;
             case VT.VIEW_TYPE_SPEAKING_SECTION_DIRECTIONS:
                 tv = new SpeakingSectionDirectionsView(this, SWT.NONE);
                 break;
 
             /* Writing Section View Types */
 
-            case VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS:
-                tv = new WritingSectionDirectionsView(this, SWT.NONE);
+            case VT.VIEW_TYPE_WRITING_HEADSET:
+                tv = new WritingHeadsetView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_INTEGRATED_WRITING_DIRECTIONS:
+                tv = new IntegratedWritingDirectionsView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_INDEPENDENT_WRITING_DIRECTIONS:
+                tv = new IndependentWritingDirectionsView(this, SWT.NONE);
                 break;
         }
 
         return tv;
     }
-
 
     /*
      * ==================================================

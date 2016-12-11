@@ -78,6 +78,7 @@ public class ListeningSectionEndView extends ResponsiveTestView {
             release();
 
             UserTest ut = page.getUserTest();
+            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
             ut.setLastViewId(vo.getViewId() + 1);
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);

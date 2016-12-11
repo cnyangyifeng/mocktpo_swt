@@ -124,6 +124,7 @@ public class ReadingPassageView extends SashTestView {
                 release();
 
                 UserTest ut = page.getUserTest();
+                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
                 ut.setLastViewId(vo.getViewId() + 1);
 
                 sqlSession.getMapper(UserTestMapper.class).update(ut);
@@ -154,6 +155,7 @@ public class ReadingPassageView extends SashTestView {
             release();
 
             UserTest ut = page.getUserTest();
+            ut.setCompletionRate(100 * (vo.getViewId() - 2) / page.getTestSchema().getViews().size());
             ut.setLastViewId(vo.getViewId() - 1);
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);

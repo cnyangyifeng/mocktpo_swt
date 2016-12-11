@@ -36,15 +36,15 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
     private ImageButton nob, oob;
     private VolumeControl vc;
 
-    private Label choiceA, choiceB, choiceC, choiceD;
-    private Label la, lb, lc, ld;
+    private Label choiceA, choiceB, choiceC, choiceD, choiceE;
+    private Label la, lb, lc, ld, le;
     private StyledText tips;
 
     /* Properties */
 
     private boolean volumeControlVisible;
     private int viewStatus;
-    private int answer1, answer2;
+    private int answer1, answer2, answer3;
 
     private PropertyChangeListener listener;
 
@@ -107,6 +107,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                 release();
 
                 UserTest ut = page.getUserTest();
+                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
                 ut.setLastViewId(vo.getViewId() + 1);
 
                 sqlSession.getMapper(UserTestMapper.class).update(ut);
@@ -175,6 +176,18 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         FormDataSet.attach(ld).atLeftTo(choiceD, 5).atTopTo(lc, 20).atRight();
         LabelSet.decorate(ld).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText()).setVisible(false);
         ld.addMouseListener(new ChooseAnswerListener());
+
+        if (3 == vo.getTotalAnswerCount()) {
+            choiceE = new Label(viewPort, SWT.NONE);
+            FormDataSet.attach(choiceE).atLeft(5).atTopTo(ld, 25);
+            LabelSet.decorate(choiceE).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_E).setImage(MT.IMAGE_UNBOXED).setVisible(false);
+            choiceE.addMouseListener(new ChooseAnswerListener());
+
+            le = new Label(viewPort, SWT.WRAP);
+            FormDataSet.attach(le).atLeftTo(choiceE, 5).atTopTo(ld, 20).atRight();
+            LabelSet.decorate(le).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_E).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceE").getText()).setVisible(false);
+            le.addMouseListener(new ChooseAnswerListener());
+        }
     }
 
     /*
@@ -215,7 +228,16 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
      */
 
     public boolean isOk() {
-        return 0 != answer1 && 0 != answer2;
+        boolean b = false;
+        switch (vo.getTotalAnswerCount()) {
+            case 2:
+                b = (MT.CHOICE_NONE != answer1 && MT.CHOICE_NONE != answer2);
+                break;
+            case 3:
+                b = (MT.CHOICE_NONE != answer1 && MT.CHOICE_NONE != answer2 && MT.CHOICE_NONE != answer3);
+                break;
+        }
+        return b;
     }
 
     /*
@@ -258,6 +280,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                 release();
 
                 UserTest ut = page.getUserTest();
+                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
                 ut.setLastViewId(vo.getViewId() + 1);
 
                 sqlSession.getMapper(UserTestMapper.class).update(ut);
@@ -359,21 +382,21 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
             if (2 == vo.getTotalAnswerCount()) {
 
                 if (answer == answer1) {
-                    answer1 = 0;
+                    answer1 = MT.CHOICE_NONE;
                 } else if (answer == answer2) {
-                    answer2 = 0;
+                    answer2 = MT.CHOICE_NONE;
                 } else {
-                    if (0 == answer1 && 0 == answer2) {
+                    if (MT.CHOICE_NONE == answer1) {
                         answer1 = answer;
-                    } else if (0 != answer1 && 0 == answer2) {
-                        answer2 = answer;
-                    } else if (0 == answer1 /* && 0 != answer2 */) {
-                        answer1 = answer;
-                    } else /* if (0 != answer1 && 0 != answer2) */ {
-                        nob.setEnabled(true);
-                        oob.setEnabled(false);
-                        viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
-                        new RequiredAnswerDialog().openAndWaitForDisposal();
+                    } else {
+                        if (MT.CHOICE_NONE == answer2) {
+                            answer2 = answer;
+                        } else {
+                            nob.setEnabled(true);
+                            oob.setEnabled(false);
+                            viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
+                            new RequiredAnswerDialog().openAndWaitForDisposal();
+                        }
                     }
                 }
 
@@ -396,6 +419,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         LabelSet.decorate(choiceD).setImage(MT.IMAGE_BOXED);
                         break;
                 }
+
                 switch (answer2) {
                     case MT.CHOICE_A:
                         LabelSet.decorate(choiceA).setImage(MT.IMAGE_BOXED);
@@ -410,9 +434,98 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         LabelSet.decorate(choiceD).setImage(MT.IMAGE_BOXED);
                         break;
                 }
-            }
 
-            logger.info("[Listening Multiple-Answers Question {}] Answers: ({}, {})", vo.getQuestionNumberInSection(), answer1, answer2);
+                logger.info("[Listening Multiple-Answers Question {}] Answers: ({}, {})", vo.getQuestionNumberInSection(), answer1, answer2);
+
+            } else if (3 == vo.getTotalAnswerCount()) {
+
+                if (answer == answer1) {
+                    answer1 = MT.CHOICE_NONE;
+                } else if (answer == answer2) {
+                    answer2 = MT.CHOICE_NONE;
+                } else if (answer == answer3) {
+                    answer3 = MT.CHOICE_NONE;
+                } else {
+                    if (MT.CHOICE_NONE == answer1) {
+                        answer1 = answer;
+                    } else {
+                        if (MT.CHOICE_NONE == answer2) {
+                            answer2 = answer;
+                        } else {
+                            if (MT.CHOICE_NONE == answer3) {
+                                answer3 = answer;
+                            } else {
+                                nob.setEnabled(true);
+                                oob.setEnabled(false);
+                                viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
+                                new RequiredAnswerDialog().openAndWaitForDisposal();
+                            }
+                        }
+                    }
+                }
+
+                LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(choiceE).setImage(MT.IMAGE_UNBOXED);
+
+                switch (answer1) {
+                    case MT.CHOICE_A:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_B:
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_C:
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_D:
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_E:
+                        LabelSet.decorate(choiceE).setImage(MT.IMAGE_BOXED);
+                        break;
+                }
+
+                switch (answer2) {
+                    case MT.CHOICE_A:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_B:
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_C:
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_D:
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_E:
+                        LabelSet.decorate(choiceE).setImage(MT.IMAGE_BOXED);
+                        break;
+                }
+
+                switch (answer3) {
+                    case MT.CHOICE_A:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_B:
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_C:
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_D:
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_BOXED);
+                        break;
+                    case MT.CHOICE_E:
+                        LabelSet.decorate(choiceE).setImage(MT.IMAGE_BOXED);
+                        break;
+                }
+
+                logger.info("[Listening Multiple-Answers Question {}] Answers: ({}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3);
+            }
         }
 
         @Override
@@ -440,6 +553,10 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                             LabelSet.decorate(lc).setVisible(true);
                             LabelSet.decorate(choiceD).setVisible(true);
                             LabelSet.decorate(ld).setVisible(true);
+                            if (3 == vo.getTotalAnswerCount()) {
+                                LabelSet.decorate(choiceE).setVisible(true);
+                                LabelSet.decorate(le).setVisible(true);
+                            }
                         }
                     });
                 }

@@ -31,10 +31,9 @@ public class TestSchemaUtils {
 
         switch (vo.getSectionType()) {
             case ST.SECTION_TYPE_NONE:
-                // TODO handles next timed view id
                 break;
             case ST.SECTION_TYPE_READING:
-                nextViewId = getFirstViewIdByViewType(testSchema, VT.VIEW_TYPE_HEADSET);
+                nextViewId = getFirstViewIdByViewType(testSchema, VT.VIEW_TYPE_LISTENING_HEADSET);
                 break;
             case ST.SECTION_TYPE_LISTENING:
                 switch (vo.getGroupId()) {
@@ -42,12 +41,12 @@ public class TestSchemaUtils {
                         nextViewId = getFirstViewIdByViewType(testSchema, VT.VIEW_TYPE_LISTENING_DIRECTIONS);
                         break;
                     case 2:
-                        // TODO handles next timed view id
+                        nextViewId = getFirstViewIdByViewType(testSchema, VT.VIEW_TYPE_SPEAKING_HEADSET);
                         break;
                 }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
-                // TODO handles next timed view id
+                nextViewId = getFirstViewIdByViewType(testSchema, VT.VIEW_TYPE_WRITING_HEADSET);
                 break;
             case ST.SECTION_TYPE_WRITING:
                 // TODO handles next timed view id

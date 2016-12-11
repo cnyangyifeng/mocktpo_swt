@@ -1874,7 +1874,7 @@
     {
       "viewId": 50,
       "viewType": 21,
-      "viewTypeName": "Headset",
+      "viewTypeName": "Listening Headset",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "body": {
@@ -2761,8 +2761,8 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L3",
-      "audioDuration": 342,
-      "illustrations": "listening/L3:0"
+      "audioDuration": 294,
+      "illustrations": "listening/L3_1:0;listening/L3_2:30;listening/L3_3:60"
     },
     {
       "viewId": 84,
@@ -2970,7 +2970,7 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L4",
-      "audioDuration": 316,
+      "audioDuration": 244,
       "illustrations": "listening/L4_1:0;listening/L4_2:30"
     },
     {
@@ -3075,7 +3075,7 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/RL4Q4",
-      "audioDuration": 29,
+      "audioDuration": 25,
       "illustrations": "listening/RL:0",
       "questionNumberInSection": 15
     },
@@ -3096,7 +3096,7 @@
         "question": {
           "text": "Why does the professor say this: \u2423",
           "styles": [
-            { "start": 49, "length": 1, "image": "earphone" }
+            { "start": 33, "length": 1, "image": "earphone" }
           ]
         },
         "choiceA": {
@@ -3122,7 +3122,7 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/RL4Q5",
-      "audioDuration": 29,
+      "audioDuration": 20,
       "illustrations": "listening/RL:0",
       "questionNumberInSection": 16
     },
@@ -3141,7 +3141,10 @@
       "timerTaskDelayed": true,
       "body": {
         "question": {
-          "text": "Why does the professor say this: \u2423"
+          "text": "Why does the professor say this: \u2423",
+          "styles": [
+            { "start": 33, "length": 1, "image": "earphone" }
+          ]
         },
         "choiceA": {
           "text": "To express a similar concern"
@@ -3160,6 +3163,24 @@
     {
       "viewId": 98,
       "viewType": 31,
+      "viewTypeName": "Speaking Headset",
+      "sectionType": 2,
+      "sectionTypeName": "Speaking",
+      "body": {
+        "top": {
+          "text": "Now put on your headset."
+        },
+        "bottom": {
+          "text": "Click on Continue to go on.",
+          "styles": [
+            { "start": 9, "length": 8, "fontStyle": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "viewId": 99,
+      "viewType": 32,
       "viewTypeName": "Speaking Section Directions",
       "sectionType": 3,
       "sectionTypeName": "Speaking",
@@ -3168,39 +3189,67 @@
           "text": "Speaking Section Directions"
         },
         "description": {
-          "text": "In this part of the Reading section, you will read 3 passages. In the test you will have 60 minutes to read the passage and answer the questions.\u000a\u000aMost questions are worth 1 point but the last question in each set is worth more than 1 point. The directions indicate how many points you may receive.\u000a\u000aSome passages include a word or phrase that is underlined in blue. Click on the word or phrase to see a definition or an explanation.\u000a\u000aWhen you want to move to the next question. click on Next. You may skip questions and go back to them later if you want to return to previous questions. click on Back.\u000a\u000aYou can click on Review at any time and the review screen will show you which questions you have answered and which you have not answered. From this review screen, you may go directly to any question you have already seen in the Reading section.\u000a\u000aClick on Continue to go on.",
+          "text": "In this Speaking practice test. YOU will be able to demonstrate your ability to speak about a variety of topics. You will answer six questions by speaking into a microphone. Answer each of the questions as completely as possible.\u000a\u000aIn questions I and 2. you will speak about familiar topics. Your response will be scored on your ability to speak clearly and coherently about the topics.\u000a\u000aIn questions 3 and 4. You will first read a short text. The text will go away and you will then listen to a talk on the same topic. You will then be asked a question about what you have read and heard You will need to combine appropriate information from the text and the talk to provide a complete answer to the question Your response will be scored on your ability to speak clearly and coherently and on your ability to accurately convey information about what you have read and heard In questions 5 and 6. you will listen to part of a conversation or a lecture. You will then be asked a question about what you have heard. Your response will be scored on your ability to speak clearly and coherently and on your ability to accurately convey information about what you heard. In questions 3 through 6. you may take notes while you read and while you listen to the conversations and lectures. You may use your notes to help prepare your response.\u000a\u000aListen carefully to the directions for each question. The directions will not be written on the screen. For each question, you will be given a short time to prepare your response (15 to 30 seconds, depending on the question). A clock will show how much preparation time is remaining. When the preparation time is up. you will be told to begin your response. A clock will show how much response time is remaining. A message will appear on the screen when the response time has ended.\u000a\u000aIn this practice test, you can click on Stop Recording to stop the recording of your response. You can also click on Playback Response to hear your recording. Once you have heard your response, you will have the opportunity to record your response again or confirm that you want to keep your response. In questions 3 through 6. you can click on Replay Talk if you want to listen to the conversations or lectures again. During this practice test, you may click the Pause icon at anytime. This will stop the test until you decide to continue. You may continue the test in a few minutes or at any time during the period that your test is activated.\u000a\u000aPlease note that the Stop Recording. Playback Response. Replay Talk, and Pause icons are available only for this practice test. They will NOT be available during the actual test. If you do not use these functions, your experience will be closer to the actual TOEFL test experience. Performance on the Speaking Practice test is not necessarily a predictor of how you might perform during an actual TOEFL administration.\u000a\u000aClick on Continue to go on.",
           "styles": [
             { "start": 51, "length": 10, "fontStyle": 1 },
             { "start": 89, "length": 10, "fontStyle": 1 },
-            { "start": 347, "length": 10, "underline": true, "foreground": 5 },
-            { "start": 488, "length": 4, "fontStyle": 1 },
-            { "start": 597, "length": 4, "fontStyle": 1 },
-            { "start": 621, "length": 6, "fontStyle": 1 },
-            { "start": 860, "length": 8, "fontStyle": 1 }
+            { "start": 488, "length": 4, "fontStyle": 1 }
           ]
         }
       }
     },
     {
-      "viewId": 99,
+      "viewId": 100,
       "viewType": 41,
-      "viewTypeName": "Writing Section Directions",
+      "viewTypeName": "Writing Headset",
+      "sectionType": 2,
+      "sectionTypeName": "Writing",
+      "body": {
+        "top": {
+          "text": "Now put on your headset."
+        },
+        "bottom": {
+          "text": "Click on Continue to go on.",
+          "styles": [
+            { "start": 9, "length": 8, "fontStyle": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "viewId": 101,
+      "viewType": 42,
+      "viewTypeName": "Integrated Writing Directions",
       "sectionType": 4,
       "sectionTypeName": "Writing",
       "body": {
         "heading": {
-          "text": "Writing Section Directions"
+          "text": "Writing Directions"
         },
         "description": {
-          "text": "In this part of the Reading section, you will read 3 passages. In the test you will have 60 minutes to read the passage and answer the questions.\u000a\u000aMost questions are worth 1 point but the last question in each set is worth more than 1 point. The directions indicate how many points you may receive.\u000a\u000aSome passages include a word or phrase that is underlined in blue. Click on the word or phrase to see a definition or an explanation.\u000a\u000aWhen you want to move to the next question. click on Next. You may skip questions and go back to them later if you want to return to previous questions. click on Back.\u000a\u000aYou can click on Review at any time and the review screen will show you which questions you have answered and which you have not answered. From this review screen, you may go directly to any question you have already seen in the Reading section.\u000a\u000aClick on Continue to go on.",
+          "text": "For this task, you will read a passage about an academic topic. A clock at the top of the screen will show how much time you have to read. You may take notes on the passage while you read. The passage will then be removed and you will listen to a lecture about the same topic. While you listen, you may also take notes. You will be able to see the reading passage again when it is time for you to write. You may use your notes to help you answer the question.\u000a\u000aIn an actual test, you will then have 20 minutes to write a response to a question that asks you about the relationship between the lecture you heard and the reading passage. Try to answer the question as completely as possible using information from the reading passage and lecture. The question does not ask you to express your personal opinion. Typically, an effective response will be 150 to 225 words.\u000a\u000aYour response will be judged on the quality of your writing and on the completeness and accuracy of the content.\u000a\u000aNow you will see the reading passage for minutes. Remember that it will be available to you again when you write. Immediately after the reading time ends, the lecture will begin, so keep your headset on until the lecture is over.\u000a\u000aClick on Continue to go on.",
           "styles": [
             { "start": 51, "length": 10, "fontStyle": 1 },
-            { "start": 89, "length": 10, "fontStyle": 1 },
-            { "start": 347, "length": 10, "underline": true, "foreground": 5 },
-            { "start": 488, "length": 4, "fontStyle": 1 },
-            { "start": 597, "length": 4, "fontStyle": 1 },
-            { "start": 621, "length": 6, "fontStyle": 1 },
-            { "start": 860, "length": 8, "fontStyle": 1 }
+            { "start": 89, "length": 10, "fontStyle": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "viewId": 102,
+      "viewType": 43,
+      "viewTypeName": "Independent Writing Directions",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "body": {
+        "heading": {
+          "text": "Writing Directions"
+        },
+        "description": {
+          "text": "For this task, you will write an essay in response to a question that asks you to state, explain, and support your opinion on an issue. In an actual test, you will have 30 minutes to write your essay.\u000a\u000aTypically, an effective essay will contain a minimum of 300 words. Your essay will be judged on the quality of your writing. This includes the development of your ideas, the organization of your essay, and the quality and accuracy of the language you use to express your ideas.\u000a\u000aClick on Continue to go on.",
+          "styles": [
+            { "start": 51, "length": 10, "fontStyle": 1 },
+            { "start": 89, "length": 10, "fontStyle": 1 }
           ]
         }
       }

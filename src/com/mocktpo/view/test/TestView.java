@@ -294,7 +294,10 @@ public abstract class TestView extends Composite {
 
                     release();
 
-                    ut.setLastViewId(TestSchemaUtils.getNextViewIdWhileTimeOut(page.getTestSchema(), vo.getViewId()));
+                    int lastViewId = TestSchemaUtils.getNextViewIdWhileTimeOut(page.getTestSchema(), vo.getViewId());
+                    ut.setCompletionRate(100 * (lastViewId - 1) / page.getTestSchema().getViews().size());
+                    ut.setLastViewId(lastViewId);
+
                     sqlSession.getMapper(UserTestMapper.class).update(ut);
                     sqlSession.commit();
 
@@ -397,6 +400,7 @@ public abstract class TestView extends Composite {
             release();
 
             UserTest ut = page.getUserTest();
+            ut.setCompletionRate(100 * (vo.getViewId() - 1) / page.getTestSchema().getViews().size());
             ut.setLastViewId(vo.getViewId());
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);

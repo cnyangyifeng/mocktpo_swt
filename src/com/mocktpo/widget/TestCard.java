@@ -2,7 +2,6 @@ package com.mocktpo.widget;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -129,7 +128,7 @@ public class TestCard extends Composite {
     }
 
     private String getCompletionRate() {
-        return (ut.getLastViewId() - 1) * 100 / TestPage.TOTAL_VIEW_COUNT + "%";
+        return (ut.getCompletionRate() + "%");
     }
 
     /*
