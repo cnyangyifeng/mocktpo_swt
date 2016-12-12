@@ -1890,8 +1890,8 @@
     },
     {
       "viewId": 54,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
+      "viewType": 27,
+      "viewTypeName": "Listening Multiple-Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 1,
@@ -1987,6 +1987,19 @@
     },
     {
       "viewId": 57,
+      "viewType": 25,
+      "viewTypeName": "Listening Replay",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "listening/RC1Q5",
+      "audioDuration": 13,
+      "illustrations": "listening/RC:0",
+      "questionNumberInSection": 5
+    },
+    {
+      "viewId": 58,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2020,7 +2033,7 @@
       }
     },
     {
-      "viewId": 58,
+      "viewId": 59,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2032,7 +2045,7 @@
       "illustrations": "listening/L1:0"
     },
     {
-      "viewId": 59,
+      "viewId": 60,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2063,9 +2076,9 @@
       }
     },
     {
-      "viewId": 60,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
+      "viewId": 61,
+      "viewType": 27,
+      "viewTypeName": "Listening Multiple-Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 1,
@@ -2098,7 +2111,7 @@
       }
     },
     {
-      "viewId": 61,
+      "viewId": 62,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2129,7 +2142,7 @@
       }
     },
     {
-      "viewId": 62,
+      "viewId": 63,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2160,7 +2173,7 @@
       }
     },
     {
-      "viewId": 63,
+      "viewId": 64,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2191,7 +2204,7 @@
       }
     },
     {
-      "viewId": 64,
+      "viewId": 65,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2222,7 +2235,7 @@
       }
     },
     {
-      "viewId": 65,
+      "viewId": 66,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2234,9 +2247,9 @@
       "illustrations": "listening/L2:0"
     },
     {
-      "viewId": 66,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
+      "viewId": 67,
+      "viewType": 27,
+      "viewTypeName": "Listening Multiple-Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 1,
@@ -2269,7 +2282,7 @@
       }
     },
     {
-      "viewId": 67,
+      "viewId": 68,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2300,9 +2313,9 @@
       }
     },
     {
-      "viewId": 68,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
+      "viewId": 69,
+      "viewType": 27,
+      "viewTypeName": "Listening Multiple-Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 1,
@@ -2335,7 +2348,7 @@
       }
     },
     {
-      "viewId": 69,
+      "viewId": 70,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2366,7 +2379,7 @@
       }
     },
     {
-      "viewId": 70,
+      "viewId": 71,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2397,7 +2410,7 @@
       }
     },
     {
-      "viewId": 71,
+      "viewId": 72,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2431,7 +2444,7 @@
       }
     },
     {
-      "viewId": 72,
+      "viewId": 73,
       "viewType": 210,
       "viewTypeName": "Listening Section End",
       "sectionType": 2,
@@ -2445,7 +2458,7 @@
       }
     },
     {
-      "viewId": 73,
+      "viewId": 74,
       "viewType": 211,
       "viewTypeName": "Listening Directions",
       "sectionType": 2,
@@ -2470,7 +2483,7 @@
       }
     },
     {
-      "viewId": 74,
+      "viewId": 75,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2482,7 +2495,7 @@
       "illustrations": "listening/C2:0"
     },
     {
-      "viewId": 75,
+      "viewId": 76,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2513,9 +2526,9 @@
       }
     },
     {
-      "viewId": 76,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
+      "viewId": 77,
+      "viewType": 27,
+      "viewTypeName": "Listening Multiple-Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 2,
@@ -2548,7 +2561,7 @@
       }
     },
     {
-      "viewId": 77,
+      "viewId": 78,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2579,9 +2592,9 @@
       }
     },
     {
-      "viewId": 78,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
+      "viewId": 79,
+      "viewType": 29,
+      "viewTypeName": "Listening Match Objects Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 2,
@@ -2592,25 +2605,47 @@
       "timed": true,
       "timerTaskDelayed": true,
       "body": {
-        "question": {
-          "text": "In the conversation, the professor describes the process that causes lake-effect snowstorms. Indicate whether each of the following is a step in the process:"
+        "directions": {
+          "text": "In the conversation, the professor describes the process that causes lake-effect snowstorms. Indicate whether each of the following is a step in the process:",
+          "styles": [
+            { "start": 0, "length": 11, "fontStyle": 1 }
+          ]
         },
-        "choiceA": {
-          "text": "."
+        "tips": {
+          "text": "Click in the correct box for each phrase. This item is worth 2 points."
         },
-        "choiceB": {
-          "text": "."
+        "questionA": {
+          "text": "Arctic air blows across a lake and picks up moisture."
         },
-        "choiceC": {
-          "text": "."
+        "questionB": {
+          "text": "Cold air temperatures cause lake water to freeze."
         },
-        "choiceD": {
-          "text": "."
+        "questionC": {
+          "text": "Frozen lake water cools me air above it."
+        },
+        "questionD": {
+          "text": "Water vapor condenses and becomes snow."
+        },
+        "questionE": {
+          "text": "Warm air rises when it reaches the shore."
         }
       }
     },
     {
-      "viewId": 79,
+      "viewId": 80,
+      "viewType": 25,
+      "viewTypeName": "Listening Replay",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "listening/RC2Q5",
+      "audioDuration": 13,
+      "illustrations": "listening/RC:0",
+      "questionNumberInSection": 5
+    },
+    {
+      "viewId": 81,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2644,7 +2679,7 @@
       }
     },
     {
-      "viewId": 80,
+      "viewId": 82,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2656,7 +2691,7 @@
       "illustrations": "listening/L3:0"
     },
     {
-      "viewId": 81,
+      "viewId": 83,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2687,7 +2722,7 @@
       }
     },
     {
-      "viewId": 82,
+      "viewId": 84,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2718,7 +2753,7 @@
       }
     },
     {
-      "viewId": 83,
+      "viewId": 85,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2749,7 +2784,7 @@
       }
     },
     {
-      "viewId": 84,
+      "viewId": 86,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2784,7 +2819,7 @@
       }
     },
     {
-      "viewId": 85,
+      "viewId": 87,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2815,7 +2850,7 @@
       }
     },
     {
-      "viewId": 86,
+      "viewId": 88,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2850,7 +2885,7 @@
       }
     },
     {
-      "viewId": 87,
+      "viewId": 89,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2862,7 +2897,7 @@
       "illustrations": "listening/L4:0"
     },
     {
-      "viewId": 88,
+      "viewId": 90,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2893,9 +2928,9 @@
       }
     },
     {
-      "viewId": 89,
-      "viewType": 26,
-      "viewTypeName": "Listening Question",
+      "viewId": 91,
+      "viewType": 27,
+      "viewTypeName": "Listening Multiple-Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 2,
@@ -2928,7 +2963,7 @@
       }
     },
     {
-      "viewId": 90,
+      "viewId": 92,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2963,7 +2998,7 @@
       }
     },
     {
-      "viewId": 91,
+      "viewId": 93,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2994,7 +3029,7 @@
       }
     },
     {
-      "viewId": 92,
+      "viewId": 94,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3025,7 +3060,7 @@
       }
     },
     {
-      "viewId": 93,
+      "viewId": 95,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3056,7 +3091,7 @@
       }
     },
     {
-      "viewId": 94,
+      "viewId": 96,
       "viewType": 31,
       "viewTypeName": "Speaking Headset",
       "sectionType": 2,
@@ -3074,7 +3109,7 @@
       }
     },
     {
-      "viewId": 95,
+      "viewId": 97,
       "viewType": 32,
       "viewTypeName": "Speaking Section Directions",
       "sectionType": 3,
@@ -3084,7 +3119,7 @@
           "text": "Speaking Section Directions"
         },
         "description": {
-          "text": "In this Speaking practice test. YOU will be able to demonstrate your ability to speak about a variety of topics. You will answer six questions by speaking into a microphone. Answer each of the questions as completely as possible.\u000a\u000aIn questions I and 2. you will speak about familiar topics. Your response will be scored on your ability to speak clearly and coherently about the topics.\u000a\u000aIn questions 3 and 4. You will first read a short text. The text will go away and you will then listen to a talk on the same topic. You will then be asked a question about what you have read and heard You will need to combine appropriate information from the text and the talk to provide a complete answer to the question Your response will be scored on your ability to speak clearly and coherently and on your ability to accurately convey information about what you have read and heard In questions 5 and 6. you will listen to part of a conversation or a lecture. You will then be asked a question about what you have heard. Your response will be scored on your ability to speak clearly and coherently and on your ability to accurately convey information about what you heard. In questions 3 through 6. you may take notes while you read and while you listen to the conversations and lectures. You may use your notes to help prepare your response.\u000a\u000aListen carefully to the directions for each question. The directions will not be written on the screen. For each question, you will be given a short time to prepare your response (15 to 30 seconds, depending on the question). A clock will show how much preparation time is remaining. When the preparation time is up. you will be told to begin your response. A clock will show how much response time is remaining. A message will appear on the screen when the response time has ended.\u000a\u000aIn this practice test, you can click on Stop Recording to stop the recording of your response. You can also click on Playback Response to hear your recording. Once you have heard your response, you will have the opportunity to record your response again or confirm that you want to keep your response. In questions 3 through 6. you can click on Replay Talk if you want to listen to the conversations or lectures again. During this practice test, you may click the Pause icon at anytime. This will stop the test until you decide to continue. You may continue the test in a few minutes or at any time during the period that your test is activated.\u000a\u000aPlease note that the Stop Recording. Playback Response. Replay Talk, and Pause icons are available only for this practice test. They will NOT be available during the actual test. If you do not use these functions, your experience will be closer to the actual TOEFL test experience. Performance on the Speaking Practice test is not necessarily a predictor of how you might perform during an actual TOEFL administration.\u000a\u000aClick on Continue to go on.",
+          "text": "In this Speaking practice test. YOU will be able to demonstrate your ability to speak about a variety of topics. You will answer six questions by speaking into a microphone. Answer each of the questions as completely as possible.\u000a\u000aIn questions 1 and 2, you will speak about familiar topics. Your response will be scored on your ability to speak clearly and coherently about the topics.\u000a\u000aIn questions 3 and 4. You will first read a short text. The text will go away and you will then listen to a talk on the same topic. You will then be asked a question about what you have read and heard You will need to combine appropriate information from the text and the talk to provide a complete answer to the question Your response will be scored on your ability to speak clearly and coherently and on your ability to accurately convey information about what you have read and heard In questions 5 and 6. you will listen to part of a conversation or a lecture. You will then be asked a question about what you have heard. Your response will be scored on your ability to speak clearly and coherently and on your ability to accurately convey information about what you heard. In questions 3 through 6. you may take notes while you read and while you listen to the conversations and lectures. You may use your notes to help prepare your response.\u000a\u000aListen carefully to the directions for each question. The directions will not be written on the screen. For each question, you will be given a short time to prepare your response (15 to 30 seconds, depending on the question). A clock will show how much preparation time is remaining. When the preparation time is up. you will be told to begin your response. A clock will show how much response time is remaining. A message will appear on the screen when the response time has ended.\u000a\u000aIn this practice test, you can click on Stop Recording to stop the recording of your response. You can also click on Playback Response to hear your recording. Once you have heard your response, you will have the opportunity to record your response again or confirm that you want to keep your response. In questions 3 through 6. you can click on Replay Talk if you want to listen to the conversations or lectures again. During this practice test, you may click the Pause icon at anytime. This will stop the test until you decide to continue. You may continue the test in a few minutes or at any time during the period that your test is activated.\u000a\u000aPlease note that the Stop Recording. Playback Response. Replay Talk, and Pause icons are available only for this practice test. They will NOT be available during the actual test. If you do not use these functions, your experience will be closer to the actual TOEFL test experience. Performance on the Speaking Practice test is not necessarily a predictor of how you might perform during an actual TOEFL administration.\u000a\u000aClick on Continue to go on.",
           "styles": [
             { "start": 51, "length": 10, "fontStyle": 1 },
             { "start": 89, "length": 10, "fontStyle": 1 },
@@ -3094,7 +3129,7 @@
       }
     },
     {
-      "viewId": 96,
+      "viewId": 98,
       "viewType": 41,
       "viewTypeName": "Writing Headset",
       "sectionType": 2,
@@ -3112,7 +3147,7 @@
       }
     },
     {
-      "viewId": 97,
+      "viewId": 99,
       "viewType": 42,
       "viewTypeName": "Integrated Writing Directions",
       "sectionType": 4,
@@ -3131,7 +3166,7 @@
       }
     },
     {
-      "viewId": 98,
+      "viewId": 100,
       "viewType": 43,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,
