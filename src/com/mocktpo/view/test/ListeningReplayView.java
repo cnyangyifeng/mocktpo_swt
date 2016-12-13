@@ -40,7 +40,6 @@ public class ListeningReplayView extends ResponsiveTestView {
 
     /* Properties */
 
-    private boolean volumeControlVisible;
     private Map<Integer, Image> illustrations;
 
     private PropertyChangeListener listener;
@@ -182,8 +181,15 @@ public class ListeningReplayView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(vc).setVisible(volumeControlVisible);
+
+            UserTest ut = page.getUserTest();
+            ut.setVolumeControlHidden(!volumeControlVisible);
+
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
         }
 
         @Override

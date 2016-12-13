@@ -30,10 +30,6 @@ public class ListeningDirectionsView extends ResponsiveTestView {
 
     private VolumeControl vc;
 
-    /* Properties */
-
-    private boolean volumeControlVisible;
-
     /*
      * ==================================================
      *
@@ -116,8 +112,15 @@ public class ListeningDirectionsView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(vc).setVisible(volumeControlVisible);
+
+            UserTest ut = page.getUserTest();
+            ut.setVolumeControlHidden(!volumeControlVisible);
+
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
         }
 
         @Override

@@ -542,13 +542,13 @@
     },
     {
       "viewId": 17,
-      "viewType": 13,
+      "viewType": 14,
       "viewTypeName": "Reading Insert Text Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1597,
       "withQuestion": true,
-      "questionNumberInSection": 14,
+      "questionNumberInSection": 13,
       "timed": true,
       "body": {
         "heading": {
@@ -2411,6 +2411,19 @@
     },
     {
       "viewId": 72,
+      "viewType": 25,
+      "viewTypeName": "Listening Replay",
+      "sectionType": 2,
+      "sectionTypeName": "Listening",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "listening/RL2Q6",
+      "audioDuration": 24,
+      "illustrations": "listening/RL:0",
+      "questionNumberInSection": 17
+    },
+    {
+      "viewId": 73,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2444,7 +2457,7 @@
       }
     },
     {
-      "viewId": 73,
+      "viewId": 74,
       "viewType": 210,
       "viewTypeName": "Listening Section End",
       "sectionType": 2,
@@ -2458,7 +2471,7 @@
       }
     },
     {
-      "viewId": 74,
+      "viewId": 75,
       "viewType": 211,
       "viewTypeName": "Listening Directions",
       "sectionType": 2,
@@ -2483,7 +2496,7 @@
       }
     },
     {
-      "viewId": 75,
+      "viewId": 76,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2495,7 +2508,7 @@
       "illustrations": "listening/C2:0"
     },
     {
-      "viewId": 76,
+      "viewId": 77,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2526,7 +2539,7 @@
       }
     },
     {
-      "viewId": 77,
+      "viewId": 78,
       "viewType": 27,
       "viewTypeName": "Listening Multiple-Answers Question",
       "sectionType": 2,
@@ -2561,7 +2574,7 @@
       }
     },
     {
-      "viewId": 78,
+      "viewId": 79,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2592,7 +2605,7 @@
       }
     },
     {
-      "viewId": 79,
+      "viewId": 80,
       "viewType": 29,
       "viewTypeName": "Listening Match Objects Question",
       "sectionType": 2,
@@ -2606,33 +2619,30 @@
       "timerTaskDelayed": true,
       "body": {
         "directions": {
-          "text": "In the conversation, the professor describes the process that causes lake-effect snowstorms. Indicate whether each of the following is a step in the process:",
-          "styles": [
-            { "start": 0, "length": 11, "fontStyle": 1 }
-          ]
+          "text": "In the conversation, the professor describes the process that causes lake-effect snowstorms. Indicate whether each of the following is a step in the process."
         },
         "tips": {
-          "text": "Click in the correct box for each phrase. This item is worth 2 points."
+          "text": "Click in the correct boxes."
         },
-        "questionA": {
+        "question1": {
           "text": "Arctic air blows across a lake and picks up moisture."
         },
-        "questionB": {
+        "question2": {
           "text": "Cold air temperatures cause lake water to freeze."
         },
-        "questionC": {
+        "question3": {
           "text": "Frozen lake water cools me air above it."
         },
-        "questionD": {
+        "question4": {
           "text": "Water vapor condenses and becomes snow."
         },
-        "questionE": {
+        "question5": {
           "text": "Warm air rises when it reaches the shore."
         }
       }
     },
     {
-      "viewId": 80,
+      "viewId": 81,
       "viewType": 25,
       "viewTypeName": "Listening Replay",
       "sectionType": 2,
@@ -2640,12 +2650,12 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/RC2Q5",
-      "audioDuration": 13,
+      "audioDuration": 19,
       "illustrations": "listening/RC:0",
       "questionNumberInSection": 5
     },
     {
-      "viewId": 81,
+      "viewId": 82,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2679,7 +2689,7 @@
       }
     },
     {
-      "viewId": 82,
+      "viewId": 83,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2691,7 +2701,7 @@
       "illustrations": "listening/L3:0"
     },
     {
-      "viewId": 83,
+      "viewId": 84,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2722,7 +2732,7 @@
       }
     },
     {
-      "viewId": 84,
+      "viewId": 85,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2753,7 +2763,7 @@
       }
     },
     {
-      "viewId": 85,
+      "viewId": 86,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2784,7 +2794,7 @@
       }
     },
     {
-      "viewId": 86,
+      "viewId": 87,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2819,7 +2829,7 @@
       }
     },
     {
-      "viewId": 87,
+      "viewId": 88,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2850,7 +2860,7 @@
       }
     },
     {
-      "viewId": 88,
+      "viewId": 89,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2885,7 +2895,7 @@
       }
     },
     {
-      "viewId": 89,
+      "viewId": 90,
       "viewType": 24,
       "viewTypeName": "Listening Material",
       "sectionType": 2,
@@ -2897,7 +2907,7 @@
       "illustrations": "listening/L4:0"
     },
     {
-      "viewId": 90,
+      "viewId": 91,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2928,7 +2938,7 @@
       }
     },
     {
-      "viewId": 91,
+      "viewId": 92,
       "viewType": 27,
       "viewTypeName": "Listening Multiple-Answers Question",
       "sectionType": 2,
@@ -2963,7 +2973,7 @@
       }
     },
     {
-      "viewId": 92,
+      "viewId": 93,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -2998,7 +3008,7 @@
       }
     },
     {
-      "viewId": 93,
+      "viewId": 94,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3029,7 +3039,7 @@
       }
     },
     {
-      "viewId": 94,
+      "viewId": 95,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3060,7 +3070,7 @@
       }
     },
     {
-      "viewId": 95,
+      "viewId": 96,
       "viewType": 26,
       "viewTypeName": "Listening Question",
       "sectionType": 2,
@@ -3091,7 +3101,7 @@
       }
     },
     {
-      "viewId": 96,
+      "viewId": 97,
       "viewType": 31,
       "viewTypeName": "Speaking Headset",
       "sectionType": 2,
@@ -3109,7 +3119,7 @@
       }
     },
     {
-      "viewId": 97,
+      "viewId": 98,
       "viewType": 32,
       "viewTypeName": "Speaking Section Directions",
       "sectionType": 3,
@@ -3129,7 +3139,7 @@
       }
     },
     {
-      "viewId": 98,
+      "viewId": 99,
       "viewType": 41,
       "viewTypeName": "Writing Headset",
       "sectionType": 2,
@@ -3147,7 +3157,7 @@
       }
     },
     {
-      "viewId": 99,
+      "viewId": 100,
       "viewType": 42,
       "viewTypeName": "Integrated Writing Directions",
       "sectionType": 4,
@@ -3166,7 +3176,7 @@
       }
     },
     {
-      "viewId": 100,
+      "viewId": 101,
       "viewType": 43,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,

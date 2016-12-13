@@ -1,6 +1,7 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.dialog.RequiredAnswerDialog;
+import com.mocktpo.listener.BorderedCompositePaintListener;
 import com.mocktpo.listener.StyledTextPaintImageListener;
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.mapper.UserTestMapper;
@@ -12,8 +13,10 @@ import com.mocktpo.widget.DroppableAnswerComposite;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.*;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Scale;
 
@@ -25,12 +28,8 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int VIEW_PORT_PADDING_TOP = 150;
+    private static final int VIEW_PORT_PADDING_TOP = 50;
     private static final int VIEW_PORT_PADDING_WIDTH = 200;
-
-    private static final int VIEW_STATUS_INITIAL = 0;
-    private static final int VIEW_STATUS_NEXT_BUTTON_ENABLED = 1;
-    private static final int VIEW_STATUS_OK_BUTTON_ENABLED = 2;
 
     private static final int ANSWER_1 = 1;
     private static final int ANSWER_2 = 2;
@@ -43,11 +42,10 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
     private Label choiceA, choiceB, choiceC;
     private StyledText tips;
+    private Composite ac;
 
     /* Properties */
 
-    private boolean volumeControlVisible;
-    private int viewStatus;
     private int answer1, answer2, answer3;
 
     private PropertyChangeListener listener;
@@ -62,7 +60,6 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
     public ListeningOrderEventsQuestionView(TestPage page, int style) {
         super(page, style);
-        this.viewStatus = VIEW_STATUS_INITIAL;
     }
 
     /*
@@ -141,36 +138,48 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         StyledTextSet.decorate(tips).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(5).setText(vo.getStyledText("tips").getText()).setVisible(false);
         StyleRangeUtils.decorate(tips, vo.getStyledText("tips").getStyles());
 
-        final DroppableAnswerComposite blank1 = new DroppableAnswerComposite(viewPort, SWT.WRAP | SWT.TOP, ANSWER_1);
-        FormDataSet.attach(blank1).atLeft().atTopTo(tips, 20).atRight().withHeight(LC.READING_DND_QUESTION_HEIGHT);
+        ac = new Composite(viewPort, SWT.NONE);
+        FormDataSet.attach(ac).atLeft().atTopTo(tips, 20).atRight();
+        CompositeSet.decorate(ac).setVisible(false);
+        FormLayoutSet.layout(ac).marginWidth(1).marginHeight(1);
+
+        final DroppableAnswerComposite blank1 = new DroppableAnswerComposite(ac, SWT.WRAP | SWT.TOP, ANSWER_1);
+        FormDataSet.attach(blank1).atLeft().atTop().atRight().withHeight(LC.LISTENING_DND_QUESTION_HEIGHT);
         AnswerCompositeDropTargetSet.drop(blank1);
+        blank1.addPaintListener(new BorderedCompositePaintListener());
         blank1.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
         blank1.addMouseListener(new AnswerCompositeMouseListener());
 
-        final DroppableAnswerComposite blank2 = new DroppableAnswerComposite(viewPort, SWT.WRAP, ANSWER_2);
-        FormDataSet.attach(blank2).atLeft().atTopTo(blank1, 10).atRight().withHeight(LC.READING_DND_QUESTION_HEIGHT);
+        final DroppableAnswerComposite blank2 = new DroppableAnswerComposite(ac, SWT.WRAP, ANSWER_2);
+        FormDataSet.attach(blank2).atLeft().atTopTo(blank1, 10).atRight().withHeight(LC.LISTENING_DND_QUESTION_HEIGHT);
         AnswerCompositeDropTargetSet.drop(blank2);
+        blank2.addPaintListener(new BorderedCompositePaintListener());
         blank2.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
         blank2.addMouseListener(new AnswerCompositeMouseListener());
 
-        final DroppableAnswerComposite blank3 = new DroppableAnswerComposite(viewPort, SWT.WRAP, ANSWER_3);
-        FormDataSet.attach(blank3).atLeft().atTopTo(blank2, 10).atRight().withHeight(LC.READING_DND_QUESTION_HEIGHT);
+        final DroppableAnswerComposite blank3 = new DroppableAnswerComposite(ac, SWT.WRAP, ANSWER_3);
+        FormDataSet.attach(blank3).atLeft().atTopTo(blank2, 10).atRight().withHeight(LC.LISTENING_DND_QUESTION_HEIGHT);
         AnswerCompositeDropTargetSet.drop(blank3);
+        blank3.addPaintListener(new BorderedCompositePaintListener());
         blank3.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
         blank3.addMouseListener(new AnswerCompositeMouseListener());
 
-        choiceA = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceA).atLeft().atTopTo(blank3, 20).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
+        final CLabel l = new CLabel(ac, SWT.CENTER);
+        FormDataSet.attach(l).atLeft().atTopTo(blank3, 20).atRight();
+        CLabelSet.decorate(l).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("answer_choices"));
+
+        choiceA = new Label(ac, SWT.WRAP);
+        FormDataSet.attach(choiceA).atLeft().atTopTo(l, 20).atRight();
         LabelSet.decorate(choiceA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA").getText());
         ChoiceLabelDragSourceSet.drag(choiceA);
 
-        choiceB = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceB).atLeft().atTopTo(choiceA, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
+        choiceB = new Label(ac, SWT.WRAP);
+        FormDataSet.attach(choiceB).atLeft().atTopTo(choiceA, 10).atRight();
         LabelSet.decorate(choiceB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB").getText());
         ChoiceLabelDragSourceSet.drag(choiceB);
 
-        choiceC = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceC).atLeft().atTopTo(choiceB, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
+        choiceC = new Label(ac, SWT.WRAP);
+        FormDataSet.attach(choiceC).atLeft().atTopTo(choiceB, 10).atRight();
         LabelSet.decorate(choiceC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC").getText());
         ChoiceLabelDragSourceSet.drag(choiceC);
     }
@@ -213,7 +222,11 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
      */
 
     public boolean isOk() {
-        return 0 != answer1 && 0 != answer2 && 0 != answer3;
+        return MT.CHOICE_NONE != answer1 && MT.CHOICE_NONE != answer2 && MT.CHOICE_NONE != answer3;
+    }
+
+    public boolean isNull() {
+        return MT.CHOICE_NONE == answer1 && MT.CHOICE_NONE == answer2 && MT.CHOICE_NONE == answer3;
     }
 
     /*
@@ -234,7 +247,6 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             nob.setEnabled(false);
             oob.setEnabled(true);
-            viewStatus = VIEW_STATUS_OK_BUTTON_ENABLED;
         }
 
         @Override
@@ -268,9 +280,14 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
                 nob.setEnabled(true);
                 oob.setEnabled(false);
-                viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
 
-                new RequiredAnswerDialog().openAndWaitForDisposal();
+                if (isNull()) {
+                    RequiredAnswerDialog d = new RequiredAnswerDialog(MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_MANY);
+                    d.openAndWaitForDisposal();
+                } else {
+                    RequiredAnswerDialog d = new RequiredAnswerDialog(MT.REQUIRED_ANSWER_DIALOG_TYPE_INCORRECT_ANSWER_COUNT);
+                    d.openAndWaitForDisposal();
+                }
             }
         }
 
@@ -302,8 +319,15 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(vc).setVisible(volumeControlVisible);
+
+            UserTest ut = page.getUserTest();
+            ut.setVolumeControlHidden(!volumeControlVisible);
+
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
         }
 
         @Override
@@ -336,10 +360,12 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
+
+                            nob.setEnabled(true);
+                            oob.setEnabled(false);
+
                             StyledTextSet.decorate(tips).setVisible(true);
-                            LabelSet.decorate(choiceA).setVisible(true);
-                            LabelSet.decorate(choiceB).setVisible(true);
-                            LabelSet.decorate(choiceC).setVisible(true);
+                            ac.setVisible(true);
                         }
                     });
                 }
@@ -406,7 +432,7 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
                     break;
             }
 
-            logger.info("[Reading Prose Summary Question {}] Answers: ({}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3);
+            logger.info("[Listening Order Events Question {}] Answers: ({}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3);
         }
     }
 

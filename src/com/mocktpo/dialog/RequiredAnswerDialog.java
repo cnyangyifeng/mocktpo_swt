@@ -38,6 +38,10 @@ public class RequiredAnswerDialog {
 
     private CLabel background;
 
+    /* Properties */
+
+    private int type;
+
     /*
      * ==================================================
      *
@@ -46,9 +50,10 @@ public class RequiredAnswerDialog {
      * ==================================================
      */
 
-    public RequiredAnswerDialog() {
+    public RequiredAnswerDialog(int type) {
         this.app = MyApplication.get();
         this.d = app.getDisplay();
+        this.type = type;
         init();
     }
 
@@ -90,7 +95,18 @@ public class RequiredAnswerDialog {
 
         final Label p = new Label(c, SWT.WRAP);
         GridDataSet.attach(p).centerBoth();
-        LabelSet.decorate(p).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("select_exact_number_of_choices"));
+        LabelSet.decorate(p).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD);
+        switch (type) {
+            case MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_ONE:
+                LabelSet.decorate(p).setText(msgs.getString("no_answer_for_one"));
+                break;
+            case MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_MANY:
+                LabelSet.decorate(p).setText(msgs.getString("no_answer_for_many"));
+                break;
+            case MT.REQUIRED_ANSWER_DIALOG_TYPE_INCORRECT_ANSWER_COUNT:
+                LabelSet.decorate(p).setText(msgs.getString("incorrect_answer_count"));
+                break;
+        }
     }
 
     public void openAndWaitForDisposal() {

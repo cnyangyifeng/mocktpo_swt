@@ -13,6 +13,7 @@ public class UserTest {
     private int listeningTime1;
     private int listeningTime2;
     private double volume;
+    private boolean volumeControlHidden;
     private int completionRate;
     private int lastViewId;
 
@@ -89,6 +90,14 @@ public class UserTest {
         this.volume = volume;
     }
 
+    public boolean isVolumeControlHidden() {
+        return volumeControlHidden;
+    }
+
+    public void setVolumeControlHidden(boolean volumeControlHidden) {
+        this.volumeControlHidden = volumeControlHidden;
+    }
+
     public int getCompletionRate() {
         return completionRate;
     }
@@ -161,6 +170,6 @@ public class UserTest {
 
     @Override
     public String toString() {
-        return "{\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nvolume:" + this.getVolume() + ",\ncompletionRate:" + this.getCompletionRate() + ",\nlastViewId:" + this.getLastViewId() + "\n}";
+        return "{\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\ncompletionRate:" + this.getCompletionRate() + ",\nlastViewId:" + this.getLastViewId() + "\n}";
     }
 }

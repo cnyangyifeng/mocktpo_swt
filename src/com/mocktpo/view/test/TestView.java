@@ -69,6 +69,7 @@ public abstract class TestView extends Composite {
     /* Audio Player */
 
     protected TestAudioPlayer audioPlayer;
+    protected boolean volumeControlVisible;
 
     /*
      * ==================================================
@@ -84,6 +85,7 @@ public abstract class TestView extends Composite {
         this.page = page;
         this.vo = page.getTestSchema().getView(page.getUserTest().getLastViewId());
         this.sqlSession = MyApplication.get().getSqlSession();
+        this.volumeControlVisible = !page.getUserTest().isVolumeControlHidden();
         init();
         realloc();
     }

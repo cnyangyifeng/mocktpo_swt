@@ -27,10 +27,6 @@ public class ListeningQuestionView extends ResponsiveTestView {
     private static final int VIEW_PORT_PADDING_TOP = 150;
     private static final int VIEW_PORT_PADDING_WIDTH = 200;
 
-    private static final int VIEW_STATUS_INITIAL = 0;
-    private static final int VIEW_STATUS_NEXT_BUTTON_ENABLED = 1;
-    private static final int VIEW_STATUS_OK_BUTTON_ENABLED = 2;
-
     /* Widgets */
 
     private ImageButton nob, oob;
@@ -41,8 +37,6 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
     /* Properties */
 
-    private boolean volumeControlVisible;
-    private int viewStatus;
     private int answer;
 
     private PropertyChangeListener listener;
@@ -57,7 +51,6 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
     public ListeningQuestionView(TestPage page, int style) {
         super(page, style);
-        this.viewStatus = VIEW_STATUS_INITIAL;
     }
 
     /*
@@ -210,7 +203,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
      */
 
     public boolean isOk() {
-        return 0 != answer;
+        return MT.CHOICE_NONE != answer;
     }
 
     /*
@@ -231,7 +224,6 @@ public class ListeningQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             nob.setEnabled(false);
             oob.setEnabled(true);
-            viewStatus = VIEW_STATUS_OK_BUTTON_ENABLED;
         }
 
         @Override
@@ -265,9 +257,9 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
                 nob.setEnabled(true);
                 oob.setEnabled(false);
-                viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
 
-                new RequiredAnswerDialog().openAndWaitForDisposal();
+                RequiredAnswerDialog d = new RequiredAnswerDialog(MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_ONE);
+                d.openAndWaitForDisposal();
             }
         }
 
@@ -299,8 +291,15 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(vc).setVisible(volumeControlVisible);
+
+            UserTest ut = page.getUserTest();
+            ut.setVolumeControlHidden(!volumeControlVisible);
+
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
         }
 
         @Override
@@ -344,39 +343,42 @@ public class ListeningQuestionView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            answer = (Integer) e.widget.getData(MT.KEY_CHOICE);
+            int a = (Integer) e.widget.getData(MT.KEY_CHOICE);
 
-            if (VIEW_STATUS_INITIAL == viewStatus) {
-                nob.setEnabled(true);
-                oob.setEnabled(false);
-                viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
-            }
-
-            switch (answer) {
-                case MT.CHOICE_A:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                    break;
-                case MT.CHOICE_B:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                    break;
-                case MT.CHOICE_C:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
-                    break;
-                case MT.CHOICE_D:
-                    LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(choiceD).setImage(MT.IMAGE_CHECKED);
-                    break;
+            if (a == answer) {
+                answer = MT.CHOICE_NONE;
+                LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
+                LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
+                LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
+                LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+            } else {
+                answer = a;
+                switch (answer) {
+                    case MT.CHOICE_A:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_CHECKED);
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                        break;
+                    case MT.CHOICE_B:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_CHECKED);
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                        break;
+                    case MT.CHOICE_C:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_CHECKED);
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                        break;
+                    case MT.CHOICE_D:
+                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_CHECKED);
+                        break;
+                }
             }
 
             logger.info("[Listening Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
@@ -398,6 +400,10 @@ public class ListeningQuestionView extends ResponsiveTestView {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
+
+                            nob.setEnabled(true);
+                            oob.setEnabled(false);
+
                             LabelSet.decorate(choiceA).setVisible(true);
                             LabelSet.decorate(la).setVisible(true);
                             LabelSet.decorate(choiceB).setVisible(true);

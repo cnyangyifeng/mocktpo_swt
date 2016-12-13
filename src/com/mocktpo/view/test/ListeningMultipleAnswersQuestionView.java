@@ -27,10 +27,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
     private static final int VIEW_PORT_PADDING_TOP = 150;
     private static final int VIEW_PORT_PADDING_WIDTH = 200;
 
-    private static final int VIEW_STATUS_INITIAL = 0;
-    private static final int VIEW_STATUS_NEXT_BUTTON_ENABLED = 1;
-    private static final int VIEW_STATUS_OK_BUTTON_ENABLED = 2;
-
     /* Widgets */
 
     private ImageButton nob, oob;
@@ -42,8 +38,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
 
     /* Properties */
 
-    private boolean volumeControlVisible;
-    private int viewStatus;
     private int answer1, answer2, answer3;
 
     private PropertyChangeListener listener;
@@ -58,7 +52,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
 
     public ListeningMultipleAnswersQuestionView(TestPage page, int style) {
         super(page, style);
-        this.viewStatus = VIEW_STATUS_INITIAL;
     }
 
     /*
@@ -240,6 +233,19 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         return b;
     }
 
+    public boolean isNull() {
+        boolean b = false;
+        switch (vo.getTotalAnswerCount()) {
+            case 2:
+                b = (MT.CHOICE_NONE == answer1 && MT.CHOICE_NONE == answer2);
+                break;
+            case 3:
+                b = (MT.CHOICE_NONE == answer1 && MT.CHOICE_NONE == answer2 && MT.CHOICE_NONE == answer3);
+                break;
+        }
+        return b;
+    }
+
     /*
      * ==================================================
      *
@@ -258,7 +264,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             nob.setEnabled(false);
             oob.setEnabled(true);
-            viewStatus = VIEW_STATUS_OK_BUTTON_ENABLED;
         }
 
         @Override
@@ -292,9 +297,14 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
 
                 nob.setEnabled(true);
                 oob.setEnabled(false);
-                viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
 
-                new RequiredAnswerDialog().openAndWaitForDisposal();
+                if (isNull()) {
+                    RequiredAnswerDialog d = new RequiredAnswerDialog(MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_MANY);
+                    d.openAndWaitForDisposal();
+                } else {
+                    RequiredAnswerDialog d = new RequiredAnswerDialog(MT.REQUIRED_ANSWER_DIALOG_TYPE_INCORRECT_ANSWER_COUNT);
+                    d.openAndWaitForDisposal();
+                }
             }
         }
 
@@ -326,8 +336,15 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(vc).setVisible(volumeControlVisible);
+
+            UserTest ut = page.getUserTest();
+            ut.setVolumeControlHidden(!volumeControlVisible);
+
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
         }
 
         @Override
@@ -371,31 +388,24 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            int answer = (Integer) e.widget.getData(MT.KEY_CHOICE);
-
-            if (VIEW_STATUS_INITIAL == viewStatus) {
-                nob.setEnabled(true);
-                oob.setEnabled(false);
-                viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
-            }
+            int a = (Integer) e.widget.getData(MT.KEY_CHOICE);
 
             if (2 == vo.getTotalAnswerCount()) {
 
-                if (answer == answer1) {
+                if (a == answer1) {
                     answer1 = MT.CHOICE_NONE;
-                } else if (answer == answer2) {
+                } else if (a == answer2) {
                     answer2 = MT.CHOICE_NONE;
                 } else {
                     if (MT.CHOICE_NONE == answer1) {
-                        answer1 = answer;
+                        answer1 = a;
                     } else {
                         if (MT.CHOICE_NONE == answer2) {
-                            answer2 = answer;
+                            answer2 = a;
                         } else {
                             nob.setEnabled(true);
                             oob.setEnabled(false);
-                            viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
-                            new RequiredAnswerDialog().openAndWaitForDisposal();
+                            new RequiredAnswerDialog(MT.REQUIRED_ANSWER_DIALOG_TYPE_INCORRECT_ANSWER_COUNT).openAndWaitForDisposal();
                         }
                     }
                 }
@@ -439,26 +449,25 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
 
             } else if (3 == vo.getTotalAnswerCount()) {
 
-                if (answer == answer1) {
+                if (a == answer1) {
                     answer1 = MT.CHOICE_NONE;
-                } else if (answer == answer2) {
+                } else if (a == answer2) {
                     answer2 = MT.CHOICE_NONE;
-                } else if (answer == answer3) {
+                } else if (a == answer3) {
                     answer3 = MT.CHOICE_NONE;
                 } else {
                     if (MT.CHOICE_NONE == answer1) {
-                        answer1 = answer;
+                        answer1 = a;
                     } else {
                         if (MT.CHOICE_NONE == answer2) {
-                            answer2 = answer;
+                            answer2 = a;
                         } else {
                             if (MT.CHOICE_NONE == answer3) {
-                                answer3 = answer;
+                                answer3 = a;
                             } else {
                                 nob.setEnabled(true);
                                 oob.setEnabled(false);
-                                viewStatus = VIEW_STATUS_NEXT_BUTTON_ENABLED;
-                                new RequiredAnswerDialog().openAndWaitForDisposal();
+                                new RequiredAnswerDialog(MT.REQUIRED_ANSWER_DIALOG_TYPE_INCORRECT_ANSWER_COUNT).openAndWaitForDisposal();
                             }
                         }
                     }
@@ -544,6 +553,10 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
+
+                            nob.setEnabled(true);
+                            oob.setEnabled(false);
+
                             StyledTextSet.decorate(tips).setVisible(true);
                             LabelSet.decorate(choiceA).setVisible(true);
                             LabelSet.decorate(la).setVisible(true);

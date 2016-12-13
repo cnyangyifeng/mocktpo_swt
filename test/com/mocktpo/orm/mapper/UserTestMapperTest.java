@@ -45,6 +45,8 @@ public class UserTestMapperTest {
             ut.setListeningTime1(MT.TIME_LISTENING_GROUP);
             ut.setListeningTime2(MT.TIME_LISTENING_GROUP);
             ut.setVolume(1.0);
+            ut.setVolumeControlHidden(true);
+            ut.setCompletionRate(0);
             ut.setLastViewId(1);
             mapper.insert(ut);
         }

@@ -32,6 +32,10 @@ public interface MT {
     int CHOICE_F = 6;
     int CHOICE_G = 7;
 
+    int CHOICE_NEVER_CHECK_MARKED = -1;
+    int CHOICE_NO = 0;
+    int CHOICE_YES = 1;
+
     /*
      * ==================================================
      *
@@ -71,6 +75,18 @@ public interface MT {
 
     int CURSOR_ARROW = 101;
     int CURSOR_HAND = 102;
+
+    /*
+     * ==================================================
+     *
+     * Dialogs
+     *
+     * ==================================================
+     */
+
+    int REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_ONE = 1;
+    int REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_MANY = 2;
+    int REQUIRED_ANSWER_DIALOG_TYPE_INCORRECT_ANSWER_COUNT = 3;
 
     /*
      * ==================================================
@@ -168,6 +184,7 @@ public interface MT {
      */
 
     String KEY_CHOICE = "choice";
+    String KEY_QUESTION = "question";
 
     /*
      * ==================================================
@@ -191,4 +208,18 @@ public interface MT {
 
     int TIME_LISTENING_GROUP = 600;
     int TIME_READING_SECTION = 3600;
+
+    /*
+     * ==================================================
+     *
+     * Questions
+     *
+     * ==================================================
+     */
+
+    int QUESTION_1 = 1;
+    int QUESTION_2 = 2;
+    int QUESTION_3 = 3;
+    int QUESTION_4 = 4;
+    int QUESTION_5 = 5;
 }
