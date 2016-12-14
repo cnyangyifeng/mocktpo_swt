@@ -41,6 +41,10 @@ public class ReadingReviewView extends Composite {
     public static final int STATUS_NOT_ANSWERED = 1;
     public static final int STATUS_ANSWERED = 2;
 
+    public static final String STATUS_TEXT_NOT_SEEN = "Not Seen";
+    public static final String STATUS_TEXT_NOT_ANSWERED = "Not Answered";
+    public static final String STATUS_TEXT_ANSWERED = "Answered";
+
     /* Logger and Messages */
 
     protected static final Logger logger = LogManager.getLogger();
@@ -177,7 +181,7 @@ public class ReadingReviewView extends Composite {
         gb.addMouseListener(new ReadingReviewGoToQuestionButtonMouseListener());
 
         final ImageButton rb = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
-        FormDataSet.attach(rb).atRightTo(gb, 10).atTop(10);
+        FormDataSet.attach(rb).atRightTo(gb, 10).atTopTo(gb, 0, SWT.TOP);
         rb.addMouseListener(new ReadingReviewReturnButtonMouseListener());
     }
 
@@ -264,13 +268,13 @@ public class ReadingReviewView extends Composite {
 
         switch (status) {
             case ReadingReviewView.STATUS_NOT_SEEN:
-                text = "Not Seen";
+                text = STATUS_TEXT_NOT_SEEN;
                 break;
             case ReadingReviewView.STATUS_NOT_ANSWERED:
-                text = "Not Answered";
+                text = STATUS_TEXT_NOT_ANSWERED;
                 break;
             case ReadingReviewView.STATUS_ANSWERED:
-                text = "Answered";
+                text = STATUS_TEXT_ANSWERED;
                 break;
         }
 

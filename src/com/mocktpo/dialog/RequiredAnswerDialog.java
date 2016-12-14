@@ -95,7 +95,7 @@ public class RequiredAnswerDialog {
 
         final Label p = new Label(c, SWT.WRAP);
         GridDataSet.attach(p).centerBoth();
-        LabelSet.decorate(p).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD);
+        LabelSet.decorate(p).setAlignment(SWT.CENTER).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD);
         switch (type) {
             case MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_ONE:
                 LabelSet.decorate(p).setText(msgs.getString("no_answer_for_one"));

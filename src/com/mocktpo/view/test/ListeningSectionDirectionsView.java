@@ -28,7 +28,7 @@ public class ListeningSectionDirectionsView extends ResponsiveTestView {
 
     /* Widgets */
 
-    private VolumeControl vc;
+    private VolumeControl volumeControl;
 
     /*
      * ==================================================
@@ -73,11 +73,11 @@ public class ListeningSectionDirectionsView extends ResponsiveTestView {
         FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(nob, 8, SWT.TOP);
         cb.addMouseListener(new ContinueButtonMouseListener());
 
-        vc = new VolumeControl(header, SWT.NONE);
-        FormDataSet.attach(vc).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
-        CompositeSet.decorate(vc).setVisible(volumeControlVisible);
-        vc.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
-        vc.addSelectionListener(new VolumeControlSelectionListener());
+        volumeControl = new VolumeControl(header, SWT.NONE);
+        FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
+        CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
+        volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
+        volumeControl.addSelectionListener(new VolumeControlSelectionListener());
     }
 
     @Override
@@ -114,7 +114,7 @@ public class ListeningSectionDirectionsView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
 
             volumeControlVisible = !volumeControlVisible;
-            CompositeSet.decorate(vc).setVisible(volumeControlVisible);
+            CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
 
             UserTest ut = page.getUserTest();
             ut.setVolumeControlHidden(!volumeControlVisible);

@@ -37,8 +37,8 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
     /* Widgets */
 
-    private ImageButton nob, oob;
-    private VolumeControl vc;
+    private ImageButton nextOvalButton, okOvalButton;
+    private VolumeControl volumeControl;
 
     private Label choiceA, choiceB, choiceC;
     private StyledText tips;
@@ -73,34 +73,34 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
     @Override
     public void updateHeader() {
 
-        nob = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
-        FormDataSet.attach(nob).atRight(10).atTop(10);
-        nob.setEnabled(false);
-        nob.addMouseListener(new NextOvalButtonMouseListener());
+        nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
+        FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
+        nextOvalButton.setEnabled(false);
+        nextOvalButton.addMouseListener(new NextOvalButtonMouseListener());
 
-        oob = new ImageButton(header, SWT.NONE, MT.IMAGE_OK_OVAL, MT.IMAGE_OK_OVAL_HOVER, MT.IMAGE_OK_OVAL_DISABLED);
-        FormDataSet.attach(oob).atRightTo(nob).atTopTo(nob, 0, SWT.TOP);
-        oob.setEnabled(false);
-        oob.addMouseListener(new OkOvalButtonMouseListener());
+        okOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_OK_OVAL, MT.IMAGE_OK_OVAL_HOVER, MT.IMAGE_OK_OVAL_DISABLED);
+        FormDataSet.attach(okOvalButton).atRightTo(nextOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        okOvalButton.setEnabled(false);
+        okOvalButton.addMouseListener(new OkOvalButtonMouseListener());
 
         final ImageButton hob = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
-        FormDataSet.attach(hob).atRightTo(oob).atTopTo(nob, 0, SWT.TOP);
+        FormDataSet.attach(hob).atRightTo(okOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
         hob.addMouseListener(new HelpOvalButtonMouseListener());
 
         final ImageButton vob = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
-        FormDataSet.attach(vob).atRightTo(hob).atTopTo(nob, 0, SWT.TOP);
+        FormDataSet.attach(vob).atRightTo(hob).atTopTo(nextOvalButton, 0, SWT.TOP);
         vob.addMouseListener(new VolumeOvalButtonMouseListener());
 
-        vc = new VolumeControl(header, SWT.NONE);
-        FormDataSet.attach(vc).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
-        CompositeSet.decorate(vc).setVisible(volumeControlVisible);
-        vc.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
-        vc.addSelectionListener(new VolumeControlSelectionListener());
+        volumeControl = new VolumeControl(header, SWT.NONE);
+        FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
+        CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
+        volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
+        volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
         // TODO Removes the continue button
 
         final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
-        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(nob, 8, SWT.TOP);
+        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(nextOvalButton, 8, SWT.TOP);
         cb.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
@@ -245,8 +245,8 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            nob.setEnabled(false);
-            oob.setEnabled(true);
+            nextOvalButton.setEnabled(false);
+            okOvalButton.setEnabled(true);
         }
 
         @Override
@@ -278,8 +278,8 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
             } else {
 
-                nob.setEnabled(true);
-                oob.setEnabled(false);
+                nextOvalButton.setEnabled(true);
+                okOvalButton.setEnabled(false);
 
                 if (isNull()) {
                     RequiredAnswerDialog d = new RequiredAnswerDialog(MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_MANY);
@@ -321,7 +321,7 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
 
             volumeControlVisible = !volumeControlVisible;
-            CompositeSet.decorate(vc).setVisible(volumeControlVisible);
+            CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
 
             UserTest ut = page.getUserTest();
             ut.setVolumeControlHidden(!volumeControlVisible);
@@ -361,8 +361,8 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
                         @Override
                         public void run() {
 
-                            nob.setEnabled(true);
-                            oob.setEnabled(false);
+                            nextOvalButton.setEnabled(true);
+                            okOvalButton.setEnabled(false);
 
                             StyledTextSet.decorate(tips).setVisible(true);
                             ac.setVisible(true);

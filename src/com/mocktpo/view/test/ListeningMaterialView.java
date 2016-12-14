@@ -33,8 +33,8 @@ public class ListeningMaterialView extends ResponsiveTestView {
 
     /* Widgets */
 
-    private VolumeControl vc;
-    private Label il;
+    private VolumeControl volumeControl;
+    private Label illustrationLabel;
     private ProgressBar audioBar;
 
     /* Properties */
@@ -82,11 +82,11 @@ public class ListeningMaterialView extends ResponsiveTestView {
         FormDataSet.attach(vob).atRightTo(hob).atTopTo(nob, 0, SWT.TOP);
         vob.addMouseListener(new VolumeOvalButtonMouseListener());
 
-        vc = new VolumeControl(header, SWT.NONE);
-        FormDataSet.attach(vc).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
-        CompositeSet.decorate(vc).setVisible(volumeControlVisible);
-        vc.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
-        vc.addSelectionListener(new VolumeControlSelectionListener());
+        volumeControl = new VolumeControl(header, SWT.NONE);
+        FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
+        CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
+        volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
+        volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
         // TODO Removes the continue button
 
@@ -117,12 +117,12 @@ public class ListeningMaterialView extends ResponsiveTestView {
 
         illustrations = IllustrationUtils.load(d, page.getUserTest(), vo.getIllustrations());
 
-        il = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(il).fromLeft(50, -ILLUSTRATION_WIDTH / 2).atTop(VIEW_PORT_PADDING_TOP);
-        LabelSet.decorate(il).setImage(illustrations.get(0));
+        illustrationLabel = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(illustrationLabel).fromLeft(50, -ILLUSTRATION_WIDTH / 2).atTop(VIEW_PORT_PADDING_TOP);
+        LabelSet.decorate(illustrationLabel).setImage(illustrations.get(0));
 
         final Composite pc = new Composite(viewPort, SWT.NONE);
-        FormDataSet.attach(pc).fromLeft(50, -AUDIO_PROGRESS_INDICATOR_WIDTH / 2).atTopTo(il, 30).withWidth(AUDIO_PROGRESS_INDICATOR_WIDTH).withHeight(AUDIO_PROGRESS_INDICATOR_HEIGHT);
+        FormDataSet.attach(pc).fromLeft(50, -AUDIO_PROGRESS_INDICATOR_WIDTH / 2).atTopTo(illustrationLabel, 30).withWidth(AUDIO_PROGRESS_INDICATOR_WIDTH).withHeight(AUDIO_PROGRESS_INDICATOR_HEIGHT);
         CompositeSet.decorate(pc).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         FormLayoutSet.layout(pc).marginWidth(10).marginHeight(8);
         pc.addPaintListener(new BorderedCompositePaintListener());
@@ -169,7 +169,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
 
             volumeControlVisible = !volumeControlVisible;
-            CompositeSet.decorate(vc).setVisible(volumeControlVisible);
+            CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
 
             UserTest ut = page.getUserTest();
             ut.setVolumeControlHidden(!volumeControlVisible);
@@ -225,7 +225,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
                         d.asyncExec(new Runnable() {
                             @Override
                             public void run() {
-                                LabelSet.decorate(il).setImage(illustrations.get(rl.get()));
+                                LabelSet.decorate(illustrationLabel).setImage(illustrations.get(rl.get()));
                             }
                         });
                     }
@@ -257,7 +257,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
                             } catch (InterruptedException ex) {
                                 ex.printStackTrace();
                             }
-                            LabelSet.decorate(il).setImage(MT.IMAGE_READY_TO_ANSWER);
+                            LabelSet.decorate(illustrationLabel).setImage(MT.IMAGE_READY_TO_ANSWER);
                         }
                     });
                 }

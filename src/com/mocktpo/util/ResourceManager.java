@@ -120,6 +120,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_CHECKED, ImageUtils.load(d, "checked"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE, ImageUtils.load(d, "continue"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_HOVER, ImageUtils.load(d, "continue_h"));
+        caches.putIfAbsent(MT.IMAGE_CONTINUE_DISABLED, ImageUtils.load(d, "continue_d"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL, ImageUtils.load(d, "continue_o"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL_HOVER, ImageUtils.load(d, "continue_o_h"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL_DISABLED, ImageUtils.load(d, "continue_o_d"));
@@ -142,7 +143,13 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_OK_OVAL_DISABLED, ImageUtils.load(d, "ok_o_d"));
         caches.putIfAbsent(MT.IMAGE_PAUSE_TEST, ImageUtils.load(d, "pause_test"));
         caches.putIfAbsent(MT.IMAGE_PAUSE_TEST_HOVER, ImageUtils.load(d, "pause_test_h"));
+        caches.putIfAbsent(MT.IMAGE_PLAYBACK_RESPONSE, ImageUtils.load(d, "playback_response"));
+        caches.putIfAbsent(MT.IMAGE_PLAYBACK_RESPONSE_HOVER, ImageUtils.load(d, "playback_response_h"));
+        caches.putIfAbsent(MT.IMAGE_PLAYBACK_RESPONSE_DISABLED, ImageUtils.load(d, "playback_response_d"));
         caches.putIfAbsent(MT.IMAGE_READY_TO_ANSWER, ImageUtils.load(d, "ready_to_answer"));
+        caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN, ImageUtils.load(d, "record_again"));
+        caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN_HOVER, ImageUtils.load(d, "record_again_h"));
+        caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN_DISABLED, ImageUtils.load(d, "record_again_d"));
         caches.putIfAbsent(MT.IMAGE_RETURN, ImageUtils.load(d, "return"));
         caches.putIfAbsent(MT.IMAGE_RETURN_HOVER, ImageUtils.load(d, "return_h"));
         caches.putIfAbsent(MT.IMAGE_RETURN_TO_QUESTION, ImageUtils.load(d, "return_to_question"));
@@ -156,6 +163,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME_HOVER, ImageUtils.load(d, "show_time_h"));
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME_DISABLED, ImageUtils.load(d, "show_time_d"));
         caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, "splash"));
+        caches.putIfAbsent(MT.IMAGE_STOP_RECORDING, ImageUtils.load(d, "stop_recording"));
+        caches.putIfAbsent(MT.IMAGE_STOP_RECORDING_HOVER, ImageUtils.load(d, "stop_recording_h"));
         caches.putIfAbsent(MT.IMAGE_VOLUME_OVAL, ImageUtils.load(d, "volume_o"));
         caches.putIfAbsent(MT.IMAGE_VOLUME_OVAL_HOVER, ImageUtils.load(d, "volume_o_h"));
         caches.putIfAbsent(MT.IMAGE_VIEW_QUESTION, ImageUtils.load(d, "view_question"));

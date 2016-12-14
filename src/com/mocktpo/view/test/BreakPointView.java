@@ -10,14 +10,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.widgets.Label;
 
-public class TestIntroView extends ResponsiveTestView {
+public class BreakPointView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int VIEW_PORT_PADDING_TOP = 100;
-    private static final int VIEW_PORT_PADDING_WIDTH = 200;
+    private static final int VIEW_PORT_PADDING_TOP = 200;
+    private static final int VIEW_PORT_PADDING_WIDTH = 240;
 
     /*
      * ==================================================
@@ -27,7 +26,7 @@ public class TestIntroView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public TestIntroView(TestPage page, int style) {
+    public BreakPointView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -41,9 +40,10 @@ public class TestIntroView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
+
         final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(cb).atRight(10).atTop(10);
-        cb.addMouseListener(new ContinueButtonMouseListener());
+        cb.addMouseListener(new ReadingSectionEndContinueButtonMouseListener());
     }
 
     @Override
@@ -54,14 +54,9 @@ public class TestIntroView extends ResponsiveTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final Label il = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(il).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        LabelSet.decorate(il).setImage(MT.IMAGE_ETS_TOEFL);
-
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTopTo(il, 50).atRight();
-        StyledTextSet.decorate(dt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
-        StyleRangeUtils.decorate(dt, vo.getStyledText("description").getStyles());
+        FormDataSet.attach(dt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        StyledTextSet.decorate(dt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
     }
 
     /*
@@ -72,7 +67,7 @@ public class TestIntroView extends ResponsiveTestView {
      * ==================================================
      */
 
-    private class ContinueButtonMouseListener implements MouseListener {
+    private class ReadingSectionEndContinueButtonMouseListener implements MouseListener {
 
         @Override
         public void mouseDoubleClick(MouseEvent e) {

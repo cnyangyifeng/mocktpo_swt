@@ -15,7 +15,7 @@ public class ListeningSectionEndView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int VIEW_PORT_PADDING_TOP = 150;
+    private static final int VIEW_PORT_PADDING_TOP = 200;
     private static final int VIEW_PORT_PADDING_WIDTH = 240;
 
     /*

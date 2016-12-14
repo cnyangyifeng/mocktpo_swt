@@ -94,6 +94,9 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_GENERAL_TEST_INFO:
                 tv = new GeneralTestInfoView(this, SWT.NONE);
                 break;
+            case VT.VIEW_TYPE_BREAK_POINT:
+                tv = new BreakPointView(this, SWT.NONE);
+                break;
 
             /* Reading Section View Types */
 
