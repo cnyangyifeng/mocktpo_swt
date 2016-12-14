@@ -121,8 +121,8 @@ public class TestPage extends Composite {
 
             /* Listening Section View Types */
 
-            case VT.VIEW_TYPE_LISTENING_HEADSET:
-                tv = new ListeningHeadsetView(this, SWT.NONE);
+            case VT.VIEW_TYPE_LISTENING_HEADSET_ON:
+                tv = new ListeningHeadsetOnView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_CHANGING_VOLUME:
                 tv = new ChangingVolumeView(this, SWT.NONE);
@@ -157,8 +157,11 @@ public class TestPage extends Composite {
 
             /* Speaking Section View Types */
 
-            case VT.VIEW_TYPE_SPEAKING_HEADSET:
-                tv = new SpeakingHeadsetView(this, SWT.NONE);
+            case VT.VIEW_TYPE_SPEAKING_HEADSET_ON:
+                tv = new SpeakingHeadsetOnView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_ADJUSTING_MICROPHONE:
+                tv = new AdjustingMicrophoneView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_SPEAKING_SECTION_DIRECTIONS:
                 tv = new SpeakingSectionDirectionsView(this, SWT.NONE);
@@ -166,8 +169,8 @@ public class TestPage extends Composite {
 
             /* Writing Section View Types */
 
-            case VT.VIEW_TYPE_WRITING_HEADSET:
-                tv = new WritingHeadsetView(this, SWT.NONE);
+            case VT.VIEW_TYPE_WRITING_HEADSET_ON:
+                tv = new WritingHeadsetOnView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_INTEGRATED_WRITING_DIRECTIONS:
                 tv = new IntegratedWritingDirectionsView(this, SWT.NONE);

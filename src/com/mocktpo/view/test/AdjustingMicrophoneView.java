@@ -17,11 +17,11 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Scale;
 
-public class ChangingVolumeView extends ResponsiveTestView {
+public class AdjustingMicrophoneView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int VIEW_PORT_PADDING_TOP = 100;
+    private static final int VIEW_PORT_PADDING_TOP = 50;
     private static final int VIEW_PORT_PADDING_WIDTH = 240;
     private static final int FOOTNOTE_TEXT_WIDTH = 480;
 
@@ -37,7 +37,7 @@ public class ChangingVolumeView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public ChangingVolumeView(TestPage page, int style) {
+    public AdjustingMicrophoneView(TestPage page, int style) {
         super(page, style);
     }
 

@@ -12,11 +12,12 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Label;
 
-public class SpeakingHeadsetView extends ResponsiveTestView {
+public class SpeakingHeadsetOnView extends ResponsiveTestView {
 
     /* Constants */
 
     private static final int VIEW_PORT_PADDING_TOP = 100;
+    private static final int VIEW_PORT_PADDING_WIDTH = 100;
 
     /*
      * ==================================================
@@ -26,7 +27,7 @@ public class SpeakingHeadsetView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public SpeakingHeadsetView(TestPage page, int style) {
+    public SpeakingHeadsetOnView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -50,9 +51,12 @@ public class SpeakingHeadsetView extends ResponsiveTestView {
 
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
+        GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
+        FormLayoutSet.layout(viewPort);
+
         final StyledText tt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(tt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("top").getText());
+        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("top").getText());
 
         final Label il = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(il).atLeft().atTopTo(tt, 20).atRight();

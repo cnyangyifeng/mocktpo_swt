@@ -1778,7 +1778,7 @@
     {
       "viewId": 49,
       "viewType": 21,
-      "viewTypeName": "Headset",
+      "viewTypeName": "Listening Headset On",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "body": {
@@ -3103,15 +3103,15 @@
     {
       "viewId": 97,
       "viewType": 31,
-      "viewTypeName": "Speaking Headset",
+      "viewTypeName": "Speaking Headset On",
       "sectionType": 2,
       "sectionTypeName": "Speaking",
       "body": {
         "top": {
-          "text": "Now put on your headset."
+          "text": "Please make sure your headset is on. Follow the instructions on each screen. Be sure that your microphone is properly positioned and adjusted to allow for the best possible recording. Speak directly into the microphone and in your normal speaking volume."
         },
         "bottom": {
-          "text": "Click on Continue to go on.",
+          "text": "Click on Continue when you are ready to go on.",
           "styles": [
             { "start": 9, "length": 8, "fontStyle": 1 }
           ]
@@ -3121,6 +3121,29 @@
     {
       "viewId": 98,
       "viewType": 32,
+      "viewTypeName": "Adjusting Microphone",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "listening/V",
+      "body": {
+        "heading": {
+          "text": "Adjusting the Microphone"
+        },
+        "description": {
+          "text": "In order to adjust your microphone volume, please answer the practice question below, using your normal speaking tone and volume. Wait until you hear a beep to respond.\u000a\u000aYou will have 15 seconds to speak. If you finish responding before 15 seconds are finished, you can click on Stop Recording. After you are done recording, click on Playback Response and listen to your recording. If you cannot hear your response clearly, make necessary adjustments and repeat the microphone check.\u000a\u000aWe do not recommend the use of a microphone with a voice activation feature. If you use a microphone with a voice activation feature, the first few seconds of your responses may not be recorded.",
+          "styles": [
+            { "start": 35, "length": 6, "fontStyle": 1 }
+          ]
+        },
+        "footnote": {
+          "text": "\"Describe the city you live in.\""
+        }
+      }
+    },
+    {
+      "viewId": 99,
+      "viewType": 33,
       "viewTypeName": "Speaking Section Directions",
       "sectionType": 3,
       "sectionTypeName": "Speaking",
@@ -3139,9 +3162,9 @@
       }
     },
     {
-      "viewId": 99,
+      "viewId": 100,
       "viewType": 41,
-      "viewTypeName": "Writing Headset",
+      "viewTypeName": "Writing Headset On",
       "sectionType": 2,
       "sectionTypeName": "Writing",
       "body": {
@@ -3157,7 +3180,7 @@
       }
     },
     {
-      "viewId": 100,
+      "viewId": 101,
       "viewType": 42,
       "viewTypeName": "Integrated Writing Directions",
       "sectionType": 4,
@@ -3176,7 +3199,7 @@
       }
     },
     {
-      "viewId": 101,
+      "viewId": 102,
       "viewType": 43,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,

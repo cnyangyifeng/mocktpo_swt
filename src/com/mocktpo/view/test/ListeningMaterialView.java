@@ -26,8 +26,8 @@ public class ListeningMaterialView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int ILLUSTRATIONS_MARGIN_TOP = 40;
-    private static final int IMAGE_WIDTH = 600;
+    private static final int VIEW_PORT_PADDING_TOP = 50;
+    private static final int ILLUSTRATION_WIDTH = 600;
     private static final int AUDIO_PROGRESS_INDICATOR_WIDTH = 360;
     private static final int AUDIO_PROGRESS_INDICATOR_HEIGHT = 26;
 
@@ -118,7 +118,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
         illustrations = IllustrationUtils.load(d, page.getUserTest(), vo.getIllustrations());
 
         il = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(il).fromLeft(50, -IMAGE_WIDTH / 2).atTop(ILLUSTRATIONS_MARGIN_TOP);
+        FormDataSet.attach(il).fromLeft(50, -ILLUSTRATION_WIDTH / 2).atTop(VIEW_PORT_PADDING_TOP);
         LabelSet.decorate(il).setImage(illustrations.get(0));
 
         final Composite pc = new Composite(viewPort, SWT.NONE);

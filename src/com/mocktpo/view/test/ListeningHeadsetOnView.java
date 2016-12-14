@@ -12,11 +12,12 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Label;
 
-public class WritingHeadsetView extends ResponsiveTestView {
+public class ListeningHeadsetOnView extends ResponsiveTestView {
 
     /* Constants */
 
     private static final int VIEW_PORT_PADDING_TOP = 100;
+    private static final int VIEW_PORT_PADDING_WIDTH = 100;
 
     /*
      * ==================================================
@@ -26,7 +27,7 @@ public class WritingHeadsetView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public WritingHeadsetView(TestPage page, int style) {
+    public ListeningHeadsetOnView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -49,6 +50,9 @@ public class WritingHeadsetView extends ResponsiveTestView {
     public void updateBody() {
 
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
+
+        GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
+        FormLayoutSet.layout(viewPort);
 
         final StyledText tt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(tt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
@@ -84,6 +88,7 @@ public class WritingHeadsetView extends ResponsiveTestView {
             release();
 
             UserTest ut = page.getUserTest();
+            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
             ut.setLastViewId(vo.getViewId() + 1);
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);
