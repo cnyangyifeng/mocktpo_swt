@@ -25,7 +25,6 @@ import org.eclipse.swt.widgets.Label;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicReference;
 
 public abstract class TestView extends Composite {
 
@@ -325,18 +324,12 @@ public abstract class TestView extends Composite {
     public void startAudio() {
 
         if (vo.isWithAudio()) {
-
-            final AtomicReference<TestAudioPlayer> ref = new AtomicReference<TestAudioPlayer>();
             audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getAudio());
-            ref.set(audioPlayer);
-
             audioPlayer.setVolume(page.getUserTest().getVolume());
-
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    TestAudioPlayer player = ref.get();
-                    player.play();
+                    audioPlayer.play();
                 }
             }).start();
         }

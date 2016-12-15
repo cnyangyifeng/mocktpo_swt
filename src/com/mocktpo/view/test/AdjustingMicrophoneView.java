@@ -20,6 +20,11 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Scale;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class AdjustingMicrophoneView extends StackTestView {
 
     /* Constants */
@@ -32,6 +37,7 @@ public class AdjustingMicrophoneView extends StackTestView {
     private static final int FOOTNOTE_TEXT_WIDTH = 360;
     private static final int RESPONSE_TIME_WIDTH = 180;
     private static final int STOP_RECORDING_BUTTON_WIDTH = 74;
+    private static final int VIEW_PORT_PADDING_TOP_2 = 100;
 
     /* Widgets */
 
@@ -48,6 +54,18 @@ public class AdjustingMicrophoneView extends StackTestView {
     /* Properties */
 
     private int subViewId;
+
+    private PropertyChangeListener listener;
+
+    /* Audio Recorder Timer */
+
+    private int countDown;
+    private Timer audioRecorderTimer;
+    private TimerTask audioRecorderTimerTask;
+
+    /* Audio Recorder */
+
+    private TestAudioRecorder audioRecorder;
 
     /*
      * ==================================================
@@ -123,7 +141,6 @@ public class AdjustingMicrophoneView extends StackTestView {
         return null;
     }
 
-
     /*
      * ==================================================
      *
@@ -166,7 +183,7 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         responseTimeContainer = new Composite(viewPort, SWT.NONE);
         FormDataSet.attach(responseTimeContainer).fromLeft(50, -RESPONSE_TIME_WIDTH / 2).atTopTo(ft, 20).withWidth(RESPONSE_TIME_WIDTH);
-        CompositeSet.decorate(responseTimeContainer);
+        CompositeSet.decorate(responseTimeContainer).setVisible(false);
         FormLayoutSet.layout(responseTimeContainer).marginWidth(1).marginHeight(1);
         responseTimeContainer.addPaintListener(new BorderedCompositePaintListener());
 
@@ -180,6 +197,7 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         stopRecordingButton = new ImageButton(viewPort, SWT.NONE, MT.IMAGE_STOP_RECORDING, MT.IMAGE_STOP_RECORDING_HOVER);
         FormDataSet.attach(stopRecordingButton).fromLeft(50, -STOP_RECORDING_BUTTON_WIDTH / 2).atTopTo(responseTimeContainer, 20);
+        stopRecordingButton.setVisible(false);
         stopRecordingButton.addMouseListener(new StopRecordingButtonMouseListener());
 
         sc.setContent(inner);
@@ -209,7 +227,73 @@ public class AdjustingMicrophoneView extends StackTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
+        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(dt).atLeft().atTop(VIEW_PORT_PADDING_TOP_2).atRight();
+        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("response").getText());
+        StyleRangeUtils.decorate(dt, vo.getStyledText("response").getStyles());
+
+        sc.setContent(inner);
+        sc.setMinSize(inner.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+
         return c;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Audio Async Execution
+     *
+     * ==================================================
+     */
+
+    @Override
+    public void startAudioAsyncExecution() {
+        listener = new AudioAsyncExecutionListener();
+        audioPlayer.addPropertyChangeListener(listener);
+    }
+
+    @Override
+    public void stopAudioAsyncExecution() {
+        audioPlayer.removePropertyChangeListener(listener);
+    }
+
+    /*
+     * ==================================================
+     *
+     * Audio Recording
+     *
+     * ==================================================
+     */
+
+    private void stopAudioRecording() {
+
+        if (null != audioRecorder) {
+            audioRecorder.stop();
+        }
+        if (null != audioRecorderTimerTask) {
+            audioRecorderTimerTask.cancel();
+        }
+        if (null != audioRecorderTimer) {
+            audioRecorderTimer.purge();
+        }
+
+        if (subViewId == SUB_VIEW_RECORDING) {
+            if (!d.isDisposed()) {
+                d.asyncExec(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        continueButton.setEnabled(true);
+                        recordAgainButton.setEnabled(true);
+                        playbackResponseButton.setEnabled(true);
+
+                        subViewId = SUB_VIEW_RESPONSE;
+                        stack.topControl = getSubView(subViewId);
+                        body.layout();
+                    }
+                });
+            }
+        }
     }
 
     /*
@@ -335,21 +419,102 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            if (subViewId == SUB_VIEW_RECORDING) {
-
-                continueButton.setEnabled(true);
-                recordAgainButton.setEnabled(true);
-                playbackResponseButton.setEnabled(true);
-
-                subViewId = SUB_VIEW_RESPONSE;
-
-                stack.topControl = getSubView(subViewId);
-                body.layout();
-            }
+            stopAudioRecording();
         }
 
         @Override
         public void mouseUp(MouseEvent e) {
+        }
+    }
+
+    private class AudioAsyncExecutionListener implements PropertyChangeListener {
+
+        @Override
+        public void propertyChange(PropertyChangeEvent e) {
+
+            if (audioPlayer.isStopped()) {
+
+                if (!d.isDisposed()) {
+                    d.asyncExec(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            CompositeSet.decorate(responseTimeContainer).setVisible(true);
+
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    /* Before Beep */
+
+                                    audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getBeforeBeepAudio());
+                                    audioPlayer.setVolume(page.getUserTest().getVolume());
+                                    audioPlayer.play();
+
+                                    /* Record */
+
+                                    new Thread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            audioRecorder = new TestAudioRecorder(page.getUserTest(), "am");
+                                            audioRecorder.start();
+                                        }
+                                    }).start();
+
+                                    countDown = 15;
+                                    audioRecorderTimer = new Timer();
+                                    audioRecorderTimerTask = new RecorderTimerTask();
+                                    audioRecorderTimer.scheduleAtFixedRate(audioRecorderTimerTask, 0, 1000);
+
+                                    /* Beep */
+
+                                    audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getBeepAudio());
+                                    audioPlayer.setVolume(page.getUserTest().getVolume());
+                                    audioPlayer.play();
+
+                                    if (!d.isDisposed()) {
+                                        d.asyncExec(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                stopRecordingButton.setVisible(true);
+                                            }
+                                        });
+                                    }
+                                }
+                            }).start();
+                        }
+                    });
+                }
+            }
+        }
+    }
+
+    /*
+     * ==================================================
+     *
+     * Recorder Timer Task
+     *
+     * ==================================================
+     */
+
+    public class RecorderTimerTask extends TimerTask {
+
+        @Override
+        public void run() {
+
+            if (!d.isDisposed()) {
+
+                d.asyncExec(new Runnable() {
+                    @Override
+                    public void run() {
+                        CLabelSet.decorate(responseTimeLabel).setText(TimeUtils.displayTime(countDown--));
+                    }
+                });
+
+                if (0 >= countDown) {
+                    stopAudioRecording();
+                }
+            }
         }
     }
 }

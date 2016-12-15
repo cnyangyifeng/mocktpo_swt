@@ -3217,6 +3217,8 @@
       "sectionTypeName": "Speaking",
       "withAudio": true,
       "audio": "speaking/AM",
+      "beforeBeepAudio": "speaking/BB",
+      "beepAudio": "speaking/B",
       "body": {
         "heading": {
           "text": "Adjusting the Microphone"
@@ -3231,6 +3233,15 @@
         },
         "footnote": {
           "text": "\"Describe the city you live in.\""
+        },
+        "response": {
+          "text": "Your response time has ended. Stop speaking now.\u000a\u000aClick on Playback Response to hear your recording. Once you have heard your response, you may make any necessary adjustments to your microphone.\u000a\u000aClick on Record Again to go back to the question and immediately record your response again.\u000a\u000aClick on Continue to accept your current settings now and to continue on to the next screen.\u000a\u000aClick on Pause to pause the test. If you need to make any adjustments to your computer, you will need to pause your test.\u000a\u000aPlease select your choice above.",
+          "styles": [
+            { "start": 59, "length": 17, "underline": true, "fontStyle": 1 },
+            { "start": 205, "length": 12, "underline": true, "fontStyle": 1 },
+            { "start": 299, "length": 8, "underline": true, "fontStyle": 1 },
+            { "start": 393, "length": 5, "underline": true, "fontStyle": 1 }
+          ]
         }
       }
     },

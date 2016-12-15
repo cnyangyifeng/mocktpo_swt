@@ -14,6 +14,7 @@ public interface RC {
      */
 
     String MP3_FILE_TYPE_SUFFIX = ".mp3";
+    String WAV_FILE_TYPE_SUFFIX = ".wav";
 
     /*
      * ==================================================

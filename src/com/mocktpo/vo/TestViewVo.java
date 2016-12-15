@@ -23,6 +23,8 @@ public class TestViewVo implements Serializable {
     private String audio;
     private long audioDuration;
     private String illustrations;
+    private String beforeBeepAudio;
+    private String beepAudio;
     private boolean withQuestion;
     private int questionNumberInSection;
     private int totalAnswerCount;
@@ -140,6 +142,22 @@ public class TestViewVo implements Serializable {
 
     public void setIllustrations(String illustrations) {
         this.illustrations = illustrations;
+    }
+
+    public String getBeforeBeepAudio() {
+        return beforeBeepAudio;
+    }
+
+    public void setBeforeBeepAudio(String beforeBeepAudio) {
+        this.beforeBeepAudio = beforeBeepAudio;
+    }
+
+    public String getBeepAudio() {
+        return beepAudio;
+    }
+
+    public void setBeepAudio(String beepAudio) {
+        this.beepAudio = beepAudio;
     }
 
     public boolean isWithQuestion() {
