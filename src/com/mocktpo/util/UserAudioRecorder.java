@@ -9,7 +9,7 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.net.URLDecoder;
 
-public class TestAudioRecorder {
+public class UserAudioRecorder {
 
     protected static final Logger logger = LogManager.getLogger();
 
@@ -18,7 +18,7 @@ public class TestAudioRecorder {
 
     private final Object lock = new Object();
 
-    public TestAudioRecorder(UserTest ut, String fileName) {
+    public UserAudioRecorder(UserTest ut, String fileName) {
         try {
             File rootPath = new File(this.getClass().getResource(URLDecoder.decode(RC.USERS_DATA_DIR, "utf-8")).toURI());
             logger.info(rootPath.toString());
@@ -40,10 +40,13 @@ public class TestAudioRecorder {
     }
 
     private AudioFormat getAudioFormat() {
-        float sampleRate = 16000;
-        int sampleSizeInBits = 8;
-        int channels = 2;
-        return new AudioFormat(sampleRate, sampleSizeInBits, channels, true, true);
+        final float sampleRate = 44100.0f;
+        final int sampleSizeInBits = 16;
+        final int channels = 2;
+        final int frameSize = 2 * 2;
+        final float frameRate = 44100.0f;
+        final boolean bigEndian = false;
+        return new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, sampleRate, sampleSizeInBits, channels, frameSize, frameRate, bigEndian);
     }
 
     public void start() {

@@ -22,17 +22,32 @@ public class TestAudioPlayer {
 
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public TestAudioPlayer(UserTest ut, String fileName) {
-        try {
-            URL url = this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + ut.getAlias() + "/" + fileName + RC.MP3_FILE_TYPE_SUFFIX, "utf-8"));
-            encoded = AudioSystem.getAudioInputStream(url);
-            AudioFormat encodedFormat = encoded.getFormat();
-            AudioFormat decodedFormat = getAudioFormat(encodedFormat);
-            decoded = AudioSystem.getAudioInputStream(decodedFormat, encoded);
-            line = AudioSystem.getSourceDataLine(decodedFormat);
-            line.open(decodedFormat);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public TestAudioPlayer(UserTest ut, String fileName, boolean isUserData) {
+
+        if (isUserData) {
+            try {
+                URL url = this.getClass().getResource(URLDecoder.decode(RC.USERS_DATA_DIR + fileName + RC.WAV_FILE_TYPE_SUFFIX, "utf-8"));
+                encoded = AudioSystem.getAudioInputStream(url);
+                AudioFormat encodedFormat = encoded.getFormat();
+                AudioFormat decodedFormat = getAudioFormat(encodedFormat);
+                decoded = AudioSystem.getAudioInputStream(decodedFormat, encoded);
+                line = AudioSystem.getSourceDataLine(decodedFormat);
+                line.open(decodedFormat);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                URL url = this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + ut.getAlias() + "/" + fileName + RC.MP3_FILE_TYPE_SUFFIX, "utf-8"));
+                encoded = AudioSystem.getAudioInputStream(url);
+                AudioFormat encodedFormat = encoded.getFormat();
+                AudioFormat decodedFormat = getAudioFormat(encodedFormat);
+                decoded = AudioSystem.getAudioInputStream(decodedFormat, encoded);
+                line = AudioSystem.getSourceDataLine(decodedFormat);
+                line.open(decodedFormat);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

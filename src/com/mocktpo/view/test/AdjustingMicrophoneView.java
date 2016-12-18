@@ -65,7 +65,7 @@ public class AdjustingMicrophoneView extends StackTestView {
 
     /* Audio Recorder */
 
-    private TestAudioRecorder audioRecorder;
+    private UserAudioRecorder audioRecorder;
 
     /*
      * ==================================================
@@ -193,7 +193,8 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         responseTimeLabel = new CLabel(responseTimeContainer, SWT.CENTER);
         FormDataSet.attach(responseTimeLabel).atLeft().atTopTo(rth).atRight();
-        CLabelSet.decorate(responseTimeLabel).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(5).setText("00:00:15");
+        countDown = 15;
+        CLabelSet.decorate(responseTimeLabel).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(5).setText(TimeUtils.displayTime(countDown));
 
         stopRecordingButton = new ImageButton(viewPort, SWT.NONE, MT.IMAGE_STOP_RECORDING, MT.IMAGE_STOP_RECORDING_HOVER);
         FormDataSet.attach(stopRecordingButton).fromLeft(50, -STOP_RECORDING_BUTTON_WIDTH / 2).atTopTo(responseTimeContainer, 20);
@@ -264,6 +265,44 @@ public class AdjustingMicrophoneView extends StackTestView {
      *
      * ==================================================
      */
+
+    private void startAudioRecording() {
+
+        /* Before Beep */
+
+        audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getBeforeBeepAudio(), false);
+        audioPlayer.setVolume(page.getUserTest().getVolume());
+        audioPlayer.play();
+
+        /* Record */
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                audioRecorder = new UserAudioRecorder(page.getUserTest(), "am");
+                audioRecorder.start();
+            }
+        }).start();
+
+        audioRecorderTimer = new Timer();
+        audioRecorderTimerTask = new RecorderTimerTask();
+        audioRecorderTimer.scheduleAtFixedRate(audioRecorderTimerTask, 0, 1000);
+
+        /* Beep */
+
+        audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getBeepAudio(), false);
+        audioPlayer.setVolume(page.getUserTest().getVolume());
+        audioPlayer.play();
+
+        if (!d.isDisposed()) {
+            d.asyncExec(new Runnable() {
+                @Override
+                public void run() {
+                    stopRecordingButton.setVisible(true);
+                }
+            });
+        }
+    }
 
     private void stopAudioRecording() {
 
@@ -389,6 +428,34 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
+            if (subViewId == SUB_VIEW_RESPONSE) {
+                if (!d.isDisposed()) {
+                    d.asyncExec(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            continueButton.setEnabled(false);
+                            recordAgainButton.setEnabled(false);
+                            playbackResponseButton.setEnabled(false);
+
+                            countDown = 15;
+                            CLabelSet.decorate(responseTimeLabel).setText(TimeUtils.displayTime(countDown));
+
+                            subViewId = SUB_VIEW_RECORDING;
+                            stack.topControl = getSubView(subViewId);
+                            body.layout();
+                        }
+                    });
+                }
+            }
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    startAudioRecording();
+                }
+            }).start();
         }
 
         @Override
@@ -404,6 +471,16 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+
+            audioPlayer = new TestAudioPlayer(page.getUserTest(), "am", true);
+            audioPlayer.setVolume(page.getUserTest().getVolume());
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    audioPlayer.play();
+                }
+            }).start();
         }
 
         @Override
@@ -438,53 +515,12 @@ public class AdjustingMicrophoneView extends StackTestView {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-
                             CompositeSet.decorate(responseTimeContainer).setVisible(true);
-
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-
-                                    /* Before Beep */
-
-                                    audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getBeforeBeepAudio());
-                                    audioPlayer.setVolume(page.getUserTest().getVolume());
-                                    audioPlayer.play();
-
-                                    /* Record */
-
-                                    new Thread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            audioRecorder = new TestAudioRecorder(page.getUserTest(), "am");
-                                            audioRecorder.start();
-                                        }
-                                    }).start();
-
-                                    countDown = 15;
-                                    audioRecorderTimer = new Timer();
-                                    audioRecorderTimerTask = new RecorderTimerTask();
-                                    audioRecorderTimer.scheduleAtFixedRate(audioRecorderTimerTask, 0, 1000);
-
-                                    /* Beep */
-
-                                    audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getBeepAudio());
-                                    audioPlayer.setVolume(page.getUserTest().getVolume());
-                                    audioPlayer.play();
-
-                                    if (!d.isDisposed()) {
-                                        d.asyncExec(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                stopRecordingButton.setVisible(true);
-                                            }
-                                        });
-                                    }
-                                }
-                            }).start();
                         }
                     });
                 }
+
+                startAudioRecording();
             }
         }
     }
@@ -503,17 +539,16 @@ public class AdjustingMicrophoneView extends StackTestView {
         public void run() {
 
             if (!d.isDisposed()) {
-
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
                         CLabelSet.decorate(responseTimeLabel).setText(TimeUtils.displayTime(countDown--));
                     }
                 });
+            }
 
-                if (0 >= countDown) {
-                    stopAudioRecording();
-                }
+            if (0 >= countDown) {
+                stopAudioRecording();
             }
         }
     }

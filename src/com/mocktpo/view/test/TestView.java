@@ -324,8 +324,10 @@ public abstract class TestView extends Composite {
     public void startAudio() {
 
         if (vo.isWithAudio()) {
-            audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getAudio());
+
+            audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getAudio(), false);
             audioPlayer.setVolume(page.getUserTest().getVolume());
+
             new Thread(new Runnable() {
                 @Override
                 public void run() {

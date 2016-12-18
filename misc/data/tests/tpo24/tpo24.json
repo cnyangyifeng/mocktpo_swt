@@ -3191,6 +3191,8 @@
       "viewTypeName": "Speaking Section Directions",
       "sectionType": 3,
       "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/SD",
       "body": {
         "heading": {
           "text": "Speaking Section Directions"
