@@ -3216,6 +3216,34 @@
     },
     {
       "viewId": 102,
+      "viewType": 34,
+      "viewTypeName": "Speaking Question Directions",
+      "sectionType": 2,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/Q1D",
+      "body": {
+        "top": {
+          "text": "Please listen carefully."
+        }
+      }
+    },
+    {
+      "viewId": 103,
+      "viewType": 34,
+      "viewTypeName": "Speaking Question",
+      "sectionType": 2,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/Q1",
+      "body": {
+        "top": {
+          "text": "Talk about."
+        }
+      }
+    },
+    {
+      "viewId": 104,
       "viewType": 41,
       "viewTypeName": "Writing Headset On",
       "sectionType": 2,
@@ -3233,7 +3261,7 @@
       }
     },
     {
-      "viewId": 103,
+      "viewId": 105,
       "viewType": 42,
       "viewTypeName": "Integrated Writing Directions",
       "sectionType": 4,
@@ -3252,7 +3280,7 @@
       }
     },
     {
-      "viewId": 104,
+      "viewId": 106,
       "viewType": 43,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,

@@ -228,10 +228,10 @@ public class AdjustingMicrophoneView extends StackTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTop(VIEW_PORT_PADDING_TOP_2).atRight();
-        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("response").getText());
-        StyleRangeUtils.decorate(dt, vo.getStyledText("response").getStyles());
+        StyledText rt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(rt).atLeft().atTop(VIEW_PORT_PADDING_TOP_2).atRight();
+        StyledTextSet.decorate(rt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("response").getText());
+        StyleRangeUtils.decorate(rt, vo.getStyledText("response").getStyles());
 
         sc.setContent(inner);
         sc.setMinSize(inner.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -321,6 +321,8 @@ public class AdjustingMicrophoneView extends StackTestView {
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
+
+                        stopRecordingButton.setVisible(false);
 
                         continueButton.setEnabled(true);
                         recordAgainButton.setEnabled(true);

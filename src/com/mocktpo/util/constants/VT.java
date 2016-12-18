@@ -40,6 +40,7 @@ public interface VT {
     int VIEW_TYPE_SPEAKING_HEADSET_ON = 31;
     int VIEW_TYPE_ADJUSTING_MICROPHONE = 32;
     int VIEW_TYPE_SPEAKING_SECTION_DIRECTIONS = 33;
+    int VIEW_TYPE_SPEAKING_QUESTION_DIRECTIONS = 34;
 
     /* Writing Section View Types */
 

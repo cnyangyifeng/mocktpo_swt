@@ -64,7 +64,7 @@ public class SpeakingHeadsetOnView extends ResponsiveTestView {
 
         final StyledText bt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(bt).atLeft().atTopTo(il, 20).atRight();
-        StyledTextSet.decorate(bt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("bottom").getText());
+        StyledTextSet.decorate(bt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("bottom").getText());
         StyleRangeUtils.decorate(bt, vo.getStyledText("bottom").getStyles());
     }
 
