@@ -118,6 +118,9 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_BOXED, ImageUtils.load(d, "boxed"));
         caches.putIfAbsent(MT.IMAGE_BULLET, ImageUtils.load(d, "bullet"));
         caches.putIfAbsent(MT.IMAGE_CHECKED, ImageUtils.load(d, "checked"));
+        caches.putIfAbsent(MT.IMAGE_CONFIRM_RESPONSE, ImageUtils.load(d, "confirm_response"));
+        caches.putIfAbsent(MT.IMAGE_CONFIRM_RESPONSE_HOVER, ImageUtils.load(d, "confirm_response_h"));
+        caches.putIfAbsent(MT.IMAGE_CONFIRM_RESPONSE_DISABLED, ImageUtils.load(d, "confirm_response_d"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE, ImageUtils.load(d, "continue"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_HOVER, ImageUtils.load(d, "continue_h"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_DISABLED, ImageUtils.load(d, "continue_d"));

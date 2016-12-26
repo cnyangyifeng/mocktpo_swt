@@ -3217,8 +3217,9 @@
       "sectionTypeName": "Speaking",
       "withAudio": true,
       "audio": "speaking/AM",
-      "beforeBeepAudio": "speaking/BB",
+      "responseAudio": "speaking/R",
       "beepAudio": "speaking/B",
+      "responseTime": 15,
       "body": {
         "heading": {
           "text": "Adjusting the Microphone"
@@ -3290,20 +3291,74 @@
     },
     {
       "viewId": 104,
-      "viewType": 34,
+      "viewType": 35,
       "viewTypeName": "Speaking Question",
       "sectionType": 2,
       "sectionTypeName": "Speaking",
       "withAudio": true,
       "audio": "speaking/Q1",
+      "preparationAudio": "speaking/P",
+      "responseAudio": "speaking/R",
+      "beepAudio": "speaking/B",
+      "preparationTime": 15,
+      "responseTime": 45,
+      "withQuestion": true,
+      "questionNumberInSection": 1,
       "body": {
-        "top": {
-          "text": "Talk about."
+        "question": {
+          "text": "Talk about a book you have read that was important to you for some reason. Explain why the book was important to you. Give specific details and examples to explain your answer."
+        },
+        "response": {
+          "text": "Your response time has ended. Stop speaking now.\u000a\u000aThis is the end of Independent Speaking 1. Independent Speaking 2 will begin automatically in 60 seconds.\u000a\u000aIf you do not wish to wait, click Confirm Response.",
+          "styles": [
+            { "start": 191, "length": 16, "underline": true, "fontStyle": 1 }
+          ]
         }
       }
     },
     {
       "viewId": 105,
+      "viewType": 34,
+      "viewTypeName": "Speaking Question Directions",
+      "sectionType": 2,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/Q2D",
+      "body": {
+        "top": {
+          "text": "Please listen carefully."
+        }
+      }
+    },
+    {
+      "viewId": 106,
+      "viewType": 35,
+      "viewTypeName": "Speaking Question",
+      "sectionType": 2,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/Q2",
+      "preparationAudio": "speaking/P",
+      "responseAudio": "speaking/R",
+      "beepAudio": "speaking/B",
+      "preparationTime": 15,
+      "responseTime": 45,
+      "withQuestion": true,
+      "questionNumberInSection": 2,
+      "body": {
+        "question": {
+          "text": "Some people believe that television has had a positive influence on society. Others believe it has had a negative influence on society. Which do you agree with and why? Use details and examples to explain your opinion."
+        },
+        "response": {
+          "text": "Your response time has ended. Stop speaking now.\u000a\u000aThis is the end of Independent Speaking 1. Independent Speaking 2 will begin automatically in 60 seconds.\u000a\u000aIf you do not wish to wait, click Confirm Response.",
+          "styles": [
+            { "start": 191, "length": 16, "underline": true, "fontStyle": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "viewId": 107,
       "viewType": 41,
       "viewTypeName": "Writing Headset On",
       "sectionType": 2,
@@ -3321,7 +3376,7 @@
       }
     },
     {
-      "viewId": 106,
+      "viewId": 108,
       "viewType": 42,
       "viewTypeName": "Integrated Writing Directions",
       "sectionType": 4,
@@ -3340,7 +3395,7 @@
       }
     },
     {
-      "viewId": 107,
+      "viewId": 109,
       "viewType": 43,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,

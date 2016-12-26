@@ -14,26 +14,18 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Scale;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
-public class SpeakingQuestionDirectionsView extends ResponsiveTestView {
+public class SpeakingQuestionEndView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int VIEW_PORT_PADDING_TOP = 100;
-    private static final int VIEW_PORT_PADDING_WIDTH = 100;
+    private static final int VIEW_PORT_PADDING_TOP = 200;
+    private static final int VIEW_PORT_PADDING_WIDTH = 240;
 
     /* Widgets */
 
     private VolumeControl volumeControl;
-
-    /* Properties */
-
-    private PropertyChangeListener listener;
 
     /*
      * ==================================================
@@ -43,7 +35,7 @@ public class SpeakingQuestionDirectionsView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public SpeakingQuestionDirectionsView(TestPage page, int style) {
+    public SpeakingQuestionEndView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -62,9 +54,9 @@ public class SpeakingQuestionDirectionsView extends ResponsiveTestView {
         FormDataSet.attach(vob).atRight(10).atTop(10);
         vob.addMouseListener(new VolumeOvalButtonMouseListener());
 
-        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER, MT.IMAGE_CONTINUE_DISABLED);
-        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(vob, 8, SWT.TOP);
-        cb.setEnabled(false);
+        final ImageButton confirmResponseButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONFIRM_RESPONSE, MT.IMAGE_CONFIRM_RESPONSE_HOVER, MT.IMAGE_CONFIRM_RESPONSE_DISABLED);
+        FormDataSet.attach(confirmResponseButton).atRightTo(vob, 16).atTopTo(vob, 8, SWT.TOP);
+        confirmResponseButton.addMouseListener(new ConfirmResponseButtonMouseListener());
 
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
@@ -81,32 +73,10 @@ public class SpeakingQuestionDirectionsView extends ResponsiveTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText tt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(tt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("top").getText());
-
-        final Label il = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(il).atLeft().atTopTo(tt, 20).atRight();
-        LabelSet.decorate(il).setImage(MT.IMAGE_HEADSET);
-    }
-
-    /*
-     * ==================================================
-     *
-     * Audio Async Execution
-     *
-     * ==================================================
-     */
-
-    @Override
-    public void startAudioAsyncExecution() {
-        listener = new AudioAsyncExecutionListener();
-        audioPlayer.addPropertyChangeListener(listener);
-    }
-
-    @Override
-    public void stopAudioAsyncExecution() {
-        audioPlayer.removePropertyChangeListener(listener);
+        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(dt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
+        StyleRangeUtils.decorate(dt, vo.getStyledText("description").getStyles());
     }
 
     /*
@@ -168,31 +138,29 @@ public class SpeakingQuestionDirectionsView extends ResponsiveTestView {
         }
     }
 
-    private class AudioAsyncExecutionListener implements PropertyChangeListener {
+    private class ConfirmResponseButtonMouseListener implements MouseListener {
 
         @Override
-        public void propertyChange(PropertyChangeEvent e) {
+        public void mouseDoubleClick(MouseEvent e) {
+        }
 
-            if (audioPlayer.isStopped()) {
-                if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
+        @Override
+        public void mouseDown(MouseEvent e) {
 
-                            release();
+            release();
 
-                            UserTest ut = page.getUserTest();
-                            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                            ut.setLastViewId(vo.getViewId() + 1);
+            UserTest ut = page.getUserTest();
+            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
+            ut.setLastViewId(vo.getViewId() + 1);
 
-                            sqlSession.getMapper(UserTestMapper.class).update(ut);
-                            sqlSession.commit();
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
 
-                            page.resume(ut);
-                        }
-                    });
-                }
-            }
+            page.resume(ut);
+        }
+
+        @Override
+        public void mouseUp(MouseEvent e) {
         }
     }
 }

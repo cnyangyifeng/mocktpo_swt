@@ -56,7 +56,7 @@ public class ListeningSectionEndView extends ResponsiveTestView {
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(dt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(dt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
+        StyledTextSet.decorate(dt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
     }
 
     /*

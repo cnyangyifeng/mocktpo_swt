@@ -35,8 +35,9 @@ public class AdjustingMicrophoneView extends StackTestView {
     private static final int VIEW_PORT_PADDING_TOP = 50;
     private static final int VIEW_PORT_PADDING_WIDTH = 240;
     private static final int FOOTNOTE_TEXT_WIDTH = 360;
-    private static final int RESPONSE_TIME_WIDTH = 180;
+    private static final int TIMER_PANEL_WIDTH = 180;
     private static final int STOP_RECORDING_BUTTON_WIDTH = 74;
+
     private static final int VIEW_PORT_PADDING_TOP_2 = 100;
 
     /* Widgets */
@@ -45,8 +46,8 @@ public class AdjustingMicrophoneView extends StackTestView {
     private VolumeControl volumeControl;
 
     private Composite recordingView;
-    private Composite responseTimeContainer;
-    private CLabel responseTimeLabel;
+    private Composite timerPanel;
+    private CLabel timerLabel;
     private ImageButton stopRecordingButton;
 
     private Composite responseView;
@@ -59,7 +60,7 @@ public class AdjustingMicrophoneView extends StackTestView {
 
     /* Audio Recorder Timer */
 
-    private int countDown;
+    private int recorderCountDown;
     private Timer audioRecorderTimer;
     private TimerTask audioRecorderTimerTask;
 
@@ -181,23 +182,23 @@ public class AdjustingMicrophoneView extends StackTestView {
         StyledTextSet.decorate(ft).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_ITALIC_TEXT).setForeground(MT.COLOR_DARK_BLUE).setLineSpacing(5).setMarginHeight(20).setText(vo.getStyledText("footnote").getText());
         ft.addPaintListener(new BorderedCompositePaintListener());
 
-        responseTimeContainer = new Composite(viewPort, SWT.NONE);
-        FormDataSet.attach(responseTimeContainer).fromLeft(50, -RESPONSE_TIME_WIDTH / 2).atTopTo(ft, 20).withWidth(RESPONSE_TIME_WIDTH);
-        CompositeSet.decorate(responseTimeContainer).setVisible(false);
-        FormLayoutSet.layout(responseTimeContainer).marginWidth(1).marginHeight(1);
-        responseTimeContainer.addPaintListener(new BorderedCompositePaintListener());
+        timerPanel = new Composite(viewPort, SWT.NONE);
+        FormDataSet.attach(timerPanel).fromLeft(50, -TIMER_PANEL_WIDTH / 2).atTopTo(ft, 20).withWidth(TIMER_PANEL_WIDTH);
+        CompositeSet.decorate(timerPanel).setVisible(false);
+        FormLayoutSet.layout(timerPanel).marginWidth(1).marginHeight(1);
+        timerPanel.addPaintListener(new BorderedCompositePaintListener());
 
-        final CLabel rth = new CLabel(responseTimeContainer, SWT.CENTER);
-        FormDataSet.attach(rth).atLeft().atTop().atRight();
-        CLabelSet.decorate(rth).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_WHITE).setMargins(5).setText("RESPONSE TIME");
+        final CLabel timerHeader = new CLabel(timerPanel, SWT.CENTER);
+        FormDataSet.attach(timerHeader).atLeft().atTop().atRight();
+        CLabelSet.decorate(timerHeader).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_WHITE).setMargins(5).setText("RESPONSE TIME");
 
-        responseTimeLabel = new CLabel(responseTimeContainer, SWT.CENTER);
-        FormDataSet.attach(responseTimeLabel).atLeft().atTopTo(rth).atRight();
-        countDown = 15;
-        CLabelSet.decorate(responseTimeLabel).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(5).setText(TimeUtils.displayTime(countDown));
+        timerLabel = new CLabel(timerPanel, SWT.CENTER);
+        FormDataSet.attach(timerLabel).atLeft().atTopTo(timerHeader).atRight();
+        recorderCountDown = vo.getResponseTime();
+        CLabelSet.decorate(timerLabel).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(5).setText(TimeUtils.displayTime(recorderCountDown));
 
         stopRecordingButton = new ImageButton(viewPort, SWT.NONE, MT.IMAGE_STOP_RECORDING, MT.IMAGE_STOP_RECORDING_HOVER);
-        FormDataSet.attach(stopRecordingButton).fromLeft(50, -STOP_RECORDING_BUTTON_WIDTH / 2).atTopTo(responseTimeContainer, 20);
+        FormDataSet.attach(stopRecordingButton).fromLeft(50, -STOP_RECORDING_BUTTON_WIDTH / 2).atTopTo(timerPanel, 20);
         stopRecordingButton.setVisible(false);
         stopRecordingButton.addMouseListener(new StopRecordingButtonMouseListener());
 
@@ -268,13 +269,13 @@ public class AdjustingMicrophoneView extends StackTestView {
 
     private void startAudioRecording() {
 
-        /* Before Beep */
+        /* Response Audio */
 
-        audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getBeforeBeepAudio(), false);
+        audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getResponseAudio(), false);
         audioPlayer.setVolume(page.getUserTest().getVolume());
         audioPlayer.play();
 
-        /* Record */
+        /* Audio Recorder */
 
         new Thread(new Runnable() {
             @Override
@@ -284,15 +285,17 @@ public class AdjustingMicrophoneView extends StackTestView {
             }
         }).start();
 
-        audioRecorderTimer = new Timer();
-        audioRecorderTimerTask = new RecorderTimerTask();
-        audioRecorderTimer.scheduleAtFixedRate(audioRecorderTimerTask, 0, 1000);
-
-        /* Beep */
+        /* Beep Audio */
 
         audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getBeepAudio(), false);
         audioPlayer.setVolume(page.getUserTest().getVolume());
         audioPlayer.play();
+
+        /* Audio Recorder Timer */
+
+        audioRecorderTimer = new Timer();
+        audioRecorderTimerTask = new RecorderTimerTask();
+        audioRecorderTimer.scheduleAtFixedRate(audioRecorderTimerTask, 0, 1000);
 
         if (!d.isDisposed()) {
             d.asyncExec(new Runnable() {
@@ -441,8 +444,8 @@ public class AdjustingMicrophoneView extends StackTestView {
                             recordAgainButton.setEnabled(false);
                             playbackResponseButton.setEnabled(false);
 
-                            countDown = 15;
-                            CLabelSet.decorate(responseTimeLabel).setText(TimeUtils.displayTime(countDown));
+                            recorderCountDown = vo.getResponseTime();
+                            CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTime(recorderCountDown));
 
                             subViewId = SUB_VIEW_RECORDING;
                             stack.topControl = getSubView(subViewId);
@@ -517,7 +520,7 @@ public class AdjustingMicrophoneView extends StackTestView {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-                            CompositeSet.decorate(responseTimeContainer).setVisible(true);
+                            CompositeSet.decorate(timerPanel).setVisible(true);
                         }
                     });
                 }
@@ -544,12 +547,12 @@ public class AdjustingMicrophoneView extends StackTestView {
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
-                        CLabelSet.decorate(responseTimeLabel).setText(TimeUtils.displayTime(countDown--));
+                        CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTime(recorderCountDown--));
                     }
                 });
             }
 
-            if (0 >= countDown) {
+            if (0 >= recorderCountDown) {
                 stopAudioRecording();
             }
         }

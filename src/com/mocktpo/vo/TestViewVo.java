@@ -23,8 +23,11 @@ public class TestViewVo implements Serializable {
     private String audio;
     private long audioDuration;
     private String illustrations;
-    private String beforeBeepAudio;
+    private String responseAudio;
+    private String preparationAudio;
     private String beepAudio;
+    private int preparationTime;
+    private int responseTime;
     private boolean withQuestion;
     private int questionNumberInSection;
     private int totalAnswerCount;
@@ -144,12 +147,20 @@ public class TestViewVo implements Serializable {
         this.illustrations = illustrations;
     }
 
-    public String getBeforeBeepAudio() {
-        return beforeBeepAudio;
+    public String getResponseAudio() {
+        return responseAudio;
     }
 
-    public void setBeforeBeepAudio(String beforeBeepAudio) {
-        this.beforeBeepAudio = beforeBeepAudio;
+    public void setResponseAudio(String responseAudio) {
+        this.responseAudio = responseAudio;
+    }
+
+    public String getPreparationAudio() {
+        return preparationAudio;
+    }
+
+    public void setPreparationAudio(String preparationAudio) {
+        this.preparationAudio = preparationAudio;
     }
 
     public String getBeepAudio() {
@@ -158,6 +169,22 @@ public class TestViewVo implements Serializable {
 
     public void setBeepAudio(String beepAudio) {
         this.beepAudio = beepAudio;
+    }
+
+    public int getPreparationTime() {
+        return preparationTime;
+    }
+
+    public void setPreparationTime(int preparationTime) {
+        this.preparationTime = preparationTime;
+    }
+
+    public int getResponseTime() {
+        return responseTime;
+    }
+
+    public void setResponseTime(int responseTime) {
+        this.responseTime = responseTime;
     }
 
     public boolean isWithQuestion() {
