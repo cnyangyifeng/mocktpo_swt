@@ -12,6 +12,8 @@ public class UserTest {
     private int readingTime;
     private int listeningTime1;
     private int listeningTime2;
+    private int speakingReadingTime1;
+    private int speakingReadingTime2;
     private double volume;
     private boolean volumeControlHidden;
     private int completionRate;
@@ -73,13 +75,28 @@ public class UserTest {
         this.listeningTime1 = listeningTime1;
     }
 
-
     public int getListeningTime2() {
         return listeningTime2;
     }
 
     public void setListeningTime2(int listeningTime2) {
         this.listeningTime2 = listeningTime2;
+    }
+
+    public int getSpeakingReadingTime1() {
+        return speakingReadingTime1;
+    }
+
+    public void setSpeakingReadingTime1(int speakingReadingTime1) {
+        this.speakingReadingTime1 = speakingReadingTime1;
+    }
+
+    public int getSpeakingReadingTime2() {
+        return speakingReadingTime2;
+    }
+
+    public void setSpeakingReadingTime2(int speakingReadingTime2) {
+        this.speakingReadingTime2 = speakingReadingTime2;
     }
 
     public double getVolume() {
@@ -135,6 +152,14 @@ public class UserTest {
                 }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
+                switch (groupId) {
+                    case 1:
+                        viewTime = this.getSpeakingReadingTime1();
+                        break;
+                    case 2:
+                        viewTime = this.getSpeakingReadingTime2();
+                        break;
+                }
                 break;
             case ST.SECTION_TYPE_WRITING:
                 break;
@@ -144,7 +169,6 @@ public class UserTest {
     }
 
     public void setRemainingViewTime(int sectionType, int groupId, int viewTime) {
-
         switch (sectionType) {
             case ST.SECTION_TYPE_NONE:
                 break;
@@ -162,6 +186,14 @@ public class UserTest {
                 }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
+                switch (groupId) {
+                    case 1:
+                        this.setSpeakingReadingTime1(viewTime);
+                        break;
+                    case 2:
+                        this.setSpeakingReadingTime2(viewTime);
+                        break;
+                }
                 break;
             case ST.SECTION_TYPE_WRITING:
                 break;
@@ -170,6 +202,6 @@ public class UserTest {
 
     @Override
     public String toString() {
-        return "{\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\ncompletionRate:" + this.getCompletionRate() + ",\nlastViewId:" + this.getLastViewId() + "\n}";
+        return "{\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nspeakingReadingTime1:" + this.getSpeakingReadingTime1() + ",\nspeakingReadingTime2:" + this.getSpeakingReadingTime2() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\ncompletionRate:" + this.getCompletionRate() + ",\nlastViewId:" + this.getLastViewId() + "\n}";
     }
 }

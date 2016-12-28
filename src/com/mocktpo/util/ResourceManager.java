@@ -81,6 +81,7 @@ public class ResourceManager {
 
         caches.putIfAbsent(MT.FONT_MEDIUM, FontUtils.getFont(d, 15));
         caches.putIfAbsent(MT.FONT_MEDIUM_BOLD, FontUtils.getFont(d, 15, SWT.BOLD));
+        caches.putIfAbsent(MT.FONT_MEDIUM_ITALIC, FontUtils.getFont(d, 15, SWT.ITALIC));
 
         /* 20px, 15pt, 125% */
 

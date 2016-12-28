@@ -169,11 +169,17 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_SPEAKING_SECTION_DIRECTIONS:
                 tv = new SpeakingSectionDirectionsView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_SPEAKING_QUESTION_DIRECTIONS:
-                tv = new SpeakingQuestionDirectionsView(this, SWT.NONE);
+            case VT.VIEW_TYPE_SPEAKING_TASK_DIRECTIONS:
+                tv = new SpeakingTaskDirectionsView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_SPEAKING_QUESTION:
-                tv = new SpeakingQuestionView(this, SWT.NONE);
+            case VT.VIEW_TYPE_SPEAKING_TASK:
+                tv = new SpeakingTaskView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_SPEAKING_READING_PASSAGE:
+                tv = new SpeakingReadingPassageView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_SPEAKING_LISTENING_MATERIAL:
+                tv = new SpeakingListeningMaterialView(this, SWT.NONE);
                 break;
 
             /* Writing Section View Types */

@@ -13,10 +13,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Scale;
 
@@ -115,6 +112,27 @@ public class AdjustingMicrophoneView extends StackTestView {
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
+
+        // TODO Removes the continue button
+
+        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
+        FormDataSet.attach(cb).atRightTo(playbackResponseButton, 10).atTopTo(continueButton, 0, SWT.TOP);
+        cb.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseDown(MouseEvent mouseEvent) {
+
+                release();
+
+                UserTest ut = page.getUserTest();
+                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
+                ut.setLastViewId(vo.getViewId() + 1);
+
+                sqlSession.getMapper(UserTestMapper.class).update(ut);
+                sqlSession.commit();
+
+                page.resume(ut);
+            }
+        });
     }
 
     @Override
@@ -124,7 +142,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         body.layout();
     }
 
-    private Composite getSubView(int subViewId) {
+    protected Composite getSubView(int subViewId) {
 
         switch (subViewId) {
             case SUB_VIEW_RECORDING:
@@ -238,6 +256,20 @@ public class AdjustingMicrophoneView extends StackTestView {
         sc.setMinSize(inner.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
         return c;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Native Resource Operations
+     *
+     * ==================================================
+     */
+
+    @Override
+    protected void release() {
+        super.release();
+        stopAudioRecording();
     }
 
     /*

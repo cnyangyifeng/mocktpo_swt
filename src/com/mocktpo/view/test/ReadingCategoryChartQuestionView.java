@@ -103,7 +103,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
         body.layout();
     }
 
-    private Composite getSubView(int subViewId) {
+    protected Composite getSubView(int subViewId) {
 
         switch (subViewId) {
             case SUB_VIEW_QUESTION:

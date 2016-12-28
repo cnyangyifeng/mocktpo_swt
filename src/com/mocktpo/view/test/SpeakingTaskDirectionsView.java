@@ -10,17 +10,14 @@ import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Scale;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class SpeakingQuestionDirectionsView extends ResponsiveTestView {
+public class SpeakingTaskDirectionsView extends ResponsiveTestView {
 
     /* Constants */
 
@@ -43,7 +40,7 @@ public class SpeakingQuestionDirectionsView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public SpeakingQuestionDirectionsView(TestPage page, int style) {
+    public SpeakingTaskDirectionsView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -71,6 +68,27 @@ public class SpeakingQuestionDirectionsView extends ResponsiveTestView {
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
+
+        // TODO Removes the continue button
+
+        final ImageButton cb2 = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
+        FormDataSet.attach(cb2).atRightTo(cb, 10).atTopTo(cb, 0, SWT.TOP);
+        cb2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseDown(MouseEvent mouseEvent) {
+
+                release();
+
+                UserTest ut = page.getUserTest();
+                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
+                ut.setLastViewId(vo.getViewId() + 1);
+
+                sqlSession.getMapper(UserTestMapper.class).update(ut);
+                sqlSession.commit();
+
+                page.resume(ut);
+            }
+        });
     }
 
     @Override

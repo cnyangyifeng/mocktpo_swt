@@ -11,12 +11,8 @@ import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Scale;
@@ -26,36 +22,24 @@ import java.beans.PropertyChangeListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SpeakingQuestionView extends StackTestView {
+public class SpeakingTaskView extends ResponsiveTestView {
 
     /* Constants */
-
-    private static final int SUB_VIEW_RECORDING = 1;
-    private static final int SUB_VIEW_RESPONSE = 2;
 
     private static final int VIEW_PORT_PADDING_TOP = 100;
     private static final int VIEW_PORT_PADDING_WIDTH = 200;
     private static final int FOOTNOTE_WIDTH = 360;
     private static final int TIMER_PANEL_WIDTH = 180;
 
-    private static final int VIEW_PORT_PADDING_TOP_2 = 200;
-    private static final int VIEW_PORT_PADDING_WIDTH_2 = 240;
-
     /* Widgets */
 
-    private ImageButton confirmResponseButton;
     private VolumeControl volumeControl;
 
-    private Composite recordingView;
     private Composite timerContainer;
     private CLabel timerHeader;
     private CLabel timerLabel;
 
-    private Composite responseView;
-
     /* Properties */
-
-    private int subViewId;
 
     private PropertyChangeListener listener;
 
@@ -80,7 +64,7 @@ public class SpeakingQuestionView extends StackTestView {
      * ==================================================
      */
 
-    public SpeakingQuestionView(TestPage page, int style) {
+    public SpeakingTaskView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -99,67 +83,39 @@ public class SpeakingQuestionView extends StackTestView {
         FormDataSet.attach(vob).atRight(10).atTop(10);
         vob.addMouseListener(new VolumeOvalButtonMouseListener());
 
-        confirmResponseButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONFIRM_RESPONSE, MT.IMAGE_CONFIRM_RESPONSE_HOVER, MT.IMAGE_CONFIRM_RESPONSE_DISABLED);
-        FormDataSet.attach(confirmResponseButton).atRightTo(vob, 16).atTopTo(vob, 8, SWT.TOP);
-        confirmResponseButton.setEnabled(false);
-        confirmResponseButton.addMouseListener(new ConfirmResponseButtonMouseListener());
-
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
-    }
 
+        // TODO Removes the continue button
+
+        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
+        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(vob, 8, SWT.TOP);
+        cb.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseDown(MouseEvent mouseEvent) {
+
+                release();
+
+                UserTest ut = page.getUserTest();
+                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
+                ut.setLastViewId(vo.getViewId() + 1);
+
+                sqlSession.getMapper(UserTestMapper.class).update(ut);
+                sqlSession.commit();
+
+                page.resume(ut);
+            }
+        });
+    }
 
     @Override
     public void updateBody() {
-        subViewId = SUB_VIEW_RECORDING;
-        stack.topControl = getSubView(subViewId);
-        body.layout();
-    }
 
-    private Composite getSubView(int subViewId) {
+        CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
-        switch (subViewId) {
-            case SUB_VIEW_RECORDING:
-                if (null == recordingView) {
-                    recordingView = initRecordingSubView();
-                }
-                return recordingView;
-            case SUB_VIEW_RESPONSE:
-                if (null == responseView) {
-                    responseView = initResponseSubView();
-                }
-                return responseView;
-        }
-
-        return null;
-    }
-
-    /*
-     * ==================================================
-     *
-     * Sub Views
-     *
-     * ==================================================
-     */
-
-    private Composite initRecordingSubView() {
-
-        final Composite c = new Composite(body, SWT.NONE);
-        CompositeSet.decorate(c).setBackground(MT.COLOR_BEIGE);
-        FormLayoutSet.layout(c);
-
-        final ScrolledComposite sc = new ScrolledComposite(c, SWT.V_SCROLL);
-        FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
-        sc.setExpandHorizontal(true);
-        sc.setExpandVertical(true);
-
-        final Composite inner = new Composite(sc, SWT.NONE);
-        GridLayoutSet.layout(inner).marginBottom(50);
-
-        final Composite viewPort = new Composite(inner, SWT.NONE);
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
@@ -198,43 +154,21 @@ public class SpeakingQuestionView extends StackTestView {
         FormDataSet.attach(timerLabel).atLeft().atTopTo(timerHeader).atRight();
         preparationCountDown = vo.getPreparationTime();
         CLabelSet.decorate(timerLabel).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(5).setText("");
-
-        sc.setContent(inner);
-        sc.setMinSize(inner.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
-        return c;
     }
 
-    private Composite initResponseSubView() {
+    /*
+     * ==================================================
+     *
+     * Native Resource Operations
+     *
+     * ==================================================
+     */
 
-        final Composite c = new Composite(body, SWT.NONE);
-        CompositeSet.decorate(c).setBackground(MT.COLOR_BEIGE);
-        FormLayoutSet.layout(c);
-
-        final ScrolledComposite sc = new ScrolledComposite(c, SWT.V_SCROLL);
-        FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
-        sc.setExpandHorizontal(true);
-        sc.setExpandVertical(true);
-
-        final Composite inner = new Composite(sc, SWT.NONE);
-        GridLayoutSet.layout(inner).marginBottom(50);
-
-        final Composite viewPort = new Composite(inner, SWT.NONE);
-        GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x);
-        FormLayoutSet.layout(viewPort);
-
-        GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH_2 * 2);
-        FormLayoutSet.layout(viewPort);
-
-        StyledText rt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(rt).atLeft().atTop(VIEW_PORT_PADDING_TOP_2).atRight();
-        StyledTextSet.decorate(rt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("response").getText());
-        StyleRangeUtils.decorate(rt, vo.getStyledText("response").getStyles());
-
-        sc.setContent(inner);
-        sc.setMinSize(inner.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
-        return c;
+    @Override
+    protected void release() {
+        super.release();
+        stopPreparation();
+        stopAudioRecording();
     }
 
     /*
@@ -372,21 +306,26 @@ public class SpeakingQuestionView extends StackTestView {
         if (null != audioRecorderTimer) {
             audioRecorderTimer.purge();
         }
+    }
 
-        if (subViewId == SUB_VIEW_RECORDING) {
-            if (!d.isDisposed()) {
-                d.asyncExec(new Runnable() {
-                    @Override
-                    public void run() {
+    private void goToNextTestView() {
+        if (!d.isDisposed()) {
+            d.asyncExec(new Runnable() {
+                @Override
+                public void run() {
 
-                        confirmResponseButton.setEnabled(true);
+                    release();
 
-                        subViewId = SUB_VIEW_RESPONSE;
-                        stack.topControl = getSubView(subViewId);
-                        body.layout();
-                    }
-                });
-            }
+                    UserTest ut = page.getUserTest();
+                    ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
+                    ut.setLastViewId(vo.getViewId() + 1);
+
+                    sqlSession.getMapper(UserTestMapper.class).update(ut);
+                    sqlSession.commit();
+
+                    page.resume(ut);
+                }
+            });
         }
     }
 
@@ -446,32 +385,6 @@ public class SpeakingQuestionView extends StackTestView {
 
                 audioPlayer.setVolume(volume);
             }
-        }
-    }
-
-    private class ConfirmResponseButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-
-            release();
-
-            UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-            ut.setLastViewId(vo.getViewId() + 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 
@@ -549,6 +462,7 @@ public class SpeakingQuestionView extends StackTestView {
 
             if (0 >= recorderCountDown) {
                 stopAudioRecording();
+                goToNextTestView();
             }
         }
     }

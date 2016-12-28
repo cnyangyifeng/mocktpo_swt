@@ -26,6 +26,7 @@ public class TestViewVo implements Serializable {
     private String responseAudio;
     private String preparationAudio;
     private String beepAudio;
+    private int speakingReadingTime;
     private int preparationTime;
     private int responseTime;
     private boolean withQuestion;
@@ -169,6 +170,14 @@ public class TestViewVo implements Serializable {
 
     public void setBeepAudio(String beepAudio) {
         this.beepAudio = beepAudio;
+    }
+
+    public int getSpeakingReadingTime() {
+        return speakingReadingTime;
+    }
+
+    public void setSpeakingReadingTime(int speakingReadingTime) {
+        this.speakingReadingTime = speakingReadingTime;
     }
 
     public int getPreparationTime() {

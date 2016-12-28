@@ -102,15 +102,16 @@ public interface MT {
     int FONT_SMALL_BOLD = 204;
     int FONT_MEDIUM = 205;
     int FONT_MEDIUM_BOLD = 206;
-    int FONT_LARGE = 207;
-    int FONT_LARGE_BOLD = 208;
-    int FONT_X_LARGE = 209;
-    int FONT_X_LARGE_BOLD = 210;
-    int FONT_XX_LARGE = 211;
+    int FONT_MEDIUM_ITALIC = 207;
+    int FONT_LARGE = 208;
+    int FONT_LARGE_BOLD = 209;
+    int FONT_X_LARGE = 210;
+    int FONT_X_LARGE_BOLD = 211;
+    int FONT_XX_LARGE = 212;
 
-    int FONT_ACTIVATION_CODE = 212;
-    int FONT_SERIF_HEADING = 213;
-    int FONT_SERIF_ITALIC_TEXT = 214;
+    int FONT_ACTIVATION_CODE = 213;
+    int FONT_SERIF_HEADING = 214;
+    int FONT_SERIF_ITALIC_TEXT = 215;
 
     /*
      * ==================================================
@@ -218,8 +219,9 @@ public interface MT {
      * ==================================================
      */
 
-    int TIME_LISTENING_GROUP = 600;
     int TIME_READING_SECTION = 3600;
+    int TIME_LISTENING_GROUP = 600;
+    int TIME_SPEAKING_READING_GROUP = 50;
 
     /*
      * ==================================================

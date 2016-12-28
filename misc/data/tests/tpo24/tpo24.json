@@ -3135,7 +3135,7 @@
       "viewId": 99,
       "viewType": 31,
       "viewTypeName": "Speaking Headset On",
-      "sectionType": 2,
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "body": {
         "top": {
@@ -3218,11 +3218,11 @@
     {
       "viewId": 102,
       "viewType": 34,
-      "viewTypeName": "Speaking Question Directions",
-      "sectionType": 2,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "withAudio": true,
-      "audio": "speaking/Q1D",
+      "audio": "speaking/T1D",
       "body": {
         "top": {
           "text": "Please listen carefully."
@@ -3232,11 +3232,11 @@
     {
       "viewId": 103,
       "viewType": 35,
-      "viewTypeName": "Speaking Question",
-      "sectionType": 2,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "withAudio": true,
-      "audio": "speaking/Q1",
+      "audio": "speaking/T1",
       "preparationAudio": "speaking/P",
       "responseAudio": "speaking/R",
       "beepAudio": "speaking/B",
@@ -3247,23 +3247,17 @@
       "body": {
         "question": {
           "text": "Talk about a popular gathering place in your town where people like to go. Describe the place and explain why people enjoy going there."
-        },
-        "response": {
-          "text": "Your response time has ended. Stop speaking now.\u000a\u000aThis is the end of Independent Speaking 1. Independent Speaking 2 will begin automatically in 60 seconds.\u000a\u000aIf you do not wish to wait, click Confirm Response.",
-          "styles": [
-            { "start": 191, "length": 16, "underline": true, "fontStyle": 1 }
-          ]
         }
       }
     },
     {
       "viewId": 104,
       "viewType": 34,
-      "viewTypeName": "Speaking Question Directions",
-      "sectionType": 2,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "withAudio": true,
-      "audio": "speaking/Q2D",
+      "audio": "speaking/T2D",
       "body": {
         "top": {
           "text": "Please listen carefully."
@@ -3273,11 +3267,11 @@
     {
       "viewId": 105,
       "viewType": 35,
-      "viewTypeName": "Speaking Question",
-      "sectionType": 2,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "withAudio": true,
-      "audio": "speaking/Q2",
+      "audio": "speaking/T2",
       "preparationAudio": "speaking/P",
       "responseAudio": "speaking/R",
       "beepAudio": "speaking/B",
@@ -3291,23 +3285,17 @@
           "styles": [
             { "start": 56, "length": 101, "fontStyle": 2 }
           ]
-        },
-        "response": {
-          "text": "Your response time has ended. Stop speaking now.\u000a\u000aThis is the end of Independent Speaking 2. Integrated Speaking 1 will begin automatically in 60 seconds.\u000a\u000aIf you do not wish to wait, click Confirm Response.",
-          "styles": [
-            { "start": 191, "length": 16, "underline": true, "fontStyle": 1 }
-          ]
         }
       }
     },
     {
       "viewId": 106,
       "viewType": 34,
-      "viewTypeName": "Speaking Question Directions",
-      "sectionType": 2,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "withAudio": true,
-      "audio": "speaking/Q3D",
+      "audio": "speaking/T3D",
       "body": {
         "top": {
           "text": "Please listen carefully."
@@ -3316,36 +3304,71 @@
     },
     {
       "viewId": 107,
-      "viewType": 35,
-      "viewTypeName": "Speaking Question",
-      "sectionType": 2,
+      "viewType": 36,
+      "viewTypeName": "Speaking Reading Passage",
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
-      "withAudio": true,
-      "audio": "speaking/Q3",
-      "preparationAudio": "speaking/P",
-      "responseAudio": "speaking/R",
-      "beepAudio": "speaking/B",
-      "preparationTime": 15,
-      "responseTime": 45,
+      "groupId": 1,
+      "timed": true,
+      "speakingReadingTime": 50,
       "withQuestion": true,
       "questionNumberInSection": 3,
       "body": {
-        "question": {
-          "text": "The woman expresses her opinion about the student’s proposal. State her opinion and explain the reasons she gives for holding that opinion."
+        "heading": {
+          "text": "Close the Campus Coffeehouse"
         },
-        "response": {
-          "text": "Your response time has ended. Stop speaking now.\u000a\u000aThis is the end of Independent Speaking 2. Integrated Speaking 1 will begin automatically in 60 seconds.\u000a\u000aIf you do not wish to wait, click Confirm Response.",
-          "styles": [
-            { "start": 191, "length": 16, "underline": true, "fontStyle": 1 }
-          ]
+        "passage": {
+          "text": "I propose that the university close the campus coffeehouse. Coffeehouses are great. If people actually use them, like to socialize with friends, while enjoying a cup of coffee and a snack. But students are not using our campus coffeehouse. There are usually lots of empty tables when I pass by the place. It's just a waste of space that could be used for other things. Also, the food at the coffeehouse is not very good. The last time I was there, the cakes and muffins my friends and I ordered were dry and didn't have much flavor.\u000a\u000aSincerely,\u000aGreg Smith"
         }
       }
     },
     {
       "viewId": 108,
+      "viewType": 37,
+      "viewTypeName": "Speaking Listening Material",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "speaking/T3L",
+      "audioDuration": 71,
+      "illustrations": "speaking/T3:0",
+      "withQuestion": true,
+      "questionNumberInSection": 3
+    },
+    {
+      "viewId": 109,
+      "viewType": 35,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T3",
+      "preparationAudio": "speaking/P",
+      "responseAudio": "speaking/R",
+      "beepAudio": "speaking/B",
+      "readingTimeForSpeakingTask": 50,
+      "preparationTime": 30,
+      "responseTime": 60,
+      "withQuestion": true,
+      "questionNumberInSection": 3,
+      "body": {
+        "heading": {
+          "text": "Close the Campus Coffeehouse"
+        },
+        "passage": {
+          "text": "I propose that the university close the campus coffeehouse. Coffeehouses are great. If people actually use them, like to socialize with friends, while enjoying a cup of coffee and a snack. But students are not using our campus coffeehouse. There are usually lots of empty tables when I pass by the place. It's just a waste of space that could be used for other things. Also, the food at the coffeehouse is not very good. The last time I was there, the cakes and muffins my friends and I ordered were dry and didn't have much flavor.\u000a\u000aSincerely,\u000aGreg Smith"
+        },
+        "question": {
+          "text": "The woman expresses her opinion about the student’s proposal. State her opinion and explain the reasons she gives for holding that opinion."
+        }
+      }
+    },
+    {
+      "viewId": 110,
       "viewType": 41,
       "viewTypeName": "Writing Headset On",
-      "sectionType": 2,
+      "sectionType": 4,
       "sectionTypeName": "Writing",
       "body": {
         "top": {
@@ -3360,7 +3383,7 @@
       }
     },
     {
-      "viewId": 109,
+      "viewId": 111,
       "viewType": 42,
       "viewTypeName": "Integrated Writing Directions",
       "sectionType": 4,
@@ -3379,8 +3402,8 @@
       }
     },
     {
-      "viewId": 110,
-      "viewType": 43,
+      "viewId": 112,
+      "viewType": 46,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,
       "sectionTypeName": "Writing",

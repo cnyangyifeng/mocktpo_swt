@@ -3195,7 +3195,7 @@
       "viewId": 100,
       "viewType": 31,
       "viewTypeName": "Speaking Headset On",
-      "sectionType": 2,
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "body": {
         "top": {
@@ -3250,7 +3250,7 @@
       "viewId": 102,
       "viewType": 33,
       "viewTypeName": "Speaking Section Directions",
-      "sectionType": 2,
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "withAudio": true,
       "audio": "speaking/SD",
@@ -3278,11 +3278,11 @@
     {
       "viewId": 103,
       "viewType": 34,
-      "viewTypeName": "Speaking Question Directions",
-      "sectionType": 2,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "withAudio": true,
-      "audio": "speaking/Q1D",
+      "audio": "speaking/T1D",
       "body": {
         "top": {
           "text": "Please listen carefully."
@@ -3292,11 +3292,11 @@
     {
       "viewId": 104,
       "viewType": 35,
-      "viewTypeName": "Speaking Question",
-      "sectionType": 2,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "withAudio": true,
-      "audio": "speaking/Q1",
+      "audio": "speaking/T1",
       "preparationAudio": "speaking/P",
       "responseAudio": "speaking/R",
       "beepAudio": "speaking/B",
@@ -3307,23 +3307,17 @@
       "body": {
         "question": {
           "text": "Talk about a book you have read that was important to you for some reason. Explain why the book was important to you. Give specific details and examples to explain your answer."
-        },
-        "response": {
-          "text": "Your response time has ended. Stop speaking now.\u000a\u000aThis is the end of Independent Speaking 1. Independent Speaking 2 will begin automatically in 60 seconds.\u000a\u000aIf you do not wish to wait, click Confirm Response.",
-          "styles": [
-            { "start": 191, "length": 16, "underline": true, "fontStyle": 1 }
-          ]
         }
       }
     },
     {
       "viewId": 105,
       "viewType": 34,
-      "viewTypeName": "Speaking Question Directions",
-      "sectionType": 2,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "withAudio": true,
-      "audio": "speaking/Q2D",
+      "audio": "speaking/T2D",
       "body": {
         "top": {
           "text": "Please listen carefully."
@@ -3333,11 +3327,11 @@
     {
       "viewId": 106,
       "viewType": 35,
-      "viewTypeName": "Speaking Question",
-      "sectionType": 2,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
       "sectionTypeName": "Speaking",
       "withAudio": true,
-      "audio": "speaking/Q2",
+      "audio": "speaking/T2",
       "preparationAudio": "speaking/P",
       "responseAudio": "speaking/R",
       "beepAudio": "speaking/B",
@@ -3348,20 +3342,250 @@
       "body": {
         "question": {
           "text": "Some people believe that television has had a positive influence on society. Others believe it has had a negative influence on society. Which do you agree with and why? Use details and examples to explain your opinion."
-        },
-        "response": {
-          "text": "Your response time has ended. Stop speaking now.\u000a\u000aThis is the end of Independent Speaking 1. Independent Speaking 2 will begin automatically in 60 seconds.\u000a\u000aIf you do not wish to wait, click Confirm Response.",
-          "styles": [
-            { "start": 191, "length": 16, "underline": true, "fontStyle": 1 }
-          ]
         }
       }
     },
     {
       "viewId": 107,
+      "viewType": 34,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T3D",
+      "body": {
+        "top": {
+          "text": "Please listen carefully."
+        }
+      }
+    },
+    {
+      "viewId": 108,
+      "viewType": 36,
+      "viewTypeName": "Speaking Reading Passage",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "groupId": 1,
+      "timed": true,
+      "speakingReadingTime": 45,
+      "withQuestion": true,
+      "questionNumberInSection": 3,
+      "body": {
+        "heading": {
+          "text": "Letter in the Centerville College News"
+        },
+        "passage": {
+          "text": "The administration has plans to acquire a new sculpture for campus. We should all oppose this plan. The university’s poor financial condition led it to increase the price for campus housing and tuition by 15% this past year. Surely then it is no financial position to purchase such an expensive sculpture. Moreover, just look at the sculpture: several 60-foot ling steel plates, jutting out of the earth at odd angles! It’s so large, it’ll take up all the green space in front of the campus center! This is public space that should be reserved for students to use."
+        }
+      }
+    },
+    {
+      "viewId": 109,
+      "viewType": 37,
+      "viewTypeName": "Speaking Listening Material",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "speaking/T3L",
+      "audioDuration": 66,
+      "illustrations": "speaking/T3:0",
+      "withQuestion": true,
+      "questionNumberInSection": 3
+    },
+    {
+      "viewId": 110,
+      "viewType": 35,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T3",
+      "preparationAudio": "speaking/P",
+      "responseAudio": "speaking/R",
+      "beepAudio": "speaking/B",
+      "preparationTime": 30,
+      "responseTime": 60,
+      "withQuestion": true,
+      "questionNumberInSection": 3,
+      "body": {
+        "question": {
+          "text": "Explain why the woman disagrees with the reasons expressed in the letter."
+        }
+      }
+    },
+    {
+      "viewId": 111,
+      "viewType": 34,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T4D",
+      "body": {
+        "top": {
+          "text": "Please listen carefully."
+        }
+      }
+    },
+    {
+      "viewId": 112,
+      "viewType": 36,
+      "viewTypeName": "Speaking Reading Passage",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "groupId": 1,
+      "timed": true,
+      "speakingReadingTime": 45,
+      "withQuestion": true,
+      "questionNumberInSection": 4,
+      "body": {
+        "heading": {
+          "text": "Groupthink"
+        },
+        "passage": {
+          "text": "One process by which groups may make bad or irrational decisions is known as groupthink. Individual members of a group attempt to conform their opinions to what they believe to be the group consensus even though the result may be negative. There are many reasons why groupthink happens. These include the desire to be liked, fear of losing a job, or even not wanting to be the one employee delaying a decision that seems inevitable. These kinds of implicit pressures to conform lead group members to ultimately make decisions that each, by himself or herself, might normally not make."
+        }
+      }
+    },
+    {
+      "viewId": 113,
+      "viewType": 37,
+      "viewTypeName": "Speaking Listening Material",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "speaking/T4L",
+      "audioDuration": 118,
+      "illustrations": "speaking/T4:0",
+      "withQuestion": true,
+      "questionNumberInSection": 4
+    },
+    {
+      "viewId": 114,
+      "viewType": 35,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T4",
+      "preparationAudio": "speaking/P",
+      "responseAudio": "speaking/R",
+      "beepAudio": "speaking/B",
+      "preparationTime": 30,
+      "responseTime": 60,
+      "withQuestion": true,
+      "questionNumberInSection": 4,
+      "body": {
+        "question": {
+          "text": "Explain groupthink and its effects using example of the computer company."
+        }
+      }
+    },
+    {
+      "viewId": 115,
+      "viewType": 34,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T5D",
+      "body": {
+        "top": {
+          "text": "Please listen carefully."
+        }
+      }
+    },
+    {
+      "viewId": 116,
+      "viewType": 37,
+      "viewTypeName": "Speaking Listening Material",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "speaking/T5L",
+      "audioDuration": 87,
+      "illustrations": "speaking/T5:0",
+      "withQuestion": true,
+      "questionNumberInSection": 5
+    },
+    {
+      "viewId": 117,
+      "viewType": 35,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T5",
+      "preparationAudio": "speaking/P",
+      "responseAudio": "speaking/R",
+      "beepAudio": "speaking/B",
+      "preparationTime": 20,
+      "responseTime": 60,
+      "withQuestion": true,
+      "questionNumberInSection": 5,
+      "body": {
+        "question": {
+          "text": "The speakers discuss two possible solutions to the woman’s problem. Briefly summarize the problem. Then state which should solution you recommend and explain why."
+        }
+      }
+    },
+    {
+      "viewId": 118,
+      "viewType": 34,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T6D",
+      "body": {
+        "top": {
+          "text": "Please listen carefully."
+        }
+      }
+    },
+    {
+      "viewId": 119,
+      "viewType": 37,
+      "viewTypeName": "Speaking Listening Material",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "speaking/T6L",
+      "audioDuration": 132,
+      "illustrations": "speaking/T6:0",
+      "withQuestion": true,
+      "questionNumberInSection": 6
+    },
+    {
+      "viewId": 120,
+      "viewType": 35,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T6",
+      "preparationAudio": "speaking/P",
+      "responseAudio": "speaking/R",
+      "beepAudio": "speaking/B",
+      "preparationTime": 20,
+      "responseTime": 60,
+      "withQuestion": true,
+      "questionNumberInSection": 6,
+      "body": {
+        "question": {
+          "text": "Using the research described by the professor, explain what scientists have learned about the mathematical abilities of babies."
+        }
+      }
+    },
+    {
+      "viewId": 121,
       "viewType": 41,
       "viewTypeName": "Writing Headset On",
-      "sectionType": 2,
+      "sectionType": 4,
       "sectionTypeName": "Writing",
       "body": {
         "top": {
@@ -3376,7 +3600,7 @@
       }
     },
     {
-      "viewId": 108,
+      "viewId": 122,
       "viewType": 42,
       "viewTypeName": "Integrated Writing Directions",
       "sectionType": 4,
@@ -3395,8 +3619,75 @@
       }
     },
     {
-      "viewId": 109,
-      "viewType": 43,
+      "viewId": 123,
+      "viewType": 12,
+      "viewTypeName": "Writing Reading Passage",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "timed": true,
+      "body": {
+        "heading": {
+          "text": ""
+        },
+        "passage": {
+          "text": "\u0009In the United States, employees typically work five days a week for eight hours each day. However, many employees want to work a four-day week and are willing to accept less pay in order to do so. A mandatory policy requiring companies to offer their employees the option of working a four-day workweek for four-fifths (80 percent) of their normal pay would benefit the economy as a whole as well as the individual companies and the employees who decided to take the option. The shortened workweek would increase company profits because employees would feel more rested and alert, and as a result, they would make fewer costly errors in their work. Hiring more staff to ensure that the same amount of work would be accomplished would not result in additional payroll costs because four-day employees would only be paid 80 percent of the normal rate. In the end, companies would have fewer overworked and error-prone employees for the same money, which would increase company profits. For the country as a whole, one of the primary benefits of offering this option to employees is that it would reduce unemployment rates. If many full-time employees started working fewer hours, some of their workload would have to be shifted to others. Thus, for every four employees who went on an 80 percent week, a new employee could be hired at the 80 percent rate. Finally, the option of a four-day workweek would be better for individual employees. Employees who could afford a lower salary in exchange for more free time could improve the quality of their lives by spending the extra time with their families, pursuing private interests, or enjoying leisure activities.",
+          "styles": [
+          ]
+        }
+      }
+    },
+    {
+      "viewId": 124,
+      "viewType": 44,
+      "viewTypeName": "Writing Listening Material",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "writing/T1L",
+      "audioDuration": 168,
+      "illustrations": "speaking/T1:0",
+      "withQuestion": true,
+      "questionNumberInSection": 1
+    },
+    {
+      "viewId": 125,
+      "viewType": 45,
+      "viewTypeName": "Integrated Writing Task",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "withQuestion": true,
+      "questionNumberInSection": 1,
+      "timed": true,
+      "body": {
+        "heading": {
+          "text": ""
+        },
+        "passage": {
+          "text": "\u0009In the United States, employees typically work five days a week for eight hours each day. However, many employees want to work a four-day week and are willing to accept less pay in order to do so. A mandatory policy requiring companies to offer their employees the option of working a four-day workweek for four-fifths (80 percent) of their normal pay would benefit the economy as a whole as well as the individual companies and the employees who decided to take the option. The shortened workweek would increase company profits because employees would feel more rested and alert, and as a result, they would make fewer costly errors in their work. Hiring more staff to ensure that the same amount of work would be accomplished would not result in additional payroll costs because four-day employees would only be paid 80 percent of the normal rate. In the end, companies would have fewer overworked and error-prone employees for the same money, which would increase company profits. For the country as a whole, one of the primary benefits of offering this option to employees is that it would reduce unemployment rates. If many full-time employees started working fewer hours, some of their workload would have to be shifted to others. Thus, for every four employees who went on an 80 percent week, a new employee could be hired at the 80 percent rate. Finally, the option of a four-day workweek would be better for individual employees. Employees who could afford a lower salary in exchange for more free time could improve the quality of their lives by spending the extra time with their families, pursuing private interests, or enjoying leisure activities.",
+          "styles": [
+          ]
+        },
+        "directions": {
+          "text": "Directions: You have 20 minutes to plan and write your response. Your response will be judged on the basis of the quality of your writing and on how well your response presents the points in the lecture and their relationship to the reading passage. Typically an effective response will be 150 to 225 words.",
+          "styles": [
+            { "start": 0, "length": 11, "fontStyle": 1 }
+          ]
+        },
+        "tips": {
+          "text": "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\u000aTo review the passage, click VIEW TEXT.",
+          "styles": [
+            { "start": 128, "length": 9, "fontStyle": 1 }
+          ]
+        },
+        "question": {
+          "text": "Summarise the points made in the lecture, being sure to explain how they cast doubt on specific points made in the reading passage."
+        }
+      }
+    },
+    {
+      "viewId": 126,
+      "viewType": 46,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,
       "sectionTypeName": "Writing",
@@ -3410,6 +3701,33 @@
             { "start": 51, "length": 10, "fontStyle": 1 },
             { "start": 89, "length": 10, "fontStyle": 1 }
           ]
+        }
+      }
+    },
+    {
+      "viewId": 127,
+      "viewType": 47,
+      "viewTypeName": "Independent Writing Task",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "withQuestion": true,
+      "questionNumberInSection": 2,
+      "timed": true,
+      "body": {
+        "directions": {
+          "text": "Directions: You have 30 minutes to plan and write your response. Your response will be judged on the basis of the quality of your writing and on how well your response presents the points in the lecture and their relationship to the reading passage. Typically an effective response will be 300 words at least.",
+          "styles": [
+            { "start": 0, "length": 11, "fontStyle": 1 }
+          ]
+        },
+        "tips": {
+          "text": "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\u000aTo review the passage, click VIEW TEXT.",
+          "styles": [
+            { "start": 128, "length": 9, "fontStyle": 1 }
+          ]
+        },
+        "question": {
+          "text": "Do you agree or disagree with the following statement?\u000a\u000aAt universities and colleges, sports and social activities are just as important as classes and libraries and should receive equal financial support.\u000a\u000aUse specific reasons and examples to support your answer."
         }
       }
     }

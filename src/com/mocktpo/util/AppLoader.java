@@ -96,6 +96,8 @@ public class AppLoader extends Thread {
                     ut.setReadingTime(MT.TIME_READING_SECTION);
                     ut.setListeningTime1(MT.TIME_LISTENING_GROUP);
                     ut.setListeningTime2(MT.TIME_LISTENING_GROUP);
+                    ut.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_GROUP);
+                    ut.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_GROUP);
                     ut.setVolume(1.0);
                     ut.setVolumeControlHidden(true);
                     ut.setCompletionRate(0);

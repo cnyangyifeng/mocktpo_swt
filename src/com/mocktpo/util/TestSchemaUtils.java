@@ -14,10 +14,37 @@ public class TestSchemaUtils {
 
         int count = 0;
 
-        for (TestViewVo vo : testSchema.getViews()) {
-            if (vo.getSectionType() == sectionType && vo.isWithQuestion() && vo.getGroupId() == groupId) {
-                count++;
-            }
+        switch (sectionType) {
+            case ST.SECTION_TYPE_NONE:
+                break;
+            case ST.SECTION_TYPE_READING:
+                for (TestViewVo vo : testSchema.getViews()) {
+                    if (vo.getSectionType() == sectionType && vo.isWithQuestion()) {
+                        count++;
+                    }
+                }
+                break;
+            case ST.SECTION_TYPE_LISTENING:
+                for (TestViewVo vo : testSchema.getViews()) {
+                    if (vo.getSectionType() == sectionType && vo.isWithQuestion() && vo.getGroupId() == groupId) {
+                        count++;
+                    }
+                }
+                break;
+            case ST.SECTION_TYPE_SPEAKING:
+                for (TestViewVo vo : testSchema.getViews()) {
+                    if (vo.getSectionType() == sectionType && vo.isWithQuestion() && vo.getViewType() == VT.VIEW_TYPE_SPEAKING_TASK) {
+                        count++;
+                    }
+                }
+                break;
+            case ST.SECTION_TYPE_WRITING:
+                for (TestViewVo vo : testSchema.getViews()) {
+                    if (vo.getSectionType() == sectionType && vo.isWithQuestion()) {
+                        count++;
+                    }
+                }
+                break;
         }
 
         return count;
@@ -46,7 +73,7 @@ public class TestSchemaUtils {
                 }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
-                nextViewId = getFirstViewIdByViewType(testSchema, VT.VIEW_TYPE_WRITING_HEADSET_ON);
+                nextViewId = viewId + 1;
                 break;
             case ST.SECTION_TYPE_WRITING:
                 // TODO handles next timed view id
