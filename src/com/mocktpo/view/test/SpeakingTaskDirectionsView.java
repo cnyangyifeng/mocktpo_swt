@@ -71,7 +71,7 @@ public class SpeakingTaskDirectionsView extends ResponsiveTestView {
 
         // TODO Removes the continue button
 
-        final ImageButton cb2 = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
+        final ImageButton cb2 = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
         FormDataSet.attach(cb2).atRightTo(cb, 10).atTopTo(cb, 0, SWT.TOP);
         cb2.addMouseListener(new MouseAdapter() {
             @Override

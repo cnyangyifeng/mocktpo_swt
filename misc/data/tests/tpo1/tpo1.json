@@ -2588,7 +2588,7 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/C2",
-      "audioDuration": 170,
+      "audioDuration": 168,
       "illustrations": "listening/C2:0"
     },
     {
@@ -2971,7 +2971,7 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L4",
-      "audioDuration": 244,
+      "audioDuration": 243,
       "illustrations": "listening/L4_1:0;listening/L4_2:30"
     },
     {
@@ -3217,7 +3217,7 @@
       "sectionTypeName": "Speaking",
       "withAudio": true,
       "audio": "speaking/AM",
-      "responseAudio": "speaking/R",
+      "responseAudio": "speaking/S",
       "beepAudio": "speaking/B",
       "responseTime": 15,
       "body": {
@@ -3298,7 +3298,7 @@
       "withAudio": true,
       "audio": "speaking/T1",
       "preparationAudio": "speaking/P",
-      "responseAudio": "speaking/R",
+      "responseAudio": "speaking/S",
       "beepAudio": "speaking/B",
       "preparationTime": 15,
       "responseTime": 45,
@@ -3333,7 +3333,7 @@
       "withAudio": true,
       "audio": "speaking/T2",
       "preparationAudio": "speaking/P",
-      "responseAudio": "speaking/R",
+      "responseAudio": "speaking/S",
       "beepAudio": "speaking/B",
       "preparationTime": 15,
       "responseTime": 45,
@@ -3366,10 +3366,11 @@
       "sectionType": 3,
       "sectionTypeName": "Speaking",
       "groupId": 1,
-      "timed": true,
       "speakingReadingTime": 45,
       "withQuestion": true,
       "questionNumberInSection": 3,
+      "timed": true,
+      "timerButtonUnavailable": true,
       "body": {
         "heading": {
           "text": "Letter in the Centerville College News"
@@ -3388,7 +3389,7 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "speaking/T3L",
-      "audioDuration": 66,
+      "audioDuration": 57,
       "illustrations": "speaking/T3:0",
       "withQuestion": true,
       "questionNumberInSection": 3
@@ -3402,7 +3403,7 @@
       "withAudio": true,
       "audio": "speaking/T3",
       "preparationAudio": "speaking/P",
-      "responseAudio": "speaking/R",
+      "responseAudio": "speaking/S",
       "beepAudio": "speaking/B",
       "preparationTime": 30,
       "responseTime": 60,
@@ -3435,10 +3436,11 @@
       "sectionType": 3,
       "sectionTypeName": "Speaking",
       "groupId": 1,
-      "timed": true,
       "speakingReadingTime": 45,
       "withQuestion": true,
       "questionNumberInSection": 4,
+      "timed": true,
+      "timerButtonUnavailable": true,
       "body": {
         "heading": {
           "text": "Groupthink"
@@ -3457,7 +3459,7 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "speaking/T4L",
-      "audioDuration": 118,
+      "audioDuration": 109,
       "illustrations": "speaking/T4:0",
       "withQuestion": true,
       "questionNumberInSection": 4
@@ -3471,7 +3473,7 @@
       "withAudio": true,
       "audio": "speaking/T4",
       "preparationAudio": "speaking/P",
-      "responseAudio": "speaking/R",
+      "responseAudio": "speaking/S",
       "beepAudio": "speaking/B",
       "preparationTime": 30,
       "responseTime": 60,
@@ -3506,7 +3508,7 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "speaking/T5L",
-      "audioDuration": 87,
+      "audioDuration": 80,
       "illustrations": "speaking/T5:0",
       "withQuestion": true,
       "questionNumberInSection": 5
@@ -3520,7 +3522,7 @@
       "withAudio": true,
       "audio": "speaking/T5",
       "preparationAudio": "speaking/P",
-      "responseAudio": "speaking/R",
+      "responseAudio": "speaking/S",
       "beepAudio": "speaking/B",
       "preparationTime": 20,
       "responseTime": 60,
@@ -3555,7 +3557,7 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "speaking/T6L",
-      "audioDuration": 132,
+      "audioDuration": 125,
       "illustrations": "speaking/T6:0",
       "withQuestion": true,
       "questionNumberInSection": 6
@@ -3569,7 +3571,7 @@
       "withAudio": true,
       "audio": "speaking/T6",
       "preparationAudio": "speaking/P",
-      "responseAudio": "speaking/R",
+      "responseAudio": "speaking/S",
       "beepAudio": "speaking/B",
       "preparationTime": 20,
       "responseTime": 60,
@@ -3645,7 +3647,7 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "writing/T1L",
-      "audioDuration": 168,
+      "audioDuration": 155,
       "illustrations": "speaking/T1:0",
       "withQuestion": true,
       "questionNumberInSection": 1

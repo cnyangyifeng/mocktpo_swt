@@ -1855,7 +1855,7 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/C1",
-      "audioDuration": 158,
+      "audioDuration": 157,
       "illustrations": "listening/C1:0"
     },
     {
@@ -3157,7 +3157,7 @@
       "sectionTypeName": "Speaking",
       "withAudio": true,
       "audio": "speaking/AM",
-      "responseAudio": "speaking/R",
+      "responseAudio": "speaking/S",
       "beepAudio": "speaking/B",
       "responseTime": 15,
       "body": {
@@ -3238,7 +3238,7 @@
       "withAudio": true,
       "audio": "speaking/T1",
       "preparationAudio": "speaking/P",
-      "responseAudio": "speaking/R",
+      "responseAudio": "speaking/S",
       "beepAudio": "speaking/B",
       "preparationTime": 15,
       "responseTime": 45,
@@ -3273,7 +3273,7 @@
       "withAudio": true,
       "audio": "speaking/T2",
       "preparationAudio": "speaking/P",
-      "responseAudio": "speaking/R",
+      "responseAudio": "speaking/S",
       "beepAudio": "speaking/B",
       "preparationTime": 15,
       "responseTime": 45,
@@ -3309,10 +3309,11 @@
       "sectionType": 3,
       "sectionTypeName": "Speaking",
       "groupId": 1,
-      "timed": true,
       "speakingReadingTime": 50,
       "withQuestion": true,
       "questionNumberInSection": 3,
+      "timed": true,
+      "timerButtonUnavailable": true,
       "body": {
         "heading": {
           "text": "Close the Campus Coffeehouse"
@@ -3345,20 +3346,13 @@
       "withAudio": true,
       "audio": "speaking/T3",
       "preparationAudio": "speaking/P",
-      "responseAudio": "speaking/R",
+      "responseAudio": "speaking/S",
       "beepAudio": "speaking/B",
-      "readingTimeForSpeakingTask": 50,
       "preparationTime": 30,
       "responseTime": 60,
       "withQuestion": true,
       "questionNumberInSection": 3,
       "body": {
-        "heading": {
-          "text": "Close the Campus Coffeehouse"
-        },
-        "passage": {
-          "text": "I propose that the university close the campus coffeehouse. Coffeehouses are great. If people actually use them, like to socialize with friends, while enjoying a cup of coffee and a snack. But students are not using our campus coffeehouse. There are usually lots of empty tables when I pass by the place. It's just a waste of space that could be used for other things. Also, the food at the coffeehouse is not very good. The last time I was there, the cakes and muffins my friends and I ordered were dry and didn't have much flavor.\u000a\u000aSincerely,\u000aGreg Smith"
-        },
         "question": {
           "text": "The woman expresses her opinion about the student’s proposal. State her opinion and explain the reasons she gives for holding that opinion."
         }
@@ -3366,6 +3360,174 @@
     },
     {
       "viewId": 110,
+      "viewType": 34,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T4D",
+      "body": {
+        "top": {
+          "text": "Please listen carefully."
+        }
+      }
+    },
+    {
+      "viewId": 111,
+      "viewType": 36,
+      "viewTypeName": "Speaking Reading Passage",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "groupId": 1,
+      "speakingReadingTime": 45,
+      "withQuestion": true,
+      "questionNumberInSection": 4,
+      "timed": true,
+      "timerButtonUnavailable": true,
+      "body": {
+        "heading": {
+          "text": "Flagship Species"
+        },
+        "passage": {
+          "text": "Environmental organizations work to protect plants and animals whose natural habitats are threatened by human activity. One way they do this is by selecting a particular species to represent the threatened habitat to the general public. This species, called a flagship species, is one that people are likely to find attractive and interesting. The flagship species is used to raise public awareness and motivate people to take action to protect the threatened habitat. People’s support of the flagship species results in protection for all the plant and animal species living in the threatened area."
+        }
+      }
+    },
+    {
+      "viewId": 112,
+      "viewType": 37,
+      "viewTypeName": "Speaking Listening Material",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "speaking/T4L",
+      "audioDuration": 118,
+      "illustrations": "speaking/T4:0",
+      "withQuestion": true,
+      "questionNumberInSection": 4
+    },
+    {
+      "viewId": 113,
+      "viewType": 35,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T4",
+      "preparationAudio": "speaking/P",
+      "responseAudio": "speaking/S",
+      "beepAudio": "speaking/B",
+      "preparationTime": 30,
+      "responseTime": 60,
+      "withQuestion": true,
+      "questionNumberInSection": 4,
+      "body": {
+        "question": {
+          "text": "Using the example of the macaw from the lecture, explain the concept of flagship species."
+        }
+      }
+    },
+    {
+      "viewId": 114,
+      "viewType": 34,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T5D",
+      "body": {
+        "top": {
+          "text": "Please listen carefully."
+        }
+      }
+    },
+    {
+      "viewId": 115,
+      "viewType": 37,
+      "viewTypeName": "Speaking Listening Material",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "speaking/T5L",
+      "audioDuration": 87,
+      "illustrations": "speaking/T5:0",
+      "withQuestion": true,
+      "questionNumberInSection": 5
+    },
+    {
+      "viewId": 116,
+      "viewType": 35,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T5",
+      "preparationAudio": "speaking/P",
+      "responseAudio": "speaking/S",
+      "beepAudio": "speaking/B",
+      "preparationTime": 20,
+      "responseTime": 60,
+      "withQuestion": true,
+      "questionNumberInSection": 5,
+      "body": {
+        "question": {
+          "text": "Briefly summarize the problem the speakers are discussing. Then state which solution you would recommend. Explain the reasons for your recommendation."
+        }
+      }
+    },
+    {
+      "viewId": 117,
+      "viewType": 34,
+      "viewTypeName": "Speaking Task Directions",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T6D",
+      "body": {
+        "top": {
+          "text": "Please listen carefully."
+        }
+      }
+    },
+    {
+      "viewId": 118,
+      "viewType": 37,
+      "viewTypeName": "Speaking Listening Material",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "speaking/T6L",
+      "audioDuration": 137,
+      "illustrations": "speaking/T6:0",
+      "withQuestion": true,
+      "questionNumberInSection": 6
+    },
+    {
+      "viewId": 119,
+      "viewType": 35,
+      "viewTypeName": "Speaking Task",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "withAudio": true,
+      "audio": "speaking/T6",
+      "preparationAudio": "speaking/P",
+      "responseAudio": "speaking/S",
+      "beepAudio": "speaking/B",
+      "preparationTime": 20,
+      "responseTime": 60,
+      "withQuestion": true,
+      "questionNumberInSection": 6,
+      "body": {
+        "question": {
+          "text": "Using the examples from the lecture, discuss two types of narrators that an author of fiction might use."
+        }
+      }
+    },
+    {
+      "viewId": 120,
       "viewType": 41,
       "viewTypeName": "Writing Headset On",
       "sectionType": 4,
@@ -3383,7 +3545,7 @@
       }
     },
     {
-      "viewId": 111,
+      "viewId": 121,
       "viewType": 42,
       "viewTypeName": "Integrated Writing Directions",
       "sectionType": 4,
@@ -3402,7 +3564,74 @@
       }
     },
     {
-      "viewId": 112,
+      "viewId": 122,
+      "viewType": 12,
+      "viewTypeName": "Writing Reading Passage",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "timed": true,
+      "body": {
+        "heading": {
+          "text": ""
+        },
+        "passage": {
+          "text": "\u0009In the United States, employees typically work five days a week for eight hours each day. However, many employees want to work a four-day week and are willing to accept less pay in order to do so. A mandatory policy requiring companies to offer their employees the option of working a four-day workweek for four-fifths (80 percent) of their normal pay would benefit the economy as a whole as well as the individual companies and the employees who decided to take the option. The shortened workweek would increase company profits because employees would feel more rested and alert, and as a result, they would make fewer costly errors in their work. Hiring more staff to ensure that the same amount of work would be accomplished would not result in additional payroll costs because four-day employees would only be paid 80 percent of the normal rate. In the end, companies would have fewer overworked and error-prone employees for the same money, which would increase company profits. For the country as a whole, one of the primary benefits of offering this option to employees is that it would reduce unemployment rates. If many full-time employees started working fewer hours, some of their workload would have to be shifted to others. Thus, for every four employees who went on an 80 percent week, a new employee could be hired at the 80 percent rate. Finally, the option of a four-day workweek would be better for individual employees. Employees who could afford a lower salary in exchange for more free time could improve the quality of their lives by spending the extra time with their families, pursuing private interests, or enjoying leisure activities.",
+          "styles": [
+          ]
+        }
+      }
+    },
+    {
+      "viewId": 123,
+      "viewType": 44,
+      "viewTypeName": "Writing Listening Material",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "groupId": 1,
+      "withAudio": true,
+      "audio": "writing/T1L",
+      "audioDuration": 135,
+      "illustrations": "speaking/T1:0",
+      "withQuestion": true,
+      "questionNumberInSection": 1
+    },
+    {
+      "viewId": 124,
+      "viewType": 45,
+      "viewTypeName": "Integrated Writing Task",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "withQuestion": true,
+      "questionNumberInSection": 1,
+      "timed": true,
+      "body": {
+        "heading": {
+          "text": ""
+        },
+        "passage": {
+          "text": "\u0009In the United States, employees typically work five days a week for eight hours each day. However, many employees want to work a four-day week and are willing to accept less pay in order to do so. A mandatory policy requiring companies to offer their employees the option of working a four-day workweek for four-fifths (80 percent) of their normal pay would benefit the economy as a whole as well as the individual companies and the employees who decided to take the option. The shortened workweek would increase company profits because employees would feel more rested and alert, and as a result, they would make fewer costly errors in their work. Hiring more staff to ensure that the same amount of work would be accomplished would not result in additional payroll costs because four-day employees would only be paid 80 percent of the normal rate. In the end, companies would have fewer overworked and error-prone employees for the same money, which would increase company profits. For the country as a whole, one of the primary benefits of offering this option to employees is that it would reduce unemployment rates. If many full-time employees started working fewer hours, some of their workload would have to be shifted to others. Thus, for every four employees who went on an 80 percent week, a new employee could be hired at the 80 percent rate. Finally, the option of a four-day workweek would be better for individual employees. Employees who could afford a lower salary in exchange for more free time could improve the quality of their lives by spending the extra time with their families, pursuing private interests, or enjoying leisure activities.",
+          "styles": [
+          ]
+        },
+        "directions": {
+          "text": "Directions: You have 20 minutes to plan and write your response. Your response will be judged on the basis of the quality of your writing and on how well your response presents the points in the lecture and their relationship to the reading passage. Typically an effective response will be 150 to 225 words.",
+          "styles": [
+            { "start": 0, "length": 11, "fontStyle": 1 }
+          ]
+        },
+        "tips": {
+          "text": "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\u000aTo review the passage, click VIEW TEXT.",
+          "styles": [
+            { "start": 128, "length": 9, "fontStyle": 1 }
+          ]
+        },
+        "question": {
+          "text": "Summarise the points made in the lecture, being sure to explain how they cast doubt on specific points made in the reading passage."
+        }
+      }
+    },
+    {
+      "viewId": 125,
       "viewType": 46,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,
@@ -3417,6 +3646,33 @@
             { "start": 51, "length": 10, "fontStyle": 1 },
             { "start": 89, "length": 10, "fontStyle": 1 }
           ]
+        }
+      }
+    },
+    {
+      "viewId": 126,
+      "viewType": 47,
+      "viewTypeName": "Independent Writing Task",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "withQuestion": true,
+      "questionNumberInSection": 2,
+      "timed": true,
+      "body": {
+        "directions": {
+          "text": "Directions: You have 30 minutes to plan and write your response. Your response will be judged on the basis of the quality of your writing and on how well your response presents the points in the lecture and their relationship to the reading passage. Typically an effective response will be 300 words at least.",
+          "styles": [
+            { "start": 0, "length": 11, "fontStyle": 1 }
+          ]
+        },
+        "tips": {
+          "text": "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\u000aTo review the passage, click VIEW TEXT.",
+          "styles": [
+            { "start": 128, "length": 9, "fontStyle": 1 }
+          ]
+        },
+        "question": {
+          "text": "Do you agree or disagree with the following statement?\u000a\u000aAt universities and colleges, sports and social activities are just as important as classes and libraries and should receive equal financial support.\u000a\u000aUse specific reasons and examples to support your answer."
         }
       }
     }

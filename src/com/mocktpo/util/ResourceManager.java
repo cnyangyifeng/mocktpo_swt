@@ -125,6 +125,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_CONTINUE, ImageUtils.load(d, "continue"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_HOVER, ImageUtils.load(d, "continue_h"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_DISABLED, ImageUtils.load(d, "continue_d"));
+        caches.putIfAbsent(MT.IMAGE_CONTINUE_DEBUG, ImageUtils.load(d, "continue_debug"));
+        caches.putIfAbsent(MT.IMAGE_CONTINUE_DEBUG_HOVER, ImageUtils.load(d, "continue_debug_h"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL, ImageUtils.load(d, "continue_o"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL_HOVER, ImageUtils.load(d, "continue_o_h"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL_DISABLED, ImageUtils.load(d, "continue_o_d"));
@@ -151,6 +153,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_PLAYBACK_RESPONSE_HOVER, ImageUtils.load(d, "playback_response_h"));
         caches.putIfAbsent(MT.IMAGE_PLAYBACK_RESPONSE_DISABLED, ImageUtils.load(d, "playback_response_d"));
         caches.putIfAbsent(MT.IMAGE_READY_TO_ANSWER, ImageUtils.load(d, "ready_to_answer"));
+        caches.putIfAbsent(MT.IMAGE_READY_TO_ANSWER_2, ImageUtils.load(d, "ready_to_answer_2"));
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN, ImageUtils.load(d, "record_again"));
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN_HOVER, ImageUtils.load(d, "record_again_h"));
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN_DISABLED, ImageUtils.load(d, "record_again_d"));

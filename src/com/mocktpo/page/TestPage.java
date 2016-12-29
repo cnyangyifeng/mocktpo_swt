@@ -190,8 +190,20 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_INTEGRATED_WRITING_DIRECTIONS:
                 tv = new IntegratedWritingDirectionsView(this, SWT.NONE);
                 break;
+            case VT.VIEW_TYPE_WRITING_READING_PASSAGE:
+                tv = new WritingReadingPassageView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_WRITING_LISTENING_MATERIAL:
+                tv = new WritingListeningMaterialView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK:
+                tv = new IntegratedWritingTaskView(this, SWT.NONE);
+                break;
             case VT.VIEW_TYPE_INDEPENDENT_WRITING_DIRECTIONS:
                 tv = new IndependentWritingDirectionsView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK:
+                tv = new IndependentWritingTaskView(this, SWT.NONE);
                 break;
         }
 

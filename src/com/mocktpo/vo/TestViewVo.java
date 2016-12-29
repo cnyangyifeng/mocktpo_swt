@@ -34,6 +34,7 @@ public class TestViewVo implements Serializable {
     private int totalAnswerCount;
     private boolean timed;
     private boolean timerTaskDelayed;
+    private boolean timerButtonUnavailable;
 
     public StyledTextVo getStyledText(String key) {
         for (String i : body.keySet()) {
@@ -234,5 +235,13 @@ public class TestViewVo implements Serializable {
 
     public void setTimerTaskDelayed(boolean timerTaskDelayed) {
         this.timerTaskDelayed = timerTaskDelayed;
+    }
+
+    public boolean isTimerButtonUnavailable() {
+        return timerButtonUnavailable;
+    }
+
+    public void setTimerButtonUnavailable(boolean timerButtonUnavailable) {
+        this.timerButtonUnavailable = timerButtonUnavailable;
     }
 }
