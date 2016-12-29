@@ -43,7 +43,7 @@ public class ListeningSectionEndView extends ResponsiveTestView {
 
         final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(cb).atRight(10).atTop(10);
-        cb.addMouseListener(new ReadingSectionEndContinueButtonMouseListener());
+        cb.addMouseListener(new ContinueButtonMouseListener());
     }
 
     @Override
@@ -67,7 +67,7 @@ public class ListeningSectionEndView extends ResponsiveTestView {
      * ==================================================
      */
 
-    private class ReadingSectionEndContinueButtonMouseListener implements MouseListener {
+    private class ContinueButtonMouseListener implements MouseListener {
 
         @Override
         public void mouseDoubleClick(MouseEvent e) {

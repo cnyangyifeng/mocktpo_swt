@@ -10,14 +10,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.widgets.Label;
 
-public class WritingHeadsetOnView extends ResponsiveTestView {
+public class SpeakingSectionEndView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int VIEW_PORT_PADDING_TOP = 100;
-    private static final int VIEW_PORT_PADDING_WIDTH = 100;
+    private static final int VIEW_PORT_PADDING_TOP = 200;
+    private static final int VIEW_PORT_PADDING_WIDTH = 240;
 
     /*
      * ==================================================
@@ -27,7 +26,7 @@ public class WritingHeadsetOnView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public WritingHeadsetOnView(TestPage page, int style) {
+    public SpeakingSectionEndView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -41,6 +40,7 @@ public class WritingHeadsetOnView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
+
         final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(cb).atRight(10).atTop(10);
         cb.addMouseListener(new ContinueButtonMouseListener());
@@ -54,18 +54,9 @@ public class WritingHeadsetOnView extends ResponsiveTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText tt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(tt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("top").getText());
-
-        final Label il = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(il).atLeft().atTopTo(tt, 20).atRight();
-        LabelSet.decorate(il).setImage(MT.IMAGE_HEADSET);
-
-        final StyledText bt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(bt).atLeft().atTopTo(il, 20).atRight();
-        StyledTextSet.decorate(bt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("bottom").getText());
-        StyleRangeUtils.decorate(bt, vo.getStyledText("bottom").getStyles());
+        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(dt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        StyledTextSet.decorate(dt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
     }
 
     /*
@@ -88,6 +79,7 @@ public class WritingHeadsetOnView extends ResponsiveTestView {
             release();
 
             UserTest ut = page.getUserTest();
+            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
             ut.setLastViewId(vo.getViewId() + 1);
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);

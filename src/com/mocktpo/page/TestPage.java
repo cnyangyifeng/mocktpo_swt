@@ -181,11 +181,14 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_SPEAKING_LISTENING_MATERIAL:
                 tv = new SpeakingListeningMaterialView(this, SWT.NONE);
                 break;
+            case VT.VIEW_TYPE_SPEAKING_SECTION_END:
+                tv = new SpeakingSectionEndView(this, SWT.NONE);
+                break;
 
             /* Writing Section View Types */
 
-            case VT.VIEW_TYPE_WRITING_HEADSET_ON:
-                tv = new WritingHeadsetOnView(this, SWT.NONE);
+            case VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS:
+                tv = new WritingSectionDirectionsView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_INTEGRATED_WRITING_DIRECTIONS:
                 tv = new IntegratedWritingDirectionsView(this, SWT.NONE);

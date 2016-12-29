@@ -10,13 +10,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.widgets.Label;
 
-public class ReadingSectionEndView extends ResponsiveTestView {
+public class WritingSectionDirectionsView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int VIEW_PORT_PADDING_TOP = 150;
-    private static final int VIEW_PORT_PADDING_WIDTH = 240;
+    private static final int VIEW_PORT_PADDING_TOP = 100;
+    private static final int VIEW_PORT_PADDING_WIDTH = 100;
 
     /*
      * ==================================================
@@ -26,7 +27,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public ReadingSectionEndView(TestPage page, int style) {
+    public WritingSectionDirectionsView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -40,18 +41,9 @@ public class ReadingSectionEndView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
-
         final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(cb).atRight(10).atTop(10);
         cb.addMouseListener(new ContinueButtonMouseListener());
-
-        final ImageButton rvb = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW, MT.IMAGE_REVIEW_HOVER);
-        FormDataSet.attach(rvb).atRightTo(cb, 10).atTop(10);
-        rvb.addMouseListener(new ReviewButtonMouseListener());
-
-        final ImageButton rtb = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
-        FormDataSet.attach(rtb).atRightTo(rvb, 10).atTop(10);
-        rtb.addMouseListener(new ReturnButtonMouseListener());
     }
 
     @Override
@@ -62,9 +54,18 @@ public class ReadingSectionEndView extends ResponsiveTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
+        final StyledText tt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(tt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("top").getText());
+
+        final Label il = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(il).atLeft().atTopTo(tt, 20).atRight();
+        LabelSet.decorate(il).setImage(MT.IMAGE_HEADSET);
+
+        final StyledText bt = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(bt).atLeft().atTopTo(il, 20).atRight();
+        StyledTextSet.decorate(bt).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("bottom").getText());
+        StyleRangeUtils.decorate(bt, vo.getStyledText("bottom").getStyles());
     }
 
     /*
@@ -87,52 +88,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
             release();
 
             UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
             ut.setLastViewId(vo.getViewId() + 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
-    }
-
-    private class ReviewButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-
-            release();
-
-            page.toReadingReview();
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
-    }
-
-    private class ReturnButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-
-            release();
-
-            UserTest ut = page.getUserTest();
-            ut.setLastViewId(vo.getViewId() - 1);
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);
             sqlSession.commit();

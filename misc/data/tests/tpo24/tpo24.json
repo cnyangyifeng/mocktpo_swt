@@ -3389,7 +3389,10 @@
           "text": "Flagship Species"
         },
         "passage": {
-          "text": "Environmental organizations work to protect plants and animals whose natural habitats are threatened by human activity. One way they do this is by selecting a particular species to represent the threatened habitat to the general public. This species, called a flagship species, is one that people are likely to find attractive and interesting. The flagship species is used to raise public awareness and motivate people to take action to protect the threatened habitat. People’s support of the flagship species results in protection for all the plant and animal species living in the threatened area."
+          "text": "Environmental organizations work to protect plants and animals whose natural habitats are threatened by human activity. One way they do this is by selecting a particular species to represent the threatened habitat to the general public. This species, called a flagship species, is one that people are likely to find attractive and interesting. The flagship species is used to raise public awareness and motivate people to take action to protect the threatened habitat. People’s support of the flagship species results in protection for all the plant and animal species living in the threatened area.",
+          "styles": [
+            { "start": 3392, "length": 16, "fontStyle": 1 },
+          ]
         }
       }
     },
@@ -3402,7 +3405,7 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "speaking/T4L",
-      "audioDuration": 118,
+      "audioDuration": 127,
       "illustrations": "speaking/T4:0",
       "withQuestion": true,
       "questionNumberInSection": 4

@@ -3585,34 +3585,47 @@
     },
     {
       "viewId": 121,
-      "viewType": 41,
-      "viewTypeName": "Writing Headset On",
-      "sectionType": 4,
-      "sectionTypeName": "Writing",
+      "viewType": 38,
+      "viewTypeName": "Speaking Section End",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
+      "timed": true,
       "body": {
-        "top": {
-          "text": "Now put on your headset."
-        },
-        "bottom": {
-          "text": "Click on Continue to go on.",
-          "styles": [
-            { "start": 9, "length": 8, "fontStyle": 1 }
-          ]
+        "description": {
+          "text": "This is the end of the Speaking section. The writing section will begin automatically in 60 seconds.\u000a\u000aIf you do not wish to wait, click on Continue."
         }
       }
     },
     {
       "viewId": 122,
+      "viewType": 41,
+      "viewTypeName": "Writing Section Directions",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "body": {
+        "heading": {
+          "text": "Writing Section Directions"
+        },
+        "description": {
+          "text": "Make sure your headset is on.\u000a\u000aThis section measures your ability to use writing to communicate in an academic environment. There will be 2 writing tasks.\u000a\u000aFor the first writing task, you will read a passage, listen to a lecture, and then answer a question based on what you have read and heard. For the second writing task, you will answer a question based on your own knowledge and experience.\u000a\u000aDuring this practice test, you may click the Pause icon at any time. This will stop the test until you decide to continue. You may continue the test in a few minutes or at any time during the period that your test is activated.\u000a\u000aNow listen to the directions for the first writing task.\u000a\u000aClick on Continue at any time to dismiss these directions.",
+          "styles": [
+            { "start": 51, "length": 10, "fontStyle": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "viewId": 123,
       "viewType": 42,
       "viewTypeName": "Integrated Writing Directions",
       "sectionType": 4,
       "sectionTypeName": "Writing",
       "body": {
         "heading": {
-          "text": "Writing Directions"
+          "text": "Writing Based on Reading and Listening\u000aDirections"
         },
         "description": {
-          "text": "For this task, you will read a passage about an academic topic. A clock at the top of the screen will show how much time you have to read. You may take notes on the passage while you read. The passage will then be removed and you will listen to a lecture about the same topic. While you listen, you may also take notes. You will be able to see the reading passage again when it is time for you to write. You may use your notes to help you answer the question.\u000a\u000aIn an actual test, you will then have 20 minutes to write a response to a question that asks you about the relationship between the lecture you heard and the reading passage. Try to answer the question as completely as possible using information from the reading passage and lecture. The question does not ask you to express your personal opinion. Typically, an effective response will be 150 to 225 words.\u000a\u000aYour response will be judged on the quality of your writing and on the completeness and accuracy of the content.\u000a\u000aNow you will see the reading passage for minutes. Remember that it will be available to you again when you write. Immediately after the reading time ends, the lecture will begin, so keep your headset on until the lecture is over.\u000a\u000aClick on Continue to go on.",
+          "text": "For this task, you will read a passage about an academic topic. A clock at the top of the screen will show how much time you have to read. You may take notes on the passage while you read. The passage will then be removed and you will listen to a lecture about the same topic. While you listen, you may also take notes. You will be able to see the reading passage again when it is time for you to write. You may use your notes to help you answer the question.\u000a\u000aIn an actual test, you will then have 20 minutes to write a response to a question that asks you about the relationship between the lecture you heard and the reading passage. Try to answer the question as completely as possible using information from the reading passage and lecture. The question does not ask you to express your personal opinion. Typically, an effective response will be 150 to 225 words.\u000a\u000aYour response will be judged on the quality of your writing and on the completeness and accuracy of the content.\u000a\u000aNow you will see the reading passage for minutes. Remember that it will be available to you again when you write. Immediately after the reading time ends, the lecture will begin, so keep your headset on until the lecture is over.\u000a\u000aClick on Continue at any time to dismiss these directions.",
           "styles": [
             { "start": 51, "length": 10, "fontStyle": 1 },
             { "start": 89, "length": 10, "fontStyle": 1 }
@@ -3621,7 +3634,7 @@
       }
     },
     {
-      "viewId": 123,
+      "viewId": 124,
       "viewType": 12,
       "viewTypeName": "Writing Reading Passage",
       "sectionType": 4,
@@ -3639,7 +3652,7 @@
       }
     },
     {
-      "viewId": 124,
+      "viewId": 125,
       "viewType": 44,
       "viewTypeName": "Writing Listening Material",
       "sectionType": 4,
@@ -3653,7 +3666,7 @@
       "questionNumberInSection": 1
     },
     {
-      "viewId": 125,
+      "viewId": 126,
       "viewType": 45,
       "viewTypeName": "Integrated Writing Task",
       "sectionType": 4,
@@ -3688,14 +3701,14 @@
       }
     },
     {
-      "viewId": 126,
+      "viewId": 127,
       "viewType": 46,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,
       "sectionTypeName": "Writing",
       "body": {
         "heading": {
-          "text": "Writing Directions"
+          "text": "Writing Based on Knowledge and Experience\u000aDirections"
         },
         "description": {
           "text": "For this task, you will write an essay in response to a question that asks you to state, explain, and support your opinion on an issue. In an actual test, you will have 30 minutes to write your essay.\u000a\u000aTypically, an effective essay will contain a minimum of 300 words. Your essay will be judged on the quality of your writing. This includes the development of your ideas, the organization of your essay, and the quality and accuracy of the language you use to express your ideas.\u000a\u000aClick on Continue to go on.",
@@ -3707,7 +3720,7 @@
       }
     },
     {
-      "viewId": 127,
+      "viewId": 128,
       "viewType": 47,
       "viewTypeName": "Independent Writing Task",
       "sectionType": 4,

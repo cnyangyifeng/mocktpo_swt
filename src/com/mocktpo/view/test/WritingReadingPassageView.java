@@ -1,6 +1,5 @@
 package com.mocktpo.view.test;
 
-import com.mocktpo.dialog.MoreTextDialog;
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
@@ -8,7 +7,6 @@ import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseEvent;
@@ -19,14 +17,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ScrollBar;
 
 public class WritingReadingPassageView extends SashTestView {
-
-    /* Widgets */
-
-    private CLabel indicator;
-
-    /* Properties */
-
-    protected boolean goneThrough;
 
     /*
      * ==================================================
@@ -54,24 +44,12 @@ public class WritingReadingPassageView extends SashTestView {
         final ImageButton cob = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_OVAL, MT.IMAGE_CONTINUE_OVAL_HOVER, MT.IMAGE_CONTINUE_OVAL_DISABLED);
         FormDataSet.attach(cob).atRight(10).atTop(10);
         cob.addMouseListener(new ContinueOvalButtonMouseListener());
-
-        if (!vo.isFirstPassage()) {
-            final ImageButton bob = new ImageButton(header, SWT.NONE, MT.IMAGE_BACK_OVAL, MT.IMAGE_BACK_OVAL_HOVER, MT.IMAGE_BACK_OVAL_DISABLED);
-            FormDataSet.attach(bob).atRightTo(cob).atTop(10);
-            bob.addMouseListener(new BackOvalButtonMouseListener());
-        }
     }
 
     @Override
     public void updateRight() {
         initIndicator();
         initRightBody();
-    }
-
-    private void initIndicator() {
-        indicator = new CLabel(right, SWT.RIGHT);
-        FormDataSet.attach(indicator).atLeft().atTop().atRight();
-        CLabelSet.decorate(indicator).setBackground(MT.COLOR_INDIGO).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_WHITE);
     }
 
     private void initRightBody() {
@@ -119,44 +97,11 @@ public class WritingReadingPassageView extends SashTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            if (goneThrough) {
-
-                release();
-
-                UserTest ut = page.getUserTest();
-                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                ut.setLastViewId(vo.getViewId() + 1);
-
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                page.resume(ut);
-
-            } else {
-                new MoreTextDialog().openAndWaitForDisposal();
-            }
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
-    }
-
-
-    private class BackOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-
             release();
 
             UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * (vo.getViewId() - 2) / page.getTestSchema().getViews().size());
-            ut.setLastViewId(vo.getViewId() - 1);
+            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
+            ut.setLastViewId(vo.getViewId() + 1);
 
             sqlSession.getMapper(UserTestMapper.class).update(ut);
             sqlSession.commit();
