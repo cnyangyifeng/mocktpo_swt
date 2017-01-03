@@ -1,6 +1,5 @@
 package com.mocktpo.view.test;
 
-import com.mocktpo.listener.BorderedCompositePaintListener;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.CompositeSet;
 import com.mocktpo.util.FormDataSet;

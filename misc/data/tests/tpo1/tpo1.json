@@ -3712,13 +3712,14 @@
       "sectionTypeName": "Writing",
       "body": {
         "heading": {
-          "text": "Writing Directions"
+          "text": "Writing Based on Knowledge and Experience Directions"
         },
         "description": {
-          "text": "For this task, you will write an essay in response to a question that asks you to state, explain, and support your opinion on an issue. In an actual test, you will have 30 minutes to write your essay.\u000a\u000aTypically, an effective essay will contain a minimum of 300 words. Your essay will be judged on the quality of your writing. This includes the development of your ideas, the organization of your essay, and the quality and accuracy of the language you use to express your ideas.\u000a\u000aClick on Continue to go on.",
+          "text": "For this task, you will write an essay in response to a question that asks you to state, explain, and support your opinion on an issue. In an actual test and in Timed Mode in this practice test, you will have 30 minutes to write your essay.\u000a\u000aTypically, an effective essay will contain a minimum of 300 words. Your essay will be judged on the quality of your writing. This includes the development of your ideas, the organization of your essay, and the quality and accuracy of the language you use to express your ideas.\u000a\u000aClick on Continue to go on.",
           "styles": [
-            { "start": 51, "length": 10, "fontStyle": 1 },
-            { "start": 89, "length": 10, "fontStyle": 1 }
+            { "start": 161, "length": 10, "fontStyle": 1 },
+            { "start": 209, "length": 10, "fontStyle": 1 },
+            { "start": 530, "length": 8, "fontStyle": 1 }
           ]
         }
       }
@@ -3734,19 +3735,17 @@
       "questionNumberInSection": 2,
       "body": {
         "directions": {
-          "text": "Directions: You have 30 minutes to plan and write your response. Your response will be judged on the basis of the quality of your writing and on how well your response presents the points in the lecture and their relationship to the reading passage. Typically an effective response will be 300 words at least.",
+          "text": "Directions: Read the question below. You have 30 minutes to plan, write, and revise your essay. Typically, an effective response will contain a minimum of 300 words.",
           "styles": [
             { "start": 0, "length": 11, "fontStyle": 1 }
           ]
         },
-        "tips": {
-          "text": "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\u000aTo review the passage, click VIEW TEXT.",
-          "styles": [
-            { "start": 128, "length": 9, "fontStyle": 1 }
-          ]
-        },
         "question": {
-          "text": "Do you agree or disagree with the following statement?\u000a\u000aAt universities and colleges, sports and social activities are just as important as classes and libraries and should receive equal financial support.\u000a\u000aUse specific reasons and examples to support your answer."
+          "text": "Question:\u000a\u000aDo you agree or disagree with the following statement?\u000a\u000aAt universities and colleges, sports and social activities are just as important as classes and libraries and should receive equal financial support.\u000a\u000aUse specific reasons and examples to support your answer.",
+          "styles": [
+            { "start": 0, "length": 9, "fontStyle": 1 },
+            { "start": 67, "length": 135, "underline": true }
+          ]
         }
       }
     }

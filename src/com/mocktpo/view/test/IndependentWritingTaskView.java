@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Scale;
 
-public class IndependentWritingTaskView extends SashTestView2 {
+public class IndependentWritingTaskView extends SashTestView {
 
     /* Constants */
 
@@ -98,20 +98,6 @@ public class IndependentWritingTaskView extends SashTestView2 {
     }
 
     @Override
-    public void updateTop() {
-
-        final StyledText dt = new StyledText(top, SWT.BORDER | SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTop().atRight();
-        StyledTextSet.decorate(dt).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("directions").getText());
-        StyleRangeUtils.decorate(dt, vo.getStyledText("directions").getStyles());
-
-        final StyledText qt = new StyledText(top, SWT.WRAP);
-        FormDataSet.attach(qt).atLeft(5).atTopTo(dt).atRight(5);
-        StyledTextSet.decorate(qt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
-        StyleRangeUtils.decorate(qt, vo.getStyledText("question").getStyles());
-    }
-
-    @Override
     public void updateLeft() {
 
         final ScrolledComposite sc = new ScrolledComposite(left, SWT.H_SCROLL | SWT.V_SCROLL);
@@ -120,12 +106,17 @@ public class IndependentWritingTaskView extends SashTestView2 {
         sc.setExpandVertical(true);
 
         final Composite c = new Composite(sc, SWT.NONE);
-        FormLayoutSet.layout(c).marginWidth(10).marginTop(10).marginBottom(100);
+        FormLayoutSet.layout(c).marginWidth(10).marginTop(10).marginBottom(100).spacing(20);
 
-        final StyledText pt = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(pt).atLeft().atTop().atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
-        StyledTextSet.decorate(pt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
-        StyleRangeUtils.decorate(pt, vo.getStyledText("passage").getStyles());
+        final StyledText dt = new StyledText(c, SWT.BORDER | SWT.WRAP);
+        FormDataSet.attach(dt).atLeft().atTop().atRight().withWidth(ScreenUtils.getHalfClientWidth(d));
+        StyledTextSet.decorate(dt).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("directions").getText());
+        StyleRangeUtils.decorate(dt, vo.getStyledText("directions").getStyles());
+
+        final StyledText qt = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(qt).atLeft().atTopTo(dt).atRight().withWidth(ScreenUtils.getHalfClientWidth(d));
+        StyledTextSet.decorate(qt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
+        StyleRangeUtils.decorate(qt, vo.getStyledText("question").getStyles());
 
         sc.setContent(c);
         sc.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -134,31 +125,42 @@ public class IndependentWritingTaskView extends SashTestView2 {
     @Override
     public void updateRight() {
 
-        Button copyButton = new Button(right, SWT.PUSH);
+        final ScrolledComposite sc = new ScrolledComposite(right, SWT.H_SCROLL | SWT.V_SCROLL);
+        FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
+        sc.setExpandHorizontal(true);
+        sc.setExpandVertical(true);
+
+        final Composite c = new Composite(sc, SWT.NONE);
+        FormLayoutSet.layout(c).marginWidth(10).marginTop(10).marginBottom(100).spacing(10);
+
+        Button copyButton = new Button(c, SWT.PUSH);
         FormDataSet.attach(copyButton).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
         ButtonSet.decorate(copyButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("copy"));
         copyButton.addMouseListener(new CopyButtonMouseListener());
 
-        Button cutButton = new Button(right, SWT.PUSH);
+        Button cutButton = new Button(c, SWT.PUSH);
         FormDataSet.attach(cutButton).atLeftTo(copyButton).atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
         ButtonSet.decorate(cutButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("cut"));
         cutButton.addMouseListener(new CutButtonMouseListener());
 
-        Button pasteButton = new Button(right, SWT.PUSH);
+        Button pasteButton = new Button(c, SWT.PUSH);
         FormDataSet.attach(pasteButton).atLeftTo(cutButton).atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
         ButtonSet.decorate(pasteButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("paste"));
         pasteButton.addMouseListener(new PasteButtonMouseListener());
 
-        wordCountLabel = new CLabel(right, SWT.NONE);
+        wordCountLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(wordCountLabel).atTopTo(pasteButton, 0, SWT.TOP).atRight().atBottomTo(pasteButton, 0, SWT.BOTTOM).withWidth(WORD_COUNT_LABEL_WIDTH);
         CLabelSet.decorate(wordCountLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setText(msgs.getString("word_count") + MT.STRING_SPACE + wordCount);
 
-        int reserved = 15;
-        writingText = new StyledText(right, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
+        int reserved = 10;
+        writingText = new StyledText(c, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(writingText).atLeftTo(copyButton, 0, SWT.LEFT).atTopTo(pasteButton).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d) - reserved);
         StyledTextSet.decorate(writingText).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5);
         writingText.addModifyListener(new WritingTextModifyListener());
         KeyBindingSet.bind(writingText).selectAll();
+
+        sc.setContent(c);
+        sc.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
 
     /*
@@ -266,6 +268,7 @@ public class IndependentWritingTaskView extends SashTestView2 {
 
         @Override
         public void mouseDown(MouseEvent e) {
+            writingText.copy();
         }
 
         @Override
@@ -281,6 +284,7 @@ public class IndependentWritingTaskView extends SashTestView2 {
 
         @Override
         public void mouseDown(MouseEvent e) {
+            writingText.cut();
         }
 
         @Override
@@ -296,6 +300,7 @@ public class IndependentWritingTaskView extends SashTestView2 {
 
         @Override
         public void mouseDown(MouseEvent e) {
+            writingText.paste();
         }
 
         @Override
