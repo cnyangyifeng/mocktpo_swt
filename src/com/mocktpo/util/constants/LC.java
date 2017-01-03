@@ -43,6 +43,7 @@ public interface LC {
 
     int BUTTON_WIDTH_HINT = 100;
     int BUTTON_HEIGHT_HINT = 40;
+    int BUTTON_HEIGHT_HINT_2 = 36;
     int CAPTION_WIDTH = 180;
     int CONTINUE_BUTTON_WIDTH = 74;
     int LISTENING_DND_QUESTION_HEIGHT = 50;

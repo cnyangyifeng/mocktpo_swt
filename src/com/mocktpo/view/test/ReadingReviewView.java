@@ -172,9 +172,12 @@ public class ReadingReviewView extends Composite {
 
     private void updateHeader() {
 
-        caption = new StyledText(header, SWT.SINGLE);
-        FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-        StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + page.getTestSchema().getView(page.getUserTest().getLastViewId()).getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + TestSchemaUtils.getTotalQuestionCountInSectionAndGroup(page.getTestSchema(), ST.SECTION_TYPE_READING, 0));
+        TestViewVo tvv = page.getTestSchema().getView(page.getUserTest().getLastViewId());
+        if (tvv.isQuestionCaptionVisible()) {
+            caption = new StyledText(header, SWT.SINGLE);
+            FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + tvv.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + TestSchemaUtils.getTotalQuestionCountInSectionAndGroup(page.getTestSchema(), ST.SECTION_TYPE_READING, 0));
+        }
 
         final ImageButton gb = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
         FormDataSet.attach(gb).atRight(10).atTop(10);
@@ -231,7 +234,7 @@ public class ReadingReviewView extends Composite {
         GridDataSet.attach(tableHeader).fillBoth();
 
         for (TestViewVo tvv : page.getTestSchema().getViews()) {
-            if (ST.SECTION_TYPE_READING == tvv.getSectionType() && tvv.isWithQuestion()) {
+            if (tvv.getSectionType() == ST.SECTION_TYPE_READING && (tvv.getViewType() == VT.VIEW_TYPE_READING_QUESTION || tvv.getViewType() == VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION || tvv.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || tvv.getViewType() == VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION)) {
                 String statusText = getStatusText(0);
                 final ReadingReviewTableRow row = new ReadingReviewTableRow(viewPort, SWT.NONE, Integer.toString(tvv.getQuestionNumberInSection()), getDescriptionText(tvv), statusText, tvv.getViewId());
                 GridDataSet.attach(row).fillBoth();
@@ -309,6 +312,8 @@ public class ReadingReviewView extends Composite {
 
         if (timed) {
 
+            TestViewVo tvv = page.getTestSchema().getView(page.getUserTest().getLastViewId());
+
             /*
              * ==================================================
              * 
@@ -321,7 +326,7 @@ public class ReadingReviewView extends Composite {
 
             timerLabel = new Label(header, SWT.NONE);
             FormDataSet.attach(timerLabel).atRight(10).atBottomTo(pauseTestButton, 0, SWT.BOTTOM);
-            LabelSet.decorate(timerLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE).setText(TimeUtils.displayTime(page.getUserTest().getRemainingViewTime(ST.SECTION_TYPE_READING, 0))).setVisible(!hidden);
+            LabelSet.decorate(timerLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE).setText(TimeUtils.displayTime(page.getUserTest().getRemainingViewTime(tvv))).setVisible(!hidden);
 
             if (hidden) {
                 timerButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SHOW_TIME, MT.IMAGE_SHOW_TIME_HOVER, MT.IMAGE_SHOW_TIME_DISABLED);
@@ -339,7 +344,7 @@ public class ReadingReviewView extends Composite {
              * ==================================================
              */
 
-            countDown = page.getUserTest().getRemainingViewTime(ST.SECTION_TYPE_READING, 0);
+            countDown = page.getUserTest().getRemainingViewTime(tvv);
             timer = new Timer();
             timerTask = new TestTimerTask();
             timer.scheduleAtFixedRate(timerTask, 0, 1000);
@@ -373,7 +378,8 @@ public class ReadingReviewView extends Composite {
             if (!d.isDisposed()) {
 
                 final UserTest ut = page.getUserTest();
-                ut.setRemainingViewTime(ST.SECTION_TYPE_READING, 0, countDown);
+                TestViewVo tvv = page.getTestSchema().getView(page.getUserTest().getLastViewId());
+                ut.setRemainingViewTime(tvv, countDown);
                 sqlSession.getMapper(UserTestMapper.class).update(ut);
                 sqlSession.commit();
 

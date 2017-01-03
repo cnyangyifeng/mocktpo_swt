@@ -19,28 +19,28 @@ public class TestSchemaUtils {
                 break;
             case ST.SECTION_TYPE_READING:
                 for (TestViewVo vo : testSchema.getViews()) {
-                    if (vo.getSectionType() == sectionType && vo.isWithQuestion()) {
+                    if (vo.getSectionType() == sectionType && (vo.getViewType() == VT.VIEW_TYPE_READING_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION)) {
                         count++;
                     }
                 }
                 break;
             case ST.SECTION_TYPE_LISTENING:
                 for (TestViewVo vo : testSchema.getViews()) {
-                    if (vo.getSectionType() == sectionType && vo.isWithQuestion() && vo.getGroupId() == groupId) {
+                    if (vo.getSectionType() == sectionType && vo.getGroupId() == groupId && (vo.getViewType() == VT.VIEW_TYPE_LISTENING_QUESTION || vo.getViewType() == VT.VIEW_TYPE_LISTENING_MULTIPLE_ANSWERS_QUESTION || vo.getViewType() == VT.VIEW_TYPE_LISTENING_ORDER_EVENTS_QUESTION || vo.getViewType() == VT.VIEW_TYPE_LISTENING_MATCH_OBJECTS_QUESTION)) {
                         count++;
                     }
                 }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
                 for (TestViewVo vo : testSchema.getViews()) {
-                    if (vo.getSectionType() == sectionType && vo.isWithQuestion() && vo.getViewType() == VT.VIEW_TYPE_SPEAKING_TASK) {
+                    if (vo.getSectionType() == sectionType && vo.getViewType() == VT.VIEW_TYPE_SPEAKING_TASK) {
                         count++;
                     }
                 }
                 break;
             case ST.SECTION_TYPE_WRITING:
                 for (TestViewVo vo : testSchema.getViews()) {
-                    if (vo.getSectionType() == sectionType && vo.isWithQuestion()) {
+                    if (vo.getSectionType() == sectionType && (vo.getViewType() == VT.VIEW_TYPE_INTEGRATED_WRITING_TASK || vo.getViewType() == VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK)) {
                         count++;
                     }
                 }
@@ -76,7 +76,7 @@ public class TestSchemaUtils {
                 nextViewId = viewId + 1;
                 break;
             case ST.SECTION_TYPE_WRITING:
-                // TODO handles next timed view id
+                nextViewId = viewId + 1;
                 break;
         }
 

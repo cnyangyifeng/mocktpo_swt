@@ -89,18 +89,6 @@ public class ListeningReplayView extends ResponsiveTestView {
         volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
-        /*
-         * ==================================================
-         *
-         * Caption
-         *
-         * ==================================================
-         */
-
-        final StyledText caption = new StyledText(header, SWT.SINGLE);
-        FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-        StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + TestSchemaUtils.getTotalQuestionCountInSectionAndGroup(page.getTestSchema(), vo.getSectionType(), vo.getGroupId()));
-
         // TODO Removes the continue button
 
         final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
@@ -207,19 +195,16 @@ public class ListeningReplayView extends ResponsiveTestView {
 
             Scale s = (Scale) e.widget;
 
-            if (null != audioPlayer) {
+            double selection = s.getSelection(), maximum = s.getMaximum();
+            double volume = selection / maximum;
 
-                double selection = s.getSelection(), maximum = s.getMaximum();
-                double volume = selection / maximum;
+            UserTest ut = page.getUserTest();
+            ut.setVolume(volume);
 
-                UserTest ut = page.getUserTest();
-                ut.setVolume(volume);
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
 
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                audioPlayer.setVolume(volume);
-            }
+            setAudioVolume(volume);
         }
     }
 
@@ -267,6 +252,12 @@ public class ListeningReplayView extends ResponsiveTestView {
                             audioBar.setSelection(100);
                         }
                     });
+                }
+
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
                 }
 
                 release();

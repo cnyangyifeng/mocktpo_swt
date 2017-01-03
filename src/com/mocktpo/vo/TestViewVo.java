@@ -23,18 +23,18 @@ public class TestViewVo implements Serializable {
     private String audio;
     private long audioDuration;
     private String illustrations;
-    private String responseAudio;
     private String preparationAudio;
+    private String responseAudio;
     private String beepAudio;
     private int speakingReadingTime;
     private int preparationTime;
     private int responseTime;
-    private boolean withQuestion;
-    private int questionNumberInSection;
-    private int totalAnswerCount;
     private boolean timed;
     private boolean timerTaskDelayed;
     private boolean timerButtonUnavailable;
+    private boolean questionCaptionVisible;
+    private int questionNumberInSection;
+    private int totalAnswerCount;
 
     public StyledTextVo getStyledText(String key) {
         for (String i : body.keySet()) {
@@ -149,20 +149,20 @@ public class TestViewVo implements Serializable {
         this.illustrations = illustrations;
     }
 
-    public String getResponseAudio() {
-        return responseAudio;
-    }
-
-    public void setResponseAudio(String responseAudio) {
-        this.responseAudio = responseAudio;
-    }
-
     public String getPreparationAudio() {
         return preparationAudio;
     }
 
     public void setPreparationAudio(String preparationAudio) {
         this.preparationAudio = preparationAudio;
+    }
+
+    public String getResponseAudio() {
+        return responseAudio;
+    }
+
+    public void setResponseAudio(String responseAudio) {
+        this.responseAudio = responseAudio;
     }
 
     public String getBeepAudio() {
@@ -197,30 +197,6 @@ public class TestViewVo implements Serializable {
         this.responseTime = responseTime;
     }
 
-    public boolean isWithQuestion() {
-        return withQuestion;
-    }
-
-    public void setWithQuestion(boolean withQuestion) {
-        this.withQuestion = withQuestion;
-    }
-
-    public int getQuestionNumberInSection() {
-        return questionNumberInSection;
-    }
-
-    public void setQuestionNumberInSection(int questionNumberInSection) {
-        this.questionNumberInSection = questionNumberInSection;
-    }
-
-    public int getTotalAnswerCount() {
-        return totalAnswerCount;
-    }
-
-    public void setTotalAnswerCount(int totalAnswerCount) {
-        this.totalAnswerCount = totalAnswerCount;
-    }
-
     public boolean isTimed() {
         return timed;
     }
@@ -243,5 +219,29 @@ public class TestViewVo implements Serializable {
 
     public void setTimerButtonUnavailable(boolean timerButtonUnavailable) {
         this.timerButtonUnavailable = timerButtonUnavailable;
+    }
+
+    public boolean isQuestionCaptionVisible() {
+        return questionCaptionVisible;
+    }
+
+    public void setQuestionCaptionVisible(boolean questionCaptionVisible) {
+        this.questionCaptionVisible = questionCaptionVisible;
+    }
+
+    public int getQuestionNumberInSection() {
+        return questionNumberInSection;
+    }
+
+    public void setQuestionNumberInSection(int questionNumberInSection) {
+        this.questionNumberInSection = questionNumberInSection;
+    }
+
+    public int getTotalAnswerCount() {
+        return totalAnswerCount;
+    }
+
+    public void setTotalAnswerCount(int totalAnswerCount) {
+        this.totalAnswerCount = totalAnswerCount;
     }
 }

@@ -142,7 +142,6 @@ public class ReadingPassageView extends SashTestView {
         }
     }
 
-
     private class BackOvalButtonMouseListener implements MouseListener {
 
         @Override

@@ -1,6 +1,8 @@
 package com.mocktpo.orm.domain;
 
 import com.mocktpo.util.constants.ST;
+import com.mocktpo.util.constants.VT;
+import com.mocktpo.vo.TestViewVo;
 
 public class UserTest {
 
@@ -14,6 +16,9 @@ public class UserTest {
     private int listeningTime2;
     private int speakingReadingTime1;
     private int speakingReadingTime2;
+    private int writingReadingTime;
+    private int integratedWritingTime;
+    private int independentWritingTime;
     private double volume;
     private boolean volumeControlHidden;
     private int completionRate;
@@ -99,6 +104,30 @@ public class UserTest {
         this.speakingReadingTime2 = speakingReadingTime2;
     }
 
+    public int getWritingReadingTime() {
+        return writingReadingTime;
+    }
+
+    public void setWritingReadingTime(int writingReadingTime) {
+        this.writingReadingTime = writingReadingTime;
+    }
+
+    public int getIntegratedWritingTime() {
+        return integratedWritingTime;
+    }
+
+    public void setIntegratedWritingTime(int integratedWritingTime) {
+        this.integratedWritingTime = integratedWritingTime;
+    }
+
+    public int getIndependentWritingTime() {
+        return independentWritingTime;
+    }
+
+    public void setIndependentWritingTime(int independentWritingTime) {
+        this.independentWritingTime = independentWritingTime;
+    }
+
     public double getVolume() {
         return volume;
     }
@@ -131,18 +160,16 @@ public class UserTest {
         this.lastViewId = lastViewId;
     }
 
-    public int getRemainingViewTime(int sectionType, int groupId) {
-
+    public int getRemainingViewTime(TestViewVo tvv) {
         int viewTime = 0;
-
-        switch (sectionType) {
+        switch (tvv.getSectionType()) {
             case ST.SECTION_TYPE_NONE:
                 break;
             case ST.SECTION_TYPE_READING:
                 viewTime = this.getReadingTime();
                 break;
             case ST.SECTION_TYPE_LISTENING:
-                switch (groupId) {
+                switch (tvv.getGroupId()) {
                     case 1:
                         viewTime = this.getListeningTime1();
                         break;
@@ -152,7 +179,7 @@ public class UserTest {
                 }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
-                switch (groupId) {
+                switch (tvv.getGroupId()) {
                     case 1:
                         viewTime = this.getSpeakingReadingTime1();
                         break;
@@ -162,21 +189,32 @@ public class UserTest {
                 }
                 break;
             case ST.SECTION_TYPE_WRITING:
+                switch (tvv.getViewType()) {
+                    case VT.VIEW_TYPE_WRITING_READING_PASSAGE:
+                        viewTime = this.getWritingReadingTime();
+                        break;
+                    case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK:
+                        viewTime = this.getIntegratedWritingTime();
+                        break;
+                    case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK:
+                        viewTime = this.getIndependentWritingTime();
+                        break;
+                }
                 break;
         }
 
         return viewTime;
     }
 
-    public void setRemainingViewTime(int sectionType, int groupId, int viewTime) {
-        switch (sectionType) {
+    public void setRemainingViewTime(TestViewVo tvv, int viewTime) {
+        switch (tvv.getSectionType()) {
             case ST.SECTION_TYPE_NONE:
                 break;
             case ST.SECTION_TYPE_READING:
                 this.setReadingTime(viewTime);
                 break;
             case ST.SECTION_TYPE_LISTENING:
-                switch (groupId) {
+                switch (tvv.getGroupId()) {
                     case 1:
                         this.setListeningTime1(viewTime);
                         break;
@@ -186,7 +224,7 @@ public class UserTest {
                 }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
-                switch (groupId) {
+                switch (tvv.getGroupId()) {
                     case 1:
                         this.setSpeakingReadingTime1(viewTime);
                         break;
@@ -196,12 +234,23 @@ public class UserTest {
                 }
                 break;
             case ST.SECTION_TYPE_WRITING:
+                switch (tvv.getViewType()) {
+                    case VT.VIEW_TYPE_WRITING_READING_PASSAGE:
+                        this.setWritingReadingTime(viewTime);
+                        break;
+                    case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK:
+                        this.setIntegratedWritingTime(viewTime);
+                        break;
+                    case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK:
+                        this.setIndependentWritingTime(viewTime);
+                        break;
+                }
                 break;
         }
     }
 
     @Override
     public String toString() {
-        return "{\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nspeakingReadingTime1:" + this.getSpeakingReadingTime1() + ",\nspeakingReadingTime2:" + this.getSpeakingReadingTime2() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\ncompletionRate:" + this.getCompletionRate() + ",\nlastViewId:" + this.getLastViewId() + "\n}";
+        return "{\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nspeakingReadingTime1:" + this.getSpeakingReadingTime1() + ",\nspeakingReadingTime2:" + this.getSpeakingReadingTime2() + ",\nwritingReadingTime:" + this.getWritingReadingTime() + ",\nintegratedWritingTime:" + this.getIntegratedWritingTime() + ",\nindependentWritingTime:" + this.getIndependentWritingTime() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\ncompletionRate:" + this.getCompletionRate() + ",\nlastViewId:" + this.getLastViewId() + "\n}";
     }
 }

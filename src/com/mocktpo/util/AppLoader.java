@@ -94,10 +94,13 @@ public class AppLoader extends Thread {
                     ut.setAlias(msgs.getString("tpo") + i);
                     ut.setTimerHidden(false);
                     ut.setReadingTime(MT.TIME_READING_SECTION);
-                    ut.setListeningTime1(MT.TIME_LISTENING_GROUP);
-                    ut.setListeningTime2(MT.TIME_LISTENING_GROUP);
-                    ut.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_GROUP);
-                    ut.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_GROUP);
+                    ut.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
+                    ut.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
+                    ut.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
+                    ut.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
+                    ut.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
+                    ut.setIntegratedWritingTime(MT.TIME_INTEGRATED_WRITING_TASK);
+                    ut.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
                     ut.setVolume(1.0);
                     ut.setVolumeControlHidden(true);
                     ut.setCompletionRate(0);

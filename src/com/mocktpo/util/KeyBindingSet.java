@@ -19,13 +19,7 @@ public class KeyBindingSet {
     }
 
     public KeyBindingSet selectAll() {
-
-        if (PlatformUtils.isMac()) {
-            c.setKeyBinding(SWT.COMMAND | 'a', ST.SELECT_ALL);
-        } else {
-            c.setKeyBinding(SWT.CTRL | 'a', ST.SELECT_ALL);
-        }
-
+        c.setKeyBinding(SWT.MOD1 | 'a', ST.SELECT_ALL);
         return this;
     }
 

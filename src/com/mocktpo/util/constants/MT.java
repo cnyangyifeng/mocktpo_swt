@@ -223,8 +223,11 @@ public interface MT {
      */
 
     int TIME_READING_SECTION = 3600;
-    int TIME_LISTENING_GROUP = 600;
-    int TIME_SPEAKING_READING_GROUP = 60;
+    int TIME_LISTENING_PER_SUB_SECTION = 600;
+    int TIME_SPEAKING_READING_PER_TASK = 60;
+    int TIME_WRITING_READING_PER_TASK = 180;
+    int TIME_INTEGRATED_WRITING_TASK = 1200;
+    int TIME_INDEPENDENT_WRITING_TASK = 1800;
 
     /*
      * ==================================================

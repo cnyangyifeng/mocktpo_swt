@@ -42,10 +42,11 @@ public class UserTestMapperTest {
             ut.setAlias("TPO" + i);
             ut.setTimerHidden(false);
             ut.setReadingTime(MT.TIME_READING_SECTION);
-            ut.setListeningTime1(MT.TIME_LISTENING_GROUP);
-            ut.setListeningTime2(MT.TIME_LISTENING_GROUP);
-            ut.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_GROUP);
-            ut.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_GROUP);
+            ut.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
+            ut.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
+            ut.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
+            ut.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
+            ut.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
             ut.setVolume(1.0);
             ut.setVolumeControlHidden(true);
             ut.setCompletionRate(0);
@@ -64,12 +65,27 @@ public class UserTestMapperTest {
 
     @Test
     public void testUpdate() {
+
+        int i = 24;
+
         UserTest ut = new UserTest();
-        ut.setTid(1);
-        ut.setTitle("Title X");
-        ut.setAlias("Alias X");
-        ut.setEmail("Email X");
-        ut.setLastViewId(1);
+        ut.setEmail("165239796@qq.com");
+        ut.setTid(i);
+        ut.setTitle("TPO" + MT.STRING_SPACE + i);
+        ut.setAlias("TPO" + i);
+        ut.setTimerHidden(false);
+        ut.setReadingTime(MT.TIME_READING_SECTION);
+        ut.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
+        ut.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
+        ut.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
+        ut.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
+        ut.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
+        ut.setIntegratedWritingTime(MT.TIME_INTEGRATED_WRITING_TASK);
+        ut.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
+        ut.setVolume(1.0);
+        ut.setVolumeControlHidden(true);
+        ut.setCompletionRate(0);
+        ut.setLastViewId(122);
         mapper.update(ut);
     }
 

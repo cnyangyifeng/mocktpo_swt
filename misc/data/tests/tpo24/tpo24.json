@@ -88,9 +88,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 367,
-      "withQuestion": true,
-      "questionNumberInSection": 1,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 1,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -128,9 +128,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 724,
-      "withQuestion": true,
-      "questionNumberInSection": 2,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 2,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -168,9 +168,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 367,
-      "withQuestion": true,
-      "questionNumberInSection": 3,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 3,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -205,9 +205,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1230,
-      "withQuestion": true,
-      "questionNumberInSection": 4,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 4,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -245,9 +245,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1975,
-      "withQuestion": true,
-      "questionNumberInSection": 5,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 5,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -285,9 +285,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1410,
-      "withQuestion": true,
-      "questionNumberInSection": 6,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 6,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -322,9 +322,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2123,
-      "withQuestion": true,
-      "questionNumberInSection": 7,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 7,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -359,9 +359,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2803,
-      "withQuestion": true,
-      "questionNumberInSection": 8,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 8,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -396,9 +396,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2803,
-      "withQuestion": true,
-      "questionNumberInSection": 9,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 9,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -433,9 +433,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 4113,
-      "withQuestion": true,
-      "questionNumberInSection": 10,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 10,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -473,9 +473,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3332,
-      "withQuestion": true,
-      "questionNumberInSection": 11,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 11,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -510,9 +510,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3332,
-      "withQuestion": true,
-      "questionNumberInSection": 12,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 12,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -547,9 +547,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1597,
-      "withQuestion": true,
-      "questionNumberInSection": 13,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 13,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -598,9 +598,9 @@
       "viewTypeName": "Reading Prose Summary Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
-      "withQuestion": true,
-      "questionNumberInSection": 14,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 14,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -667,9 +667,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 0,
-      "withQuestion": true,
-      "questionNumberInSection": 15,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 15,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -704,9 +704,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 657,
-      "withQuestion": true,
-      "questionNumberInSection": 16,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 16,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -741,9 +741,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1567,
-      "withQuestion": true,
-      "questionNumberInSection": 17,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 17,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -781,9 +781,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1277,
-      "withQuestion": true,
-      "questionNumberInSection": 18,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 18,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -818,9 +818,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2719,
-      "withQuestion": true,
-      "questionNumberInSection": 19,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 19,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -858,9 +858,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2200,
-      "withQuestion": true,
-      "questionNumberInSection": 20,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 20,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -895,9 +895,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3156,
-      "withQuestion": true,
-      "questionNumberInSection": 21,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 21,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -932,9 +932,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3156,
-      "withQuestion": true,
-      "questionNumberInSection": 22,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 22,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -969,9 +969,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3575,
-      "withQuestion": true,
-      "questionNumberInSection": 23,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 23,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1009,9 +1009,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3906,
-      "withQuestion": true,
-      "questionNumberInSection": 24,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 24,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1049,9 +1049,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 4073,
-      "withQuestion": true,
-      "questionNumberInSection": 25,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 25,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1086,9 +1086,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 430,
-      "withQuestion": true,
-      "questionNumberInSection": 26,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 26,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1137,9 +1137,9 @@
       "viewTypeName": "Reading Category Chart Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
-      "withQuestion": true,
-      "questionNumberInSection": 27,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 27,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1209,9 +1209,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 410,
-      "withQuestion": true,
-      "questionNumberInSection": 28,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 28,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1249,9 +1249,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 964,
-      "withQuestion": true,
-      "questionNumberInSection": 29,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 29,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1289,9 +1289,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 0,
-      "withQuestion": true,
-      "questionNumberInSection": 30,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 30,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1326,9 +1326,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 0,
-      "withQuestion": true,
-      "questionNumberInSection": 31,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 31,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1363,9 +1363,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1419,
-      "withQuestion": true,
-      "questionNumberInSection": 32,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 32,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1400,9 +1400,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 1878,
-      "withQuestion": true,
-      "questionNumberInSection": 33,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 33,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1437,9 +1437,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2601,
-      "withQuestion": true,
-      "questionNumberInSection": 34,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 34,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1477,9 +1477,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2744,
-      "withQuestion": true,
-      "questionNumberInSection": 35,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 35,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1517,9 +1517,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 2255,
-      "withQuestion": true,
-      "questionNumberInSection": 36,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 36,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1554,9 +1554,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3172,
-      "withQuestion": true,
-      "questionNumberInSection": 37,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 37,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1591,9 +1591,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3172,
-      "withQuestion": true,
-      "questionNumberInSection": 38,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 38,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1628,9 +1628,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 3172,
-      "withQuestion": true,
-      "questionNumberInSection": 39,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 39,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1665,9 +1665,9 @@
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "passageOffset": 632,
-      "withQuestion": true,
-      "questionNumberInSection": 40,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 40,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1716,9 +1716,9 @@
       "viewTypeName": "Reading Prose Summary Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
-      "withQuestion": true,
-      "questionNumberInSection": 41,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 41,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1867,10 +1867,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/C1Q1",
-      "withQuestion": true,
-      "questionNumberInSection": 1,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 1,
       "body": {
         "question": {
           "text": "Why can the man NOT find the book he needs?"
@@ -1898,11 +1898,11 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/C1Q2",
-      "withQuestion": true,
-      "questionNumberInSection": 2,
-      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 2,
+      "totalAnswerCount": 2,
       "body": {
         "question": {
           "text": "What are two possible reasons that the speakers consider for why the man cannot find the book?"
@@ -1933,10 +1933,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/C1Q3",
-      "withQuestion": true,
-      "questionNumberInSection": 3,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 3,
       "body": {
         "question": {
           "text": "What does the woman offer to do for the student?"
@@ -1964,10 +1964,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/C1Q4",
-      "withQuestion": true,
-      "questionNumberInSection": 4,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 4,
       "body": {
         "question": {
           "text": "How does the man react to the information the woman gives him about where computer science books are sold?"
@@ -1997,6 +1997,7 @@
       "audio": "listening/RC1Q5",
       "audioDuration": 13,
       "illustrations": "listening/RC:0",
+      "questionCaptionVisible": true,
       "questionNumberInSection": 5
     },
     {
@@ -2008,10 +2009,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/C1Q5",
-      "withQuestion": true,
-      "questionNumberInSection": 5,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 5,
       "body": {
         "question": {
           "text": "What does the woman offer to do for the student: \u2423",
@@ -2054,10 +2055,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L1Q1",
-      "withQuestion": true,
-      "questionNumberInSection": 6,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 6,
       "body": {
         "question": {
           "text": "What does the professor mainly discuss?"
@@ -2085,11 +2086,11 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L1Q2",
-      "withQuestion": true,
-      "questionNumberInSection": 7,
-      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 7,
+      "totalAnswerCount": 2,
       "body": {
         "question": {
           "text": "According to the professor, what are two functions of the sounds made by male alligators?"
@@ -2120,10 +2121,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L1Q3",
-      "withQuestion": true,
-      "questionNumberInSection": 8,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 8,
       "body": {
         "question": {
           "text": "Based on the discussion, what is one reason hatchlings make vocalizations to their mother while they are in the nest?"
@@ -2151,10 +2152,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L1Q4",
-      "withQuestion": true,
-      "questionNumberInSection": 9,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 9,
       "body": {
         "question": {
           "text": "What is the professor's opinion about the television program that she mentions?"
@@ -2182,10 +2183,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L1Q5",
-      "withQuestion": true,
-      "questionNumberInSection": 10,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 10,
       "body": {
         "question": {
           "text": "Why does the professor mention dogs?"
@@ -2213,10 +2214,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L1Q6",
-      "withQuestion": true,
-      "questionNumberInSection": 11,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 11,
       "body": {
         "question": {
           "text": "What happens when a hatchling makes a distress call?"
@@ -2256,11 +2257,11 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L2Q1",
-      "withQuestion": true,
-      "questionNumberInSection": 12,
-      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 12,
+      "totalAnswerCount": 2,
       "body": {
         "question": {
           "text": "What is the lecture mainly about?"
@@ -2291,10 +2292,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L2Q2",
-      "withQuestion": true,
-      "questionNumberInSection": 13,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 13,
       "body": {
         "question": {
           "text": "Why does the professor mention modern art and modern music?"
@@ -2322,11 +2323,11 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L2Q3",
-      "withQuestion": true,
-      "questionNumberInSection": 14,
-      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 14,
+      "totalAnswerCount": 2,
       "body": {
         "question": {
           "text": "What were two characteristics of Isadora Duncan's dance performances?"
@@ -2357,10 +2358,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L2Q4",
-      "withQuestion": true,
-      "questionNumberInSection": 15,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 15,
       "body": {
         "question": {
           "text": "Why does the professor mention that Duncan watched Anna Pavlova practice?"
@@ -2388,10 +2389,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L2Q5",
-      "withQuestion": true,
-      "questionNumberInSection": 16,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 16,
       "body": {
         "question": {
           "text": "What does the professor imply about the rivalry between classical ballet and modern dance?"
@@ -2421,6 +2422,7 @@
       "audio": "listening/RL2Q6",
       "audioDuration": 24,
       "illustrations": "listening/RL:0",
+      "questionCaptionVisible": true,
       "questionNumberInSection": 17
     },
     {
@@ -2432,10 +2434,10 @@
       "groupId": 1,
       "withAudio": true,
       "audio": "listening/L2Q6",
-      "withQuestion": true,
-      "questionNumberInSection": 17,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 17,
       "body": {
         "question": {
           "text": "Why does the professor say this: \u2423",
@@ -2517,10 +2519,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/C2Q1",
-      "withQuestion": true,
-      "questionNumberInSection": 1,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 1,
       "body": {
         "question": {
           "text": "Why does the student go to speak with the professor?"
@@ -2548,11 +2550,11 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/C2Q2",
-      "withQuestion": true,
-      "questionNumberInSection": 2,
-      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 2,
+      "totalAnswerCount": 2,
       "body": {
         "question": {
           "text": "What does the professor tell the student about the tutoring center?"
@@ -2583,10 +2585,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/C2Q3",
-      "withQuestion": true,
-      "questionNumberInSection": 3,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 3,
       "body": {
         "question": {
           "text": "What aspect of the hydrologic cycle is the student confused about?"
@@ -2614,10 +2616,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/C2Q4",
-      "withQuestion": true,
-      "questionNumberInSection": 4,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 4,
       "body": {
         "directions": {
           "text": "In the conversation, the professor describes the process that causes lake-effect snowstorms. Indicate whether each of the following is a step in the process."
@@ -2653,6 +2655,7 @@
       "audio": "listening/RC2Q5",
       "audioDuration": 19,
       "illustrations": "listening/RC:0",
+      "questionCaptionVisible": true,
       "questionNumberInSection": 5
     },
     {
@@ -2664,10 +2667,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/C2Q5",
-      "withQuestion": true,
-      "questionNumberInSection": 5,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 5,
       "body": {
         "question": {
           "text": "Why does the professor say this: \u2423",
@@ -2710,10 +2713,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L3Q1",
-      "withQuestion": true,
-      "questionNumberInSection": 6,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 6,
       "body": {
         "question": {
           "text": "What is the lecture mainly about?"
@@ -2741,10 +2744,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L3Q2",
-      "withQuestion": true,
-      "questionNumberInSection": 7,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 7,
       "body": {
         "question": {
           "text": "Why does the professor mention an archaeological site in Southern California?"
@@ -2772,10 +2775,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L3Q3",
-      "withQuestion": true,
-      "questionNumberInSection": 8,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 8,
       "body": {
         "question": {
           "text": "What is the professor's opinion about the Clovis people?"
@@ -2803,11 +2806,11 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L3Q4",
-      "withQuestion": true,
-      "questionNumberInSection": 9,
-      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 9,
+      "totalAnswerCount": 2,
       "body": {
         "question": {
           "text": "According to the climate change theory, how did the climate change at the end of the ice age make it more difficult for large animals to survive?"
@@ -2838,10 +2841,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L3Q5",
-      "withQuestion": true,
-      "questionNumberInSection": 10,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 10,
       "body": {
         "question": {
           "text": "What does the professor imply is one problem with the climate change theory?"
@@ -2869,11 +2872,11 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L3Q6",
-      "withQuestion": true,
-      "questionNumberInSection": 11,
-      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 11,
+      "totalAnswerCount": 2,
       "body": {
         "question": {
           "text": "The professor mentions a series of computer simulations. What did the simulations suggest?"
@@ -2916,10 +2919,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L4Q1",
-      "withQuestion": true,
-      "questionNumberInSection": 12,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 12,
       "body": {
         "question": {
           "text": "What is the lecture mainly about?"
@@ -2947,11 +2950,11 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L4Q2",
-      "withQuestion": true,
-      "questionNumberInSection": 13,
-      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 13,
+      "totalAnswerCount": 2,
       "body": {
         "question": {
           "text": "How were scientists able to learn new information about Venus' surface?"
@@ -2982,11 +2985,11 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L4Q3",
-      "withQuestion": true,
-      "questionNumberInSection": 14,
-      "totalAnswerCount": 2,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 14,
+      "totalAnswerCount": 2,
       "body": {
         "question": {
           "text": "What differences between volcanoes on Venus and those on Earth does the professor mention?"
@@ -3017,10 +3020,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L4Q4",
-      "withQuestion": true,
-      "questionNumberInSection": 15,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 15,
       "body": {
         "question": {
           "text": "Why does the professor mention the fact that Venus has no surface water?"
@@ -3048,10 +3051,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L4Q5",
-      "withQuestion": true,
-      "questionNumberInSection": 16,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 16,
       "body": {
         "question": {
           "text": "According to the professor, what is a possible origin of Venus' clouds?"
@@ -3079,10 +3082,10 @@
       "groupId": 2,
       "withAudio": true,
       "audio": "listening/L4Q6",
-      "withQuestion": true,
-      "questionNumberInSection": 17,
       "timed": true,
       "timerTaskDelayed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 17,
       "body": {
         "question": {
           "text": "What is the professor’s opinion about the theory that Venus' volcanoes are active?"
@@ -3242,7 +3245,7 @@
       "beepAudio": "speaking/B",
       "preparationTime": 15,
       "responseTime": 45,
-      "withQuestion": true,
+      "questionCaptionVisible": true,
       "questionNumberInSection": 1,
       "body": {
         "question": {
@@ -3277,7 +3280,7 @@
       "beepAudio": "speaking/B",
       "preparationTime": 15,
       "responseTime": 45,
-      "withQuestion": true,
+      "questionCaptionVisible": true,
       "questionNumberInSection": 2,
       "body": {
         "question": {
@@ -3310,10 +3313,10 @@
       "sectionTypeName": "Speaking",
       "groupId": 1,
       "speakingReadingTime": 50,
-      "withQuestion": true,
-      "questionNumberInSection": 3,
       "timed": true,
       "timerButtonUnavailable": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 3,
       "body": {
         "heading": {
           "text": "Close the Campus Coffeehouse"
@@ -3334,7 +3337,7 @@
       "audio": "speaking/T3L",
       "audioDuration": 71,
       "illustrations": "speaking/T3:0",
-      "withQuestion": true,
+      "questionCaptionVisible": true,
       "questionNumberInSection": 3
     },
     {
@@ -3350,7 +3353,7 @@
       "beepAudio": "speaking/B",
       "preparationTime": 30,
       "responseTime": 60,
-      "withQuestion": true,
+      "questionCaptionVisible": true,
       "questionNumberInSection": 3,
       "body": {
         "question": {
@@ -3380,10 +3383,10 @@
       "sectionTypeName": "Speaking",
       "groupId": 1,
       "speakingReadingTime": 45,
-      "withQuestion": true,
-      "questionNumberInSection": 4,
       "timed": true,
       "timerButtonUnavailable": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 4,
       "body": {
         "heading": {
           "text": "Flagship Species"
@@ -3391,7 +3394,7 @@
         "passage": {
           "text": "Environmental organizations work to protect plants and animals whose natural habitats are threatened by human activity. One way they do this is by selecting a particular species to represent the threatened habitat to the general public. This species, called a flagship species, is one that people are likely to find attractive and interesting. The flagship species is used to raise public awareness and motivate people to take action to protect the threatened habitat. People’s support of the flagship species results in protection for all the plant and animal species living in the threatened area.",
           "styles": [
-            { "start": 3392, "length": 16, "fontStyle": 1 },
+            { "start": 260, "length": 16, "fontStyle": 1 }
           ]
         }
       }
@@ -3407,7 +3410,7 @@
       "audio": "speaking/T4L",
       "audioDuration": 127,
       "illustrations": "speaking/T4:0",
-      "withQuestion": true,
+      "questionCaptionVisible": true,
       "questionNumberInSection": 4
     },
     {
@@ -3423,7 +3426,7 @@
       "beepAudio": "speaking/B",
       "preparationTime": 30,
       "responseTime": 60,
-      "withQuestion": true,
+      "questionCaptionVisible": true,
       "questionNumberInSection": 4,
       "body": {
         "question": {
@@ -3456,7 +3459,7 @@
       "audio": "speaking/T5L",
       "audioDuration": 87,
       "illustrations": "speaking/T5:0",
-      "withQuestion": true,
+      "questionCaptionVisible": true,
       "questionNumberInSection": 5
     },
     {
@@ -3472,7 +3475,7 @@
       "beepAudio": "speaking/B",
       "preparationTime": 20,
       "responseTime": 60,
-      "withQuestion": true,
+      "questionCaptionVisible": true,
       "questionNumberInSection": 5,
       "body": {
         "question": {
@@ -3505,7 +3508,7 @@
       "audio": "speaking/T6L",
       "audioDuration": 137,
       "illustrations": "speaking/T6:0",
-      "withQuestion": true,
+      "questionCaptionVisible": true,
       "questionNumberInSection": 6
     },
     {
@@ -3521,7 +3524,7 @@
       "beepAudio": "speaking/B",
       "preparationTime": 20,
       "responseTime": 60,
-      "withQuestion": true,
+      "questionCaptionVisible": true,
       "questionNumberInSection": 6,
       "body": {
         "question": {
@@ -3531,61 +3534,84 @@
     },
     {
       "viewId": 120,
-      "viewType": 41,
-      "viewTypeName": "Writing Headset On",
-      "sectionType": 4,
-      "sectionTypeName": "Writing",
+      "viewType": 38,
+      "viewTypeName": "Speaking Section End",
+      "sectionType": 3,
+      "sectionTypeName": "Speaking",
       "body": {
-        "top": {
-          "text": "Now put on your headset."
-        },
-        "bottom": {
-          "text": "Click on Continue to go on.",
-          "styles": [
-            { "start": 9, "length": 8, "fontStyle": 1 }
-          ]
+        "description": {
+          "text": "This is the end of the Speaking section. The writing section will begin automatically in 60 seconds.\u000a\u000aIf you do not wish to wait, click on Continue."
         }
       }
     },
     {
       "viewId": 121,
-      "viewType": 42,
-      "viewTypeName": "Integrated Writing Directions",
+      "viewType": 41,
+      "viewTypeName": "Writing Section Directions",
       "sectionType": 4,
       "sectionTypeName": "Writing",
       "body": {
         "heading": {
-          "text": "Writing Directions"
+          "text": "Writing Section Directions"
         },
         "description": {
-          "text": "For this task, you will read a passage about an academic topic. A clock at the top of the screen will show how much time you have to read. You may take notes on the passage while you read. The passage will then be removed and you will listen to a lecture about the same topic. While you listen, you may also take notes. You will be able to see the reading passage again when it is time for you to write. You may use your notes to help you answer the question.\u000a\u000aIn an actual test, you will then have 20 minutes to write a response to a question that asks you about the relationship between the lecture you heard and the reading passage. Try to answer the question as completely as possible using information from the reading passage and lecture. The question does not ask you to express your personal opinion. Typically, an effective response will be 150 to 225 words.\u000a\u000aYour response will be judged on the quality of your writing and on the completeness and accuracy of the content.\u000a\u000aNow you will see the reading passage for minutes. Remember that it will be available to you again when you write. Immediately after the reading time ends, the lecture will begin, so keep your headset on until the lecture is over.\u000a\u000aClick on Continue to go on.",
+          "text": "\u2423\u0020\u0020Make sure your headset is on.\u000a\u000aThis section measures your ability to use writing to communicate in an academic environment. There will be 2 writing tasks.\u000a\u000aFor the first writing task, you will read a passage, listen to a lecture, and then answer a question based on what you have read and heard. For the second writing task, you will answer a question based on your own knowledge and experience.\u000a\u000aDuring this practice test, you may click the Pause icon at any time. This will stop the test until you decide to continue. You may continue the test in a few minutes or at any time during the period that your test is activated.\u000a\u000aNow listen to the directions for the first writing task.\u000a\u000aClick on Continue at any time to dismiss these directions.",
           "styles": [
-            { "start": 51, "length": 10, "fontStyle": 1 },
-            { "start": 89, "length": 10, "fontStyle": 1 }
+            { "start": 0, "length": 1, "image": "headset_alt" },
+            { "start": 3, "length": 29, "fontStyle": 1 },
+            { "start": 445, "length": 5, "fontStyle": 1 },
+            { "start": 696, "length": 8, "fontStyle": 1 }
           ]
         }
       }
     },
     {
       "viewId": 122,
-      "viewType": 12,
-      "viewTypeName": "Writing Reading Passage",
+      "viewType": 42,
+      "viewTypeName": "Integrated Writing Directions",
       "sectionType": 4,
       "sectionTypeName": "Writing",
-      "timed": true,
       "body": {
         "heading": {
-          "text": ""
+          "text": "Writing Based on Reading and Listening Directions"
         },
-        "passage": {
-          "text": "\u0009In the United States, employees typically work five days a week for eight hours each day. However, many employees want to work a four-day week and are willing to accept less pay in order to do so. A mandatory policy requiring companies to offer their employees the option of working a four-day workweek for four-fifths (80 percent) of their normal pay would benefit the economy as a whole as well as the individual companies and the employees who decided to take the option. The shortened workweek would increase company profits because employees would feel more rested and alert, and as a result, they would make fewer costly errors in their work. Hiring more staff to ensure that the same amount of work would be accomplished would not result in additional payroll costs because four-day employees would only be paid 80 percent of the normal rate. In the end, companies would have fewer overworked and error-prone employees for the same money, which would increase company profits. For the country as a whole, one of the primary benefits of offering this option to employees is that it would reduce unemployment rates. If many full-time employees started working fewer hours, some of their workload would have to be shifted to others. Thus, for every four employees who went on an 80 percent week, a new employee could be hired at the 80 percent rate. Finally, the option of a four-day workweek would be better for individual employees. Employees who could afford a lower salary in exchange for more free time could improve the quality of their lives by spending the extra time with their families, pursuing private interests, or enjoying leisure activities.",
+        "description": {
+          "text": "For this task, you will read a passage about an academic topic. A clock at the top of the screen will show how much time you have to read. You may take notes on the passage while you read. The passage will then be removed and you will listen to a lecture about the same topic. While you listen, you may also take notes. You will be able to see the reading passage again when it is time for you to write. You may use your notes to help you answer the question. In Untimed Mode, you may listen to the lecture again by using the Replay button.\u000a\u000aIn an actual test, you will then have 20 minutes to write a response to a question that asks you about the relationship between the lecture you heard and the reading passage. Try to answer the question as completely as possible using information from the reading passage and the lecture. The question does not ask you to express your personal opinion. Typically, an effective response will be 150 to 225 words.\u000a\u000aYour response will be judged on the quality of your writing and on the completeness and accuracy of the content.\u000a\u000aNow you will see the reading passage for 3 minutes. Remember that it will be available to you again when you write. Immediately after the reading time ends, the lecture will begin, so keep your headset on until the lecture is over.\u000a\u000aClick on Continue at any time to dismiss these directions.",
           "styles": [
+            { "start": 324, "length": 4, "fontStyle": 1 },
+            { "start": 463, "length": 12, "fontStyle": 1 },
+            { "start": 526, "length": 6, "fontStyle": 1 },
+            { "start": 580, "length": 10, "fontStyle": 1 },
+            { "start": 848, "length": 3, "fontStyle": 1 },
+            { "start": 1310, "length": 8, "fontStyle": 1 }
           ]
         }
       }
     },
     {
       "viewId": 123,
+      "viewType": 43,
+      "viewTypeName": "Writing Reading Passage",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "timed": true,
+      "timerButtonUnavailable": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 1,
+      "body": {
+        "passage": {
+          "text": "\u0009Animal fossils usually provide very little opportunity to study the actual animal tissues, because in fossils the animals' living tissues have been largely replaced by minerals. Thus, scientists were very excited recently when it appeared that a 70-million-year-old fossil of Tyrannosaurus rex (T. rex), a dinosaur, might still contain remains of the actual tissues of the animal. The discovery was made when researchers deliberately broke open the T. rex’s leg bone, thereby exposing its insides to reveal materials that seem to be remains of blood vessels, red blood cells, and collagen matrix.\u000a\u0009First, the breaking of the fossilized leg bone revealed many small branching channels inside, which probably correspond to hollows in the bones where blood vessels were once located. The exciting finding was the presence of a soft, flexible organic substance inside the channels. This soft substance may very well represent the remains of the actual blood vessels of T. rex.\u000a\u0009Second, microscopic examination of the various parts of the inner bone revealed the presence of spheres that could be the remains of red blood cells. Tests showed that the spheres contained iron-a material vital to the role of red blood cells in transporting oxygen to tissues. Moreover, the spheres had dark red centers (substances with iron tend to be reddish in color) and were also about the size of red blood cells.\u000a\u0009Third, scientists performed a test on the dinosaur leg bone that showed that it contained collagen. Collagen is a fibrous protein that is a main component of living bone tissue, in which it forms a so-called collagen matrix. Collagen (or its chemical derivatives) is exactly the kind of biochemical material that one would expect to find in association with bone tissue.",
+          "styles": [
+            { "start": 277, "length": 17, "fontStyle": 2 },
+            { "start": 296, "length": 6, "fontStyle": 2 },
+            { "start": 450, "length": 6, "fontStyle": 2 },
+            { "start": 966, "length": 6, "fontStyle": 2 }
+          ]
+        }
+      }
+    },
+    {
+      "viewId": 124,
       "viewType": 44,
       "viewTypeName": "Writing Listening Material",
       "sectionType": 4,
@@ -3594,47 +3620,45 @@
       "withAudio": true,
       "audio": "writing/T1L",
       "audioDuration": 135,
-      "illustrations": "speaking/T1:0",
-      "withQuestion": true,
+      "illustrations": "writing/T1:0",
+      "questionCaptionVisible": true,
       "questionNumberInSection": 1
     },
     {
-      "viewId": 124,
+      "viewId": 125,
       "viewType": 45,
       "viewTypeName": "Integrated Writing Task",
       "sectionType": 4,
       "sectionTypeName": "Writing",
-      "withQuestion": true,
-      "questionNumberInSection": 1,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 1,
       "body": {
-        "heading": {
-          "text": ""
-        },
         "passage": {
-          "text": "\u0009In the United States, employees typically work five days a week for eight hours each day. However, many employees want to work a four-day week and are willing to accept less pay in order to do so. A mandatory policy requiring companies to offer their employees the option of working a four-day workweek for four-fifths (80 percent) of their normal pay would benefit the economy as a whole as well as the individual companies and the employees who decided to take the option. The shortened workweek would increase company profits because employees would feel more rested and alert, and as a result, they would make fewer costly errors in their work. Hiring more staff to ensure that the same amount of work would be accomplished would not result in additional payroll costs because four-day employees would only be paid 80 percent of the normal rate. In the end, companies would have fewer overworked and error-prone employees for the same money, which would increase company profits. For the country as a whole, one of the primary benefits of offering this option to employees is that it would reduce unemployment rates. If many full-time employees started working fewer hours, some of their workload would have to be shifted to others. Thus, for every four employees who went on an 80 percent week, a new employee could be hired at the 80 percent rate. Finally, the option of a four-day workweek would be better for individual employees. Employees who could afford a lower salary in exchange for more free time could improve the quality of their lives by spending the extra time with their families, pursuing private interests, or enjoying leisure activities.",
+          "text": "\u0009Animal fossils usually provide very little opportunity to study the actual animal tissues, because in fossils the animals' living tissues have been largely replaced by minerals. Thus, scientists were very excited recently when it appeared that a 70-million-year-old fossil of Tyrannosaurus rex (T. rex), a dinosaur, might still contain remains of the actual tissues of the animal. The discovery was made when researchers deliberately broke open the T. rex’s leg bone, thereby exposing its insides to reveal materials that seem to be remains of blood vessels, red blood cells, and collagen matrix.\u000a\u0009First, the breaking of the fossilized leg bone revealed many small branching channels inside, which probably correspond to hollows in the bones where blood vessels were once located. The exciting finding was the presence of a soft, flexible organic substance inside the channels. This soft substance may very well represent the remains of the actual blood vessels of T. rex.\u000a\u0009Second, microscopic examination of the various parts of the inner bone revealed the presence of spheres that could be the remains of red blood cells. Tests showed that the spheres contained iron-a material vital to the role of red blood cells in transporting oxygen to tissues. Moreover, the spheres had dark red centers (substances with iron tend to be reddish in color) and were also about the size of red blood cells.\u000a\u0009Third, scientists performed a test on the dinosaur leg bone that showed that it contained collagen. Collagen is a fibrous protein that is a main component of living bone tissue, in which it forms a so-called collagen matrix. Collagen (or its chemical derivatives) is exactly the kind of biochemical material that one would expect to find in association with bone tissue.",
           "styles": [
+            { "start": 277, "length": 17, "fontStyle": 2 },
+            { "start": 296, "length": 6, "fontStyle": 2 },
+            { "start": 450, "length": 6, "fontStyle": 2 },
+            { "start": 966, "length": 6, "fontStyle": 2 }
           ]
         },
         "directions": {
-          "text": "Directions: You have 20 minutes to plan and write your response. Your response will be judged on the basis of the quality of your writing and on how well your response presents the points in the lecture and their relationship to the reading passage. Typically an effective response will be 150 to 225 words.",
+          "text": "Directions: You have 20 minutes to plan and write your response. Your response will be judged on the basis of the quality of your writing and on how well your response presents the points in the lecture and their relationship to the reading passage. Typically, an effective response will be 150 to 225 words.",
           "styles": [
             { "start": 0, "length": 11, "fontStyle": 1 }
           ]
         },
-        "tips": {
-          "text": "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\u000aTo review the passage, click VIEW TEXT.",
-          "styles": [
-            { "start": 128, "length": 9, "fontStyle": 1 }
-          ]
-        },
         "question": {
-          "text": "Summarise the points made in the lecture, being sure to explain how they cast doubt on specific points made in the reading passage."
+          "text": "Question: Summarize the points made in the lecture, being sure to explain how they cast doubt on the specific points made in the reading passage.",
+          "styles": [
+            { "start": 0, "length": 9, "fontStyle": 1 }
+          ]
         }
       }
     },
     {
-      "viewId": 125,
+      "viewId": 126,
       "viewType": 46,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,
@@ -3653,14 +3677,14 @@
       }
     },
     {
-      "viewId": 126,
+      "viewId": 127,
       "viewType": 47,
       "viewTypeName": "Independent Writing Task",
       "sectionType": 4,
       "sectionTypeName": "Writing",
-      "withQuestion": true,
-      "questionNumberInSection": 2,
       "timed": true,
+      "questionCaptionVisible": true,
+      "questionNumberInSection": 2,
       "body": {
         "directions": {
           "text": "Directions: You have 30 minutes to plan and write your response. Your response will be judged on the basis of the quality of your writing and on how well your response presents the points in the lecture and their relationship to the reading passage. Typically an effective response will be 300 words at least.",

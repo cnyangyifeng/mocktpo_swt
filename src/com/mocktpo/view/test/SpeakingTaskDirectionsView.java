@@ -170,19 +170,16 @@ public class SpeakingTaskDirectionsView extends ResponsiveTestView {
 
             Scale s = (Scale) e.widget;
 
-            if (null != audioPlayer) {
+            double selection = s.getSelection(), maximum = s.getMaximum();
+            double volume = selection / maximum;
 
-                double selection = s.getSelection(), maximum = s.getMaximum();
-                double volume = selection / maximum;
+            UserTest ut = page.getUserTest();
+            ut.setVolume(volume);
 
-                UserTest ut = page.getUserTest();
-                ut.setVolume(volume);
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
 
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                audioPlayer.setVolume(volume);
-            }
+            setAudioVolume(volume);
         }
     }
 

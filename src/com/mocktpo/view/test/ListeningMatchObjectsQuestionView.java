@@ -416,9 +416,19 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
+
             Scale s = (Scale) e.widget;
+
             double selection = s.getSelection(), maximum = s.getMaximum();
-            setAudioVolume(selection / maximum);
+            double volume = selection / maximum;
+
+            UserTest ut = page.getUserTest();
+            ut.setVolume(volume);
+
+            sqlSession.getMapper(UserTestMapper.class).update(ut);
+            sqlSession.commit();
+
+            setAudioVolume(volume);
         }
     }
 
@@ -541,7 +551,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
                         });
                     }
 
-                    countDown = page.getUserTest().getRemainingViewTime(vo.getSectionType(), vo.getGroupId());
+                    countDown = page.getUserTest().getRemainingViewTime(vo);
                     timer = new Timer();
                     timerTask = new TestTimerTask();
                     timer.scheduleAtFixedRate(timerTask, 0, 1000);
