@@ -91,6 +91,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 1,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -131,6 +132,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 2,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -171,6 +173,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 3,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -208,6 +211,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 4,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -248,6 +252,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 5,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -288,6 +293,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 6,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -325,6 +331,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 7,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -362,6 +369,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 8,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -399,6 +407,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 9,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -436,6 +445,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 10,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -476,6 +486,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 11,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -513,6 +524,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 12,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -550,6 +562,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 13,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Lake Water"
@@ -670,6 +683,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 15,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -707,6 +721,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 16,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -744,6 +759,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 17,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -784,6 +800,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 18,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -821,6 +838,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 19,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -861,6 +879,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 20,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -898,6 +917,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 21,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -935,6 +955,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 22,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -972,6 +993,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 23,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1012,6 +1034,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 24,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1052,6 +1075,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 25,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1089,6 +1113,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 26,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Breathing During Sleep"
@@ -1212,6 +1237,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 28,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1252,6 +1278,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 29,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1292,6 +1319,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 30,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1329,6 +1357,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 31,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1366,6 +1395,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 32,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1403,6 +1433,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 33,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1440,6 +1471,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 34,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1480,6 +1512,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 35,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1520,6 +1553,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 36,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1557,6 +1591,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 37,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1594,6 +1629,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 38,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1631,6 +1667,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 39,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1668,6 +1705,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 40,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Moving into Pueblos"
@@ -1871,6 +1909,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 1,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why can the man NOT find the book he needs?"
@@ -1892,7 +1931,7 @@
     {
       "viewId": 54,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple-Answers Question",
+      "viewTypeName": "Listening Multiple Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 1,
@@ -1902,6 +1941,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 2,
+      "answerable": true,
       "totalAnswerCount": 2,
       "body": {
         "question": {
@@ -1937,6 +1977,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 3,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the woman offer to do for the student?"
@@ -1968,6 +2009,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 4,
+      "answerable": true,
       "body": {
         "question": {
           "text": "How does the man react to the information the woman gives him about where computer science books are sold?"
@@ -2013,6 +2055,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 5,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the woman offer to do for the student: \u2423",
@@ -2059,6 +2102,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 6,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the professor mainly discuss?"
@@ -2080,7 +2124,7 @@
     {
       "viewId": 61,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple-Answers Question",
+      "viewTypeName": "Listening Multiple Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 1,
@@ -2090,6 +2134,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 7,
+      "answerable": true,
       "totalAnswerCount": 2,
       "body": {
         "question": {
@@ -2125,6 +2170,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 8,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Based on the discussion, what is one reason hatchlings make vocalizations to their mother while they are in the nest?"
@@ -2156,6 +2202,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 9,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What is the professor's opinion about the television program that she mentions?"
@@ -2187,6 +2234,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 10,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the professor mention dogs?"
@@ -2218,6 +2266,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 11,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What happens when a hatchling makes a distress call?"
@@ -2251,7 +2300,7 @@
     {
       "viewId": 67,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple-Answers Question",
+      "viewTypeName": "Listening Multiple Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 1,
@@ -2261,6 +2310,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 12,
+      "answerable": true,
       "totalAnswerCount": 2,
       "body": {
         "question": {
@@ -2296,6 +2346,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 13,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the professor mention modern art and modern music?"
@@ -2317,7 +2368,7 @@
     {
       "viewId": 69,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple-Answers Question",
+      "viewTypeName": "Listening Multiple Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 1,
@@ -2327,6 +2378,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 14,
+      "answerable": true,
       "totalAnswerCount": 2,
       "body": {
         "question": {
@@ -2362,6 +2414,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 15,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the professor mention that Duncan watched Anna Pavlova practice?"
@@ -2393,6 +2446,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 16,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the professor imply about the rivalry between classical ballet and modern dance?"
@@ -2438,6 +2492,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 17,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the professor say this: \u2423",
@@ -2469,7 +2524,7 @@
       "timed": true,
       "body": {
         "description": {
-          "text": "This is the end of this part of the Listening section.\u000aClick on Continue to go on.\u000a\u000aOnce you leave this section and continue to the next,\u000ayou WILL NOT be able to return to it."
+          "text": "This is the end of this part of the Listening section. Click on Continue to go on.\u000a\u000aOnce you leave this section and continue to the next, you WILL NOT be able to return to it."
         }
       }
     },
@@ -2523,6 +2578,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 1,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the student go to speak with the professor?"
@@ -2544,7 +2600,7 @@
     {
       "viewId": 78,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple-Answers Question",
+      "viewTypeName": "Listening Multiple Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 2,
@@ -2554,6 +2610,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 2,
+      "answerable": true,
       "totalAnswerCount": 2,
       "body": {
         "question": {
@@ -2589,6 +2646,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 3,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What aspect of the hydrologic cycle is the student confused about?"
@@ -2671,6 +2729,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 5,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the professor say this: \u2423",
@@ -2717,6 +2776,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 6,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What is the lecture mainly about?"
@@ -2748,6 +2808,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 7,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the professor mention an archaeological site in Southern California?"
@@ -2779,6 +2840,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 8,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What is the professor's opinion about the Clovis people?"
@@ -2810,6 +2872,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 9,
+      "answerable": true,
       "totalAnswerCount": 2,
       "body": {
         "question": {
@@ -2845,6 +2908,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 10,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the professor imply is one problem with the climate change theory?"
@@ -2876,6 +2940,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 11,
+      "answerable": true,
       "totalAnswerCount": 2,
       "body": {
         "question": {
@@ -2923,6 +2988,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 12,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What is the lecture mainly about?"
@@ -2944,7 +3010,7 @@
     {
       "viewId": 92,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple-Answers Question",
+      "viewTypeName": "Listening Multiple Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 2,
@@ -2954,6 +3020,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 13,
+      "answerable": true,
       "totalAnswerCount": 2,
       "body": {
         "question": {
@@ -2989,6 +3056,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 14,
+      "answerable": true,
       "totalAnswerCount": 2,
       "body": {
         "question": {
@@ -3024,6 +3092,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 15,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the professor mention the fact that Venus has no surface water?"
@@ -3055,6 +3124,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 16,
+      "answerable": true,
       "body": {
         "question": {
           "text": "According to the professor, what is a possible origin of Venus' clouds?"
@@ -3086,6 +3156,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 17,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What is the professor’s opinion about the theory that Venus' volcanoes are active?"
@@ -3114,7 +3185,7 @@
       "timed": true,
       "body": {
         "description": {
-          "text": "This is the end of this part of the Listening section.\u000aClick on Continue to go on.\u000a\u000aOnce you leave this section and continue to the next,\u000ayou WILL NOT be able to return to it."
+          "text": "This is the end of this part of the Listening section. Click on Continue to go on.\u000a\u000aOnce you leave this section and continue to the next, you WILL NOT be able to return to it."
         }
       }
     },
@@ -3633,6 +3704,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 1,
+      "answerable": true,
       "body": {
         "passage": {
           "text": "\u0009Animal fossils usually provide very little opportunity to study the actual animal tissues, because in fossils the animals' living tissues have been largely replaced by minerals. Thus, scientists were very excited recently when it appeared that a 70-million-year-old fossil of Tyrannosaurus rex (T. rex), a dinosaur, might still contain remains of the actual tissues of the animal. The discovery was made when researchers deliberately broke open the T. rex’s leg bone, thereby exposing its insides to reveal materials that seem to be remains of blood vessels, red blood cells, and collagen matrix.\u000a\u0009First, the breaking of the fossilized leg bone revealed many small branching channels inside, which probably correspond to hollows in the bones where blood vessels were once located. The exciting finding was the presence of a soft, flexible organic substance inside the channels. This soft substance may very well represent the remains of the actual blood vessels of T. rex.\u000a\u0009Second, microscopic examination of the various parts of the inner bone revealed the presence of spheres that could be the remains of red blood cells. Tests showed that the spheres contained iron-a material vital to the role of red blood cells in transporting oxygen to tissues. Moreover, the spheres had dark red centers (substances with iron tend to be reddish in color) and were also about the size of red blood cells.\u000a\u0009Third, scientists performed a test on the dinosaur leg bone that showed that it contained collagen. Collagen is a fibrous protein that is a main component of living bone tissue, in which it forms a so-called collagen matrix. Collagen (or its chemical derivatives) is exactly the kind of biochemical material that one would expect to find in association with bone tissue.",
@@ -3660,6 +3732,19 @@
     {
       "viewId": 126,
       "viewType": 46,
+      "viewTypeName": "Integrated Writing Task End",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "timed": true,
+      "body": {
+        "description": {
+          "text": "You still have time to write your response. As long as there is time remaining, you can continue writing or revising your response.\u000a\u000aClick on Return to continue writing your response. Click on Continue to leave this question.\u000a\u000aOnce you leave this question, you will not be able to return and you may not continue writing."
+        }
+      }
+    },
+    {
+      "viewId": 127,
+      "viewType": 47,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,
       "sectionTypeName": "Writing",
@@ -3678,14 +3763,15 @@
       }
     },
     {
-      "viewId": 127,
-      "viewType": 47,
+      "viewId": 128,
+      "viewType": 48,
       "viewTypeName": "Independent Writing Task",
       "sectionType": 4,
       "sectionTypeName": "Writing",
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 2,
+      "answerable": true,
       "body": {
         "directions": {
           "text": "Directions: Read the question below. You have 30 minutes to plan, write, and revise your essay. Typically, an effective response will contain a minimum of 300 words.",
@@ -3699,6 +3785,19 @@
             { "start": 0, "length": 9, "fontStyle": 1 },
             { "start": 67, "length": 135, "underline": true }
           ]
+        }
+      }
+    },
+    {
+      "viewId": 129,
+      "viewType": 49,
+      "viewTypeName": "Independent Writing Task End",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "timed": true,
+      "body": {
+        "description": {
+          "text": "You still have time to write your response. As long as there is time remaining, you can continue writing or revising your response.\u000a\u000aClick on Return to continue writing your response. Click on Continue to leave this question.\u000a\u000aOnce you leave this question, you will not be able to return and you may not continue writing."
         }
       }
     }

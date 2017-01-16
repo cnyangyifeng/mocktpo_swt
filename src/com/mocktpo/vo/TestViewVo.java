@@ -34,6 +34,7 @@ public class TestViewVo implements Serializable {
     private boolean timerButtonUnavailable;
     private boolean questionCaptionVisible;
     private int questionNumberInSection;
+    private boolean answerable;
     private int totalAnswerCount;
 
     public StyledTextVo getStyledText(String key) {
@@ -243,5 +244,13 @@ public class TestViewVo implements Serializable {
 
     public void setTotalAnswerCount(int totalAnswerCount) {
         this.totalAnswerCount = totalAnswerCount;
+    }
+
+    public boolean isAnswerable() {
+        return answerable;
+    }
+
+    public void setAnswerable(boolean answerable) {
+        this.answerable = answerable;
     }
 }

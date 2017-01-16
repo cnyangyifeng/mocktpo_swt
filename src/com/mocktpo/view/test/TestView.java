@@ -2,11 +2,14 @@ package com.mocktpo.view.test;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.domain.UserTestAnswer;
+import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.vo.TestViewVo;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.TestFooter;
@@ -54,6 +57,7 @@ public abstract class TestView extends Composite {
     /* Properties */
 
     protected TestViewVo vo;
+    protected String answerText;
 
     /* Persistence */
 
@@ -86,10 +90,11 @@ public abstract class TestView extends Composite {
         this.sqlSession = MyApplication.get().getSqlSession();
         this.volumeControlVisible = !page.getUserTest().isVolumeControlHidden();
         init();
-        realloc();
+        alloc();
     }
 
     private void init() {
+        initAnswer();
         golbal();
         initHeader();
         initFooter();
@@ -149,7 +154,7 @@ public abstract class TestView extends Composite {
         if (vo.isQuestionCaptionVisible()) {
             final StyledText caption = new StyledText(header, SWT.SINGLE);
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + TestSchemaUtils.getTotalQuestionCountInSectionAndGroup(page.getTestSchema(), vo.getSectionType(), vo.getGroupId()));
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestSchema().getTotalQuestionCountInSectionAndGroup(vo.getSectionType(), vo.getGroupId()));
         }
 
         /*
@@ -170,6 +175,25 @@ public abstract class TestView extends Composite {
 
     protected abstract void initBody();
 
+    protected void initAnswer() {
+        if (vo.isAnswerable()) {
+            UserTestAnswerMapper mapper = sqlSession.getMapper(UserTestAnswerMapper.class);
+            UserTest ut = page.getUserTest();
+            answerText = mapper.find(ut);
+            if (null == answerText) {
+                UserTestAnswer userTestAnswer = new UserTestAnswer();
+                userTestAnswer.setEmail(ut.getEmail());
+                userTestAnswer.setTid(ut.getTid());
+                userTestAnswer.setViewId(ut.getLastViewId());
+                userTestAnswer.setSectionType(page.getTestSchema().getView(ut.getLastViewId()).getSectionType());
+                userTestAnswer.setAnswer("");
+                mapper.insert(userTestAnswer);
+                sqlSession.commit();
+                answerText = mapper.find(ut);
+            }
+        }
+    }
+
     /*
      * ==================================================
      *
@@ -188,7 +212,7 @@ public abstract class TestView extends Composite {
      * ==================================================
      */
 
-    protected void realloc() {
+    protected void alloc() {
         startTimer();
         startAudio();
         startAudioVisualization();
@@ -297,8 +321,7 @@ public abstract class TestView extends Composite {
 
                     release();
 
-                    int lastViewId = TestSchemaUtils.getNextViewIdWhileTimeOut(page.getTestSchema(), vo.getViewId());
-                    ut.setCompletionRate(100 * (lastViewId - 1) / page.getTestSchema().getViews().size());
+                    int lastViewId = page.getTestSchema().getNextViewIdWhileTimeOut(vo.getViewId());
                     ut.setLastViewId(lastViewId);
 
                     sqlSession.getMapper(UserTestMapper.class).update(ut);
@@ -395,17 +418,9 @@ public abstract class TestView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * (vo.getViewId() - 1) / page.getTestSchema().getViews().size());
-            ut.setLastViewId(vo.getViewId());
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            MyApplication.get().getWindow().toMainPage(ut);
+            UserTestPersistenceUtils.saveToCurrentView(TestView.this);
+            MyApplication.get().getWindow().toMainPage(page.getUserTest());
         }
 
         @Override
@@ -442,5 +457,25 @@ public abstract class TestView extends Composite {
         @Override
         public void mouseUp(MouseEvent e) {
         }
+    }
+
+    /*
+     * ==================================================
+     *
+     * Getters and Setters
+     *
+     * ==================================================
+     */
+
+    public TestPage getPage() {
+        return page;
+    }
+
+    public TestViewVo getVo() {
+        return vo;
+    }
+
+    public boolean isVolumeControlVisible() {
+        return volumeControlVisible;
     }
 }

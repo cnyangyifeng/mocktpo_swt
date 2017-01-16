@@ -59,7 +59,7 @@ public interface ActivationCodeMapper {
             "MT_DATE_CREATED = #{dateCreated},",
             "MT_DATE_UPDATED = #{dateUpdated}"
     })
-    int update(ActivationCode lic);
+    void update(ActivationCode lic);
 
     @Select(
             "SELECT COUNT(*) FROM MT_ACTIVATION_CODE"

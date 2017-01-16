@@ -1,12 +1,11 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.listener.BorderedCompositePaintListener;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.DroppableAnswerComposite;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
@@ -292,17 +291,9 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-            ut.setLastViewId(vo.getViewId() + 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
+            UserTestPersistenceUtils.saveToNextView(ReadingProseSummaryQuestionView.this);
+            page.resume();
         }
 
         @Override
@@ -318,17 +309,9 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * (vo.getViewId() - 2) / page.getTestSchema().getViews().size());
-            ut.setLastViewId(vo.getViewId() - 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
+            UserTestPersistenceUtils.saveToPreviousView(ReadingProseSummaryQuestionView.this);
+            page.resume();
         }
 
         @Override

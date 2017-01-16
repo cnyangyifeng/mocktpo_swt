@@ -1,10 +1,9 @@
 package com.mocktpo.view.test;
 
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
@@ -84,17 +83,9 @@ public class SpeakingHeadsetOnView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-            ut.setLastViewId(vo.getViewId() + 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
+            UserTestPersistenceUtils.saveToNextView(SpeakingHeadsetOnView.this);
+            page.resume();
         }
 
         @Override

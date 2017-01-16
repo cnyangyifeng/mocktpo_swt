@@ -11,8 +11,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class TestEditorHomeView extends Composite {
+public class StoreHomeView extends Composite {
 
     /* Logger and Messages */
 
@@ -47,7 +47,7 @@ public class TestEditorHomeView extends Composite {
      * ==================================================
      */
 
-    public TestEditorHomeView(Composite parent, int style) {
+    public StoreHomeView(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();
@@ -77,7 +77,7 @@ public class TestEditorHomeView extends Composite {
         final Button sb = new Button(toolBar, SWT.PUSH);
         FormDataSet.attach(sb).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(sb).setCursor(MT.CURSOR_HAND).setText(msgs.getString("sort_by_name"));
-        sb.addMouseListener(new SortButtonMouseListener());
+        sb.addSelectionListener(new SortButtonSelectionListener());
     }
 
     private void initBody() {
@@ -88,8 +88,6 @@ public class TestEditorHomeView extends Composite {
         sc.setExpandVertical(true);
 
         body = new Composite(sc, SWT.NONE);
-        sc.setContent(body);
-
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
 
@@ -102,6 +100,7 @@ public class TestEditorHomeView extends Composite {
             cards.add(tc);
         }
 
+        sc.setContent(body);
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
 
@@ -130,19 +129,15 @@ public class TestEditorHomeView extends Composite {
      * ==================================================
      */
 
-    private class SortButtonMouseListener implements MouseListener {
+    private class SortButtonSelectionListener implements SelectionListener {
 
         @Override
-        public void mouseDoubleClick(MouseEvent e) {
+        public void widgetDefaultSelected(SelectionEvent e) {
         }
 
         @Override
-        public void mouseDown(MouseEvent e) {
+        public void widgetSelected(SelectionEvent e) {
             logger.debug("Test cards sorted by name successfully.");
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 }

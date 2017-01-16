@@ -7,6 +7,7 @@ import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
@@ -89,24 +90,16 @@ public class SpeakingTaskView extends ResponsiveTestView {
         volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
-        // TODO Removes the continue button
+        // TODO Removes the continue debug button
 
-        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
-        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(vob, 8, SWT.TOP);
-        cb.addMouseListener(new MouseAdapter() {
+        final ImageButton continueButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
+        FormDataSet.attach(continueButton).atRightTo(vob, 16).atTopTo(vob, 8, SWT.TOP);
+        continueButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
-
                 release();
-
-                UserTest ut = page.getUserTest();
-                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                ut.setLastViewId(vo.getViewId() + 1);
-
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                page.resume(ut);
+                UserTestPersistenceUtils.saveToNextView(SpeakingTaskView.this);
+                page.resume();
             }
         });
     }
@@ -316,17 +309,9 @@ public class SpeakingTaskView extends ResponsiveTestView {
             d.asyncExec(new Runnable() {
                 @Override
                 public void run() {
-
                     release();
-
-                    UserTest ut = page.getUserTest();
-                    ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                    ut.setLastViewId(vo.getViewId() + 1);
-
-                    sqlSession.getMapper(UserTestMapper.class).update(ut);
-                    sqlSession.commit();
-
-                    page.resume(ut);
+                    UserTestPersistenceUtils.saveToNextView(SpeakingTaskView.this);
+                    page.resume();
                 }
             });
         }
@@ -348,15 +333,9 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-
-            UserTest ut = page.getUserTest();
-            ut.setVolumeControlHidden(!volumeControlVisible);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
+            UserTestPersistenceUtils.saveVolumeControlVisibility(SpeakingTaskView.this);
         }
 
         @Override
@@ -374,16 +353,10 @@ public class SpeakingTaskView extends ResponsiveTestView {
         public void widgetSelected(SelectionEvent e) {
 
             Scale s = (Scale) e.widget;
-
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
 
-            UserTest ut = page.getUserTest();
-            ut.setVolume(volume);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
+            UserTestPersistenceUtils.saveVolume(SpeakingTaskView.this, volume);
             setAudioVolume(volume);
         }
     }

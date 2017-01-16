@@ -26,7 +26,7 @@ public interface UserTestMapper {
             "MT_INDEPENDENT_WRITING_TIME INT,",
             "MT_VOLUME DOUBLE,",
             "MT_VOLUME_CONTROL_HIDDEN BOOLEAN,",
-            "MT_COMPLETION_RATE INT,",
+            "MT_STARS INT,",
             "MT_LAST_VIEW_ID INT",
             ")"
     })
@@ -55,7 +55,7 @@ public interface UserTestMapper {
             "MT_INDEPENDENT_WRITING_TIME,",
             "MT_VOLUME,",
             "MT_VOLUME_CONTROL_HIDDEN,",
-            "MT_COMPLETION_RATE,",
+            "MT_STARS,",
             "MT_LAST_VIEW_ID",
             ") VALUES (",
             "#{email},",
@@ -73,7 +73,7 @@ public interface UserTestMapper {
             "#{independentWritingTime},",
             "#{volume},",
             "#{volumeControlHidden},",
-            "#{completionRate},",
+            "#{stars},",
             "#{lastViewId}",
             ")"
     })
@@ -96,7 +96,7 @@ public interface UserTestMapper {
             "MT_INDEPENDENT_WRITING_TIME AS independentWritingTime,",
             "MT_VOLUME AS volume,",
             "MT_VOLUME_CONTROL_HIDDEN AS volumeControlHidden,",
-            "MT_COMPLETION_RATE AS completionRate,",
+            "MT_STARS AS stars,",
             "MT_LAST_VIEW_ID AS lastViewId",
             "FROM MT_USER_TEST",
             "ORDER BY MT_TID ASC"
@@ -121,12 +121,12 @@ public interface UserTestMapper {
             "MT_INDEPENDENT_WRITING_TIME = #{independentWritingTime},",
             "MT_VOLUME = #{volume},",
             "MT_VOLUME_CONTROL_HIDDEN = #{volumeControlHidden},",
-            "MT_COMPLETION_RATE = #{completionRate},",
+            "MT_STARS = #{stars},",
             "MT_LAST_VIEW_ID = #{lastViewId}",
             "WHERE",
             "MT_TID = #{tid}"
     })
-    int update(UserTest ut);
+    void update(UserTest ut);
 
     @Select(
             "SELECT COUNT(*) FROM MT_USER_TEST"

@@ -49,7 +49,7 @@ public class UserTestMapperTest {
             ut.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
             ut.setVolume(1.0);
             ut.setVolumeControlHidden(true);
-            ut.setCompletionRate(0);
+            ut.setStars(0);
             ut.setLastViewId(1);
             mapper.insert(ut);
         }
@@ -66,7 +66,7 @@ public class UserTestMapperTest {
     @Test
     public void testUpdate() {
 
-        int i = 24;
+        int i = 1;
 
         UserTest ut = new UserTest();
         ut.setEmail("165239796@qq.com");
@@ -84,7 +84,7 @@ public class UserTestMapperTest {
         ut.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
         ut.setVolume(1.0);
         ut.setVolumeControlHidden(true);
-        ut.setCompletionRate(0);
+        ut.setStars(0);
         ut.setLastViewId(122);
         mapper.update(ut);
     }

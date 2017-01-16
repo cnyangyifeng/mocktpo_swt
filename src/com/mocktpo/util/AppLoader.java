@@ -4,10 +4,12 @@ import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.ActivationCode;
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.mapper.ActivationCodeMapper;
+import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.window.RegisterWindow;
 import com.mocktpo.window.SplashWindow;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.widgets.Display;
@@ -82,10 +84,11 @@ public class AppLoader extends Thread {
         splash.setVisible(true);
 
         if (licensed) {
-            final UserTestMapper utm = app.getSqlSession().getMapper(UserTestMapper.class);
+            splash.proceed(msgs.getString("configuring_data"));
+            SqlSession sqlSession = app.getSqlSession();
+            final UserTestMapper utm = sqlSession.getMapper(UserTestMapper.class);
             utm.schema();
             if (utm.count() <= 0) {
-                splash.proceed(msgs.getString("configuring_data"));
                 for (int i = 1; i <= 48; i++) {
                     UserTest ut = new UserTest();
                     ut.setEmail(email);
@@ -103,12 +106,14 @@ public class AppLoader extends Thread {
                     ut.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
                     ut.setVolume(1.0);
                     ut.setVolumeControlHidden(true);
-                    ut.setCompletionRate(0);
+                    ut.setStars(0);
                     ut.setLastViewId(1);
                     utm.insert(ut);
                 }
-                app.getSqlSession().commit();
             }
+            sqlSession.getMapper(UserTestAnswerMapper.class).schema();
+            sqlSession.commit();
+
             splash.proceed(msgs.getString("welcome"));
             splash.close();
         } else {

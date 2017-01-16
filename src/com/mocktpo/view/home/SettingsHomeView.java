@@ -59,8 +59,9 @@ public class SettingsHomeView extends Composite {
         sc.setExpandVertical(true);
 
         body = new Composite(sc, SWT.NONE);
-        sc.setContent(body);
-
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
+
+        sc.setContent(body);
+        sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
 }

@@ -1,12 +1,11 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.listener.BorderedCompositePaintListener;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.DroppableAnswerComposite;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
@@ -75,24 +74,24 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
     @Override
     public void updateHeader() {
 
-        final ImageButton nob = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
-        FormDataSet.attach(nob).atRight(10).atTop(10);
-        nob.addMouseListener(new NextOvalButtonMouseListener());
+        final ImageButton nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
+        FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
+        nextOvalButton.addMouseListener(new NextOvalButtonMouseListener());
 
-        final ImageButton bob = new ImageButton(header, SWT.NONE, MT.IMAGE_BACK_OVAL, MT.IMAGE_BACK_OVAL_HOVER, MT.IMAGE_BACK_OVAL_DISABLED);
-        FormDataSet.attach(bob).atRightTo(nob).atTopTo(nob, 0, SWT.TOP);
-        bob.addMouseListener(new BackOvalButtonMouseListener());
+        final ImageButton backOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_BACK_OVAL, MT.IMAGE_BACK_OVAL_HOVER, MT.IMAGE_BACK_OVAL_DISABLED);
+        FormDataSet.attach(backOvalButton).atRightTo(nextOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        backOvalButton.addMouseListener(new BackOvalButtonMouseListener());
 
-        final ImageButton rob = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW_OVAL, MT.IMAGE_REVIEW_OVAL_HOVER, MT.IMAGE_REVIEW_OVAL_DISABLED);
-        FormDataSet.attach(rob).atRightTo(bob).atTopTo(nob, 0, SWT.TOP);
-        rob.addMouseListener(new ReviewOvalButtonMouseListener());
+        final ImageButton reviewOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW_OVAL, MT.IMAGE_REVIEW_OVAL_HOVER, MT.IMAGE_REVIEW_OVAL_DISABLED);
+        FormDataSet.attach(reviewOvalButton).atRightTo(backOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        reviewOvalButton.addMouseListener(new ReviewOvalButtonMouseListener());
 
-        final ImageButton hob = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
-        FormDataSet.attach(hob).atRightTo(rob).atTopTo(nob, 0, SWT.TOP);
-        hob.addMouseListener(new HelpOvalButtonMouseListener());
+        final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
+        FormDataSet.attach(helpOvalButton).atRightTo(reviewOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        helpOvalButton.addMouseListener(new HelpOvalButtonMouseListener());
 
         viewTextOrQuestionButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VIEW_TEXT, MT.IMAGE_VIEW_TEXT_HOVER);
-        FormDataSet.attach(viewTextOrQuestionButton).atRightTo(hob, 6).atTopTo(nob, 6, SWT.TOP);
+        FormDataSet.attach(viewTextOrQuestionButton).atRightTo(helpOvalButton, 6).atTopTo(nextOvalButton, 6, SWT.TOP);
         viewTextOrQuestionButton.addMouseListener(new ViewTextOrQuestionButtonMouseListener());
     }
 
@@ -154,10 +153,10 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
          * ==================================================
          */
 
-        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTop(5).atRight();
-        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("directions").getText());
-        StyleRangeUtils.decorate(dt, vo.getStyledText("directions").getStyles());
+        final StyledText directionsTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(directionsTextWidget).atLeft().atTop(5).atRight();
+        StyledTextSet.decorate(directionsTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("directions").getText());
+        StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledText("directions").getStyles());
 
         /*
          * ==================================================
@@ -167,10 +166,10 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
          * ==================================================
          */
 
-        final StyledText tt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(tt).atLeft().atTopTo(dt, 5).atRight();
-        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips").getText());
-        StyleRangeUtils.decorate(tt, vo.getStyledText("tips").getStyles());
+        final StyledText tipsTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(tipsTextWidget).atLeft().atTopTo(directionsTextWidget, 5).atRight();
+        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips").getText());
+        StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledText("tips").getStyles());
 
         /*
          * ==================================================
@@ -181,7 +180,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
          */
 
         final Composite ac = new Composite(viewPort, SWT.CENTER);
-        FormDataSet.attach(ac).fromLeft(50, -ScreenUtils.getClientWidth(d) / 4).atTopTo(tt, 10).withWidth(ScreenUtils.getClientWidth(d) / 2);
+        FormDataSet.attach(ac).fromLeft(50, -ScreenUtils.getClientWidth(d) / 4).atTopTo(tipsTextWidget, 10).withWidth(ScreenUtils.getClientWidth(d) / 2);
         FormLayoutSet.layout(ac).marginHeight(10).spacing(10);
         ac.addPaintListener(new BorderedCompositePaintListener());
 
@@ -345,17 +344,9 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-            ut.setLastViewId(vo.getViewId() + 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
+            UserTestPersistenceUtils.saveToNextView(ReadingCategoryChartQuestionView.this);
+            page.resume();
         }
 
         @Override
@@ -371,18 +362,9 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * (vo.getViewId() - 2) / page.getTestSchema().getViews().size());
-            ut.setLastViewId(vo.getViewId() - 1);
-
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
+            UserTestPersistenceUtils.saveToPreviousView(ReadingCategoryChartQuestionView.this);
+            page.resume();
         }
 
         @Override
@@ -398,9 +380,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
             page.toReadingReview();
         }
 

@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Display;
 
 import java.util.ResourceBundle;
 
-public class ReportsHomeView extends Composite {
+public class ExercisesHomeView extends Composite {
 
     /* Logger and Messages */
 
@@ -37,7 +37,7 @@ public class ReportsHomeView extends Composite {
      * ==================================================
      */
 
-    public ReportsHomeView(Composite parent, int style) {
+    public ExercisesHomeView(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();
@@ -60,8 +60,9 @@ public class ReportsHomeView extends Composite {
         sc.setExpandVertical(true);
 
         body = new Composite(sc, SWT.NONE);
-        sc.setContent(body);
-
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
+
+        sc.setContent(body);
+        sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
 }

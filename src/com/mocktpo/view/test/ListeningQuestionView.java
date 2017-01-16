@@ -2,14 +2,14 @@ package com.mocktpo.view.test;
 
 import com.mocktpo.dialog.RequiredAnswerDialog;
 import com.mocktpo.listener.StyledTextPaintImageListener;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.*;
@@ -32,8 +32,8 @@ public class ListeningQuestionView extends ResponsiveTestView {
     private ImageButton nextOvalButton, okOvalButton;
     private VolumeControl volumeControl;
 
-    private Label choiceA, choiceB, choiceC, choiceD;
-    private Label la, lb, lc, ld;
+    private Label checkWidgetA, checkWidgetB, checkWidgetC, checkWidgetD;
+    private Label choiceLabelA, choiceLabelB, choiceLabelC, choiceLabelD;
 
     /* Properties */
 
@@ -74,38 +74,30 @@ public class ListeningQuestionView extends ResponsiveTestView {
         okOvalButton.setEnabled(false);
         okOvalButton.addMouseListener(new OkOvalButtonMouseListener());
 
-        final ImageButton hob = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
-        FormDataSet.attach(hob).atRightTo(okOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        hob.addMouseListener(new HelpOvalButtonMouseListener());
+        final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
+        FormDataSet.attach(helpOvalButton).atRightTo(okOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        helpOvalButton.addMouseListener(new HelpOvalButtonMouseListener());
 
-        final ImageButton vob = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
-        FormDataSet.attach(vob).atRightTo(hob).atTopTo(nextOvalButton, 0, SWT.TOP);
-        vob.addMouseListener(new VolumeOvalButtonMouseListener());
+        final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
+        FormDataSet.attach(volumeOvalButton).atRightTo(helpOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseListener());
 
         volumeControl = new VolumeControl(header, SWT.NONE);
-        FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
+        FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
-        // TODO Removes the continue button
+        // TODO Removes the continue debug button
 
-        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
-        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(nextOvalButton, 8, SWT.TOP);
-        cb.addMouseListener(new MouseAdapter() {
+        final ImageButton continueDebugButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
+        FormDataSet.attach(continueDebugButton).atRightTo(volumeOvalButton, 16).atTopTo(nextOvalButton, 8, SWT.TOP);
+        continueDebugButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
-
                 release();
-
-                UserTest ut = page.getUserTest();
-                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                ut.setLastViewId(vo.getViewId() + 1);
-
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                page.resume(ut);
+                UserTestPersistenceUtils.saveToNextView(ListeningQuestionView.this);
+                page.resume(page.getUserTest());
             }
         });
     }
@@ -118,51 +110,81 @@ public class ListeningQuestionView extends ResponsiveTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText qt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(qt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(qt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
-        StyleRangeUtils.decorate(qt, vo.getStyledText("question").getStyles());
-        qt.addPaintObjectListener(new StyledTextPaintImageListener());
+        final StyledText questionTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(questionTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
+        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
+        questionTextWidget.addPaintObjectListener(new StyledTextPaintImageListener());
 
-        choiceA = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(choiceA).atLeft(5).atTopTo(qt, 25);
-        LabelSet.decorate(choiceA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
-        choiceA.addMouseListener(new ChooseAnswerListener());
+        checkWidgetA = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(checkWidgetA).atLeft(5).atTopTo(questionTextWidget, 25);
+        LabelSet.decorate(checkWidgetA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
+        checkWidgetA.addMouseListener(new ChooseAnswerListener());
 
-        la = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(la).atLeftTo(choiceA, 5).atTopTo(qt, 20).atRight();
-        LabelSet.decorate(la).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceA").getText()).setVisible(false);
-        la.addMouseListener(new ChooseAnswerListener());
+        choiceLabelA = new Label(viewPort, SWT.WRAP);
+        FormDataSet.attach(choiceLabelA).atLeftTo(checkWidgetA, 5).atTopTo(questionTextWidget, 20).atRight();
+        LabelSet.decorate(choiceLabelA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceA").getText()).setVisible(false);
+        choiceLabelA.addMouseListener(new ChooseAnswerListener());
 
-        choiceB = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(choiceB).atLeft(5).atTopTo(la, 25);
-        LabelSet.decorate(choiceB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
-        choiceB.addMouseListener(new ChooseAnswerListener());
+        checkWidgetB = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(checkWidgetB).atLeft(5).atTopTo(choiceLabelA, 25);
+        LabelSet.decorate(checkWidgetB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
+        checkWidgetB.addMouseListener(new ChooseAnswerListener());
 
-        lb = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(lb).atLeftTo(choiceB, 5).atTopTo(la, 20).atRight();
-        LabelSet.decorate(lb).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceB").getText()).setVisible(false);
-        lb.addMouseListener(new ChooseAnswerListener());
+        choiceLabelB = new Label(viewPort, SWT.WRAP);
+        FormDataSet.attach(choiceLabelB).atLeftTo(checkWidgetB, 5).atTopTo(choiceLabelA, 20).atRight();
+        LabelSet.decorate(choiceLabelB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceB").getText()).setVisible(false);
+        choiceLabelB.addMouseListener(new ChooseAnswerListener());
 
-        choiceC = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(choiceC).atLeft(5).atTopTo(lb, 25);
-        LabelSet.decorate(choiceC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
-        choiceC.addMouseListener(new ChooseAnswerListener());
+        checkWidgetC = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(checkWidgetC).atLeft(5).atTopTo(choiceLabelB, 25);
+        LabelSet.decorate(checkWidgetC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
+        checkWidgetC.addMouseListener(new ChooseAnswerListener());
 
-        lc = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(lc).atLeftTo(choiceC, 5).atTopTo(lb, 20).atRight();
-        LabelSet.decorate(lc).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceC").getText()).setVisible(false);
-        lc.addMouseListener(new ChooseAnswerListener());
+        choiceLabelC = new Label(viewPort, SWT.WRAP);
+        FormDataSet.attach(choiceLabelC).atLeftTo(checkWidgetC, 5).atTopTo(choiceLabelB, 20).atRight();
+        LabelSet.decorate(choiceLabelC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceC").getText()).setVisible(false);
+        choiceLabelC.addMouseListener(new ChooseAnswerListener());
 
-        choiceD = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(choiceD).atLeft(5).atTopTo(lc, 25);
-        LabelSet.decorate(choiceD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
-        choiceD.addMouseListener(new ChooseAnswerListener());
+        checkWidgetD = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(checkWidgetD).atLeft(5).atTopTo(choiceLabelC, 25);
+        LabelSet.decorate(checkWidgetD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
+        checkWidgetD.addMouseListener(new ChooseAnswerListener());
 
-        ld = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(ld).atLeftTo(choiceD, 5).atTopTo(lc, 20).atRight();
-        LabelSet.decorate(ld).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText()).setVisible(false);
-        ld.addMouseListener(new ChooseAnswerListener());
+        choiceLabelD = new Label(viewPort, SWT.WRAP);
+        FormDataSet.attach(choiceLabelD).atLeftTo(checkWidgetD, 5).atTopTo(choiceLabelC, 20).atRight();
+        LabelSet.decorate(choiceLabelD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText()).setVisible(false);
+        choiceLabelD.addMouseListener(new ChooseAnswerListener());
+
+        updateWidgetsForAnswer();
+    }
+
+    private void updateWidgetsForAnswer() {
+
+        if (StringUtils.isEmpty(answerText)) {
+            answer = MT.CHOICE_NONE;
+        } else {
+            answer = Integer.parseInt(answerText);
+        }
+
+        switch (answer) {
+            case MT.CHOICE_NONE:
+                break;
+            case MT.CHOICE_A:
+                LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_CHECKED);
+                break;
+            case MT.CHOICE_B:
+                LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_CHECKED);
+                break;
+            case MT.CHOICE_C:
+                LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_CHECKED);
+                break;
+            case MT.CHOICE_D:
+                LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_CHECKED);
+                break;
+        }
+
+        logger.info("[Listening Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
     }
 
     /*
@@ -241,23 +263,12 @@ public class ListeningQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
 
             if (isOk()) {
-
                 release();
-
-                UserTest ut = page.getUserTest();
-                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                ut.setLastViewId(vo.getViewId() + 1);
-
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                page.resume(ut);
-
+                UserTestPersistenceUtils.saveToNextView(ListeningQuestionView.this);
+                page.resume(page.getUserTest());
             } else {
-
                 nextOvalButton.setEnabled(true);
                 okOvalButton.setEnabled(false);
-
                 RequiredAnswerDialog d = new RequiredAnswerDialog(MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_ONE);
                 d.openAndWaitForDisposal();
             }
@@ -291,15 +302,9 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-
-            UserTest ut = page.getUserTest();
-            ut.setVolumeControlHidden(!volumeControlVisible);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
+            UserTestPersistenceUtils.saveVolumeControlVisibility(ListeningQuestionView.this);
         }
 
         @Override
@@ -317,16 +322,10 @@ public class ListeningQuestionView extends ResponsiveTestView {
         public void widgetSelected(SelectionEvent e) {
 
             Scale s = (Scale) e.widget;
-
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
 
-            UserTest ut = page.getUserTest();
-            ut.setVolume(volume);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
+            UserTestPersistenceUtils.saveVolume(ListeningQuestionView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -344,41 +343,44 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
             if (a == answer) {
                 answer = MT.CHOICE_NONE;
-                LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_UNCHECKED);
+                LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_UNCHECKED);
+                LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_UNCHECKED);
+                LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_UNCHECKED);
             } else {
                 answer = a;
                 switch (answer) {
                     case MT.CHOICE_A:
-                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_CHECKED);
-                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_CHECKED);
+                        LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_UNCHECKED);
                         break;
                     case MT.CHOICE_B:
-                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_CHECKED);
-                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_CHECKED);
+                        LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_UNCHECKED);
                         break;
                     case MT.CHOICE_C:
-                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_CHECKED);
-                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_CHECKED);
+                        LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_UNCHECKED);
                         break;
                     case MT.CHOICE_D:
-                        LabelSet.decorate(choiceA).setImage(MT.IMAGE_UNCHECKED);
-                        LabelSet.decorate(choiceB).setImage(MT.IMAGE_UNCHECKED);
-                        LabelSet.decorate(choiceC).setImage(MT.IMAGE_UNCHECKED);
-                        LabelSet.decorate(choiceD).setImage(MT.IMAGE_CHECKED);
+                        LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_UNCHECKED);
+                        LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_CHECKED);
                         break;
                 }
             }
 
             logger.info("[Listening Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
+
+            answerText = Integer.toString(answer);
+            UserTestPersistenceUtils.saveAnswers(ListeningQuestionView.this, answerText);
         }
 
         @Override
@@ -401,14 +403,14 @@ public class ListeningQuestionView extends ResponsiveTestView {
                             nextOvalButton.setEnabled(true);
                             okOvalButton.setEnabled(false);
 
-                            LabelSet.decorate(choiceA).setVisible(true);
-                            LabelSet.decorate(la).setVisible(true);
-                            LabelSet.decorate(choiceB).setVisible(true);
-                            LabelSet.decorate(lb).setVisible(true);
-                            LabelSet.decorate(choiceC).setVisible(true);
-                            LabelSet.decorate(lc).setVisible(true);
-                            LabelSet.decorate(choiceD).setVisible(true);
-                            LabelSet.decorate(ld).setVisible(true);
+                            LabelSet.decorate(checkWidgetA).setVisible(true);
+                            LabelSet.decorate(choiceLabelA).setVisible(true);
+                            LabelSet.decorate(checkWidgetB).setVisible(true);
+                            LabelSet.decorate(choiceLabelB).setVisible(true);
+                            LabelSet.decorate(checkWidgetC).setVisible(true);
+                            LabelSet.decorate(choiceLabelC).setVisible(true);
+                            LabelSet.decorate(checkWidgetD).setVisible(true);
+                            LabelSet.decorate(choiceLabelD).setVisible(true);
                         }
                     });
                 }

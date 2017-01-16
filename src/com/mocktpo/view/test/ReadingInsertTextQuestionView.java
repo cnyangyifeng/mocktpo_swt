@@ -1,11 +1,13 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
+import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -28,6 +30,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
 
     private CLabel indicator;
     private ScrolledComposite rightScrolled;
+    private StyledText passageTextWidget;
 
     /* Properties */
 
@@ -46,7 +49,6 @@ public class ReadingInsertTextQuestionView extends SashTestView {
 
     public ReadingInsertTextQuestionView(TestPage page, int style) {
         super(page, style);
-        this.answer = MT.CHOICE_NONE;
     }
 
     /*
@@ -78,43 +80,6 @@ public class ReadingInsertTextQuestionView extends SashTestView {
     }
 
     @Override
-    public void updateRight() {
-        initIndicator();
-        initRightBody();
-    }
-
-    private void initIndicator() {
-        indicator = new CLabel(right, SWT.RIGHT);
-        FormDataSet.attach(indicator).atLeft().atTop().atRight();
-        CLabelSet.decorate(indicator).setBackground(MT.COLOR_INDIGO).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_WHITE);
-    }
-
-    private void initRightBody() {
-
-        rightScrolled = new ScrolledComposite(right, SWT.H_SCROLL | SWT.V_SCROLL);
-        FormDataSet.attach(rightScrolled).atLeft().atTopTo(indicator).atRight().atBottom();
-        rightScrolled.setExpandHorizontal(true);
-        rightScrolled.setExpandVertical(true);
-
-        final Composite c = new Composite(rightScrolled, SWT.NONE);
-        FormLayoutSet.layout(c).marginWidth(10).marginTop(20).marginBottom(100).spacing(20);
-
-        final StyledText ht = new StyledText(c, SWT.SINGLE);
-        FormDataSet.attach(ht).atLeft().atTop().atRight();
-        StyledTextSet.decorate(ht).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading").getText());
-
-        final StyledText pt = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(pt).atLeft().atTopTo(ht).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
-        StyledTextSet.decorate(pt).setNoCaret().setCursor(MT.CURSOR_ARROW).setEditable(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
-        StyleRangeUtils.decorate(pt, vo.getStyledText("passage").getStyles());
-        pt.addControlListener(new ParagraphTextControlListener());
-        pt.addMouseListener(new ParagraphTextMouseListener());
-
-        rightScrolled.setContent(c);
-        rightScrolled.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-    }
-
-    @Override
     public void updateLeft() {
 
         final Composite c = new Composite(left, SWT.NONE);
@@ -141,6 +106,120 @@ public class ReadingInsertTextQuestionView extends SashTestView {
         StyledTextSet.decorate(fn).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());
     }
 
+    @Override
+    public void updateRight() {
+        initIndicator();
+        initRightBody();
+    }
+
+    private void initIndicator() {
+        indicator = new CLabel(right, SWT.RIGHT);
+        FormDataSet.attach(indicator).atLeft().atTop().atRight();
+        CLabelSet.decorate(indicator).setBackground(MT.COLOR_INDIGO).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_WHITE);
+    }
+
+    private void initRightBody() {
+
+        rightScrolled = new ScrolledComposite(right, SWT.H_SCROLL | SWT.V_SCROLL);
+        FormDataSet.attach(rightScrolled).atLeft().atTopTo(indicator).atRight().atBottom();
+        rightScrolled.setExpandHorizontal(true);
+        rightScrolled.setExpandVertical(true);
+
+        final Composite c = new Composite(rightScrolled, SWT.NONE);
+        FormLayoutSet.layout(c).marginWidth(10).marginTop(20).marginBottom(100).spacing(20);
+
+        final StyledText headingTextWidget = new StyledText(c, SWT.SINGLE);
+        FormDataSet.attach(headingTextWidget).atLeft().atTop().atRight();
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading").getText());
+
+        passageTextWidget = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
+        StyledTextSet.decorate(passageTextWidget).setNoCaret().setCursor(MT.CURSOR_ARROW).setEditable(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
+        StyleRangeUtils.decorate(passageTextWidget, vo.getStyledText("passage").getStyles());
+        passageTextWidget.addControlListener(new PassageTextControlListener());
+        passageTextWidget.addMouseListener(new PassageTextMouseListener());
+
+        // updateUIForAnswer();
+
+        rightScrolled.setContent(c);
+        rightScrolled.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+    }
+
+    /*
+     * ==================================================
+     *
+     * UI Updates for Answer
+     *
+     * ==================================================
+     */
+
+    private void updateUIForAnswer() {
+
+        int insertTextLength = insertText.length();
+        int change = insertTextLength - 1;
+
+        if (StringUtils.isEmpty(answerText)) {
+            answer = MT.CHOICE_NONE;
+        } else {
+            answer = Integer.parseInt(answerText);
+        }
+
+        switch (answer) {
+            case MT.CHOICE_NONE:
+                break;
+            case MT.CHOICE_A:
+                /*
+                 * ==================================================
+                 *
+                 * Insert new text at point A
+                 *
+                 * ==================================================
+                 */
+                passageTextWidget.replaceTextRange(insertPointA, 1, insertText);
+                passageTextWidget.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
+                insertPointB += change;
+                insertPointC += change;
+                insertPointD += change;
+                break;
+            case MT.CHOICE_B:
+                /*
+                 * ==================================================
+                 *
+                 * Insert new text at point B
+                 *
+                 * ==================================================
+                 */
+                passageTextWidget.replaceTextRange(insertPointB, 1, insertText);
+                passageTextWidget.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
+                insertPointC += change;
+                insertPointD += change;
+                break;
+            case MT.CHOICE_C:
+                /*
+                 * ==================================================
+                 *
+                 * Insert new text at point C
+                 *
+                 * ==================================================
+                 */
+                passageTextWidget.replaceTextRange(insertPointC, 1, insertText);
+                passageTextWidget.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
+                insertPointD += change;
+                break;
+            case MT.CHOICE_D:
+                /*
+                 * ==================================================
+                 *
+                 * Insert new text at point D
+                 *
+                 * ==================================================
+                 */
+                passageTextWidget.replaceTextRange(insertPointD, 1, insertText);
+                passageTextWidget.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
+                break;
+        }
+    }
+
     /*
      * ==================================================
      *
@@ -157,17 +236,9 @@ public class ReadingInsertTextQuestionView extends SashTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-            ut.setLastViewId(vo.getViewId() + 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
+            UserTestPersistenceUtils.saveToNextView(ReadingInsertTextQuestionView.this);
+            page.resume();
         }
 
         @Override
@@ -183,17 +254,9 @@ public class ReadingInsertTextQuestionView extends SashTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * (vo.getViewId() - 2) / page.getTestSchema().getViews().size());
-            ut.setLastViewId(vo.getViewId() - 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
+            UserTestPersistenceUtils.saveToPreviousView(ReadingInsertTextQuestionView.this);
+            page.resume();
         }
 
         @Override
@@ -209,9 +272,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
             page.toReadingReview();
         }
 
@@ -235,7 +296,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
         }
     }
 
-    private class ParagraphTextControlListener implements ControlListener {
+    private class PassageTextControlListener implements ControlListener {
 
         @Override
         public void controlMoved(ControlEvent e) {
@@ -256,7 +317,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
         }
     }
 
-    private class ParagraphTextMouseListener implements MouseListener {
+    private class PassageTextMouseListener implements MouseListener {
 
         @Override
         public void mouseDoubleClick(MouseEvent e) {
@@ -268,8 +329,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
             int insertTextLength = insertText.length();
             int change = insertTextLength - 1;
 
-            StyledText st = (StyledText) e.widget;
-            int offset = st.getCaretOffset();
+            int offset = passageTextWidget.getCaretOffset();
 
             if (answer == MT.CHOICE_NONE) {
                 if (offset == insertPointA || offset == insertPointA + 1) {
@@ -282,8 +342,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointA, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointA, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
                     insertPointB += change;
                     insertPointC += change;
                     insertPointD += change;
@@ -308,8 +368,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointB, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointB, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
                     insertPointC += change;
                     insertPointD += change;
 
@@ -333,8 +393,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointC, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointC, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
                     insertPointD += change;
 
                     /*
@@ -357,8 +417,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointD, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointD, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
 
                     /*
                      * ==================================================
@@ -382,8 +442,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointA, insertTextLength, SQUARE);
-                    st.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointA, insertTextLength, SQUARE);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
                     insertPointB -= change;
                     insertPointC -= change;
                     insertPointD -= change;
@@ -408,8 +468,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointB, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointB, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
                     insertPointC += change;
                     insertPointD += change;
 
@@ -421,8 +481,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
-                    st.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
                     insertPointB -= change;
                     insertPointC -= change;
                     insertPointD -= change;
@@ -447,8 +507,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointC, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointC, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
                     insertPointD += change;
 
                     /*
@@ -459,8 +519,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
-                    st.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
                     insertPointB -= change;
                     insertPointC -= change;
                     insertPointD -= change;
@@ -485,8 +545,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointD, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointD, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
 
                     /*
                      * ==================================================
@@ -496,8 +556,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
-                    st.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointA, insertTextLength, vo.getStyledText("insertPointA").getText());
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
                     insertPointB -= change;
                     insertPointC -= change;
                     insertPointD -= change;
@@ -524,8 +584,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointA, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointA, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
                     insertPointB += change;
                     insertPointC += change;
                     insertPointD += change;
@@ -538,8 +598,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
-                    st.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
                     insertPointC -= change;
                     insertPointD -= change;
 
@@ -563,8 +623,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointB, insertTextLength, SQUARE);
-                    st.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointB, insertTextLength, SQUARE);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
                     insertPointC -= change;
                     insertPointD -= change;
 
@@ -588,8 +648,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointC, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointC, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
                     insertPointD += change;
 
                     /*
@@ -600,8 +660,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
-                    st.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
                     insertPointC -= change;
                     insertPointD -= change;
 
@@ -625,8 +685,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointD, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointD, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
 
                     /*
                      * ==================================================
@@ -636,8 +696,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
-                    st.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointB, insertTextLength, vo.getStyledText("insertPointB").getText());
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
                     insertPointC -= change;
                     insertPointD -= change;
 
@@ -663,8 +723,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointA, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointA, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
                     insertPointB += change;
                     insertPointC += change;
                     insertPointD += change;
@@ -677,8 +737,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
-                    st.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
                     insertPointD -= change;
 
                     /*
@@ -701,8 +761,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointB, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointB, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
                     insertPointC += change;
                     insertPointD += change;
 
@@ -714,8 +774,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
-                    st.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
                     insertPointD -= change;
 
                     /*
@@ -738,8 +798,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointC, insertTextLength, SQUARE);
-                    st.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointC, insertTextLength, SQUARE);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
                     insertPointD -= change;
 
                     /*
@@ -762,8 +822,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointD, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointD, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointD, insertTextLength, null, null, SWT.BOLD));
 
                     /*
                      * ==================================================
@@ -773,8 +833,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
-                    st.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointC, insertTextLength, vo.getStyledText("insertPointC").getText());
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
                     insertPointD -= change;
 
                     /*
@@ -799,8 +859,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointA, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointA, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointA, insertTextLength, null, null, SWT.BOLD));
                     insertPointB += change;
                     insertPointC += change;
                     insertPointD += change;
@@ -813,7 +873,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
+                    passageTextWidget.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
 
                     /*
                      * ==================================================
@@ -835,8 +895,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointB, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointB, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointB, insertTextLength, null, null, SWT.BOLD));
                     insertPointC += change;
                     insertPointD += change;
 
@@ -848,7 +908,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
+                    passageTextWidget.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
 
                     /*
                      * ==================================================
@@ -870,8 +930,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointC, 1, insertText);
-                    st.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
+                    passageTextWidget.replaceTextRange(insertPointC, 1, insertText);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointC, insertTextLength, null, null, SWT.BOLD));
                     insertPointD += change;
 
                     /*
@@ -882,7 +942,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
+                    passageTextWidget.replaceTextRange(insertPointD, insertTextLength, vo.getStyledText("insertPointD").getText());
 
                     /*
                      * ==================================================
@@ -904,8 +964,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    st.replaceTextRange(insertPointD, insertTextLength, SQUARE);
-                    st.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
+                    passageTextWidget.replaceTextRange(insertPointD, insertTextLength, SQUARE);
+                    passageTextWidget.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
 
                     /*
                      * ==================================================
@@ -921,6 +981,9 @@ public class ReadingInsertTextQuestionView extends SashTestView {
             }
 
             logger.info("[Reading Insert Text Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
+
+            answerText = Integer.toString(answer);
+            UserTestPersistenceUtils.saveAnswers(ReadingInsertTextQuestionView.this, answerText);
         }
 
         @Override

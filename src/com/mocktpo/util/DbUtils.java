@@ -1,6 +1,7 @@
 package com.mocktpo.util;
 
 import com.mocktpo.orm.mapper.ActivationCodeMapper;
+import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.util.constants.RC;
 import org.apache.ibatis.session.Configuration;
@@ -25,6 +26,7 @@ public class DbUtils {
 
             c.addMapper(ActivationCodeMapper.class);
             c.addMapper(UserTestMapper.class);
+            c.addMapper(UserTestAnswerMapper.class);
 
         } catch (Exception e) {
             e.printStackTrace();

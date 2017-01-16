@@ -1,5 +1,6 @@
 package com.mocktpo.page;
 
+import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.constants.VT;
@@ -67,15 +68,32 @@ public class TestPage extends Composite {
      * ==================================================
      */
 
-    public void resume(UserTest ut) {
-
-        if (this.userTest.getTid() != ut.getTid()) {
-            this.testSchema = ConfigUtils.load(ut.getAlias(), TestSchemaVo.class);
+    public void resume() {
+        if (null != testSchema) {
+            if (userTest.getLastViewId() >= testSchema.getViewCount()) {
+                MyApplication.get().getWindow().toReportPage(userTest);
+            } else {
+                stack.topControl = getLastTestView();
+                this.layout();
+            }
         }
-        this.userTest = ut;
+    }
 
-        stack.topControl = getLastTestView();
-        this.layout();
+    public void resume(UserTest userTest) {
+
+        if (this.userTest.getTid() != userTest.getTid()) {
+            this.testSchema = ConfigUtils.load(userTest.getAlias(), TestSchemaVo.class);
+        }
+        this.userTest = userTest;
+
+        if (null != testSchema) {
+            if (userTest.getLastViewId() >= testSchema.getViewCount()) {
+                MyApplication.get().getWindow().toReportPage(userTest);
+            } else {
+                stack.topControl = getLastTestView();
+                this.layout();
+            }
+        }
     }
 
     private TestView getLastTestView() {
@@ -202,11 +220,17 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK:
                 tv = new IntegratedWritingTaskView(this, SWT.NONE);
                 break;
+            case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK_END:
+                tv = new IntegratedWritingTaskEndView(this, SWT.NONE);
+                break;
             case VT.VIEW_TYPE_INDEPENDENT_WRITING_DIRECTIONS:
                 tv = new IndependentWritingDirectionsView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK:
                 tv = new IndependentWritingTaskView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK_END:
+                tv = new IndependentWritingTaskEndView(this, SWT.NONE);
                 break;
         }
 
@@ -222,8 +246,7 @@ public class TestPage extends Composite {
      */
 
     public void toReadingReview() {
-        stack.topControl = new ReadingReviewView(this, SWT.NONE, true);
-        ;
+        stack.topControl = new ReadingReviewView(this, SWT.NONE);
         this.layout();
     }
 

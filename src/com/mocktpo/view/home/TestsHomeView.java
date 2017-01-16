@@ -11,8 +11,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -77,12 +77,12 @@ public class TestsHomeView extends Composite {
         final Button sb = new Button(toolBar, SWT.PUSH);
         FormDataSet.attach(sb).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(sb).setCursor(MT.CURSOR_HAND).setText(msgs.getString("sort_by_name"));
-        sb.addMouseListener(new SortButtonMouseListener());
+        sb.addSelectionListener(new SortButtonSelectionListener());
 
         final Button ib = new Button(toolBar, SWT.PUSH);
         FormDataSet.attach(ib).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(ib).setCursor(MT.CURSOR_HAND).setText(msgs.getString("import"));
-        ib.addMouseListener(new ImportButtonMouseListener());
+        ib.addSelectionListener(new ImportButtonSelectionListener());
     }
 
     private void initBody() {
@@ -135,35 +135,27 @@ public class TestsHomeView extends Composite {
      * ==================================================
      */
 
-    private class SortButtonMouseListener implements MouseListener {
+    private class SortButtonSelectionListener implements SelectionListener {
 
         @Override
-        public void mouseDoubleClick(MouseEvent e) {
+        public void widgetDefaultSelected(SelectionEvent e) {
         }
 
         @Override
-        public void mouseDown(MouseEvent e) {
+        public void widgetSelected(SelectionEvent e) {
             logger.debug("Test cards sorted by name successfully.");
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 
-    private class ImportButtonMouseListener implements MouseListener {
+    private class ImportButtonSelectionListener implements SelectionListener {
 
         @Override
-        public void mouseDoubleClick(MouseEvent e) {
+        public void widgetDefaultSelected(SelectionEvent e) {
         }
 
         @Override
-        public void mouseDown(MouseEvent e) {
+        public void widgetSelected(SelectionEvent e) {
             logger.debug("Imported successfully.");
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 }

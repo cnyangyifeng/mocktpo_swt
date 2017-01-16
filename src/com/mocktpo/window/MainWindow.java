@@ -3,6 +3,7 @@ package com.mocktpo.window;
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.page.MainPage;
+import com.mocktpo.page.ReportPage;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.WindowUtils;
@@ -42,6 +43,7 @@ public class MainWindow {
 
     private MainPage mp;
     private TestPage tp;
+    private ReportPage rp;
 
     /*
      * ==================================================
@@ -138,6 +140,16 @@ public class MainWindow {
         tp.resume(ut);
 
         stack.topControl = tp;
+        s.layout();
+    }
+
+    public void toReportPage(UserTest ut) {
+
+        if (null == rp) {
+            rp = new ReportPage(s, SWT.NONE, ut);
+        }
+
+        stack.topControl = rp;
         s.layout();
     }
 

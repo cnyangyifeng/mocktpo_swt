@@ -3,14 +3,14 @@ package com.mocktpo.view.test;
 import com.mocktpo.dialog.RequiredAnswerDialog;
 import com.mocktpo.listener.BorderedCompositePaintListener;
 import com.mocktpo.listener.StyledTextPaintImageListener;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;
@@ -38,9 +38,9 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
     private ImageButton nextOvalButton, okOvalButton;
     private VolumeControl volumeControl;
 
-    private StyledText tips;
+    private StyledText tipsTextWidget;
     private Composite ac;
-    private CLabel yl1, nl1, yl2, nl2, yl3, nl3, yl4, nl4, yl5, nl5;
+    private Label yesLabel1, noLabel1, yesLabel2, noLabel2, yesLabel3, noLabel3, yesLabel4, noLabel4, yesLabel5, noLabel5;
 
     /* Properties */
 
@@ -58,8 +58,6 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
 
     public ListeningMatchObjectsQuestionView(TestPage page, int style) {
         super(page, style);
-
-        answer1 = answer2 = answer3 = answer4 = answer5 = MT.CHOICE_NEVER_CHECK_MARKED;
     }
 
     /*
@@ -83,38 +81,30 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
         okOvalButton.setEnabled(false);
         okOvalButton.addMouseListener(new OkOvalButtonMouseListener());
 
-        final ImageButton hob = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
-        FormDataSet.attach(hob).atRightTo(okOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        hob.addMouseListener(new HelpOvalButtonMouseListener());
+        final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
+        FormDataSet.attach(helpOvalButton).atRightTo(okOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        helpOvalButton.addMouseListener(new HelpOvalButtonMouseListener());
 
-        final ImageButton vob = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
-        FormDataSet.attach(vob).atRightTo(hob).atTopTo(nextOvalButton, 0, SWT.TOP);
-        vob.addMouseListener(new VolumeOvalButtonMouseListener());
+        final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
+        FormDataSet.attach(volumeOvalButton).atRightTo(helpOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseListener());
 
         volumeControl = new VolumeControl(header, SWT.NONE);
-        FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
+        FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
-        // TODO Removes the continue button
+        // TODO Removes the continue debug button
 
-        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
-        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(nextOvalButton, 8, SWT.TOP);
-        cb.addMouseListener(new MouseAdapter() {
+        final ImageButton continueDebugButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
+        FormDataSet.attach(continueDebugButton).atRightTo(volumeOvalButton, 16).atTopTo(nextOvalButton, 8, SWT.TOP);
+        continueDebugButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
-
                 release();
-
-                UserTest ut = page.getUserTest();
-                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                ut.setLastViewId(vo.getViewId() + 1);
-
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                page.resume(ut);
+                UserTestPersistenceUtils.saveToNextView(ListeningMatchObjectsQuestionView.this);
+                page.resume();
             }
         });
     }
@@ -127,134 +117,172 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("directions").getText());
-        StyleRangeUtils.decorate(dt, vo.getStyledText("directions").getStyles());
-        dt.addPaintObjectListener(new StyledTextPaintImageListener());
+        final StyledText directionsTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(directionsTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        StyledTextSet.decorate(directionsTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("directions").getText());
+        StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledText("directions").getStyles());
+        directionsTextWidget.addPaintObjectListener(new StyledTextPaintImageListener());
 
-        tips = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(tips).atLeft().atTopTo(dt, 20).atRight();
-        StyledTextSet.decorate(tips).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("tips").getText()).setVisible(false);
-        StyleRangeUtils.decorate(tips, vo.getStyledText("tips").getStyles());
+        tipsTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(tipsTextWidget).atLeft().atTopTo(directionsTextWidget, 20).atRight();
+        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("tips").getText()).setVisible(false);
+        StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledText("tips").getStyles());
 
         ac = new Composite(viewPort, SWT.NONE);
-        FormDataSet.attach(ac).atLeft().atTopTo(tips, 20).atRight();
+        FormDataSet.attach(ac).atLeft().atTopTo(tipsTextWidget, 20).atRight();
         CompositeSet.decorate(ac).setVisible(false);
         FormLayoutSet.layout(ac).marginWidth(1).marginHeight(1);
         ac.addPaintListener(new BorderedCompositePaintListener());
 
-        final StyledText qh = new StyledText(ac, SWT.WRAP);
-        FormDataSet.attach(qh).atLeft().atTop().fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
-        StyledTextSet.decorate(qh).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10);
+        final StyledText questionTextHeader = new StyledText(ac, SWT.WRAP);
+        FormDataSet.attach(questionTextHeader).atLeft().atTop().fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
+        StyledTextSet.decorate(questionTextHeader).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10);
 
-        final Label vd1 = new Label(ac, SWT.VERTICAL);
-        FormDataSet.attach(vd1).atLeftTo(qh).atTop().atBottom().withWidth(1);
-        LabelSet.decorate(vd1).setBackground(MT.COLOR_GRAY40);
+        final Label verticalDivider1 = new Label(ac, SWT.VERTICAL);
+        FormDataSet.attach(verticalDivider1).atLeftTo(questionTextHeader).atTop().atBottom().withWidth(1);
+        LabelSet.decorate(verticalDivider1).setBackground(MT.COLOR_GRAY40);
 
-        final CLabel yh = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(yh).atLeftTo(vd1).atTopTo(qh, 0, SWT.TOP).atBottomTo(qh, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
-        CLabelSet.decorate(yh).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("yes"));
-        yh.addMouseListener(new ChooseAnswerListener());
+        final CLabel yesTextHeader = new CLabel(ac, SWT.CENTER);
+        FormDataSet.attach(yesTextHeader).atLeftTo(verticalDivider1).atTopTo(questionTextHeader, 0, SWT.TOP).atBottomTo(questionTextHeader, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
+        CLabelSet.decorate(yesTextHeader).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("yes"));
+        yesTextHeader.addMouseListener(new ChooseAnswerListener());
 
-        final Label vd2 = new Label(ac, SWT.VERTICAL);
-        FormDataSet.attach(vd2).atLeftTo(yh).atTop().atBottom().withWidth(1);
-        LabelSet.decorate(vd2).setBackground(MT.COLOR_GRAY40);
+        final Label verticalDivider2 = new Label(ac, SWT.VERTICAL);
+        FormDataSet.attach(verticalDivider2).atLeftTo(yesTextHeader).atTop().atBottom().withWidth(1);
+        LabelSet.decorate(verticalDivider2).setBackground(MT.COLOR_GRAY40);
 
-        final CLabel nh = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(nh).atLeftTo(vd2).atTopTo(qh, 0, SWT.TOP).atBottomTo(qh, 0, SWT.BOTTOM).atRight();
-        CLabelSet.decorate(nh).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("no"));
-        nh.addMouseListener(new ChooseAnswerListener());
+        final CLabel noTextHeader = new CLabel(ac, SWT.CENTER);
+        FormDataSet.attach(noTextHeader).atLeftTo(verticalDivider2).atTopTo(questionTextHeader, 0, SWT.TOP).atBottomTo(questionTextHeader, 0, SWT.BOTTOM).atRight();
+        CLabelSet.decorate(noTextHeader).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("no"));
+        noTextHeader.addMouseListener(new ChooseAnswerListener());
 
-        final Label dl1 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(dl1).atLeft().atTopTo(qh).atRight().withHeight(1);
-        LabelSet.decorate(dl1).setBackground(MT.COLOR_GRAY40);
+        final Label divider1 = new Label(ac, SWT.NONE);
+        FormDataSet.attach(divider1).atLeft().atTopTo(questionTextHeader).atRight().withHeight(1);
+        LabelSet.decorate(divider1).setBackground(MT.COLOR_GRAY40);
 
-        final StyledText qt1 = new StyledText(ac, SWT.WRAP);
-        FormDataSet.attach(qt1).atLeft().atTopTo(dl1).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
-        StyledTextSet.decorate(qt1).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question1").getText());
+        final StyledText questionTextWidget1 = new StyledText(ac, SWT.WRAP);
+        FormDataSet.attach(questionTextWidget1).atLeft().atTopTo(divider1).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
+        StyledTextSet.decorate(questionTextWidget1).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question1").getText());
 
-        yl1 = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(yl1).atLeftTo(vd1).atTopTo(qt1, 0, SWT.TOP).atBottomTo(qt1, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
-        CLabelSet.decorate(yl1).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_1);
-        yl1.addMouseListener(new ChooseAnswerListener());
+        yesLabel1 = new Label(ac, SWT.CENTER);
+        FormDataSet.attach(yesLabel1).atLeftTo(verticalDivider1).atTopTo(questionTextWidget1, 0, SWT.TOP).atBottomTo(questionTextWidget1, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
+        LabelSet.decorate(yesLabel1).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_1);
+        yesLabel1.addMouseListener(new ChooseAnswerListener());
 
-        nl1 = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(nl1).atLeftTo(vd2).atTopTo(qt1, 0, SWT.TOP).atBottomTo(qt1, 0, SWT.BOTTOM).atRight();
-        CLabelSet.decorate(nl1).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_1);
-        nl1.addMouseListener(new ChooseAnswerListener());
+        noLabel1 = new Label(ac, SWT.CENTER);
+        FormDataSet.attach(noLabel1).atLeftTo(verticalDivider2).atTopTo(questionTextWidget1, 0, SWT.TOP).atBottomTo(questionTextWidget1, 0, SWT.BOTTOM).atRight();
+        LabelSet.decorate(noLabel1).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_1);
+        noLabel1.addMouseListener(new ChooseAnswerListener());
 
-        final Label dl2 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(dl2).atLeft().atTopTo(qt1).atRight().withHeight(1);
-        LabelSet.decorate(dl2).setBackground(MT.COLOR_GRAY40);
+        final Label divider2 = new Label(ac, SWT.NONE);
+        FormDataSet.attach(divider2).atLeft().atTopTo(questionTextWidget1).atRight().withHeight(1);
+        LabelSet.decorate(divider2).setBackground(MT.COLOR_GRAY40);
 
-        final StyledText qt2 = new StyledText(ac, SWT.WRAP);
-        FormDataSet.attach(qt2).atLeft().atTopTo(dl2).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
-        StyledTextSet.decorate(qt2).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question2").getText());
+        final StyledText questionTextWidget2 = new StyledText(ac, SWT.WRAP);
+        FormDataSet.attach(questionTextWidget2).atLeft().atTopTo(divider2).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
+        StyledTextSet.decorate(questionTextWidget2).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question2").getText());
 
-        yl2 = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(yl2).atLeftTo(vd1).atTopTo(qt2, 0, SWT.TOP).atBottomTo(qt2, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
-        CLabelSet.decorate(yl2).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_2);
-        yl2.addMouseListener(new ChooseAnswerListener());
+        yesLabel2 = new Label(ac, SWT.CENTER);
+        FormDataSet.attach(yesLabel2).atLeftTo(verticalDivider1).atTopTo(questionTextWidget2, 0, SWT.TOP).atBottomTo(questionTextWidget2, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
+        LabelSet.decorate(yesLabel2).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_2);
+        yesLabel2.addMouseListener(new ChooseAnswerListener());
 
-        nl2 = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(nl2).atLeftTo(vd2).atTopTo(qt2, 0, SWT.TOP).atBottomTo(qt2, 0, SWT.BOTTOM).atRight();
-        CLabelSet.decorate(nl2).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_2);
-        nl2.addMouseListener(new ChooseAnswerListener());
+        noLabel2 = new Label(ac, SWT.CENTER);
+        FormDataSet.attach(noLabel2).atLeftTo(verticalDivider2).atTopTo(questionTextWidget2, 0, SWT.TOP).atBottomTo(questionTextWidget2, 0, SWT.BOTTOM).atRight();
+        LabelSet.decorate(noLabel2).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_2);
+        noLabel2.addMouseListener(new ChooseAnswerListener());
 
-        final Label dl3 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(dl3).atLeft().atTopTo(qt2).atRight().withHeight(1);
-        LabelSet.decorate(dl3).setBackground(MT.COLOR_GRAY40);
+        final Label divider3 = new Label(ac, SWT.NONE);
+        FormDataSet.attach(divider3).atLeft().atTopTo(questionTextWidget2).atRight().withHeight(1);
+        LabelSet.decorate(divider3).setBackground(MT.COLOR_GRAY40);
 
-        final StyledText qt3 = new StyledText(ac, SWT.WRAP);
-        FormDataSet.attach(qt3).atLeft().atTopTo(dl3).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
-        StyledTextSet.decorate(qt3).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question3").getText());
+        final StyledText questionTextWidget3 = new StyledText(ac, SWT.WRAP);
+        FormDataSet.attach(questionTextWidget3).atLeft().atTopTo(divider3).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
+        StyledTextSet.decorate(questionTextWidget3).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question3").getText());
 
-        yl3 = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(yl3).atLeftTo(vd1).atTopTo(qt3, 0, SWT.TOP).atBottomTo(qt3, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
-        CLabelSet.decorate(yl3).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_3);
-        yl3.addMouseListener(new ChooseAnswerListener());
+        yesLabel3 = new Label(ac, SWT.CENTER);
+        FormDataSet.attach(yesLabel3).atLeftTo(verticalDivider1).atTopTo(questionTextWidget3, 0, SWT.TOP).atBottomTo(questionTextWidget3, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
+        LabelSet.decorate(yesLabel3).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_3);
+        yesLabel3.addMouseListener(new ChooseAnswerListener());
 
-        nl3 = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(nl3).atLeftTo(vd2).atTopTo(qt3, 0, SWT.TOP).atBottomTo(qt3, 0, SWT.BOTTOM).atRight();
-        CLabelSet.decorate(nl3).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_3);
-        nl3.addMouseListener(new ChooseAnswerListener());
+        noLabel3 = new Label(ac, SWT.CENTER);
+        FormDataSet.attach(noLabel3).atLeftTo(verticalDivider2).atTopTo(questionTextWidget3, 0, SWT.TOP).atBottomTo(questionTextWidget3, 0, SWT.BOTTOM).atRight();
+        LabelSet.decorate(noLabel3).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_3);
+        noLabel3.addMouseListener(new ChooseAnswerListener());
 
-        final Label dl4 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(dl4).atLeft().atTopTo(qt3).atRight().withHeight(1);
-        LabelSet.decorate(dl4).setBackground(MT.COLOR_GRAY40);
+        final Label divider4 = new Label(ac, SWT.NONE);
+        FormDataSet.attach(divider4).atLeft().atTopTo(questionTextWidget3).atRight().withHeight(1);
+        LabelSet.decorate(divider4).setBackground(MT.COLOR_GRAY40);
 
-        final StyledText qt4 = new StyledText(ac, SWT.WRAP);
-        FormDataSet.attach(qt4).atLeft().atTopTo(dl4).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
-        StyledTextSet.decorate(qt4).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question4").getText());
+        final StyledText questionTextWidget4 = new StyledText(ac, SWT.WRAP);
+        FormDataSet.attach(questionTextWidget4).atLeft().atTopTo(divider4).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
+        StyledTextSet.decorate(questionTextWidget4).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question4").getText());
 
-        yl4 = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(yl4).atLeftTo(vd1).atTopTo(qt4, 0, SWT.TOP).atBottomTo(qt4, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
-        CLabelSet.decorate(yl4).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_4);
-        yl4.addMouseListener(new ChooseAnswerListener());
+        yesLabel4 = new Label(ac, SWT.CENTER);
+        FormDataSet.attach(yesLabel4).atLeftTo(verticalDivider1).atTopTo(questionTextWidget4, 0, SWT.TOP).atBottomTo(questionTextWidget4, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
+        LabelSet.decorate(yesLabel4).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_4);
+        yesLabel4.addMouseListener(new ChooseAnswerListener());
 
-        nl4 = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(nl4).atLeftTo(vd2).atTopTo(qt4, 0, SWT.TOP).atBottomTo(qt4, 0, SWT.BOTTOM).atRight();
-        CLabelSet.decorate(nl4).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_4);
-        nl4.addMouseListener(new ChooseAnswerListener());
+        noLabel4 = new Label(ac, SWT.CENTER);
+        FormDataSet.attach(noLabel4).atLeftTo(verticalDivider2).atTopTo(questionTextWidget4, 0, SWT.TOP).atBottomTo(questionTextWidget4, 0, SWT.BOTTOM).atRight();
+        LabelSet.decorate(noLabel4).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_4);
+        noLabel4.addMouseListener(new ChooseAnswerListener());
 
-        final Label dl5 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(dl5).atLeft().atTopTo(qt4).atRight().withHeight(1);
-        LabelSet.decorate(dl5).setBackground(MT.COLOR_GRAY40);
+        final Label divider5 = new Label(ac, SWT.NONE);
+        FormDataSet.attach(divider5).atLeft().atTopTo(questionTextWidget4).atRight().withHeight(1);
+        LabelSet.decorate(divider5).setBackground(MT.COLOR_GRAY40);
 
-        final StyledText qt5 = new StyledText(ac, SWT.WRAP);
-        FormDataSet.attach(qt5).atLeft().atTopTo(dl5).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
-        StyledTextSet.decorate(qt5).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question5").getText());
+        final StyledText questionTextWidget5 = new StyledText(ac, SWT.WRAP);
+        FormDataSet.attach(questionTextWidget5).atLeft().atTopTo(divider5).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
+        StyledTextSet.decorate(questionTextWidget5).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question5").getText());
 
-        yl5 = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(yl5).atLeftTo(vd1).atTopTo(qt5, 0, SWT.TOP).atBottomTo(qt5, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
-        CLabelSet.decorate(yl5).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_5);
-        yl5.addMouseListener(new ChooseAnswerListener());
+        yesLabel5 = new Label(ac, SWT.CENTER);
+        FormDataSet.attach(yesLabel5).atLeftTo(verticalDivider1).atTopTo(questionTextWidget5, 0, SWT.TOP).atBottomTo(questionTextWidget5, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
+        LabelSet.decorate(yesLabel5).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_5);
+        yesLabel5.addMouseListener(new ChooseAnswerListener());
 
-        nl5 = new CLabel(ac, SWT.CENTER);
-        FormDataSet.attach(nl5).atLeftTo(vd2).atTopTo(qt5, 0, SWT.TOP).atBottomTo(qt5, 0, SWT.BOTTOM).atRight();
-        CLabelSet.decorate(nl5).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_5);
-        nl5.addMouseListener(new ChooseAnswerListener());
+        noLabel5 = new Label(ac, SWT.CENTER);
+        FormDataSet.attach(noLabel5).atLeftTo(verticalDivider2).atTopTo(questionTextWidget5, 0, SWT.TOP).atBottomTo(questionTextWidget5, 0, SWT.BOTTOM).atRight();
+        LabelSet.decorate(noLabel5).setCursor(MT.CURSOR_HAND).setData(MT.KEY_QUESTION, MT.QUESTION_5);
+        noLabel5.addMouseListener(new ChooseAnswerListener());
+
+        updateWidgetsForAnswers();
+    }
+
+    private void updateWidgetsForAnswers() {
+
+        if (StringUtils.isEmpty(answerText)) {
+            answer1 = answer2 = answer3 = answer4 = answer5 = MT.CHOICE_NEVER_CHECK_MARKED;
+        } else {
+            String[] arr = answerText.split(MT.STRING_COMMA);
+            if (5 == arr.length) {
+                answer1 = Integer.parseInt(arr[0]);
+                markWidgetsForAnswers(answer1, yesLabel1, noLabel1);
+                answer2 = Integer.parseInt(arr[1]);
+                markWidgetsForAnswers(answer2, yesLabel2, noLabel2);
+                answer3 = Integer.parseInt(arr[2]);
+                markWidgetsForAnswers(answer3, yesLabel3, noLabel3);
+                answer4 = Integer.parseInt(arr[3]);
+                markWidgetsForAnswers(answer4, yesLabel4, noLabel4);
+                answer5 = Integer.parseInt(arr[4]);
+                markWidgetsForAnswers(answer5, yesLabel5, noLabel5);
+            }
+        }
+
+        logger.info("[Listening Match Objects Question {}] Answers: ({}, {}, {}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3, answer4, answer5);
+    }
+
+    private void markWidgetsForAnswers(int answer, Label yesLabel, Label noLabel) {
+        switch (answer) {
+            case MT.CHOICE_NEVER_CHECK_MARKED:
+                break;
+            case MT.CHOICE_YES:
+                LabelSet.decorate(yesLabel).setImage(MT.IMAGE_CHECKED);
+                break;
+            case MT.CHOICE_NO:
+                LabelSet.decorate(noLabel).setImage(MT.IMAGE_CHECKED);
+                break;
+        }
     }
 
     /*
@@ -337,17 +365,9 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
 
             if (isOk()) {
-
                 release();
-
-                UserTest ut = page.getUserTest();
-                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                ut.setLastViewId(vo.getViewId() + 1);
-
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                page.resume(ut);
+                UserTestPersistenceUtils.saveToNextView(ListeningMatchObjectsQuestionView.this);
+                page.resume();
 
             } else {
 
@@ -392,15 +412,9 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-
-            UserTest ut = page.getUserTest();
-            ut.setVolumeControlHidden(!volumeControlVisible);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
+            UserTestPersistenceUtils.saveVolumeControlVisibility(ListeningMatchObjectsQuestionView.this);
         }
 
         @Override
@@ -418,16 +432,10 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
         public void widgetSelected(SelectionEvent e) {
 
             Scale s = (Scale) e.widget;
-
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
 
-            UserTest ut = page.getUserTest();
-            ut.setVolume(volume);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
+            UserTestPersistenceUtils.saveVolume(ListeningMatchObjectsQuestionView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -441,68 +449,71 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            CLabel c = (CLabel) e.widget;
+            Label c = (Label) e.widget;
             int qid = (Integer) c.getData(MT.KEY_QUESTION);
 
             switch (qid) {
                 case MT.QUESTION_1:
-                    if (c == yl1) {
+                    if (c == yesLabel1) {
                         answer1 = MT.CHOICE_YES;
-                        CLabelSet.decorate(yl1).setText(CHECK_MARK);
-                        CLabelSet.decorate(nl1).setText("");
+                        LabelSet.decorate(yesLabel1).setText(CHECK_MARK);
+                        LabelSet.decorate(noLabel1).setText("");
                     } else {
                         answer1 = MT.CHOICE_NO;
-                        CLabelSet.decorate(yl1).setText("");
-                        CLabelSet.decorate(nl1).setText(CHECK_MARK);
+                        LabelSet.decorate(yesLabel1).setText("");
+                        LabelSet.decorate(noLabel1).setText(CHECK_MARK);
                     }
                     break;
                 case MT.QUESTION_2:
-                    if (c == yl2) {
+                    if (c == yesLabel2) {
                         answer2 = MT.CHOICE_YES;
-                        CLabelSet.decorate(yl2).setText(CHECK_MARK);
-                        CLabelSet.decorate(nl2).setText("");
+                        LabelSet.decorate(yesLabel2).setText(CHECK_MARK);
+                        LabelSet.decorate(noLabel2).setText("");
                     } else {
                         answer2 = MT.CHOICE_NO;
-                        CLabelSet.decorate(yl2).setText("");
-                        CLabelSet.decorate(nl2).setText(CHECK_MARK);
+                        LabelSet.decorate(yesLabel2).setText("");
+                        LabelSet.decorate(noLabel2).setText(CHECK_MARK);
                     }
                     break;
                 case MT.QUESTION_3:
-                    if (c == yl3) {
+                    if (c == yesLabel3) {
                         answer3 = MT.CHOICE_YES;
-                        CLabelSet.decorate(yl3).setText(CHECK_MARK);
-                        CLabelSet.decorate(nl3).setText("");
+                        LabelSet.decorate(yesLabel3).setText(CHECK_MARK);
+                        LabelSet.decorate(noLabel3).setText("");
                     } else {
                         answer3 = MT.CHOICE_NO;
-                        CLabelSet.decorate(yl3).setText("");
-                        CLabelSet.decorate(nl3).setText(CHECK_MARK);
+                        LabelSet.decorate(yesLabel3).setText("");
+                        LabelSet.decorate(noLabel3).setText(CHECK_MARK);
                     }
                     break;
                 case MT.QUESTION_4:
-                    if (c == yl4) {
+                    if (c == yesLabel4) {
                         answer4 = MT.CHOICE_YES;
-                        CLabelSet.decorate(yl4).setText(CHECK_MARK);
-                        CLabelSet.decorate(nl4).setText("");
+                        LabelSet.decorate(yesLabel4).setText(CHECK_MARK);
+                        LabelSet.decorate(noLabel4).setText("");
                     } else {
                         answer4 = MT.CHOICE_NO;
-                        CLabelSet.decorate(yl4).setText("");
-                        CLabelSet.decorate(nl4).setText(CHECK_MARK);
+                        LabelSet.decorate(yesLabel4).setText("");
+                        LabelSet.decorate(noLabel4).setText(CHECK_MARK);
                     }
                     break;
                 case MT.QUESTION_5:
-                    if (c == yl5) {
+                    if (c == yesLabel5) {
                         answer5 = MT.CHOICE_YES;
-                        CLabelSet.decorate(yl5).setText(CHECK_MARK);
-                        CLabelSet.decorate(nl5).setText("");
+                        LabelSet.decorate(yesLabel5).setText(CHECK_MARK);
+                        LabelSet.decorate(noLabel5).setText("");
                     } else {
                         answer5 = MT.CHOICE_NO;
-                        CLabelSet.decorate(yl5).setText("");
-                        CLabelSet.decorate(nl5).setText(CHECK_MARK);
+                        LabelSet.decorate(yesLabel5).setText("");
+                        LabelSet.decorate(noLabel5).setText(CHECK_MARK);
                     }
                     break;
             }
 
             logger.info("[Listening Match Objects Question {}] Answers: ({}, {}, {}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3, answer4, answer5);
+
+            answerText = answer1 + MT.STRING_COMMA + answer2 + MT.STRING_COMMA + answer3 + MT.STRING_COMMA + answer4 + MT.STRING_COMMA + answer5;
+            UserTestPersistenceUtils.saveAnswers(ListeningMatchObjectsQuestionView.this, answerText);
         }
 
         @Override
@@ -525,7 +536,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
                             nextOvalButton.setEnabled(true);
                             okOvalButton.setEnabled(false);
 
-                            StyledTextSet.decorate(tips).setVisible(true);
+                            StyledTextSet.decorate(tipsTextWidget).setVisible(true);
                             ac.setVisible(true);
                         }
                     });

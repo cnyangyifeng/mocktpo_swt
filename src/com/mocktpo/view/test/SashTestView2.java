@@ -48,7 +48,7 @@ public abstract class SashTestView2 extends TestView {
 
         left = new Composite(body, SWT.BORDER);
         FormDataSet.attach(left).atLeft().atTopTo(top, 5).fromRight(50).atBottom();
-        FormLayoutSet.layout(left).marginWidth(1).marginHeight(1);
+        FormLayoutSet.layout(left);
 
         updateLeft();
 

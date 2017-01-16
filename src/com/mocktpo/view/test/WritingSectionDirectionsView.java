@@ -1,8 +1,6 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.listener.StyledTextPaintImageListener;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.CompositeSet;
 import com.mocktpo.util.FormDataSet;
@@ -10,6 +8,7 @@ import com.mocktpo.util.StyleRangeUtils;
 import com.mocktpo.util.StyledTextSet;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
@@ -108,15 +107,9 @@ public class WritingSectionDirectionsView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-
-            UserTest ut = page.getUserTest();
-            ut.setVolumeControlHidden(!volumeControlVisible);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
+            UserTestPersistenceUtils.saveVolumeControlVisibility(WritingSectionDirectionsView.this);
         }
 
         @Override
@@ -134,16 +127,10 @@ public class WritingSectionDirectionsView extends ResponsiveTestView {
         public void widgetSelected(SelectionEvent e) {
 
             Scale s = (Scale) e.widget;
-
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
 
-            UserTest ut = page.getUserTest();
-            ut.setVolume(volume);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
+            UserTestPersistenceUtils.saveVolume(WritingSectionDirectionsView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -156,16 +143,9 @@ public class WritingSectionDirectionsView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setLastViewId(vo.getViewId() + 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
+            UserTestPersistenceUtils.saveToNextView(WritingSectionDirectionsView.this);
+            page.resume();
         }
 
         @Override

@@ -5,6 +5,7 @@ import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
@@ -64,7 +65,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
 
         final StyledText dt = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(dt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
+        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
     }
 
     /*
@@ -83,17 +84,9 @@ public class ReadingSectionEndView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-            ut.setLastViewId(vo.getViewId() + 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
+            UserTestPersistenceUtils.saveToNextView(ReadingSectionEndView.this);
+            page.resume();
         }
 
         @Override
@@ -109,9 +102,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
             page.toReadingReview();
         }
 
@@ -128,16 +119,9 @@ public class ReadingSectionEndView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setLastViewId(vo.getViewId() - 1);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
-            page.resume(ut);
+            UserTestPersistenceUtils.saveToPreviousView(ReadingSectionEndView.this);
+            page.resume();
         }
 
         @Override

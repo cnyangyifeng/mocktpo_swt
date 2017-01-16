@@ -3,12 +3,11 @@ package com.mocktpo.view.test;
 import com.mocktpo.dialog.RequiredAnswerDialog;
 import com.mocktpo.listener.BorderedCompositePaintListener;
 import com.mocktpo.listener.StyledTextPaintImageListener;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.DroppableAnswerComposite;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
@@ -40,8 +39,8 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
     private ImageButton nextOvalButton, okOvalButton;
     private VolumeControl volumeControl;
 
-    private Label choiceA, choiceB, choiceC;
-    private StyledText tips;
+    private Label checkWidgetA, checkWidgetB, checkWidgetC;
+    private StyledText tipsTextWidget;
     private Composite ac;
 
     /* Properties */
@@ -83,38 +82,30 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         okOvalButton.setEnabled(false);
         okOvalButton.addMouseListener(new OkOvalButtonMouseListener());
 
-        final ImageButton hob = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
-        FormDataSet.attach(hob).atRightTo(okOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        hob.addMouseListener(new HelpOvalButtonMouseListener());
+        final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
+        FormDataSet.attach(helpOvalButton).atRightTo(okOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        helpOvalButton.addMouseListener(new HelpOvalButtonMouseListener());
 
-        final ImageButton vob = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
-        FormDataSet.attach(vob).atRightTo(hob).atTopTo(nextOvalButton, 0, SWT.TOP);
-        vob.addMouseListener(new VolumeOvalButtonMouseListener());
+        final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
+        FormDataSet.attach(volumeOvalButton).atRightTo(helpOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseListener());
 
         volumeControl = new VolumeControl(header, SWT.NONE);
-        FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
+        FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
-        // TODO Removes the continue button
+        // TODO Removes the continue debug button
 
-        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
-        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(nextOvalButton, 8, SWT.TOP);
-        cb.addMouseListener(new MouseAdapter() {
+        final ImageButton continueDebugButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
+        FormDataSet.attach(continueDebugButton).atRightTo(volumeOvalButton, 16).atTopTo(nextOvalButton, 8, SWT.TOP);
+        continueDebugButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
-
                 release();
-
-                UserTest ut = page.getUserTest();
-                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                ut.setLastViewId(vo.getViewId() + 1);
-
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                page.resume(ut);
+                UserTestPersistenceUtils.saveToNextView(ListeningOrderEventsQuestionView.this);
+                page.resume();
             }
         });
     }
@@ -127,19 +118,19 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText qt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(qt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(qt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
-        StyleRangeUtils.decorate(qt, vo.getStyledText("question").getStyles());
-        qt.addPaintObjectListener(new StyledTextPaintImageListener());
+        final StyledText questionTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(questionTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
+        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
+        questionTextWidget.addPaintObjectListener(new StyledTextPaintImageListener());
 
-        tips = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(tips).atLeft().atTopTo(qt, 20).atRight();
-        StyledTextSet.decorate(tips).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(5).setText(vo.getStyledText("tips").getText()).setVisible(false);
-        StyleRangeUtils.decorate(tips, vo.getStyledText("tips").getStyles());
+        tipsTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(tipsTextWidget).atLeft().atTopTo(questionTextWidget, 20).atRight();
+        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(5).setText(vo.getStyledText("tips").getText()).setVisible(false);
+        StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledText("tips").getStyles());
 
         ac = new Composite(viewPort, SWT.NONE);
-        FormDataSet.attach(ac).atLeft().atTopTo(tips, 20).atRight();
+        FormDataSet.attach(ac).atLeft().atTopTo(tipsTextWidget, 20).atRight();
         CompositeSet.decorate(ac).setVisible(false);
         FormLayoutSet.layout(ac).marginWidth(1).marginHeight(1);
 
@@ -168,20 +159,20 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         FormDataSet.attach(l).atLeft().atTopTo(blank3, 20).atRight();
         CLabelSet.decorate(l).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("answer_choices"));
 
-        choiceA = new Label(ac, SWT.WRAP);
-        FormDataSet.attach(choiceA).atLeft().atTopTo(l, 20).atRight();
-        LabelSet.decorate(choiceA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA").getText());
-        ChoiceLabelDragSourceSet.drag(choiceA);
+        checkWidgetA = new Label(ac, SWT.WRAP);
+        FormDataSet.attach(checkWidgetA).atLeft().atTopTo(l, 20).atRight();
+        LabelSet.decorate(checkWidgetA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("checkWidgetA").getText());
+        ChoiceLabelDragSourceSet.drag(checkWidgetA);
 
-        choiceB = new Label(ac, SWT.WRAP);
-        FormDataSet.attach(choiceB).atLeft().atTopTo(choiceA, 10).atRight();
-        LabelSet.decorate(choiceB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB").getText());
-        ChoiceLabelDragSourceSet.drag(choiceB);
+        checkWidgetB = new Label(ac, SWT.WRAP);
+        FormDataSet.attach(checkWidgetB).atLeft().atTopTo(checkWidgetA, 10).atRight();
+        LabelSet.decorate(checkWidgetB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("checkWidgetB").getText());
+        ChoiceLabelDragSourceSet.drag(checkWidgetB);
 
-        choiceC = new Label(ac, SWT.WRAP);
-        FormDataSet.attach(choiceC).atLeft().atTopTo(choiceB, 10).atRight();
-        LabelSet.decorate(choiceC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC").getText());
-        ChoiceLabelDragSourceSet.drag(choiceC);
+        checkWidgetC = new Label(ac, SWT.WRAP);
+        FormDataSet.attach(checkWidgetC).atLeft().atTopTo(checkWidgetB, 10).atRight();
+        LabelSet.decorate(checkWidgetC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("checkWidgetC").getText());
+        ChoiceLabelDragSourceSet.drag(checkWidgetC);
     }
 
     /*
@@ -264,23 +255,12 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
 
             if (isOk()) {
-
                 release();
-
-                UserTest ut = page.getUserTest();
-                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                ut.setLastViewId(vo.getViewId() + 1);
-
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                page.resume(ut);
-
+                UserTestPersistenceUtils.saveToNextView(ListeningOrderEventsQuestionView.this);
+                page.resume();
             } else {
-
                 nextOvalButton.setEnabled(true);
                 okOvalButton.setEnabled(false);
-
                 if (isNull()) {
                     RequiredAnswerDialog d = new RequiredAnswerDialog(MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_MANY);
                     d.openAndWaitForDisposal();
@@ -319,15 +299,9 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-
-            UserTest ut = page.getUserTest();
-            ut.setVolumeControlHidden(!volumeControlVisible);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
+            UserTestPersistenceUtils.saveVolumeControlVisibility(ListeningOrderEventsQuestionView.this);
         }
 
         @Override
@@ -345,16 +319,10 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         public void widgetSelected(SelectionEvent e) {
 
             Scale s = (Scale) e.widget;
-
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
 
-            UserTest ut = page.getUserTest();
-            ut.setVolume(volume);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
+            UserTestPersistenceUtils.saveVolume(ListeningOrderEventsQuestionView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -374,7 +342,7 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
                             nextOvalButton.setEnabled(true);
                             okOvalButton.setEnabled(false);
 
-                            StyledTextSet.decorate(tips).setVisible(true);
+                            StyledTextSet.decorate(tipsTextWidget).setVisible(true);
                             ac.setVisible(true);
                         }
                     });
@@ -418,13 +386,13 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
             switch (oldAnswer) {
                 case MT.CHOICE_A:
-                    LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
+                    LabelSet.decorate(checkWidgetA).setText(vo.getStyledText("checkWidgetA").getText());
                     break;
                 case MT.CHOICE_B:
-                    LabelSet.decorate(choiceB).setText(vo.getStyledText("choiceB").getText());
+                    LabelSet.decorate(checkWidgetB).setText(vo.getStyledText("checkWidgetB").getText());
                     break;
                 case MT.CHOICE_C:
-                    LabelSet.decorate(choiceC).setText(vo.getStyledText("choiceC").getText());
+                    LabelSet.decorate(checkWidgetC).setText(vo.getStyledText("checkWidgetC").getText());
                     break;
             }
 
@@ -443,6 +411,9 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
             }
 
             logger.info("[Listening Order Events Question {}] Answers: ({}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3);
+
+            answerText = answer1 + MT.STRING_COMMA + answer2 + MT.STRING_COMMA + answer3;
+            UserTestPersistenceUtils.saveAnswers(ListeningOrderEventsQuestionView.this, answerText);
         }
     }
 
@@ -460,13 +431,13 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
             switch (answer) {
                 case MT.CHOICE_A:
-                    LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
+                    LabelSet.decorate(checkWidgetA).setText(vo.getStyledText("checkWidgetA").getText());
                     break;
                 case MT.CHOICE_B:
-                    LabelSet.decorate(choiceB).setText(vo.getStyledText("choiceB").getText());
+                    LabelSet.decorate(checkWidgetB).setText(vo.getStyledText("checkWidgetB").getText());
                     break;
                 case MT.CHOICE_C:
-                    LabelSet.decorate(choiceC).setText(vo.getStyledText("choiceC").getText());
+                    LabelSet.decorate(checkWidgetC).setText(vo.getStyledText("checkWidgetC").getText());
                     break;
             }
 

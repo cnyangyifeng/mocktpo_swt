@@ -1,12 +1,11 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.listener.BorderedCompositePaintListener;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
@@ -28,8 +27,8 @@ public class ListeningMaterialView extends ResponsiveTestView {
 
     private static final int VIEW_PORT_PADDING_TOP = 50;
     private static final int ILLUSTRATION_WIDTH = 600;
-    private static final int AUDIO_PROGRESS_INDICATOR_WIDTH = 360;
-    private static final int AUDIO_PROGRESS_INDICATOR_HEIGHT = 26;
+    private static final int AUDIO_BAR_CONTAINER_WIDTH = 360;
+    private static final int AUDIO_BAR_CONTAINER_HEIGHT = 26;
 
     /* Widgets */
 
@@ -66,46 +65,38 @@ public class ListeningMaterialView extends ResponsiveTestView {
     @Override
     public void updateHeader() {
 
-        final ImageButton nob = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
-        FormDataSet.attach(nob).atRight(10).atTop(10);
-        nob.setEnabled(false);
+        final ImageButton nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
+        FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
+        nextOvalButton.setEnabled(false);
 
-        final ImageButton oob = new ImageButton(header, SWT.NONE, MT.IMAGE_OK_OVAL, MT.IMAGE_OK_OVAL_HOVER, MT.IMAGE_OK_OVAL_DISABLED);
-        FormDataSet.attach(oob).atRightTo(nob).atTopTo(nob, 0, SWT.TOP);
-        oob.setEnabled(false);
+        final ImageButton okOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_OK_OVAL, MT.IMAGE_OK_OVAL_HOVER, MT.IMAGE_OK_OVAL_DISABLED);
+        FormDataSet.attach(okOvalButton).atRightTo(nextOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        okOvalButton.setEnabled(false);
 
-        final ImageButton hob = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
-        FormDataSet.attach(hob).atRightTo(oob).atTopTo(nob, 0, SWT.TOP);
-        hob.setEnabled(false);
+        final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
+        FormDataSet.attach(helpOvalButton).atRightTo(okOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        helpOvalButton.setEnabled(false);
 
-        final ImageButton vob = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
-        FormDataSet.attach(vob).atRightTo(hob).atTopTo(nob, 0, SWT.TOP);
-        vob.addMouseListener(new VolumeOvalButtonMouseListener());
+        final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
+        FormDataSet.attach(volumeOvalButton).atRightTo(helpOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseListener());
 
         volumeControl = new VolumeControl(header, SWT.NONE);
-        FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
+        FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
-        // TODO Removes the continue button
+        // TODO Removes the continue debug button
 
-        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
-        FormDataSet.attach(cb).atRightTo(vob, 16).atTopTo(nob, 8, SWT.TOP);
-        cb.addMouseListener(new MouseAdapter() {
+        final ImageButton continueDebugButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
+        FormDataSet.attach(continueDebugButton).atRightTo(volumeOvalButton, 16).atTopTo(nextOvalButton, 8, SWT.TOP);
+        continueDebugButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
-
                 release();
-
-                UserTest ut = page.getUserTest();
-                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                ut.setLastViewId(vo.getViewId() + 1);
-
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                page.resume(ut);
+                UserTestPersistenceUtils.saveToNextView(ListeningMaterialView.this);
+                page.resume();
             }
         });
     }
@@ -122,7 +113,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
         LabelSet.decorate(illustrationLabel).setImage(illustrations.get(0));
 
         final Composite pc = new Composite(viewPort, SWT.NONE);
-        FormDataSet.attach(pc).fromLeft(50, -AUDIO_PROGRESS_INDICATOR_WIDTH / 2).atTopTo(illustrationLabel, 30).withWidth(AUDIO_PROGRESS_INDICATOR_WIDTH).withHeight(AUDIO_PROGRESS_INDICATOR_HEIGHT);
+        FormDataSet.attach(pc).fromLeft(50, -AUDIO_BAR_CONTAINER_WIDTH / 2).atTopTo(illustrationLabel, 30).withWidth(AUDIO_BAR_CONTAINER_WIDTH).withHeight(AUDIO_BAR_CONTAINER_HEIGHT);
         CompositeSet.decorate(pc).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         FormLayoutSet.layout(pc).marginWidth(10).marginHeight(8);
         pc.addPaintListener(new BorderedCompositePaintListener());
@@ -167,15 +158,9 @@ public class ListeningMaterialView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-
-            UserTest ut = page.getUserTest();
-            ut.setVolumeControlHidden(!volumeControlVisible);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
+            UserTestPersistenceUtils.saveVolumeControlVisibility(ListeningMaterialView.this);
         }
 
         @Override
@@ -193,16 +178,10 @@ public class ListeningMaterialView extends ResponsiveTestView {
         public void widgetSelected(SelectionEvent e) {
 
             Scale s = (Scale) e.widget;
-
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
 
-            UserTest ut = page.getUserTest();
-            ut.setVolume(volume);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
+            UserTestPersistenceUtils.saveVolume(ListeningMaterialView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -271,15 +250,8 @@ public class ListeningMaterialView extends ResponsiveTestView {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-
-                            UserTest ut = page.getUserTest();
-                            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                            ut.setLastViewId(vo.getViewId() + 1);
-
-                            sqlSession.getMapper(UserTestMapper.class).update(ut);
-                            sqlSession.commit();
-
-                            page.resume(ut);
+                            UserTestPersistenceUtils.saveToNextView(ListeningMaterialView.this);
+                            page.resume();
                         }
                     });
                 }

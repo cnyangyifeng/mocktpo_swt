@@ -2,13 +2,17 @@ package com.mocktpo.widget;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
@@ -34,9 +38,13 @@ public class TestCard extends Composite {
     private Composite header;
     private CLabel pl;
 
+    /* Persistence */
+
+    protected SqlSession sqlSession;
+
     /* Properties */
 
-    private UserTest ut;
+    private UserTest userTest;
 
     /*
      * ==================================================
@@ -46,10 +54,11 @@ public class TestCard extends Composite {
      * ==================================================
      */
 
-    public TestCard(Composite parent, int style, UserTest ut) {
+    public TestCard(Composite parent, int style, UserTest userTest) {
         super(parent, style);
         this.d = parent.getDisplay();
-        this.ut = ut;
+        this.sqlSession = MyApplication.get().getSqlSession();
+        this.userTest = userTest;
         init();
     }
 
@@ -73,7 +82,7 @@ public class TestCard extends Composite {
 
         final CLabel tl = new CLabel(header, SWT.NONE);
         FormDataSet.attach(tl).atLeft().atTop(5).atRight();
-        CLabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setText(ut.getTitle());
+        CLabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setText(userTest.getTitle());
 
         pl = new CLabel(header, SWT.NONE);
         FormDataSet.attach(pl).atLeft().atTopTo(tl, 15).atRight();
@@ -91,22 +100,24 @@ public class TestCard extends Composite {
         CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(c).marginWidth(0).marginHeight(0);
 
-        final CLabel rl = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(rl).atLeft().atTop().atRight();
-        CLabelSet.decorate(rl).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setImage(MT.IMAGE_ARROW_RIGHT).setText(msgs.getString("restart"));
+        final CLabel restartLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(restartLabel).atLeft().atTop().atRight();
+        CLabelSet.decorate(restartLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setImage(MT.IMAGE_ARROW_RIGHT).setText(msgs.getString("restart"));
+        restartLabel.addMouseListener(new RestartLabelMouseListener());
 
-        final CLabel sl = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(sl).atLeft().atTopTo(rl, 10).atRight();
-        CLabelSet.decorate(sl).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setImage(MT.IMAGE_ARROW_RIGHT).setText(msgs.getString("score"));
+        final CLabel reportLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(reportLabel).atLeft().atTopTo(restartLabel, 10).atRight();
+        CLabelSet.decorate(reportLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setImage(MT.IMAGE_ARROW_RIGHT).setText(msgs.getString("report"));
+        reportLabel.addMouseListener(new ReportLabelMouseListener());
 
-        final Label bd = new Label(c, SWT.NONE);
-        FormDataSet.attach(bd).atLeft().atTopTo(sl, 10).atRight().withHeight(1);
-        LabelSet.decorate(bd).setBackground(MT.COLOR_WHITE_SMOKE);
+        final Label divider = new Label(c, SWT.NONE);
+        FormDataSet.attach(divider).atLeft().atTopTo(reportLabel, 10).atRight().withHeight(1);
+        LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
 
-        final Button b = new Button(c, SWT.PUSH);
-        FormDataSet.attach(b).atLeft().atTopTo(bd, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(b).setCursor(MT.CURSOR_HAND).setText(msgs.getString("start"));
-        b.addSelectionListener(new StartSelectionListener());
+        final Button enterButton = new Button(c, SWT.PUSH);
+        FormDataSet.attach(enterButton).atLeft().atTopTo(divider, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
+        ButtonSet.decorate(enterButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("enter"));
+        enterButton.addSelectionListener(new EnterButtonSelectionListener());
     }
 
     /*
@@ -117,8 +128,8 @@ public class TestCard extends Composite {
      * ==================================================
      */
 
-    public void reset(UserTest ut) {
-        this.ut = ut;
+    public void reset(UserTest userTest) {
+        this.userTest = userTest;
         d.asyncExec(new Runnable() {
             @Override
             public void run() {
@@ -128,7 +139,7 @@ public class TestCard extends Composite {
     }
 
     private String getCompletionRate() {
-        return (ut.getCompletionRate() + "%");
+        return Integer.toString(userTest.getStars());
     }
 
     /*
@@ -140,7 +151,7 @@ public class TestCard extends Composite {
      */
 
     public UserTest getUserTest() {
-        return ut;
+        return userTest;
     }
 
     /*
@@ -151,7 +162,55 @@ public class TestCard extends Composite {
      * ==================================================
      */
 
-    private class StartSelectionListener implements SelectionListener {
+    private class RestartLabelMouseListener implements MouseListener {
+
+        @Override
+        public void mouseDoubleClick(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+
+            userTest.setTimerHidden(false);
+            userTest.setReadingTime(MT.TIME_READING_SECTION);
+            userTest.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
+            userTest.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
+            userTest.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
+            userTest.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
+            userTest.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
+            userTest.setVolume(1.0);
+            userTest.setVolumeControlHidden(true);
+            userTest.setStars(0);
+            userTest.setLastViewId(1);
+
+            sqlSession.getMapper(UserTestMapper.class).update(userTest);
+            sqlSession.commit();
+
+            MyApplication.get().getWindow().toTestPage(userTest);
+        }
+
+        @Override
+        public void mouseUp(MouseEvent e) {
+        }
+    }
+
+    private class ReportLabelMouseListener implements MouseListener {
+
+        @Override
+        public void mouseDoubleClick(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            MyApplication.get().getWindow().toReportPage(userTest);
+        }
+
+        @Override
+        public void mouseUp(MouseEvent e) {
+        }
+    }
+
+    private class EnterButtonSelectionListener implements SelectionListener {
 
         @Override
         public void widgetDefaultSelected(SelectionEvent e) {
@@ -159,7 +218,7 @@ public class TestCard extends Composite {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-            MyApplication.get().getWindow().toTestPage(ut);
+            MyApplication.get().getWindow().toTestPage(userTest);
         }
     }
 }

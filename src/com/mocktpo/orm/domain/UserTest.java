@@ -21,7 +21,7 @@ public class UserTest {
     private int independentWritingTime;
     private double volume;
     private boolean volumeControlHidden;
-    private int completionRate;
+    private int stars;
     private int lastViewId;
 
     public String getEmail() {
@@ -144,12 +144,12 @@ public class UserTest {
         this.volumeControlHidden = volumeControlHidden;
     }
 
-    public int getCompletionRate() {
-        return completionRate;
+    public int getStars() {
+        return stars;
     }
 
-    public void setCompletionRate(int completionRate) {
-        this.completionRate = completionRate;
+    public void setStars(int stars) {
+        this.stars = stars;
     }
 
     public int getLastViewId() {
@@ -159,6 +159,14 @@ public class UserTest {
     public void setLastViewId(int lastViewId) {
         this.lastViewId = lastViewId;
     }
+
+    /*
+     * ==================================================
+     *
+     * Customized Methods
+     *
+     * ==================================================
+     */
 
     public int getRemainingViewTime(TestViewVo tvv) {
         int viewTime = 0;
@@ -196,10 +204,18 @@ public class UserTest {
                     case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK:
                         viewTime = this.getIntegratedWritingTime();
                         break;
+                    case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK_END:
+                        viewTime = this.getIntegratedWritingTime();
+                        break;
                     case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK:
                         viewTime = this.getIndependentWritingTime();
                         break;
+                    case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK_END:
+                        viewTime = this.getIndependentWritingTime();
+                        break;
                 }
+                break;
+            case ST.SECTION_TYPE_REPORT:
                 break;
         }
 
@@ -241,16 +257,24 @@ public class UserTest {
                     case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK:
                         this.setIntegratedWritingTime(viewTime);
                         break;
+                    case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK_END:
+                        this.setIntegratedWritingTime(viewTime);
+                        break;
                     case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK:
                         this.setIndependentWritingTime(viewTime);
                         break;
+                    case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK_END:
+                        this.setIndependentWritingTime(viewTime);
+                        break;
                 }
+                break;
+            case ST.SECTION_TYPE_REPORT:
                 break;
         }
     }
 
     @Override
     public String toString() {
-        return "{\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nspeakingReadingTime1:" + this.getSpeakingReadingTime1() + ",\nspeakingReadingTime2:" + this.getSpeakingReadingTime2() + ",\nwritingReadingTime:" + this.getWritingReadingTime() + ",\nintegratedWritingTime:" + this.getIntegratedWritingTime() + ",\nindependentWritingTime:" + this.getIndependentWritingTime() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\ncompletionRate:" + this.getCompletionRate() + ",\nlastViewId:" + this.getLastViewId() + "\n}";
+        return "{\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nspeakingReadingTime1:" + this.getSpeakingReadingTime1() + ",\nspeakingReadingTime2:" + this.getSpeakingReadingTime2() + ",\nwritingReadingTime:" + this.getWritingReadingTime() + ",\nintegratedWritingTime:" + this.getIntegratedWritingTime() + ",\nindependentWritingTime:" + this.getIndependentWritingTime() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\ncompletionRate:" + this.getStars() + ",\nlastViewId:" + this.getLastViewId() + "\n}";
     }
 }

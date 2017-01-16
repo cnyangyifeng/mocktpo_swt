@@ -1,11 +1,10 @@
 package com.mocktpo.view.test;
 
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
@@ -69,24 +68,16 @@ public class SpeakingTaskDirectionsView extends ResponsiveTestView {
         volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
-        // TODO Removes the continue button
+        // TODO Removes the continue debug button
 
-        final ImageButton cb2 = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
-        FormDataSet.attach(cb2).atRightTo(cb, 10).atTopTo(cb, 0, SWT.TOP);
-        cb2.addMouseListener(new MouseAdapter() {
+        final ImageButton continueDebugButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
+        FormDataSet.attach(continueDebugButton).atRightTo(cb, 10).atTopTo(cb, 0, SWT.TOP);
+        continueDebugButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
-
                 release();
-
-                UserTest ut = page.getUserTest();
-                ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                ut.setLastViewId(vo.getViewId() + 1);
-
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
-                sqlSession.commit();
-
-                page.resume(ut);
+                UserTestPersistenceUtils.saveToNextView(SpeakingTaskDirectionsView.this);
+                page.resume();
             }
         });
     }
@@ -143,15 +134,9 @@ public class SpeakingTaskDirectionsView extends ResponsiveTestView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-
-            UserTest ut = page.getUserTest();
-            ut.setVolumeControlHidden(!volumeControlVisible);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
+            UserTestPersistenceUtils.saveVolumeControlVisibility(SpeakingTaskDirectionsView.this);
         }
 
         @Override
@@ -169,16 +154,10 @@ public class SpeakingTaskDirectionsView extends ResponsiveTestView {
         public void widgetSelected(SelectionEvent e) {
 
             Scale s = (Scale) e.widget;
-
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
 
-            UserTest ut = page.getUserTest();
-            ut.setVolume(volume);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
-
+            UserTestPersistenceUtils.saveVolume(SpeakingTaskDirectionsView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -193,17 +172,9 @@ public class SpeakingTaskDirectionsView extends ResponsiveTestView {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-
                             release();
-
-                            UserTest ut = page.getUserTest();
-                            ut.setCompletionRate(100 * vo.getViewId() / page.getTestSchema().getViews().size());
-                            ut.setLastViewId(vo.getViewId() + 1);
-
-                            sqlSession.getMapper(UserTestMapper.class).update(ut);
-                            sqlSession.commit();
-
-                            page.resume(ut);
+                            UserTestPersistenceUtils.saveToNextView(SpeakingTaskDirectionsView.this);
+                            page.resume();
                         }
                     });
                 }

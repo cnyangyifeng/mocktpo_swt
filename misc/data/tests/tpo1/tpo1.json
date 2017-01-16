@@ -93,6 +93,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 1,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -132,6 +133,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 2,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -172,6 +174,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 3,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -212,6 +215,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 4,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -251,6 +255,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 5,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -291,6 +296,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 6,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -330,6 +336,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 7,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -370,6 +377,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 8,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -410,6 +418,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 9,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -450,6 +459,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 10,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -489,6 +499,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 11,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -528,6 +539,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 12,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -565,6 +577,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 13,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Groundwater"
@@ -691,6 +704,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 15,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -731,6 +745,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 16,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -771,6 +786,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 17,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -810,6 +826,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 18,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -849,6 +866,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 19,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -889,6 +907,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 20,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -929,6 +948,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 21,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -968,6 +988,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 22,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1007,6 +1028,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 23,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1046,6 +1068,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 24,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1086,6 +1109,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 25,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1126,6 +1150,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 26,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1163,6 +1188,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 27,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "The Origins of Theater"
@@ -1289,6 +1315,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 29,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1329,6 +1356,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 30,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1368,6 +1396,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 31,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1407,6 +1436,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 32,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1446,6 +1476,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 33,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1486,6 +1517,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 34,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1526,6 +1558,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 35,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1566,6 +1599,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 36,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1605,6 +1639,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 37,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1642,6 +1677,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 38,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1681,6 +1717,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 39,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1721,6 +1758,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 40,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1760,6 +1798,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 41,
+      "answerable": true,
       "body": {
         "heading": {
           "text": "Timberline Vegetation on Mountains"
@@ -1967,6 +2006,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 1,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the student go to see the librarian?"
@@ -1998,6 +2038,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 2,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the librarian say about the availability of journals and articles in the library?"
@@ -2029,6 +2070,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 3,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the librarian suggest the student should do to save time?"
@@ -2060,6 +2102,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 4,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What can be inferred about why the woman decides to use the computer in the library?"
@@ -2105,6 +2148,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 5,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the woman say this: \u2423",
@@ -2151,6 +2195,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 6,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What is the purpose of the lecture?"
@@ -2182,6 +2227,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 7,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the professor say about Frantzen's painting of a farm scene?"
@@ -2213,6 +2259,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 8,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why did Frantzen go to the Sales Barn?"
@@ -2244,6 +2291,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 9,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the professor imply about the painting of the young woman surrounded by pumpkins?"
@@ -2275,6 +2323,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 10,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the professor discuss Frantzen's difficulties as a young painter?"
@@ -2306,6 +2355,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 11,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the professor imply when he says this: \u2423",
@@ -2352,6 +2402,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 12,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the professor mainly discuss?"
@@ -2383,6 +2434,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 13,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Before the use of uranium-lead analysis, where did most geologists think the Grand Canyon sandstone came from?"
@@ -2445,6 +2497,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 15,
+      "answerable": true,
       "body": {
         "question": {
           "text": "According to the professor, what change has caused uranium-lead dating to gain popularity recently?"
@@ -2476,6 +2529,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 16,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the professor talk about the breaking apart of Earth's continents?"
@@ -2521,6 +2575,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 17,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the professor imply when he says this: \u2423",
@@ -2552,7 +2607,7 @@
       "timed": true,
       "body": {
         "description": {
-          "text": "This is the end of this part of the Listening section.\u000aClick on Continue to go on.\u000a\u000aOnce you leave this section and continue to the next,\u000ayou WILL NOT be able to return to it."
+          "text": "This is the end of this part of the Listening section. Click on Continue to go on.\u000a\u000aOnce you leave this section and continue to the next, you WILL NOT be able to return to it."
         }
       }
     },
@@ -2606,6 +2661,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 1,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What is the conversation mainly about?"
@@ -2637,6 +2693,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 2,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What is Matthew's opinion about observing Mr.Grabell's third-grade class?"
@@ -2668,6 +2725,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 3,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does Matthew mention Greek and Roman mythology?"
@@ -2689,7 +2747,7 @@
     {
       "viewId": 81,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple-Answers Question",
+      "viewTypeName": "Listening Multiple Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 2,
@@ -2699,6 +2757,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 4,
+      "answerable": true,
       "totalAnswerCount": 3,
       "body": {
         "question": {
@@ -2737,6 +2796,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 5,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What will Matthew probably do in next Wednesday's class?"
@@ -2780,6 +2840,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 6,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What is the lecture mainly about?"
@@ -2811,6 +2872,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 7,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the professor imply about the tools used by the people of Catalhoyuk?"
@@ -2832,7 +2894,7 @@
     {
       "viewId": 86,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple-Answers Question",
+      "viewTypeName": "Listening Multiple Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 2,
@@ -2842,6 +2904,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 8,
+      "answerable": true,
       "totalAnswerCount": 2,
       "body": {
         "question": {
@@ -2877,6 +2940,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 9,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the professor say about Catalhoyuk graves?"
@@ -2908,6 +2972,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 10,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What does the professor think of the idea that the inhabitants of Catalhoyuk deliberately arranged their house so that they could live near their ancestors' graves?"
@@ -2929,7 +2994,7 @@
     {
       "viewId": 89,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple-Answers Question",
+      "viewTypeName": "Listening Multiple Answers Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "groupId": 2,
@@ -2939,6 +3004,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 11,
+      "answerable": true,
       "totalAnswerCount": 3,
       "body": {
         "question": {
@@ -2989,6 +3055,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 12,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What is the main topic of the lecture?"
@@ -3020,6 +3087,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 13,
+      "answerable": true,
       "body": {
         "question": {
           "text": "According to the case study, why are marmots ideal for observation?"
@@ -3051,6 +3119,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 14,
+      "answerable": true,
       "body": {
         "question": {
           "text": "What reason does the professor give for the difference in marmot behaviour patterns?"
@@ -3096,6 +3165,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 15,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the professor say this: \u2423",
@@ -3144,6 +3214,7 @@
       "timerTaskDelayed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 16,
+      "answerable": true,
       "body": {
         "question": {
           "text": "Why does the professor say this: \u2423",
@@ -3175,7 +3246,7 @@
       "timed": true,
       "body": {
         "description": {
-          "text": "This is the end of this part of the Listening section.\u000aClick on Continue to go on.\u000a\u000aOnce you leave this section and continue to the next,\u000ayou WILL NOT be able to return to it."
+          "text": "This is the end of this part of the Listening section. Click on Continue to go on.\u000a\u000aOnce you leave this section and continue to the next, you WILL NOT be able to return to it."
         }
       }
     },
@@ -3684,6 +3755,7 @@
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 1,
+      "answerable": true,
       "body": {
         "passage": {
           "text": "\u0009In the United States, employees typically work five days a week for eight hours each day. However, many employees want to work a four-day week and are willing to accept less pay in order to do so. A mandatory policy requiring companies to offer their employees the option of working a four-day workweek for four-fifths (80 percent) of their normal pay would benefit the economy as a whole as well as the individual companies and the employees who decided to take the option. The shortened workweek would increase company profits because employees would feel more rested and alert, and as a result, they would make fewer costly errors in their work. Hiring more staff to ensure that the same amount of work would be accomplished would not result in additional payroll costs because four-day employees would only be paid 80 percent of the normal rate. In the end, companies would have fewer overworked and error-prone employees for the same money, which would increase company profits. For the country as a whole, one of the primary benefits of offering this option to employees is that it would reduce unemployment rates. If many full-time employees started working fewer hours, some of their workload would have to be shifted to others. Thus, for every four employees who went on an 80 percent week, a new employee could be hired at the 80 percent rate. Finally, the option of a four-day workweek would be better for individual employees. Employees who could afford a lower salary in exchange for more free time could improve the quality of their lives by spending the extra time with their families, pursuing private interests, or enjoying leisure activities.",
@@ -3707,6 +3779,19 @@
     {
       "viewId": 127,
       "viewType": 46,
+      "viewTypeName": "Integrated Writing Task End",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "timed": true,
+      "body": {
+        "description": {
+          "text": "You still have time to write your response. As long as there is time remaining, you can continue writing or revising your response.\u000a\u000aClick on Return to continue writing your response. Click on Continue to leave this question.\u000a\u000aOnce you leave this question, you will not be able to return and you may not continue writing."
+        }
+      }
+    },
+    {
+      "viewId": 128,
+      "viewType": 47,
       "viewTypeName": "Independent Writing Directions",
       "sectionType": 4,
       "sectionTypeName": "Writing",
@@ -3725,14 +3810,15 @@
       }
     },
     {
-      "viewId": 128,
-      "viewType": 47,
+      "viewId": 129,
+      "viewType": 48,
       "viewTypeName": "Independent Writing Task",
       "sectionType": 4,
       "sectionTypeName": "Writing",
       "timed": true,
       "questionCaptionVisible": true,
       "questionNumberInSection": 2,
+      "answerable": true,
       "body": {
         "directions": {
           "text": "Directions: Read the question below. You have 30 minutes to plan, write, and revise your essay. Typically, an effective response will contain a minimum of 300 words.",
@@ -3744,8 +3830,21 @@
           "text": "Question:\u000a\u000aDo you agree or disagree with the following statement?\u000a\u000aAt universities and colleges, sports and social activities are just as important as classes and libraries and should receive equal financial support.\u000a\u000aUse specific reasons and examples to support your answer.",
           "styles": [
             { "start": 0, "length": 9, "fontStyle": 1 },
-            { "start": 67, "length": 135, "underline": true }
+            { "start": 67, "length": 149, "underline": true }
           ]
+        }
+      }
+    },
+    {
+      "viewId": 130,
+      "viewType": 49,
+      "viewTypeName": "Independent Writing Task End",
+      "sectionType": 4,
+      "sectionTypeName": "Writing",
+      "timed": true,
+      "body": {
+        "description": {
+          "text": "You still have time to write your response. As long as there is time remaining, you can continue writing or revising your response.\u000a\u000aClick on Return to continue writing your response. Click on Continue to leave this question.\u000a\u000aOnce you leave this question, you will not be able to return and you may not continue writing."
         }
       }
     }

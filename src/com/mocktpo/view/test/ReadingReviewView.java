@@ -5,10 +5,7 @@ import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
-import com.mocktpo.util.constants.LC;
-import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.ST;
-import com.mocktpo.util.constants.VT;
+import com.mocktpo.util.constants.*;
 import com.mocktpo.vo.TestViewVo;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.ReadingReviewTableRow;
@@ -99,15 +96,15 @@ public class ReadingReviewView extends Composite {
      * ==================================================
      */
 
-    public ReadingReviewView(TestPage page, int style, boolean timed) {
+    public ReadingReviewView(TestPage page, int style) {
         super(page, style);
         this.d = page.getDisplay();
         this.page = page;
         this.selectedViewId = page.getUserTest().getLastViewId();
         this.sqlSession = MyApplication.get().getSqlSession();
-        this.timed = timed;
+        this.timed = true;
         init();
-        realloc();
+        alloc();
     }
 
     private void init() {
@@ -176,7 +173,7 @@ public class ReadingReviewView extends Composite {
         if (tvv.isQuestionCaptionVisible()) {
             caption = new StyledText(header, SWT.SINGLE);
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + tvv.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + TestSchemaUtils.getTotalQuestionCountInSectionAndGroup(page.getTestSchema(), ST.SECTION_TYPE_READING, 0));
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + tvv.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestSchema().getTotalQuestionCountInSectionAndGroup(ST.SECTION_TYPE_READING, 0));
         }
 
         final ImageButton gb = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
@@ -292,7 +289,7 @@ public class ReadingReviewView extends Composite {
      * ==================================================
      */
 
-    protected void realloc() {
+    protected void alloc() {
         startTimer();
     }
 
@@ -377,10 +374,10 @@ public class ReadingReviewView extends Composite {
 
             if (!d.isDisposed()) {
 
-                final UserTest ut = page.getUserTest();
-                TestViewVo tvv = page.getTestSchema().getView(page.getUserTest().getLastViewId());
-                ut.setRemainingViewTime(tvv, countDown);
-                sqlSession.getMapper(UserTestMapper.class).update(ut);
+                final UserTest userTest = page.getUserTest();
+                TestViewVo vo = page.getTestSchema().getView(page.getUserTest().getLastViewId());
+                userTest.setRemainingViewTime(vo, countDown);
+                sqlSession.getMapper(UserTestMapper.class).update(userTest);
                 sqlSession.commit();
 
                 d.asyncExec(new Runnable() {
@@ -396,16 +393,13 @@ public class ReadingReviewView extends Composite {
                         stopTimer();
                     }
 
-                    int lastViewId = TestSchemaUtils.getNextViewIdWhileTimeOut(page.getTestSchema(), page.getUserTest().getLastViewId());
-                    ut.setCompletionRate(100 * (lastViewId - 1) / page.getTestSchema().getViews().size());
-                    ut.setLastViewId(lastViewId);
-                    sqlSession.getMapper(UserTestMapper.class).update(ut);
-                    sqlSession.commit();
+                    int lastViewId = page.getTestSchema().getNextViewIdWhileTimeOut(page.getUserTest().getLastViewId());
+                    UserTestPersistenceUtils.saveToCurrentView(userTest, lastViewId);
 
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-                            MyApplication.get().getWindow().toTestPage(ut);
+                            MyApplication.get().getWindow().toTestPage(userTest);
                         }
                     });
                 }
@@ -482,14 +476,13 @@ public class ReadingReviewView extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            if (selectedViewId == TestSchemaUtils.getFirstViewIdByViewType(page.getTestSchema(), VT.VIEW_TYPE_READING_SECTION_END)) {
+            if (selectedViewId == page.getTestSchema().getFirstViewIdByViewType(VT.VIEW_TYPE_READING_SECTION_END)) {
                 return;
             }
 
             release();
 
             UserTest ut = page.getUserTest();
-            ut.setCompletionRate(100 * (selectedViewId - 1) / page.getTestSchema().getViews().size());
             ut.setLastViewId(selectedViewId);
 
             page.resume(ut);
@@ -542,7 +535,6 @@ public class ReadingReviewView extends Composite {
 
         @Override
         public void mouseUp(MouseEvent e) {
-
         }
     }
 

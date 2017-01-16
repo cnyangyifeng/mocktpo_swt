@@ -130,6 +130,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL, ImageUtils.load(d, "continue_o"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL_HOVER, ImageUtils.load(d, "continue_o_h"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL_DISABLED, ImageUtils.load(d, "continue_o_d"));
+        caches.putIfAbsent(MT.IMAGE_EXERCISES, ImageUtils.load(d, "exercises"));
         caches.putIfAbsent(MT.IMAGE_ETS_TOEFL, ImageUtils.load(d, "ets_toefl"));
         caches.putIfAbsent(MT.IMAGE_GO_TO_QUESTION, ImageUtils.load(d, "go_to_question"));
         caches.putIfAbsent(MT.IMAGE_GO_TO_QUESTION_HOVER, ImageUtils.load(d, "go_to_question_h"));
@@ -166,12 +167,18 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_REVIEW_OVAL, ImageUtils.load(d, "review_o"));
         caches.putIfAbsent(MT.IMAGE_REVIEW_OVAL_HOVER, ImageUtils.load(d, "review_o_h"));
         caches.putIfAbsent(MT.IMAGE_REVIEW_OVAL_DISABLED, ImageUtils.load(d, "review_o_d"));
+        caches.putIfAbsent(MT.IMAGE_SETTINGS, ImageUtils.load(d, "settings"));
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME, ImageUtils.load(d, "show_time"));
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME_HOVER, ImageUtils.load(d, "show_time_h"));
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME_DISABLED, ImageUtils.load(d, "show_time_d"));
         caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, "splash"));
+        caches.putIfAbsent(MT.IMAGE_STAR, ImageUtils.load(d, "star"));
+        caches.putIfAbsent(MT.IMAGE_STAR_EMPTY, ImageUtils.load(d, "star_empty"));
+        caches.putIfAbsent(MT.IMAGE_STAR_HALF, ImageUtils.load(d, "star_half"));
         caches.putIfAbsent(MT.IMAGE_STOP_RECORDING, ImageUtils.load(d, "stop_recording"));
         caches.putIfAbsent(MT.IMAGE_STOP_RECORDING_HOVER, ImageUtils.load(d, "stop_recording_h"));
+        caches.putIfAbsent(MT.IMAGE_STORE, ImageUtils.load(d, "store"));
+        caches.putIfAbsent(MT.IMAGE_TESTS, ImageUtils.load(d, "tests"));
         caches.putIfAbsent(MT.IMAGE_VOLUME_OVAL, ImageUtils.load(d, "volume_o"));
         caches.putIfAbsent(MT.IMAGE_VOLUME_OVAL_HOVER, ImageUtils.load(d, "volume_o_h"));
         caches.putIfAbsent(MT.IMAGE_VIEW_QUESTION, ImageUtils.load(d, "view_question"));
