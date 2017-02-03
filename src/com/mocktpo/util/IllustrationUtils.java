@@ -1,6 +1,6 @@
 package com.mocktpo.util;
 
-import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.constants.RC;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +20,7 @@ public class IllustrationUtils {
     private IllustrationUtils() {
     }
 
-    public static Map<Integer, Image> load(final Display d, final UserTest ut, final String fileNames) {
+    public static Map<Integer, Image> load(final Display d, final UserTestSession userTestSession, final String fileNames) {
         Map<Integer, Image> map = new HashMap<Integer, Image>();
         String[] arr = fileNames.split(";");
         for (final String fileNameWithLocation : arr) {
@@ -32,7 +32,7 @@ public class IllustrationUtils {
                     switch (zoom) {
                         case 200:
                             try {
-                                data = new Image(Display.getCurrent(), IllustrationUtils.class.getResourceAsStream(URLDecoder.decode(RC.TESTS_DATA_DIR + ut.getAlias() + "/" + fa[0] + RC.HIDPI_SUFFIX + RC.PNG_FILE_TYPE_SUFFIX, "utf-8"))).getImageData();
+                                data = new Image(Display.getCurrent(), IllustrationUtils.class.getResourceAsStream(URLDecoder.decode(RC.TESTS_DATA_DIR + userTestSession.getAlias() + "/" + fa[0] + RC.HIDPI_SUFFIX + RC.PNG_FILE_TYPE_SUFFIX, "utf-8"))).getImageData();
                             } catch (Exception e) {
                                 logger.info("Image \"{}{}{}\" not found.", fa[0], RC.HIDPI_SUFFIX, RC.PNG_FILE_TYPE_SUFFIX);
                             }
@@ -40,7 +40,7 @@ public class IllustrationUtils {
                         case 100:
                         default:
                             try {
-                                data = new Image(Display.getCurrent(), IllustrationUtils.class.getResourceAsStream(URLDecoder.decode(RC.TESTS_DATA_DIR + ut.getAlias() + "/" + fa[0] + RC.PNG_FILE_TYPE_SUFFIX, "utf-8"))).getImageData();
+                                data = new Image(Display.getCurrent(), IllustrationUtils.class.getResourceAsStream(URLDecoder.decode(RC.TESTS_DATA_DIR + userTestSession.getAlias() + "/" + fa[0] + RC.PNG_FILE_TYPE_SUFFIX, "utf-8"))).getImageData();
                             } catch (Exception e) {
                                 logger.info("Image \"{}{}\" not found.", fa[0], RC.PNG_FILE_TYPE_SUFFIX);
                             }

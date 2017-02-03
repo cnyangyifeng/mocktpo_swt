@@ -2,10 +2,10 @@ package com.mocktpo.util;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.ActivationCode;
-import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.orm.mapper.ActivationCodeMapper;
 import com.mocktpo.orm.mapper.UserTestAnswerMapper;
-import com.mocktpo.orm.mapper.UserTestMapper;
+import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.window.RegisterWindow;
 import com.mocktpo.window.SplashWindow;
@@ -86,29 +86,30 @@ public class AppLoader extends Thread {
         if (licensed) {
             splash.proceed(msgs.getString("configuring_data"));
             SqlSession sqlSession = app.getSqlSession();
-            final UserTestMapper utm = sqlSession.getMapper(UserTestMapper.class);
-            utm.schema();
-            if (utm.count() <= 0) {
+            final UserTestSessionMapper userTestSessionMapper = sqlSession.getMapper(UserTestSessionMapper.class);
+            userTestSessionMapper.schema();
+            if (userTestSessionMapper.count() <= 0) {
                 for (int i = 1; i <= 48; i++) {
-                    UserTest ut = new UserTest();
-                    ut.setEmail(email);
-                    ut.setTid(i);
-                    ut.setTitle(msgs.getString("tpo") + MT.STRING_SPACE + i);
-                    ut.setAlias(msgs.getString("tpo") + i);
-                    ut.setTimerHidden(false);
-                    ut.setReadingTime(MT.TIME_READING_SECTION);
-                    ut.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
-                    ut.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
-                    ut.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
-                    ut.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
-                    ut.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
-                    ut.setIntegratedWritingTime(MT.TIME_INTEGRATED_WRITING_TASK);
-                    ut.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
-                    ut.setVolume(1.0);
-                    ut.setVolumeControlHidden(true);
-                    ut.setStars(0);
-                    ut.setLastViewId(1);
-                    utm.insert(ut);
+                    UserTestSession userTestSession = new UserTestSession();
+                    userTestSession.setEmail(email);
+                    userTestSession.setTid(i);
+                    userTestSession.setTitle(msgs.getString("tpo") + MT.STRING_SPACE + i);
+                    userTestSession.setAlias(msgs.getString("tpo") + i);
+                    userTestSession.setTimerHidden(false);
+                    userTestSession.setReadingTime(MT.TIME_READING_SECTION);
+                    userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
+                    userTestSession.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
+                    userTestSession.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
+                    userTestSession.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
+                    userTestSession.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
+                    userTestSession.setIntegratedWritingTime(MT.TIME_INTEGRATED_WRITING_TASK);
+                    userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
+                    userTestSession.setVolume(1.0);
+                    userTestSession.setVolumeControlHidden(true);
+                    userTestSession.setStars(0);
+                    userTestSession.setLastViewId(1);
+                    userTestSession.setMaxViewId(1);
+                    userTestSessionMapper.insert(userTestSession);
                 }
             }
             sqlSession.getMapper(UserTestAnswerMapper.class).schema();

@@ -1,6 +1,6 @@
 package com.mocktpo.view.test;
 
-import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
@@ -55,7 +55,7 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-        volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
+        volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
         // TODO Removes the continue debug button
@@ -73,7 +73,7 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
     }
 
     private void updateTime() {
-        UserTest ut = page.getUserTest();
+        UserTestSession ut = page.getUserTestSession();
         switch (vo.getGroupId()) {
             case 1:
                 ut.setSpeakingReadingTime1(vo.getSpeakingReadingTime());

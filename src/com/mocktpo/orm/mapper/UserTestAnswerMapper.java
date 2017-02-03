@@ -1,8 +1,13 @@
 package com.mocktpo.orm.mapper;
 
-import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.orm.domain.UserTestAnswer;
-import org.apache.ibatis.annotations.*;
+import com.mocktpo.orm.domain.UserTestSession;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 public interface UserTestAnswerMapper {
 
@@ -49,21 +54,32 @@ public interface UserTestAnswerMapper {
             "AND MT_TID = #{tid}",
             "AND MT_VIEW_ID = #{lastViewId}"
     })
-    String find(UserTest userTest);
+    String find(UserTestSession userTestSession);
 
     @Update({
             "UPDATE MT_USER_TEST_ANSWER",
             "SET",
             "MT_ANSWER = #{answer}",
             "WHERE",
-            "MT_EMAIL = #{userTest.email}",
-            "AND MT_TID = #{userTest.tid}",
-            "AND MT_VIEW_ID = #{userTest.lastViewId}"
+            "MT_EMAIL = #{userTestSession.email}",
+            "AND MT_TID = #{userTestSession.tid}",
+            "AND MT_VIEW_ID = #{userTestSession.lastViewId}"
     })
-    void update(@Param("userTest") UserTest userTest, @Param("answer") String answer);
+    void update(@Param("userTestSession") UserTestSession userTestSession, @Param("answer") String answer);
 
     @Select(
             "SELECT COUNT(*) FROM MT_USER_TEST_ANSWER"
     )
     long count();
+
+    @Select({
+            "SELECT",
+            "MT_ANSWER AS answer",
+            "FROM MT_USER_TEST_ANSWER",
+            "WHERE",
+            "MT_EMAIL = #{userTestSession.email}",
+            "AND MT_TID = #{userTestSession.tid}",
+            "AND MT_VIEW_ID = #{viewId}"
+    })
+    String findAnswerByViewId(@Param("userTestSession") UserTestSession userTestSession, @Param("viewId") int viewId);
 }

@@ -93,7 +93,7 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-        volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
+        volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
         // TODO Removes the continue debug button
@@ -161,17 +161,17 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
 
         checkWidgetA = new Label(ac, SWT.WRAP);
         FormDataSet.attach(checkWidgetA).atLeft().atTopTo(l, 20).atRight();
-        LabelSet.decorate(checkWidgetA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("checkWidgetA").getText());
+        LabelSet.decorate(checkWidgetA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA").getText());
         ChoiceLabelDragSourceSet.drag(checkWidgetA);
 
         checkWidgetB = new Label(ac, SWT.WRAP);
         FormDataSet.attach(checkWidgetB).atLeft().atTopTo(checkWidgetA, 10).atRight();
-        LabelSet.decorate(checkWidgetB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("checkWidgetB").getText());
+        LabelSet.decorate(checkWidgetB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB").getText());
         ChoiceLabelDragSourceSet.drag(checkWidgetB);
 
         checkWidgetC = new Label(ac, SWT.WRAP);
         FormDataSet.attach(checkWidgetC).atLeft().atTopTo(checkWidgetB, 10).atRight();
-        LabelSet.decorate(checkWidgetC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("checkWidgetC").getText());
+        LabelSet.decorate(checkWidgetC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC").getText());
         ChoiceLabelDragSourceSet.drag(checkWidgetC);
     }
 
@@ -368,7 +368,7 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
                         });
                     }
 
-                    countDown = page.getUserTest().getRemainingViewTime(vo);
+                    countDown = page.getUserTestSession().getRemainingViewTime(vo);
                     timer = new Timer();
                     timerTask = new TestTimerTask();
                     timer.scheduleAtFixedRate(timerTask, 0, 1000);

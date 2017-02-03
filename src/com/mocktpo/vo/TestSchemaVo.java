@@ -151,9 +151,9 @@ public class TestSchemaVo implements Serializable {
 
         int viewId = 0;
 
-        for (TestViewVo tvv : this.getViews()) {
-            if (viewType == tvv.getViewType()) {
-                viewId = tvv.getViewId();
+        for (TestViewVo vo : this.getViews()) {
+            if (viewType == vo.getViewType()) {
+                viewId = vo.getViewId();
             }
         }
 

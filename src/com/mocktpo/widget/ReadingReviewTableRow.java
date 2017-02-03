@@ -77,13 +77,11 @@ public class ReadingReviewTableRow extends Composite {
     }
 
     private void golbal() {
-
         if (!isTableHeader()) {
             CompositeSet.decorate(this).setBackground(MT.COLOR_BEIGE);
         } else {
             CompositeSet.decorate(this).setBackground(MT.COLOR_TOUPE);
         }
-
         addPaintListener(new PaintListener() {
             @Override
             public void paintControl(PaintEvent e) {
@@ -95,7 +93,6 @@ public class ReadingReviewTableRow extends Composite {
                 gc.drawLine(c.width - 1, 0, c.width - 1, c.height); // right
             }
         });
-
         FormLayoutSet.layout(this);
     }
 
@@ -150,6 +147,16 @@ public class ReadingReviewTableRow extends Composite {
         LabelSet.decorate(numberCell).setBackground(c);
         LabelSet.decorate(descriptionCell).setBackground(c);
         LabelSet.decorate(statusCell).setBackground(c);
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        if (!enabled) {
+            Color fc = ResourceManager.getColor(MT.COLOR_GRAY40);
+            LabelSet.decorate(numberCell).setForeground(fc);
+            LabelSet.decorate(descriptionCell).setForeground(fc);
+            LabelSet.decorate(statusCell).setForeground(fc);
+        }
     }
 
     /*

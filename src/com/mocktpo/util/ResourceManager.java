@@ -158,6 +158,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN, ImageUtils.load(d, "record_again"));
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN_HOVER, ImageUtils.load(d, "record_again_h"));
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN_DISABLED, ImageUtils.load(d, "record_again_d"));
+        caches.putIfAbsent(MT.IMAGE_REPORT, ImageUtils.load(d, "report"));
+        caches.putIfAbsent(MT.IMAGE_RESTART, ImageUtils.load(d, "restart"));
         caches.putIfAbsent(MT.IMAGE_RETURN, ImageUtils.load(d, "return"));
         caches.putIfAbsent(MT.IMAGE_RETURN_HOVER, ImageUtils.load(d, "return_h"));
         caches.putIfAbsent(MT.IMAGE_RETURN_TO_QUESTION, ImageUtils.load(d, "return_to_question"));

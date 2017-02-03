@@ -1,8 +1,6 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.listener.BorderedCompositePaintListener;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
@@ -86,7 +84,7 @@ public class WritingListeningMaterialView extends ResponsiveTestView {
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-        volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
+        volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
         // TODO Removes the continue debug button
@@ -108,7 +106,7 @@ public class WritingListeningMaterialView extends ResponsiveTestView {
 
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
 
-        illustrations = IllustrationUtils.load(d, page.getUserTest(), vo.getIllustrations());
+        illustrations = IllustrationUtils.load(d, page.getUserTestSession(), vo.getIllustrations());
 
         illustrationLabel = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(illustrationLabel).fromLeft(50, -ILLUSTRATION_WIDTH / 2).atTop(VIEW_PORT_PADDING_TOP);

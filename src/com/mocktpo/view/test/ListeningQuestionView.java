@@ -85,7 +85,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-        volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
+        volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
         // TODO Removes the continue debug button
@@ -97,7 +97,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
                 UserTestPersistenceUtils.saveToNextView(ListeningQuestionView.this);
-                page.resume(page.getUserTest());
+                page.resume(page.getUserTestSession());
             }
         });
     }
@@ -265,7 +265,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             if (isOk()) {
                 release();
                 UserTestPersistenceUtils.saveToNextView(ListeningQuestionView.this);
-                page.resume(page.getUserTest());
+                page.resume(page.getUserTestSession());
             } else {
                 nextOvalButton.setEnabled(true);
                 okOvalButton.setEnabled(false);
@@ -435,7 +435,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
                         });
                     }
 
-                    countDown = page.getUserTest().getRemainingViewTime(vo);
+                    countDown = page.getUserTestSession().getRemainingViewTime(vo);
                     timer = new Timer();
                     timerTask = new TestTimerTask();
                     timer.scheduleAtFixedRate(timerTask, 0, 1000);

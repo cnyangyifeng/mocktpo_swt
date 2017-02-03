@@ -1,6 +1,5 @@
 package com.mocktpo.util;
 
-import com.mocktpo.orm.domain.UserTest;
 import com.mocktpo.util.constants.RC;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +17,7 @@ public class UserAudioRecorder {
 
     private final Object lock = new Object();
 
-    public UserAudioRecorder(UserTest ut, String fileName) {
+    public UserAudioRecorder(String fileName) {
         try {
             File rootPath = new File(this.getClass().getResource(URLDecoder.decode(RC.USERS_DATA_DIR, "utf-8")).toURI());
             logger.info(rootPath.toString());

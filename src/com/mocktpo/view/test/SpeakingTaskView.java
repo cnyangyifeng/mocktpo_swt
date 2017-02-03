@@ -1,8 +1,6 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.listener.BorderedCompositePaintListener;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
@@ -87,7 +85,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-        volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
+        volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
         // TODO Removes the continue debug button
@@ -199,14 +197,14 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
         /* Preparation Audio */
 
-        audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getPreparationAudio(), false);
-        audioPlayer.setVolume(page.getUserTest().getVolume());
+        audioPlayer = new TestAudioPlayer(page.getUserTestSession(), vo.getPreparationAudio(), false);
+        audioPlayer.setVolume(page.getUserTestSession().getVolume());
         audioPlayer.play();
 
         /* Beep Audio */
 
-        audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getBeepAudio(), false);
-        audioPlayer.setVolume(page.getUserTest().getVolume());
+        audioPlayer = new TestAudioPlayer(page.getUserTestSession(), vo.getBeepAudio(), false);
+        audioPlayer.setVolume(page.getUserTestSession().getVolume());
         audioPlayer.play();
 
         if (!d.isDisposed()) {
@@ -253,8 +251,8 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
         /* Response Audio */
 
-        audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getResponseAudio(), false);
-        audioPlayer.setVolume(page.getUserTest().getVolume());
+        audioPlayer = new TestAudioPlayer(page.getUserTestSession(), vo.getResponseAudio(), false);
+        audioPlayer.setVolume(page.getUserTestSession().getVolume());
         audioPlayer.play();
 
         /* Audio Recorder */
@@ -262,15 +260,15 @@ public class SpeakingTaskView extends ResponsiveTestView {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                audioRecorder = new UserAudioRecorder(page.getUserTest(), "am");
+                audioRecorder = new UserAudioRecorder("am");
                 audioRecorder.start();
             }
         }).start();
 
         /* Beep Audio */
 
-        audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getBeepAudio(), false);
-        audioPlayer.setVolume(page.getUserTest().getVolume());
+        audioPlayer = new TestAudioPlayer(page.getUserTestSession(), vo.getBeepAudio(), false);
+        audioPlayer.setVolume(page.getUserTestSession().getVolume());
         audioPlayer.play();
 
         if (!d.isDisposed()) {

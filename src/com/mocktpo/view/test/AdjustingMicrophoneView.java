@@ -1,8 +1,6 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.listener.BorderedCompositePaintListener;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
@@ -111,7 +109,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-        volumeControl.setSelection(((Double) (page.getUserTest().getVolume() * 10)).intValue());
+        volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionListener());
 
         // TODO Removes the continue button
@@ -296,8 +294,8 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         /* Response Audio */
 
-        audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getResponseAudio(), false);
-        audioPlayer.setVolume(page.getUserTest().getVolume());
+        audioPlayer = new TestAudioPlayer(page.getUserTestSession(), vo.getResponseAudio(), false);
+        audioPlayer.setVolume(page.getUserTestSession().getVolume());
         audioPlayer.play();
 
         /* Audio Recorder */
@@ -305,15 +303,15 @@ public class AdjustingMicrophoneView extends StackTestView {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                audioRecorder = new UserAudioRecorder(page.getUserTest(), "am");
+                audioRecorder = new UserAudioRecorder("am");
                 audioRecorder.start();
             }
         }).start();
 
         /* Beep Audio */
 
-        audioPlayer = new TestAudioPlayer(page.getUserTest(), vo.getBeepAudio(), false);
-        audioPlayer.setVolume(page.getUserTest().getVolume());
+        audioPlayer = new TestAudioPlayer(page.getUserTestSession(), vo.getBeepAudio(), false);
+        audioPlayer.setVolume(page.getUserTestSession().getVolume());
         audioPlayer.play();
 
         /* Audio Recorder Timer */
@@ -480,8 +478,8 @@ public class AdjustingMicrophoneView extends StackTestView {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            audioPlayer = new TestAudioPlayer(page.getUserTest(), "am", true);
-            audioPlayer.setVolume(page.getUserTest().getVolume());
+            audioPlayer = new TestAudioPlayer(page.getUserTestSession(), "am", true);
+            audioPlayer.setVolume(page.getUserTestSession().getVolume());
 
             new Thread(new Runnable() {
                 @Override

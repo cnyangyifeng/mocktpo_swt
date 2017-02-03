@@ -1,6 +1,6 @@
 package com.mocktpo.util;
 
-import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.constants.RC;
 
 import javax.sound.sampled.*;
@@ -22,7 +22,7 @@ public class TestAudioPlayer {
 
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    public TestAudioPlayer(UserTest ut, String fileName, boolean isUserData) {
+    public TestAudioPlayer(UserTestSession userTestSession, String fileName, boolean isUserData) {
 
         if (isUserData) {
             try {
@@ -38,7 +38,7 @@ public class TestAudioPlayer {
             }
         } else {
             try {
-                URL url = this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + ut.getAlias() + "/" + fileName + RC.MP3_FILE_TYPE_SUFFIX, "utf-8"));
+                URL url = this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + userTestSession.getAlias() + "/" + fileName + RC.MP3_FILE_TYPE_SUFFIX, "utf-8"));
                 encoded = AudioSystem.getAudioInputStream(url);
                 AudioFormat encodedFormat = encoded.getFormat();
                 AudioFormat decodedFormat = getAudioFormat(encodedFormat);

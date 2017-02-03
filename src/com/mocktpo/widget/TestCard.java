@@ -1,8 +1,8 @@
 package com.mocktpo.widget;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
+import com.mocktpo.orm.domain.UserTestSession;
+import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -44,7 +44,7 @@ public class TestCard extends Composite {
 
     /* Properties */
 
-    private UserTest userTest;
+    private UserTestSession userTestSession;
 
     /*
      * ==================================================
@@ -54,11 +54,11 @@ public class TestCard extends Composite {
      * ==================================================
      */
 
-    public TestCard(Composite parent, int style, UserTest userTest) {
+    public TestCard(Composite parent, int style, UserTestSession userTestSession) {
         super(parent, style);
         this.d = parent.getDisplay();
         this.sqlSession = MyApplication.get().getSqlSession();
-        this.userTest = userTest;
+        this.userTestSession = userTestSession;
         init();
     }
 
@@ -82,7 +82,7 @@ public class TestCard extends Composite {
 
         final CLabel tl = new CLabel(header, SWT.NONE);
         FormDataSet.attach(tl).atLeft().atTop(5).atRight();
-        CLabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setText(userTest.getTitle());
+        CLabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setText(userTestSession.getTitle());
 
         pl = new CLabel(header, SWT.NONE);
         FormDataSet.attach(pl).atLeft().atTopTo(tl, 15).atRight();
@@ -102,12 +102,12 @@ public class TestCard extends Composite {
 
         final CLabel restartLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(restartLabel).atLeft().atTop().atRight();
-        CLabelSet.decorate(restartLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setImage(MT.IMAGE_ARROW_RIGHT).setText(msgs.getString("restart"));
+        CLabelSet.decorate(restartLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_DARK_BLUE).setImage(MT.IMAGE_RESTART).setText(msgs.getString("restart"));
         restartLabel.addMouseListener(new RestartLabelMouseListener());
 
         final CLabel reportLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(reportLabel).atLeft().atTopTo(restartLabel, 10).atRight();
-        CLabelSet.decorate(reportLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setImage(MT.IMAGE_ARROW_RIGHT).setText(msgs.getString("report"));
+        CLabelSet.decorate(reportLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_DARK_BLUE).setImage(MT.IMAGE_REPORT).setText(msgs.getString("report"));
         reportLabel.addMouseListener(new ReportLabelMouseListener());
 
         final Label divider = new Label(c, SWT.NONE);
@@ -128,8 +128,8 @@ public class TestCard extends Composite {
      * ==================================================
      */
 
-    public void reset(UserTest userTest) {
-        this.userTest = userTest;
+    public void reset(UserTestSession userTestSession) {
+        this.userTestSession = userTestSession;
         d.asyncExec(new Runnable() {
             @Override
             public void run() {
@@ -139,7 +139,7 @@ public class TestCard extends Composite {
     }
 
     private String getCompletionRate() {
-        return Integer.toString(userTest.getStars());
+        return Integer.toString(userTestSession.getStars());
     }
 
     /*
@@ -150,8 +150,8 @@ public class TestCard extends Composite {
      * ==================================================
      */
 
-    public UserTest getUserTest() {
-        return userTest;
+    public UserTestSession getUserTestSession() {
+        return userTestSession;
     }
 
     /*
@@ -171,22 +171,23 @@ public class TestCard extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
 
-            userTest.setTimerHidden(false);
-            userTest.setReadingTime(MT.TIME_READING_SECTION);
-            userTest.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
-            userTest.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
-            userTest.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
-            userTest.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
-            userTest.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
-            userTest.setVolume(1.0);
-            userTest.setVolumeControlHidden(true);
-            userTest.setStars(0);
-            userTest.setLastViewId(1);
+            userTestSession.setTimerHidden(false);
+            userTestSession.setReadingTime(MT.TIME_READING_SECTION);
+            userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
+            userTestSession.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
+            userTestSession.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
+            userTestSession.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
+            userTestSession.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
+            userTestSession.setVolume(1.0);
+            userTestSession.setVolumeControlHidden(true);
+            userTestSession.setStars(0);
+            userTestSession.setLastViewId(1);
+            userTestSession.setMaxViewId(1);
 
-            sqlSession.getMapper(UserTestMapper.class).update(userTest);
+            sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
             sqlSession.commit();
 
-            MyApplication.get().getWindow().toTestPage(userTest);
+            MyApplication.get().getWindow().toTestPage(userTestSession);
         }
 
         @Override
@@ -202,7 +203,7 @@ public class TestCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toReportPage(userTest);
+            MyApplication.get().getWindow().toReportPage(userTestSession);
         }
 
         @Override
@@ -218,7 +219,7 @@ public class TestCard extends Composite {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-            MyApplication.get().getWindow().toTestPage(userTest);
+            MyApplication.get().getWindow().toTestPage(userTestSession);
         }
     }
 }

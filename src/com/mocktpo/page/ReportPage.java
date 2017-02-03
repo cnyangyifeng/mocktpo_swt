@@ -1,6 +1,6 @@
 package com.mocktpo.page;
 
-import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.vo.TestSchemaVo;
 import org.apache.logging.log4j.LogManager;
@@ -29,7 +29,7 @@ public class ReportPage extends Composite {
     /* Properties */
 
     private TestSchemaVo testSchema;
-    private UserTest userTest;
+    private UserTestSession userTestSession;
 
     /*
      * ==================================================
@@ -39,11 +39,11 @@ public class ReportPage extends Composite {
      * ==================================================
      */
 
-    public ReportPage(Composite parent, int style, UserTest userTest) {
+    public ReportPage(Composite parent, int style, UserTestSession userTestSession) {
         super(parent, style);
         this.d = parent.getDisplay();
-        this.userTest = userTest;
-        this.testSchema = ConfigUtils.load(this.userTest.getAlias(), TestSchemaVo.class);
+        this.userTestSession = userTestSession;
+        this.testSchema = ConfigUtils.load(this.userTestSession.getAlias(), TestSchemaVo.class);
         init();
     }
 
@@ -64,11 +64,7 @@ public class ReportPage extends Composite {
      * ==================================================
      */
 
-    public TestSchemaVo getTestSchema() {
-        return testSchema;
-    }
-
-    public UserTest getUserTest() {
-        return userTest;
+    public UserTestSession getUserTestSession() {
+        return userTestSession;
     }
 }

@@ -1,8 +1,8 @@
 package com.mocktpo.view.home;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
+import com.mocktpo.orm.domain.UserTestSession;
+import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -91,13 +91,13 @@ public class StoreHomeView extends Composite {
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
 
-        UserTestMapper utm = MyApplication.get().getSqlSession().getMapper(UserTestMapper.class);
-        List<UserTest> list = utm.find();
+        UserTestSessionMapper userTestSessionMapper = MyApplication.get().getSqlSession().getMapper(UserTestSessionMapper.class);
+        List<UserTestSession> list = userTestSessionMapper.find();
         cards = new ArrayList<TestCard>();
-        for (UserTest ut : list) {
-            TestCard tc = new TestCard(body, SWT.NONE, ut);
-            GridDataSet.attach(tc).fillBoth();
-            cards.add(tc);
+        for (UserTestSession userTestSession : list) {
+            TestCard card = new TestCard(body, SWT.NONE, userTestSession);
+            GridDataSet.attach(card).fillBoth();
+            cards.add(card);
         }
 
         sc.setContent(body);
@@ -112,10 +112,10 @@ public class StoreHomeView extends Composite {
      * ==================================================
      */
 
-    public void reset(UserTest ut) {
-        for (TestCard tc : cards) {
-            if (ut.getTid() == tc.getUserTest().getTid()) {
-                tc.reset(ut);
+    public void reset(UserTestSession getUserTestSession) {
+        for (TestCard card : cards) {
+            if (getUserTestSession.getTid() == card.getUserTestSession().getTid()) {
+                card.reset(getUserTestSession);
                 return;
             }
         }

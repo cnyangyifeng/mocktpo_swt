@@ -1,16 +1,16 @@
 package com.mocktpo.orm.mapper;
 
-import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.domain.UserTestSession;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
-public interface UserTestMapper {
+public interface UserTestSessionMapper {
 
     @Update({
-            "CREATE TABLE IF NOT EXISTS MT_USER_TEST (",
+            "CREATE TABLE IF NOT EXISTS MT_USER_TEST_SESSION (",
             "MT_EMAIL VARCHAR(64),",
             "MT_TID INT,",
             "MT_TITLE VARCHAR(64),",
@@ -34,12 +34,12 @@ public interface UserTestMapper {
 
 
     @Update({
-            "DROP TABLE MT_USER_TEST IF EXISTS"
+            "DROP TABLE MT_USER_TEST_SESSION IF EXISTS"
     })
     void drop();
 
     @Insert({
-            "INSERT INTO MT_USER_TEST (",
+            "INSERT INTO MT_USER_TEST_SESSION (",
             "MT_EMAIL,",
             "MT_TID,",
             "MT_TITLE,",
@@ -77,7 +77,7 @@ public interface UserTestMapper {
             "#{lastViewId}",
             ")"
     })
-    void insert(UserTest ut);
+    void insert(UserTestSession userTestSession);
 
     @Select({
             "SELECT",
@@ -98,13 +98,13 @@ public interface UserTestMapper {
             "MT_VOLUME_CONTROL_HIDDEN AS volumeControlHidden,",
             "MT_STARS AS stars,",
             "MT_LAST_VIEW_ID AS lastViewId",
-            "FROM MT_USER_TEST",
+            "FROM MT_USER_TEST_SESSION",
             "ORDER BY MT_TID ASC"
     })
-    List<UserTest> find();
+    List<UserTestSession> find();
 
     @Update({
-            "UPDATE MT_USER_TEST",
+            "UPDATE MT_USER_TEST_SESSION",
             "SET",
             "MT_EMAIL = #{email},",
             "MT_TID = #{tid},",
@@ -126,10 +126,10 @@ public interface UserTestMapper {
             "WHERE",
             "MT_TID = #{tid}"
     })
-    void update(UserTest ut);
+    void update(UserTestSession userTestSession);
 
     @Select(
-            "SELECT COUNT(*) FROM MT_USER_TEST"
+            "SELECT COUNT(*) FROM MT_USER_TEST_SESSION"
     )
     long count();
 }

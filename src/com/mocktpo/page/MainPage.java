@@ -1,6 +1,6 @@
 package com.mocktpo.page;
 
-import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -135,11 +135,11 @@ public class MainPage extends Composite {
         body.layout();
     }
 
-    public void toTestsHomeView(UserTest ut) {
+    public void toTestsHomeView(UserTestSession userTestSession) {
         if (null == testsHomeView) {
             testsHomeView = new TestsHomeView(body, SWT.NONE);
         }
-        testsHomeView.reset(ut);
+        testsHomeView.reset(userTestSession);
         stack.topControl = testsHomeView;
         body.layout();
     }

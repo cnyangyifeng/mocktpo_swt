@@ -1,7 +1,7 @@
 package com.mocktpo.window;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.page.MainPage;
 import com.mocktpo.page.ReportPage;
 import com.mocktpo.page.TestPage;
@@ -121,7 +121,7 @@ public class MainWindow {
         s.layout();
     }
 
-    public void toMainPage(UserTest ut) {
+    public void toMainPage(UserTestSession ut) {
 
         if (null == mp) {
             mp = new MainPage(s, SWT.NONE);
@@ -132,7 +132,7 @@ public class MainWindow {
         s.layout();
     }
 
-    public void toTestPage(UserTest ut) {
+    public void toTestPage(UserTestSession ut) {
 
         if (null == tp) {
             tp = new TestPage(s, SWT.NONE, ut);
@@ -143,7 +143,7 @@ public class MainWindow {
         s.layout();
     }
 
-    public void toReportPage(UserTest ut) {
+    public void toReportPage(UserTestSession ut) {
 
         if (null == rp) {
             rp = new ReportPage(s, SWT.NONE, ut);

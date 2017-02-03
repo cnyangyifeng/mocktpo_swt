@@ -1,7 +1,7 @@
 package com.mocktpo.page;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTest;
+import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.view.test.*;
@@ -33,7 +33,7 @@ public class TestPage extends Composite {
     /* Properties */
 
     private TestSchemaVo testSchema;
-    private UserTest userTest;
+    private UserTestSession userTestSession;
 
     /*
      * ==================================================
@@ -43,11 +43,11 @@ public class TestPage extends Composite {
      * ==================================================
      */
 
-    public TestPage(Composite parent, int style, UserTest userTest) {
+    public TestPage(Composite parent, int style, UserTestSession userTestSession) {
         super(parent, style);
         this.d = parent.getDisplay();
-        this.userTest = userTest;
-        this.testSchema = ConfigUtils.load(this.userTest.getAlias(), TestSchemaVo.class);
+        this.userTestSession = userTestSession;
+        this.testSchema = ConfigUtils.load(this.userTestSession.getAlias(), TestSchemaVo.class);
         init();
     }
 
@@ -70,8 +70,8 @@ public class TestPage extends Composite {
 
     public void resume() {
         if (null != testSchema) {
-            if (userTest.getLastViewId() >= testSchema.getViewCount()) {
-                MyApplication.get().getWindow().toReportPage(userTest);
+            if (userTestSession.getLastViewId() >= testSchema.getViewCount()) {
+                MyApplication.get().getWindow().toReportPage(userTestSession);
             } else {
                 stack.topControl = getLastTestView();
                 this.layout();
@@ -79,16 +79,16 @@ public class TestPage extends Composite {
         }
     }
 
-    public void resume(UserTest userTest) {
+    public void resume(UserTestSession userTestSession) {
 
-        if (this.userTest.getTid() != userTest.getTid()) {
-            this.testSchema = ConfigUtils.load(userTest.getAlias(), TestSchemaVo.class);
+        if (this.userTestSession.getTid() != userTestSession.getTid()) {
+            this.testSchema = ConfigUtils.load(userTestSession.getAlias(), TestSchemaVo.class);
         }
-        this.userTest = userTest;
+        this.userTestSession = userTestSession;
 
         if (null != testSchema) {
-            if (userTest.getLastViewId() >= testSchema.getViewCount()) {
-                MyApplication.get().getWindow().toReportPage(userTest);
+            if (userTestSession.getLastViewId() >= testSchema.getViewCount()) {
+                MyApplication.get().getWindow().toReportPage(userTestSession);
             } else {
                 stack.topControl = getLastTestView();
                 this.layout();
@@ -98,7 +98,7 @@ public class TestPage extends Composite {
 
     private TestView getLastTestView() {
 
-        int lastViewId = userTest.getLastViewId();
+        int lastViewId = userTestSession.getLastViewId();
         int lastViewType = testSchema.getView(lastViewId).getViewType();
 
         TestView tv = null;
@@ -262,7 +262,7 @@ public class TestPage extends Composite {
         return testSchema;
     }
 
-    public UserTest getUserTest() {
-        return userTest;
+    public UserTestSession getUserTestSession() {
+        return userTestSession;
     }
 }

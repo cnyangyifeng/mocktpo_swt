@@ -1,8 +1,8 @@
 package com.mocktpo.view.test;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTest;
-import com.mocktpo.orm.mapper.UserTestMapper;
+import com.mocktpo.orm.domain.UserTestSession;
+import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.*;
@@ -11,6 +11,7 @@ import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.ReadingReviewTableRow;
 import com.mocktpo.widget.TestFooter;
 import com.mocktpo.widget.TestHeader;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,10 +34,6 @@ import java.util.TimerTask;
 public class ReadingReviewView extends Composite {
 
     /* Constants */
-
-    public static final int STATUS_NOT_SEEN = 0;
-    public static final int STATUS_NOT_ANSWERED = 1;
-    public static final int STATUS_ANSWERED = 2;
 
     public static final String STATUS_TEXT_NOT_SEEN = "Not Seen";
     public static final String STATUS_TEXT_NOT_ANSWERED = "Not Answered";
@@ -100,7 +97,7 @@ public class ReadingReviewView extends Composite {
         super(page, style);
         this.d = page.getDisplay();
         this.page = page;
-        this.selectedViewId = page.getUserTest().getLastViewId();
+        this.selectedViewId = page.getUserTestSession().getLastViewId();
         this.sqlSession = MyApplication.get().getSqlSession();
         this.timed = true;
         init();
@@ -154,7 +151,7 @@ public class ReadingReviewView extends Composite {
 
         pauseTestButton = new ImageButton(header, SWT.NONE, MT.IMAGE_PAUSE_TEST, MT.IMAGE_PAUSE_TEST_HOVER);
         FormDataSet.attach(pauseTestButton).atLeft(10).atBottom(10);
-        pauseTestButton.addMouseListener(new ReadingReviewPauseTestButtonMouseListener());
+        pauseTestButton.addMouseListener(new PauseTestButtonMouseListener());
 
         /*
          * ==================================================
@@ -169,20 +166,20 @@ public class ReadingReviewView extends Composite {
 
     private void updateHeader() {
 
-        TestViewVo tvv = page.getTestSchema().getView(page.getUserTest().getLastViewId());
-        if (tvv.isQuestionCaptionVisible()) {
+        TestViewVo vo = page.getTestSchema().getView(page.getUserTestSession().getLastViewId());
+        if (vo.isQuestionCaptionVisible()) {
             caption = new StyledText(header, SWT.SINGLE);
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + tvv.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestSchema().getTotalQuestionCountInSectionAndGroup(ST.SECTION_TYPE_READING, 0));
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestSchema().getTotalQuestionCountInSectionAndGroup(ST.SECTION_TYPE_READING, 0));
         }
 
-        final ImageButton gb = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
-        FormDataSet.attach(gb).atRight(10).atTop(10);
-        gb.addMouseListener(new ReadingReviewGoToQuestionButtonMouseListener());
+        final ImageButton goToQuestionButton = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
+        FormDataSet.attach(goToQuestionButton).atRight(10).atTop(10);
+        goToQuestionButton.addMouseListener(new GoToQuestionButtonMouseListener());
 
-        final ImageButton rb = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
-        FormDataSet.attach(rb).atRightTo(gb, 10).atTopTo(gb, 0, SWT.TOP);
-        rb.addMouseListener(new ReadingReviewReturnButtonMouseListener());
+        final ImageButton returnButton = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
+        FormDataSet.attach(returnButton).atRightTo(goToQuestionButton, 10).atTopTo(goToQuestionButton, 0, SWT.TOP);
+        returnButton.addMouseListener(new ReturnButtonMouseListener());
     }
 
     private void initFooter() {
@@ -230,13 +227,16 @@ public class ReadingReviewView extends Composite {
         final ReadingReviewTableRow tableHeader = new ReadingReviewTableRow(viewPort, SWT.NONE, msgs.getString("number"), msgs.getString("description"), msgs.getString("status"), 0, true);
         GridDataSet.attach(tableHeader).fillBoth();
 
-        for (TestViewVo tvv : page.getTestSchema().getViews()) {
-            if (tvv.getSectionType() == ST.SECTION_TYPE_READING && (tvv.getViewType() == VT.VIEW_TYPE_READING_QUESTION || tvv.getViewType() == VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION || tvv.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || tvv.getViewType() == VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION)) {
-                String statusText = getStatusText(0);
-                final ReadingReviewTableRow row = new ReadingReviewTableRow(viewPort, SWT.NONE, Integer.toString(tvv.getQuestionNumberInSection()), getDescriptionText(tvv), statusText, tvv.getViewId());
+        for (TestViewVo vo : page.getTestSchema().getViews()) {
+            if (vo.getSectionType() == ST.SECTION_TYPE_READING && (vo.getViewType() == VT.VIEW_TYPE_READING_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION)) {
+                String statusText = getStatusText(vo.getViewId());
+                final ReadingReviewTableRow row = new ReadingReviewTableRow(viewPort, SWT.NONE, Integer.toString(vo.getQuestionNumberInSection()), getDescriptionText(vo), statusText, vo.getViewId());
                 GridDataSet.attach(row).fillBoth();
                 row.addMouseListener(new ReadingReviewTableCellMouseListener());
-                if (selectedViewId == tvv.getViewId()) {
+                if (statusText.equals(STATUS_TEXT_NOT_SEEN)) {
+                    row.setEnabled(false);
+                }
+                if (selectedViewId == vo.getViewId()) {
                     selectedTableRow = row;
                     selectedTableRow.setSelectionBackground();
                     selectedTableRow.addControlListener(new ReadingReviewControlListener());
@@ -249,35 +249,28 @@ public class ReadingReviewView extends Composite {
         LabelSet.decorate(bottomTableBorder).setBackground(MT.COLOR_GRAY40);
     }
 
-    private String getDescriptionText(TestViewVo tvv) {
-
+    private String getDescriptionText(TestViewVo vo) {
         String text;
-
-        if (tvv.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || tvv.getViewType() == VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION) {
-            text = tvv.getStyledText("directions").getText();
+        if (vo.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION) {
+            text = vo.getStyledText("directions").getText();
         } else {
-            text = tvv.getStyledText("question").getText();
+            text = vo.getStyledText("question").getText();
         }
-
         return text;
     }
 
-    private String getStatusText(int status) {
-
-        String text = "";
-
-        switch (status) {
-            case ReadingReviewView.STATUS_NOT_SEEN:
-                text = STATUS_TEXT_NOT_SEEN;
-                break;
-            case ReadingReviewView.STATUS_NOT_ANSWERED:
-                text = STATUS_TEXT_NOT_ANSWERED;
-                break;
-            case ReadingReviewView.STATUS_ANSWERED:
-                text = STATUS_TEXT_ANSWERED;
-                break;
+    private String getStatusText(int viewId) {
+        String text;
+        UserTestAnswerMapper mapper = sqlSession.getMapper(UserTestAnswerMapper.class);
+        UserTestSession userTestSession = page.getUserTestSession();
+        String readingAnswer = mapper.findAnswerByViewId(userTestSession, viewId);
+        if (!StringUtils.isEmpty(readingAnswer)) {
+            text = STATUS_TEXT_ANSWERED;
+        } else if (viewId > userTestSession.getMaxViewId()) {
+            text = STATUS_TEXT_NOT_SEEN;
+        } else {
+            text = STATUS_TEXT_NOT_ANSWERED;
         }
-
         return text;
     }
 
@@ -309,7 +302,7 @@ public class ReadingReviewView extends Composite {
 
         if (timed) {
 
-            TestViewVo tvv = page.getTestSchema().getView(page.getUserTest().getLastViewId());
+            TestViewVo vo = page.getTestSchema().getView(page.getUserTestSession().getLastViewId());
 
             /*
              * ==================================================
@@ -319,11 +312,11 @@ public class ReadingReviewView extends Composite {
              * ==================================================
              */
 
-            boolean hidden = page.getUserTest().isTimerHidden();
+            boolean hidden = page.getUserTestSession().isTimerHidden();
 
             timerLabel = new Label(header, SWT.NONE);
             FormDataSet.attach(timerLabel).atRight(10).atBottomTo(pauseTestButton, 0, SWT.BOTTOM);
-            LabelSet.decorate(timerLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE).setText(TimeUtils.displayTime(page.getUserTest().getRemainingViewTime(tvv))).setVisible(!hidden);
+            LabelSet.decorate(timerLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE).setText(TimeUtils.displayTime(page.getUserTestSession().getRemainingViewTime(vo))).setVisible(!hidden);
 
             if (hidden) {
                 timerButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SHOW_TIME, MT.IMAGE_SHOW_TIME_HOVER, MT.IMAGE_SHOW_TIME_DISABLED);
@@ -331,7 +324,7 @@ public class ReadingReviewView extends Composite {
                 timerButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HIDE_TIME, MT.IMAGE_HIDE_TIME_HOVER, MT.IMAGE_HIDE_TIME_DISABLED);
             }
             FormDataSet.attach(timerButton).atRightTo(timerLabel, 6).atBottomTo(timerLabel, -3, SWT.BOTTOM);
-            timerButton.addMouseListener(new ReadingReviewTimerButtonMouseListener());
+            timerButton.addMouseListener(new TimerButtonMouseListener());
 
             /*
              * ==================================================
@@ -341,7 +334,7 @@ public class ReadingReviewView extends Composite {
              * ==================================================
              */
 
-            countDown = page.getUserTest().getRemainingViewTime(tvv);
+            countDown = page.getUserTestSession().getRemainingViewTime(vo);
             timer = new Timer();
             timerTask = new TestTimerTask();
             timer.scheduleAtFixedRate(timerTask, 0, 1000);
@@ -371,35 +364,26 @@ public class ReadingReviewView extends Composite {
 
         @Override
         public void run() {
-
             if (!d.isDisposed()) {
-
-                final UserTest userTest = page.getUserTest();
-                TestViewVo vo = page.getTestSchema().getView(page.getUserTest().getLastViewId());
-                userTest.setRemainingViewTime(vo, countDown);
-                sqlSession.getMapper(UserTestMapper.class).update(userTest);
-                sqlSession.commit();
-
+                final UserTestSession userTestSession = page.getUserTestSession();
+                TestViewVo vo = page.getTestSchema().getView(page.getUserTestSession().getLastViewId());
+                UserTestPersistenceUtils.saveRemainingViewTime(userTestSession, vo, countDown);
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
                         LabelSet.decorate(timerLabel).setText(TimeUtils.displayTime(countDown--));
                     }
                 });
-
                 if (0 >= countDown) {
-
                     if (timed) {
                         stopTimer();
                     }
-
-                    int lastViewId = page.getTestSchema().getNextViewIdWhileTimeOut(page.getUserTest().getLastViewId());
-                    UserTestPersistenceUtils.saveToCurrentView(userTest, lastViewId);
-
+                    int lastViewId = page.getTestSchema().getNextViewIdWhileTimeOut(page.getUserTestSession().getLastViewId());
+                    UserTestPersistenceUtils.saveToCurrentView(userTestSession, lastViewId);
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-                            MyApplication.get().getWindow().toTestPage(userTest);
+                            MyApplication.get().getWindow().toTestPage(userTestSession);
                         }
                     });
                 }
@@ -415,7 +399,7 @@ public class ReadingReviewView extends Composite {
      * ==================================================
      */
 
-    private class ReadingReviewPauseTestButtonMouseListener implements MouseListener {
+    private class PauseTestButtonMouseListener implements MouseListener {
 
         @Override
         public void mouseDoubleClick(MouseEvent e) {
@@ -423,12 +407,8 @@ public class ReadingReviewView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-
-            MyApplication.get().getWindow().toMainPage(ut);
+            MyApplication.get().getWindow().toMainPage(page.getUserTestSession());
         }
 
         @Override
@@ -436,7 +416,7 @@ public class ReadingReviewView extends Composite {
         }
     }
 
-    private class ReadingReviewTimerButtonMouseListener implements MouseListener {
+    private class TimerButtonMouseListener implements MouseListener {
 
         @Override
         public void mouseDoubleClick(MouseEvent e) {
@@ -444,22 +424,14 @@ public class ReadingReviewView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             boolean v = timerLabel.isVisible();
-
             if (v) {
                 timerButton.setBackgroundImages(MT.IMAGE_SHOW_TIME, MT.IMAGE_SHOW_TIME_HOVER, MT.IMAGE_SHOW_TIME_DISABLED);
             } else {
                 timerButton.setBackgroundImages(MT.IMAGE_HIDE_TIME, MT.IMAGE_HIDE_TIME_HOVER, MT.IMAGE_HIDE_TIME_DISABLED);
             }
-
             timerLabel.setVisible(!v);
-
-            UserTest ut = page.getUserTest();
-            ut.setTimerHidden(v);
-
-            sqlSession.getMapper(UserTestMapper.class).update(ut);
-            sqlSession.commit();
+            UserTestPersistenceUtils.saveTimerHidden(page.getUserTestSession(), v);
         }
 
         @Override
@@ -467,7 +439,7 @@ public class ReadingReviewView extends Composite {
         }
     }
 
-    private class ReadingReviewGoToQuestionButtonMouseListener implements MouseListener {
+    private class GoToQuestionButtonMouseListener implements MouseListener {
 
         @Override
         public void mouseDoubleClick(MouseEvent e) {
@@ -475,17 +447,15 @@ public class ReadingReviewView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             if (selectedViewId == page.getTestSchema().getFirstViewIdByViewType(VT.VIEW_TYPE_READING_SECTION_END)) {
                 return;
             }
-
+            if (selectedViewId > page.getUserTestSession().getMaxViewId()) {
+                return;
+            }
             release();
-
-            UserTest ut = page.getUserTest();
-            ut.setLastViewId(selectedViewId);
-
-            page.resume(ut);
+            UserTestPersistenceUtils.saveToCurrentView(page.getUserTestSession(), selectedViewId);
+            page.resume(page.getUserTestSession());
         }
 
         @Override
@@ -493,7 +463,7 @@ public class ReadingReviewView extends Composite {
         }
     }
 
-    private class ReadingReviewReturnButtonMouseListener implements MouseListener {
+    private class ReturnButtonMouseListener implements MouseListener {
 
         @Override
         public void mouseDoubleClick(MouseEvent e) {
@@ -501,12 +471,8 @@ public class ReadingReviewView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
-
-            UserTest ut = page.getUserTest();
-
-            page.resume(ut);
+            page.resume(page.getUserTestSession());
         }
 
         @Override
