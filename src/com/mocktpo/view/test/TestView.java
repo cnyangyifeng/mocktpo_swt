@@ -181,8 +181,7 @@ public abstract class TestView extends Composite {
             answerText = mapper.find(userTestSession);
             if (null == answerText) {
                 UserTestAnswer userTestAnswer = new UserTestAnswer();
-                userTestAnswer.setEmail(userTestSession.getEmail());
-                userTestAnswer.setTid(userTestSession.getTid());
+                userTestAnswer.setSid(userTestSession.getSid());
                 userTestAnswer.setViewId(userTestSession.getLastViewId());
                 userTestAnswer.setSectionType(page.getTestSchema().getView(userTestSession.getLastViewId()).getSectionType());
                 userTestAnswer.setAnswer("");

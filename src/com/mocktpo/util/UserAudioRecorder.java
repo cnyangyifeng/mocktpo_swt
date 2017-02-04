@@ -10,6 +10,8 @@ import java.net.URLDecoder;
 
 public class UserAudioRecorder {
 
+    /* Logger */
+
     protected static final Logger logger = LogManager.getLogger();
 
     private TargetDataLine line;

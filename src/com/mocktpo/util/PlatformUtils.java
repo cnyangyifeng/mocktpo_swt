@@ -10,10 +10,10 @@ public class PlatformUtils {
     }
 
     public static boolean isMac() {
-        return OS.indexOf("mac") != -1;
+        return OS.contains("mac");
     }
 
     public static boolean isWindows() {
-        return OS.indexOf("win") != -1;
+        return OS.contains("win");
     }
 }

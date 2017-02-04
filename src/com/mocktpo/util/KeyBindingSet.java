@@ -24,7 +24,6 @@ public class KeyBindingSet {
     }
 
     public KeyBindingSet traverse() {
-
         c.addTraverseListener(new TraverseListener() {
             @Override
             public void keyTraversed(TraverseEvent e) {
@@ -33,7 +32,6 @@ public class KeyBindingSet {
                 }
             }
         });
-
         return this;
     }
 }

@@ -9,8 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -74,23 +74,22 @@ public class MoreTextDialog {
     }
 
     private void initWidgets() {
+        final Label titleLabel = new Label(background, SWT.CENTER);
+        FormDataSet.attach(titleLabel).atLeft().atTop().atRight();
+        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
 
-        final Label tl = new Label(background, SWT.CENTER);
-        FormDataSet.attach(tl).atLeft().atTop().atRight();
-        LabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
-
-        final ImageButton cb = new ImageButton(background, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
-        FormDataSet.attach(cb).fromLeft(50, -LC.CONTINUE_BUTTON_WIDTH / 2).atBottom(20);
-        cb.addMouseListener(new ContinueButtonMouseListener());
+        final ImageButton continueButton = new ImageButton(background, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
+        FormDataSet.attach(continueButton).fromLeft(50, -LC.CONTINUE_BUTTON_WIDTH / 2).atBottom(20);
+        continueButton.addMouseListener(new ContinueButtonMouseAdapter());
 
         final Composite c = new Composite(background, SWT.NONE);
-        FormDataSet.attach(c).atLeft(20).atTopTo(tl, 20).atRight(20).atBottomTo(cb, 40, SWT.TOP);
+        FormDataSet.attach(c).atLeft(20).atTopTo(titleLabel, 20).atRight(20).atBottomTo(continueButton, 40, SWT.TOP);
         CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
         GridLayoutSet.layout(c).marginWidth(10).marginHeight(10);
 
-        final Label p = new Label(c, SWT.WRAP);
-        GridDataSet.attach(p).centerBoth();
-        LabelSet.decorate(p).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("use_scroll_bar"));
+        final Label bodyLabel = new Label(c, SWT.WRAP);
+        GridDataSet.attach(bodyLabel).centerBoth();
+        LabelSet.decorate(bodyLabel).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("use_scroll_bar"));
     }
 
     public void openAndWaitForDisposal() {
@@ -121,19 +120,11 @@ public class MoreTextDialog {
      * ==================================================
      */
 
-    private class ContinueButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ContinueButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             close();
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 }

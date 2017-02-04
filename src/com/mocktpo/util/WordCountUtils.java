@@ -4,6 +4,9 @@ import java.util.StringTokenizer;
 
 public class WordCountUtils {
 
+    private WordCountUtils() {
+    }
+
     public static int count(String text) {
         StringTokenizer st = new StringTokenizer(text, "\n\r\t ");
         int count = 0;

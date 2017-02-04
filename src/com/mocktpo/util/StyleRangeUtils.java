@@ -17,86 +17,39 @@ public class StyleRangeUtils {
     }
 
     public static void decorate(StyledText st, List<StyleRangeVo> srvs) {
-
         if (null == srvs) {
             return;
         }
-
         List<StyleRange> srs = new ArrayList<StyleRange>();
-
         for (StyleRangeVo srv : srvs) {
-
             StyleRange sr = new StyleRange();
-
             sr.start = srv.getStart();
             sr.length = srv.getLength();
-
-            /*
-             * ==================================================
-             * 
-             * Font Style
-             * 
-             * ==================================================
-             */
-
+            /* Font Style */
             if (0 != srv.getFontStyle()) {
                 sr.fontStyle = srv.getFontStyle();
             }
-
-            /*
-             * ==================================================
-             * 
-             * Foreground
-             * 
-             * ==================================================
-             */
-
+            /* Foreground */
             if (0 != srv.getForeground()) {
                 sr.foreground = ResourceManager.getColor(srv.getForeground());
             }
-
-            /*
-             * ==================================================
-             * 
-             * Background
-             * 
-             * ==================================================
-             */
-
+            /* Background */
             if (0 != srv.getBackground()) {
                 sr.background = ResourceManager.getColor(srv.getBackground());
             }
-
-            /*
-             * ==================================================
-             * 
-             * Underline
-             * 
-             * ==================================================
-             */
-
+            /* Underline */
             if (srv.isUnderline()) {
                 sr.underline = srv.isUnderline();
             }
-
-            /*
-             * ==================================================
-             * 
-             * Image
-             * 
-             * ==================================================
-             */
-
+            /* Image */
             if (StringUtils.isNotEmpty(srv.getImage())) {
                 Image image = ImageUtils.load(st.getDisplay(), srv.getImage());
                 sr.data = image;
                 Rectangle bounds = image.getBounds();
                 sr.metrics = new GlyphMetrics(bounds.height, 0, bounds.width);
             }
-
             srs.add(sr);
         }
-
         st.setStyleRanges(srs.toArray(new StyleRange[srs.size()]));
     }
 }

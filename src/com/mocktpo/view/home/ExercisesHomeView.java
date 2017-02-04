@@ -21,7 +21,7 @@ public class ExercisesHomeView extends Composite {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Display and Application */
+    /* Display */
 
     protected Display d;
 
@@ -53,7 +53,6 @@ public class ExercisesHomeView extends Composite {
     }
 
     private void initBody() {
-
         final ScrolledComposite sc = new ScrolledComposite(this, SWT.H_SCROLL | SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
         sc.setExpandHorizontal(true);

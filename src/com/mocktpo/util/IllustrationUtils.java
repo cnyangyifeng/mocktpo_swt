@@ -15,6 +15,8 @@ import java.util.Map;
 
 public class IllustrationUtils {
 
+    /* Logger */
+
     protected static final Logger logger = LogManager.getLogger();
 
     private IllustrationUtils() {

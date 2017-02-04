@@ -263,7 +263,7 @@ public class ReadingReviewView extends Composite {
         String text;
         UserTestAnswerMapper mapper = sqlSession.getMapper(UserTestAnswerMapper.class);
         UserTestSession userTestSession = page.getUserTestSession();
-        String readingAnswer = mapper.findAnswerByViewId(userTestSession, viewId);
+        String readingAnswer = mapper.findByViewId(userTestSession, viewId);
         if (!StringUtils.isEmpty(readingAnswer)) {
             text = STATUS_TEXT_ANSWERED;
         } else if (viewId > userTestSession.getMaxViewId()) {

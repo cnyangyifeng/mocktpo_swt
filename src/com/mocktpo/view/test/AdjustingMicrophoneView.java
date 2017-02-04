@@ -12,7 +12,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.*;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Scale;
 
@@ -86,31 +89,30 @@ public class AdjustingMicrophoneView extends StackTestView {
 
     @Override
     public void updateHeader() {
-
         final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
         FormDataSet.attach(volumeOvalButton).atRight(10).atTop(10);
-        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseListener());
+        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseAdapter());
 
         continueButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER, MT.IMAGE_CONTINUE_DISABLED);
         FormDataSet.attach(continueButton).atRightTo(volumeOvalButton, 16).atTopTo(volumeOvalButton, 8, SWT.TOP);
         continueButton.setEnabled(false);
-        continueButton.addMouseListener(new ContinueButtonMouseListener());
+        continueButton.addMouseListener(new ContinueButtonMouseAdapter());
 
         recordAgainButton = new ImageButton(header, SWT.NONE, MT.IMAGE_RECORD_AGAIN, MT.IMAGE_RECORD_AGAIN_HOVER, MT.IMAGE_RECORD_AGAIN_DISABLED);
         FormDataSet.attach(recordAgainButton).atRightTo(continueButton, 10).atTopTo(continueButton, 0, SWT.TOP);
         recordAgainButton.setEnabled(false);
-        recordAgainButton.addMouseListener(new RecordAgainButtonMouseListener());
+        recordAgainButton.addMouseListener(new RecordAgainButtonMouseAdapter());
 
         playbackResponseButton = new ImageButton(header, SWT.NONE, MT.IMAGE_PLAYBACK_RESPONSE, MT.IMAGE_PLAYBACK_RESPONSE_HOVER, MT.IMAGE_PLAYBACK_RESPONSE_DISABLED);
         FormDataSet.attach(playbackResponseButton).atRightTo(recordAgainButton, 10).atTopTo(continueButton, 0, SWT.TOP);
         playbackResponseButton.setEnabled(false);
-        playbackResponseButton.addMouseListener(new PlaybackResponseButtonMouseListener());
+        playbackResponseButton.addMouseListener(new PlaybackResponseButtonMouseAdapter());
 
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
-        volumeControl.addSelectionListener(new VolumeControlSelectionListener());
+        volumeControl.addSelectionListener(new VolumeControlSelectionAdapter());
 
         // TODO Removes the continue button
 
@@ -134,7 +136,6 @@ public class AdjustingMicrophoneView extends StackTestView {
     }
 
     protected Composite getSubView(int subViewId) {
-
         switch (subViewId) {
             case SUB_VIEW_RECORDING:
                 if (null == recordingView) {
@@ -147,7 +148,6 @@ public class AdjustingMicrophoneView extends StackTestView {
                 }
                 return responseView;
         }
-
         return null;
     }
 
@@ -160,7 +160,6 @@ public class AdjustingMicrophoneView extends StackTestView {
      */
 
     private Composite initRecordingSubView() {
-
         final Composite c = new Composite(body, SWT.NONE);
         CompositeSet.decorate(c).setBackground(MT.COLOR_BEIGE);
         FormLayoutSet.layout(c);
@@ -209,7 +208,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         stopRecordingButton = new ImageButton(viewPort, SWT.NONE, MT.IMAGE_STOP_RECORDING, MT.IMAGE_STOP_RECORDING_HOVER);
         FormDataSet.attach(stopRecordingButton).fromLeft(50, -STOP_RECORDING_BUTTON_WIDTH / 2).atTopTo(timerPanel, 20);
         stopRecordingButton.setVisible(false);
-        stopRecordingButton.addMouseListener(new StopRecordingButtonMouseListener());
+        stopRecordingButton.addMouseListener(new StopRecordingButtonMouseAdapter());
 
         sc.setContent(inner);
         sc.setMinSize(inner.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -218,7 +217,6 @@ public class AdjustingMicrophoneView extends StackTestView {
     }
 
     private Composite initResponseSubView() {
-
         final Composite c = new Composite(body, SWT.NONE);
         CompositeSet.decorate(c).setBackground(MT.COLOR_BEIGE);
         FormLayoutSet.layout(c);
@@ -331,7 +329,6 @@ public class AdjustingMicrophoneView extends StackTestView {
     }
 
     private void stopAudioRecording() {
-
         if (null != audioRecorder) {
             audioRecorder.stop();
         }
@@ -341,7 +338,6 @@ public class AdjustingMicrophoneView extends StackTestView {
         if (null != audioRecorderTimer) {
             audioRecorderTimer.purge();
         }
-
         if (subViewId == SUB_VIEW_RECORDING) {
             if (!d.isDisposed()) {
                 d.asyncExec(new Runnable() {
@@ -371,11 +367,7 @@ public class AdjustingMicrophoneView extends StackTestView {
      * ==================================================
      */
 
-    private class VolumeOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class VolumeOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -383,58 +375,35 @@ public class AdjustingMicrophoneView extends StackTestView {
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
             UserTestPersistenceUtils.saveVolumeControlVisibility(AdjustingMicrophoneView.this);
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class VolumeControlSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class VolumeControlSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-
             UserTestPersistenceUtils.saveVolume(AdjustingMicrophoneView.this, volume);
             setAudioVolume(volume);
         }
     }
 
-    private class ContinueButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ContinueButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             release();
             UserTestPersistenceUtils.saveToNextView(AdjustingMicrophoneView.this);
             page.resume();
         }
 
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class RecordAgainButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class RecordAgainButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             if (subViewId == SUB_VIEW_RESPONSE) {
                 if (!d.isDisposed()) {
                     d.asyncExec(new Runnable() {
@@ -455,7 +424,6 @@ public class AdjustingMicrophoneView extends StackTestView {
                     });
                 }
             }
-
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -463,24 +431,14 @@ public class AdjustingMicrophoneView extends StackTestView {
                 }
             }).start();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class PlaybackResponseButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class PlaybackResponseButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             audioPlayer = new TestAudioPlayer(page.getUserTestSession(), "am", true);
             audioPlayer.setVolume(page.getUserTestSession().getVolume());
-
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -488,25 +446,13 @@ public class AdjustingMicrophoneView extends StackTestView {
                 }
             }).start();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class StopRecordingButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class StopRecordingButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             stopAudioRecording();
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 
@@ -514,9 +460,7 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         @Override
         public void propertyChange(PropertyChangeEvent e) {
-
             if (audioPlayer.isStopped()) {
-
                 if (!d.isDisposed()) {
                     d.asyncExec(new Runnable() {
                         @Override
@@ -525,7 +469,6 @@ public class AdjustingMicrophoneView extends StackTestView {
                         }
                     });
                 }
-
                 startAudioRecording();
             }
         }
@@ -543,7 +486,6 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         @Override
         public void run() {
-
             if (!d.isDisposed()) {
                 d.asyncExec(new Runnable() {
                     @Override
@@ -552,7 +494,6 @@ public class AdjustingMicrophoneView extends StackTestView {
                     }
                 });
             }
-
             if (0 >= recorderCountDown) {
                 stopAudioRecording();
             }

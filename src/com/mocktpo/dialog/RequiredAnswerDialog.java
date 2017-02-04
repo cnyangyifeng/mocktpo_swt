@@ -9,8 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -79,32 +79,31 @@ public class RequiredAnswerDialog {
     }
 
     private void initWidgets() {
+        final Label titleLabel = new Label(background, SWT.CENTER);
+        FormDataSet.attach(titleLabel).atLeft().atTop().atRight();
+        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("required_answer"));
 
-        final Label tl = new Label(background, SWT.CENTER);
-        FormDataSet.attach(tl).atLeft().atTop().atRight();
-        LabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("required_answer"));
-
-        final ImageButton cb = new ImageButton(background, SWT.NONE, MT.IMAGE_RETURN_TO_QUESTION, MT.IMAGE_RETURN_TO_QUESTION_HOVER);
-        FormDataSet.attach(cb).fromLeft(50, -LC.RETURN_TO_QUESTION_BUTTON_WIDTH / 2).atBottom(20);
-        cb.addMouseListener(new ReturnToQuestionButtonMouseListener());
+        final ImageButton continueButton = new ImageButton(background, SWT.NONE, MT.IMAGE_RETURN_TO_QUESTION, MT.IMAGE_RETURN_TO_QUESTION_HOVER);
+        FormDataSet.attach(continueButton).fromLeft(50, -LC.RETURN_TO_QUESTION_BUTTON_WIDTH / 2).atBottom(20);
+        continueButton.addMouseListener(new ReturnToQuestionButtonMouseAdapter());
 
         final Composite c = new Composite(background, SWT.NONE);
-        FormDataSet.attach(c).atLeft(20).atTopTo(tl, 20).atRight(20).atBottomTo(cb, 40, SWT.TOP);
+        FormDataSet.attach(c).atLeft(20).atTopTo(titleLabel, 20).atRight(20).atBottomTo(continueButton, 40, SWT.TOP);
         CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
         GridLayoutSet.layout(c).marginWidth(10).marginHeight(10);
 
-        final Label p = new Label(c, SWT.WRAP);
-        GridDataSet.attach(p).centerBoth();
-        LabelSet.decorate(p).setAlignment(SWT.CENTER).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD);
+        final Label bodyLabel = new Label(c, SWT.WRAP);
+        GridDataSet.attach(bodyLabel).centerBoth();
+        LabelSet.decorate(bodyLabel).setAlignment(SWT.CENTER).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD);
         switch (type) {
             case MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_ONE:
-                LabelSet.decorate(p).setText(msgs.getString("no_answer_for_one"));
+                LabelSet.decorate(bodyLabel).setText(msgs.getString("no_answer_for_one"));
                 break;
             case MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_MANY:
-                LabelSet.decorate(p).setText(msgs.getString("no_answer_for_many"));
+                LabelSet.decorate(bodyLabel).setText(msgs.getString("no_answer_for_many"));
                 break;
             case MT.REQUIRED_ANSWER_DIALOG_TYPE_INCORRECT_ANSWER_COUNT:
-                LabelSet.decorate(p).setText(msgs.getString("incorrect_answer_count"));
+                LabelSet.decorate(bodyLabel).setText(msgs.getString("incorrect_answer_count"));
                 break;
         }
     }
@@ -137,19 +136,11 @@ public class RequiredAnswerDialog {
      * ==================================================
      */
 
-    private class ReturnToQuestionButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ReturnToQuestionButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             close();
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 }

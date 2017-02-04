@@ -4,6 +4,9 @@ import java.text.DecimalFormat;
 
 public class TimeUtils {
 
+    private TimeUtils() {
+    }
+
     public static String displayTime(long time) {
         long hours = time / 3600;
         long minutes = (time - hours * 3600) / 60;

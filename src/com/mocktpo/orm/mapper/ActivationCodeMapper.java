@@ -40,6 +40,16 @@ public interface ActivationCodeMapper {
     })
     void insert(ActivationCode lic);
 
+    @Update({
+            "UPDATE MT_ACTIVATION_CODE",
+            "SET",
+            "MT_EMAIL = #{email},",
+            "MT_CONTENT = #{content},",
+            "MT_DATE_CREATED = #{dateCreated},",
+            "MT_DATE_UPDATED = #{dateUpdated}"
+    })
+    void update(ActivationCode lic);
+
     @Select({
             "SELECT",
             "MT_EMAIL AS email,",
@@ -50,16 +60,6 @@ public interface ActivationCodeMapper {
             "ORDER BY MT_DATE_UPDATED DESC"
     })
     List<ActivationCode> find();
-
-    @Update({
-            "UPDATE MT_ACTIVATION_CODE",
-            "SET",
-            "MT_EMAIL = #{email},",
-            "MT_CONTENT = #{content},",
-            "MT_DATE_CREATED = #{dateCreated},",
-            "MT_DATE_UPDATED = #{dateUpdated}"
-    })
-    void update(ActivationCode lic);
 
     @Select(
             "SELECT COUNT(*) FROM MT_ACTIVATION_CODE"

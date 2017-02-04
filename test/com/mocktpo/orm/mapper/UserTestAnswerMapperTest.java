@@ -33,9 +33,8 @@ public class UserTestAnswerMapperTest {
     @Test
     public void testInsert() {
         UserTestAnswer userTestAnswer = new UserTestAnswer();
-        userTestAnswer.setEmail("165239796@qq.com");
-        userTestAnswer.setTid(1);
-        userTestAnswer.setViewId(129);
+        userTestAnswer.setSid(0);
+        userTestAnswer.setViewId(1);
         userTestAnswer.setSectionType(ST.SECTION_TYPE_WRITING);
         userTestAnswer.setAnswer("Hello, TPO1.");
         mapper.insert(userTestAnswer);

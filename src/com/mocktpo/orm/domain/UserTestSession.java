@@ -6,6 +6,7 @@ import com.mocktpo.vo.TestViewVo;
 
 public class UserTestSession {
 
+    private int sid;
     private String email;
     private int tid;
     private String title;
@@ -24,6 +25,14 @@ public class UserTestSession {
     private int stars;
     private int lastViewId;
     private int maxViewId;
+
+    public int getSid() {
+        return sid;
+    }
+
+    public void setSid(int sid) {
+        this.sid = sid;
+    }
 
     public String getEmail() {
         return email;
@@ -174,7 +183,7 @@ public class UserTestSession {
     /*
      * ==================================================
      *
-     * Customized Methods
+     * Remaining View Time
      *
      * ==================================================
      */
@@ -225,8 +234,6 @@ public class UserTestSession {
                         viewTime = this.getIndependentWritingTime();
                         break;
                 }
-                break;
-            case ST.SECTION_TYPE_REPORT:
                 break;
         }
 
@@ -279,13 +286,11 @@ public class UserTestSession {
                         break;
                 }
                 break;
-            case ST.SECTION_TYPE_REPORT:
-                break;
         }
     }
 
     @Override
     public String toString() {
-        return "{\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nspeakingReadingTime1:" + this.getSpeakingReadingTime1() + ",\nspeakingReadingTime2:" + this.getSpeakingReadingTime2() + ",\nwritingReadingTime:" + this.getWritingReadingTime() + ",\nintegratedWritingTime:" + this.getIntegratedWritingTime() + ",\nindependentWritingTime:" + this.getIndependentWritingTime() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\nstars:" + this.getStars() + ",\nlastViewId:" + this.getLastViewId() + ",\nmaxViewId:" + this.getMaxViewId() + "\n}";
+        return "{\nsid:" + this.getSid() + ",\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nspeakingReadingTime1:" + this.getSpeakingReadingTime1() + ",\nspeakingReadingTime2:" + this.getSpeakingReadingTime2() + ",\nwritingReadingTime:" + this.getWritingReadingTime() + ",\nintegratedWritingTime:" + this.getIntegratedWritingTime() + ",\nindependentWritingTime:" + this.getIndependentWritingTime() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\nstars:" + this.getStars() + ",\nlastViewId:" + this.getLastViewId() + ",\nmaxViewId:" + this.getMaxViewId() + "\n}";
     }
 }

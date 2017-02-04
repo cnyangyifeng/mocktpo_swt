@@ -2,26 +2,17 @@ package com.mocktpo.orm.domain;
 
 public class UserTestAnswer {
 
-    private String email;
-    private int tid;
+    private int sid;
     private int viewId;
     private int sectionType;
     private String answer;
 
-    public String getEmail() {
-        return email;
+    public int getSid() {
+        return sid;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getTid() {
-        return tid;
-    }
-
-    public void setTid(int tid) {
-        this.tid = tid;
+    public void setSid(int sid) {
+        this.sid = sid;
     }
 
     public int getViewId() {
@@ -46,5 +37,10 @@ public class UserTestAnswer {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    @Override
+    public String toString() {
+        return "{\nsid:" + this.getSid() + ",\nviewId:" + this.getViewId() + ",\nsectionType:" + this.getSectionType() + ",\nanswer:" + this.getAnswer() + "\n}";
     }
 }

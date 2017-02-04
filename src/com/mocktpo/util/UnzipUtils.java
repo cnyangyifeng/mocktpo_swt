@@ -10,6 +10,9 @@ import java.util.zip.ZipInputStream;
 
 public class UnzipUtils {
 
+    private UnzipUtils() {
+    }
+
     public static void unzip(ZipInputStream zis, String localPath) throws Exception {
         ZipEntry entry = zis.getNextEntry();
         while (entry != null) {

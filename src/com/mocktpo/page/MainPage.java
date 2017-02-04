@@ -1,7 +1,10 @@
 package com.mocktpo.page;
 
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.util.*;
+import com.mocktpo.util.CLabelSet;
+import com.mocktpo.util.CompositeSet;
+import com.mocktpo.util.FormDataSet;
+import com.mocktpo.util.FormLayoutSet;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.view.home.ExercisesHomeView;
@@ -13,8 +16,8 @@ import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
@@ -50,7 +53,7 @@ public class MainPage extends Composite {
     private SettingsHomeView settingsHomeView;
 
     private CLabel storeLabel;
-    private StoreHomeView storeHomeViewv;
+    private StoreHomeView storeHomeView;
 
     /*
      * ==================================================
@@ -78,7 +81,6 @@ public class MainPage extends Composite {
     }
 
     private void initSidebar() {
-
         sidebar = new Composite(this, SWT.NONE);
         FormDataSet.attach(sidebar).atLeft().atTop().atBottom().withWidth(this.getBounds().width / 6);
         CompositeSet.decorate(sidebar).setBackground(MT.COLOR_OXFORD_BLUE);
@@ -90,32 +92,30 @@ public class MainPage extends Composite {
 
         testsLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testsLabel).atLeft().atTopTo(brandLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(testsLabel).setBackground(MT.COLOR_DARK_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_TESTS).setLeftMargin(20).setText(msgs.getString("tests"));
-        testsLabel.addMouseListener(new SidebarItemListener());
+        CLabelSet.decorate(testsLabel).setBackground(MT.COLOR_DARK_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("tests"));
+        testsLabel.addMouseListener(new SidebarItemAdapter());
 
         exercisesLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(exercisesLabel).atLeft().atTopTo(testsLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(exercisesLabel).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_EXERCISES).setLeftMargin(20).setText(msgs.getString("exercises"));
-        exercisesLabel.addMouseListener(new SidebarItemListener());
+        CLabelSet.decorate(exercisesLabel).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("exercises"));
+        exercisesLabel.addMouseListener(new SidebarItemAdapter());
 
         settingsLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(settingsLabel).atLeft().atTopTo(exercisesLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_SETTINGS).setLeftMargin(20).setText(msgs.getString("settings"));
-        settingsLabel.addMouseListener(new SidebarItemListener());
+        CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("settings"));
+        settingsLabel.addMouseListener(new SidebarItemAdapter());
 
         storeLabel = new CLabel(sidebar, SWT.CENTER);
         FormDataSet.attach(storeLabel).atLeft(10).atRight(10).atBottom(10).withHeight(LC.SIDEBAR_STORE_HEIGHT);
         CLabelSet.decorate(storeLabel).setBackground(MT.COLOR_DARK_ORANGE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_STORE).setLeftMargin(30).setText(msgs.getString("store"));
-        storeLabel.addMouseListener(new SidebarItemListener());
+        storeLabel.addMouseListener(new SidebarItemAdapter());
     }
 
     private void initPages() {
-
         body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeftTo(sidebar).atTop().atRight().atBottom();
         stack = new StackLayout();
         body.setLayout(stack);
-
         toTestsHomeView();
     }
 
@@ -161,10 +161,10 @@ public class MainPage extends Composite {
     }
 
     public void toStoreHomeView() {
-        if (null == storeHomeViewv) {
-            storeHomeViewv = new StoreHomeView(body, SWT.NONE);
+        if (null == storeHomeView) {
+            storeHomeView = new StoreHomeView(body, SWT.NONE);
         }
-        stack.topControl = storeHomeViewv;
+        stack.topControl = storeHomeView;
         body.layout();
     }
 
@@ -177,24 +177,16 @@ public class MainPage extends Composite {
      */
 
     private class AppWindowResizeListener implements Listener {
-
         @Override
         public void handleEvent(Event e) {
             FormDataSet.attach(sidebar).atLeft().atTop().atBottom().withWidth(((Composite) e.widget).getBounds().width / 6);
         }
     }
 
-    private class SidebarItemListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
-
+    private class SidebarItemAdapter extends MouseAdapter {
         @Override
         public void mouseDown(MouseEvent e) {
-
             String text = ((CLabel) e.widget).getText();
-
             if (msgs.getString("tests").equals(text)) {
                 CLabelSet.decorate(testsLabel).setBackground(MT.COLOR_DARK_BLUE);
                 CLabelSet.decorate(exercisesLabel).setBackground(MT.COLOR_OXFORD_BLUE);
@@ -220,10 +212,6 @@ public class MainPage extends Composite {
                 CLabelSet.decorate(storeLabel).setBackground(MT.COLOR_ORANGE).setForeground(MT.COLOR_WHITE);
                 toStoreHomeView();
             }
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 }

@@ -11,7 +11,7 @@ import java.net.URLDecoder;
 
 public class TestAudioPlayer {
 
-    private static final int BUFFER_SIZE = 4096;
+    public static final int BUFFER_SIZE = 4096;
 
     private AudioInputStream encoded, decoded;
     private SourceDataLine line;
@@ -23,7 +23,6 @@ public class TestAudioPlayer {
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public TestAudioPlayer(UserTestSession userTestSession, String fileName, boolean isUserData) {
-
         if (isUserData) {
             try {
                 URL url = this.getClass().getResource(URLDecoder.decode(RC.USERS_DATA_DIR + fileName + RC.WAV_FILE_TYPE_SUFFIX, "utf-8"));

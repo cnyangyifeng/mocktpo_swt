@@ -10,6 +10,7 @@ import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 
@@ -43,12 +44,11 @@ public class GeneralTestInfoView extends ResponsiveTestView {
     public void updateHeader() {
         final ImageButton continueButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(continueButton).atRight(10).atTop(10);
-        continueButton.addMouseListener(new ContinueButtonMouseListener());
+        continueButton.addMouseListener(new ContinueButtonMouseAdapter());
     }
 
     @Override
     public void updateBody() {
-
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         final StyledText headingTextWidget = new StyledText(viewPort, SWT.SINGLE);
@@ -69,21 +69,13 @@ public class GeneralTestInfoView extends ResponsiveTestView {
      * ==================================================
      */
 
-    private class ContinueButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ContinueButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             release();
             UserTestPersistenceUtils.saveToNextView(GeneralTestInfoView.this);
             page.resume();
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 }

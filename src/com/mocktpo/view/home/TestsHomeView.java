@@ -11,8 +11,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -29,7 +29,7 @@ public class TestsHomeView extends Composite {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Display and Application */
+    /* Display */
 
     protected Display d;
 
@@ -64,7 +64,6 @@ public class TestsHomeView extends Composite {
     }
 
     private void initToolBar() {
-
         toolBar = new Composite(this, SWT.NONE);
         FormDataSet.attach(toolBar).atLeft().atTop().atRight();
         CompositeSet.decorate(toolBar).setBackground(MT.COLOR_WHITE_SMOKE);
@@ -74,19 +73,18 @@ public class TestsHomeView extends Composite {
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final Button sb = new Button(toolBar, SWT.PUSH);
-        FormDataSet.attach(sb).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(sb).setCursor(MT.CURSOR_HAND).setText(msgs.getString("sort_by_name"));
-        sb.addSelectionListener(new SortButtonSelectionListener());
+        final Button sortByNameButton = new Button(toolBar, SWT.PUSH);
+        FormDataSet.attach(sortByNameButton).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT);
+        ButtonSet.decorate(sortByNameButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("sort_by_name"));
+        sortByNameButton.addSelectionListener(new SortButtonSelectionAdapter());
 
-        final Button ib = new Button(toolBar, SWT.PUSH);
-        FormDataSet.attach(ib).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(ib).setCursor(MT.CURSOR_HAND).setText(msgs.getString("import"));
-        ib.addSelectionListener(new ImportButtonSelectionListener());
+        final Button importButton = new Button(toolBar, SWT.PUSH);
+        FormDataSet.attach(importButton).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
+        ButtonSet.decorate(importButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("import"));
+        importButton.addSelectionListener(new ImportButtonSelectionAdapter());
     }
 
     private void initBody() {
-
         final ScrolledComposite sc = new ScrolledComposite(this, SWT.H_SCROLL | SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTopTo(toolBar).atRight().atBottom();
         sc.setExpandHorizontal(true);
@@ -135,11 +133,7 @@ public class TestsHomeView extends Composite {
      * ==================================================
      */
 
-    private class SortButtonSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class SortButtonSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
@@ -147,11 +141,7 @@ public class TestsHomeView extends Composite {
         }
     }
 
-    private class ImportButtonSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class ImportButtonSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {

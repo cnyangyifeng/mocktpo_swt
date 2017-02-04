@@ -12,7 +12,9 @@ import java.net.URLDecoder;
 
 public class ConfigUtils {
 
-    private static final Logger logger = LogManager.getLogger();
+    /* Logger */
+
+    protected static final Logger logger = LogManager.getLogger();
 
     private ConfigUtils() {
     }

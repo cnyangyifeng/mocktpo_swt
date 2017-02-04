@@ -14,20 +14,22 @@ import java.net.URLDecoder;
 
 public class ActivationCodeUtils {
 
-    protected static final Logger logger = LogManager.getLogger();
+    /* Constants */
 
     public static final int NETWORK_FAILURE = 0;
     public static final int EMAIL_HARDWARE_OK = 1;
     public static final int REGISTERED_EMAIL_NOT_FOUND = 2;
     public static final int REGISTERED_HARDWARE_UNMATCHED = 3;
+    public static final String REMOTE_SERVICE = "http://cnmengma.com/cmp/api/licenses/require";
 
-    private static final String REMOTE_SERVICE = "http://cnmengma.com/cmp/api/licenses/require";
+    /* Logger */
+
+    protected static final Logger logger = LogManager.getLogger();
 
     private ActivationCodeUtils() {
     }
 
     public static int post(RequireActivationVo vo) {
-
         try {
             URL url = new URL(REMOTE_SERVICE);
             HttpURLConnection c = (HttpURLConnection) url.openConnection();
@@ -56,19 +58,16 @@ public class ActivationCodeUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return NETWORK_FAILURE;
     }
 
-    public static boolean isLicensed(String email, String acc) {
-
+    public static boolean isLicensed(String email, String ac) {
         boolean licensed = false;
-
         String path = ActivationCodeUtils.class.getResource(RC.CONFIG_DIR).getPath();
         try {
             final License lic;
             final String pubring = URLDecoder.decode(path + RC.PUBRING_FILE, "utf-8");
-            if ((lic = new License()).loadKeyRing(pubring, null).setLicenseEncoded(acc).isVerified()) {
+            if ((lic = new License()).loadKeyRing(pubring, null).setLicenseEncoded(ac).isVerified()) {
                 String licensedEmail = lic.getFeature("email");
                 String licensedHardware = lic.getFeature("hardware");
                 String hardware = HardwareBinderUtils.uuid();
@@ -79,7 +78,6 @@ public class ActivationCodeUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return licensed;
     }
 }

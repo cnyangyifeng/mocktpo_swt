@@ -39,9 +39,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.COLOR_TOUPE, new Color(d, 179, 139, 109)); // #b38b6d
         caches.putIfAbsent(MT.COLOR_WHITE, new Color(d, 255, 255, 255)); // #ffffff
         caches.putIfAbsent(MT.COLOR_WHITE_SMOKE, new Color(d, 245, 245, 245)); // #f5f5f5
-
         /* Others */
-
         caches.putIfAbsent(MT.COLOR_HIGHLIGHTED, new Color(d, 220, 220, 220)); // #dcdcdc
         caches.putIfAbsent(MT.COLOR_WINDOW_BACKGROUND, new Color(d, 239, 239, 239)); // #efefef
 
@@ -65,40 +63,25 @@ public class ResourceManager {
          */
 
         /* 8px, 6pt, 50% */
-
         caches.putIfAbsent(MT.FONT_XX_SMALL, FontUtils.getFont(d, 8));
-
         /* 10px, 7.5pt(8pt), 62.5% */
-
         caches.putIfAbsent(MT.FONT_X_SMALL, FontUtils.getFont(d, 10));
-
         /* 12px, 9pt, 75% */
-
         caches.putIfAbsent(MT.FONT_SMALL, FontUtils.getFont(d, 12));
         caches.putIfAbsent(MT.FONT_SMALL_BOLD, FontUtils.getFont(d, 12, SWT.BOLD));
-
         /* 15px, 11pt, 95% */
-
         caches.putIfAbsent(MT.FONT_MEDIUM, FontUtils.getFont(d, 15));
         caches.putIfAbsent(MT.FONT_MEDIUM_BOLD, FontUtils.getFont(d, 15, SWT.BOLD));
         caches.putIfAbsent(MT.FONT_MEDIUM_ITALIC, FontUtils.getFont(d, 15, SWT.ITALIC));
-
         /* 20px, 15pt, 125% */
-
         caches.putIfAbsent(MT.FONT_LARGE, FontUtils.getFont(d, 20));
         caches.putIfAbsent(MT.FONT_LARGE_BOLD, FontUtils.getFont(d, 20, SWT.BOLD));
-
         /* 24px, 18pt, 150% */
-
         caches.putIfAbsent(MT.FONT_X_LARGE, FontUtils.getFont(d, 24));
         caches.putIfAbsent(MT.FONT_X_LARGE_BOLD, FontUtils.getFont(d, 24, SWT.BOLD));
-
         /* 32px, 24pt, 200% */
-
         caches.putIfAbsent(MT.FONT_XX_LARGE, FontUtils.getFont(d, 32));
-
         /* Others */
-
         caches.putIfAbsent(MT.FONT_ACTIVATION_CODE, FontUtils.getFont(d, "Courier New", 12, SWT.NORMAL));
         caches.putIfAbsent(MT.FONT_SERIF_HEADING, FontUtils.getFont(d, "Georgia", 20, SWT.BOLD));
         caches.putIfAbsent(MT.FONT_SERIF_ITALIC_TEXT, FontUtils.getFont(d, "Georgia", 16, SWT.ITALIC));

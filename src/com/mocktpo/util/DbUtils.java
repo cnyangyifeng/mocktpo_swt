@@ -20,14 +20,11 @@ public class DbUtils {
 
     public static void init() {
         try {
-
             factory = new SqlSessionFactoryBuilder().build(DbUtils.class.getResourceAsStream(URLDecoder.decode(RC.CONFIG_DIR + RC.DATABASE_CONFIG_FILE, "utf-8")));
             Configuration c = factory.getConfiguration();
-
             c.addMapper(ActivationCodeMapper.class);
             c.addMapper(UserTestSessionMapper.class);
             c.addMapper(UserTestAnswerMapper.class);
-
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(-1);

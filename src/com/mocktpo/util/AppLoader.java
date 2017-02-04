@@ -48,14 +48,11 @@ public class AppLoader extends Thread {
 
     @Override
     public void run() {
-
         splash.proceed(msgs.getString("loading_resources"));
         ResourceManager.alloc(d);
-
         splash.proceed(msgs.getString("initializing_database"));
         DbUtils.init();
         app.setSqlSession(DbUtils.getSqlSession());
-
         splash.proceed(msgs.getString("validating"));
         final ActivationCodeMapper acm = app.getSqlSession().getMapper(ActivationCodeMapper.class);
         acm.schema();
@@ -82,12 +79,12 @@ public class AppLoader extends Thread {
             e.printStackTrace();
         }
         splash.setVisible(true);
-
         if (licensed) {
             splash.proceed(msgs.getString("configuring_data"));
             SqlSession sqlSession = app.getSqlSession();
             final UserTestSessionMapper userTestSessionMapper = sqlSession.getMapper(UserTestSessionMapper.class);
             userTestSessionMapper.schema();
+            // TODO Initialize user test sessions, wrong biz logic here!
             if (userTestSessionMapper.count() <= 0) {
                 for (int i = 1; i <= 48; i++) {
                     UserTestSession userTestSession = new UserTestSession();
@@ -114,7 +111,6 @@ public class AppLoader extends Thread {
             }
             sqlSession.getMapper(UserTestAnswerMapper.class).schema();
             sqlSession.commit();
-
             splash.proceed(msgs.getString("welcome"));
             splash.close();
         } else {

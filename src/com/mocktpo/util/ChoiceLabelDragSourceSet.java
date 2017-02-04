@@ -6,19 +6,14 @@ import org.eclipse.swt.widgets.Label;
 
 public class ChoiceLabelDragSourceSet {
 
-    private DragSource ds;
-
     public static ChoiceLabelDragSourceSet drag(final Label c) {
         return new ChoiceLabelDragSourceSet(c);
     }
 
     private ChoiceLabelDragSourceSet(final Label c) {
-
-        ds = new DragSource(c, DND.DROP_MOVE);
-        ds.setTransfer(new Transfer[] { TextTransfer.getInstance() });
-
-        ds.addDragListener(new DragSourceListener() {
-
+        DragSource dragSource = new DragSource(c, DND.DROP_MOVE);
+        dragSource.setTransfer(new Transfer[]{TextTransfer.getInstance()});
+        dragSource.addDragListener(new DragSourceAdapter() {
             @Override
             public void dragStart(DragSourceEvent e) {
                 if (0 == c.getText().length()) {

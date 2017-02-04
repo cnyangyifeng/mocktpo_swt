@@ -2,10 +2,10 @@ package com.mocktpo.widget;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.UserTestPersistenceUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -102,12 +102,12 @@ public class TestCard extends Composite {
 
         final CLabel restartLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(restartLabel).atLeft().atTop().atRight();
-        CLabelSet.decorate(restartLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_DARK_BLUE).setImage(MT.IMAGE_RESTART).setText(msgs.getString("restart"));
+        CLabelSet.decorate(restartLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("restart"));
         restartLabel.addMouseListener(new RestartLabelMouseListener());
 
         final CLabel reportLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(reportLabel).atLeft().atTopTo(restartLabel, 10).atRight();
-        CLabelSet.decorate(reportLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_DARK_BLUE).setImage(MT.IMAGE_REPORT).setText(msgs.getString("report"));
+        CLabelSet.decorate(reportLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("report"));
         reportLabel.addMouseListener(new ReportLabelMouseListener());
 
         final Label divider = new Label(c, SWT.NONE);
@@ -170,23 +170,7 @@ public class TestCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
-            userTestSession.setTimerHidden(false);
-            userTestSession.setReadingTime(MT.TIME_READING_SECTION);
-            userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
-            userTestSession.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
-            userTestSession.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
-            userTestSession.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
-            userTestSession.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
-            userTestSession.setVolume(1.0);
-            userTestSession.setVolumeControlHidden(true);
-            userTestSession.setStars(0);
-            userTestSession.setLastViewId(1);
-            userTestSession.setMaxViewId(1);
-
-            sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
-            sqlSession.commit();
-
+            UserTestPersistenceUtils.restart(userTestSession);
             MyApplication.get().getWindow().toTestPage(userTestSession);
         }
 

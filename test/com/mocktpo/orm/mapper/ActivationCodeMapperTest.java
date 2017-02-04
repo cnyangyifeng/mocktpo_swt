@@ -14,14 +14,14 @@ public class ActivationCodeMapperTest {
 
     private ActivationCodeMapper mapper;
     private SqlSession session;
-    private String c;
+    private String text;
 
     @Before
     public void setUp() {
         DbUtils.init();
         session = DbUtils.getSqlSession();
         mapper = session.getMapper(ActivationCodeMapper.class);
-        c = "owJ4nJvAy8zAxTg1QdHwqfXbAMbTB2SSxHMyk1PzilPdMnNS/RJzU3U90/Pyi1JT\n" +
+        text = "owJ4nJvAy8zAxTg1QdHwqfXbAMbTB2SSxHMyk1PzilPdMnNS/RJzU3U90/Pyi1JT\n" +
             "wj/Hpyrr6ipApRXSgPJcyiGlqQr+ySUKBiYKhqZWpoZWBoYKzsEhCkYGhmZcuYlZ\n" +
             "+UXxZalFxZn5ebaGXKm5iZk5toZmpkbGluaWZg6FhXrJ+blcGYlFKeWJRam2ZkYG\n" +
             "FkYpyaa6KRbJJrrGqUlGuommBua6RoaGScnGKQYWxkapXIkFBfF5QHfZ5uYnZ5cU\n" +
@@ -47,29 +47,29 @@ public class ActivationCodeMapperTest {
 
     @Test
     public void testInsert() {
-        ActivationCode lic = new ActivationCode();
-        lic.setEmail("cnyangyifeng@163.com");
-        lic.setContent(c);
-        lic.setDateCreated(new Date());
-        lic.setDateUpdated(new Date());
-        mapper.insert(lic);
+        ActivationCode ac = new ActivationCode();
+        ac.setEmail("cnyangyifeng@163.com");
+        ac.setContent(text);
+        ac.setDateCreated(new Date());
+        ac.setDateUpdated(new Date());
+        mapper.insert(ac);
     }
 
     @Test
     public void testFind() {
         List<ActivationCode> list = mapper.find();
-        for (ActivationCode lic : list) {
-            System.out.println(lic);
+        for (ActivationCode ac : list) {
+            System.out.println(ac);
         }
     }
 
     @Test
     public void testUpdate() {
-        ActivationCode lic = new ActivationCode();
-        lic.setEmail("cnyangyifeng@163.com");
-        String c = "n/a";
-        lic.setContent(c);
-        mapper.update(lic);
+        ActivationCode ac = new ActivationCode();
+        ac.setEmail("cnyangyifeng@163.com");
+        String text = "n/a";
+        ac.setContent(text);
+        mapper.update(ac);
     }
 
     @Test

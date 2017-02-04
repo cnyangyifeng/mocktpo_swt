@@ -128,4 +128,29 @@ public class UserTestPersistenceUtils {
         sqlSession.getMapper(UserTestAnswerMapper.class).update(userTestSession, answerText);
         sqlSession.commit();
     }
+
+    public static void restart(UserTestSession userTestSession) {
+
+        userTestSession.setTimerHidden(false);
+        userTestSession.setReadingTime(MT.TIME_READING_SECTION);
+        userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
+        userTestSession.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
+        userTestSession.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
+        userTestSession.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
+        userTestSession.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
+        userTestSession.setIntegratedWritingTime(MT.TIME_INTEGRATED_WRITING_TASK);
+        userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
+        userTestSession.setVolume(1.0);
+        userTestSession.setVolumeControlHidden(true);
+        userTestSession.setStars(0);
+        userTestSession.setLastViewId(1);
+        userTestSession.setMaxViewId(1);
+
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
+        sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
+        sqlSession.commit();
+
+        sqlSession.getMapper(UserTestAnswerMapper.class).delete(userTestSession);
+        sqlSession.commit();
+    }
 }

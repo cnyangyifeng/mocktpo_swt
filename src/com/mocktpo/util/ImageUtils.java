@@ -12,13 +12,14 @@ import java.net.URLDecoder;
 
 public class ImageUtils {
 
+    /* Logger */
+
     protected static final Logger logger = LogManager.getLogger();
 
     private ImageUtils() {
     }
 
     public static Image load(final Display d, final String fileName) {
-
         return new Image(d, new ImageDataProvider() {
             @Override
             public ImageData getImageData(int zoom) {

@@ -47,6 +47,8 @@ public class UserTestSessionMapperTest {
             userTestSession.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
             userTestSession.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
             userTestSession.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
+            userTestSession.setIntegratedWritingTime(MT.TIME_INTEGRATED_WRITING_TASK);
+            userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
             userTestSession.setVolume(1.0);
             userTestSession.setVolumeControlHidden(true);
             userTestSession.setStars(0);
@@ -84,8 +86,8 @@ public class UserTestSessionMapperTest {
         userTestSession.setVolume(1.0);
         userTestSession.setVolumeControlHidden(true);
         userTestSession.setStars(0);
-        userTestSession.setLastViewId(122);
-        userTestSession.setMaxViewId(122);
+        userTestSession.setLastViewId(1);
+        userTestSession.setMaxViewId(1);
         mapper.update(userTestSession);
     }
 
