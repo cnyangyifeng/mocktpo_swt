@@ -47,7 +47,7 @@ public class TestPage extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
-        this.testSchema = ConfigUtils.load(this.userTestSession.getAlias(), TestSchemaVo.class);
+        this.testSchema = ConfigUtils.load(this.userTestSession.getFileAlias(), TestSchemaVo.class);
         init();
     }
 
@@ -81,7 +81,7 @@ public class TestPage extends Composite {
 
     public void resume(UserTestSession userTestSession) {
         if (this.userTestSession.getTid() != userTestSession.getTid()) {
-            this.testSchema = ConfigUtils.load(userTestSession.getAlias(), TestSchemaVo.class);
+            this.testSchema = ConfigUtils.load(userTestSession.getFileAlias(), TestSchemaVo.class);
         }
         this.userTestSession = userTestSession;
 

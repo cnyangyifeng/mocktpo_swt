@@ -54,7 +54,7 @@ public class ReportPage extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
-        this.testSchema = ConfigUtils.load(this.userTestSession.getAlias(), TestSchemaVo.class);
+        this.testSchema = ConfigUtils.load(this.userTestSession.getFileAlias(), TestSchemaVo.class);
         init();
     }
 

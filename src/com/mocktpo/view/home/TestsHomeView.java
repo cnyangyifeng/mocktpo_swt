@@ -2,21 +2,21 @@ package com.mocktpo.view.home;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
+import com.mocktpo.orm.mapper.ActivationCodeMapper;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.vo.TestSchemaVo;
 import com.mocktpo.widget.TestCard;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -145,7 +145,23 @@ public class TestsHomeView extends Composite {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-            logger.debug("Imported successfully.");
+            if (!d.isDisposed()) {
+                d.asyncExec(new Runnable() {
+                    @Override
+                    public void run() {
+                        FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.OPEN);
+                        dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
+                        dialog.setFilterExtensions(new String[]{"*.zip"});
+                        String absoluteFileName = dialog.open();
+                        UnzipUtils.unzip(absoluteFileName);
+                        String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(absoluteFileName));
+                        TestSchemaVo testSchema = ConfigUtils.load(fileAlias, TestSchemaVo.class);
+                        final ActivationCodeMapper acm = MyApplication.get().getSqlSession().getMapper(ActivationCodeMapper.class);
+                        String email = acm.find().get(0).getEmail();
+                        UserTestPersistenceUtils.reset(email, fileAlias, testSchema);
+                    }
+                });
+            }
         }
     }
 }

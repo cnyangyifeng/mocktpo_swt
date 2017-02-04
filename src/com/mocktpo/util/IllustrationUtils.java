@@ -35,7 +35,7 @@ public class IllustrationUtils {
                     switch (zoom) {
                         case 200:
                             try {
-                                data = new Image(Display.getCurrent(), IllustrationUtils.class.getResourceAsStream(URLDecoder.decode(RC.TESTS_DATA_DIR + userTestSession.getAlias() + "/" + fa[0] + RC.HIDPI_SUFFIX + RC.PNG_FILE_TYPE_SUFFIX, "utf-8"))).getImageData();
+                                data = new Image(Display.getCurrent(), IllustrationUtils.class.getResourceAsStream(URLDecoder.decode(RC.TESTS_DATA_DIR + userTestSession.getFileAlias() + MT.STRING_SLASH + fa[0] + RC.HIDPI_SUFFIX + RC.PNG_FILE_TYPE_SUFFIX, "utf-8"))).getImageData();
                             } catch (Exception e) {
                                 logger.info("Image \"{}{}{}\" not found.", fa[0], RC.HIDPI_SUFFIX, RC.PNG_FILE_TYPE_SUFFIX);
                             }
@@ -43,7 +43,7 @@ public class IllustrationUtils {
                         case 100:
                         default:
                             try {
-                                data = new Image(Display.getCurrent(), IllustrationUtils.class.getResourceAsStream(URLDecoder.decode(RC.TESTS_DATA_DIR + userTestSession.getAlias() + "/" + fa[0] + RC.PNG_FILE_TYPE_SUFFIX, "utf-8"))).getImageData();
+                                data = new Image(Display.getCurrent(), IllustrationUtils.class.getResourceAsStream(URLDecoder.decode(RC.TESTS_DATA_DIR + userTestSession.getFileAlias() + MT.STRING_SLASH + fa[0] + RC.PNG_FILE_TYPE_SUFFIX, "utf-8"))).getImageData();
                             } catch (Exception e) {
                                 logger.info("Image \"{}{}\" not found.", fa[0], RC.PNG_FILE_TYPE_SUFFIX);
                             }

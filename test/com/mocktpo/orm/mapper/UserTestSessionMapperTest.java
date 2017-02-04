@@ -39,7 +39,7 @@ public class UserTestSessionMapperTest {
             userTestSession.setEmail("165239796@qq.com");
             userTestSession.setTid(i);
             userTestSession.setTitle("TPO" + MT.STRING_SPACE + i);
-            userTestSession.setAlias("TPO" + i);
+            userTestSession.setFileAlias("tpo" + i);
             userTestSession.setTimerHidden(false);
             userTestSession.setReadingTime(MT.TIME_READING_SECTION);
             userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
@@ -73,7 +73,7 @@ public class UserTestSessionMapperTest {
         userTestSession.setEmail("165239796@qq.com");
         userTestSession.setTid(i);
         userTestSession.setTitle("TPO" + MT.STRING_SPACE + i);
-        userTestSession.setAlias("TPO" + i);
+        userTestSession.setFileAlias("tpo" + i);
         userTestSession.setTimerHidden(false);
         userTestSession.setReadingTime(MT.TIME_READING_SECTION);
         userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);

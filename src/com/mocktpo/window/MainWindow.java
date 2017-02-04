@@ -173,4 +173,8 @@ public class MainWindow {
     public Display getDisplay() {
         return d;
     }
+
+    public Shell getShell() {
+        return s;
+    }
 }

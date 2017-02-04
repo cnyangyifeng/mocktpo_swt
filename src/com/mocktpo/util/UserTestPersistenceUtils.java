@@ -1,16 +1,45 @@
 package com.mocktpo.util;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.orm.domain.UserTestAnswer;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.view.test.TestView;
+import com.mocktpo.vo.TestSchemaVo;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.ibatis.session.SqlSession;
 
 public class UserTestPersistenceUtils {
+
+    public static void reset(String email, String fileAlias, TestSchemaVo testSchema) {
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
+        sqlSession.getMapper(UserTestSessionMapper.class).delete(testSchema.getTid());
+
+        UserTestSession userTestSession = new UserTestSession();
+        userTestSession.setEmail(email);
+        userTestSession.setTid(testSchema.getTid());
+        userTestSession.setTitle(testSchema.getTitle());
+        userTestSession.setFileAlias(fileAlias);
+        userTestSession.setTimerHidden(false);
+        userTestSession.setReadingTime(MT.TIME_READING_SECTION);
+        userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
+        userTestSession.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
+        userTestSession.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
+        userTestSession.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
+        userTestSession.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
+        userTestSession.setIntegratedWritingTime(MT.TIME_INTEGRATED_WRITING_TASK);
+        userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
+        userTestSession.setVolume(1.0);
+        userTestSession.setVolumeControlHidden(true);
+        userTestSession.setStars(0);
+        userTestSession.setLastViewId(1);
+        userTestSession.setMaxViewId(1);
+        sqlSession.getMapper(UserTestSessionMapper.class).insert(userTestSession);
+        sqlSession.commit();
+    }
 
     public static void saveToNextView(TestView testView) {
         TestPage page = testView.getPage();

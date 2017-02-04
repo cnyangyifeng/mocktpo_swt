@@ -1,9 +1,7 @@
 package com.mocktpo.orm.mapper;
 
 import com.mocktpo.orm.domain.UserTestSession;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -15,7 +13,7 @@ public interface UserTestSessionMapper {
             "MT_EMAIL VARCHAR(64),",
             "MT_TID INT,",
             "MT_TITLE VARCHAR(64),",
-            "MT_ALIAS VARCHAR(64),",
+            "MT_FILE_ALIAS VARCHAR(64),",
             "MT_TIMER_HIDDEN BOOLEAN,",
             "MT_READING_TIME INT,",
             "MT_LISTENING_TIME_1 INT,",
@@ -43,7 +41,7 @@ public interface UserTestSessionMapper {
             "MT_EMAIL,",
             "MT_TID,",
             "MT_TITLE,",
-            "MT_ALIAS,",
+            "MT_FILE_ALIAS,",
             "MT_TIMER_HIDDEN,",
             "MT_READING_TIME,",
             "MT_LISTENING_TIME_1,",
@@ -61,7 +59,7 @@ public interface UserTestSessionMapper {
             "#{email},",
             "#{tid},",
             "#{title},",
-            "#{alias},",
+            "#{fileAlias},",
             "#{timerHidden},",
             "#{readingTime},",
             "#{listeningTime1},",
@@ -82,11 +80,10 @@ public interface UserTestSessionMapper {
     @Update({
             "UPDATE MT_USER_TEST_SESSION",
             "SET",
-            "MT_SID = #{sid},",
             "MT_EMAIL = #{email},",
             "MT_TID = #{tid},",
             "MT_TITLE = #{title},",
-            "MT_ALIAS = #{alias},",
+            "MT_FILE_ALIAS = #{fileAlias},",
             "MT_TIMER_HIDDEN = #{timerHidden},",
             "MT_READING_TIME = #{readingTime},",
             "MT_LISTENING_TIME_1 = #{listeningTime1},",
@@ -101,7 +98,7 @@ public interface UserTestSessionMapper {
             "MT_STARS = #{stars},",
             "MT_LAST_VIEW_ID = #{lastViewId}",
             "WHERE",
-            "MT_TID = #{tid}"
+            "MT_SID = #{sid}"
     })
     void update(UserTestSession userTestSession);
 
@@ -111,7 +108,7 @@ public interface UserTestSessionMapper {
             "MT_EMAIL AS email,",
             "MT_TID AS tid,",
             "MT_TITLE AS title,",
-            "MT_ALIAS AS alias,",
+            "MT_FILE_ALIAS AS fileAlias,",
             "MT_TIMER_HIDDEN AS timerHidden,",
             "MT_READING_TIME AS readingTime,",
             "MT_LISTENING_TIME_1 AS listeningTime1,",
@@ -134,4 +131,11 @@ public interface UserTestSessionMapper {
             "SELECT COUNT(*) FROM MT_USER_TEST_SESSION"
     )
     long count();
+
+    @Delete({
+            "DELETE FROM MT_USER_TEST_SESSION",
+            "WHERE",
+            "MT_TID = #{tid}"
+    })
+    void delete(@Param("tid") int tid);
 }

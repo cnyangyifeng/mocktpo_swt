@@ -1,6 +1,7 @@
 package com.mocktpo.util;
 
 import com.mocktpo.orm.domain.UserTestSession;
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
 
 import javax.sound.sampled.*;
@@ -37,7 +38,7 @@ public class TestAudioPlayer {
             }
         } else {
             try {
-                URL url = this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + userTestSession.getAlias() + "/" + fileName + RC.MP3_FILE_TYPE_SUFFIX, "utf-8"));
+                URL url = this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + userTestSession.getFileAlias() + MT.STRING_SLASH + fileName + RC.MP3_FILE_TYPE_SUFFIX, "utf-8"));
                 encoded = AudioSystem.getAudioInputStream(url);
                 AudioFormat encodedFormat = encoded.getFormat();
                 AudioFormat decodedFormat = getAudioFormat(encodedFormat);

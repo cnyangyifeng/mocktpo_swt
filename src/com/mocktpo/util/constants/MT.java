@@ -225,6 +225,7 @@ public interface MT {
     String STRING_OF = "of";
     String STRING_SPACE = " ";
     String STRING_SEMICOLON = ";";
+    String STRING_SLASH = "/";
 
     /*
      * ==================================================

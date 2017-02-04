@@ -82,33 +82,32 @@ public class AppLoader extends Thread {
         if (licensed) {
             splash.proceed(msgs.getString("configuring_data"));
             SqlSession sqlSession = app.getSqlSession();
-            final UserTestSessionMapper userTestSessionMapper = sqlSession.getMapper(UserTestSessionMapper.class);
-            userTestSessionMapper.schema();
+            sqlSession.getMapper(UserTestSessionMapper.class).schema();
             // TODO Initialize user test sessions, wrong biz logic here!
-            if (userTestSessionMapper.count() <= 0) {
-                for (int i = 1; i <= 48; i++) {
-                    UserTestSession userTestSession = new UserTestSession();
-                    userTestSession.setEmail(email);
-                    userTestSession.setTid(i);
-                    userTestSession.setTitle(msgs.getString("tpo") + MT.STRING_SPACE + i);
-                    userTestSession.setAlias(msgs.getString("tpo") + i);
-                    userTestSession.setTimerHidden(false);
-                    userTestSession.setReadingTime(MT.TIME_READING_SECTION);
-                    userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
-                    userTestSession.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
-                    userTestSession.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
-                    userTestSession.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
-                    userTestSession.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
-                    userTestSession.setIntegratedWritingTime(MT.TIME_INTEGRATED_WRITING_TASK);
-                    userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
-                    userTestSession.setVolume(1.0);
-                    userTestSession.setVolumeControlHidden(true);
-                    userTestSession.setStars(0);
-                    userTestSession.setLastViewId(1);
-                    userTestSession.setMaxViewId(1);
-                    userTestSessionMapper.insert(userTestSession);
-                }
-            }
+//            if (userTestSessionMapper.count() <= 0) {
+//                for (int i = 1; i <= 48; i++) {
+//                    UserTestSession userTestSession = new UserTestSession();
+//                    userTestSession.setEmail(email);
+//                    userTestSession.setTid(i);
+//                    userTestSession.setTitle("TPO" + MT.STRING_SPACE + i);
+//                    userTestSession.setFileAlias("tpo" + i);
+//                    userTestSession.setTimerHidden(false);
+//                    userTestSession.setReadingTime(MT.TIME_READING_SECTION);
+//                    userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
+//                    userTestSession.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
+//                    userTestSession.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
+//                    userTestSession.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
+//                    userTestSession.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
+//                    userTestSession.setIntegratedWritingTime(MT.TIME_INTEGRATED_WRITING_TASK);
+//                    userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
+//                    userTestSession.setVolume(1.0);
+//                    userTestSession.setVolumeControlHidden(true);
+//                    userTestSession.setStars(0);
+//                    userTestSession.setLastViewId(1);
+//                    userTestSession.setMaxViewId(1);
+//                    userTestSessionMapper.insert(userTestSession);
+//                }
+//            }
             sqlSession.getMapper(UserTestAnswerMapper.class).schema();
             sqlSession.commit();
             splash.proceed(msgs.getString("welcome"));

@@ -10,7 +10,7 @@ public class UserTestSession {
     private String email;
     private int tid;
     private String title;
-    private String alias;
+    private String fileAlias;
     private boolean timerHidden;
     private int readingTime;
     private int listeningTime1;
@@ -58,12 +58,12 @@ public class UserTestSession {
         this.title = title;
     }
 
-    public String getAlias() {
-        return alias;
+    public String getFileAlias() {
+        return fileAlias;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setFileAlias(String fileAlias) {
+        this.fileAlias = fileAlias;
     }
 
     public boolean isTimerHidden() {
@@ -291,6 +291,6 @@ public class UserTestSession {
 
     @Override
     public String toString() {
-        return "{\nsid:" + this.getSid() + ",\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nalias:" + this.getAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nspeakingReadingTime1:" + this.getSpeakingReadingTime1() + ",\nspeakingReadingTime2:" + this.getSpeakingReadingTime2() + ",\nwritingReadingTime:" + this.getWritingReadingTime() + ",\nintegratedWritingTime:" + this.getIntegratedWritingTime() + ",\nindependentWritingTime:" + this.getIndependentWritingTime() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\nstars:" + this.getStars() + ",\nlastViewId:" + this.getLastViewId() + ",\nmaxViewId:" + this.getMaxViewId() + "\n}";
+        return "{\nsid:" + this.getSid() + ",\nemail:" + this.getEmail() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nfileAlias:" + this.getFileAlias() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nspeakingReadingTime1:" + this.getSpeakingReadingTime1() + ",\nspeakingReadingTime2:" + this.getSpeakingReadingTime2() + ",\nwritingReadingTime:" + this.getWritingReadingTime() + ",\nintegratedWritingTime:" + this.getIntegratedWritingTime() + ",\nindependentWritingTime:" + this.getIndependentWritingTime() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\nstars:" + this.getStars() + ",\nlastViewId:" + this.getLastViewId() + ",\nmaxViewId:" + this.getMaxViewId() + "\n}";
     }
 }

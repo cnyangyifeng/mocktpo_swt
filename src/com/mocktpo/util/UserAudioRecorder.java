@@ -1,5 +1,6 @@
 package com.mocktpo.util;
 
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,9 +24,9 @@ public class UserAudioRecorder {
         try {
             File rootPath = new File(this.getClass().getResource(URLDecoder.decode(RC.USERS_DATA_DIR, "utf-8")).toURI());
             logger.info(rootPath.toString());
-            file = new File(rootPath.toString() + "/" + fileName + RC.WAV_FILE_TYPE_SUFFIX);
+            file = new File(rootPath.toString() + MT.STRING_SLASH + fileName + RC.WAV_FILE_TYPE_SUFFIX);
             if (!file.exists()) {
-                file.createNewFile();
+                logger.debug(file.createNewFile());
             }
             AudioFormat format = getAudioFormat();
             DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);
