@@ -1,5 +1,7 @@
 package com.mocktpo.util;
 
+import com.mocktpo.util.constants.MT;
+
 import java.text.DecimalFormat;
 
 public class TimeUtils {
@@ -12,6 +14,6 @@ public class TimeUtils {
         long minutes = (time - hours * 3600) / 60;
         long seconds = time - hours * 3600 - minutes * 60;
         DecimalFormat df = new DecimalFormat("00");
-        return df.format(hours) + ":" + df.format(minutes) + ":" + df.format(seconds);
+        return df.format(hours) + MT.STRING_COLON + df.format(minutes) + MT.STRING_COLON + df.format(seconds);
     }
 }

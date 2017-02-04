@@ -7,9 +7,7 @@ import com.mocktpo.util.FormDataSet;
 import com.mocktpo.util.FormLayoutSet;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.view.home.ExercisesHomeView;
 import com.mocktpo.view.home.SettingsHomeView;
-import com.mocktpo.view.home.StoreHomeView;
 import com.mocktpo.view.home.TestsHomeView;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,16 +42,11 @@ public class MainPage extends Composite {
 
     private Composite sidebar;
     private CLabel testsLabel;
-    private CLabel exercisesLabel;
     private CLabel settingsLabel;
 
     private Composite body;
     private TestsHomeView testsHomeView;
-    private ExercisesHomeView exercisesHomeView;
     private SettingsHomeView settingsHomeView;
-
-    private CLabel storeLabel;
-    private StoreHomeView storeHomeView;
 
     /*
      * ==================================================
@@ -95,20 +88,10 @@ public class MainPage extends Composite {
         CLabelSet.decorate(testsLabel).setBackground(MT.COLOR_DARK_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("tests"));
         testsLabel.addMouseListener(new SidebarItemAdapter());
 
-        exercisesLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(exercisesLabel).atLeft().atTopTo(testsLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(exercisesLabel).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("exercises"));
-        exercisesLabel.addMouseListener(new SidebarItemAdapter());
-
         settingsLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(settingsLabel).atLeft().atTopTo(exercisesLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
+        FormDataSet.attach(settingsLabel).atLeft().atTopTo(testsLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
         CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("settings"));
         settingsLabel.addMouseListener(new SidebarItemAdapter());
-
-        storeLabel = new CLabel(sidebar, SWT.CENTER);
-        FormDataSet.attach(storeLabel).atLeft(10).atRight(10).atBottom(10).withHeight(LC.SIDEBAR_STORE_HEIGHT);
-        CLabelSet.decorate(storeLabel).setBackground(MT.COLOR_DARK_ORANGE).setCursor(MT.CURSOR_HAND).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_STORE).setLeftMargin(30).setText(msgs.getString("store"));
-        storeLabel.addMouseListener(new SidebarItemAdapter());
     }
 
     private void initPages() {
@@ -144,27 +127,11 @@ public class MainPage extends Composite {
         body.layout();
     }
 
-    public void toExercisesHomeView() {
-        if (null == exercisesHomeView) {
-            exercisesHomeView = new ExercisesHomeView(body, SWT.NONE);
-        }
-        stack.topControl = exercisesHomeView;
-        body.layout();
-    }
-
     public void toSettingsHomeView() {
         if (null == settingsHomeView) {
             settingsHomeView = new SettingsHomeView(body, SWT.NONE);
         }
         stack.topControl = settingsHomeView;
-        body.layout();
-    }
-
-    public void toStoreHomeView() {
-        if (null == storeHomeView) {
-            storeHomeView = new StoreHomeView(body, SWT.NONE);
-        }
-        stack.topControl = storeHomeView;
         body.layout();
     }
 
@@ -189,28 +156,12 @@ public class MainPage extends Composite {
             String text = ((CLabel) e.widget).getText();
             if (msgs.getString("tests").equals(text)) {
                 CLabelSet.decorate(testsLabel).setBackground(MT.COLOR_DARK_BLUE);
-                CLabelSet.decorate(exercisesLabel).setBackground(MT.COLOR_OXFORD_BLUE);
                 CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(storeLabel).setBackground(MT.COLOR_DARK_ORANGE).setForeground(MT.COLOR_WHITE);
                 toTestsHomeView();
-            } else if (msgs.getString("exercises").equals(text)) {
-                CLabelSet.decorate(testsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(exercisesLabel).setBackground(MT.COLOR_DARK_BLUE);
-                CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(storeLabel).setBackground(MT.COLOR_DARK_ORANGE).setForeground(MT.COLOR_WHITE);
-                toExercisesHomeView();
             } else if (msgs.getString("settings").equals(text)) {
                 CLabelSet.decorate(testsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(exercisesLabel).setBackground(MT.COLOR_OXFORD_BLUE);
                 CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_DARK_BLUE);
-                CLabelSet.decorate(storeLabel).setBackground(MT.COLOR_DARK_ORANGE).setForeground(MT.COLOR_WHITE);
                 toSettingsHomeView();
-            } else if (msgs.getString("store").equals(text)) {
-                CLabelSet.decorate(testsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(exercisesLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(storeLabel).setBackground(MT.COLOR_ORANGE).setForeground(MT.COLOR_WHITE);
-                toStoreHomeView();
             }
         }
     }

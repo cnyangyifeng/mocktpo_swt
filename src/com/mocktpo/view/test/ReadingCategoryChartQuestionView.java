@@ -181,12 +181,12 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
         ac.addPaintListener(new BorderedCompositePaintListener());
 
         String question = vo.getStyledText("question").getText();
-        String[] questions = question.split(";");
+        String[] questions = question.split(MT.STRING_SEMICOLON);
 
         /* Category 1 */
 
-        final String categoryName1 = questions[0].split(":")[0];
-        final int totalAnswerCountInCategory1 = Integer.parseInt(questions[0].split(":")[1]);
+        final String categoryName1 = questions[0].split(MT.STRING_COLON)[0];
+        final int totalAnswerCountInCategory1 = Integer.parseInt(questions[0].split(MT.STRING_COLON)[1]);
         final CLabel cl1 = new CLabel(ac, SWT.NONE);
         FormDataSet.attach(cl1).atLeft(10).atTop().withWidth(120);
         CLabelSet.decorate(cl1).setFont(MT.FONT_MEDIUM).setText(categoryName1);
@@ -208,8 +208,8 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         /* Category 2 */
 
-        final String categoryName2 = questions[1].split(":")[0];
-        final int totalAnswerCountInCategory2 = Integer.parseInt(questions[1].split(":")[1]);
+        final String categoryName2 = questions[1].split(MT.STRING_COLON)[0];
+        final int totalAnswerCountInCategory2 = Integer.parseInt(questions[1].split(MT.STRING_COLON)[1]);
         final CLabel cl2 = new CLabel(ac, SWT.NONE);
         FormDataSet.attach(cl2).atLeft(10).atTopTo(divider1).withWidth(120);
         CLabelSet.decorate(cl2).setFont(MT.FONT_MEDIUM).setText(categoryName2);

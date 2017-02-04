@@ -122,7 +122,7 @@ public interface MT {
      */
 
     int IMAGE_APP_ICON = 301;
-    int IMAGE_ARROW_RIGHT = 302;
+    int IMAGE_ARROW_RIGHT = 302; /* TODO Remove */
     int IMAGE_BACK_OVAL = 303;
     int IMAGE_BACK_OVAL_HOVER = 304;
     int IMAGE_BACK_OVAL_DISABLED = 305;
@@ -141,7 +141,7 @@ public interface MT {
     int IMAGE_CONTINUE_OVAL_HOVER = 318;
     int IMAGE_CONTINUE_OVAL_DISABLED = 319;
     int IMAGE_ETS_TOEFL = 320;
-    int IMAGE_EXERCISES = 321;
+    int IMAGE_EXERCISES = 321; /* TODO Remove */
     int IMAGE_GO_TO_QUESTION = 322;
     int IMAGE_GO_TO_QUESTION_HOVER = 323;
     int IMAGE_HEADSET = 324;
@@ -168,8 +168,8 @@ public interface MT {
     int IMAGE_RECORD_AGAIN = 345;
     int IMAGE_RECORD_AGAIN_HOVER = 346;
     int IMAGE_RECORD_AGAIN_DISABLED = 347;
-    int IMAGE_REPORT = 348;
-    int IMAGE_RESTART = 349;
+    int IMAGE_REPORT = 348; /* TODO Remove */
+    int IMAGE_RESTART = 349; /* TODO Remove */
     int IMAGE_RETURN = 350;
     int IMAGE_RETURN_HOVER = 351;
     int IMAGE_RETURN_TO_QUESTION = 352;
@@ -179,18 +179,18 @@ public interface MT {
     int IMAGE_REVIEW_OVAL = 356;
     int IMAGE_REVIEW_OVAL_HOVER = 357;
     int IMAGE_REVIEW_OVAL_DISABLED = 358;
-    int IMAGE_SETTINGS = 359;
+    int IMAGE_SETTINGS = 359; /* TODO Remove */
     int IMAGE_SHOW_TIME = 360;
     int IMAGE_SHOW_TIME_HOVER = 361;
     int IMAGE_SHOW_TIME_DISABLED = 362;
     int IMAGE_SPLASH = 363;
     int IMAGE_STAR = 364;
     int IMAGE_STAR_EMPTY = 365;
-    int IMAGE_STAR_HALF = 366;
+    int IMAGE_STAR_HALF = 366; /* TODO Remove */
     int IMAGE_STOP_RECORDING = 367;
     int IMAGE_STOP_RECORDING_HOVER = 368;
-    int IMAGE_STORE = 369;
-    int IMAGE_TESTS = 370;
+    int IMAGE_STORE = 369; /* TODO Remove */
+    int IMAGE_TESTS = 370; /* TODO Remove */
     int IMAGE_VIEW_QUESTION = 371;
     int IMAGE_VIEW_QUESTION_HOVER = 372;
     int IMAGE_VIEW_TEXT = 373;
@@ -219,10 +219,12 @@ public interface MT {
      * ==================================================
      */
 
+    String STRING_COLON = ":";
     String STRING_COMMA = ",";
     String STRING_QUESTION = "Question";
     String STRING_OF = "of";
     String STRING_SPACE = " ";
+    String STRING_SEMICOLON = ";";
 
     /*
      * ==================================================

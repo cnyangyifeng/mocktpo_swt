@@ -1,6 +1,7 @@
 package com.mocktpo.util;
 
 import com.mocktpo.orm.domain.UserTestSession;
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,9 +25,9 @@ public class IllustrationUtils {
 
     public static Map<Integer, Image> load(final Display d, final UserTestSession userTestSession, final String fileNames) {
         Map<Integer, Image> map = new HashMap<Integer, Image>();
-        String[] arr = fileNames.split(";");
+        String[] arr = fileNames.split(MT.STRING_SEMICOLON);
         for (final String fileNameWithLocation : arr) {
-            final String[] fa = fileNameWithLocation.split(":");
+            final String[] fa = fileNameWithLocation.split(MT.STRING_COLON);
             final Image image = new Image(d, new ImageDataProvider() {
                 @Override
                 public ImageData getImageData(int zoom) {
