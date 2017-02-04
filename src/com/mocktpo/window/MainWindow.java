@@ -12,8 +12,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.ShellAdapter;
 import org.eclipse.swt.events.ShellEvent;
-import org.eclipse.swt.events.ShellListener;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
@@ -71,7 +71,7 @@ public class MainWindow {
         s.setMaximized(true);
         s.setBackgroundMode(SWT.INHERIT_FORCE);
         WindowUtils.setMinimumWindowSize(s);
-        s.addShellListener(new MainWindowListener());
+        s.addShellListener(new MainWindowAdapter());
     }
 
     private void initViews() {
@@ -111,44 +111,36 @@ public class MainWindow {
      */
 
     public void toMainPage() {
-
         if (null == mp) {
             mp = new MainPage(s, SWT.NONE);
         }
         mp.toTestsHomeView();
-
         stack.topControl = mp;
         s.layout();
     }
 
     public void toMainPage(UserTestSession ut) {
-
         if (null == mp) {
             mp = new MainPage(s, SWT.NONE);
         }
         mp.toTestsHomeView(ut);
-
         stack.topControl = mp;
         s.layout();
     }
 
     public void toTestPage(UserTestSession ut) {
-
         if (null == tp) {
             tp = new TestPage(s, SWT.NONE, ut);
         }
         tp.resume(ut);
-
         stack.topControl = tp;
         s.layout();
     }
 
     public void toReportPage(UserTestSession ut) {
-
         if (null == rp) {
             rp = new ReportPage(s, SWT.NONE, ut);
         }
-
         stack.topControl = rp;
         s.layout();
     }
@@ -161,28 +153,12 @@ public class MainWindow {
      * ==================================================
      */
 
-    private class MainWindowListener implements ShellListener {
-
-        @Override
-        public void shellActivated(ShellEvent e) {
-        }
+    private class MainWindowAdapter extends ShellAdapter {
 
         @Override
         public void shellClosed(ShellEvent e) {
             close();
             System.exit(0);
-        }
-
-        @Override
-        public void shellDeactivated(ShellEvent e) {
-        }
-
-        @Override
-        public void shellDeiconified(ShellEvent e) {
-        }
-
-        @Override
-        public void shellIconified(ShellEvent e) {
         }
     }
 

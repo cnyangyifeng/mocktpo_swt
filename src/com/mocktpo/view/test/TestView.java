@@ -8,7 +8,7 @@ import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.vo.TestViewVo;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.TestFooter;
@@ -18,8 +18,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -140,7 +140,7 @@ public abstract class TestView extends Composite {
 
         pauseTestButton = new ImageButton(header, SWT.NONE, MT.IMAGE_PAUSE_TEST, MT.IMAGE_PAUSE_TEST_HOVER);
         FormDataSet.attach(pauseTestButton).atLeft(10).atBottom(10);
-        pauseTestButton.addMouseListener(new PauseTestButtonMouseListener());
+        pauseTestButton.addMouseListener(new PauseTestButtonMouseAdapter());
 
         /*
          * ==================================================
@@ -233,7 +233,6 @@ public abstract class TestView extends Composite {
      */
 
     public void startTimer() {
-
         if (vo.isTimed()) {
 
             /*
@@ -257,7 +256,7 @@ public abstract class TestView extends Composite {
                     timerButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HIDE_TIME, MT.IMAGE_HIDE_TIME_HOVER, MT.IMAGE_HIDE_TIME_DISABLED);
                 }
                 FormDataSet.attach(timerButton).atRightTo(timerLabel, 6).atBottomTo(timerLabel, -3, SWT.BOTTOM);
-                timerButton.addMouseListener(new TimerButtonMouseListener());
+                timerButton.addMouseListener(new TimerButtonMouseAdapter());
             }
 
             /*
@@ -392,11 +391,7 @@ public abstract class TestView extends Composite {
      * ==================================================
      */
 
-    private class PauseTestButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class PauseTestButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -404,17 +399,9 @@ public abstract class TestView extends Composite {
             UserTestPersistenceUtils.saveToCurrentView(TestView.this);
             MyApplication.get().getWindow().toMainPage(page.getUserTestSession());
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class TimerButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class TimerButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -426,10 +413,6 @@ public abstract class TestView extends Composite {
             }
             timerLabel.setVisible(!v);
             UserTestPersistenceUtils.saveTimerHidden(TestView.this);
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 

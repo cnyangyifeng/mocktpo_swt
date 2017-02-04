@@ -3,17 +3,14 @@ package com.mocktpo.view.test;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.ControlListener;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -52,27 +49,25 @@ public class ReadingQuestionView extends SashTestView {
 
     @Override
     public void updateHeader() {
-
         final ImageButton nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
         FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
-        nextOvalButton.addMouseListener(new NextOvalButtonMouseListener());
+        nextOvalButton.addMouseListener(new NextOvalButtonMouseAdapter());
 
         final ImageButton backOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_BACK_OVAL, MT.IMAGE_BACK_OVAL_HOVER, MT.IMAGE_BACK_OVAL_DISABLED);
         FormDataSet.attach(backOvalButton).atRightTo(nextOvalButton).atTop(10);
-        backOvalButton.addMouseListener(new BackOvalButtonMouseListener());
+        backOvalButton.addMouseListener(new BackOvalButtonMouseAdapter());
 
         final ImageButton reviewOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW_OVAL, MT.IMAGE_REVIEW_OVAL_HOVER, MT.IMAGE_REVIEW_OVAL_DISABLED);
         FormDataSet.attach(reviewOvalButton).atRightTo(backOvalButton).atTop(10);
-        reviewOvalButton.addMouseListener(new ReviewOvalButtonMouseListener());
+        reviewOvalButton.addMouseListener(new ReviewOvalButtonMouseAdapter());
 
         final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
         FormDataSet.attach(helpOvalButton).atRightTo(reviewOvalButton).atTop(10);
-        helpOvalButton.addMouseListener(new HelpOvalButtonMouseListener());
+        helpOvalButton.addMouseListener(new HelpOvalButtonMouseAdapter());
     }
 
     @Override
     public void updateLeft() {
-
         final Composite c = new Composite(left, SWT.NONE);
         FormDataSet.attach(c).atLeft().atTop().atRight().atBottom();
         FormLayoutSet.layout(c).marginWidth(20).marginHeight(20);
@@ -85,42 +80,42 @@ public class ReadingQuestionView extends SashTestView {
         checkWidgetA = new Label(c, SWT.NONE);
         FormDataSet.attach(checkWidgetA).atLeft(10).atTopTo(questionTextWidget, 25);
         LabelSet.decorate(checkWidgetA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED);
-        checkWidgetA.addMouseListener(new ChooseAnswerListener());
+        checkWidgetA.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelA = new Label(c, SWT.WRAP);
         FormDataSet.attach(choiceLabelA).atLeftTo(checkWidgetA, 5).atTopTo(questionTextWidget, 20).atRight();
         LabelSet.decorate(choiceLabelA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceA").getText());
-        choiceLabelA.addMouseListener(new ChooseAnswerListener());
+        choiceLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         checkWidgetB = new Label(c, SWT.NONE);
         FormDataSet.attach(checkWidgetB).atLeft(10).atTopTo(choiceLabelA, 25);
         LabelSet.decorate(checkWidgetB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED);
-        checkWidgetB.addMouseListener(new ChooseAnswerListener());
+        checkWidgetB.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelB = new Label(c, SWT.WRAP);
         FormDataSet.attach(choiceLabelB).atLeftTo(checkWidgetB, 5).atTopTo(choiceLabelA, 20).atRight();
         LabelSet.decorate(choiceLabelB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceB").getText());
-        choiceLabelB.addMouseListener(new ChooseAnswerListener());
+        choiceLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         checkWidgetC = new Label(c, SWT.NONE);
         FormDataSet.attach(checkWidgetC).atLeft(10).atTopTo(choiceLabelB, 25);
         LabelSet.decorate(checkWidgetC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED);
-        checkWidgetC.addMouseListener(new ChooseAnswerListener());
+        checkWidgetC.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelC = new Label(c, SWT.WRAP);
         FormDataSet.attach(choiceLabelC).atLeftTo(checkWidgetC, 5).atTopTo(choiceLabelB, 20).atRight();
         LabelSet.decorate(choiceLabelC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceC").getText());
-        choiceLabelC.addMouseListener(new ChooseAnswerListener());
+        choiceLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         checkWidgetD = new Label(c, SWT.NONE);
         FormDataSet.attach(checkWidgetD).atLeft(10).atTopTo(choiceLabelC, 25);
         LabelSet.decorate(checkWidgetD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED);
-        checkWidgetD.addMouseListener(new ChooseAnswerListener());
+        checkWidgetD.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelD = new Label(c, SWT.WRAP);
         FormDataSet.attach(choiceLabelD).atLeftTo(checkWidgetD, 5).atTopTo(choiceLabelC, 20).atRight();
         LabelSet.decorate(choiceLabelD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText());
-        choiceLabelD.addMouseListener(new ChooseAnswerListener());
+        choiceLabelD.addMouseListener(new ChooseAnswerAdapter());
 
         if (null != vo.getStyledText("footnote")) {
             final StyledText footnoteTextWidget = new StyledText(c, SWT.WRAP);
@@ -169,7 +164,6 @@ public class ReadingQuestionView extends SashTestView {
     }
 
     private void initRightBody() {
-
         rightScrolled = new ScrolledComposite(right, SWT.H_SCROLL | SWT.V_SCROLL);
         FormDataSet.attach(rightScrolled).atLeft().atTopTo(indicator).atRight().atBottom();
         rightScrolled.setExpandHorizontal(true);
@@ -186,7 +180,7 @@ public class ReadingQuestionView extends SashTestView {
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
         StyledTextSet.decorate(passageTextWidget).setNoCaret().setCursor(MT.CURSOR_ARROW).setEditable(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledText("passage").getStyles());
-        passageTextWidget.addControlListener(new ParagraphTextControlListener());
+        passageTextWidget.addControlListener(new ParagraphTextControlAdapter());
 
         rightScrolled.setContent(c);
         rightScrolled.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -200,11 +194,7 @@ public class ReadingQuestionView extends SashTestView {
      * ==================================================
      */
 
-    private class NextOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class NextOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -212,17 +202,9 @@ public class ReadingQuestionView extends SashTestView {
             UserTestPersistenceUtils.saveToNextView(ReadingQuestionView.this);
             page.resume();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class BackOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class BackOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -230,55 +212,29 @@ public class ReadingQuestionView extends SashTestView {
             UserTestPersistenceUtils.saveToPreviousView(ReadingQuestionView.this);
             page.resume();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ReviewOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ReviewOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             release();
             page.toReadingReview();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class HelpOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class HelpOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ChooseAnswerListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ChooseAnswerAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             answer = (Integer) e.widget.getData(MT.KEY_CHOICE);
-
             switch (answer) {
                 case MT.CHOICE_A:
                     LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_CHECKED);
@@ -305,32 +261,19 @@ public class ReadingQuestionView extends SashTestView {
                     LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_CHECKED);
                     break;
             }
-
             logger.info("[Reading Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
-
             answerText = Integer.toString(answer);
             UserTestPersistenceUtils.saveAnswers(ReadingQuestionView.this, answerText);
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ParagraphTextControlListener implements ControlListener {
-
-        @Override
-        public void controlMoved(ControlEvent e) {
-        }
+    private class ParagraphTextControlAdapter extends ControlAdapter {
 
         @Override
         public void controlResized(ControlEvent e) {
-
             StyledText st = (StyledText) e.widget;
             Rectangle bounds = st.getBounds();
-
             int quarter = rightScrolled.getBounds().height / 4;
-
             int offsetY = bounds.y + st.getLocationAtOffset(vo.getPassageOffset()).y;
             if (offsetY > quarter) {
                 rightScrolled.setOrigin(0, offsetY - quarter);

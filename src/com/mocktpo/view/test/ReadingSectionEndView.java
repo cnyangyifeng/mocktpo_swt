@@ -3,12 +3,12 @@ package com.mocktpo.view.test;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 
 public class ReadingSectionEndView extends ResponsiveTestView {
 
@@ -39,31 +39,29 @@ public class ReadingSectionEndView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
+        final ImageButton continueButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
+        FormDataSet.attach(continueButton).atRight(10).atTop(10);
+        continueButton.addMouseListener(new ContinueButtonMouseAdapter());
 
-        final ImageButton cb = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
-        FormDataSet.attach(cb).atRight(10).atTop(10);
-        cb.addMouseListener(new ContinueButtonMouseListener());
+        final ImageButton reviewButton = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW, MT.IMAGE_REVIEW_HOVER);
+        FormDataSet.attach(reviewButton).atRightTo(continueButton, 10).atTop(10);
+        reviewButton.addMouseListener(new ReviewButtonMouseAdapter());
 
-        final ImageButton rvb = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW, MT.IMAGE_REVIEW_HOVER);
-        FormDataSet.attach(rvb).atRightTo(cb, 10).atTop(10);
-        rvb.addMouseListener(new ReviewButtonMouseListener());
-
-        final ImageButton rtb = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
-        FormDataSet.attach(rtb).atRightTo(rvb, 10).atTop(10);
-        rtb.addMouseListener(new ReturnButtonMouseListener());
+        final ImageButton returnButton = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
+        FormDataSet.attach(returnButton).atRightTo(reviewButton, 10).atTop(10);
+        returnButton.addMouseListener(new ReturnButtonMouseAdapter());
     }
 
     @Override
     public void updateBody() {
-
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
+        final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(descriptionTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        StyledTextSet.decorate(descriptionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
     }
 
     /*
@@ -74,11 +72,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
      * ==================================================
      */
 
-    private class ContinueButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ContinueButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -86,44 +80,24 @@ public class ReadingSectionEndView extends ResponsiveTestView {
             UserTestPersistenceUtils.saveToNextView(ReadingSectionEndView.this);
             page.resume();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ReviewButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ReviewButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             release();
             page.toReadingReview();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ReturnButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ReturnButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             release();
             UserTestPersistenceUtils.saveToPreviousView(ReadingSectionEndView.this);
             page.resume();
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 }

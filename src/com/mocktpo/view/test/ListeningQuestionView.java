@@ -6,13 +6,16 @@ import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.*;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Scale;
 
@@ -63,30 +66,29 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
-
         nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
         FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
         nextOvalButton.setEnabled(false);
-        nextOvalButton.addMouseListener(new NextOvalButtonMouseListener());
+        nextOvalButton.addMouseListener(new NextOvalButtonMouseAdapter());
 
         okOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_OK_OVAL, MT.IMAGE_OK_OVAL_HOVER, MT.IMAGE_OK_OVAL_DISABLED);
         FormDataSet.attach(okOvalButton).atRightTo(nextOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
         okOvalButton.setEnabled(false);
-        okOvalButton.addMouseListener(new OkOvalButtonMouseListener());
+        okOvalButton.addMouseListener(new OkOvalButtonMouseAdapter());
 
         final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
         FormDataSet.attach(helpOvalButton).atRightTo(okOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        helpOvalButton.addMouseListener(new HelpOvalButtonMouseListener());
+        helpOvalButton.addMouseListener(new HelpOvalButtonMouseAdapter());
 
         final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
         FormDataSet.attach(volumeOvalButton).atRightTo(helpOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseListener());
+        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseAdapter());
 
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
-        volumeControl.addSelectionListener(new VolumeControlSelectionListener());
+        volumeControl.addSelectionListener(new VolumeControlSelectionAdapter());
 
         // TODO Removes the continue debug button
 
@@ -104,7 +106,6 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
     @Override
     public void updateBody() {
-
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
@@ -119,54 +120,52 @@ public class ListeningQuestionView extends ResponsiveTestView {
         checkWidgetA = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(checkWidgetA).atLeft(5).atTopTo(questionTextWidget, 25);
         LabelSet.decorate(checkWidgetA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
-        checkWidgetA.addMouseListener(new ChooseAnswerListener());
+        checkWidgetA.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelA = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelA).atLeftTo(checkWidgetA, 5).atTopTo(questionTextWidget, 20).atRight();
         LabelSet.decorate(choiceLabelA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceA").getText()).setVisible(false);
-        choiceLabelA.addMouseListener(new ChooseAnswerListener());
+        choiceLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         checkWidgetB = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(checkWidgetB).atLeft(5).atTopTo(choiceLabelA, 25);
         LabelSet.decorate(checkWidgetB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
-        checkWidgetB.addMouseListener(new ChooseAnswerListener());
+        checkWidgetB.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelB = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelB).atLeftTo(checkWidgetB, 5).atTopTo(choiceLabelA, 20).atRight();
         LabelSet.decorate(choiceLabelB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceB").getText()).setVisible(false);
-        choiceLabelB.addMouseListener(new ChooseAnswerListener());
+        choiceLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         checkWidgetC = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(checkWidgetC).atLeft(5).atTopTo(choiceLabelB, 25);
         LabelSet.decorate(checkWidgetC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
-        checkWidgetC.addMouseListener(new ChooseAnswerListener());
+        checkWidgetC.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelC = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelC).atLeftTo(checkWidgetC, 5).atTopTo(choiceLabelB, 20).atRight();
         LabelSet.decorate(choiceLabelC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceC").getText()).setVisible(false);
-        choiceLabelC.addMouseListener(new ChooseAnswerListener());
+        choiceLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         checkWidgetD = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(checkWidgetD).atLeft(5).atTopTo(choiceLabelC, 25);
         LabelSet.decorate(checkWidgetD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
-        checkWidgetD.addMouseListener(new ChooseAnswerListener());
+        checkWidgetD.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelD = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelD).atLeftTo(checkWidgetD, 5).atTopTo(choiceLabelC, 20).atRight();
         LabelSet.decorate(choiceLabelD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText()).setVisible(false);
-        choiceLabelD.addMouseListener(new ChooseAnswerListener());
+        choiceLabelD.addMouseListener(new ChooseAnswerAdapter());
 
         updateWidgetsForAnswer();
     }
 
     private void updateWidgetsForAnswer() {
-
         if (StringUtils.isEmpty(answerText)) {
             answer = MT.CHOICE_NONE;
         } else {
             answer = Integer.parseInt(answerText);
         }
-
         switch (answer) {
             case MT.CHOICE_NONE:
                 break;
@@ -183,7 +182,6 @@ public class ListeningQuestionView extends ResponsiveTestView {
                 LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_CHECKED);
                 break;
         }
-
         logger.info("[Listening Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
     }
 
@@ -197,7 +195,6 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
     @Override
     public void startAudioAsyncExecution() {
-
         if (!d.isDisposed()) {
             d.asyncExec(new Runnable() {
                 @Override
@@ -206,7 +203,6 @@ public class ListeningQuestionView extends ResponsiveTestView {
                 }
             });
         }
-
         listener = new AudioAsyncExecutionListener();
         audioPlayer.addPropertyChangeListener(listener);
     }
@@ -236,28 +232,16 @@ public class ListeningQuestionView extends ResponsiveTestView {
      * ==================================================
      */
 
-    private class NextOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class NextOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             nextOvalButton.setEnabled(false);
             okOvalButton.setEnabled(true);
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class OkOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class OkOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -273,32 +257,16 @@ public class ListeningQuestionView extends ResponsiveTestView {
                 d.openAndWaitForDisposal();
             }
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class HelpOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class HelpOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class VolumeOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class VolumeOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -306,41 +274,25 @@ public class ListeningQuestionView extends ResponsiveTestView {
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
             UserTestPersistenceUtils.saveVolumeControlVisibility(ListeningQuestionView.this);
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class VolumeControlSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class VolumeControlSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-
             UserTestPersistenceUtils.saveVolume(ListeningQuestionView.this, volume);
             setAudioVolume(volume);
         }
     }
 
-    private class ChooseAnswerListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ChooseAnswerAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             int a = (Integer) e.widget.getData(MT.KEY_CHOICE);
-
             if (a == answer) {
                 answer = MT.CHOICE_NONE;
                 LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_UNCHECKED);
@@ -376,15 +328,9 @@ public class ListeningQuestionView extends ResponsiveTestView {
                         break;
                 }
             }
-
             logger.info("[Listening Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
-
             answerText = Integer.toString(answer);
             UserTestPersistenceUtils.saveAnswers(ListeningQuestionView.this, answerText);
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 
@@ -392,17 +338,13 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
         @Override
         public void propertyChange(PropertyChangeEvent e) {
-
             if (audioPlayer.isStopped()) {
-
                 if (!d.isDisposed()) {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-
                             nextOvalButton.setEnabled(true);
                             okOvalButton.setEnabled(false);
-
                             LabelSet.decorate(checkWidgetA).setVisible(true);
                             LabelSet.decorate(choiceLabelA).setVisible(true);
                             LabelSet.decorate(checkWidgetB).setVisible(true);
@@ -414,7 +356,6 @@ public class ListeningQuestionView extends ResponsiveTestView {
                         }
                     });
                 }
-
                 /*
                  * ==================================================
                  *
@@ -425,7 +366,6 @@ public class ListeningQuestionView extends ResponsiveTestView {
                  * ==================================================
                  */
                 if (vo.isTimerTaskDelayed()) {
-
                     if (!d.isDisposed()) {
                         d.asyncExec(new Runnable() {
                             @Override
@@ -434,7 +374,6 @@ public class ListeningQuestionView extends ResponsiveTestView {
                             }
                         });
                     }
-
                     countDown = page.getUserTestSession().getRemainingViewTime(vo);
                     timer = new Timer();
                     timerTask = new TestTimerTask();

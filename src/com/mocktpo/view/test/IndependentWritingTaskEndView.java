@@ -3,7 +3,7 @@ package com.mocktpo.view.test;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;

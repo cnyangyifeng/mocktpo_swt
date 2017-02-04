@@ -3,7 +3,7 @@ package com.mocktpo.view.test;
 import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
@@ -11,10 +11,10 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.ControlListener;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 
@@ -59,39 +59,37 @@ public class ReadingInsertTextQuestionView extends SashTestView {
 
     @Override
     public void updateHeader() {
+        final ImageButton nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
+        FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
+        nextOvalButton.addMouseListener(new NextOvalButtonMouseAdapter());
 
-        final ImageButton nob = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
-        FormDataSet.attach(nob).atRight(10).atTop(10);
-        nob.addMouseListener(new NextOvalButtonMouseListener());
+        final ImageButton backOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_BACK_OVAL, MT.IMAGE_BACK_OVAL_HOVER, MT.IMAGE_BACK_OVAL_DISABLED);
+        FormDataSet.attach(backOvalButton).atRightTo(nextOvalButton).atTop(10);
+        backOvalButton.addMouseListener(new BackOvalButtonMouseAdapter());
 
-        final ImageButton bob = new ImageButton(header, SWT.NONE, MT.IMAGE_BACK_OVAL, MT.IMAGE_BACK_OVAL_HOVER, MT.IMAGE_BACK_OVAL_DISABLED);
-        FormDataSet.attach(bob).atRightTo(nob).atTop(10);
-        bob.addMouseListener(new BackOvalButtonMouseListener());
+        final ImageButton reviewOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW_OVAL, MT.IMAGE_REVIEW_OVAL_HOVER, MT.IMAGE_REVIEW_OVAL_DISABLED);
+        FormDataSet.attach(reviewOvalButton).atRightTo(backOvalButton).atTop(10);
+        reviewOvalButton.addMouseListener(new ReviewOvalButtonMouseAdapter());
 
-        final ImageButton rob = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW_OVAL, MT.IMAGE_REVIEW_OVAL_HOVER, MT.IMAGE_REVIEW_OVAL_DISABLED);
-        FormDataSet.attach(rob).atRightTo(bob).atTop(10);
-        rob.addMouseListener(new ReviewOvalButtonMouseListener());
-
-        final ImageButton hob = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
-        FormDataSet.attach(hob).atRightTo(rob).atTop(10);
-        hob.addMouseListener(new HelpOvalButtonMouseListener());
+        final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
+        FormDataSet.attach(helpOvalButton).atRightTo(reviewOvalButton).atTop(10);
+        helpOvalButton.addMouseListener(new HelpOvalButtonMouseAdapter());
     }
 
     @Override
     public void updateLeft() {
-
         final Composite c = new Composite(left, SWT.NONE);
         FormDataSet.attach(c).atLeft().atTop().atRight().atBottom();
         FormLayoutSet.layout(c).marginWidth(20).marginHeight(20);
 
-        final StyledText question = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(question).atLeft().atTop().atRight();
-        StyledTextSet.decorate(question).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
-        StyleRangeUtils.decorate(question, vo.getStyledText("question").getStyles());
+        final StyledText questionTextWidget = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(questionTextWidget).atLeft().atTop().atRight();
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
+        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
 
-        final StyledText it = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(it).atLeft().atTopTo(question, 20).atRight();
-        StyledTextSet.decorate(it).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("insertText").getText());
+        final StyledText insertTextWidget = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(insertTextWidget).atLeft().atTopTo(questionTextWidget, 20).atRight();
+        StyledTextSet.decorate(insertTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("insertText").getText());
 
         insertText = vo.getStyledText("insertText").getText();
         insertPointA = vo.getStyledText("insertPointA").getStyles().get(0).getStart();
@@ -99,9 +97,9 @@ public class ReadingInsertTextQuestionView extends SashTestView {
         insertPointC = vo.getStyledText("insertPointC").getStyles().get(0).getStart();
         insertPointD = vo.getStyledText("insertPointD").getStyles().get(0).getStart();
 
-        final StyledText fn = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(fn).atLeft().atTopTo(it, 20).atRight();
-        StyledTextSet.decorate(fn).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());
+        final StyledText footnoteTextWidget = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(footnoteTextWidget).atLeft().atTopTo(insertTextWidget, 20).atRight();
+        StyledTextSet.decorate(footnoteTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());
     }
 
     @Override
@@ -117,7 +115,6 @@ public class ReadingInsertTextQuestionView extends SashTestView {
     }
 
     private void initRightBody() {
-
         rightScrolled = new ScrolledComposite(right, SWT.H_SCROLL | SWT.V_SCROLL);
         FormDataSet.attach(rightScrolled).atLeft().atTopTo(indicator).atRight().atBottom();
         rightScrolled.setExpandHorizontal(true);
@@ -134,8 +131,8 @@ public class ReadingInsertTextQuestionView extends SashTestView {
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
         StyledTextSet.decorate(passageTextWidget).setNoCaret().setCursor(MT.CURSOR_ARROW).setEditable(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledText("passage").getStyles());
-        passageTextWidget.addControlListener(new PassageTextControlListener());
-        passageTextWidget.addMouseListener(new PassageTextMouseListener());
+        passageTextWidget.addControlListener(new PassageTextControlAdapter());
+        passageTextWidget.addMouseListener(new PassageTextMouseAdapter());
 
         // updateUIForAnswer();
 
@@ -226,11 +223,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
      * ==================================================
      */
 
-    private class NextOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class NextOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -238,17 +231,9 @@ public class ReadingInsertTextQuestionView extends SashTestView {
             UserTestPersistenceUtils.saveToNextView(ReadingInsertTextQuestionView.this);
             page.resume();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class BackOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class BackOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -256,58 +241,31 @@ public class ReadingInsertTextQuestionView extends SashTestView {
             UserTestPersistenceUtils.saveToPreviousView(ReadingInsertTextQuestionView.this);
             page.resume();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ReviewOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ReviewOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             release();
             page.toReadingReview();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class HelpOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class HelpOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class PassageTextControlListener implements ControlListener {
-
-        @Override
-        public void controlMoved(ControlEvent e) {
-        }
+    private class PassageTextControlAdapter extends ControlAdapter {
 
         @Override
         public void controlResized(ControlEvent e) {
-
             StyledText st = (StyledText) e.widget;
             Rectangle bounds = st.getBounds();
-
             int quarter = rightScrolled.getBounds().height / 4;
-
             int offsetY = bounds.y + st.getLocationAtOffset(vo.getPassageOffset()).y;
             if (offsetY > quarter) {
                 rightScrolled.setOrigin(0, offsetY - quarter);
@@ -315,20 +273,13 @@ public class ReadingInsertTextQuestionView extends SashTestView {
         }
     }
 
-    private class PassageTextMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class PassageTextMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             int insertTextLength = insertText.length();
             int change = insertTextLength - 1;
-
             int offset = passageTextWidget.getCaretOffset();
-
             if (answer == MT.CHOICE_NONE) {
                 if (offset == insertPointA || offset == insertPointA + 1) {
 
@@ -977,15 +928,9 @@ public class ReadingInsertTextQuestionView extends SashTestView {
 
                 }
             }
-
             logger.info("[Reading Insert Text Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
-
             answerText = Integer.toString(answer);
             UserTestPersistenceUtils.saveAnswers(ReadingInsertTextQuestionView.this, answerText);
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 }

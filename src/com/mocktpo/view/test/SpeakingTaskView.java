@@ -5,7 +5,7 @@ import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
@@ -77,22 +77,21 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
-
-        final ImageButton vob = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
-        FormDataSet.attach(vob).atRight(10).atTop(10);
-        vob.addMouseListener(new VolumeOvalButtonMouseListener());
+        final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
+        FormDataSet.attach(volumeOvalButton).atRight(10).atTop(10);
+        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseAdapter());
 
         volumeControl = new VolumeControl(header, SWT.NONE);
-        FormDataSet.attach(volumeControl).atTopTo(vob, 0, SWT.BOTTOM).atRightTo(vob, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
+        FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
-        volumeControl.addSelectionListener(new VolumeControlSelectionListener());
+        volumeControl.addSelectionListener(new VolumeControlSelectionAdapter());
 
         // TODO Removes the continue debug button
 
-        final ImageButton continueButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
-        FormDataSet.attach(continueButton).atRightTo(vob, 16).atTopTo(vob, 8, SWT.TOP);
-        continueButton.addMouseListener(new MouseAdapter() {
+        final ImageButton continueDebugButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_DEBUG, MT.IMAGE_CONTINUE_DEBUG_HOVER);
+        FormDataSet.attach(continueDebugButton).atRightTo(volumeOvalButton, 16).atTopTo(volumeOvalButton, 8, SWT.TOP);
+        continueDebugButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
@@ -104,36 +103,35 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
     @Override
     public void updateBody() {
-
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText qt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(qt).atLeft(20).atTop(VIEW_PORT_PADDING_TOP).atRight(20);
-        StyledTextSet.decorate(qt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
-        StyleRangeUtils.decorate(qt, vo.getStyledText("question").getStyles());
+        final StyledText questionTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(questionTextWidget).atLeft(20).atTop(VIEW_PORT_PADDING_TOP).atRight(20);
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
+        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
 
         timerContainer = new Composite(viewPort, SWT.NONE);
-        FormDataSet.attach(timerContainer).atLeft().atTopTo(qt, 20).atRight();
+        FormDataSet.attach(timerContainer).atLeft().atTopTo(questionTextWidget, 20).atRight();
         CompositeSet.decorate(timerContainer).setVisible(false);
         FormLayoutSet.layout(timerContainer).marginWidth(1).marginHeight(1);
 
-        final Label dl1 = new Label(timerContainer, SWT.NONE);
-        FormDataSet.attach(dl1).atLeft().atTop().atRight().withHeight(2);
-        LabelSet.decorate(dl1).setBackground(MT.COLOR_BLACK);
+        final Label divider = new Label(timerContainer, SWT.NONE);
+        FormDataSet.attach(divider).atLeft().atTop().atRight().withHeight(2);
+        LabelSet.decorate(divider).setBackground(MT.COLOR_BLACK);
 
-        final CLabel ptl = new CLabel(timerContainer, SWT.NONE);
-        FormDataSet.attach(ptl).fromLeft(50, -FOOTNOTE_WIDTH / 2).atTopTo(dl1, 20).withWidth(FOOTNOTE_WIDTH);
-        CLabelSet.decorate(ptl).setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM).setText("Preparation Time:\t\t" + vo.getPreparationTime() + " Seconds");
+        final CLabel preparationTimeLabel = new CLabel(timerContainer, SWT.NONE);
+        FormDataSet.attach(preparationTimeLabel).fromLeft(50, -FOOTNOTE_WIDTH / 2).atTopTo(divider, 20).withWidth(FOOTNOTE_WIDTH);
+        CLabelSet.decorate(preparationTimeLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM).setText("Preparation Time:\t\t" + vo.getPreparationTime() + " Seconds");
 
-        final CLabel rtl = new CLabel(timerContainer, SWT.NONE);
-        FormDataSet.attach(rtl).fromLeft(50, -FOOTNOTE_WIDTH / 2).atTopTo(ptl, 10).withWidth(FOOTNOTE_WIDTH);
-        CLabelSet.decorate(rtl).setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM).setText("Response Time:\t\t" + vo.getResponseTime() + " Seconds");
+        final CLabel responseTimeLabel = new CLabel(timerContainer, SWT.NONE);
+        FormDataSet.attach(responseTimeLabel).fromLeft(50, -FOOTNOTE_WIDTH / 2).atTopTo(preparationTimeLabel, 10).withWidth(FOOTNOTE_WIDTH);
+        CLabelSet.decorate(responseTimeLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM).setText("Response Time:\t\t" + vo.getResponseTime() + " Seconds");
 
         Composite timerPanel = new Composite(timerContainer, SWT.NONE);
-        FormDataSet.attach(timerPanel).fromLeft(50, -TIMER_PANEL_WIDTH / 2).atTopTo(rtl, 30).withWidth(TIMER_PANEL_WIDTH);
+        FormDataSet.attach(timerPanel).fromLeft(50, -TIMER_PANEL_WIDTH / 2).atTopTo(responseTimeLabel, 30).withWidth(TIMER_PANEL_WIDTH);
         FormLayoutSet.layout(timerPanel).marginWidth(1).marginHeight(1);
         timerPanel.addPaintListener(new BorderedCompositePaintListener());
 
@@ -225,7 +223,6 @@ public class SpeakingTaskView extends ResponsiveTestView {
     }
 
     private void stopPreparation() {
-
         if (null != audioPlayer) {
             audioPlayer.stop();
         }
@@ -235,7 +232,6 @@ public class SpeakingTaskView extends ResponsiveTestView {
         if (null != preparationTimer) {
             preparationTimer.purge();
         }
-
         if (!d.isDisposed()) {
             d.asyncExec(new Runnable() {
                 @Override
@@ -290,7 +286,6 @@ public class SpeakingTaskView extends ResponsiveTestView {
     }
 
     private void stopAudioRecording() {
-
         if (null != audioRecorder) {
             audioRecorder.stop();
         }
@@ -323,11 +318,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
      * ==================================================
      */
 
-    private class VolumeOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class VolumeOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -335,25 +326,15 @@ public class SpeakingTaskView extends ResponsiveTestView {
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
             UserTestPersistenceUtils.saveVolumeControlVisibility(SpeakingTaskView.this);
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class VolumeControlSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class VolumeControlSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-
             UserTestPersistenceUtils.saveVolume(SpeakingTaskView.this, volume);
             setAudioVolume(volume);
         }
@@ -363,9 +344,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
         @Override
         public void propertyChange(PropertyChangeEvent e) {
-
             if (audioPlayer.isStopped()) {
-
                 if (!d.isDisposed()) {
                     d.asyncExec(new Runnable() {
                         @Override
@@ -374,7 +353,6 @@ public class SpeakingTaskView extends ResponsiveTestView {
                         }
                     });
                 }
-
                 startPreparation();
             }
         }
@@ -392,7 +370,6 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
         @Override
         public void run() {
-
             if (!d.isDisposed()) {
                 d.asyncExec(new Runnable() {
                     @Override
@@ -401,7 +378,6 @@ public class SpeakingTaskView extends ResponsiveTestView {
                     }
                 });
             }
-
             if (0 >= preparationCountDown) {
                 stopPreparation();
                 startAudioRecording();
@@ -421,7 +397,6 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
         @Override
         public void run() {
-
             if (!d.isDisposed()) {
                 d.asyncExec(new Runnable() {
                     @Override
@@ -430,7 +405,6 @@ public class SpeakingTaskView extends ResponsiveTestView {
                     }
                 });
             }
-
             if (0 >= recorderCountDown) {
                 stopAudioRecording();
                 goToNextTestView();

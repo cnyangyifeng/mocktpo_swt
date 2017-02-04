@@ -5,16 +5,13 @@ import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -36,7 +33,7 @@ public class TestCard extends Composite {
     /* Widgets */
 
     private Composite header;
-    private CLabel pl;
+    private CLabel starsLabel;
 
     /* Persistence */
 
@@ -74,27 +71,25 @@ public class TestCard extends Composite {
     }
 
     private void initHeader() {
-
         header = new Composite(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight();
         CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(header);
 
-        final CLabel tl = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(tl).atLeft().atTop(5).atRight();
-        CLabelSet.decorate(tl).setFont(MT.FONT_MEDIUM).setText(userTestSession.getTitle());
+        final CLabel titleLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(titleLabel).atLeft().atTop(5).atRight();
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setText(userTestSession.getTitle());
 
-        pl = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(pl).atLeft().atTopTo(tl, 15).atRight();
-        CLabelSet.decorate(pl).setForeground(MT.COLOR_DARK_BLUE).setText(getCompletionRate());
+        starsLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(starsLabel).atLeft().atTopTo(titleLabel, 15).atRight();
+        CLabelSet.decorate(starsLabel).setForeground(MT.COLOR_DARK_BLUE).setText(getStars());
 
         final Label divider = new Label(header, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(pl, 10).atRight().withHeight(1);
+        FormDataSet.attach(divider).atLeft().atTopTo(starsLabel, 10).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
     }
 
     private void initActionBar() {
-
         final Composite c = new Composite(this, SWT.NONE);
         FormDataSet.attach(c).atLeft().atTopTo(header, 10).atRight();
         CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
@@ -103,12 +98,12 @@ public class TestCard extends Composite {
         final CLabel restartLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(restartLabel).atLeft().atTop().atRight();
         CLabelSet.decorate(restartLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("restart"));
-        restartLabel.addMouseListener(new RestartLabelMouseListener());
+        restartLabel.addMouseListener(new RestartLabelMouseAdapter());
 
         final CLabel reportLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(reportLabel).atLeft().atTopTo(restartLabel, 10).atRight();
         CLabelSet.decorate(reportLabel).setBackground(MT.COLOR_WHITE).setCursor(MT.CURSOR_HAND).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("report"));
-        reportLabel.addMouseListener(new ReportLabelMouseListener());
+        reportLabel.addMouseListener(new ReportLabelMouseAdapter());
 
         final Label divider = new Label(c, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(reportLabel, 10).atRight().withHeight(1);
@@ -117,7 +112,7 @@ public class TestCard extends Composite {
         final Button enterButton = new Button(c, SWT.PUSH);
         FormDataSet.attach(enterButton).atLeft().atTopTo(divider, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(enterButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("enter"));
-        enterButton.addSelectionListener(new EnterButtonSelectionListener());
+        enterButton.addSelectionListener(new EnterButtonSelectionAdapter());
     }
 
     /*
@@ -129,16 +124,17 @@ public class TestCard extends Composite {
      */
 
     public void reset(UserTestSession userTestSession) {
+        // TODO Reset
         this.userTestSession = userTestSession;
         d.asyncExec(new Runnable() {
             @Override
             public void run() {
-                pl.setText(getCompletionRate());
+                starsLabel.setText(getStars());
             }
         });
     }
 
-    private String getCompletionRate() {
+    private String getStars() {
         return Integer.toString(userTestSession.getStars());
     }
 
@@ -162,44 +158,24 @@ public class TestCard extends Composite {
      * ==================================================
      */
 
-    private class RestartLabelMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class RestartLabelMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             UserTestPersistenceUtils.restart(userTestSession);
             MyApplication.get().getWindow().toTestPage(userTestSession);
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ReportLabelMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ReportLabelMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             MyApplication.get().getWindow().toReportPage(userTestSession);
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class EnterButtonSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class EnterButtonSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {

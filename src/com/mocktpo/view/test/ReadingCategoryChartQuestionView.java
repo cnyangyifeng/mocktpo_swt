@@ -5,15 +5,15 @@ import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.DroppableAnswerComposite;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
@@ -73,26 +73,25 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
     @Override
     public void updateHeader() {
-
         final ImageButton nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
         FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
-        nextOvalButton.addMouseListener(new NextOvalButtonMouseListener());
+        nextOvalButton.addMouseListener(new NextOvalButtonMouseAdapter());
 
         final ImageButton backOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_BACK_OVAL, MT.IMAGE_BACK_OVAL_HOVER, MT.IMAGE_BACK_OVAL_DISABLED);
         FormDataSet.attach(backOvalButton).atRightTo(nextOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        backOvalButton.addMouseListener(new BackOvalButtonMouseListener());
+        backOvalButton.addMouseListener(new BackOvalButtonMouseAdapter());
 
         final ImageButton reviewOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW_OVAL, MT.IMAGE_REVIEW_OVAL_HOVER, MT.IMAGE_REVIEW_OVAL_DISABLED);
         FormDataSet.attach(reviewOvalButton).atRightTo(backOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        reviewOvalButton.addMouseListener(new ReviewOvalButtonMouseListener());
+        reviewOvalButton.addMouseListener(new ReviewOvalButtonMouseAdapter());
 
         final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
         FormDataSet.attach(helpOvalButton).atRightTo(reviewOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        helpOvalButton.addMouseListener(new HelpOvalButtonMouseListener());
+        helpOvalButton.addMouseListener(new HelpOvalButtonMouseAdapter());
 
         viewTextOrQuestionButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VIEW_TEXT, MT.IMAGE_VIEW_TEXT_HOVER);
         FormDataSet.attach(viewTextOrQuestionButton).atRightTo(helpOvalButton, 6).atTopTo(nextOvalButton, 6, SWT.TOP);
-        viewTextOrQuestionButton.addMouseListener(new ViewTextOrQuestionButtonMouseListener());
+        viewTextOrQuestionButton.addMouseListener(new ViewTextOrQuestionButtonMouseAdapter());
     }
 
     @Override
@@ -103,7 +102,6 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
     }
 
     protected Composite getSubView(int subViewId) {
-
         switch (subViewId) {
             case SUB_VIEW_QUESTION:
                 if (null == questionView) {
@@ -116,7 +114,6 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
                 }
                 return passageView;
         }
-
         return null;
     }
 
@@ -129,7 +126,6 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
      */
 
     private Composite initQuestionSubView() {
-
         final Composite c = new Composite(body, SWT.NONE);
         FormLayoutSet.layout(c);
 
@@ -204,7 +200,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
             FormDataSet.attach(blank).atLeftTo(bullet).atTop(i * LC.READING_DND_QUESTION_HEIGHT).atRight(10).withHeight(LC.READING_DND_QUESTION_HEIGHT);
             AnswerCompositeDropTargetSet.drop(blank);
             blank.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
-            blank.addMouseListener(new AnswerCompositeMouseListener());
+            blank.addMouseListener(new AnswerCompositeMouseAdapter());
         }
         final Label divider1 = new Label(ac, SWT.NONE);
         FormDataSet.attach(divider1).atLeft(0).atTopTo(cl1, totalAnswerCountInCategory1 * LC.READING_DND_QUESTION_HEIGHT, SWT.TOP).atRight().withHeight(1);
@@ -227,7 +223,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
             FormDataSet.attach(blank).atLeftTo(bullet).atTopTo(divider1, j * LC.READING_DND_QUESTION_HEIGHT).atRight(10).withHeight(LC.READING_DND_QUESTION_HEIGHT);
             AnswerCompositeDropTargetSet.drop(blank);
             blank.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
-            blank.addMouseListener(new AnswerCompositeMouseListener());
+            blank.addMouseListener(new AnswerCompositeMouseAdapter());
         }
 
         /*
@@ -284,7 +280,6 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
     }
 
     private Composite initPassageSubView() {
-
         final Composite c = new Composite(body, SWT.NONE);
         FormLayoutSet.layout(c);
 
@@ -306,7 +301,6 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
     }
 
     private void initRightBody() {
-
         final ScrolledComposite sc = new ScrolledComposite(rightPassageView, SWT.H_SCROLL | SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
         sc.setExpandHorizontal(true);
@@ -315,14 +309,14 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
         final Composite c = new Composite(sc, SWT.NONE);
         FormLayoutSet.layout(c).marginWidth(10).marginTop(20).marginBottom(100).spacing(20);
 
-        final StyledText ht = new StyledText(c, SWT.SINGLE);
-        FormDataSet.attach(ht).atLeft().atTop().atRight();
-        StyledTextSet.decorate(ht).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading").getText());
+        final StyledText headingTextWidget = new StyledText(c, SWT.SINGLE);
+        FormDataSet.attach(headingTextWidget).atLeft().atTop().atRight();
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading").getText());
 
-        final StyledText pt = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(pt).atLeft().atTopTo(ht).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
-        StyledTextSet.decorate(pt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
-        StyleRangeUtils.decorate(pt, vo.getStyledText("passage").getStyles());
+        final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
+        StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
+        StyleRangeUtils.decorate(passageTextWidget, vo.getStyledText("passage").getStyles());
 
         sc.setContent(c);
         sc.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -336,11 +330,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
      * ==================================================
      */
 
-    private class NextOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class NextOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -348,17 +338,9 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
             UserTestPersistenceUtils.saveToNextView(ReadingCategoryChartQuestionView.this);
             page.resume();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class BackOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class BackOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -366,53 +348,28 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
             UserTestPersistenceUtils.saveToPreviousView(ReadingCategoryChartQuestionView.this);
             page.resume();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ReviewOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ReviewOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             release();
             page.toReadingReview();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class HelpOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class HelpOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ViewTextOrQuestionButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ViewTextOrQuestionButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             switch (subViewId) {
                 case SUB_VIEW_QUESTION:
                     viewTextOrQuestionButton.setBackgroundImages(MT.IMAGE_VIEW_QUESTION, MT.IMAGE_VIEW_QUESTION_HOVER);
@@ -423,13 +380,8 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
                     subViewId = SUB_VIEW_QUESTION;
                     break;
             }
-
             stack.topControl = getSubView(subViewId);
             body.layout();
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 
@@ -437,9 +389,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         @Override
         public void propertyChange(PropertyChangeEvent e) {
-
             int oldAnswer = (Integer) e.getOldValue();
-
             switch (oldAnswer) {
                 case MT.CHOICE_A:
                     LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
@@ -463,7 +413,6 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
                     LabelSet.decorate(choiceG).setText(vo.getStyledText("choiceG").getText());
                     break;
             }
-
             int newAnswer = (Integer) e.getNewValue();
             DroppableAnswerComposite blank = (DroppableAnswerComposite) e.getSource();
             switch (blank.getId()) {
@@ -489,23 +438,16 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
                     answer7 = newAnswer;
                     break;
             }
-
             logger.info("[Reading Category Chart Question {}] Answers: ({}, {}, {}, {}, {}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3, answer4, answer5, answer6, answer7);
         }
     }
 
-    private class AnswerCompositeMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class AnswerCompositeMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             Label answerLabel = (Label) e.widget;
             int answer = (Integer) answerLabel.getData(MT.KEY_CHOICE);
-
             switch (answer) {
                 case MT.CHOICE_A:
                     LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
@@ -529,14 +471,9 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
                     LabelSet.decorate(choiceG).setText(vo.getStyledText("choiceG").getText());
                     break;
             }
-
             answerLabel.setText("");
             DroppableAnswerComposite blank = (DroppableAnswerComposite) answerLabel.getParent();
             blank.setAnswer(0);
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 }

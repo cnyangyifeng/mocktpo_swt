@@ -31,7 +31,6 @@ public abstract class SashTestView extends TestView {
 
     @Override
     protected void initBody() {
-
         final Composite body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight().atBottomTo(footer);
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);

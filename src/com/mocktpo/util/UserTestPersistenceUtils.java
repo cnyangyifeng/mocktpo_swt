@@ -1,10 +1,11 @@
-package com.mocktpo.util.constants;
+package com.mocktpo.util;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.page.TestPage;
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.view.test.TestView;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.ibatis.session.SqlSession;
@@ -12,7 +13,6 @@ import org.apache.ibatis.session.SqlSession;
 public class UserTestPersistenceUtils {
 
     public static void saveToNextView(TestView testView) {
-
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
         userTestSession.setLastViewId(testView.getVo().getViewId() + 1);
@@ -24,7 +24,6 @@ public class UserTestPersistenceUtils {
     }
 
     public static void saveToCurrentView(TestView testView) {
-
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
         userTestSession.setLastViewId(testView.getVo().getViewId());
@@ -36,7 +35,6 @@ public class UserTestPersistenceUtils {
     }
 
     public static void saveToCurrentView(UserTestSession userTestSession, int viewId) {
-
         userTestSession.setLastViewId(viewId);
         userTestSession.setMaxViewId(viewId);
 
@@ -46,7 +44,6 @@ public class UserTestPersistenceUtils {
     }
 
     public static void saveToPreviousView(TestView testView) {
-
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
         userTestSession.setLastViewId(testView.getVo().getViewId() - 1);
@@ -58,7 +55,6 @@ public class UserTestPersistenceUtils {
     }
 
     public static void saveVolumeControlVisibility(TestView testView) {
-
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
         userTestSession.setVolumeControlHidden(!testView.isVolumeControlVisible());
@@ -69,7 +65,6 @@ public class UserTestPersistenceUtils {
     }
 
     public static void saveRemainingViewTime(TestView testView) {
-
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
         userTestSession.setRemainingViewTime(testView.getVo(), testView.getCountDown());
@@ -80,7 +75,6 @@ public class UserTestPersistenceUtils {
     }
 
     public static void saveRemainingViewTime(UserTestSession userTestSession, TestViewVo vo, int countDown) {
-
         userTestSession.setRemainingViewTime(vo, countDown);
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
@@ -89,7 +83,6 @@ public class UserTestPersistenceUtils {
     }
 
     public static void saveTimerHidden(TestView testView) {
-
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
         userTestSession.setTimerHidden(testView.isTimerHidden());
@@ -100,7 +93,6 @@ public class UserTestPersistenceUtils {
     }
 
     public static void saveTimerHidden(UserTestSession userTestSession, boolean timerHidden) {
-
         userTestSession.setTimerHidden(timerHidden);
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
@@ -109,7 +101,6 @@ public class UserTestPersistenceUtils {
     }
 
     public static void saveVolume(TestView testView, double volume) {
-
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
         userTestSession.setVolume(volume);
@@ -120,7 +111,6 @@ public class UserTestPersistenceUtils {
     }
 
     public static void saveAnswers(TestView testView, String answerText) {
-
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
 
@@ -130,7 +120,6 @@ public class UserTestPersistenceUtils {
     }
 
     public static void restart(UserTestSession userTestSession) {
-
         userTestSession.setTimerHidden(false);
         userTestSession.setReadingTime(MT.TIME_READING_SECTION);
         userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);

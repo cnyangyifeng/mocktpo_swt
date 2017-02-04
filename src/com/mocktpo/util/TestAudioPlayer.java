@@ -11,7 +11,7 @@ import java.net.URLDecoder;
 
 public class TestAudioPlayer {
 
-    public static final int BUFFER_SIZE = 4096;
+    private static final int BUFFER_SIZE = 4096;
 
     private AudioInputStream encoded, decoded;
     private SourceDataLine line;

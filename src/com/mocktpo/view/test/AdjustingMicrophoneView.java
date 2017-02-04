@@ -5,7 +5,7 @@ import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
@@ -176,22 +176,22 @@ public class AdjustingMicrophoneView extends StackTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText ht = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(ht).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(ht).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledText("heading").getText());
+        final StyledText headingTextWidget = new StyledText(viewPort, SWT.SINGLE);
+        FormDataSet.attach(headingTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledText("heading").getText());
 
-        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTopTo(ht, 30).atRight();
-        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
-        StyleRangeUtils.decorate(dt, vo.getStyledText("description").getStyles());
+        final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(descriptionTextWidget).atLeft().atTopTo(headingTextWidget, 30).atRight();
+        StyledTextSet.decorate(descriptionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
+        StyleRangeUtils.decorate(descriptionTextWidget, vo.getStyledText("description").getStyles());
 
-        final StyledText ft = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(ft).fromLeft(50, -FOOTNOTE_TEXT_WIDTH / 2).atTopTo(dt, 20).withWidth(FOOTNOTE_TEXT_WIDTH);
-        StyledTextSet.decorate(ft).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_ITALIC_TEXT).setForeground(MT.COLOR_DARK_BLUE).setLineSpacing(5).setMarginHeight(20).setText(vo.getStyledText("footnote").getText());
-        ft.addPaintListener(new BorderedCompositePaintListener());
+        final StyledText footnoteTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(footnoteTextWidget).fromLeft(50, -FOOTNOTE_TEXT_WIDTH / 2).atTopTo(descriptionTextWidget, 20).withWidth(FOOTNOTE_TEXT_WIDTH);
+        StyledTextSet.decorate(footnoteTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_ITALIC_TEXT).setForeground(MT.COLOR_DARK_BLUE).setLineSpacing(5).setMarginHeight(20).setText(vo.getStyledText("footnote").getText());
+        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener());
 
         timerPanel = new Composite(viewPort, SWT.NONE);
-        FormDataSet.attach(timerPanel).fromLeft(50, -TIMER_PANEL_WIDTH / 2).atTopTo(ft, 20).withWidth(TIMER_PANEL_WIDTH);
+        FormDataSet.attach(timerPanel).fromLeft(50, -TIMER_PANEL_WIDTH / 2).atTopTo(footnoteTextWidget, 20).withWidth(TIMER_PANEL_WIDTH);
         CompositeSet.decorate(timerPanel).setVisible(false);
         FormLayoutSet.layout(timerPanel).marginWidth(1).marginHeight(1);
         timerPanel.addPaintListener(new BorderedCompositePaintListener());
@@ -236,10 +236,10 @@ public class AdjustingMicrophoneView extends StackTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
-        StyledText rt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(rt).atLeft().atTop(VIEW_PORT_PADDING_TOP_2).atRight();
-        StyledTextSet.decorate(rt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("response").getText());
-        StyleRangeUtils.decorate(rt, vo.getStyledText("response").getStyles());
+        StyledText responseTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(responseTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP_2).atRight();
+        StyledTextSet.decorate(responseTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("response").getText());
+        StyleRangeUtils.decorate(responseTextWidget, vo.getStyledText("response").getStyles());
 
         sc.setContent(inner);
         sc.setMinSize(inner.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -301,6 +301,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                // TODO Rename user audio recording file
                 audioRecorder = new UserAudioRecorder("am");
                 audioRecorder.start();
             }
@@ -343,13 +344,10 @@ public class AdjustingMicrophoneView extends StackTestView {
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
-
                         stopRecordingButton.setVisible(false);
-
                         continueButton.setEnabled(true);
                         recordAgainButton.setEnabled(true);
                         playbackResponseButton.setEnabled(true);
-
                         subViewId = SUB_VIEW_RESPONSE;
                         stack.topControl = getSubView(subViewId);
                         body.layout();
@@ -409,14 +407,11 @@ public class AdjustingMicrophoneView extends StackTestView {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-
                             continueButton.setEnabled(false);
                             recordAgainButton.setEnabled(false);
                             playbackResponseButton.setEnabled(false);
-
                             recorderCountDown = vo.getResponseTime();
                             CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTime(recorderCountDown));
-
                             subViewId = SUB_VIEW_RECORDING;
                             stack.topControl = getSubView(subViewId);
                             body.layout();

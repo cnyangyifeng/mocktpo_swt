@@ -45,7 +45,6 @@ public class TestHeader extends Composite {
     }
 
     private void golbal() {
-
         // TODO DISPOSE IMAGE RESOURCE
         Image image = new Image(d, ScreenUtils.getClientWidth(d), LC.TEST_HEADER_HEIGHT);
         GC gc = new GC(image);

@@ -5,15 +5,15 @@ import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.DroppableAnswerComposite;
 import com.mocktpo.widget.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
@@ -69,26 +69,25 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
     @Override
     public void updateHeader() {
+        final ImageButton nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
+        FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
+        nextOvalButton.addMouseListener(new NextOvalButtonMouseAdapter());
 
-        final ImageButton nob = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
-        FormDataSet.attach(nob).atRight(10).atTop(10);
-        nob.addMouseListener(new NextOvalButtonMouseListener());
+        final ImageButton backOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_BACK_OVAL, MT.IMAGE_BACK_OVAL_HOVER, MT.IMAGE_BACK_OVAL_DISABLED);
+        FormDataSet.attach(backOvalButton).atRightTo(nextOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        backOvalButton.addMouseListener(new BackOvalButtonMouseAdapter());
 
-        final ImageButton bob = new ImageButton(header, SWT.NONE, MT.IMAGE_BACK_OVAL, MT.IMAGE_BACK_OVAL_HOVER, MT.IMAGE_BACK_OVAL_DISABLED);
-        FormDataSet.attach(bob).atRightTo(nob).atTopTo(nob, 0, SWT.TOP);
-        bob.addMouseListener(new BackOvalButtonMouseListener());
+        final ImageButton reviewOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW_OVAL, MT.IMAGE_REVIEW_OVAL_HOVER, MT.IMAGE_REVIEW_OVAL_DISABLED);
+        FormDataSet.attach(reviewOvalButton).atRightTo(backOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        reviewOvalButton.addMouseListener(new ReviewOvalButtonMouseAdapter());
 
-        final ImageButton rob = new ImageButton(header, SWT.NONE, MT.IMAGE_REVIEW_OVAL, MT.IMAGE_REVIEW_OVAL_HOVER, MT.IMAGE_REVIEW_OVAL_DISABLED);
-        FormDataSet.attach(rob).atRightTo(bob).atTopTo(nob, 0, SWT.TOP);
-        rob.addMouseListener(new ReviewOvalButtonMouseListener());
-
-        final ImageButton hob = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
-        FormDataSet.attach(hob).atRightTo(rob).atTopTo(nob, 0, SWT.TOP);
-        hob.addMouseListener(new HelpOvalButtonMouseListener());
+        final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
+        FormDataSet.attach(helpOvalButton).atRightTo(reviewOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
+        helpOvalButton.addMouseListener(new HelpOvalButtonMouseAdapter());
 
         viewTextOrQuestionButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VIEW_TEXT, MT.IMAGE_VIEW_TEXT_HOVER);
-        FormDataSet.attach(viewTextOrQuestionButton).atRightTo(hob, 6).atTopTo(nob, 6, SWT.TOP);
-        viewTextOrQuestionButton.addMouseListener(new ViewTextOrQuestionButtonMouseListener());
+        FormDataSet.attach(viewTextOrQuestionButton).atRightTo(helpOvalButton, 6).atTopTo(nextOvalButton, 6, SWT.TOP);
+        viewTextOrQuestionButton.addMouseListener(new ViewTextOrQuestionButtonMouseAdapter());
     }
 
     @Override
@@ -99,7 +98,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
     }
 
     protected Composite getSubView(int subViewId) {
-
         switch (subViewId) {
             case SUB_VIEW_QUESTION:
                 if (null == questionView) {
@@ -112,7 +110,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
                 }
                 return passageView;
         }
-
         return null;
     }
 
@@ -125,7 +122,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
      */
 
     private Composite initQuestionSubView() {
-
         final Composite c = new Composite(body, SWT.NONE);
         FormLayoutSet.layout(c);
 
@@ -141,34 +137,34 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x);
         FormLayoutSet.layout(viewPort);
 
-        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft().atTop(5).atRight();
-        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("directions").getText());
-        StyleRangeUtils.decorate(dt, vo.getStyledText("directions").getStyles());
+        final StyledText directionsTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(directionsTextWidget).atLeft().atTop(5).atRight();
+        StyledTextSet.decorate(directionsTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("directions").getText());
+        StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledText("directions").getStyles());
 
-        final StyledText tt = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(tt).atLeft().atTopTo(dt, 5).atRight();
-        StyledTextSet.decorate(tt).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips").getText());
-        StyleRangeUtils.decorate(tt, vo.getStyledText("tips").getStyles());
+        final StyledText tipsTextWidget = new StyledText(viewPort, SWT.WRAP);
+        FormDataSet.attach(tipsTextWidget).atLeft().atTopTo(directionsTextWidget, 5).atRight();
+        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips").getText());
+        StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledText("tips").getStyles());
 
         final Composite ac = new Composite(viewPort, SWT.CENTER);
-        FormDataSet.attach(ac).fromLeft(50, -ScreenUtils.getClientWidth(d) / 4).atTopTo(tt, 10).withWidth(ScreenUtils.getClientWidth(d) / 2);
+        FormDataSet.attach(ac).fromLeft(50, -ScreenUtils.getClientWidth(d) / 4).atTopTo(tipsTextWidget, 10).withWidth(ScreenUtils.getClientWidth(d) / 2);
         FormLayoutSet.layout(ac).marginWidth(10).marginHeight(10);
         ac.addPaintListener(new BorderedCompositePaintListener());
 
-        final StyledText qt = new StyledText(ac, SWT.WRAP);
-        FormDataSet.attach(qt).atLeft(10).atTop().atRight(10);
-        StyledTextSet.decorate(qt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("question").getText());
+        final StyledText questionTextWidget = new StyledText(ac, SWT.WRAP);
+        FormDataSet.attach(questionTextWidget).atLeft(10).atTop().atRight(10);
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("question").getText());
 
         final Label bullet1 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(bullet1).atLeft().atTopTo(qt, 18);
+        FormDataSet.attach(bullet1).atLeft().atTopTo(questionTextWidget, 18);
         LabelSet.decorate(bullet1).setImage(MT.IMAGE_BULLET);
 
         final DroppableAnswerComposite blank1 = new DroppableAnswerComposite(ac, SWT.WRAP | SWT.TOP, ANSWER_1);
-        FormDataSet.attach(blank1).atLeftTo(bullet1, 10).atTopTo(qt, 10).atRight().withHeight(LC.READING_DND_QUESTION_HEIGHT);
+        FormDataSet.attach(blank1).atLeftTo(bullet1, 10).atTopTo(questionTextWidget, 10).atRight().withHeight(LC.READING_DND_QUESTION_HEIGHT);
         AnswerCompositeDropTargetSet.drop(blank1);
         blank1.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
-        blank1.addMouseListener(new AnswerCompositeMouseListener());
+        blank1.addMouseListener(new AnswerCompositeMouseAdapter());
 
         final Label bullet2 = new Label(ac, SWT.NONE);
         FormDataSet.attach(bullet2).atLeft().atTopTo(blank1, 18);
@@ -178,7 +174,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         FormDataSet.attach(blank2).atLeftTo(bullet2, 10).atTopTo(blank1, 10).atRight().withHeight(LC.READING_DND_QUESTION_HEIGHT);
         AnswerCompositeDropTargetSet.drop(blank2);
         blank2.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
-        blank2.addMouseListener(new AnswerCompositeMouseListener());
+        blank2.addMouseListener(new AnswerCompositeMouseAdapter());
 
         final Label bullet3 = new Label(ac, SWT.NONE);
         FormDataSet.attach(bullet3).atLeft().atTopTo(blank2, 18);
@@ -188,7 +184,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         FormDataSet.attach(blank3).atLeftTo(bullet3, 10).atTopTo(blank2, 10).atRight().withHeight(LC.READING_DND_QUESTION_HEIGHT);
         AnswerCompositeDropTargetSet.drop(blank3);
         blank3.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
-        blank3.addMouseListener(new AnswerCompositeMouseListener());
+        blank3.addMouseListener(new AnswerCompositeMouseAdapter());
 
         final CLabel l = new CLabel(viewPort, SWT.CENTER);
         FormDataSet.attach(l).atLeft().atTopTo(ac, 10).atRight();
@@ -231,7 +227,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
     }
 
     private Composite initPassageSubView() {
-
         final Composite c = new Composite(body, SWT.NONE);
         FormLayoutSet.layout(c);
 
@@ -253,7 +248,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
     }
 
     private void initRightBody() {
-
         final ScrolledComposite sc = new ScrolledComposite(rightPassageView, SWT.H_SCROLL | SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
         sc.setExpandHorizontal(true);
@@ -262,14 +256,14 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         final Composite c = new Composite(sc, SWT.NONE);
         FormLayoutSet.layout(c).marginWidth(10).marginTop(20).marginBottom(100).spacing(20);
 
-        final StyledText ht = new StyledText(c, SWT.SINGLE);
-        FormDataSet.attach(ht).atLeft().atTop().atRight();
-        StyledTextSet.decorate(ht).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading").getText());
+        final StyledText headingTextWidget = new StyledText(c, SWT.SINGLE);
+        FormDataSet.attach(headingTextWidget).atLeft().atTop().atRight();
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading").getText());
 
-        final StyledText pt = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(pt).atLeft().atTopTo(ht).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
-        StyledTextSet.decorate(pt).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
-        StyleRangeUtils.decorate(pt, vo.getStyledText("passage").getStyles());
+        final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
+        StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
+        StyleRangeUtils.decorate(passageTextWidget, vo.getStyledText("passage").getStyles());
 
         sc.setContent(c);
         sc.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -283,11 +277,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
      * ==================================================
      */
 
-    private class NextOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class NextOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -295,17 +285,9 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
             UserTestPersistenceUtils.saveToNextView(ReadingProseSummaryQuestionView.this);
             page.resume();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class BackOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class BackOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -313,17 +295,9 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
             UserTestPersistenceUtils.saveToPreviousView(ReadingProseSummaryQuestionView.this);
             page.resume();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ReviewOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ReviewOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -332,36 +306,19 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
             page.toReadingReview();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class HelpOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class HelpOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ViewTextOrQuestionButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ViewTextOrQuestionButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             switch (subViewId) {
                 case SUB_VIEW_QUESTION:
                     viewTextOrQuestionButton.setBackgroundImages(MT.IMAGE_VIEW_QUESTION, MT.IMAGE_VIEW_QUESTION_HOVER);
@@ -372,13 +329,8 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
                     subViewId = SUB_VIEW_QUESTION;
                     break;
             }
-
             stack.topControl = getSubView(subViewId);
             body.layout();
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 
@@ -386,9 +338,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
         @Override
         public void propertyChange(PropertyChangeEvent e) {
-
             int oldAnswer = (Integer) e.getOldValue();
-
             switch (oldAnswer) {
                 case MT.CHOICE_A:
                     LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
@@ -409,7 +359,6 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
                     LabelSet.decorate(choiceF).setText(vo.getStyledText("choiceF").getText());
                     break;
             }
-
             int newAnswer = (Integer) e.getNewValue();
             DroppableAnswerComposite blank = (DroppableAnswerComposite) e.getSource();
             switch (blank.getId()) {
@@ -423,23 +372,16 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
                     answer3 = newAnswer;
                     break;
             }
-
             logger.info("[Reading Prose Summary Question {}] Answers: ({}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3);
         }
     }
 
-    private class AnswerCompositeMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class AnswerCompositeMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             Label answerLabel = (Label) e.widget;
             int answer = (Integer) answerLabel.getData(MT.KEY_CHOICE);
-
             switch (answer) {
                 case MT.CHOICE_A:
                     LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
@@ -460,14 +402,9 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
                     LabelSet.decorate(choiceF).setText(vo.getStyledText("choiceF").getText());
                     break;
             }
-
             answerLabel.setText("");
             DroppableAnswerComposite blank = (DroppableAnswerComposite) answerLabel.getParent();
             blank.setAnswer(0);
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 }

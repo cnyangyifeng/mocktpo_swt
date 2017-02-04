@@ -97,7 +97,6 @@ public class ReadingReviewTableRow extends Composite {
     }
 
     private void initTableCells() {
-
         numberCell = new Label(this, SWT.CENTER);
         FormDataSet.attach(numberCell).atLeft(1).atTop(1).atBottom().withWidth(NUMBER_CELL_WIDTH);
         LabelSet ncs = LabelSet.decorate(numberCell).setFont(MT.FONT_MEDIUM).setText(numberText);

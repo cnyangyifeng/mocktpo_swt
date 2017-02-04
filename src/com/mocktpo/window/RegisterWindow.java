@@ -13,10 +13,10 @@ import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.*;
 import org.h2.util.StringUtils;
 
@@ -83,7 +83,6 @@ public class RegisterWindow {
     }
 
     private void initHeader() {
-
         header = new Composite(s, SWT.NONE);
         CompositeSet.decorate(header).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         FormDataSet.attach(header).atLeft().atTop().atRight();
@@ -103,7 +102,6 @@ public class RegisterWindow {
     }
 
     private void initFooter() {
-
         footer = new Composite(s, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atRight().atBottom().withHeight(LC.BUTTON_HEIGHT_HINT * 2);
         CompositeSet.decorate(footer).setBackground(MT.COLOR_WINDOW_BACKGROUND);
@@ -112,16 +110,15 @@ public class RegisterWindow {
         r = new Button(footer, SWT.PUSH);
         FormDataSet.attach(r).fromLeft(50, -LC.BUTTON_WIDTH_HINT - 10).fromTop(50, -LC.BUTTON_HEIGHT_HINT / 2).withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(r).setCursor(MT.CURSOR_HAND).setEnabled(false).setText(msgs.getString("register"));
-        r.addSelectionListener(new RegisterSelectionListener());
+        r.addSelectionListener(new RegisterSelectionAdapter());
 
         final Button c = new Button(footer, SWT.PUSH);
         FormDataSet.attach(c).fromLeft(50, 10).fromTop(50, -LC.BUTTON_HEIGHT_HINT / 2).withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(c).setCursor(MT.CURSOR_HAND).setText(msgs.getString("close"));
-        c.addSelectionListener(new CancelSelectionListener());
+        c.addSelectionListener(new CancelSelectionAdapter());
     }
 
     private void initBody() {
-
         final Composite body = new Composite(s, SWT.NONE);
         FormDataSet.attach(body).atLeft(100).atTopTo(header, 20).atRight(100).atBottomTo(footer, 20);
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
@@ -135,12 +132,12 @@ public class RegisterWindow {
         FormDataSet.attach(et).atLeft().atTopTo(el).fromRight(40);
         KeyBindingSet.bind(et).traverse().selectAll();
         StyledTextSet.decorate(et).setFocus().setMargins(10);
-        et.addKeyListener(new EmailTextKeyListener());
+        et.addKeyListener(new EmailTextKeyAdapter());
 
         eb = new Button(body, SWT.PUSH);
         FormDataSet.attach(eb).atLeftTo(et).atTopTo(el).atRight().atBottomTo(et, 0, SWT.BOTTOM);
         ButtonSet.decorate(eb).setCursor(MT.CURSOR_HAND).setEnabled(false).setText(msgs.getString("send_email"));
-        eb.addSelectionListener(new SendSelectionListener());
+        eb.addSelectionListener(new SendSelectionAdapter());
 
         em = new CLabel(body, SWT.NONE);
         FormDataSet.attach(em).atLeft().atTopTo(et).atRight();
@@ -158,7 +155,7 @@ public class RegisterWindow {
         FormDataSet.attach(at).atLeft().atTopTo(al).atRight().atBottomTo(am, 0, SWT.TOP);
         KeyBindingSet.bind(at).traverse().selectAll();
         StyledTextSet.decorate(at).setFont(MT.FONT_ACTIVATION_CODE).setMargins(10);
-        at.addKeyListener(new ActivationCodeTextKeyListener());
+        at.addKeyListener(new ActivationCodeTextKeyAdapter());
     }
 
     public void openAndWaitForDisposal() {
@@ -190,7 +187,7 @@ public class RegisterWindow {
      * ==================================================
      */
 
-    private class EmailTextKeyListener implements KeyListener {
+    private class EmailTextKeyAdapter extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent e) {
@@ -206,13 +203,9 @@ public class RegisterWindow {
                 r.setEnabled(false);
             }
         }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-        }
     }
 
-    private class ActivationCodeTextKeyListener implements KeyListener {
+    private class ActivationCodeTextKeyAdapter extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent e) {
@@ -222,17 +215,9 @@ public class RegisterWindow {
                 r.setEnabled(false);
             }
         }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-        }
     }
 
-    private class SendSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class SendSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
@@ -298,11 +283,7 @@ public class RegisterWindow {
         }
     }
 
-    private class RegisterSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class RegisterSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
@@ -344,11 +325,7 @@ public class RegisterWindow {
         }
     }
 
-    private class CancelSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class CancelSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {

@@ -6,7 +6,7 @@ import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.apache.commons.lang3.StringUtils;
@@ -64,30 +64,29 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
-
         nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
         FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
         nextOvalButton.setEnabled(false);
-        nextOvalButton.addMouseListener(new NextOvalButtonMouseListener());
+        nextOvalButton.addMouseListener(new NextOvalButtonMouseAdapter());
 
         okOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_OK_OVAL, MT.IMAGE_OK_OVAL_HOVER, MT.IMAGE_OK_OVAL_DISABLED);
         FormDataSet.attach(okOvalButton).atRightTo(nextOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
         okOvalButton.setEnabled(false);
-        okOvalButton.addMouseListener(new OkOvalButtonMouseListener());
+        okOvalButton.addMouseListener(new OkOvalButtonMouseAdapter());
 
         final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
         FormDataSet.attach(helpOvalButton).atRightTo(okOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        helpOvalButton.addMouseListener(new HelpOvalButtonMouseListener());
+        helpOvalButton.addMouseListener(new HelpOvalButtonMouseAdapter());
 
         final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
         FormDataSet.attach(volumeOvalButton).atRightTo(helpOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseListener());
+        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseAdapter());
 
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
-        volumeControl.addSelectionListener(new VolumeControlSelectionListener());
+        volumeControl.addSelectionListener(new VolumeControlSelectionAdapter());
 
         // TODO Removes the continue debug button
 
@@ -105,7 +104,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
 
     @Override
     public void updateBody() {
-
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
@@ -125,61 +123,59 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         checkWidgetA = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(checkWidgetA).atLeft(5).atTopTo(tipsTextWidget, 25);
         LabelSet.decorate(checkWidgetA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNBOXED).setVisible(false);
-        checkWidgetA.addMouseListener(new ChooseAnswerListener());
+        checkWidgetA.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelA = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelA).atLeftTo(checkWidgetA, 5).atTopTo(tipsTextWidget, 20).atRight();
         LabelSet.decorate(choiceLabelA).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceA").getText()).setVisible(false);
-        choiceLabelA.addMouseListener(new ChooseAnswerListener());
+        choiceLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         checkWidgetB = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(checkWidgetB).atLeft(5).atTopTo(choiceLabelA, 25);
         LabelSet.decorate(checkWidgetB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNBOXED).setVisible(false);
-        checkWidgetB.addMouseListener(new ChooseAnswerListener());
+        checkWidgetB.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelB = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelB).atLeftTo(checkWidgetB, 5).atTopTo(choiceLabelA, 20).atRight();
         LabelSet.decorate(choiceLabelB).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceB").getText()).setVisible(false);
-        choiceLabelB.addMouseListener(new ChooseAnswerListener());
+        choiceLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         checkWidgetC = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(checkWidgetC).atLeft(5).atTopTo(choiceLabelB, 25);
         LabelSet.decorate(checkWidgetC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNBOXED).setVisible(false);
-        checkWidgetC.addMouseListener(new ChooseAnswerListener());
+        checkWidgetC.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelC = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelC).atLeftTo(checkWidgetC, 5).atTopTo(choiceLabelB, 20).atRight();
         LabelSet.decorate(choiceLabelC).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceC").getText()).setVisible(false);
-        choiceLabelC.addMouseListener(new ChooseAnswerListener());
+        choiceLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         checkWidgetD = new Label(viewPort, SWT.NONE);
         FormDataSet.attach(checkWidgetD).atLeft(5).atTopTo(choiceLabelC, 25);
         LabelSet.decorate(checkWidgetD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNBOXED).setVisible(false);
-        checkWidgetD.addMouseListener(new ChooseAnswerListener());
+        checkWidgetD.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelD = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelD).atLeftTo(checkWidgetD, 5).atTopTo(choiceLabelC, 20).atRight();
         LabelSet.decorate(choiceLabelD).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText()).setVisible(false);
-        choiceLabelD.addMouseListener(new ChooseAnswerListener());
+        choiceLabelD.addMouseListener(new ChooseAnswerAdapter());
 
         if (3 == vo.getTotalAnswerCount()) {
-
             checkWidgetE = new Label(viewPort, SWT.NONE);
             FormDataSet.attach(checkWidgetE).atLeft(5).atTopTo(choiceLabelD, 25);
             LabelSet.decorate(checkWidgetE).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_E).setImage(MT.IMAGE_UNBOXED).setVisible(false);
-            checkWidgetE.addMouseListener(new ChooseAnswerListener());
+            checkWidgetE.addMouseListener(new ChooseAnswerAdapter());
 
             choiceLabelE = new Label(viewPort, SWT.WRAP);
             FormDataSet.attach(choiceLabelE).atLeftTo(checkWidgetE, 5).atTopTo(choiceLabelD, 20).atRight();
             LabelSet.decorate(choiceLabelE).setCursor(MT.CURSOR_HAND).setData(MT.KEY_CHOICE, MT.CHOICE_E).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceE").getText()).setVisible(false);
-            choiceLabelE.addMouseListener(new ChooseAnswerListener());
+            choiceLabelE.addMouseListener(new ChooseAnswerAdapter());
         }
 
         updateWidgetsForAnswers();
     }
 
     private void updateWidgetsForAnswers() {
-
         if (StringUtils.isEmpty(answerText)) {
             answer1 = MT.CHOICE_NONE;
             answer2 = MT.CHOICE_NONE;
@@ -205,7 +201,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                     break;
             }
         }
-
         logger.info("[Listening Multiple-Answers Question {}] Answers: ({}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3);
     }
 
@@ -241,7 +236,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
 
     @Override
     public void startAudioAsyncExecution() {
-
         if (!d.isDisposed()) {
             d.asyncExec(new Runnable() {
                 @Override
@@ -250,7 +244,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                 }
             });
         }
-
         listener = new AudioAsyncExecutionListener();
         audioPlayer.addPropertyChangeListener(listener);
     }
@@ -269,9 +262,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
      */
 
     public boolean isOk() {
-
         boolean b = false;
-
         switch (vo.getTotalAnswerCount()) {
             case 2:
                 b = (MT.CHOICE_NONE != answer1 && MT.CHOICE_NONE != answer2);
@@ -280,14 +271,11 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                 b = (MT.CHOICE_NONE != answer1 && MT.CHOICE_NONE != answer2 && MT.CHOICE_NONE != answer3);
                 break;
         }
-
         return b;
     }
 
     public boolean isNull() {
-
         boolean b = false;
-
         switch (vo.getTotalAnswerCount()) {
             case 2:
                 b = (MT.CHOICE_NONE == answer1 && MT.CHOICE_NONE == answer2);
@@ -296,7 +284,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                 b = (MT.CHOICE_NONE == answer1 && MT.CHOICE_NONE == answer2 && MT.CHOICE_NONE == answer3);
                 break;
         }
-
         return b;
     }
 
@@ -308,32 +295,19 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
      * ==================================================
      */
 
-    private class NextOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class NextOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             nextOvalButton.setEnabled(false);
             okOvalButton.setEnabled(true);
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class OkOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class OkOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             if (isOk()) {
                 release();
                 UserTestPersistenceUtils.saveToNextView(ListeningMultipleAnswersQuestionView.this);
@@ -350,32 +324,16 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                 }
             }
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class HelpOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class HelpOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class VolumeOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class VolumeOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -383,43 +341,26 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
             UserTestPersistenceUtils.saveVolumeControlVisibility(ListeningMultipleAnswersQuestionView.this);
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class VolumeControlSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class VolumeControlSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-
             UserTestPersistenceUtils.saveVolume(ListeningMultipleAnswersQuestionView.this, volume);
             setAudioVolume(volume);
         }
     }
 
-    private class ChooseAnswerListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ChooseAnswerAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-
             int a = (Integer) e.widget.getData(MT.KEY_CHOICE);
-
             if (2 == vo.getTotalAnswerCount()) {
-
                 if (a == answer1) {
                     answer1 = MT.CHOICE_NONE;
                 } else if (a == answer2) {
@@ -437,12 +378,10 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         }
                     }
                 }
-
                 LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_UNBOXED);
                 LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_UNBOXED);
                 LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_UNBOXED);
                 LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_UNBOXED);
-
                 switch (answer1) {
                     case MT.CHOICE_A:
                         LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_BOXED);
@@ -457,7 +396,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_BOXED);
                         break;
                 }
-
                 switch (answer2) {
                     case MT.CHOICE_A:
                         LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_BOXED);
@@ -472,13 +410,9 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_BOXED);
                         break;
                 }
-
                 logger.info("[Listening Multiple-Answers Question {}] Answers: ({}, {})", vo.getQuestionNumberInSection(), answer1, answer2);
-
                 answerText = answer1 + MT.STRING_COMMA + answer2;
-
             } else if (3 == vo.getTotalAnswerCount()) {
-
                 if (a == answer1) {
                     answer1 = MT.CHOICE_NONE;
                 } else if (a == answer2) {
@@ -502,13 +436,11 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         }
                     }
                 }
-
                 LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_UNBOXED);
                 LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_UNBOXED);
                 LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_UNBOXED);
                 LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_UNBOXED);
                 LabelSet.decorate(checkWidgetE).setImage(MT.IMAGE_UNBOXED);
-
                 switch (answer1) {
                     case MT.CHOICE_A:
                         LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_BOXED);
@@ -526,7 +458,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         LabelSet.decorate(checkWidgetE).setImage(MT.IMAGE_BOXED);
                         break;
                 }
-
                 switch (answer2) {
                     case MT.CHOICE_A:
                         LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_BOXED);
@@ -544,7 +475,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         LabelSet.decorate(checkWidgetE).setImage(MT.IMAGE_BOXED);
                         break;
                 }
-
                 switch (answer3) {
                     case MT.CHOICE_A:
                         LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_BOXED);
@@ -562,17 +492,10 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         LabelSet.decorate(checkWidgetE).setImage(MT.IMAGE_BOXED);
                         break;
                 }
-
                 logger.info("[Listening Multiple-Answers Question {}] Answers: ({}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3);
-
                 answerText = answer1 + MT.STRING_COMMA + answer2 + MT.STRING_COMMA + answer3;
             }
-
             UserTestPersistenceUtils.saveAnswers(ListeningMultipleAnswersQuestionView.this, answerText);
-        }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
         }
     }
 
@@ -580,17 +503,13 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
 
         @Override
         public void propertyChange(PropertyChangeEvent e) {
-
             if (audioPlayer.isStopped()) {
-
                 if (!d.isDisposed()) {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-
                             nextOvalButton.setEnabled(true);
                             okOvalButton.setEnabled(false);
-
                             StyledTextSet.decorate(tipsTextWidget).setVisible(true);
                             LabelSet.decorate(checkWidgetA).setVisible(true);
                             LabelSet.decorate(choiceLabelA).setVisible(true);
@@ -607,7 +526,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         }
                     });
                 }
-
                 /*
                  * ==================================================
                  *
@@ -618,7 +536,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                  * ==================================================
                  */
                 if (vo.isTimerTaskDelayed()) {
-
                     if (!d.isDisposed()) {
                         d.asyncExec(new Runnable() {
                             @Override
@@ -627,7 +544,6 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                             }
                         });
                     }
-
                     countDown = page.getUserTestSession().getRemainingViewTime(vo);
                     timer = new Timer();
                     timerTask = new TestTimerTask();

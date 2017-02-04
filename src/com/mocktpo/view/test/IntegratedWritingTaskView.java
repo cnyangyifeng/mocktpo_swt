@@ -4,7 +4,7 @@ import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
@@ -58,21 +58,21 @@ public class IntegratedWritingTaskView extends SashTestView2 {
 
         final ImageButton nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
         FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
-        nextOvalButton.addMouseListener(new NextOvalButtonMouseListener());
+        nextOvalButton.addMouseListener(new NextOvalButtonMouseAdapter());
 
         final ImageButton helpOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HELP_OVAL, MT.IMAGE_HELP_OVAL_HOVER, MT.IMAGE_HELP_OVAL_DISABLED);
         FormDataSet.attach(helpOvalButton).atRightTo(nextOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        helpOvalButton.addMouseListener(new HelpOvalButtonMouseListener());
+        helpOvalButton.addMouseListener(new HelpOvalButtonMouseAdapter());
 
         final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
         FormDataSet.attach(volumeOvalButton).atRightTo(helpOvalButton).atTopTo(nextOvalButton, 0, SWT.TOP);
-        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseListener());
+        volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseAdapter());
 
         volumeControl = new VolumeControl(header, SWT.NONE);
         FormDataSet.attach(volumeControl).atTopTo(volumeOvalButton, 0, SWT.BOTTOM).atRightTo(volumeOvalButton, 0, SWT.RIGHT).atBottom(5).withWidth(LC.VOLUME_CONTROL_WIDTH);
         CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
         volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
-        volumeControl.addSelectionListener(new VolumeControlSelectionListener());
+        volumeControl.addSelectionListener(new VolumeControlSelectionAdapter());
 
         // TODO Removes the continue debug button
 
@@ -90,7 +90,6 @@ public class IntegratedWritingTaskView extends SashTestView2 {
 
     @Override
     public void updateTop() {
-
         final StyledText directionsTextWidget = new StyledText(top, SWT.BORDER | SWT.WRAP);
         FormDataSet.attach(directionsTextWidget).atLeft().atTop().atRight();
         StyledTextSet.decorate(directionsTextWidget).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("directions").getText());
@@ -104,7 +103,6 @@ public class IntegratedWritingTaskView extends SashTestView2 {
 
     @Override
     public void updateLeft() {
-
         final ScrolledComposite sc = new ScrolledComposite(left, SWT.H_SCROLL | SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
         sc.setExpandHorizontal(true);
@@ -124,21 +122,20 @@ public class IntegratedWritingTaskView extends SashTestView2 {
 
     @Override
     public void updateRight() {
-
         Button copyButton = new Button(right, SWT.PUSH);
         FormDataSet.attach(copyButton).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
         ButtonSet.decorate(copyButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("copy"));
-        copyButton.addSelectionListener(new CopyButtonSelectionListener());
+        copyButton.addSelectionListener(new CopyButtonSelectionAdapter());
 
         Button cutButton = new Button(right, SWT.PUSH);
         FormDataSet.attach(cutButton).atLeftTo(copyButton).atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
         ButtonSet.decorate(cutButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("cut"));
-        cutButton.addSelectionListener(new CutButtonSelectionListener());
+        cutButton.addSelectionListener(new CutButtonSelectionAdapter());
 
         Button pasteButton = new Button(right, SWT.PUSH);
         FormDataSet.attach(pasteButton).atLeftTo(cutButton).atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
         ButtonSet.decorate(pasteButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("paste"));
-        pasteButton.addSelectionListener(new PasteButtonSelectionListener());
+        pasteButton.addSelectionListener(new PasteButtonSelectionAdapter());
 
         wordCountLabel = new CLabel(right, SWT.NONE);
         FormDataSet.attach(wordCountLabel).atTopTo(pasteButton, 0, SWT.TOP).atRight().atBottomTo(pasteButton, 0, SWT.BOTTOM).withWidth(WORD_COUNT_LABEL_WIDTH);
@@ -167,11 +164,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
      * ==================================================
      */
 
-    private class NextOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class NextOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -179,32 +172,16 @@ public class IntegratedWritingTaskView extends SashTestView2 {
             UserTestPersistenceUtils.saveToNextView(IntegratedWritingTaskView.this);
             page.resume();
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class HelpOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class HelpOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class VolumeOvalButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class VolumeOvalButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -212,35 +189,21 @@ public class IntegratedWritingTaskView extends SashTestView2 {
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
             UserTestPersistenceUtils.saveVolumeControlVisibility(IntegratedWritingTaskView.this);
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class VolumeControlSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class VolumeControlSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-
             UserTestPersistenceUtils.saveVolume(IntegratedWritingTaskView.this, volume);
             setAudioVolume(volume);
         }
     }
 
-    private class CopyButtonSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class CopyButtonSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
@@ -248,11 +211,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
         }
     }
 
-    private class CutButtonSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class CutButtonSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
@@ -260,11 +219,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
         }
     }
 
-    private class PasteButtonSelectionListener implements SelectionListener {
-
-        @Override
-        public void widgetDefaultSelected(SelectionEvent e) {
-        }
+    private class PasteButtonSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
@@ -276,10 +231,8 @@ public class IntegratedWritingTaskView extends SashTestView2 {
 
         @Override
         public void modifyText(ModifyEvent e) {
-
             wordCount = WordCountUtils.count(writingTextWidget.getText());
             CLabelSet.decorate(wordCountLabel).setText(msgs.getString("word_count") + MT.STRING_SPACE + wordCount);
-
             answerText = writingTextWidget.getText();
             UserTestPersistenceUtils.saveAnswers(IntegratedWritingTaskView.this, answerText);
         }

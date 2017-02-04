@@ -32,7 +32,6 @@ public abstract class StackTestView extends TestView {
 
     @Override
     protected void initBody() {
-
         body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight().atBottomTo(footer);
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);

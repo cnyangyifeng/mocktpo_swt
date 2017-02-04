@@ -42,7 +42,6 @@ public class VolumeControl extends Composite {
     }
 
     private void golbal() {
-
         CompositeSet.decorate(this).setBackground(MT.COLOR_DARK_BLUE);
         GridLayoutSet.layout(this).marginWidth(5);
         addPaintListener(new BorderedCompositePaintListener());

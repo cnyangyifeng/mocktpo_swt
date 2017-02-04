@@ -27,7 +27,6 @@ public abstract class ResponsiveTestView extends TestView {
 
     @Override
     protected void initBody() {
-
         final ScrolledComposite sc = new ScrolledComposite(this, SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTopTo(header).atRight().atBottomTo(footer);
         sc.setExpandHorizontal(true);

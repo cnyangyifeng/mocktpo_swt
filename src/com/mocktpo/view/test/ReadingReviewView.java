@@ -19,10 +19,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.ControlListener;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -151,7 +151,7 @@ public class ReadingReviewView extends Composite {
 
         pauseTestButton = new ImageButton(header, SWT.NONE, MT.IMAGE_PAUSE_TEST, MT.IMAGE_PAUSE_TEST_HOVER);
         FormDataSet.attach(pauseTestButton).atLeft(10).atBottom(10);
-        pauseTestButton.addMouseListener(new PauseTestButtonMouseListener());
+        pauseTestButton.addMouseListener(new PauseTestButtonMouseAdapter());
 
         /*
          * ==================================================
@@ -165,7 +165,6 @@ public class ReadingReviewView extends Composite {
     }
 
     private void updateHeader() {
-
         TestViewVo vo = page.getTestSchema().getView(page.getUserTestSession().getLastViewId());
         if (vo.isQuestionCaptionVisible()) {
             caption = new StyledText(header, SWT.SINGLE);
@@ -175,11 +174,11 @@ public class ReadingReviewView extends Composite {
 
         final ImageButton goToQuestionButton = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
         FormDataSet.attach(goToQuestionButton).atRight(10).atTop(10);
-        goToQuestionButton.addMouseListener(new GoToQuestionButtonMouseListener());
+        goToQuestionButton.addMouseListener(new GoToQuestionButtonMouseAdapter());
 
         final ImageButton returnButton = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
         FormDataSet.attach(returnButton).atRightTo(goToQuestionButton, 10).atTopTo(goToQuestionButton, 0, SWT.TOP);
-        returnButton.addMouseListener(new ReturnButtonMouseListener());
+        returnButton.addMouseListener(new ReturnButtonMouseAdapter());
     }
 
     private void initFooter() {
@@ -188,7 +187,6 @@ public class ReadingReviewView extends Composite {
     }
 
     private void initBody() {
-
         sc = new ScrolledComposite(this, SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTopTo(header).atRight().atBottomTo(footer);
         sc.setExpandHorizontal(true);
@@ -216,13 +214,12 @@ public class ReadingReviewView extends Composite {
     }
 
     private void updateBody() {
-
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
-        final StyledText dt = new StyledText(viewPort, SWT.WRAP);
-        GridDataSet.attach(dt).fillBoth();
-        StyledTextSet.decorate(dt).setBottomMargin(50).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(msgs.getString("reading_review_directions")).setTopMargin(20);
-        dt.setStyleRanges(new StyleRange[]{new StyleRange(461, 14, null, null, SWT.BOLD), new StyleRange(676, 6, null, null, SWT.BOLD)});
+        final StyledText directionsTextWidget = new StyledText(viewPort, SWT.WRAP);
+        GridDataSet.attach(directionsTextWidget).fillBoth();
+        StyledTextSet.decorate(directionsTextWidget).setBottomMargin(50).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(msgs.getString("reading_review_directions")).setTopMargin(20);
+        directionsTextWidget.setStyleRanges(new StyleRange[]{new StyleRange(461, 14, null, null, SWT.BOLD), new StyleRange(676, 6, null, null, SWT.BOLD)});
 
         final ReadingReviewTableRow tableHeader = new ReadingReviewTableRow(viewPort, SWT.NONE, msgs.getString("number"), msgs.getString("description"), msgs.getString("status"), 0, true);
         GridDataSet.attach(tableHeader).fillBoth();
@@ -232,14 +229,14 @@ public class ReadingReviewView extends Composite {
                 String statusText = getStatusText(vo.getViewId());
                 final ReadingReviewTableRow row = new ReadingReviewTableRow(viewPort, SWT.NONE, Integer.toString(vo.getQuestionNumberInSection()), getDescriptionText(vo), statusText, vo.getViewId());
                 GridDataSet.attach(row).fillBoth();
-                row.addMouseListener(new ReadingReviewTableCellMouseListener());
+                row.addMouseListener(new ReadingReviewTableCellMouseAdapter());
                 if (statusText.equals(STATUS_TEXT_NOT_SEEN)) {
                     row.setEnabled(false);
                 }
                 if (selectedViewId == vo.getViewId()) {
                     selectedTableRow = row;
                     selectedTableRow.setSelectionBackground();
-                    selectedTableRow.addControlListener(new ReadingReviewControlListener());
+                    selectedTableRow.addControlListener(new ReadingReviewControlAdapter());
                 }
             }
         }
@@ -299,9 +296,7 @@ public class ReadingReviewView extends Composite {
      */
 
     public void startTimer() {
-
         if (timed) {
-
             TestViewVo vo = page.getTestSchema().getView(page.getUserTestSession().getLastViewId());
 
             /*
@@ -324,7 +319,7 @@ public class ReadingReviewView extends Composite {
                 timerButton = new ImageButton(header, SWT.NONE, MT.IMAGE_HIDE_TIME, MT.IMAGE_HIDE_TIME_HOVER, MT.IMAGE_HIDE_TIME_DISABLED);
             }
             FormDataSet.attach(timerButton).atRightTo(timerLabel, 6).atBottomTo(timerLabel, -3, SWT.BOTTOM);
-            timerButton.addMouseListener(new TimerButtonMouseListener());
+            timerButton.addMouseListener(new TimerButtonMouseAdapter());
 
             /*
              * ==================================================
@@ -399,28 +394,16 @@ public class ReadingReviewView extends Composite {
      * ==================================================
      */
 
-    private class PauseTestButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class PauseTestButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             release();
             MyApplication.get().getWindow().toMainPage(page.getUserTestSession());
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class TimerButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class TimerButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -433,17 +416,9 @@ public class ReadingReviewView extends Composite {
             timerLabel.setVisible(!v);
             UserTestPersistenceUtils.saveTimerHidden(page.getUserTestSession(), v);
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class GoToQuestionButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class GoToQuestionButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -457,34 +432,18 @@ public class ReadingReviewView extends Composite {
             UserTestPersistenceUtils.saveToCurrentView(page.getUserTestSession(), selectedViewId);
             page.resume(page.getUserTestSession());
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ReturnButtonMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ReturnButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             release();
             page.resume(page.getUserTestSession());
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ReadingReviewTableCellMouseListener implements MouseListener {
-
-        @Override
-        public void mouseDoubleClick(MouseEvent e) {
-        }
+    private class ReadingReviewTableCellMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -498,17 +457,9 @@ public class ReadingReviewView extends Composite {
                 selectedViewId = c.getViewId();
             }
         }
-
-        @Override
-        public void mouseUp(MouseEvent e) {
-        }
     }
 
-    private class ReadingReviewControlListener implements ControlListener {
-
-        @Override
-        public void controlMoved(ControlEvent e) {
-        }
+    private class ReadingReviewControlAdapter extends ControlAdapter {
 
         @Override
         public void controlResized(ControlEvent e) {

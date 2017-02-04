@@ -4,7 +4,7 @@ import com.mocktpo.page.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.UserTestPersistenceUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.widget.ImageButton;
 import com.mocktpo.widget.VolumeControl;
 import org.eclipse.swt.SWT;
@@ -88,12 +88,12 @@ public class IndependentWritingTaskView extends SashTestView {
     @Override
     public void updateLeft() {
         final StyledText directionsTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP);
-        FormDataSet.attach(directionsTextWidget).atLeft().atTop().atRight().withWidth(ScreenUtils.getHalfClientWidth(d));
+        FormDataSet.attach(directionsTextWidget).atLeft(10).atTop(10).atRight(10).withWidth(ScreenUtils.getHalfClientWidth(d));
         StyledTextSet.decorate(directionsTextWidget).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("directions").getText());
         StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledText("directions").getStyles());
 
         final StyledText questionTextWidget = new StyledText(left, SWT.WRAP);
-        FormDataSet.attach(questionTextWidget).atLeft().atTopTo(directionsTextWidget).atRight().withWidth(ScreenUtils.getHalfClientWidth(d));
+        FormDataSet.attach(questionTextWidget).atLeftTo(directionsTextWidget, 0, SWT.LEFT).atTopTo(directionsTextWidget, 10).atRightTo(directionsTextWidget, 0, SWT.RIGHT).withWidth(ScreenUtils.getHalfClientWidth(d));
         StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
     }
@@ -101,27 +101,27 @@ public class IndependentWritingTaskView extends SashTestView {
     @Override
     public void updateRight() {
         Button copyButton = new Button(right, SWT.PUSH);
-        FormDataSet.attach(copyButton).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
+        FormDataSet.attach(copyButton).atLeft(10).atTop(10).withHeight(LC.BUTTON_HEIGHT_HINT_2);
         ButtonSet.decorate(copyButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("copy"));
         copyButton.addSelectionListener(new CopyButtonSelectionAdapter());
 
         Button cutButton = new Button(right, SWT.PUSH);
-        FormDataSet.attach(cutButton).atLeftTo(copyButton).atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
+        FormDataSet.attach(cutButton).atLeftTo(copyButton, 10).atTopTo(copyButton, 0, SWT.TOP).withHeight(LC.BUTTON_HEIGHT_HINT_2);
         ButtonSet.decorate(cutButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("cut"));
         cutButton.addSelectionListener(new CutButtonSelectionAdapter());
 
         Button pasteButton = new Button(right, SWT.PUSH);
-        FormDataSet.attach(pasteButton).atLeftTo(cutButton).atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
+        FormDataSet.attach(pasteButton).atLeftTo(cutButton, 10).atTopTo(copyButton, 0, SWT.TOP).withHeight(LC.BUTTON_HEIGHT_HINT_2);
         ButtonSet.decorate(pasteButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("paste"));
         pasteButton.addSelectionListener(new PasteButtonSelectionAdapter());
 
         wordCountLabel = new CLabel(right, SWT.NONE);
-        FormDataSet.attach(wordCountLabel).atTopTo(pasteButton, 0, SWT.TOP).atRight().atBottomTo(pasteButton, 0, SWT.BOTTOM).withWidth(WORD_COUNT_LABEL_WIDTH);
+        FormDataSet.attach(wordCountLabel).atTopTo(copyButton, 0, SWT.TOP).atRight(10).atBottomTo(pasteButton, 0, SWT.BOTTOM).withWidth(WORD_COUNT_LABEL_WIDTH);
         CLabelSet.decorate(wordCountLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setText(msgs.getString("word_count") + MT.STRING_SPACE + wordCount);
 
         int reserved = 10;
         writingTextWidget = new StyledText(right, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-        FormDataSet.attach(writingTextWidget).atLeftTo(copyButton, 0, SWT.LEFT).atTopTo(pasteButton).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d) - reserved);
+        FormDataSet.attach(writingTextWidget).atLeftTo(copyButton, 0, SWT.LEFT).atTopTo(pasteButton, 10).atBottom(10).withWidth(ScreenUtils.getHalfClientWidth(d) - reserved);
         StyledTextSet.decorate(writingTextWidget).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5);
         writingTextWidget.addModifyListener(new WritingTextModifyListener());
         KeyBindingSet.bind(writingTextWidget).selectAll();
