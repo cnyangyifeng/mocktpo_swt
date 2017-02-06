@@ -119,27 +119,18 @@ public class MainWindow {
         s.layout();
     }
 
-    public void toMainPage(UserTestSession ut) {
-        if (null == mp) {
-            mp = new MainPage(s, SWT.NONE);
-        }
-        mp.toTestsHomeView(ut);
-        stack.topControl = mp;
-        s.layout();
-    }
-
-    public void toTestPage(UserTestSession ut) {
+    public void toTestPage(UserTestSession userTestSession) {
         if (null == tp) {
-            tp = new TestPage(s, SWT.NONE, ut);
+            tp = new TestPage(s, SWT.NONE, userTestSession);
         }
-        tp.resume(ut);
+        tp.resume(userTestSession);
         stack.topControl = tp;
         s.layout();
     }
 
-    public void toReportPage(UserTestSession ut) {
+    public void toReportPage(UserTestSession userTestSession) {
         if (null == rp) {
-            rp = new ReportPage(s, SWT.NONE, ut);
+            rp = new ReportPage(s, SWT.NONE, userTestSession);
         }
         stack.topControl = rp;
         s.layout();

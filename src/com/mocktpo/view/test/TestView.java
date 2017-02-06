@@ -397,7 +397,7 @@ public abstract class TestView extends Composite {
         public void mouseDown(MouseEvent e) {
             release();
             UserTestPersistenceUtils.saveToCurrentView(TestView.this);
-            MyApplication.get().getWindow().toMainPage(page.getUserTestSession());
+            MyApplication.get().getWindow().toMainPage();
         }
     }
 

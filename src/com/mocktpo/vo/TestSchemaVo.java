@@ -16,6 +16,7 @@ public class TestSchemaVo implements Serializable {
 
     private int tid;
     private String title;
+    private int stars;
 
     public TestViewVo getView(int viewId) {
         for (TestViewVo v : views) {
@@ -50,6 +51,14 @@ public class TestSchemaVo implements Serializable {
         this.title = title;
     }
 
+    public int getStars() {
+        return stars;
+    }
+
+    public void setStars(int stars) {
+        this.stars = stars;
+    }
+
     /*
      * ==================================================
      *
@@ -59,9 +68,7 @@ public class TestSchemaVo implements Serializable {
      */
 
     public int getTotalQuestionCountInSectionAndGroup(int sectionType, int groupId) {
-
         int count = 0;
-
         switch (sectionType) {
             case ST.SECTION_TYPE_NONE:
                 break;
@@ -94,16 +101,12 @@ public class TestSchemaVo implements Serializable {
                 }
                 break;
         }
-
         return count;
     }
 
     public int getNextViewIdWhileTimeOut(int viewId) {
-
         TestViewVo vo = this.getView(viewId);
-
         int nextViewId = viewId;
-
         switch (vo.getSectionType()) {
             case ST.SECTION_TYPE_NONE:
                 break;
@@ -143,20 +146,16 @@ public class TestSchemaVo implements Serializable {
                 }
                 break;
         }
-
         return nextViewId;
     }
 
     public int getFirstViewIdByViewType(int viewType) {
-
         int viewId = 0;
-
         for (TestViewVo vo : this.getViews()) {
             if (viewType == vo.getViewType()) {
                 viewId = vo.getViewId();
             }
         }
-
         return viewId;
     }
 
@@ -166,6 +165,6 @@ public class TestSchemaVo implements Serializable {
 
     @Override
     public String toString() {
-        return "{\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + "\n}";
+        return "{\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + "\n,stars:" + this.getStars() + "\n}";
     }
 }

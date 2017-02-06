@@ -7,6 +7,7 @@ import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.RC;
 import com.mocktpo.vo.TestSchemaVo;
 import com.mocktpo.widget.TestCard;
 import org.apache.commons.io.FilenameUtils;
@@ -18,7 +19,8 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.*;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -37,7 +39,6 @@ public class TestsHomeView extends Composite {
 
     private Composite toolBar;
     private Composite body;
-    private List<TestCard> cards;
 
     /*
      * ==================================================
@@ -96,31 +97,24 @@ public class TestsHomeView extends Composite {
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
 
-        UserTestSessionMapper userTestSessionMapper = MyApplication.get().getSqlSession().getMapper(UserTestSessionMapper.class);
-        List<UserTestSession> list = userTestSessionMapper.find();
-        cards = new ArrayList<TestCard>();
-        for (UserTestSession userTestSession : list) {
-            TestCard card = new TestCard(body, SWT.NONE, userTestSession);
-            GridDataSet.attach(card).fillBoth();
-            cards.add(card);
-        }
+        initCards();
 
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
 
-    /*
-     * ==================================================
-     *
-     * Reset
-     *
-     * ==================================================
-     */
-
-    public void reset(UserTestSession userTestSession) {
-        for (TestCard card : cards) {
-            if (userTestSession.getTid() == card.getUserTestSession().getTid()) {
-                card.reset(userTestSession);
-                return;
+    private void initCards() {
+        UserTestSessionMapper userTestSessionMapper = MyApplication.get().getSqlSession().getMapper(UserTestSessionMapper.class);
+        List<UserTestSession> list = userTestSessionMapper.find();
+        for (UserTestSession userTestSession : list) {
+            try {
+                String fileAlias = userTestSession.getFileAlias();
+                File testPath = new File(this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + fileAlias, "utf-8")).toURI());
+                if (testPath.exists() && testPath.isDirectory()) {
+                    TestCard card = new TestCard(body, SWT.NONE, userTestSession);
+                    GridDataSet.attach(card).fillHorizontal();
+                }
+            } catch (Exception e) {
+                logger.error("Failed to find test data files according to database records.");
             }
         }
     }
@@ -137,7 +131,7 @@ public class TestsHomeView extends Composite {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-            logger.debug("Test cards sorted by name successfully.");
+            logger.info("Test cards sorted by name successfully.");
         }
     }
 
@@ -145,23 +139,18 @@ public class TestsHomeView extends Composite {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-            if (!d.isDisposed()) {
-                d.asyncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.OPEN);
-                        dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
-                        dialog.setFilterExtensions(new String[]{"*.zip"});
-                        String absoluteFileName = dialog.open();
-                        UnzipUtils.unzip(absoluteFileName);
-                        String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(absoluteFileName));
-                        TestSchemaVo testSchema = ConfigUtils.load(fileAlias, TestSchemaVo.class);
-                        final ActivationCodeMapper acm = MyApplication.get().getSqlSession().getMapper(ActivationCodeMapper.class);
-                        String email = acm.find().get(0).getEmail();
-                        UserTestPersistenceUtils.reset(email, fileAlias, testSchema);
-                    }
-                });
-            }
+            FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.OPEN);
+            dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
+            dialog.setFilterExtensions(new String[]{"*.zip"});
+            String absoluteFileName = dialog.open();
+            UnzipUtils.unzip(absoluteFileName);
+            String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(absoluteFileName));
+            TestSchemaVo testSchema = ConfigUtils.load(fileAlias, TestSchemaVo.class);
+            final ActivationCodeMapper activationCodeMapper = MyApplication.get().getSqlSession().getMapper(ActivationCodeMapper.class);
+            String email = activationCodeMapper.find().get(0).getEmail();
+            UserTestPersistenceUtils.reset(email, fileAlias, testSchema);
+            initCards();
+            update();
         }
     }
 }

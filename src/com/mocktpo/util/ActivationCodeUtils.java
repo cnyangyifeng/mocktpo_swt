@@ -44,7 +44,7 @@ public class ActivationCodeUtils {
             w.close();
             int code = c.getResponseCode();
             String message = c.getResponseMessage();
-            logger.debug("Http Response Code: " + code + "; message: " + message);
+            logger.info("Http Response Code: " + code + "; message: " + message);
             switch (code) {
                 case 200:
                     return EMAIL_HARDWARE_OK;

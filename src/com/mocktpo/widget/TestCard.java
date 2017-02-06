@@ -33,7 +33,7 @@ public class TestCard extends Composite {
     /* Widgets */
 
     private Composite header;
-    private CLabel starsLabel;
+    private Label starsLabel;
 
     /* Persistence */
 
@@ -76,13 +76,13 @@ public class TestCard extends Composite {
         CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(header);
 
-        final CLabel titleLabel = new CLabel(header, SWT.NONE);
+        final Label titleLabel = new Label(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop(5).atRight();
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setText(userTestSession.getTitle());
+        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setText(userTestSession.getTitle());
 
-        starsLabel = new CLabel(header, SWT.NONE);
+        starsLabel = new Label(header, SWT.NONE);
         FormDataSet.attach(starsLabel).atLeft().atTopTo(titleLabel, 15).atRight();
-        CLabelSet.decorate(starsLabel).setForeground(MT.COLOR_DARK_BLUE).setText(getStars());
+        LabelSet.decorate(starsLabel).setForeground(MT.COLOR_DARK_BLUE).setText(getStars());
 
         final Label divider = new Label(header, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(starsLabel, 10).atRight().withHeight(1);
@@ -113,25 +113,6 @@ public class TestCard extends Composite {
         FormDataSet.attach(enterButton).atLeft().atTopTo(divider, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(enterButton).setCursor(MT.CURSOR_HAND).setText(msgs.getString("enter"));
         enterButton.addSelectionListener(new EnterButtonSelectionAdapter());
-    }
-
-    /*
-     * ==================================================
-     *
-     * Reset
-     *
-     * ==================================================
-     */
-
-    public void reset(UserTestSession userTestSession) {
-        // TODO Reset
-        this.userTestSession = userTestSession;
-        d.asyncExec(new Runnable() {
-            @Override
-            public void run() {
-                starsLabel.setText(getStars());
-            }
-        });
     }
 
     private String getStars() {

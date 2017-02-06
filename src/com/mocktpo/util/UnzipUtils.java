@@ -27,7 +27,7 @@ public class UnzipUtils {
         while (entry != null) {
             File file = new File(rootPath, entry.getName());
             if (entry.isDirectory()) {
-                logger.debug(file.mkdirs());
+                logger.debug("Directory created for unzipping the file: {}.", file.mkdirs());
             } else {
                 OutputStream fos = new FileOutputStream(file);
                 IOUtils.copy(zipInputStream, fos);

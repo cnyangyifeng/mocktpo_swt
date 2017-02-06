@@ -23,10 +23,9 @@ public class UserAudioRecorder {
     public UserAudioRecorder(String fileName) {
         try {
             File rootPath = new File(this.getClass().getResource(URLDecoder.decode(RC.USERS_DATA_DIR, "utf-8")).toURI());
-            logger.info(rootPath.toString());
             file = new File(rootPath.toString() + MT.STRING_SLASH + fileName + RC.WAV_FILE_TYPE_SUFFIX);
             if (!file.exists()) {
-                logger.debug(file.createNewFile());
+                logger.info("User audio file created: {}.", file.createNewFile());
             }
             AudioFormat format = getAudioFormat();
             DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);

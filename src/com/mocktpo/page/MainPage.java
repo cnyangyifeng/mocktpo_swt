@@ -1,6 +1,5 @@
 package com.mocktpo.page;
 
-import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.CLabelSet;
 import com.mocktpo.util.CompositeSet;
 import com.mocktpo.util.FormDataSet;
@@ -114,15 +113,6 @@ public class MainPage extends Composite {
         if (null == testsHomeView) {
             testsHomeView = new TestsHomeView(body, SWT.NONE);
         }
-        stack.topControl = testsHomeView;
-        body.layout();
-    }
-
-    public void toTestsHomeView(UserTestSession userTestSession) {
-        if (null == testsHomeView) {
-            testsHomeView = new TestsHomeView(body, SWT.NONE);
-        }
-        testsHomeView.reset(userTestSession);
         stack.topControl = testsHomeView;
         body.layout();
     }

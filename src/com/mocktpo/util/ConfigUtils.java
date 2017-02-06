@@ -42,7 +42,7 @@ public class ConfigUtils {
             URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
             File file = new File(url.toURI());
             if (file.createNewFile()) {
-                logger.debug("File '" + fileAlias + RC.JSON_FILE_TYPE_SUFFIX + "' saved successfully.");
+                logger.info("File '" + fileAlias + RC.JSON_FILE_TYPE_SUFFIX + "' saved successfully.");
             }
             FileUtils.writeStringToFile(file, JSON.toJSONString(object), "utf-8", false);
         } catch (Exception e) {
