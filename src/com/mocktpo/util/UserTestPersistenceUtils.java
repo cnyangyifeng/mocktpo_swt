@@ -1,13 +1,12 @@
 package com.mocktpo.util;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTestAnswer;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
-import com.mocktpo.page.TestPage;
+import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.view.test.TestView;
+import com.mocktpo.views.test.TestView;
 import com.mocktpo.vo.TestSchemaVo;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.ibatis.session.SqlSession;
@@ -15,6 +14,10 @@ import org.apache.ibatis.session.SqlSession;
 public class UserTestPersistenceUtils {
 
     public static void reset(String email, String fileAlias, TestSchemaVo testSchema) {
+        if (null == testSchema) {
+            return;
+        }
+
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).delete(testSchema.getTid());
 
@@ -34,7 +37,7 @@ public class UserTestPersistenceUtils {
         userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
         userTestSession.setVolume(1.0);
         userTestSession.setVolumeControlHidden(true);
-        userTestSession.setStars(0);
+        userTestSession.setStars(testSchema.getStars());
         userTestSession.setLastViewId(1);
         userTestSession.setMaxViewId(1);
         sqlSession.getMapper(UserTestSessionMapper.class).insert(userTestSession);
