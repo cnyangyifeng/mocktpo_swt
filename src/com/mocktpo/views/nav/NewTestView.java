@@ -129,10 +129,11 @@ public class NewTestView extends Composite {
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
 
-    private void removeAllCards() {
+    public void refreshCards() {
         for (Control c : body.getChildren()) {
             c.dispose();
         }
+        initCards();
     }
 
     /*
@@ -162,8 +163,7 @@ public class NewTestView extends Composite {
             UnzipUtils.unzip(absoluteFileName);
             String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(absoluteFileName));
             if (null != fileAlias) {
-                removeAllCards();
-                initCards();
+                refreshCards();
             }
         }
     }

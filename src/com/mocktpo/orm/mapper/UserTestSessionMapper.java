@@ -132,5 +132,12 @@ public interface UserTestSessionMapper {
             "WHERE",
             "MT_TID = #{tid}"
     })
-    void delete(@Param("tid") int tid);
+    void deleteByTid(@Param("tid") int tid);
+
+    @Delete({
+            "DELETE FROM MT_USER_TEST_SESSION",
+            "WHERE",
+            "MT_SID = #{sid}"
+    })
+    void delete(UserTestSession userTestSession);
 }

@@ -88,18 +88,18 @@ public class MainPage extends Composite {
         FormDataSet.attach(brandLabel).atLeft().atTop().atRight().withHeight(80);
         CLabelSet.decorate(brandLabel).setBackground(MT.COLOR_OXFORD_BLUE).setFont(MT.FONT_X_LARGE_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_LOGO).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("app_name_alt"));
 
-        newTestLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(newTestLabel).atLeft().atTopTo(brandLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_DARK_BLUE).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("new_test"));
-        newTestLabel.addMouseListener(new SidebarItemAdapter());
-
         loadTestLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(loadTestLabel).atLeft().atTopTo(newTestLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
-        CLabelSet.decorate(loadTestLabel).setBackground(MT.COLOR_OXFORD_BLUE).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("load_test"));
+        FormDataSet.attach(loadTestLabel).atLeft().atTopTo(brandLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
+        CLabelSet.decorate(loadTestLabel).setBackground(MT.COLOR_DARK_BLUE).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("load_test"));
         loadTestLabel.addMouseListener(new SidebarItemAdapter());
 
+        newTestLabel = new CLabel(sidebar, SWT.NONE);
+        FormDataSet.attach(newTestLabel).atLeft().atTopTo(loadTestLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_OXFORD_BLUE).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("new_test"));
+        newTestLabel.addMouseListener(new SidebarItemAdapter());
+
         reportsLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(reportsLabel).atLeft().atTopTo(loadTestLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
+        FormDataSet.attach(reportsLabel).atLeft().atTopTo(newTestLabel).atRight().withHeight(LC.SIDEBAR_ITEM_HEIGHT);
         CLabelSet.decorate(reportsLabel).setBackground(MT.COLOR_OXFORD_BLUE).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("reports"));
         reportsLabel.addMouseListener(new SidebarItemAdapter());
 
@@ -125,19 +125,29 @@ public class MainPage extends Composite {
      * ==================================================
      */
 
-    public void toNewTestView() {
-        if (null == newTestView) {
-            newTestView = new NewTestView(body, SWT.NONE);
-        }
-        stack.topControl = newTestView;
-        body.layout();
-    }
-
     public void toLoadTestView() {
         if (null == loadTestView) {
             loadTestView = new LoadTestView(body, SWT.NONE);
         }
+        CLabelSet.decorate(loadTestLabel).setBackground(MT.COLOR_DARK_BLUE);
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+        CLabelSet.decorate(reportsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+        CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+        loadTestView.refreshRows();
         stack.topControl = loadTestView;
+        body.layout();
+    }
+
+    public void toNewTestView() {
+        if (null == newTestView) {
+            newTestView = new NewTestView(body, SWT.NONE);
+        }
+        CLabelSet.decorate(loadTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_DARK_BLUE);
+        CLabelSet.decorate(reportsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+        CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+        newTestView.refreshCards();
+        stack.topControl = newTestView;
         body.layout();
     }
 
@@ -145,6 +155,10 @@ public class MainPage extends Composite {
         if (null == reportsView) {
             reportsView = new ReportsView(body, SWT.NONE);
         }
+        CLabelSet.decorate(loadTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+        CLabelSet.decorate(reportsLabel).setBackground(MT.COLOR_DARK_BLUE);
+        CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
         stack.topControl = reportsView;
         body.layout();
     }
@@ -153,6 +167,10 @@ public class MainPage extends Composite {
         if (null == settingsView) {
             settingsView = new SettingsView(body, SWT.NONE);
         }
+        CLabelSet.decorate(loadTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+        CLabelSet.decorate(reportsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+        CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_DARK_BLUE);
         stack.topControl = settingsView;
         body.layout();
     }
@@ -178,29 +196,13 @@ public class MainPage extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             String text = ((CLabel) e.widget).getText();
-            if (msgs.getString("new_test").equals(text)) {
-                CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_DARK_BLUE);
-                CLabelSet.decorate(loadTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(reportsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                toNewTestView();
-            } else if (msgs.getString("load_test").equals(text)) {
-                CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(loadTestLabel).setBackground(MT.COLOR_DARK_BLUE);
-                CLabelSet.decorate(reportsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
+            if (msgs.getString("load_test").equals(text)) {
                 toLoadTestView();
+            } else if (msgs.getString("new_test").equals(text)) {
+                toNewTestView();
             } else if (msgs.getString("reports").equals(text)) {
-                CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(loadTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(reportsLabel).setBackground(MT.COLOR_DARK_BLUE);
-                CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
                 toReportsView();
             } else if (msgs.getString("settings").equals(text)) {
-                CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(loadTestLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(reportsLabel).setBackground(MT.COLOR_OXFORD_BLUE);
-                CLabelSet.decorate(settingsLabel).setBackground(MT.COLOR_DARK_BLUE);
                 toSettingsView();
             }
         }

@@ -1,22 +1,25 @@
 package com.mocktpo.views.nav;
 
+import com.mocktpo.MyApplication;
+import com.mocktpo.orm.domain.UserTestSession;
+import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
+import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.ButtonSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.widgets.TestRow;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.*;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class LoadTestView extends Composite {
@@ -89,13 +92,27 @@ public class LoadTestView extends Composite {
         sc.setContent(body);
 
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-        GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
+        GridLayoutSet.layout(body).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
 
         initRows();
     }
 
-    private void initRows() {
+    public void initRows() {
+        UserTestSessionMapper userTestSessionMapper = MyApplication.get().getSqlSession().getMapper(UserTestSessionMapper.class);
+        List<UserTestSession> list = userTestSessionMapper.find();
+        for (UserTestSession userTestSession : list) {
+            TestRow row = new TestRow(body, SWT.NONE, userTestSession);
+            GridDataSet.attach(row).fillHorizontal();
+        }
+        body.layout();
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+    }
+
+    public void refreshRows() {
+        for (Control c : body.getChildren()) {
+            c.dispose();
+        }
+        initRows();
     }
 
     /*
