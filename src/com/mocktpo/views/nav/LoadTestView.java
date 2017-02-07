@@ -1,35 +1,22 @@
 package com.mocktpo.views.nav;
 
-import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.orm.mapper.UserTestSessionMapper;
-import com.mocktpo.util.ConfigUtils;
-import com.mocktpo.util.UnzipUtils;
-import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.ButtonSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.vo.TestSchemaVo;
-import com.mocktpo.widgets.TestCard;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.widgets.*;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 
-import java.io.File;
-import java.net.URLDecoder;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class LoadTestView extends Composite {
@@ -86,12 +73,10 @@ public class LoadTestView extends Composite {
         final Button sortByNameButton = new Button(toolBar, SWT.PUSH);
         FormDataSet.attach(sortByNameButton).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(sortByNameButton).setText(msgs.getString("sort_by_name"));
-        sortByNameButton.addSelectionListener(new SortButtonSelectionAdapter());
 
         final Button importButton = new Button(toolBar, SWT.PUSH);
         FormDataSet.attach(importButton).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(importButton).setText(msgs.getString("import"));
-        importButton.addSelectionListener(new ImportButtonSelectionAdapter());
     }
 
     private void initBody() {
@@ -106,32 +91,11 @@ public class LoadTestView extends Composite {
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
 
-        initCards();
+        initRows();
     }
 
-    private void initCards() {
-        UserTestSessionMapper userTestSessionMapper = MyApplication.get().getSqlSession().getMapper(UserTestSessionMapper.class);
-        List<UserTestSession> list = userTestSessionMapper.find();
-        for (UserTestSession userTestSession : list) {
-            String fileAlias = userTestSession.getFileAlias();
-            try {
-                File testPath = new File(this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + fileAlias, "utf-8")).toURI());
-                if (testPath.exists() && testPath.isDirectory()) {
-                    TestCard card = new TestCard(body, SWT.NONE, userTestSession);
-                    GridDataSet.attach(card).fillHorizontal();
-                }
-            } catch (Exception e) {
-                logger.error("Failed to find \"{}\" test data files according to database records.", fileAlias);
-            }
-        }
-        body.layout();
+    private void initRows() {
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-    }
-
-    private void removeCards() {
-        for (Control c : body.getChildren()) {
-            c.dispose();
-        }
     }
 
     /*
@@ -141,32 +105,4 @@ public class LoadTestView extends Composite {
      *
      * ==================================================
      */
-
-    private class SortButtonSelectionAdapter extends SelectionAdapter {
-
-        @Override
-        public void widgetSelected(SelectionEvent e) {
-            logger.info("Test cards sorted by name successfully.");
-        }
-    }
-
-    private class ImportButtonSelectionAdapter extends SelectionAdapter {
-
-        @Override
-        public void widgetSelected(SelectionEvent e) {
-            FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.OPEN);
-            dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
-            dialog.setFilterExtensions(new String[]{"*.zip"});
-            String absoluteFileName = dialog.open();
-            UnzipUtils.unzip(absoluteFileName);
-            String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(absoluteFileName));
-            if (null == fileAlias) {
-                return;
-            }
-            TestSchemaVo testSchema = ConfigUtils.load(fileAlias, TestSchemaVo.class);
-            UserTestPersistenceUtils.reset(fileAlias, testSchema);
-            removeCards();
-            initCards();
-        }
-    }
 }

@@ -13,14 +13,12 @@ import org.apache.ibatis.session.SqlSession;
 
 public class UserTestPersistenceUtils {
 
-    public static void reset(String fileAlias, TestSchemaVo testSchema) {
+    public static UserTestSession newSession(String fileAlias, TestSchemaVo testSchema) {
         if (null == testSchema) {
-            return;
+            return null;
         }
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
-        sqlSession.getMapper(UserTestSessionMapper.class).delete(testSchema.getTid());
-
         UserTestSession userTestSession = new UserTestSession();
         userTestSession.setTid(testSchema.getTid());
         userTestSession.setTitle(testSchema.getTitle());
@@ -41,6 +39,7 @@ public class UserTestPersistenceUtils {
         userTestSession.setMaxViewId(1);
         sqlSession.getMapper(UserTestSessionMapper.class).insert(userTestSession);
         sqlSession.commit();
+        return userTestSession;
     }
 
     public static void saveToNextView(TestView testView) {

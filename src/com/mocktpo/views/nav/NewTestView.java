@@ -1,10 +1,8 @@
 package com.mocktpo.views.nav;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.orm.mapper.ActivationCodeMapper;
-import com.mocktpo.orm.mapper.UserTestSessionMapper;
-import com.mocktpo.util.*;
+import com.mocktpo.util.ConfigUtils;
+import com.mocktpo.util.UnzipUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
@@ -12,8 +10,9 @@ import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
-import com.mocktpo.util.widgets.*;
-import com.mocktpo.vo.TestSchemaVo;
+import com.mocktpo.util.widgets.ButtonSet;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.widgets.TestCard;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
@@ -25,8 +24,9 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.*;
 
 import java.io.File;
+import java.io.FileFilter;
+import java.net.URL;
 import java.net.URLDecoder;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class NewTestView extends Composite {
@@ -107,25 +107,29 @@ public class NewTestView extends Composite {
     }
 
     private void initCards() {
-        UserTestSessionMapper userTestSessionMapper = MyApplication.get().getSqlSession().getMapper(UserTestSessionMapper.class);
-        List<UserTestSession> list = userTestSessionMapper.find();
-        for (UserTestSession userTestSession : list) {
-            String fileAlias = userTestSession.getFileAlias();
-            try {
-                File testPath = new File(this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + fileAlias, "utf-8")).toURI());
-                if (testPath.exists() && testPath.isDirectory()) {
-                    TestCard card = new TestCard(body, SWT.NONE, userTestSession);
+        try {
+            File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).toURI()).listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File file) {
+                    return file.isDirectory();
+                }
+            });
+            for (File testDir : testDirs) {
+                String testDirName = testDir.getName();
+                URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + testDirName + MT.STRING_SLASH + testDirName + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
+                if (null != url) {
+                    TestCard card = new TestCard(body, SWT.NONE, testDir.getName());
                     GridDataSet.attach(card).fillHorizontal();
                 }
-            } catch (Exception e) {
-                logger.error("Failed to find \"{}\" test data files according to database records.", fileAlias);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         body.layout();
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
 
-    private void removeCards() {
+    private void removeAllCards() {
         for (Control c : body.getChildren()) {
             c.dispose();
         }
@@ -157,13 +161,10 @@ public class NewTestView extends Composite {
             String absoluteFileName = dialog.open();
             UnzipUtils.unzip(absoluteFileName);
             String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(absoluteFileName));
-            if (null == fileAlias) {
-                return;
+            if (null != fileAlias) {
+                removeAllCards();
+                initCards();
             }
-            TestSchemaVo testSchema = ConfigUtils.load(fileAlias, TestSchemaVo.class);
-            UserTestPersistenceUtils.reset(fileAlias, testSchema);
-            removeCards();
-            initCards();
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.mocktpo.widgets;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTestSession;
+import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -11,7 +11,7 @@ import com.mocktpo.util.widgets.ButtonSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import org.apache.ibatis.session.SqlSession;
+import com.mocktpo.vo.TestSchemaVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -44,13 +44,10 @@ public class TestCard extends Composite {
 
     private Composite header;
 
-    /* Persistence */
-
-    protected SqlSession sqlSession;
-
     /* Properties */
 
-    private UserTestSession userTestSession;
+    private String fileAlias;
+    private TestSchemaVo testSchema;
 
     /*
      * ==================================================
@@ -60,11 +57,11 @@ public class TestCard extends Composite {
      * ==================================================
      */
 
-    public TestCard(Composite parent, int style, UserTestSession userTestSession) {
+    public TestCard(Composite parent, int style, String fileAlias) {
         super(parent, style);
         this.d = parent.getDisplay();
-        this.sqlSession = MyApplication.get().getSqlSession();
-        this.userTestSession = userTestSession;
+        this.fileAlias = fileAlias;
+        this.testSchema = ConfigUtils.load(fileAlias, TestSchemaVo.class);
         init();
     }
 
@@ -87,9 +84,9 @@ public class TestCard extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop(5).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setText(userTestSession.getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setText(testSchema.getTitle());
 
-        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, getStars());
+        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testSchema.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 15).atRight();
 
         final Label divider = new Label(header, SWT.NONE);
@@ -110,26 +107,10 @@ public class TestCard extends Composite {
         FormDataSet.attach(divider).atLeft().atTopTo(sectionsComposite, 10).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
 
-        final Button enterButton = new Button(c, SWT.PUSH);
-        FormDataSet.attach(enterButton).atLeft().atTopTo(divider, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(enterButton).setText(msgs.getString("new_test_alt"));
-        enterButton.addSelectionListener(new EnterButtonSelectionAdapter());
-    }
-
-    private int getStars() {
-        return userTestSession.getStars();
-    }
-
-    /*
-     * ==================================================
-     *
-     * Getters and Setters
-     *
-     * ==================================================
-     */
-
-    public UserTestSession getUserTestSession() {
-        return userTestSession;
+        final Button newTestButton = new Button(c, SWT.PUSH);
+        FormDataSet.attach(newTestButton).atLeft().atTopTo(divider, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
+        ButtonSet.decorate(newTestButton).setText(msgs.getString("new_test_alt"));
+        newTestButton.addSelectionListener(new NewTestButtonSelectionAdapter());
     }
 
     /*
@@ -140,12 +121,11 @@ public class TestCard extends Composite {
      * ==================================================
      */
 
-    private class EnterButtonSelectionAdapter extends SelectionAdapter {
+    private class NewTestButtonSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-            UserTestPersistenceUtils.restart(userTestSession);
-            MyApplication.get().getWindow().toTestPage(userTestSession);
+            MyApplication.get().getWindow().toTestPage(UserTestPersistenceUtils.newSession(fileAlias, testSchema));
         }
     }
 }
