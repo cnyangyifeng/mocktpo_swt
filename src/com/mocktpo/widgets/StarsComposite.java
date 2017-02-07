@@ -1,11 +1,17 @@
 package com.mocktpo.widgets;
 
-import com.mocktpo.util.layout.FormLayoutSet;
+import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.layout.RowLayoutSet;
+import com.mocktpo.util.widgets.LabelSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 public class StarsComposite extends Composite {
+
+    /* Constants */
+
+    private static final int TOTAL_STARS_COUNT = 5;
 
     /* Properties */
 
@@ -23,12 +29,17 @@ public class StarsComposite extends Composite {
     }
 
     private void golbal() {
-        FormLayoutSet.layout(this);
+        RowLayoutSet.layout(this);
     }
 
     private void initBody() {
         for (int i = 0; i < count; i++) {
             final Label starLabel = new Label(this, SWT.NONE);
+            LabelSet.decorate(starLabel).setImage(MT.IMAGE_STAR);
+        }
+        for (int i = 0; i < TOTAL_STARS_COUNT - count; i++) {
+            final Label starLabel = new Label(this, SWT.NONE);
+            LabelSet.decorate(starLabel).setImage(MT.IMAGE_STAR_EMPTY);
         }
     }
 }

@@ -13,7 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 
 public class UserTestPersistenceUtils {
 
-    public static void reset(String email, String fileAlias, TestSchemaVo testSchema) {
+    public static void reset(String fileAlias, TestSchemaVo testSchema) {
         if (null == testSchema) {
             return;
         }
@@ -22,7 +22,6 @@ public class UserTestPersistenceUtils {
         sqlSession.getMapper(UserTestSessionMapper.class).delete(testSchema.getTid());
 
         UserTestSession userTestSession = new UserTestSession();
-        userTestSession.setEmail(email);
         userTestSession.setTid(testSchema.getTid());
         userTestSession.setTitle(testSchema.getTitle());
         userTestSession.setFileAlias(fileAlias);

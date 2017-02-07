@@ -146,7 +146,7 @@ public class SplashWindow {
     private void alloc() {
         white = new Color(d, 255, 255, 255);
         b = ImageUtils.load(d, "splash");
-        ico = ImageUtils.load(d, "icon");
+        ico = ImageUtils.load(d, "app_icon");
     }
 
     private void release() {

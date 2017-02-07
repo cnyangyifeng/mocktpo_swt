@@ -36,7 +36,6 @@ public class UserTestSessionMapperTest {
     public void testInsert() {
         for (int i = 1; i <= 48; i++) {
             UserTestSession userTestSession = new UserTestSession();
-            userTestSession.setEmail("165239796@qq.com");
             userTestSession.setTid(i);
             userTestSession.setTitle("TPO" + MT.STRING_SPACE + i);
             userTestSession.setFileAlias("tpo" + i);
@@ -70,7 +69,6 @@ public class UserTestSessionMapperTest {
     public void testUpdate() {
         int i = 1;
         UserTestSession userTestSession = new UserTestSession();
-        userTestSession.setEmail("165239796@qq.com");
         userTestSession.setTid(i);
         userTestSession.setTitle("TPO" + MT.STRING_SPACE + i);
         userTestSession.setFileAlias("tpo" + i);

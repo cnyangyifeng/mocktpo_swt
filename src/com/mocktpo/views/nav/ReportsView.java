@@ -1,10 +1,12 @@
-package com.mocktpo.views.home;
+package com.mocktpo.views.nav;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.orm.mapper.ActivationCodeMapper;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
-import com.mocktpo.util.*;
+import com.mocktpo.util.ConfigUtils;
+import com.mocktpo.util.UnzipUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
@@ -12,7 +14,9 @@ import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
-import com.mocktpo.util.widgets.*;
+import com.mocktpo.util.widgets.ButtonSet;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.TestSchemaVo;
 import com.mocktpo.widgets.TestCard;
 import org.apache.commons.io.FilenameUtils;
@@ -29,7 +33,7 @@ import java.net.URLDecoder;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class TestsHomeView extends Composite {
+public class ReportsView extends Composite {
 
     /* Logger and Messages */
 
@@ -54,7 +58,7 @@ public class TestsHomeView extends Composite {
      * ==================================================
      */
 
-    public TestsHomeView(Composite parent, int style) {
+    public ReportsView(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();
@@ -161,9 +165,7 @@ public class TestsHomeView extends Composite {
                 return;
             }
             TestSchemaVo testSchema = ConfigUtils.load(fileAlias, TestSchemaVo.class);
-            final ActivationCodeMapper activationCodeMapper = MyApplication.get().getSqlSession().getMapper(ActivationCodeMapper.class);
-            String email = activationCodeMapper.find().get(0).getEmail();
-            UserTestPersistenceUtils.reset(email, fileAlias, testSchema);
+            UserTestPersistenceUtils.reset(fileAlias, testSchema);
             removeCards();
             initCards();
         }

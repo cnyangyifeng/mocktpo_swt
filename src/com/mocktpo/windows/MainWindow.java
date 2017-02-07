@@ -114,7 +114,7 @@ public class MainWindow {
         if (null == mp) {
             mp = new MainPage(s, SWT.NONE);
         }
-        mp.toTestsHomeView();
+        mp.toNewTestView();
         stack.topControl = mp;
         s.layout();
     }

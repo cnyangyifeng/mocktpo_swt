@@ -24,7 +24,7 @@ public class ReadingQuestionView extends SashTestView {
 
     private CLabel indicator;
     private ScrolledComposite rightScrolled;
-    private Label checkWidgetA, checkWidgetB, checkWidgetC, checkWidgetD;
+    private Label checkLabelA, checkLabelB, checkLabelC, checkLabelD;
 
     /* Properties */
 
@@ -80,44 +80,44 @@ public class ReadingQuestionView extends SashTestView {
         StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
 
-        checkWidgetA = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkWidgetA).atLeft(10).atTopTo(questionTextWidget, 25);
-        LabelSet.decorate(checkWidgetA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED);
-        checkWidgetA.addMouseListener(new ChooseAnswerAdapter());
+        checkLabelA = new Label(c, SWT.NONE);
+        FormDataSet.attach(checkLabelA).atLeft(10).atTopTo(questionTextWidget, 25);
+        LabelSet.decorate(checkLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED);
+        checkLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelA = new Label(c, SWT.WRAP);
-        FormDataSet.attach(choiceLabelA).atLeftTo(checkWidgetA, 5).atTopTo(questionTextWidget, 20).atRight();
-        LabelSet.decorate(choiceLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceA").getText());
+        FormDataSet.attach(choiceLabelA).atLeftTo(checkLabelA, 5).atTopTo(questionTextWidget, 20).atRight();
+        LabelSet.decorate(choiceLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA").getText());
         choiceLabelA.addMouseListener(new ChooseAnswerAdapter());
 
-        checkWidgetB = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkWidgetB).atLeft(10).atTopTo(choiceLabelA, 25);
-        LabelSet.decorate(checkWidgetB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED);
-        checkWidgetB.addMouseListener(new ChooseAnswerAdapter());
+        checkLabelB = new Label(c, SWT.NONE);
+        FormDataSet.attach(checkLabelB).atLeft(10).atTopTo(choiceLabelA, 25);
+        LabelSet.decorate(checkLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED);
+        checkLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelB = new Label(c, SWT.WRAP);
-        FormDataSet.attach(choiceLabelB).atLeftTo(checkWidgetB, 5).atTopTo(choiceLabelA, 20).atRight();
-        LabelSet.decorate(choiceLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceB").getText());
+        FormDataSet.attach(choiceLabelB).atLeftTo(checkLabelB, 5).atTopTo(choiceLabelA, 20).atRight();
+        LabelSet.decorate(choiceLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB").getText());
         choiceLabelB.addMouseListener(new ChooseAnswerAdapter());
 
-        checkWidgetC = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkWidgetC).atLeft(10).atTopTo(choiceLabelB, 25);
-        LabelSet.decorate(checkWidgetC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED);
-        checkWidgetC.addMouseListener(new ChooseAnswerAdapter());
+        checkLabelC = new Label(c, SWT.NONE);
+        FormDataSet.attach(checkLabelC).atLeft(10).atTopTo(choiceLabelB, 25);
+        LabelSet.decorate(checkLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED);
+        checkLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelC = new Label(c, SWT.WRAP);
-        FormDataSet.attach(choiceLabelC).atLeftTo(checkWidgetC, 5).atTopTo(choiceLabelB, 20).atRight();
-        LabelSet.decorate(choiceLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceC").getText());
+        FormDataSet.attach(choiceLabelC).atLeftTo(checkLabelC, 5).atTopTo(choiceLabelB, 20).atRight();
+        LabelSet.decorate(choiceLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC").getText());
         choiceLabelC.addMouseListener(new ChooseAnswerAdapter());
 
-        checkWidgetD = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkWidgetD).atLeft(10).atTopTo(choiceLabelC, 25);
-        LabelSet.decorate(checkWidgetD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED);
-        checkWidgetD.addMouseListener(new ChooseAnswerAdapter());
+        checkLabelD = new Label(c, SWT.NONE);
+        FormDataSet.attach(checkLabelD).atLeft(10).atTopTo(choiceLabelC, 25);
+        LabelSet.decorate(checkLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED);
+        checkLabelD.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelD = new Label(c, SWT.WRAP);
-        FormDataSet.attach(choiceLabelD).atLeftTo(checkWidgetD, 5).atTopTo(choiceLabelC, 20).atRight();
-        LabelSet.decorate(choiceLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setImage(MT.IMAGE_UNCHECKED).setText(vo.getStyledText("choiceD").getText());
+        FormDataSet.attach(choiceLabelD).atLeftTo(checkLabelD, 5).atTopTo(choiceLabelC, 20).atRight();
+        LabelSet.decorate(choiceLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD").getText());
         choiceLabelD.addMouseListener(new ChooseAnswerAdapter());
 
         if (null != vo.getStyledText("footnote")) {
@@ -139,16 +139,16 @@ public class ReadingQuestionView extends SashTestView {
             case MT.CHOICE_NONE:
                 break;
             case MT.CHOICE_A:
-                LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_CHECKED);
+                LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_CHECKED);
                 break;
             case MT.CHOICE_B:
-                LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_CHECKED);
+                LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_CHECKED);
                 break;
             case MT.CHOICE_C:
-                LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_CHECKED);
+                LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_CHECKED);
                 break;
             case MT.CHOICE_D:
-                LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_CHECKED);
+                LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_CHECKED);
                 break;
         }
         logger.info("[Reading Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
@@ -240,28 +240,28 @@ public class ReadingQuestionView extends SashTestView {
             answer = (Integer) e.widget.getData(MT.KEY_CHOICE);
             switch (answer) {
                 case MT.CHOICE_A:
-                    LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_CHECKED);
+                    LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_UNCHECKED);
                     break;
                 case MT.CHOICE_B:
-                    LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_CHECKED);
+                    LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_UNCHECKED);
                     break;
                 case MT.CHOICE_C:
-                    LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_CHECKED);
-                    LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_CHECKED);
+                    LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_UNCHECKED);
                     break;
                 case MT.CHOICE_D:
-                    LabelSet.decorate(checkWidgetA).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(checkWidgetB).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(checkWidgetC).setImage(MT.IMAGE_UNCHECKED);
-                    LabelSet.decorate(checkWidgetD).setImage(MT.IMAGE_CHECKED);
+                    LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_UNCHECKED);
+                    LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_CHECKED);
                     break;
             }
             logger.info("[Reading Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);

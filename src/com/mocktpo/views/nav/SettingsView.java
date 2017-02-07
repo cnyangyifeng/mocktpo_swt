@@ -1,4 +1,4 @@
-package com.mocktpo.views.home;
+package com.mocktpo.views.nav;
 
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.layout.FormDataSet;
@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Display;
 
 import java.util.ResourceBundle;
 
-public class SettingsHomeView extends Composite {
+public class SettingsView extends Composite {
 
     /* Logger and Messages */
 
@@ -36,7 +36,7 @@ public class SettingsHomeView extends Composite {
      * ==================================================
      */
 
-    public SettingsHomeView(Composite parent, int style) {
+    public SettingsView(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();

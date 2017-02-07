@@ -46,7 +46,7 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
     private ImageButton nextOvalButton, okOvalButton;
     private VolumeControl volumeControl;
 
-    private Label checkWidgetA, checkWidgetB, checkWidgetC;
+    private Label checkLabelA, checkLabelB, checkLabelC;
     private StyledText tipsTextWidget;
     private Composite ac;
 
@@ -164,20 +164,20 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         FormDataSet.attach(l).atLeft().atTopTo(blank3, 20).atRight();
         CLabelSet.decorate(l).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("answer_choices"));
 
-        checkWidgetA = new Label(ac, SWT.WRAP);
-        FormDataSet.attach(checkWidgetA).atLeft().atTopTo(l, 20).atRight();
-        LabelSet.decorate(checkWidgetA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA").getText());
-        ChoiceLabelDragSourceSet.drag(checkWidgetA);
+        checkLabelA = new Label(ac, SWT.WRAP);
+        FormDataSet.attach(checkLabelA).atLeft().atTopTo(l, 20).atRight();
+        LabelSet.decorate(checkLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA").getText());
+        ChoiceLabelDragSourceSet.drag(checkLabelA);
 
-        checkWidgetB = new Label(ac, SWT.WRAP);
-        FormDataSet.attach(checkWidgetB).atLeft().atTopTo(checkWidgetA, 10).atRight();
-        LabelSet.decorate(checkWidgetB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB").getText());
-        ChoiceLabelDragSourceSet.drag(checkWidgetB);
+        checkLabelB = new Label(ac, SWT.WRAP);
+        FormDataSet.attach(checkLabelB).atLeft().atTopTo(checkLabelA, 10).atRight();
+        LabelSet.decorate(checkLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB").getText());
+        ChoiceLabelDragSourceSet.drag(checkLabelB);
 
-        checkWidgetC = new Label(ac, SWT.WRAP);
-        FormDataSet.attach(checkWidgetC).atLeft().atTopTo(checkWidgetB, 10).atRight();
-        LabelSet.decorate(checkWidgetC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC").getText());
-        ChoiceLabelDragSourceSet.drag(checkWidgetC);
+        checkLabelC = new Label(ac, SWT.WRAP);
+        FormDataSet.attach(checkLabelC).atLeft().atTopTo(checkLabelB, 10).atRight();
+        LabelSet.decorate(checkLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC").getText());
+        ChoiceLabelDragSourceSet.drag(checkLabelC);
     }
 
     /*
@@ -341,13 +341,13 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
             int oldAnswer = (Integer) e.getOldValue();
             switch (oldAnswer) {
                 case MT.CHOICE_A:
-                    LabelSet.decorate(checkWidgetA).setText(vo.getStyledText("checkWidgetA").getText());
+                    LabelSet.decorate(checkLabelA).setText(vo.getStyledText("checkLabelA").getText());
                     break;
                 case MT.CHOICE_B:
-                    LabelSet.decorate(checkWidgetB).setText(vo.getStyledText("checkWidgetB").getText());
+                    LabelSet.decorate(checkLabelB).setText(vo.getStyledText("checkLabelB").getText());
                     break;
                 case MT.CHOICE_C:
-                    LabelSet.decorate(checkWidgetC).setText(vo.getStyledText("checkWidgetC").getText());
+                    LabelSet.decorate(checkLabelC).setText(vo.getStyledText("checkLabelC").getText());
                     break;
             }
             int newAnswer = (Integer) e.getNewValue();
@@ -377,13 +377,13 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
             int answer = (Integer) answerLabel.getData(MT.KEY_CHOICE);
             switch (answer) {
                 case MT.CHOICE_A:
-                    LabelSet.decorate(checkWidgetA).setText(vo.getStyledText("checkWidgetA").getText());
+                    LabelSet.decorate(checkLabelA).setText(vo.getStyledText("checkLabelA").getText());
                     break;
                 case MT.CHOICE_B:
-                    LabelSet.decorate(checkWidgetB).setText(vo.getStyledText("checkWidgetB").getText());
+                    LabelSet.decorate(checkLabelB).setText(vo.getStyledText("checkLabelB").getText());
                     break;
                 case MT.CHOICE_C:
-                    LabelSet.decorate(checkWidgetC).setText(vo.getStyledText("checkWidgetC").getText());
+                    LabelSet.decorate(checkLabelC).setText(vo.getStyledText("checkLabelC").getText());
                     break;
             }
             answerLabel.setText("");

@@ -10,7 +10,6 @@ public interface UserTestSessionMapper {
     @Update({
             "CREATE TABLE IF NOT EXISTS MT_USER_TEST_SESSION (",
             "MT_SID INT PRIMARY KEY AUTO_INCREMENT,",
-            "MT_EMAIL VARCHAR(64),",
             "MT_TID INT,",
             "MT_TITLE VARCHAR(64),",
             "MT_FILE_ALIAS VARCHAR(64),",
@@ -38,7 +37,6 @@ public interface UserTestSessionMapper {
 
     @Insert({
             "INSERT INTO MT_USER_TEST_SESSION (",
-            "MT_EMAIL,",
             "MT_TID,",
             "MT_TITLE,",
             "MT_FILE_ALIAS,",
@@ -56,7 +54,6 @@ public interface UserTestSessionMapper {
             "MT_STARS,",
             "MT_LAST_VIEW_ID",
             ") VALUES (",
-            "#{email},",
             "#{tid},",
             "#{title},",
             "#{fileAlias},",
@@ -80,7 +77,6 @@ public interface UserTestSessionMapper {
     @Update({
             "UPDATE MT_USER_TEST_SESSION",
             "SET",
-            "MT_EMAIL = #{email},",
             "MT_TID = #{tid},",
             "MT_TITLE = #{title},",
             "MT_FILE_ALIAS = #{fileAlias},",
@@ -105,7 +101,6 @@ public interface UserTestSessionMapper {
     @Select({
             "SELECT",
             "MT_SID AS sid,",
-            "MT_EMAIL AS email,",
             "MT_TID AS tid,",
             "MT_TITLE AS title,",
             "MT_FILE_ALIAS AS fileAlias,",

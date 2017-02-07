@@ -2,19 +2,20 @@ package com.mocktpo.widgets;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.util.*;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.*;
+import com.mocktpo.util.widgets.ButtonSet;
+import com.mocktpo.util.widgets.CLabelSet;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.LabelSet;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
@@ -102,23 +103,16 @@ public class TestCard extends Composite {
         CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(c).marginWidth(0).marginHeight(0);
 
-        final CLabel restartLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(restartLabel).atLeft().atTop().atRight();
-        CLabelSet.decorate(restartLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("restart"));
-        restartLabel.addMouseListener(new RestartLabelMouseAdapter());
-
-        final CLabel reportLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(reportLabel).atLeft().atTopTo(restartLabel, 10).atRight();
-        CLabelSet.decorate(reportLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("report"));
-        reportLabel.addMouseListener(new ReportLabelMouseAdapter());
+        final SectionsComposite sectionsComposite = new SectionsComposite(c, SWT.NONE);
+        FormDataSet.attach(sectionsComposite).atLeft().atTop().atRight();
 
         final Label divider = new Label(c, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(reportLabel, 10).atRight().withHeight(1);
+        FormDataSet.attach(divider).atLeft().atTopTo(sectionsComposite, 10).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
 
         final Button enterButton = new Button(c, SWT.PUSH);
         FormDataSet.attach(enterButton).atLeft().atTopTo(divider, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(enterButton).setText(msgs.getString("enter"));
+        ButtonSet.decorate(enterButton).setText(msgs.getString("new_test_alt"));
         enterButton.addSelectionListener(new EnterButtonSelectionAdapter());
     }
 
@@ -146,27 +140,11 @@ public class TestCard extends Composite {
      * ==================================================
      */
 
-    private class RestartLabelMouseAdapter extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            UserTestPersistenceUtils.restart(userTestSession);
-            MyApplication.get().getWindow().toTestPage(userTestSession);
-        }
-    }
-
-    private class ReportLabelMouseAdapter extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toReportPage(userTestSession);
-        }
-    }
-
     private class EnterButtonSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
+            UserTestPersistenceUtils.restart(userTestSession);
             MyApplication.get().getWindow().toTestPage(userTestSession);
         }
     }
