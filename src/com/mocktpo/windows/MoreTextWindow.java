@@ -66,7 +66,7 @@ public class MoreTextWindow {
 
     private void golbal() {
         s.setBackgroundMode(SWT.INHERIT_FORCE);
-        WindowUtils.setLeftDialogBounds(s);
+        WindowUtils.setLeftWindowBounds(s);
         WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s);
     }

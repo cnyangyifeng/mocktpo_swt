@@ -71,7 +71,7 @@ public class RequiredAnswerWindow {
 
     private void golbal() {
         s.setBackgroundMode(SWT.INHERIT_FORCE);
-        WindowUtils.setCenterDialogBounds(s);
+        WindowUtils.setCenterWindowBounds(s);
         WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s);
     }
@@ -101,13 +101,13 @@ public class RequiredAnswerWindow {
         GridDataSet.attach(bodyLabel).centerBoth();
         LabelSet.decorate(bodyLabel).setAlignment(SWT.CENTER).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD);
         switch (type) {
-            case MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_ONE:
+            case MT.REQUIRED_ANSWER_WINDOW_TYPE_NO_ANSWER_FOR_ONE:
                 LabelSet.decorate(bodyLabel).setText(msgs.getString("no_answer_for_one"));
                 break;
-            case MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_MANY:
+            case MT.REQUIRED_ANSWER_WINDOW_TYPE_NO_ANSWER_FOR_MANY:
                 LabelSet.decorate(bodyLabel).setText(msgs.getString("no_answer_for_many"));
                 break;
-            case MT.REQUIRED_ANSWER_DIALOG_TYPE_INCORRECT_ANSWER_COUNT:
+            case MT.REQUIRED_ANSWER_WINDOW_TYPE_INCORRECT_ANSWER_COUNT:
                 LabelSet.decorate(bodyLabel).setText(msgs.getString("incorrect_answer_count"));
                 break;
         }

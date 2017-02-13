@@ -57,11 +57,11 @@ public interface LC {
     /*
      * ==================================================
      *
-     * Dialog
+     * Window
      *
      * ==================================================
      */
 
-    int DIALOG_WIDTH_HINT = 480;
-    int DIALOG_HEIGHT_HINT = 480;
+    int MODAL_WINDOW_WIDTH_HINT = 480;
+    int MODAL_WINDOW_HEIGHT_HINT = 480;
 }

@@ -13,8 +13,7 @@ import org.apache.ibatis.session.SqlSession;
 
 public class UserTestPersistenceUtils {
 
-    public static UserTestSession newSession(String fileAlias, TestSchemaVo testSchema) {
-        SqlSession sqlSession = MyApplication.get().getSqlSession();
+    public static UserTestSession newSession(String fileAlias, TestSchemaVo testSchema, boolean readingSectionEnabled, boolean listeningSectionEnabled, boolean speakingSectionEnabled, boolean writingSectionEnabled) {
         UserTestSession userTestSession = new UserTestSession();
         userTestSession.setTid(testSchema.getTid());
         userTestSession.setTitle(testSchema.getTitle());
@@ -33,8 +32,13 @@ public class UserTestPersistenceUtils {
         userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
         userTestSession.setVolume(1.0);
         userTestSession.setVolumeControlHidden(true);
+        userTestSession.setReadingSectionEnabled(readingSectionEnabled);
+        userTestSession.setListeningSectionEnabled(listeningSectionEnabled);
+        userTestSession.setSpeakingSectionEnabled(speakingSectionEnabled);
+        userTestSession.setWritingSectionEnabled(writingSectionEnabled);
         userTestSession.setLastViewId(1);
         userTestSession.setMaxViewId(1);
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).insert(userTestSession);
         sqlSession.commit();
         return userTestSession;
@@ -93,16 +97,6 @@ public class UserTestPersistenceUtils {
         sqlSession.commit();
     }
 
-    public static void saveVolumeControlVisibility(TestView testView) {
-        TestPage page = testView.getPage();
-        UserTestSession userTestSession = page.getUserTestSession();
-        userTestSession.setVolumeControlHidden(!testView.isVolumeControlVisible());
-
-        SqlSession sqlSession = MyApplication.get().getSqlSession();
-        sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
-        sqlSession.commit();
-    }
-
     public static void saveRemainingViewTime(TestView testView) {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
@@ -139,10 +133,38 @@ public class UserTestPersistenceUtils {
         sqlSession.commit();
     }
 
+    public static void saveVolumeControlVisibility(TestView testView) {
+        TestPage page = testView.getPage();
+        UserTestSession userTestSession = page.getUserTestSession();
+        userTestSession.setVolumeControlHidden(!testView.isVolumeControlVisible());
+
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
+        sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
+        sqlSession.commit();
+    }
+
     public static void saveVolume(TestView testView, double volume) {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
         userTestSession.setVolume(volume);
+
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
+        sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
+        sqlSession.commit();
+    }
+
+    public static void saveSpeakingReadingTime(TestView testView) {
+        TestPage page = testView.getPage();
+        TestViewVo vo = testView.getVo();
+        UserTestSession userTestSession = page.getUserTestSession();
+        switch (vo.getGroupId()) {
+            case 1:
+                userTestSession.setSpeakingReadingTime1(vo.getSpeakingReadingTime());
+                break;
+            case 2:
+                userTestSession.setSpeakingReadingTime2(vo.getSpeakingReadingTime());
+                break;
+        }
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);

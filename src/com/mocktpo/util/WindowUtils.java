@@ -40,17 +40,17 @@ public class WindowUtils {
         s.setMinimumSize(p.x + reserved, p.y);
     }
 
-    public static void setLeftDialogBounds(Shell s) {
+    public static void setLeftWindowBounds(Shell s) {
         Point clientSize = ScreenUtils.getClientSize(s.getDisplay());
-        int x = (clientSize.x / 2 - LC.DIALOG_WIDTH_HINT) / 2;
-        int y = (clientSize.y - LC.DIALOG_HEIGHT_HINT) / 2;
-        s.setBounds(x, y, LC.DIALOG_WIDTH_HINT, LC.DIALOG_HEIGHT_HINT);
+        int x = (clientSize.x / 2 - LC.MODAL_WINDOW_WIDTH_HINT) / 2;
+        int y = (clientSize.y - LC.MODAL_WINDOW_HEIGHT_HINT) / 2;
+        s.setBounds(x, y, LC.MODAL_WINDOW_WIDTH_HINT, LC.MODAL_WINDOW_HEIGHT_HINT);
     }
 
-    public static void setCenterDialogBounds(Shell s) {
+    public static void setCenterWindowBounds(Shell s) {
         Point clientSize = ScreenUtils.getClientSize(s.getDisplay());
-        int x = (clientSize.x - LC.DIALOG_WIDTH_HINT) / 2;
-        int y = (clientSize.y - LC.DIALOG_HEIGHT_HINT) / 2;
-        s.setBounds(x, y, LC.DIALOG_WIDTH_HINT, LC.DIALOG_HEIGHT_HINT);
+        int x = (clientSize.x - LC.MODAL_WINDOW_WIDTH_HINT) / 2;
+        int y = (clientSize.y - LC.MODAL_WINDOW_HEIGHT_HINT) / 2;
+        s.setBounds(x, y, LC.MODAL_WINDOW_WIDTH_HINT, LC.MODAL_WINDOW_HEIGHT_HINT);
     }
 }

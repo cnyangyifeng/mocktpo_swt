@@ -54,19 +54,19 @@ public class SectionsComposite extends Composite {
         writingcheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("writing"), enabled);
     }
 
-    public boolean isReadingChecked() {
+    public boolean isReadingSectionEnabled() {
         return readingCheckWidget.isChecked();
     }
 
-    public boolean isListeningChecked() {
+    public boolean isListeningSectionEnabled() {
         return listeningCheckWidget.isChecked();
     }
 
-    public boolean isSpeakingChecked() {
+    public boolean isSpeakingSectionEnabled() {
         return speakingCheckWidget.isChecked();
     }
 
-    public boolean isWritingChecked() {
+    public boolean isWritingSectionEnabled() {
         return writingcheckWidget.isChecked();
     }
 
@@ -108,9 +108,9 @@ public class SectionsComposite extends Composite {
             choiceLabel = new Label(this, SWT.WRAP);
             LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setText(text);
             if (enabled) {
+                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_BLACK);
                 choiceLabel.addMouseListener(chooseAnswerAdapter);
                 choiceLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
-                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_BLACK);
             } else {
                 LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_GRAY40);
             }

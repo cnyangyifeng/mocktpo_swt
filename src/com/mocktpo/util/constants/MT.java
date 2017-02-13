@@ -79,14 +79,14 @@ public interface MT {
     /*
      * ==================================================
      *
-     * Dialogs
+     * Windows
      *
      * ==================================================
      */
 
-    int REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_ONE = 1;
-    int REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_MANY = 2;
-    int REQUIRED_ANSWER_DIALOG_TYPE_INCORRECT_ANSWER_COUNT = 3;
+    int REQUIRED_ANSWER_WINDOW_TYPE_NO_ANSWER_FOR_ONE = 1;
+    int REQUIRED_ANSWER_WINDOW_TYPE_NO_ANSWER_FOR_MANY = 2;
+    int REQUIRED_ANSWER_WINDOW_TYPE_INCORRECT_ANSWER_COUNT = 3;
 
     /*
      * ==================================================

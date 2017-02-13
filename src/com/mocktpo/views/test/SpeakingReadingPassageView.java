@@ -1,13 +1,12 @@
 package com.mocktpo.views.test;
 
-import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.pages.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.util.ScreenUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
-import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.layout.FormDataSet;
+import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.StyleRangeUtils;
 import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.widgets.ImageButton;
@@ -52,7 +51,7 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
-        updateTime();
+        UserTestPersistenceUtils.saveSpeakingReadingTime(this);
 
         final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
         FormDataSet.attach(volumeOvalButton).atRight(10).atTop(10);
@@ -76,18 +75,6 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
                 page.resume();
             }
         });
-    }
-
-    private void updateTime() {
-        UserTestSession userTestSession = page.getUserTestSession();
-        switch (vo.getGroupId()) {
-            case 1:
-                userTestSession.setSpeakingReadingTime1(vo.getSpeakingReadingTime());
-                break;
-            case 2:
-                userTestSession.setSpeakingReadingTime2(vo.getSpeakingReadingTime());
-                break;
-        }
     }
 
     @Override

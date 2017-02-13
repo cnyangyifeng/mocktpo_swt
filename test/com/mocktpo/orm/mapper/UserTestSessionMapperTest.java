@@ -39,6 +39,7 @@ public class UserTestSessionMapperTest {
             userTestSession.setTid(i);
             userTestSession.setTitle("TPO" + MT.STRING_SPACE + i);
             userTestSession.setFileAlias("tpo" + i);
+            userTestSession.setStars(0);
             userTestSession.setStartTime(System.currentTimeMillis());
             userTestSession.setLastVisitTime(System.currentTimeMillis());
             userTestSession.setTimerHidden(false);
@@ -52,7 +53,10 @@ public class UserTestSessionMapperTest {
             userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
             userTestSession.setVolume(1.0);
             userTestSession.setVolumeControlHidden(true);
-            userTestSession.setStars(0);
+            userTestSession.setReadingSectionEnabled(true);
+            userTestSession.setListeningSectionEnabled(true);
+            userTestSession.setSpeakingSectionEnabled(true);
+            userTestSession.setWritingSectionEnabled(true);
             userTestSession.setLastViewId(1);
             userTestSession.setMaxViewId(1);
             mapper.insert(userTestSession);
@@ -74,6 +78,9 @@ public class UserTestSessionMapperTest {
         userTestSession.setTid(i);
         userTestSession.setTitle("TPO" + MT.STRING_SPACE + i);
         userTestSession.setFileAlias("tpo" + i);
+        userTestSession.setStars(0);
+        userTestSession.setStartTime(System.currentTimeMillis());
+        userTestSession.setLastVisitTime(System.currentTimeMillis());
         userTestSession.setTimerHidden(false);
         userTestSession.setReadingTime(MT.TIME_READING_SECTION);
         userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
@@ -85,7 +92,10 @@ public class UserTestSessionMapperTest {
         userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
         userTestSession.setVolume(1.0);
         userTestSession.setVolumeControlHidden(true);
-        userTestSession.setStars(0);
+        userTestSession.setReadingSectionEnabled(true);
+        userTestSession.setListeningSectionEnabled(true);
+        userTestSession.setSpeakingSectionEnabled(true);
+        userTestSession.setWritingSectionEnabled(true);
         userTestSession.setLastViewId(1);
         userTestSession.setMaxViewId(1);
         mapper.update(userTestSession);

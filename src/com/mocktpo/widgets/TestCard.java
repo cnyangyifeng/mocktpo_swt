@@ -19,10 +19,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.*;
 
 import java.util.ResourceBundle;
 
@@ -44,6 +41,7 @@ public class TestCard extends Composite {
     /* Widgets */
 
     private Composite header;
+    private SectionsComposite sectionsComposite;
 
     /* Properties */
 
@@ -101,7 +99,7 @@ public class TestCard extends Composite {
         CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(c).marginWidth(0).marginHeight(0);
 
-        final SectionsComposite sectionsComposite = new SectionsComposite(c, SWT.NONE, 2, true);
+        sectionsComposite = new SectionsComposite(c, SWT.NONE, 2, true);
         FormDataSet.attach(sectionsComposite).atLeft().atTop().atRight();
 
         final Label divider = new Label(c, SWT.NONE);
@@ -126,7 +124,19 @@ public class TestCard extends Composite {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
-            MyApplication.get().getWindow().toTestPage(UserTestPersistenceUtils.newSession(fileAlias, testSchema));
+            boolean readingSectionEnabled = sectionsComposite.isReadingSectionEnabled();
+            boolean listeningSectionEnabled = sectionsComposite.isListeningSectionEnabled();
+            boolean speakingSectionEnabled = sectionsComposite.isSpeakingSectionEnabled();
+            boolean writingSectionEnabled = sectionsComposite.isWritingSectionEnabled();
+            if (!readingSectionEnabled && !listeningSectionEnabled && !speakingSectionEnabled && !writingSectionEnabled) {
+                MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.OK);
+                box.setText("Select Test Sections");
+                box.setMessage("Please select at least one section to start a new test.");
+                box.open();
+            } else {
+                UserTestSession userTestSession = UserTestPersistenceUtils.newSession(fileAlias, testSchema, readingSectionEnabled, listeningSectionEnabled, speakingSectionEnabled, writingSectionEnabled);
+                MyApplication.get().getWindow().toTestPage(userTestSession);
+            }
         }
     }
 }

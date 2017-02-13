@@ -257,7 +257,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             } else {
                 nextOvalButton.setEnabled(true);
                 okOvalButton.setEnabled(false);
-                RequiredAnswerWindow d = new RequiredAnswerWindow(MT.REQUIRED_ANSWER_DIALOG_TYPE_NO_ANSWER_FOR_ONE);
+                RequiredAnswerWindow d = new RequiredAnswerWindow(MT.REQUIRED_ANSWER_WINDOW_TYPE_NO_ANSWER_FOR_ONE);
                 d.openAndWaitForDisposal();
             }
         }

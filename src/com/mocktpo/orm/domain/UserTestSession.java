@@ -24,6 +24,10 @@ public class UserTestSession {
     private int independentWritingTime;
     private double volume;
     private boolean volumeControlHidden;
+    private boolean readingSectionEnabled;
+    private boolean listeningSectionEnabled;
+    private boolean speakingSectionEnabled;
+    private boolean writingSectionEnabled;
     private int lastViewId;
     private int maxViewId;
 
@@ -169,6 +173,38 @@ public class UserTestSession {
 
     public void setVolumeControlHidden(boolean volumeControlHidden) {
         this.volumeControlHidden = volumeControlHidden;
+    }
+
+    public boolean isReadingSectionEnabled() {
+        return readingSectionEnabled;
+    }
+
+    public void setReadingSectionEnabled(boolean readingSectionEnabled) {
+        this.readingSectionEnabled = readingSectionEnabled;
+    }
+
+    public boolean isListeningSectionEnabled() {
+        return listeningSectionEnabled;
+    }
+
+    public void setListeningSectionEnabled(boolean listeningSectionEnabled) {
+        this.listeningSectionEnabled = listeningSectionEnabled;
+    }
+
+    public boolean isSpeakingSectionEnabled() {
+        return speakingSectionEnabled;
+    }
+
+    public void setSpeakingSectionEnabled(boolean speakingSectionEnabled) {
+        this.speakingSectionEnabled = speakingSectionEnabled;
+    }
+
+    public boolean isWritingSectionEnabled() {
+        return writingSectionEnabled;
+    }
+
+    public void setWritingSectionEnabled(boolean writingSectionEnabled) {
+        this.writingSectionEnabled = writingSectionEnabled;
     }
 
     public int getLastViewId() {
