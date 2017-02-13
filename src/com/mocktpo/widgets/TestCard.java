@@ -1,6 +1,7 @@
 package com.mocktpo.widgets;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.util.constants.LC;
@@ -100,7 +101,7 @@ public class TestCard extends Composite {
         CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(c).marginWidth(0).marginHeight(0);
 
-        final SectionsComposite sectionsComposite = new SectionsComposite(c, SWT.NONE);
+        final SectionsComposite sectionsComposite = new SectionsComposite(c, SWT.NONE, 2, true);
         FormDataSet.attach(sectionsComposite).atLeft().atTop().atRight();
 
         final Label divider = new Label(c, SWT.NONE);

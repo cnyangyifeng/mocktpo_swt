@@ -1,18 +1,23 @@
 package com.mocktpo.pages;
 
+import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.util.*;
+import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.*;
+import com.mocktpo.util.widgets.ButtonSet;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.TestSchemaVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -81,6 +86,11 @@ public class ReportPage extends Composite {
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
+        final Button backButton = new Button(toolBar, SWT.PUSH);
+        FormDataSet.attach(backButton).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT);
+        ButtonSet.decorate(backButton).setImage(MT.IMAGE_ARROW_BACK).setText(msgs.getString("back"));
+        backButton.addSelectionListener(new BackButtonSelectionAdapter());
+
         final Button exportButton = new Button(toolBar, SWT.PUSH);
         FormDataSet.attach(exportButton).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(exportButton).setText(msgs.getString("export"));
@@ -103,6 +113,22 @@ public class ReportPage extends Composite {
         FormDataSet.attach(browser).atLeft().atTop().atRight().atBottom();
 
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+    }
+
+    /*
+     * ==================================================
+     *
+     * Listeners
+     *
+     * ==================================================
+     */
+
+    private class BackButtonSelectionAdapter extends SelectionAdapter {
+
+        @Override
+        public void widgetSelected(SelectionEvent e) {
+            MyApplication.get().getWindow().toMainPage();
+        }
     }
 
     /*

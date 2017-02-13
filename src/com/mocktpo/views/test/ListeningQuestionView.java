@@ -334,7 +334,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             }
             logger.info("[Listening Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
             answerText = Integer.toString(answer);
-            UserTestPersistenceUtils.saveAnswers(ListeningQuestionView.this, answerText);
+            UserTestPersistenceUtils.saveAnswer(ListeningQuestionView.this, answerText);
         }
     }
 

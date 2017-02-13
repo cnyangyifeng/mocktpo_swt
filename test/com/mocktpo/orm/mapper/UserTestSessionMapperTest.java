@@ -39,6 +39,8 @@ public class UserTestSessionMapperTest {
             userTestSession.setTid(i);
             userTestSession.setTitle("TPO" + MT.STRING_SPACE + i);
             userTestSession.setFileAlias("tpo" + i);
+            userTestSession.setStartTime(System.currentTimeMillis());
+            userTestSession.setLastVisitTime(System.currentTimeMillis());
             userTestSession.setTimerHidden(false);
             userTestSession.setReadingTime(MT.TIME_READING_SECTION);
             userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);

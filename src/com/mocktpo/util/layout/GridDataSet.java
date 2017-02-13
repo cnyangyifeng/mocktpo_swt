@@ -28,7 +28,7 @@ public class GridDataSet {
         data.horizontalAlignment = GridData.FILL;
         data.verticalAlignment = GridData.BEGINNING;
         data.grabExcessHorizontalSpace = true;
-        data.grabExcessVerticalSpace = true;
+        data.grabExcessVerticalSpace = false;
         return this;
     }
 

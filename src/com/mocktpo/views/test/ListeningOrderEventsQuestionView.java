@@ -365,7 +365,7 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
             }
             logger.info("[Listening Order Events Question {}] Answers: ({}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3);
             answerText = answer1 + MT.STRING_COMMA + answer2 + MT.STRING_COMMA + answer3;
-            UserTestPersistenceUtils.saveAnswers(ListeningOrderEventsQuestionView.this, answerText);
+            UserTestPersistenceUtils.saveAnswer(ListeningOrderEventsQuestionView.this, answerText);
         }
     }
 

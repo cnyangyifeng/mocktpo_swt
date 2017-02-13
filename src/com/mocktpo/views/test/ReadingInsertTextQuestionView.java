@@ -933,7 +933,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
             }
             logger.info("[Reading Insert Text Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
             answerText = Integer.toString(answer);
-            UserTestPersistenceUtils.saveAnswers(ReadingInsertTextQuestionView.this, answerText);
+            UserTestPersistenceUtils.saveAnswer(ReadingInsertTextQuestionView.this, answerText);
         }
     }
 }

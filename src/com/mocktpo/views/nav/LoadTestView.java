@@ -76,10 +76,6 @@ public class LoadTestView extends Composite {
         final Button sortByNameButton = new Button(toolBar, SWT.PUSH);
         FormDataSet.attach(sortByNameButton).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT);
         ButtonSet.decorate(sortByNameButton).setText(msgs.getString("sort_by_name"));
-
-        final Button importButton = new Button(toolBar, SWT.PUSH);
-        FormDataSet.attach(importButton).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(importButton).setText(msgs.getString("import"));
     }
 
     private void initBody() {
@@ -93,19 +89,17 @@ public class LoadTestView extends Composite {
 
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         GridLayoutSet.layout(body).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
-
-        initRows();
     }
 
     public void initRows() {
-        UserTestSessionMapper userTestSessionMapper = MyApplication.get().getSqlSession().getMapper(UserTestSessionMapper.class);
-        List<UserTestSession> list = userTestSessionMapper.find();
+        List<UserTestSession> list = MyApplication.get().getSqlSession().getMapper(UserTestSessionMapper.class).find();
         for (UserTestSession userTestSession : list) {
             TestRow row = new TestRow(body, SWT.NONE, userTestSession);
             GridDataSet.attach(row).fillHorizontal();
         }
         body.layout();
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+        sc.setOrigin(0, 0);
     }
 
     public void refreshRows() {

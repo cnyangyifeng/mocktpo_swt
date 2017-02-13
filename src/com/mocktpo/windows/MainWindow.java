@@ -75,10 +75,8 @@ public class MainWindow {
     }
 
     private void initViews() {
-
         stack = new StackLayout();
         s.setLayout(stack);
-
         toMainPage();
     }
 

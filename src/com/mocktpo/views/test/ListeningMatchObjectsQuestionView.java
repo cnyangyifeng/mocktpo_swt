@@ -464,7 +464,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
             }
             logger.info("[Listening Match Objects Question {}] Answers: ({}, {}, {}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3, answer4, answer5);
             answerText = answer1 + MT.STRING_COMMA + answer2 + MT.STRING_COMMA + answer3 + MT.STRING_COMMA + answer4 + MT.STRING_COMMA + answer5;
-            UserTestPersistenceUtils.saveAnswers(ListeningMatchObjectsQuestionView.this, answerText);
+            UserTestPersistenceUtils.saveAnswer(ListeningMatchObjectsQuestionView.this, answerText);
         }
     }
 

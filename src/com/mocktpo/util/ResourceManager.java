@@ -95,6 +95,7 @@ public class ResourceManager {
          */
 
         caches.putIfAbsent(MT.IMAGE_APP_ICON, ImageUtils.load(d, "app_icon"));
+        caches.putIfAbsent(MT.IMAGE_ARROW_BACK, ImageUtils.load(d, "arrow_back"));
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL, ImageUtils.load(d, "back_o"));
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL_DISABLED, ImageUtils.load(d, "back_o_d"));
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL_HOVER, ImageUtils.load(d, "back_o_h"));
@@ -112,6 +113,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL, ImageUtils.load(d, "continue_o"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL_DISABLED, ImageUtils.load(d, "continue_o_d"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL_HOVER, ImageUtils.load(d, "continue_o_h"));
+        caches.putIfAbsent(MT.IMAGE_DELETE, ImageUtils.load(d, "delete"));
+        caches.putIfAbsent(MT.IMAGE_DELETE_HOVER, ImageUtils.load(d, "delete_h"));
         caches.putIfAbsent(MT.IMAGE_ETS_TOEFL, ImageUtils.load(d, "ets_toefl"));
         caches.putIfAbsent(MT.IMAGE_GO_TO_QUESTION, ImageUtils.load(d, "go_to_question"));
         caches.putIfAbsent(MT.IMAGE_GO_TO_QUESTION_HOVER, ImageUtils.load(d, "go_to_question_h"));
@@ -153,7 +156,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME_HOVER, ImageUtils.load(d, "show_time_h"));
         caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, "splash"));
         caches.putIfAbsent(MT.IMAGE_STAR, ImageUtils.load(d, "star"));
-        caches.putIfAbsent(MT.IMAGE_STAR_EMPTY, ImageUtils.load(d, "star_empty"));
+        caches.putIfAbsent(MT.IMAGE_STAR_OUTLINE, ImageUtils.load(d, "star_outline"));
         caches.putIfAbsent(MT.IMAGE_STOP_RECORDING, ImageUtils.load(d, "stop_recording"));
         caches.putIfAbsent(MT.IMAGE_STOP_RECORDING_HOVER, ImageUtils.load(d, "stop_recording_h"));
         caches.putIfAbsent(MT.IMAGE_UNBOXED, ImageUtils.load(d, "unboxed"));

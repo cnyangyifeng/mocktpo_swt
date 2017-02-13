@@ -499,7 +499,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                 logger.info("[Listening Multiple-Answers Question {}] Answers: ({}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3);
                 answerText = answer1 + MT.STRING_COMMA + answer2 + MT.STRING_COMMA + answer3;
             }
-            UserTestPersistenceUtils.saveAnswers(ListeningMultipleAnswersQuestionView.this, answerText);
+            UserTestPersistenceUtils.saveAnswer(ListeningMultipleAnswersQuestionView.this, answerText);
         }
     }
 

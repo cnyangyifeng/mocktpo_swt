@@ -208,7 +208,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         timerLabel = new CLabel(timerPanel, SWT.CENTER);
         FormDataSet.attach(timerLabel).atLeft().atTopTo(timerHeader).atRight();
         recorderCountDown = vo.getResponseTime();
-        CLabelSet.decorate(timerLabel).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(5).setText(TimeUtils.displayTime(recorderCountDown));
+        CLabelSet.decorate(timerLabel).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(5).setText(TimeUtils.displayTimePeriod(recorderCountDown));
 
         stopRecordingButton = new ImageButton(viewPort, SWT.NONE, MT.IMAGE_STOP_RECORDING, MT.IMAGE_STOP_RECORDING_HOVER);
         FormDataSet.attach(stopRecordingButton).fromLeft(50, -STOP_RECORDING_BUTTON_WIDTH / 2).atTopTo(timerPanel, 20);
@@ -416,7 +416,7 @@ public class AdjustingMicrophoneView extends StackTestView {
                             recordAgainButton.setEnabled(false);
                             playbackResponseButton.setEnabled(false);
                             recorderCountDown = vo.getResponseTime();
-                            CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTime(recorderCountDown));
+                            CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown));
                             subViewId = SUB_VIEW_RECORDING;
                             stack.topControl = getSubView(subViewId);
                             body.layout();
@@ -490,7 +490,7 @@ public class AdjustingMicrophoneView extends StackTestView {
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
-                        CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTime(recorderCountDown--));
+                        CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown--));
                     }
                 });
             }

@@ -251,7 +251,7 @@ public abstract class TestView extends Composite {
 
             timerLabel = new Label(header, SWT.NONE);
             FormDataSet.attach(timerLabel).atRight(10).atBottomTo(pauseTestButton, 0, SWT.BOTTOM);
-            LabelSet.decorate(timerLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE).setText(TimeUtils.displayTime(page.getUserTestSession().getRemainingViewTime(vo))).setVisible(!hidden);
+            LabelSet.decorate(timerLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE).setText(TimeUtils.displayTimePeriod(page.getUserTestSession().getRemainingViewTime(vo))).setVisible(!hidden);
 
             if (!vo.isTimerButtonUnavailable()) {
                 if (hidden) {
@@ -308,7 +308,7 @@ public abstract class TestView extends Composite {
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
-                        LabelSet.decorate(timerLabel).setText(TimeUtils.displayTime(countDown--));
+                        LabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(countDown--));
                     }
                 });
                 if (0 >= countDown) {

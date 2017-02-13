@@ -237,7 +237,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
             wordCount = WordCountUtils.count(writingTextWidget.getText());
             CLabelSet.decorate(wordCountLabel).setText(msgs.getString("word_count") + MT.STRING_SPACE + wordCount);
             answerText = writingTextWidget.getText();
-            UserTestPersistenceUtils.saveAnswers(IntegratedWritingTaskView.this, answerText);
+            UserTestPersistenceUtils.saveAnswer(IntegratedWritingTaskView.this, answerText);
         }
     }
 }

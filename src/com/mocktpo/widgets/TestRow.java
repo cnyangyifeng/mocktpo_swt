@@ -2,7 +2,8 @@ package com.mocktpo.widgets;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.orm.mapper.UserTestSessionMapper;
+import com.mocktpo.util.TimeUtils;
+import com.mocktpo.util.UserTestPersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -11,7 +12,6 @@ import com.mocktpo.util.widgets.ButtonSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -89,7 +89,7 @@ public class TestRow extends Composite {
 
         deleteLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(deleteLabel).atBottomTo(titleLabel, 0, SWT.BOTTOM).atRight();
-        CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_GRAY40).setFont(MT.FONT_SMALL).setText(msgs.getString("delete"));
+        CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_GRAY40).setFont(MT.FONT_SMALL).setImage(MT.IMAGE_DELETE);
         deleteLabel.addMouseListener(new DeleteLabelMouseAdapter());
         deleteLabel.addMouseTrackListener(new DeleteLabelMouseTrackAdapter());
 
@@ -104,17 +104,30 @@ public class TestRow extends Composite {
         CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(c).marginWidth(0).marginHeight(0);
 
-        final SectionsComposite sectionsComposite = new SectionsComposite(c, SWT.NONE);
-        FormDataSet.attach(sectionsComposite).atLeft().atTop().atRight();
+        final CLabel lastVisitTimeLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(lastVisitTimeLabel).atLeft().atTop();
+        CLabelSet.decorate(lastVisitTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displayTime(userTestSession.getLastVisitTime()) + MT.STRING_SPACE + msgs.getString("visited"));
+
+        final CLabel startTimeLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(startTimeLabel).atLeftTo(lastVisitTimeLabel, 20).atTopTo(lastVisitTimeLabel, 0, SWT.TOP).atRight();
+        CLabelSet.decorate(startTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displayTime(userTestSession.getStartTime()) + MT.STRING_SPACE + msgs.getString("initialized"));
+
+        final SectionsComposite sectionsComposite = new SectionsComposite(c, SWT.NONE, 4, false);
+        FormDataSet.attach(sectionsComposite).atLeft().atTopTo(lastVisitTimeLabel, 10).atRight();
 
         final Label divider = new Label(c, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(sectionsComposite, 10).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
 
-        final Button loadTestButton = new Button(c, SWT.PUSH);
-        FormDataSet.attach(loadTestButton).atLeft().atTopTo(divider, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(loadTestButton).setText(msgs.getString("load_test_alt"));
-        loadTestButton.addSelectionListener(new LoadTestButtonSelectionAdapter());
+        final Button continueButton = new Button(c, SWT.PUSH);
+        FormDataSet.attach(continueButton).atLeft().atTopTo(divider, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
+        ButtonSet.decorate(continueButton).setText(msgs.getString("continue"));
+        continueButton.addSelectionListener(new ContinueButtonSelectionAdapter());
+
+        final Button reportButton = new Button(c, SWT.PUSH);
+        FormDataSet.attach(reportButton).atLeftTo(continueButton, 10).atTopTo(continueButton, 0, SWT.TOP).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
+        ButtonSet.decorate(reportButton).setText(msgs.getString("report"));
+        reportButton.addSelectionListener(new ReportButtonSelectionAdapter());
     }
 
     /*
@@ -125,7 +138,7 @@ public class TestRow extends Composite {
      * ==================================================
      */
 
-    private class LoadTestButtonSelectionAdapter extends SelectionAdapter {
+    private class ContinueButtonSelectionAdapter extends SelectionAdapter {
 
         @Override
         public void widgetSelected(SelectionEvent e) {
@@ -133,14 +146,19 @@ public class TestRow extends Composite {
         }
     }
 
+    private class ReportButtonSelectionAdapter extends SelectionAdapter {
+
+        @Override
+        public void widgetSelected(SelectionEvent e) {
+            MyApplication.get().getWindow().toReportPage(userTestSession);
+        }
+    }
+
     private class DeleteLabelMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            SqlSession sqlSession = MyApplication.get().getSqlSession();
-            UserTestSessionMapper userTestSessionMapper = sqlSession.getMapper(UserTestSessionMapper.class);
-            userTestSessionMapper.delete(userTestSession);
-            sqlSession.commit();
+            UserTestPersistenceUtils.deleteSession(userTestSession);
             MyApplication.get().getWindow().toMainPage();
         }
     }
@@ -148,11 +166,11 @@ public class TestRow extends Composite {
     public class DeleteLabelMouseTrackAdapter extends MouseTrackAdapter {
 
         public void mouseEnter(MouseEvent e) {
-            CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_DARK_BLUE);
+            CLabelSet.decorate(deleteLabel).setImage(MT.IMAGE_DELETE_HOVER);
         }
 
         public void mouseExit(MouseEvent e) {
-            CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_GRAY40);
+            CLabelSet.decorate(deleteLabel).setImage(MT.IMAGE_DELETE);
         }
     }
 }

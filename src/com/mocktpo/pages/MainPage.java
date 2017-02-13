@@ -42,14 +42,14 @@ public class MainPage extends Composite {
     /* Widgets */
 
     private Composite sidebar;
-    private CLabel newTestLabel;
     private CLabel loadTestLabel;
+    private CLabel newTestLabel;
     private CLabel reportsLabel;
     private CLabel settingsLabel;
 
     private Composite body;
-    private NewTestView newTestView;
     private LoadTestView loadTestView;
+    private NewTestView newTestView;
     private ReportsView reportsView;
     private SettingsView settingsView;
 
@@ -114,7 +114,7 @@ public class MainPage extends Composite {
         FormDataSet.attach(body).atLeftTo(sidebar).atTop().atRight().atBottom();
         stack = new StackLayout();
         body.setLayout(stack);
-        toNewTestView();
+        toLoadTestView();
     }
 
     /*

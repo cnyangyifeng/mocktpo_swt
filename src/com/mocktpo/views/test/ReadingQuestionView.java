@@ -266,7 +266,7 @@ public class ReadingQuestionView extends SashTestView {
             }
             logger.info("[Reading Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
             answerText = Integer.toString(answer);
-            UserTestPersistenceUtils.saveAnswers(ReadingQuestionView.this, answerText);
+            UserTestPersistenceUtils.saveAnswer(ReadingQuestionView.this, answerText);
         }
     }
 

@@ -13,6 +13,9 @@ public interface UserTestSessionMapper {
             "MT_TID INT,",
             "MT_TITLE VARCHAR(64),",
             "MT_FILE_ALIAS VARCHAR(64),",
+            "MT_STARS INT,",
+            "MT_START_TIME BIGINT,",
+            "MT_LAST_VISIT_TIME BIGINT,",
             "MT_TIMER_HIDDEN BOOLEAN,",
             "MT_READING_TIME INT,",
             "MT_LISTENING_TIME_1 INT,",
@@ -24,8 +27,8 @@ public interface UserTestSessionMapper {
             "MT_INDEPENDENT_WRITING_TIME INT,",
             "MT_VOLUME DOUBLE,",
             "MT_VOLUME_CONTROL_HIDDEN BOOLEAN,",
-            "MT_STARS INT,",
-            "MT_LAST_VIEW_ID INT",
+            "MT_LAST_VIEW_ID INT,",
+            "MT_MAX_VIEW_ID INT",
             ")"
     })
     void schema();
@@ -40,6 +43,9 @@ public interface UserTestSessionMapper {
             "MT_TID,",
             "MT_TITLE,",
             "MT_FILE_ALIAS,",
+            "MT_STARS,",
+            "MT_START_TIME,",
+            "MT_LAST_VISIT_TIME,",
             "MT_TIMER_HIDDEN,",
             "MT_READING_TIME,",
             "MT_LISTENING_TIME_1,",
@@ -51,12 +57,15 @@ public interface UserTestSessionMapper {
             "MT_INDEPENDENT_WRITING_TIME,",
             "MT_VOLUME,",
             "MT_VOLUME_CONTROL_HIDDEN,",
-            "MT_STARS,",
-            "MT_LAST_VIEW_ID",
+            "MT_LAST_VIEW_ID,",
+            "MT_MAX_VIEW_ID",
             ") VALUES (",
             "#{tid},",
             "#{title},",
             "#{fileAlias},",
+            "#{stars},",
+            "#{startTime},",
+            "#{lastVisitTime},",
             "#{timerHidden},",
             "#{readingTime},",
             "#{listeningTime1},",
@@ -68,10 +77,11 @@ public interface UserTestSessionMapper {
             "#{independentWritingTime},",
             "#{volume},",
             "#{volumeControlHidden},",
-            "#{stars},",
-            "#{lastViewId}",
+            "#{lastViewId},",
+            "#{maxViewId}",
             ")"
     })
+    @Options(useGeneratedKeys = true, keyProperty = "sid")
     void insert(UserTestSession userTestSession);
 
     @Update({
@@ -80,6 +90,9 @@ public interface UserTestSessionMapper {
             "MT_TID = #{tid},",
             "MT_TITLE = #{title},",
             "MT_FILE_ALIAS = #{fileAlias},",
+            "MT_STARS = #{stars},",
+            "MT_START_TIME = #{startTime},",
+            "MT_LAST_VISIT_TIME = #{lastVisitTime},",
             "MT_TIMER_HIDDEN = #{timerHidden},",
             "MT_READING_TIME = #{readingTime},",
             "MT_LISTENING_TIME_1 = #{listeningTime1},",
@@ -91,8 +104,8 @@ public interface UserTestSessionMapper {
             "MT_INDEPENDENT_WRITING_TIME = #{independentWritingTime},",
             "MT_VOLUME = #{volume},",
             "MT_VOLUME_CONTROL_HIDDEN = #{volumeControlHidden},",
-            "MT_STARS = #{stars},",
-            "MT_LAST_VIEW_ID = #{lastViewId}",
+            "MT_LAST_VIEW_ID = #{lastViewId},",
+            "MT_MAX_VIEW_ID = #{maxViewId}",
             "WHERE",
             "MT_SID = #{sid}"
     })
@@ -104,6 +117,9 @@ public interface UserTestSessionMapper {
             "MT_TID AS tid,",
             "MT_TITLE AS title,",
             "MT_FILE_ALIAS AS fileAlias,",
+            "MT_STARS AS stars,",
+            "MT_START_TIME AS startTime,",
+            "MT_LAST_VISIT_TIME AS lastVisitTime,",
             "MT_TIMER_HIDDEN AS timerHidden,",
             "MT_READING_TIME AS readingTime,",
             "MT_LISTENING_TIME_1 AS listeningTime1,",
@@ -115,10 +131,10 @@ public interface UserTestSessionMapper {
             "MT_INDEPENDENT_WRITING_TIME AS independentWritingTime,",
             "MT_VOLUME AS volume,",
             "MT_VOLUME_CONTROL_HIDDEN AS volumeControlHidden,",
-            "MT_STARS AS stars,",
-            "MT_LAST_VIEW_ID AS lastViewId",
+            "MT_LAST_VIEW_ID AS lastViewId,",
+            "MT_MAX_VIEW_ID AS maxViewId",
             "FROM MT_USER_TEST_SESSION",
-            "ORDER BY MT_TID ASC"
+            "ORDER BY MT_LAST_VISIT_TIME DESC"
     })
     List<UserTestSession> find();
 

@@ -14,15 +14,14 @@ import org.apache.ibatis.session.SqlSession;
 public class UserTestPersistenceUtils {
 
     public static UserTestSession newSession(String fileAlias, TestSchemaVo testSchema) {
-        if (null == testSchema) {
-            return null;
-        }
-
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         UserTestSession userTestSession = new UserTestSession();
         userTestSession.setTid(testSchema.getTid());
         userTestSession.setTitle(testSchema.getTitle());
         userTestSession.setFileAlias(fileAlias);
+        userTestSession.setStars(testSchema.getStars());
+        userTestSession.setStartTime(System.currentTimeMillis());
+        userTestSession.setLastVisitTime(System.currentTimeMillis());
         userTestSession.setTimerHidden(false);
         userTestSession.setReadingTime(MT.TIME_READING_SECTION);
         userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
@@ -34,7 +33,6 @@ public class UserTestPersistenceUtils {
         userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
         userTestSession.setVolume(1.0);
         userTestSession.setVolumeControlHidden(true);
-        userTestSession.setStars(testSchema.getStars());
         userTestSession.setLastViewId(1);
         userTestSession.setMaxViewId(1);
         sqlSession.getMapper(UserTestSessionMapper.class).insert(userTestSession);
@@ -42,9 +40,17 @@ public class UserTestPersistenceUtils {
         return userTestSession;
     }
 
+    public static void deleteSession(UserTestSession userTestSession) {
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
+        sqlSession.getMapper(UserTestSessionMapper.class).delete(userTestSession);
+        sqlSession.getMapper(UserTestAnswerMapper.class).delete(userTestSession);
+        sqlSession.commit();
+    }
+
     public static void saveToNextView(TestView testView) {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
+        userTestSession.setLastVisitTime(System.currentTimeMillis());
         userTestSession.setLastViewId(testView.getVo().getViewId() + 1);
         userTestSession.setMaxViewId(testView.getVo().getViewId() + 1);
 
@@ -56,6 +62,7 @@ public class UserTestPersistenceUtils {
     public static void saveToCurrentView(TestView testView) {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
+        userTestSession.setLastVisitTime(System.currentTimeMillis());
         userTestSession.setLastViewId(testView.getVo().getViewId());
         userTestSession.setMaxViewId(testView.getVo().getViewId());
 
@@ -65,6 +72,7 @@ public class UserTestPersistenceUtils {
     }
 
     public static void saveToCurrentView(UserTestSession userTestSession, int viewId) {
+        userTestSession.setLastVisitTime(System.currentTimeMillis());
         userTestSession.setLastViewId(viewId);
         userTestSession.setMaxViewId(viewId);
 
@@ -76,6 +84,7 @@ public class UserTestPersistenceUtils {
     public static void saveToPreviousView(TestView testView) {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
+        userTestSession.setLastVisitTime(System.currentTimeMillis());
         userTestSession.setLastViewId(testView.getVo().getViewId() - 1);
         userTestSession.setMaxViewId(testView.getVo().getViewId() - 1);
 
@@ -140,36 +149,12 @@ public class UserTestPersistenceUtils {
         sqlSession.commit();
     }
 
-    public static void saveAnswers(TestView testView, String answerText) {
+    public static void saveAnswer(TestView testView, String answerText) {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestAnswerMapper.class).update(userTestSession, answerText);
-        sqlSession.commit();
-    }
-
-    public static void restart(UserTestSession userTestSession) {
-        userTestSession.setTimerHidden(false);
-        userTestSession.setReadingTime(MT.TIME_READING_SECTION);
-        userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
-        userTestSession.setListeningTime2(MT.TIME_LISTENING_PER_SUB_SECTION);
-        userTestSession.setSpeakingReadingTime1(MT.TIME_SPEAKING_READING_PER_TASK);
-        userTestSession.setSpeakingReadingTime2(MT.TIME_SPEAKING_READING_PER_TASK);
-        userTestSession.setWritingReadingTime(MT.TIME_WRITING_READING_PER_TASK);
-        userTestSession.setIntegratedWritingTime(MT.TIME_INTEGRATED_WRITING_TASK);
-        userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
-        userTestSession.setVolume(1.0);
-        userTestSession.setVolumeControlHidden(true);
-        userTestSession.setStars(0);
-        userTestSession.setLastViewId(1);
-        userTestSession.setMaxViewId(1);
-
-        SqlSession sqlSession = MyApplication.get().getSqlSession();
-        sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
-        sqlSession.commit();
-
-        sqlSession.getMapper(UserTestAnswerMapper.class).delete(userTestSession);
         sqlSession.commit();
     }
 }

@@ -4,6 +4,7 @@ import com.mocktpo.util.ResourceManager;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 
 public class ButtonSet {
@@ -139,6 +140,24 @@ public class ButtonSet {
 
     public ButtonSet setForeground(Color color) {
         c.setForeground(color);
+        return this;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Image Settings
+     *
+     * ==================================================
+     */
+
+    public ButtonSet setImage(int i) {
+        c.setImage(ResourceManager.getImage(i));
+        return this;
+    }
+
+    public ButtonSet setImage(Image image) {
+        c.setImage(image);
         return this;
     }
 

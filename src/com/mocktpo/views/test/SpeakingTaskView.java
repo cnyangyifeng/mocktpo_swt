@@ -214,7 +214,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
                 @Override
                 public void run() {
                     CLabelSet.decorate(timerHeader).setText("PREPARATION TIME");
-                    CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTime(preparationCountDown));
+                    CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(preparationCountDown));
                 }
             });
         }
@@ -276,7 +276,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
                 @Override
                 public void run() {
                     CLabelSet.decorate(timerHeader).setText("RESPONSE TIME");
-                    CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTime(recorderCountDown));
+                    CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown));
                 }
             });
         }
@@ -378,7 +378,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
-                        CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTime(preparationCountDown--));
+                        CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(preparationCountDown--));
                     }
                 });
             }
@@ -405,7 +405,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
-                        CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTime(recorderCountDown--));
+                        CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown--));
                     }
                 });
             }

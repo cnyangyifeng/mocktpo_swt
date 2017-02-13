@@ -26,8 +26,15 @@ public class SectionsComposite extends Composite {
 
     private CheckWidget readingCheckWidget, listeningCheckWidget, speakingCheckWidget, writingcheckWidget;
 
-    public SectionsComposite(Composite parent, int style) {
+    /* Properties */
+
+    private int numColumns;
+    private boolean enabled;
+
+    public SectionsComposite(Composite parent, int style, int numColumns, boolean enabled) {
         super(parent, style);
+        this.numColumns = numColumns;
+        this.enabled = enabled;
         init();
     }
 
@@ -37,14 +44,14 @@ public class SectionsComposite extends Composite {
     }
 
     private void golbal() {
-        GridLayoutSet.layout(this).numColumns(2).makeColumnsEqualWidth(true);
+        GridLayoutSet.layout(this).numColumns(numColumns).makeColumnsEqualWidth(true);
     }
 
     private void initBody() {
-        readingCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("reading"));
-        listeningCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("listening"));
-        speakingCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("speaking"));
-        writingcheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("writing"));
+        readingCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("reading"), enabled);
+        listeningCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("listening"), enabled);
+        speakingCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("speaking"), enabled);
+        writingcheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("writing"), enabled);
     }
 
     public boolean isReadingChecked() {
@@ -66,13 +73,19 @@ public class SectionsComposite extends Composite {
     private class CheckWidget extends Composite {
 
         private Label checkLabel, choiceLabel;
-        private boolean checked;
+        private boolean checked, enabled;
         private String text;
 
-        public CheckWidget(Composite parent, int style, String text) {
+        private ChooseAnswerAdapter chooseAnswerAdapter;
+        private CheckWidgetMouseTrackAdapter checkWidgetMouseTrackAdapter;
+
+        public CheckWidget(Composite parent, int style, String text, boolean enabled) {
             super(parent, style);
             this.checked = true;
+            this.enabled = enabled;
             this.text = text;
+            this.chooseAnswerAdapter = new ChooseAnswerAdapter();
+            this.checkWidgetMouseTrackAdapter = new CheckWidgetMouseTrackAdapter();
             init();
         }
 
@@ -88,17 +101,42 @@ public class SectionsComposite extends Composite {
         private void initBody() {
             checkLabel = new Label(this, SWT.NONE);
             LabelSet.decorate(checkLabel).setImage(MT.IMAGE_BOXED);
-            checkLabel.addMouseListener(new ChooseAnswerAdapter());
-            checkLabel.addMouseTrackListener(new CheckWidgetMouseTrackAdapter());
-
+            if (enabled) {
+                checkLabel.addMouseListener(chooseAnswerAdapter);
+                checkLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
+            }
             choiceLabel = new Label(this, SWT.WRAP);
-            LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_BLACK).setText(text);
-            choiceLabel.addMouseListener(new ChooseAnswerAdapter());
-            choiceLabel.addMouseTrackListener(new CheckWidgetMouseTrackAdapter());
+            LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setText(text);
+            if (enabled) {
+                choiceLabel.addMouseListener(chooseAnswerAdapter);
+                choiceLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
+                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_BLACK);
+            } else {
+                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_GRAY40);
+            }
         }
 
         public boolean isChecked() {
             return checked;
+        }
+
+        public boolean isEnabled() {
+            return enabled;
+        }
+
+        public void setEnabled(boolean enabled) {
+            this.enabled = enabled;
+            if (enabled) {
+                checkLabel.addMouseListener(chooseAnswerAdapter);
+                checkLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
+                choiceLabel.addMouseListener(chooseAnswerAdapter);
+                choiceLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
+            } else {
+                checkLabel.removeMouseListener(chooseAnswerAdapter);
+                checkLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
+                choiceLabel.removeMouseListener(chooseAnswerAdapter);
+                choiceLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
+            }
         }
 
         private class ChooseAnswerAdapter extends MouseAdapter {

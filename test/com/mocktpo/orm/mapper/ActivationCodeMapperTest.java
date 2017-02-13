@@ -7,7 +7,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Date;
 import java.util.List;
 
 public class ActivationCodeMapperTest {
@@ -50,8 +49,6 @@ public class ActivationCodeMapperTest {
         ActivationCode ac = new ActivationCode();
         ac.setEmail("cnyangyifeng@163.com");
         ac.setContent(text);
-        ac.setDateCreated(new Date());
-        ac.setDateUpdated(new Date());
         mapper.insert(ac);
     }
 
