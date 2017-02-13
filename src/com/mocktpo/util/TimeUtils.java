@@ -5,13 +5,20 @@ import com.mocktpo.util.constants.MT;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
 public class TimeUtils {
 
+    private static final int TEN_SECONDS_IN_MILLISECONDS = 10000;
     private static final int ONE_MINUTE_IN_MILLISECONDS = 60000;
+    private static final int TWO_MINUTES_IN_MILLISECONDS = 120000;
     private static final int ONE_HOUR_IN_MILLISECONDS = 3600000;
     private static final int ONE_DAY_IN_MILLISECONDS = 86400000;
     private static final int ONE_WEEK_IN_MILLISECONDS = 604800000;
+
+    /* Messages */
+
+    protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
     private TimeUtils() {
     }
@@ -26,16 +33,18 @@ public class TimeUtils {
 
     public static String displayTime(long time) {
         long duration = System.currentTimeMillis() - time;
-        if (duration <= 1000) {
-            return "just now";
+        if (duration <= TEN_SECONDS_IN_MILLISECONDS) {
+            return msgs.getString("just_now");
         } else if (duration <= ONE_MINUTE_IN_MILLISECONDS) {
-            return "1 minutes ago";
+            return msgs.getString("a_few_seconds_ago");
+        } else if (duration <= TWO_MINUTES_IN_MILLISECONDS) {
+            return msgs.getString("one_minute_ago");
         } else if (duration <= ONE_HOUR_IN_MILLISECONDS) {
-            return (duration / ONE_MINUTE_IN_MILLISECONDS) + " minutes ago";
+            return (duration / ONE_MINUTE_IN_MILLISECONDS) + MT.STRING_SPACE + msgs.getString("minutes_ago");
         } else if (duration <= ONE_DAY_IN_MILLISECONDS) {
-            return (duration / ONE_HOUR_IN_MILLISECONDS) + " hours ago";
+            return (duration / ONE_HOUR_IN_MILLISECONDS) + MT.STRING_SPACE + msgs.getString("hours_ago");
         } else if (duration <= ONE_WEEK_IN_MILLISECONDS) {
-            return (duration / ONE_DAY_IN_MILLISECONDS) + " days ago";
+            return (duration / ONE_DAY_IN_MILLISECONDS) + MT.STRING_SPACE + msgs.getString("days_ago");
         } else {
             SimpleDateFormat df = new SimpleDateFormat("MM/dd");
             Calendar calendar = Calendar.getInstance();

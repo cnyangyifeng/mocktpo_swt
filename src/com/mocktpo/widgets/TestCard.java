@@ -130,8 +130,8 @@ public class TestCard extends Composite {
             boolean writingSectionEnabled = sectionsComposite.isWritingSectionEnabled();
             if (!readingSectionEnabled && !listeningSectionEnabled && !speakingSectionEnabled && !writingSectionEnabled) {
                 MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.OK);
-                box.setText("Select Test Sections");
-                box.setMessage("Please select at least one section to start a new test.");
+                box.setText(msgs.getString("select_sections"));
+                box.setMessage(msgs.getString("select_sections_to_start"));
                 box.open();
             } else {
                 UserTestSession userTestSession = UserTestPersistenceUtils.newSession(fileAlias, testSchema, readingSectionEnabled, listeningSectionEnabled, speakingSectionEnabled, writingSectionEnabled);

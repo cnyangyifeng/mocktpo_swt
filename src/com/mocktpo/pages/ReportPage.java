@@ -5,12 +5,14 @@ import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.ButtonSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.TestSchemaVo;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -23,6 +25,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
+import java.io.File;
+import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ResourceBundle;
 
 public class ReportPage extends Composite {
@@ -109,7 +114,12 @@ public class ReportPage extends Composite {
         FormLayoutSet.layout(body);
 
         browser = new Browser(body, SWT.NONE);
-        browser.setUrl("http://qq.com");
+        try {
+            URL url = this.getClass().getResource(URLDecoder.decode(RC.TEMPLATES_DIR + "index.html", "utf-8"));
+            browser.setUrl(url.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         FormDataSet.attach(browser).atLeft().atTop().atRight().atBottom();
 
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
