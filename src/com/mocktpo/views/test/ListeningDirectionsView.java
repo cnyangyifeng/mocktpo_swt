@@ -8,7 +8,7 @@ import com.mocktpo.util.widgets.StyleRangeUtils;
 import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.widgets.ImageButton;
 import com.mocktpo.widgets.VolumeControl;
 import org.eclipse.swt.SWT;
@@ -107,7 +107,7 @@ public class ListeningDirectionsView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            UserTestPersistenceUtils.saveVolumeControlVisibility(ListeningDirectionsView.this);
+            PersistenceUtils.saveVolumeControlVisibility(ListeningDirectionsView.this);
         }
     }
 
@@ -118,7 +118,7 @@ public class ListeningDirectionsView extends ResponsiveTestView {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            UserTestPersistenceUtils.saveVolume(ListeningDirectionsView.this, volume);
+            PersistenceUtils.saveVolume(ListeningDirectionsView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -128,7 +128,7 @@ public class ListeningDirectionsView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToNextView(ListeningDirectionsView.this);
+            PersistenceUtils.saveToNextView(ListeningDirectionsView.this);
             page.resume();
         }
     }

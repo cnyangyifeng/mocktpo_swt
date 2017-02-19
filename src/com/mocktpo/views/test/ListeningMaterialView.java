@@ -5,7 +5,7 @@ import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.*;
@@ -100,7 +100,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(ListeningMaterialView.this);
+                PersistenceUtils.saveToNextView(ListeningMaterialView.this);
                 page.resume();
             }
         });
@@ -160,7 +160,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            UserTestPersistenceUtils.saveVolumeControlVisibility(ListeningMaterialView.this);
+            PersistenceUtils.saveVolumeControlVisibility(ListeningMaterialView.this);
         }
     }
 
@@ -171,7 +171,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            UserTestPersistenceUtils.saveVolume(ListeningMaterialView.this, volume);
+            PersistenceUtils.saveVolume(ListeningMaterialView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -232,7 +232,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-                            UserTestPersistenceUtils.saveToNextView(ListeningMaterialView.this);
+                            PersistenceUtils.saveToNextView(ListeningMaterialView.this);
                             page.resume();
                         }
                     });

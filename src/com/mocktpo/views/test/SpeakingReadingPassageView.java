@@ -2,7 +2,7 @@ package com.mocktpo.views.test;
 
 import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.ScreenUtils;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -51,7 +51,7 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
 
     @Override
     public void updateHeader() {
-        UserTestPersistenceUtils.saveSpeakingReadingTime(this);
+        PersistenceUtils.saveSpeakingReadingTime(this);
 
         final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
         FormDataSet.attach(volumeOvalButton).atRight(10).atTop(10);
@@ -71,7 +71,7 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(SpeakingReadingPassageView.this);
+                PersistenceUtils.saveToNextView(SpeakingReadingPassageView.this);
                 page.resume();
             }
         });
@@ -83,7 +83,7 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
 
         StyledText readingTimeTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(readingTimeTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(readingTimeTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_ITALIC).setText("Reading Time: " + vo.getSpeakingReadingTime() + " seconds");
+        StyledTextSet.decorate(readingTimeTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_ITALIC).setText("Reading Time:" + MT.STRING_SPACE + vo.getSpeakingReadingTime() + " seconds");
 
         final StyledText headingTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTopTo(readingTimeTextWidget, 20).atRight();
@@ -109,7 +109,7 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            UserTestPersistenceUtils.saveVolumeControlVisibility(SpeakingReadingPassageView.this);
+            PersistenceUtils.saveVolumeControlVisibility(SpeakingReadingPassageView.this);
         }
     }
 
@@ -120,7 +120,7 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            UserTestPersistenceUtils.saveVolume(SpeakingReadingPassageView.this, volume);
+            PersistenceUtils.saveVolume(SpeakingReadingPassageView.this, volume);
             setAudioVolume(volume);
         }
     }

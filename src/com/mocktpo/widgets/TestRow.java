@@ -3,7 +3,7 @@ package com.mocktpo.widgets;
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.TimeUtils;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -82,7 +82,7 @@ public class TestRow extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop(5).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setText(userTestSession.getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(userTestSession.getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, userTestSession.getStars());
         FormDataSet.attach(starsComposite).atLeftTo(titleLabel).atBottomTo(titleLabel, 0, SWT.BOTTOM);
@@ -106,11 +106,11 @@ public class TestRow extends Composite {
 
         final CLabel lastVisitTimeLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(lastVisitTimeLabel).atLeft().atTop();
-        CLabelSet.decorate(lastVisitTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displayTime(userTestSession.getLastVisitTime()) + MT.STRING_SPACE + msgs.getString("visited"));
+        CLabelSet.decorate(lastVisitTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getLastVisitTime()) + MT.STRING_SPACE + msgs.getString("visited"));
 
         final CLabel startTimeLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(startTimeLabel).atLeftTo(lastVisitTimeLabel, 20).atTopTo(lastVisitTimeLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(startTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displayTime(userTestSession.getStartTime()) + MT.STRING_SPACE + msgs.getString("initialized"));
+        CLabelSet.decorate(startTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getStartTime()) + MT.STRING_SPACE + msgs.getString("initialized"));
 
         final SectionsComposite sectionsComposite = new SectionsComposite(c, SWT.NONE, 4, false);
         FormDataSet.attach(sectionsComposite).atLeft().atTopTo(lastVisitTimeLabel, 10).atRight();
@@ -158,7 +158,7 @@ public class TestRow extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            UserTestPersistenceUtils.deleteSession(userTestSession);
+            PersistenceUtils.deleteSession(userTestSession);
             MyApplication.get().getWindow().toMainPage();
         }
     }

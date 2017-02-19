@@ -1,5 +1,7 @@
 package com.mocktpo.vo;
 
+import com.mocktpo.orm.domain.UserTestAnswer;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.ST;
 import com.mocktpo.util.constants.VT;
 
@@ -67,39 +69,22 @@ public class TestSchemaVo implements Serializable {
      * ==================================================
      */
 
-    public int getTotalQuestionCountInSectionAndGroup(int sectionType, int groupId) {
+    public int getTotalQuestionCountInSection(int sectionType) {
         int count = 0;
-        switch (sectionType) {
-            case ST.SECTION_TYPE_NONE:
-                break;
-            case ST.SECTION_TYPE_READING:
-                for (TestViewVo vo : this.getViews()) {
-                    if (vo.getSectionType() == sectionType && (vo.getViewType() == VT.VIEW_TYPE_READING_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION)) {
-                        count++;
-                    }
-                }
-                break;
-            case ST.SECTION_TYPE_LISTENING:
-                for (TestViewVo vo : this.getViews()) {
-                    if (vo.getSectionType() == sectionType && vo.getGroupId() == groupId && (vo.getViewType() == VT.VIEW_TYPE_LISTENING_QUESTION || vo.getViewType() == VT.VIEW_TYPE_LISTENING_MULTIPLE_ANSWERS_QUESTION || vo.getViewType() == VT.VIEW_TYPE_LISTENING_ORDER_EVENTS_QUESTION || vo.getViewType() == VT.VIEW_TYPE_LISTENING_MATCH_OBJECTS_QUESTION)) {
-                        count++;
-                    }
-                }
-                break;
-            case ST.SECTION_TYPE_SPEAKING:
-                for (TestViewVo vo : this.getViews()) {
-                    if (vo.getSectionType() == sectionType && vo.getViewType() == VT.VIEW_TYPE_SPEAKING_TASK) {
-                        count++;
-                    }
-                }
-                break;
-            case ST.SECTION_TYPE_WRITING:
-                for (TestViewVo vo : this.getViews()) {
-                    if (vo.getSectionType() == sectionType && (vo.getViewType() == VT.VIEW_TYPE_INTEGRATED_WRITING_TASK || vo.getViewType() == VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK)) {
-                        count++;
-                    }
-                }
-                break;
+        for (TestViewVo vo : this.getViews()) {
+            if (vo.getSectionType() == sectionType && vo.isAnswerable()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getTotalQuestionCountInListeningSection(int sectionType, int listeningGroupId) {
+        int count = 0;
+        for (TestViewVo vo : this.getViews()) {
+            if (vo.getSectionType() == sectionType && vo.getListeningGroupId() == listeningGroupId && vo.isAnswerable()) {
+                count++;
+            }
         }
         return count;
     }
@@ -114,7 +99,7 @@ public class TestSchemaVo implements Serializable {
                 nextViewId = getFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_HEADSET_ON);
                 break;
             case ST.SECTION_TYPE_LISTENING:
-                switch (vo.getGroupId()) {
+                switch (vo.getListeningGroupId()) {
                     case 1:
                         nextViewId = getFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_DIRECTIONS);
                         break;
@@ -159,7 +144,7 @@ public class TestSchemaVo implements Serializable {
         return viewId;
     }
 
-    public int getViewCount() {
+    public int getTotalViewCount() {
         return this.getViews().size();
     }
 

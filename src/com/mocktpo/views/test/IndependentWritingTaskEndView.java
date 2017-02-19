@@ -3,7 +3,7 @@ package com.mocktpo.views.test;
 import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
@@ -77,7 +77,7 @@ public class IndependentWritingTaskEndView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToNextView(IndependentWritingTaskEndView.this);
+            PersistenceUtils.saveToNextView(IndependentWritingTaskEndView.this);
             page.resume();
         }
     }
@@ -87,7 +87,7 @@ public class IndependentWritingTaskEndView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToPreviousView(IndependentWritingTaskEndView.this);
+            PersistenceUtils.saveToPreviousView(IndependentWritingTaskEndView.this);
             page.resume();
         }
     }

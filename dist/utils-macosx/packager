@@ -52,7 +52,7 @@ fi
 hdiutil create -srcfolder MockTPO.app MockTPO.dmg > /dev/null
 hdiutil internet-enable -yes MockTPO.dmg > /dev/null
 echo "[MockTPO] MockTPO.dmg copyed."
-rm -rf MockTPO.app
+# rm -rf MockTPO.app
 echo "[MockTPO] MockTPO.app deleted."
 
 hdiutil attach MockTPO.dmg > /dev/null

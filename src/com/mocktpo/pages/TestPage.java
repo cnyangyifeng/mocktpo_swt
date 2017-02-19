@@ -70,7 +70,7 @@ public class TestPage extends Composite {
 
     public void resume() {
         if (null != testSchema) {
-            if (userTestSession.getLastViewId() >= testSchema.getViewCount()) {
+            if (userTestSession.getLastViewId() >= testSchema.getTotalViewCount()) {
                 MyApplication.get().getWindow().toReportPage(userTestSession);
             } else {
                 stack.topControl = getLastTestView();
@@ -86,7 +86,7 @@ public class TestPage extends Composite {
         this.userTestSession = userTestSession;
 
         if (null != testSchema) {
-            if (userTestSession.getLastViewId() >= testSchema.getViewCount()) {
+            if (userTestSession.getLastViewId() >= testSchema.getTotalViewCount()) {
                 MyApplication.get().getWindow().toReportPage(userTestSession);
             } else {
                 stack.topControl = getLastTestView();

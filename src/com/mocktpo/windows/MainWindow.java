@@ -127,9 +127,9 @@ public class MainWindow {
     }
 
     public void toReportPage(UserTestSession userTestSession) {
-        if (null == rp) {
+        // if (null == rp) {
             rp = new ReportPage(s, SWT.NONE, userTestSession);
-        }
+        // }
         stack.topControl = rp;
         s.layout();
     }

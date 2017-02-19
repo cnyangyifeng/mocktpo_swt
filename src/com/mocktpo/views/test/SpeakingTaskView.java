@@ -5,7 +5,7 @@ import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
@@ -99,7 +99,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(SpeakingTaskView.this);
+                PersistenceUtils.saveToNextView(SpeakingTaskView.this);
                 page.resume();
             }
         });
@@ -307,7 +307,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
                 @Override
                 public void run() {
                     release();
-                    UserTestPersistenceUtils.saveToNextView(SpeakingTaskView.this);
+                    PersistenceUtils.saveToNextView(SpeakingTaskView.this);
                     page.resume();
                 }
             });
@@ -328,7 +328,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            UserTestPersistenceUtils.saveVolumeControlVisibility(SpeakingTaskView.this);
+            PersistenceUtils.saveVolumeControlVisibility(SpeakingTaskView.this);
         }
     }
 
@@ -339,7 +339,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            UserTestPersistenceUtils.saveVolume(SpeakingTaskView.this, volume);
+            PersistenceUtils.saveVolume(SpeakingTaskView.this, volume);
             setAudioVolume(volume);
         }
     }

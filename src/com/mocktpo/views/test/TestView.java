@@ -2,13 +2,13 @@ package com.mocktpo.views.test;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestAnswer;
-import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.pages.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.util.TestAudioPlayer;
+import com.mocktpo.util.TimeUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.constants.ST;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.LabelSet;
@@ -17,7 +17,6 @@ import com.mocktpo.vo.TestViewVo;
 import com.mocktpo.widgets.ImageButton;
 import com.mocktpo.widgets.TestFooter;
 import com.mocktpo.widgets.TestHeader;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -62,10 +61,6 @@ public abstract class TestView extends Composite {
     protected TestViewVo vo;
     protected String answerText;
 
-    /* Persistence */
-
-    protected SqlSession sqlSession;
-
     /* Timer */
 
     protected int countDown;
@@ -90,7 +85,6 @@ public abstract class TestView extends Composite {
         this.d = page.getDisplay();
         this.page = page;
         this.vo = page.getTestSchema().getView(page.getUserTestSession().getLastViewId());
-        this.sqlSession = MyApplication.get().getSqlSession();
         this.volumeControlVisible = !page.getUserTestSession().isVolumeControlHidden();
         init();
         alloc();
@@ -157,7 +151,13 @@ public abstract class TestView extends Composite {
         if (vo.isQuestionCaptionVisible()) {
             final StyledText caption = new StyledText(header, SWT.SINGLE);
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestSchema().getTotalQuestionCountInSectionAndGroup(vo.getSectionType(), vo.getGroupId()));
+            int totalQuestionCount;
+            if (ST.SECTION_TYPE_LISTENING == vo.getSectionType()) {
+                totalQuestionCount = page.getTestSchema().getTotalQuestionCountInListeningSection(vo.getSectionType(), vo.getListeningGroupId());
+            } else {
+                totalQuestionCount = page.getTestSchema().getTotalQuestionCountInSection(vo.getSectionType());
+            }
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + totalQuestionCount);
         }
 
         /*
@@ -180,19 +180,11 @@ public abstract class TestView extends Composite {
 
     protected void initAnswer() {
         if (vo.isAnswerable()) {
-            UserTestAnswerMapper mapper = sqlSession.getMapper(UserTestAnswerMapper.class);
-            UserTestSession userTestSession = page.getUserTestSession();
-            answerText = mapper.find(userTestSession);
-            if (null == answerText) {
-                UserTestAnswer userTestAnswer = new UserTestAnswer();
-                userTestAnswer.setSid(userTestSession.getSid());
-                userTestAnswer.setViewId(userTestSession.getLastViewId());
-                userTestAnswer.setSectionType(page.getTestSchema().getView(userTestSession.getLastViewId()).getSectionType());
-                userTestAnswer.setAnswer("");
-                mapper.insert(userTestAnswer);
-                sqlSession.commit();
-                answerText = mapper.find(userTestSession);
+            UserTestAnswer userTestAnswer = PersistenceUtils.findAnswer(this);
+            if (null == userTestAnswer) {
+                userTestAnswer = PersistenceUtils.newAnswer(this);
             }
+            answerText = userTestAnswer.getAnswer();
         }
     }
 
@@ -304,7 +296,7 @@ public abstract class TestView extends Composite {
         @Override
         public void run() {
             if (!d.isDisposed()) {
-                UserTestPersistenceUtils.saveRemainingViewTime(TestView.this);
+                PersistenceUtils.saveRemainingViewTime(TestView.this);
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
@@ -314,7 +306,7 @@ public abstract class TestView extends Composite {
                 if (0 >= countDown) {
                     release();
                     int lastViewId = page.getTestSchema().getNextViewIdWhileTimeOut(vo.getViewId());
-                    UserTestPersistenceUtils.saveToCurrentView(page.getUserTestSession(), lastViewId);
+                    PersistenceUtils.saveToView(page.getUserTestSession(), lastViewId);
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
@@ -400,7 +392,7 @@ public abstract class TestView extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToCurrentView(TestView.this);
+            PersistenceUtils.saveToView(TestView.this);
             MyApplication.get().getWindow().toMainPage();
         }
     }
@@ -416,7 +408,7 @@ public abstract class TestView extends Composite {
                 timerButton.setBackgroundImages(MT.IMAGE_HIDE_TIME, MT.IMAGE_HIDE_TIME_HOVER, MT.IMAGE_HIDE_TIME_DISABLED);
             }
             timerLabel.setVisible(!v);
-            UserTestPersistenceUtils.saveTimerHidden(TestView.this);
+            PersistenceUtils.saveTimerHidden(TestView.this);
         }
     }
 

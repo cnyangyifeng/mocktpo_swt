@@ -31,7 +31,7 @@ public class TimeUtils {
         return df.format(hours) + MT.STRING_COLON + df.format(minutes) + MT.STRING_COLON + df.format(seconds);
     }
 
-    public static String displayTime(long time) {
+    public static String displaySocialTime(long time) {
         long duration = System.currentTimeMillis() - time;
         if (duration <= TEN_SECONDS_IN_MILLISECONDS) {
             return msgs.getString("just_now");
@@ -51,5 +51,12 @@ public class TimeUtils {
             calendar.setTimeInMillis(time);
             return df.format(calendar.getTime());
         }
+    }
+
+    public static String displayClockTime(long time) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(time);
+        return df.format(calendar.getTime());
     }
 }

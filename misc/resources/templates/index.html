@@ -12,42 +12,133 @@
 <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-<div class="jumbotron">
-  <div class="container">
-    <h1>Hello, world!</h1>
-    <p>This is a template for a simple marketing or informational website. It includes a large callout called a
-      jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-  </div>
+<div class="container">
+  <h4><span id="title"></span> SCORE REPORT</h4>
+  <p>The purpose of this practice test is to help you prepare for the TOEFL iBT<sup>&reg;</sup>. Performance on this
+    test is not necessarily a predictor of how you might perform during an actual TOEFL<sup>&reg;</sup> administration
+    because you are not taking this test under regular testing conditions. However, you are encouraged to use this
+    practice test to get a better sense of the TOEFL iBT<sup>&reg;</sup> content and format, as well as receive
+    scoring information on this preparation experience. Scores and information presented in this score report
+    are
+    for preparation use only and are not official test scores.</p>
+  <dl class="dl-horizontal">
+    <dt>Start Time</dt>
+    <dd id="startTime"></dd>
+    <dt>End Time</dt>
+    <dd id="endTime"></dd>
+  </dl>
 </div>
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-        condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec
-        sed odio dui. </p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+  <table class="table table-bordered report">
+    <thead>
+    <tr>
+      <td>Section</td>
+      <td>Total Number of Correct Responses</td>
+      <td>% Correct</td>
+      <td>Scaled Score</td>
+      <td>Details</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Reading</td>
+      <td>1 of <span id="totalQuestionCountInReadingSection"></span></td>
+      <td>2%</td>
+      <td>0</td>
+      <td><a class="btn btn-default" href="#">Details</a></td>
+    </tr>
+    <tr>
+      <td>Listening</td>
+      <td>4 of <span id="totalQuestionCountInListeningSection"></span></td>
+      <td>12%</td>
+      <td>0</td>
+      <td><a class="btn btn-default" href="#">Details</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container">
+  <p><strong>Section Scores</strong></p>
+  <ul class="nav nav-pills nav-justified">
+    <li class="active">
+      <a href="#reading" data-toggle="tab">Reading</a>
+    </li>
+    <li>
+      <a href="#listening" data-toggle="tab">Listening</a>
+    </li>
+    <li>
+      <a href="#speaking" data-toggle="tab">Speaking</a>
+    </li>
+    <li>
+      <a href="#writing" data-toggle="tab">Writing</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade in active" id="reading">
+      <p><strong>Reading Question Status</strong></p>
+      <table class="table table-bordered report">
+        <thead>
+        <tr>
+          <td style="width:80px">Number</td>
+          <td>Question</td>
+          <td style="width:160px">Your Answer</td>
+          <td style="width:160px">Correct Answer</td>
+          <td style="width:160px">View</td>
+        </tr>
+        </thead>
+        <tbody id="readingDetailsTableBody">
+        </tbody>
+      </table>
     </div>
-    <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-        condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec
-        sed odio dui. </p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    <div class="tab-pane fade" id="listening">
+      <p><strong>Listening Question Status</strong></p>
+      <table class="table table-bordered report">
+        <thead>
+        <tr>
+          <td style="width:80px">Number</td>
+          <td>Question</td>
+          <td style="width:160px">Your Answer</td>
+          <td style="width:160px">Correct Answer</td>
+          <td style="width:160px">View</td>
+        </tr>
+        </thead>
+        <tbody id="listeningDetailsTableBody">
+        </tbody>
+      </table>
     </div>
-    <div class="col-md-4">
-      <h2>Heading</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta
-        felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-        massa justo sit amet risus.</p>
-      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    <div class="tab-pane fade" id="speaking">
+      <p><strong>Speaking Question Status</strong></p>
+      <table class="table table-bordered report">
+        <thead>
+        <tr>
+          <td style="width:80px">Number</td>
+          <td>Question</td>
+          <td style="width:160px">Your Answer</td>
+          <td style="width:160px">Correct Answer</td>
+          <td style="width:160px">View</td>
+        </tr>
+        </thead>
+        <tbody id="speakingDetailsTableBody">
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="writing">
+      <p><strong>Writing Question Status</strong></p>
+      <table class="table table-bordered report">
+        <thead>
+        <tr>
+          <td style="width:80px">Number</td>
+          <td>Question</td>
+          <td style="width:160px">Your Answer</td>
+          <td style="width:160px">Correct Answer</td>
+          <td style="width:160px">View</td>
+        </tr>
+        </thead>
+        <tbody id="writingDetailsTableBody">
+        </tbody>
+      </table>
     </div>
   </div>
-  <hr />
-  <footer>
-    <p>&copy; Company 2015</p>
-  </footer>
 </div>
 <script src="js/vendor/jquery-3.1.1.min.js"></script>
 <script src="js/vendor/bootstrap.min.js"></script>

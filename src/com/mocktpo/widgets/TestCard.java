@@ -3,7 +3,7 @@ package com.mocktpo.widgets;
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -83,7 +83,7 @@ public class TestCard extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop(5).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setText(testSchema.getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(testSchema.getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testSchema.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 15).atRight();
@@ -134,7 +134,7 @@ public class TestCard extends Composite {
                 box.setMessage(msgs.getString("select_sections_to_start"));
                 box.open();
             } else {
-                UserTestSession userTestSession = UserTestPersistenceUtils.newSession(fileAlias, testSchema, readingSectionEnabled, listeningSectionEnabled, speakingSectionEnabled, writingSectionEnabled);
+                UserTestSession userTestSession = PersistenceUtils.newSession(fileAlias, testSchema, readingSectionEnabled, listeningSectionEnabled, speakingSectionEnabled, writingSectionEnabled);
                 MyApplication.get().getWindow().toTestPage(userTestSession);
             }
         }

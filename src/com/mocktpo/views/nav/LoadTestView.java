@@ -3,6 +3,7 @@ package com.mocktpo.views.nav;
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -92,9 +93,9 @@ public class LoadTestView extends Composite {
     }
 
     public void initRows() {
-        List<UserTestSession> list = MyApplication.get().getSqlSession().getMapper(UserTestSessionMapper.class).find();
-        for (UserTestSession userTestSession : list) {
-            TestRow row = new TestRow(body, SWT.NONE, userTestSession);
+        List<UserTestSession> sessions = PersistenceUtils.findSessions();
+        for (UserTestSession session : sessions) {
+            TestRow row = new TestRow(body, SWT.NONE, session);
             GridDataSet.attach(row).fillHorizontal();
         }
         body.layout();

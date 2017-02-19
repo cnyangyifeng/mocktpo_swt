@@ -4,7 +4,7 @@ import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.widgets.*;
 import com.mocktpo.widgets.ImageButton;
@@ -81,7 +81,7 @@ public class IndependentWritingTaskView extends SashTestView {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(IndependentWritingTaskView.this);
+                PersistenceUtils.saveToNextView(IndependentWritingTaskView.this);
                 page.resume();
             }
         });
@@ -149,7 +149,7 @@ public class IndependentWritingTaskView extends SashTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToNextView(IndependentWritingTaskView.this);
+            PersistenceUtils.saveToNextView(IndependentWritingTaskView.this);
             page.resume();
         }
     }
@@ -167,7 +167,7 @@ public class IndependentWritingTaskView extends SashTestView {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            UserTestPersistenceUtils.saveVolumeControlVisibility(IndependentWritingTaskView.this);
+            PersistenceUtils.saveVolumeControlVisibility(IndependentWritingTaskView.this);
         }
     }
 
@@ -178,7 +178,7 @@ public class IndependentWritingTaskView extends SashTestView {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            UserTestPersistenceUtils.saveVolume(IndependentWritingTaskView.this, volume);
+            PersistenceUtils.saveVolume(IndependentWritingTaskView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -214,7 +214,7 @@ public class IndependentWritingTaskView extends SashTestView {
             wordCount = WordCountUtils.count(writingTextWidget.getText());
             CLabelSet.decorate(wordCountLabel).setText(msgs.getString("word_count") + MT.STRING_SPACE + wordCount);
             answerText = writingTextWidget.getText();
-            UserTestPersistenceUtils.saveAnswer(IndependentWritingTaskView.this, answerText);
+            PersistenceUtils.saveAnswer(IndependentWritingTaskView.this, answerText);
         }
     }
 }

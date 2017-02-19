@@ -4,7 +4,7 @@ import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.*;
@@ -85,7 +85,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(IntegratedWritingTaskView.this);
+                PersistenceUtils.saveToNextView(IntegratedWritingTaskView.this);
                 page.resume();
             }
         });
@@ -172,7 +172,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToNextView(IntegratedWritingTaskView.this);
+            PersistenceUtils.saveToNextView(IntegratedWritingTaskView.this);
             page.resume();
         }
     }
@@ -190,7 +190,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            UserTestPersistenceUtils.saveVolumeControlVisibility(IntegratedWritingTaskView.this);
+            PersistenceUtils.saveVolumeControlVisibility(IntegratedWritingTaskView.this);
         }
     }
 
@@ -201,7 +201,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            UserTestPersistenceUtils.saveVolume(IntegratedWritingTaskView.this, volume);
+            PersistenceUtils.saveVolume(IntegratedWritingTaskView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -237,7 +237,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
             wordCount = WordCountUtils.count(writingTextWidget.getText());
             CLabelSet.decorate(wordCountLabel).setText(msgs.getString("word_count") + MT.STRING_SPACE + wordCount);
             answerText = writingTextWidget.getText();
-            UserTestPersistenceUtils.saveAnswer(IntegratedWritingTaskView.this, answerText);
+            PersistenceUtils.saveAnswer(IntegratedWritingTaskView.this, answerText);
         }
     }
 }

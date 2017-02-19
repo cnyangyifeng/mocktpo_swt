@@ -4,7 +4,7 @@ import com.mocktpo.windows.MoreTextWindow;
 import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.*;
@@ -115,7 +115,7 @@ public class ReadingPassageView extends SashTestView {
         public void mouseDown(MouseEvent e) {
             if (goneThrough) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(ReadingPassageView.this);
+                PersistenceUtils.saveToNextView(ReadingPassageView.this);
                 page.resume();
             } else {
                 new MoreTextWindow().openAndWaitForDisposal();
@@ -128,7 +128,7 @@ public class ReadingPassageView extends SashTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToPreviousView(ReadingPassageView.this);
+            PersistenceUtils.saveToPreviousView(ReadingPassageView.this);
             page.resume();
         }
     }

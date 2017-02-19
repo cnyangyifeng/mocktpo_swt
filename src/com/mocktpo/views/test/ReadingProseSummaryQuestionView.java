@@ -5,7 +5,7 @@ import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
@@ -287,7 +287,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToNextView(ReadingProseSummaryQuestionView.this);
+            PersistenceUtils.saveToNextView(ReadingProseSummaryQuestionView.this);
             page.resume();
         }
     }
@@ -297,7 +297,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToPreviousView(ReadingProseSummaryQuestionView.this);
+            PersistenceUtils.saveToPreviousView(ReadingProseSummaryQuestionView.this);
             page.resume();
         }
     }

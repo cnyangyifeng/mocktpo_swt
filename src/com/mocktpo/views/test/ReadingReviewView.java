@@ -1,23 +1,29 @@
 package com.mocktpo.views.test;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.orm.domain.UserTestAnswer;
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.pages.TestPage;
-import com.mocktpo.util.*;
-import com.mocktpo.util.constants.*;
+import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
+import com.mocktpo.util.TimeUtils;
+import com.mocktpo.util.constants.LC;
+import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.ST;
+import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
-import com.mocktpo.util.widgets.*;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.vo.TestViewVo;
 import com.mocktpo.widgets.ImageButton;
 import com.mocktpo.widgets.ReadingReviewTableRow;
 import com.mocktpo.widgets.TestFooter;
 import com.mocktpo.widgets.TestHeader;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -78,10 +84,6 @@ public class ReadingReviewView extends Composite {
 
     protected int selectedViewId;
 
-    /* Persistence */
-
-    protected SqlSession sqlSession;
-
     /* Timer */
 
     protected int countDown;
@@ -103,7 +105,6 @@ public class ReadingReviewView extends Composite {
         this.d = page.getDisplay();
         this.page = page;
         this.selectedViewId = page.getUserTestSession().getLastViewId();
-        this.sqlSession = MyApplication.get().getSqlSession();
         this.timed = true;
         init();
         alloc();
@@ -174,7 +175,7 @@ public class ReadingReviewView extends Composite {
         if (vo.isQuestionCaptionVisible()) {
             caption = new StyledText(header, SWT.SINGLE);
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestSchema().getTotalQuestionCountInSectionAndGroup(ST.SECTION_TYPE_READING, 0));
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestSchema().getTotalQuestionCountInSection(ST.SECTION_TYPE_READING));
         }
 
         final ImageButton goToQuestionButton = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
@@ -230,7 +231,7 @@ public class ReadingReviewView extends Composite {
         GridDataSet.attach(tableHeader).fillBoth();
 
         for (TestViewVo vo : page.getTestSchema().getViews()) {
-            if (vo.getSectionType() == ST.SECTION_TYPE_READING && (vo.getViewType() == VT.VIEW_TYPE_READING_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION)) {
+            if (ST.SECTION_TYPE_READING == vo.getSectionType() && vo.isAnswerable()) {
                 String statusText = getStatusText(vo.getViewId());
                 final ReadingReviewTableRow row = new ReadingReviewTableRow(viewPort, SWT.NONE, Integer.toString(vo.getQuestionNumberInSection()), getDescriptionText(vo), statusText, vo.getViewId());
                 GridDataSet.attach(row).fillBoth();
@@ -254,7 +255,7 @@ public class ReadingReviewView extends Composite {
     private String getDescriptionText(TestViewVo vo) {
         String text;
         if (vo.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION) {
-            text = vo.getStyledText("directions").getText();
+            text = vo.getStyledText("directions").getText() + MT.STRING_SPACE + vo.getStyledText("question").getText();
         } else {
             text = vo.getStyledText("question").getText();
         }
@@ -263,15 +264,19 @@ public class ReadingReviewView extends Composite {
 
     private String getStatusText(int viewId) {
         String text;
-        UserTestAnswerMapper mapper = sqlSession.getMapper(UserTestAnswerMapper.class);
-        UserTestSession userTestSession = page.getUserTestSession();
-        String readingAnswer = mapper.findByViewId(userTestSession, viewId);
-        if (!StringUtils.isEmpty(readingAnswer)) {
-            text = STATUS_TEXT_ANSWERED;
-        } else if (viewId > userTestSession.getMaxViewId()) {
-            text = STATUS_TEXT_NOT_SEEN;
+        UserTestAnswer userTestAnswer = PersistenceUtils.findAnswer(page.getUserTestSession(), viewId);
+        if (null != userTestAnswer) {
+            String readingAnswer = userTestAnswer.getAnswer();
+            if (!StringUtils.isEmpty(readingAnswer)) {
+                text = STATUS_TEXT_ANSWERED;
+            } else {
+                text = STATUS_TEXT_NOT_ANSWERED;
+            }
         } else {
             text = STATUS_TEXT_NOT_ANSWERED;
+        }
+        if (viewId > page.getUserTestSession().getMaxViewId()) {
+            text = STATUS_TEXT_NOT_SEEN;
         }
         return text;
     }
@@ -367,7 +372,7 @@ public class ReadingReviewView extends Composite {
             if (!d.isDisposed()) {
                 final UserTestSession userTestSession = page.getUserTestSession();
                 TestViewVo vo = page.getTestSchema().getView(page.getUserTestSession().getLastViewId());
-                UserTestPersistenceUtils.saveRemainingViewTime(userTestSession, vo, countDown);
+                PersistenceUtils.saveRemainingViewTime(userTestSession, vo, countDown);
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
@@ -379,7 +384,7 @@ public class ReadingReviewView extends Composite {
                         stopTimer();
                     }
                     int lastViewId = page.getTestSchema().getNextViewIdWhileTimeOut(page.getUserTestSession().getLastViewId());
-                    UserTestPersistenceUtils.saveToCurrentView(userTestSession, lastViewId);
+                    PersistenceUtils.saveToView(userTestSession, lastViewId);
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
@@ -419,7 +424,7 @@ public class ReadingReviewView extends Composite {
                 timerButton.setBackgroundImages(MT.IMAGE_HIDE_TIME, MT.IMAGE_HIDE_TIME_HOVER, MT.IMAGE_HIDE_TIME_DISABLED);
             }
             timerLabel.setVisible(!v);
-            UserTestPersistenceUtils.saveTimerHidden(page.getUserTestSession(), v);
+            PersistenceUtils.saveTimerHidden(page.getUserTestSession(), v);
         }
     }
 
@@ -434,7 +439,7 @@ public class ReadingReviewView extends Composite {
                 return;
             }
             release();
-            UserTestPersistenceUtils.saveToCurrentView(page.getUserTestSession(), selectedViewId);
+            PersistenceUtils.saveToView(page.getUserTestSession(), selectedViewId);
             page.resume(page.getUserTestSession());
         }
     }

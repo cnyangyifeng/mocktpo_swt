@@ -6,7 +6,7 @@ import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
@@ -102,7 +102,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(ListeningQuestionView.this);
+                PersistenceUtils.saveToNextView(ListeningQuestionView.this);
                 page.resume(page.getUserTestSession());
             }
         });
@@ -252,7 +252,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
             if (isOk()) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(ListeningQuestionView.this);
+                PersistenceUtils.saveToNextView(ListeningQuestionView.this);
                 page.resume(page.getUserTestSession());
             } else {
                 nextOvalButton.setEnabled(true);
@@ -276,7 +276,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            UserTestPersistenceUtils.saveVolumeControlVisibility(ListeningQuestionView.this);
+            PersistenceUtils.saveVolumeControlVisibility(ListeningQuestionView.this);
         }
     }
 
@@ -287,7 +287,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            UserTestPersistenceUtils.saveVolume(ListeningQuestionView.this, volume);
+            PersistenceUtils.saveVolume(ListeningQuestionView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -334,7 +334,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             }
             logger.info("[Listening Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
             answerText = Integer.toString(answer);
-            UserTestPersistenceUtils.saveAnswer(ListeningQuestionView.this, answerText);
+            PersistenceUtils.saveAnswer(ListeningQuestionView.this, answerText);
         }
     }
 

@@ -5,7 +5,7 @@ import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
@@ -105,7 +105,7 @@ public class ChangingVolumeView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            UserTestPersistenceUtils.saveVolumeControlVisibility(ChangingVolumeView.this);
+            PersistenceUtils.saveVolumeControlVisibility(ChangingVolumeView.this);
         }
     }
 
@@ -116,7 +116,7 @@ public class ChangingVolumeView extends ResponsiveTestView {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            UserTestPersistenceUtils.saveVolume(ChangingVolumeView.this, volume);
+            PersistenceUtils.saveVolume(ChangingVolumeView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -126,7 +126,7 @@ public class ChangingVolumeView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToNextView(ChangingVolumeView.this);
+            PersistenceUtils.saveToNextView(ChangingVolumeView.this);
             page.resume();
         }
     }

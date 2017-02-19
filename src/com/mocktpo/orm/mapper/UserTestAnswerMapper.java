@@ -49,13 +49,16 @@ public interface UserTestAnswerMapper {
 
     @Select({
             "SELECT",
+            "MT_SID AS sid,",
+            "MT_VIEW_ID AS viewId,",
+            "MT_SECTION_TYPE AS sectionType,",
             "MT_ANSWER AS answer",
             "FROM MT_USER_TEST_ANSWER",
             "WHERE",
             "MT_SID = #{sid}",
             "AND MT_VIEW_ID = #{lastViewId}"
     })
-    String find(UserTestSession userTestSession);
+    UserTestAnswer find(UserTestSession userTestSession);
 
     @Select(
             "SELECT COUNT(*) FROM MT_USER_TEST_ANSWER"
@@ -64,13 +67,16 @@ public interface UserTestAnswerMapper {
 
     @Select({
             "SELECT",
+            "MT_SID AS sid,",
+            "MT_VIEW_ID AS viewId,",
+            "MT_SECTION_TYPE AS sectionType,",
             "MT_ANSWER AS answer",
             "FROM MT_USER_TEST_ANSWER",
             "WHERE",
             "MT_SID = #{userTestSession.sid}",
             "AND MT_VIEW_ID = #{viewId}"
     })
-    String findByViewId(@Param("userTestSession") UserTestSession userTestSession, @Param("viewId") int viewId);
+    UserTestAnswer findByViewId(@Param("userTestSession") UserTestSession userTestSession, @Param("viewId") int viewId);
 
     @Delete({
             "DELETE FROM MT_USER_TEST_ANSWER",

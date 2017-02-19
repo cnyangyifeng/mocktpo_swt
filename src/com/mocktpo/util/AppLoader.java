@@ -61,15 +61,15 @@ public class AppLoader extends Thread {
             d.asyncExec(new Runnable() {
                 @Override
                 public void run() {
-                    List<ActivationCode> lz = activationCodeMapper.find();
-                    while (lz.isEmpty()) {
+                    List<ActivationCode> codes = activationCodeMapper.find();
+                    while (codes.isEmpty()) {
                         splash.setVisible(false);
                         RegisterWindow register = new RegisterWindow();
                         register.openAndWaitForDisposal();
-                        lz = activationCodeMapper.find();
+                        codes = activationCodeMapper.find();
                     }
-                    email = lz.get(0).getEmail();
-                    licensed = ActivationCodeUtils.isLicensed(email, lz.get(0).getContent());
+                    email = codes.get(0).getEmail();
+                    licensed = ActivationCodeUtils.isLicensed(email, codes.get(0).getContent());
                     latch.countDown();
                 }
             });

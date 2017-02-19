@@ -3,7 +3,7 @@ package com.mocktpo.views.test;
 import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.*;
@@ -202,7 +202,7 @@ public class ReadingQuestionView extends SashTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToNextView(ReadingQuestionView.this);
+            PersistenceUtils.saveToNextView(ReadingQuestionView.this);
             page.resume();
         }
     }
@@ -212,7 +212,7 @@ public class ReadingQuestionView extends SashTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToPreviousView(ReadingQuestionView.this);
+            PersistenceUtils.saveToPreviousView(ReadingQuestionView.this);
             page.resume();
         }
     }
@@ -266,7 +266,7 @@ public class ReadingQuestionView extends SashTestView {
             }
             logger.info("[Reading Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
             answerText = Integer.toString(answer);
-            UserTestPersistenceUtils.saveAnswer(ReadingQuestionView.this, answerText);
+            PersistenceUtils.saveAnswer(ReadingQuestionView.this, answerText);
         }
     }
 

@@ -5,7 +5,7 @@ import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
@@ -127,7 +127,7 @@ public class AdjustingMicrophoneView extends StackTestView {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(AdjustingMicrophoneView.this);
+                PersistenceUtils.saveToNextView(AdjustingMicrophoneView.this);
                 page.resume();
             }
         });
@@ -376,7 +376,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            UserTestPersistenceUtils.saveVolumeControlVisibility(AdjustingMicrophoneView.this);
+            PersistenceUtils.saveVolumeControlVisibility(AdjustingMicrophoneView.this);
         }
     }
 
@@ -387,7 +387,7 @@ public class AdjustingMicrophoneView extends StackTestView {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            UserTestPersistenceUtils.saveVolume(AdjustingMicrophoneView.this, volume);
+            PersistenceUtils.saveVolume(AdjustingMicrophoneView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -397,7 +397,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            UserTestPersistenceUtils.saveToNextView(AdjustingMicrophoneView.this);
+            PersistenceUtils.saveToNextView(AdjustingMicrophoneView.this);
             page.resume();
         }
 

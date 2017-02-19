@@ -242,7 +242,7 @@ public class UserTestSession {
                 viewTime = this.getReadingTime();
                 break;
             case ST.SECTION_TYPE_LISTENING:
-                switch (vo.getGroupId()) {
+                switch (vo.getListeningGroupId()) {
                     case 1:
                         viewTime = this.getListeningTime1();
                         break;
@@ -252,7 +252,7 @@ public class UserTestSession {
                 }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
-                switch (vo.getGroupId()) {
+                switch (vo.getSpeakingReadingId()) {
                     case 1:
                         viewTime = this.getSpeakingReadingTime1();
                         break;
@@ -293,7 +293,7 @@ public class UserTestSession {
                 this.setReadingTime(viewTime);
                 break;
             case ST.SECTION_TYPE_LISTENING:
-                switch (vo.getGroupId()) {
+                switch (vo.getListeningGroupId()) {
                     case 1:
                         this.setListeningTime1(viewTime);
                         break;
@@ -303,7 +303,7 @@ public class UserTestSession {
                 }
                 break;
             case ST.SECTION_TYPE_SPEAKING:
-                switch (vo.getGroupId()) {
+                switch (vo.getSpeakingReadingId()) {
                     case 1:
                         this.setSpeakingReadingTime1(viewTime);
                         break;

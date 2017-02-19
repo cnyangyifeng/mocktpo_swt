@@ -4,7 +4,7 @@ import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.*;
@@ -71,7 +71,7 @@ public class WritingReadingPassageView extends SashTestView2 {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(WritingReadingPassageView.this);
+                PersistenceUtils.saveToNextView(WritingReadingPassageView.this);
                 page.resume();
             }
         });
@@ -118,7 +118,7 @@ public class WritingReadingPassageView extends SashTestView2 {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            UserTestPersistenceUtils.saveVolumeControlVisibility(WritingReadingPassageView.this);
+            PersistenceUtils.saveVolumeControlVisibility(WritingReadingPassageView.this);
         }
     }
 
@@ -129,7 +129,7 @@ public class WritingReadingPassageView extends SashTestView2 {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            UserTestPersistenceUtils.saveVolume(WritingReadingPassageView.this, volume);
+            PersistenceUtils.saveVolume(WritingReadingPassageView.this, volume);
             setAudioVolume(volume);
         }
     }

@@ -1,5 +1,9 @@
 package com.mocktpo.vo;
 
+import com.mocktpo.orm.domain.UserTestAnswer;
+import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.constants.VT;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +20,8 @@ public class TestViewVo implements Serializable {
     private String viewTypeName;
     private int sectionType;
     private String sectionTypeName;
-    private int groupId;
+    private int listeningGroupId;
+    private int speakingReadingId;
     private boolean firstPassage;
     private int passageOffset;
     private boolean withAudio;
@@ -94,12 +99,20 @@ public class TestViewVo implements Serializable {
         this.sectionTypeName = sectionTypeName;
     }
 
-    public int getGroupId() {
-        return groupId;
+    public int getListeningGroupId() {
+        return listeningGroupId;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
+    public void setListeningGroupId(int listeningGroupId) {
+        this.listeningGroupId = listeningGroupId;
+    }
+
+    public int getSpeakingReadingId() {
+        return speakingReadingId;
+    }
+
+    public void setSpeakingReadingId(int speakingReadingId) {
+        this.speakingReadingId = speakingReadingId;
     }
 
     public boolean isFirstPassage() {

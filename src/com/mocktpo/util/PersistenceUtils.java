@@ -1,6 +1,7 @@
 package com.mocktpo.util;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.orm.domain.UserTestAnswer;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
@@ -11,7 +12,9 @@ import com.mocktpo.vo.TestSchemaVo;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.ibatis.session.SqlSession;
 
-public class UserTestPersistenceUtils {
+import java.util.List;
+
+public class PersistenceUtils {
 
     public static UserTestSession newSession(String fileAlias, TestSchemaVo testSchema, boolean readingSectionEnabled, boolean listeningSectionEnabled, boolean speakingSectionEnabled, boolean writingSectionEnabled) {
         UserTestSession userTestSession = new UserTestSession();
@@ -38,10 +41,16 @@ public class UserTestPersistenceUtils {
         userTestSession.setWritingSectionEnabled(writingSectionEnabled);
         userTestSession.setLastViewId(1);
         userTestSession.setMaxViewId(1);
+
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).insert(userTestSession);
         sqlSession.commit();
+
         return userTestSession;
+    }
+
+    public static List<UserTestSession> findSessions() {
+        return MyApplication.get().getSqlSession().getMapper(UserTestSessionMapper.class).find();
     }
 
     public static void deleteSession(UserTestSession userTestSession) {
@@ -51,31 +60,7 @@ public class UserTestPersistenceUtils {
         sqlSession.commit();
     }
 
-    public static void saveToNextView(TestView testView) {
-        TestPage page = testView.getPage();
-        UserTestSession userTestSession = page.getUserTestSession();
-        userTestSession.setLastVisitTime(System.currentTimeMillis());
-        userTestSession.setLastViewId(testView.getVo().getViewId() + 1);
-        userTestSession.setMaxViewId(testView.getVo().getViewId() + 1);
-
-        SqlSession sqlSession = MyApplication.get().getSqlSession();
-        sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
-        sqlSession.commit();
-    }
-
-    public static void saveToCurrentView(TestView testView) {
-        TestPage page = testView.getPage();
-        UserTestSession userTestSession = page.getUserTestSession();
-        userTestSession.setLastVisitTime(System.currentTimeMillis());
-        userTestSession.setLastViewId(testView.getVo().getViewId());
-        userTestSession.setMaxViewId(testView.getVo().getViewId());
-
-        SqlSession sqlSession = MyApplication.get().getSqlSession();
-        sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
-        sqlSession.commit();
-    }
-
-    public static void saveToCurrentView(UserTestSession userTestSession, int viewId) {
+    public static void saveToView(UserTestSession userTestSession, int viewId) {
         userTestSession.setLastVisitTime(System.currentTimeMillis());
         userTestSession.setLastViewId(viewId);
         userTestSession.setMaxViewId(viewId);
@@ -85,22 +70,39 @@ public class UserTestPersistenceUtils {
         sqlSession.commit();
     }
 
-    public static void saveToPreviousView(TestView testView) {
+    public static void saveToView(TestView testView) {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
+
         userTestSession.setLastVisitTime(System.currentTimeMillis());
-        userTestSession.setLastViewId(testView.getVo().getViewId() - 1);
-        userTestSession.setMaxViewId(testView.getVo().getViewId() - 1);
+        userTestSession.setLastViewId(testView.getVo().getViewId());
+        userTestSession.setMaxViewId(testView.getVo().getViewId());
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
         sqlSession.commit();
     }
 
-    public static void saveRemainingViewTime(TestView testView) {
+    public static void saveToNextView(TestView testView) {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
-        userTestSession.setRemainingViewTime(testView.getVo(), testView.getCountDown());
+
+        userTestSession.setLastVisitTime(System.currentTimeMillis());
+        userTestSession.setLastViewId(testView.getVo().getViewId() + 1);
+        userTestSession.setMaxViewId(testView.getVo().getViewId() + 1);
+
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
+        sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
+        sqlSession.commit();
+    }
+
+    public static void saveToPreviousView(TestView testView) {
+        TestPage page = testView.getPage();
+        UserTestSession userTestSession = page.getUserTestSession();
+
+        userTestSession.setLastVisitTime(System.currentTimeMillis());
+        userTestSession.setLastViewId(testView.getVo().getViewId() - 1);
+        userTestSession.setMaxViewId(testView.getVo().getViewId() - 1);
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
@@ -115,10 +117,11 @@ public class UserTestPersistenceUtils {
         sqlSession.commit();
     }
 
-    public static void saveTimerHidden(TestView testView) {
+    public static void saveRemainingViewTime(TestView testView) {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
-        userTestSession.setTimerHidden(testView.isTimerHidden());
+
+        userTestSession.setRemainingViewTime(testView.getVo(), testView.getCountDown());
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
@@ -133,9 +136,21 @@ public class UserTestPersistenceUtils {
         sqlSession.commit();
     }
 
+    public static void saveTimerHidden(TestView testView) {
+        TestPage page = testView.getPage();
+        UserTestSession userTestSession = page.getUserTestSession();
+
+        userTestSession.setTimerHidden(testView.isTimerHidden());
+
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
+        sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
+        sqlSession.commit();
+    }
+
     public static void saveVolumeControlVisibility(TestView testView) {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
+
         userTestSession.setVolumeControlHidden(!testView.isVolumeControlVisible());
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
@@ -146,6 +161,7 @@ public class UserTestPersistenceUtils {
     public static void saveVolume(TestView testView, double volume) {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
+
         userTestSession.setVolume(volume);
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
@@ -155,20 +171,52 @@ public class UserTestPersistenceUtils {
 
     public static void saveSpeakingReadingTime(TestView testView) {
         TestPage page = testView.getPage();
-        TestViewVo vo = testView.getVo();
         UserTestSession userTestSession = page.getUserTestSession();
-        switch (vo.getGroupId()) {
+
+        switch (testView.getVo().getSpeakingReadingId()) {
             case 1:
-                userTestSession.setSpeakingReadingTime1(vo.getSpeakingReadingTime());
+                userTestSession.setSpeakingReadingTime1(testView.getVo().getSpeakingReadingTime());
                 break;
             case 2:
-                userTestSession.setSpeakingReadingTime2(vo.getSpeakingReadingTime());
+                userTestSession.setSpeakingReadingTime2(testView.getVo().getSpeakingReadingTime());
                 break;
         }
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
         sqlSession.commit();
+    }
+
+    public static UserTestAnswer newAnswer(TestView testView) {
+        TestPage page = testView.getPage();
+        UserTestSession userTestSession = page.getUserTestSession();
+
+        UserTestAnswer userTestAnswer = new UserTestAnswer();
+        userTestAnswer.setSid(userTestSession.getSid());
+        userTestAnswer.setViewId(userTestSession.getLastViewId());
+        userTestAnswer.setSectionType(page.getTestSchema().getView(userTestSession.getLastViewId()).getSectionType());
+        userTestAnswer.setAnswer("");
+
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
+        sqlSession.getMapper(UserTestAnswerMapper.class).insert(userTestAnswer);
+        sqlSession.commit();
+
+        return userTestAnswer;
+    }
+
+    public static UserTestAnswer findAnswer(UserTestSession userTestSession, int viewId) {
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
+        UserTestAnswerMapper mapper = sqlSession.getMapper(UserTestAnswerMapper.class);
+        return mapper.findByViewId(userTestSession, viewId);
+    }
+
+    public static UserTestAnswer findAnswer(TestView testView) {
+        TestPage page = testView.getPage();
+        UserTestSession userTestSession = page.getUserTestSession();
+
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
+        UserTestAnswerMapper mapper = sqlSession.getMapper(UserTestAnswerMapper.class);
+        return mapper.find(userTestSession);
     }
 
     public static void saveAnswer(TestView testView, String answerText) {

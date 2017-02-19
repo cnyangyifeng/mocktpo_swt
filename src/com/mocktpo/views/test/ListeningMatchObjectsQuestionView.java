@@ -7,7 +7,7 @@ import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.UserTestPersistenceUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
@@ -109,7 +109,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(ListeningMatchObjectsQuestionView.this);
+                PersistenceUtils.saveToNextView(ListeningMatchObjectsQuestionView.this);
                 page.resume();
             }
         });
@@ -354,7 +354,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             if (isOk()) {
                 release();
-                UserTestPersistenceUtils.saveToNextView(ListeningMatchObjectsQuestionView.this);
+                PersistenceUtils.saveToNextView(ListeningMatchObjectsQuestionView.this);
                 page.resume();
             } else {
                 nextOvalButton.setEnabled(true);
@@ -383,7 +383,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            UserTestPersistenceUtils.saveVolumeControlVisibility(ListeningMatchObjectsQuestionView.this);
+            PersistenceUtils.saveVolumeControlVisibility(ListeningMatchObjectsQuestionView.this);
         }
     }
 
@@ -394,7 +394,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            UserTestPersistenceUtils.saveVolume(ListeningMatchObjectsQuestionView.this, volume);
+            PersistenceUtils.saveVolume(ListeningMatchObjectsQuestionView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -464,7 +464,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
             }
             logger.info("[Listening Match Objects Question {}] Answers: ({}, {}, {}, {}, {})", vo.getQuestionNumberInSection(), answer1, answer2, answer3, answer4, answer5);
             answerText = answer1 + MT.STRING_COMMA + answer2 + MT.STRING_COMMA + answer3 + MT.STRING_COMMA + answer4 + MT.STRING_COMMA + answer5;
-            UserTestPersistenceUtils.saveAnswer(ListeningMatchObjectsQuestionView.this, answerText);
+            PersistenceUtils.saveAnswer(ListeningMatchObjectsQuestionView.this, answerText);
         }
     }
 
