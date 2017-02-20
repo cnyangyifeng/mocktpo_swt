@@ -7,6 +7,7 @@ import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
+import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.*;
 import com.mocktpo.widgets.ImageButton;
 import org.eclipse.swt.SWT;
@@ -18,7 +19,7 @@ public class ReadingSectionEndView extends ResponsiveTestView {
 
     /* Constants */
 
-    private static final int VIEW_PORT_PADDING_TOP = 150;
+    private static final int VIEW_PORT_PADDING_TOP = 200;
     private static final int VIEW_PORT_PADDING_WIDTH = 240;
 
     /*
@@ -61,11 +62,11 @@ public class ReadingSectionEndView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        FormLayoutSet.layout(viewPort);
+        GridLayoutSet.layout(viewPort).marginTop(VIEW_PORT_PADDING_TOP);
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(descriptionTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(descriptionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
+        GridDataSet.attach(descriptionTextWidget).topCenter();
+        StyledTextSet.decorate(descriptionTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
     }
 
     /*

@@ -19,6 +19,7 @@ public class SpeakingSectionEndView extends ResponsiveTestView {
 
     /* Constants */
 
+    private static final int VIEW_PORT_PADDING_TOP = 200;
     private static final int VIEW_PORT_PADDING_WIDTH = 240;
 
     /*
@@ -53,11 +54,11 @@ public class SpeakingSectionEndView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        GridLayoutSet.layout(viewPort);
+        GridLayoutSet.layout(viewPort).marginTop(VIEW_PORT_PADDING_TOP);
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
-        GridDataSet.attach(descriptionTextWidget).centerBoth();
-        StyledTextSet.decorate(descriptionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
+        GridDataSet.attach(descriptionTextWidget).topCenter();
+        StyledTextSet.decorate(descriptionTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
     }
 
     /*
