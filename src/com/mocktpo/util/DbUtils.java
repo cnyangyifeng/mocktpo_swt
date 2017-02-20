@@ -1,6 +1,5 @@
 package com.mocktpo.util;
 
-import com.mocktpo.orm.mapper.ActivationCodeMapper;
 import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.util.constants.RC;
@@ -22,7 +21,6 @@ public class DbUtils {
         try {
             factory = new SqlSessionFactoryBuilder().build(DbUtils.class.getResourceAsStream(URLDecoder.decode(RC.CONFIG_DIR + RC.DATABASE_CONFIG_FILE, "utf-8")));
             Configuration c = factory.getConfiguration();
-            c.addMapper(ActivationCodeMapper.class);
             c.addMapper(UserTestSessionMapper.class);
             c.addMapper(UserTestAnswerMapper.class);
         } catch (Exception e) {

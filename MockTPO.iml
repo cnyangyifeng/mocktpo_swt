@@ -36,19 +36,11 @@
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/misc" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/lib" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/swt/swt-macosx-x86_64" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/swt/swt-win32-x86_64" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
-    <orderEntry type="module-library" exported="">
-      <library name="swt.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/swt/swt-macosx-x86_64/swt.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="swt" level="project" />
   </component>
 </module>

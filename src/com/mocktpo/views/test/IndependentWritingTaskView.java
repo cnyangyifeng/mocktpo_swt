@@ -1,10 +1,12 @@
 package com.mocktpo.views.test;
 
 import com.mocktpo.pages.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.util.KeyBindingSet;
+import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
+import com.mocktpo.util.WordCountUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.widgets.*;
 import com.mocktpo.widgets.ImageButton;
