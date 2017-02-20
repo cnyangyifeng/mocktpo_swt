@@ -28,26 +28,20 @@ public class WindowUtils {
         s.setFullScreen(false);
     }
 
-    public static void setDefaultWindowSize(Shell s) {
-        Point p = ScreenUtils.getViewPort(s.getDisplay());
-        int reserved = 40;
-        s.setSize(p.x + reserved, p.y);
-    }
-
     public static void setMinimumWindowSize(Shell s) {
         Point p = ScreenUtils.getViewPort(s.getDisplay());
         int reserved = 40;
         s.setMinimumSize(p.x + reserved, p.y);
     }
 
-    public static void setLeftWindowBounds(Shell s) {
+    public static void setModalWindowBoundsToTheLeft(Shell s) {
         Point clientSize = ScreenUtils.getClientSize(s.getDisplay());
         int x = (clientSize.x / 2 - LC.MODAL_WINDOW_WIDTH_HINT) / 2;
         int y = (clientSize.y - LC.MODAL_WINDOW_HEIGHT_HINT) / 2;
         s.setBounds(x, y, LC.MODAL_WINDOW_WIDTH_HINT, LC.MODAL_WINDOW_HEIGHT_HINT);
     }
 
-    public static void setCenterWindowBounds(Shell s) {
+    public static void setModalWindowBoundsToTheCenter(Shell s) {
         Point clientSize = ScreenUtils.getClientSize(s.getDisplay());
         int x = (clientSize.x - LC.MODAL_WINDOW_WIDTH_HINT) / 2;
         int y = (clientSize.y - LC.MODAL_WINDOW_HEIGHT_HINT) / 2;

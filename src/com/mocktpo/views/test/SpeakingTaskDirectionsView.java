@@ -8,6 +8,7 @@ import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
+import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.*;
 import com.mocktpo.widgets.ImageButton;
 import com.mocktpo.widgets.VolumeControl;
@@ -90,14 +91,14 @@ public class SpeakingTaskDirectionsView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        FormLayoutSet.layout(viewPort);
+        GridLayoutSet.layout(viewPort).marginTop(VIEW_PORT_PADDING_TOP).verticalSpacing(20);
 
         final StyledText topTextWidget = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(topTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        GridDataSet.attach(topTextWidget).topCenter();
         StyledTextSet.decorate(topTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("top").getText());
 
         final Label imageLabel = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(imageLabel).atLeft().atTopTo(topTextWidget, 20).atRight();
+        GridDataSet.attach(imageLabel).topCenter();
         LabelSet.decorate(imageLabel).setImage(MT.IMAGE_HEADSET);
     }
 

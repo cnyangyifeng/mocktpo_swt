@@ -70,8 +70,9 @@ public class RequiredAnswerWindow {
     }
 
     private void golbal() {
+        s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
         s.setBackgroundMode(SWT.INHERIT_FORCE);
-        WindowUtils.setCenterWindowBounds(s);
+        WindowUtils.setModalWindowBoundsToTheCenter(s);
         WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s);
     }

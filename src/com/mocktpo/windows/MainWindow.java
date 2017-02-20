@@ -71,6 +71,7 @@ public class MainWindow {
         s.setMaximized(true);
         s.setBackgroundMode(SWT.INHERIT_FORCE);
         WindowUtils.setMinimumWindowSize(s);
+        WindowUtils.center(s);
         s.addShellListener(new MainWindowAdapter());
     }
 

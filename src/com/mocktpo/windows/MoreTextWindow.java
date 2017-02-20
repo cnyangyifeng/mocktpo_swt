@@ -65,8 +65,9 @@ public class MoreTextWindow {
     }
 
     private void golbal() {
+        s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
         s.setBackgroundMode(SWT.INHERIT_FORCE);
-        WindowUtils.setLeftWindowBounds(s);
+        WindowUtils.setModalWindowBoundsToTheLeft(s);
         WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s);
     }
@@ -79,9 +80,9 @@ public class MoreTextWindow {
     }
 
     private void initWidgets() {
-        final Label titleLabel = new Label(background, SWT.CENTER);
+        final CLabel titleLabel = new CLabel(background, SWT.CENTER);
         FormDataSet.attach(titleLabel).atLeft().atTop().atRight();
-        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
 
         final ImageButton continueButton = new ImageButton(background, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(continueButton).fromLeft(50, -LC.CONTINUE_BUTTON_WIDTH / 2).atBottom(20);
@@ -94,7 +95,7 @@ public class MoreTextWindow {
 
         final Label bodyLabel = new Label(c, SWT.WRAP);
         GridDataSet.attach(bodyLabel).centerBoth();
-        LabelSet.decorate(bodyLabel).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("use_scroll_bar"));
+        LabelSet.decorate(bodyLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("use_scroll_bar"));
     }
 
     public void openAndWaitForDisposal() {
