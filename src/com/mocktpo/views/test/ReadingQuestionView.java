@@ -2,6 +2,7 @@ package com.mocktpo.views.test;
 
 import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.*;
+import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
@@ -81,42 +82,42 @@ public class ReadingQuestionView extends SashTestView {
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
 
         checkLabelA = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkLabelA).atLeft(10).atTopTo(questionTextWidget, 25);
+        FormDataSet.attach(checkLabelA).atLeft(10).atTopTo(questionTextWidget, 20 + LC.CHECK_LABEL_MARGIN_TOP);
         LabelSet.decorate(checkLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED);
         checkLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelA = new Label(c, SWT.WRAP);
-        FormDataSet.attach(choiceLabelA).atLeftTo(checkLabelA, 5).atTopTo(questionTextWidget, 20).atRight();
+        FormDataSet.attach(choiceLabelA).atLeftTo(checkLabelA, 10).atTopTo(questionTextWidget, 20).atRight();
         LabelSet.decorate(choiceLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA").getText());
         choiceLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelB = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkLabelB).atLeft(10).atTopTo(choiceLabelA, 25);
+        FormDataSet.attach(checkLabelB).atLeft(10).atTopTo(choiceLabelA, 20 + LC.CHECK_LABEL_MARGIN_TOP);
         LabelSet.decorate(checkLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED);
         checkLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelB = new Label(c, SWT.WRAP);
-        FormDataSet.attach(choiceLabelB).atLeftTo(checkLabelB, 5).atTopTo(choiceLabelA, 20).atRight();
+        FormDataSet.attach(choiceLabelB).atLeftTo(checkLabelB, 10).atTopTo(choiceLabelA, 20).atRight();
         LabelSet.decorate(choiceLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB").getText());
         choiceLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelC = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkLabelC).atLeft(10).atTopTo(choiceLabelB, 25);
+        FormDataSet.attach(checkLabelC).atLeft(10).atTopTo(choiceLabelB, 20 + LC.CHECK_LABEL_MARGIN_TOP);
         LabelSet.decorate(checkLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED);
         checkLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelC = new Label(c, SWT.WRAP);
-        FormDataSet.attach(choiceLabelC).atLeftTo(checkLabelC, 5).atTopTo(choiceLabelB, 20).atRight();
+        FormDataSet.attach(choiceLabelC).atLeftTo(checkLabelC, 10).atTopTo(choiceLabelB, 20).atRight();
         LabelSet.decorate(choiceLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC").getText());
         choiceLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelD = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkLabelD).atLeft(10).atTopTo(choiceLabelC, 25);
+        FormDataSet.attach(checkLabelD).atLeft(10).atTopTo(choiceLabelC, 20 + LC.CHECK_LABEL_MARGIN_TOP);
         LabelSet.decorate(checkLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED);
         checkLabelD.addMouseListener(new ChooseAnswerAdapter());
 
         final Label choiceLabelD = new Label(c, SWT.WRAP);
-        FormDataSet.attach(choiceLabelD).atLeftTo(checkLabelD, 5).atTopTo(choiceLabelC, 20).atRight();
+        FormDataSet.attach(choiceLabelD).atLeftTo(checkLabelD, 10).atTopTo(choiceLabelC, 20).atRight();
         LabelSet.decorate(choiceLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD").getText());
         choiceLabelD.addMouseListener(new ChooseAnswerAdapter());
 

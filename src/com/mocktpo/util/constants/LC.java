@@ -64,4 +64,16 @@ public interface LC {
 
     int MODAL_WINDOW_WIDTH_HINT = 480;
     int MODAL_WINDOW_HEIGHT_HINT = 480;
+
+
+    /*
+     * ==================================================
+     *
+     * Check Label
+     *
+     * ==================================================
+     */
+
+    int CHECK_LABEL_MARGIN_TOP = 3;
+
 }
