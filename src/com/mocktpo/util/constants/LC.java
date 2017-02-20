@@ -74,6 +74,6 @@ public interface LC {
      * ==================================================
      */
 
-    int CHECK_LABEL_MARGIN_TOP = 3;
-
+    int CHECK_LABEL_MARGIN_TOP = 2;
+    int BOX_LABEL_MARGIN_TOP = 2;
 }

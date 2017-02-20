@@ -100,7 +100,7 @@ public class RequiredAnswerWindow {
 
         final Label bodyLabel = new Label(c, SWT.WRAP);
         GridDataSet.attach(bodyLabel).centerBoth();
-        LabelSet.decorate(bodyLabel).setAlignment(SWT.CENTER).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD);
+        LabelSet.decorate(bodyLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM_BOLD);
         switch (type) {
             case MT.REQUIRED_ANSWER_WINDOW_TYPE_NO_ANSWER_FOR_ONE:
                 LabelSet.decorate(bodyLabel).setText(msgs.getString("no_answer_for_one"));

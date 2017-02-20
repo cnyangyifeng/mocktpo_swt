@@ -53,6 +53,6 @@ public class TestFooter extends Composite {
     private void initCopyright() {
         final Label copyright = new Label(this, SWT.WRAP | SWT.CENTER);
         GridDataSet.attach(copyright).centerBoth().withWidth(ScreenUtils.getViewPort(d).x);
-        LabelSet.decorate(copyright).setForeground(MT.COLOR_WHITE_SMOKE).setFont(MT.FONT_X_SMALL).setText(msgs.getString("copyright"));
+        LabelSet.decorate(copyright).setForeground(MT.COLOR_WHITE_SMOKE).setFont(MT.FONT_SMALL).setText(msgs.getString("copyright"));
     }
 }

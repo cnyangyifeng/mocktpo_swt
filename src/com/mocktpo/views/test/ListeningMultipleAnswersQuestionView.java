@@ -1,22 +1,28 @@
 package com.mocktpo.views.test;
 
-import com.mocktpo.windows.RequiredAnswerWindow;
 import com.mocktpo.events.StyledTextPaintImageListener;
 import com.mocktpo.pages.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
-import com.mocktpo.util.widgets.*;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
+import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.widgets.ImageButton;
 import com.mocktpo.widgets.VolumeControl;
+import com.mocktpo.windows.RequiredAnswerWindow;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.*;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Scale;
 
@@ -36,7 +42,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
     private ImageButton nextOvalButton, okOvalButton;
     private VolumeControl volumeControl;
 
-    private Label checkLabelA, checkLabelB, checkLabelC, checkLabelD, checkLabelE;
+    private Label boxLabelA, boxLabelB, boxLabelC, boxLabelD, checkLabelE;
     private Label choiceLabelA, choiceLabelB, choiceLabelC, choiceLabelD, choiceLabelE;
     private StyledText tipsTextWidget;
 
@@ -124,54 +130,54 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(5).setText(vo.getStyledText("tips").getText()).setVisible(false);
         StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledText("tips").getStyles());
 
-        checkLabelA = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(checkLabelA).atLeft(5).atTopTo(tipsTextWidget, 25);
-        LabelSet.decorate(checkLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNBOXED).setVisible(false);
-        checkLabelA.addMouseListener(new ChooseAnswerAdapter());
+        boxLabelA = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(boxLabelA).atLeft(10).atTopTo(tipsTextWidget, 20 + LC.BOX_LABEL_MARGIN_TOP);
+        LabelSet.decorate(boxLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNBOXED).setVisible(false);
+        boxLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelA = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceLabelA).atLeftTo(checkLabelA, 5).atTopTo(tipsTextWidget, 20).atRight();
+        FormDataSet.attach(choiceLabelA).atLeftTo(boxLabelA, 10).atTopTo(tipsTextWidget, 20).atRight();
         LabelSet.decorate(choiceLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA").getText()).setVisible(false);
         choiceLabelA.addMouseListener(new ChooseAnswerAdapter());
 
-        checkLabelB = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(checkLabelB).atLeft(5).atTopTo(choiceLabelA, 25);
-        LabelSet.decorate(checkLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNBOXED).setVisible(false);
-        checkLabelB.addMouseListener(new ChooseAnswerAdapter());
+        boxLabelB = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(boxLabelB).atLeft(10).atTopTo(choiceLabelA, 20 + LC.BOX_LABEL_MARGIN_TOP);
+        LabelSet.decorate(boxLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNBOXED).setVisible(false);
+        boxLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelB = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceLabelB).atLeftTo(checkLabelB, 5).atTopTo(choiceLabelA, 20).atRight();
+        FormDataSet.attach(choiceLabelB).atLeftTo(boxLabelB, 10).atTopTo(choiceLabelA, 20).atRight();
         LabelSet.decorate(choiceLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB").getText()).setVisible(false);
         choiceLabelB.addMouseListener(new ChooseAnswerAdapter());
 
-        checkLabelC = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(checkLabelC).atLeft(5).atTopTo(choiceLabelB, 25);
-        LabelSet.decorate(checkLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNBOXED).setVisible(false);
-        checkLabelC.addMouseListener(new ChooseAnswerAdapter());
+        boxLabelC = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(boxLabelC).atLeft(10).atTopTo(choiceLabelB, 20 + LC.BOX_LABEL_MARGIN_TOP);
+        LabelSet.decorate(boxLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNBOXED).setVisible(false);
+        boxLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelC = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceLabelC).atLeftTo(checkLabelC, 5).atTopTo(choiceLabelB, 20).atRight();
+        FormDataSet.attach(choiceLabelC).atLeftTo(boxLabelC, 10).atTopTo(choiceLabelB, 20).atRight();
         LabelSet.decorate(choiceLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC").getText()).setVisible(false);
         choiceLabelC.addMouseListener(new ChooseAnswerAdapter());
 
-        checkLabelD = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(checkLabelD).atLeft(5).atTopTo(choiceLabelC, 25);
-        LabelSet.decorate(checkLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNBOXED).setVisible(false);
-        checkLabelD.addMouseListener(new ChooseAnswerAdapter());
+        boxLabelD = new Label(viewPort, SWT.NONE);
+        FormDataSet.attach(boxLabelD).atLeft(10).atTopTo(choiceLabelC, 20 + LC.BOX_LABEL_MARGIN_TOP);
+        LabelSet.decorate(boxLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNBOXED).setVisible(false);
+        boxLabelD.addMouseListener(new ChooseAnswerAdapter());
 
         choiceLabelD = new Label(viewPort, SWT.WRAP);
-        FormDataSet.attach(choiceLabelD).atLeftTo(checkLabelD, 5).atTopTo(choiceLabelC, 20).atRight();
+        FormDataSet.attach(choiceLabelD).atLeftTo(boxLabelD, 10).atTopTo(choiceLabelC, 20).atRight();
         LabelSet.decorate(choiceLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD").getText()).setVisible(false);
         choiceLabelD.addMouseListener(new ChooseAnswerAdapter());
 
         if (3 == vo.getTotalAnswerCount()) {
             checkLabelE = new Label(viewPort, SWT.NONE);
-            FormDataSet.attach(checkLabelE).atLeft(5).atTopTo(choiceLabelD, 25);
+            FormDataSet.attach(checkLabelE).atLeft(10).atTopTo(choiceLabelD, 20 + LC.BOX_LABEL_MARGIN_TOP);
             LabelSet.decorate(checkLabelE).setData(MT.KEY_CHOICE, MT.CHOICE_E).setImage(MT.IMAGE_UNBOXED).setVisible(false);
             checkLabelE.addMouseListener(new ChooseAnswerAdapter());
 
             choiceLabelE = new Label(viewPort, SWT.WRAP);
-            FormDataSet.attach(choiceLabelE).atLeftTo(checkLabelE, 5).atTopTo(choiceLabelD, 20).atRight();
+            FormDataSet.attach(choiceLabelE).atLeftTo(checkLabelE, 10).atTopTo(choiceLabelD, 20).atRight();
             LabelSet.decorate(choiceLabelE).setData(MT.KEY_CHOICE, MT.CHOICE_E).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceE").getText()).setVisible(false);
             choiceLabelE.addMouseListener(new ChooseAnswerAdapter());
         }
@@ -213,16 +219,16 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
             case MT.CHOICE_NONE:
                 break;
             case MT.CHOICE_A:
-                LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_BOXED);
+                LabelSet.decorate(boxLabelA).setImage(MT.IMAGE_BOXED);
                 break;
             case MT.CHOICE_B:
-                LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_BOXED);
+                LabelSet.decorate(boxLabelB).setImage(MT.IMAGE_BOXED);
                 break;
             case MT.CHOICE_C:
-                LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_BOXED);
+                LabelSet.decorate(boxLabelC).setImage(MT.IMAGE_BOXED);
                 break;
             case MT.CHOICE_D:
-                LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_BOXED);
+                LabelSet.decorate(boxLabelD).setImage(MT.IMAGE_BOXED);
                 break;
             case MT.CHOICE_E:
                 LabelSet.decorate(checkLabelE).setImage(MT.IMAGE_BOXED);
@@ -382,36 +388,36 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         }
                     }
                 }
-                LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_UNBOXED);
-                LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_UNBOXED);
-                LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_UNBOXED);
-                LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(boxLabelA).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(boxLabelB).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(boxLabelC).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(boxLabelD).setImage(MT.IMAGE_UNBOXED);
                 switch (answer1) {
                     case MT.CHOICE_A:
-                        LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelA).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_B:
-                        LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelB).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_C:
-                        LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelC).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_D:
-                        LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelD).setImage(MT.IMAGE_BOXED);
                         break;
                 }
                 switch (answer2) {
                     case MT.CHOICE_A:
-                        LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelA).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_B:
-                        LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelB).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_C:
-                        LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelC).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_D:
-                        LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelD).setImage(MT.IMAGE_BOXED);
                         break;
                 }
                 logger.info("[Listening Multiple-Answers Question {}] Answers: ({}, {})", vo.getQuestionNumberInSection(), answer1, answer2);
@@ -440,23 +446,23 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                         }
                     }
                 }
-                LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_UNBOXED);
-                LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_UNBOXED);
-                LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_UNBOXED);
-                LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(boxLabelA).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(boxLabelB).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(boxLabelC).setImage(MT.IMAGE_UNBOXED);
+                LabelSet.decorate(boxLabelD).setImage(MT.IMAGE_UNBOXED);
                 LabelSet.decorate(checkLabelE).setImage(MT.IMAGE_UNBOXED);
                 switch (answer1) {
                     case MT.CHOICE_A:
-                        LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelA).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_B:
-                        LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelB).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_C:
-                        LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelC).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_D:
-                        LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelD).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_E:
                         LabelSet.decorate(checkLabelE).setImage(MT.IMAGE_BOXED);
@@ -464,16 +470,16 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                 }
                 switch (answer2) {
                     case MT.CHOICE_A:
-                        LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelA).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_B:
-                        LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelB).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_C:
-                        LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelC).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_D:
-                        LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelD).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_E:
                         LabelSet.decorate(checkLabelE).setImage(MT.IMAGE_BOXED);
@@ -481,16 +487,16 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                 }
                 switch (answer3) {
                     case MT.CHOICE_A:
-                        LabelSet.decorate(checkLabelA).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelA).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_B:
-                        LabelSet.decorate(checkLabelB).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelB).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_C:
-                        LabelSet.decorate(checkLabelC).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelC).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_D:
-                        LabelSet.decorate(checkLabelD).setImage(MT.IMAGE_BOXED);
+                        LabelSet.decorate(boxLabelD).setImage(MT.IMAGE_BOXED);
                         break;
                     case MT.CHOICE_E:
                         LabelSet.decorate(checkLabelE).setImage(MT.IMAGE_BOXED);
@@ -515,13 +521,13 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                             nextOvalButton.setEnabled(true);
                             okOvalButton.setEnabled(false);
                             StyledTextSet.decorate(tipsTextWidget).setVisible(true);
-                            LabelSet.decorate(checkLabelA).setVisible(true);
+                            LabelSet.decorate(boxLabelA).setVisible(true);
                             LabelSet.decorate(choiceLabelA).setVisible(true);
-                            LabelSet.decorate(checkLabelB).setVisible(true);
+                            LabelSet.decorate(boxLabelB).setVisible(true);
                             LabelSet.decorate(choiceLabelB).setVisible(true);
-                            LabelSet.decorate(checkLabelC).setVisible(true);
+                            LabelSet.decorate(boxLabelC).setVisible(true);
                             LabelSet.decorate(choiceLabelC).setVisible(true);
-                            LabelSet.decorate(checkLabelD).setVisible(true);
+                            LabelSet.decorate(boxLabelD).setVisible(true);
                             LabelSet.decorate(choiceLabelD).setVisible(true);
                             if (3 == vo.getTotalAnswerCount()) {
                                 LabelSet.decorate(checkLabelE).setVisible(true);

@@ -95,7 +95,7 @@ public class MoreTextWindow {
 
         final Label bodyLabel = new Label(c, SWT.WRAP);
         GridDataSet.attach(bodyLabel).centerBoth();
-        LabelSet.decorate(bodyLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("use_scroll_bar"));
+        LabelSet.decorate(bodyLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM_BOLD).setText(msgs.getString("use_scroll_bar"));
     }
 
     public void openAndWaitForDisposal() {
