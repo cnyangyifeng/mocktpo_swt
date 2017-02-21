@@ -95,7 +95,8 @@ public class ResourceManager {
          */
 
         caches.putIfAbsent(MT.IMAGE_APP_ICON, ImageUtils.load(d, "app_icon"));
-        caches.putIfAbsent(MT.IMAGE_ARROW_BACK, ImageUtils.load(d, "arrow_back"));
+        caches.putIfAbsent(MT.IMAGE_BACK, ImageUtils.load(d, "back"));
+        caches.putIfAbsent(MT.IMAGE_BACK_HOVER, ImageUtils.load(d, "back_h"));
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL, ImageUtils.load(d, "back_o"));
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL_DISABLED, ImageUtils.load(d, "back_o_d"));
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL_HOVER, ImageUtils.load(d, "back_o_h"));
@@ -126,6 +127,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_HIDE_TIME_DISABLED, ImageUtils.load(d, "hide_time_d"));
         caches.putIfAbsent(MT.IMAGE_HIDE_TIME_HOVER, ImageUtils.load(d, "hide_time_h"));
         caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, "logo"));
+        caches.putIfAbsent(MT.IMAGE_NEW_TEST, ImageUtils.load(d, "new_test"));
+        caches.putIfAbsent(MT.IMAGE_NEW_TEST_HOVER, ImageUtils.load(d, "new_test_h"));
         caches.putIfAbsent(MT.IMAGE_NEXT_OVAL, ImageUtils.load(d, "next_o"));
         caches.putIfAbsent(MT.IMAGE_NEXT_OVAL_DISABLED, ImageUtils.load(d, "next_o_d"));
         caches.putIfAbsent(MT.IMAGE_NEXT_OVAL_HOVER, ImageUtils.load(d, "next_o_h"));
@@ -142,6 +145,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN, ImageUtils.load(d, "record_again"));
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN_DISABLED, ImageUtils.load(d, "record_again_d"));
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN_HOVER, ImageUtils.load(d, "record_again_h"));
+        caches.putIfAbsent(MT.IMAGE_REPORT, ImageUtils.load(d, "report"));
+        caches.putIfAbsent(MT.IMAGE_REPORT_HOVER, ImageUtils.load(d, "report_h"));
         caches.putIfAbsent(MT.IMAGE_RETURN, ImageUtils.load(d, "return"));
         caches.putIfAbsent(MT.IMAGE_RETURN_HOVER, ImageUtils.load(d, "return_h"));
         caches.putIfAbsent(MT.IMAGE_RETURN_TO_QUESTION, ImageUtils.load(d, "return_to_question"));

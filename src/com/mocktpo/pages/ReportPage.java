@@ -20,14 +20,15 @@ import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.QuestionAndAnswerDetailsVo;
 import com.mocktpo.vo.TestSchemaVo;
 import com.mocktpo.vo.TestViewVo;
+import com.mocktpo.widgets.ImageButton;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.BrowserFunction;
 import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -100,10 +101,9 @@ public class ReportPage extends Composite {
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final Button backButton = new Button(toolBar, SWT.PUSH);
-        FormDataSet.attach(backButton).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(backButton).setImage(MT.IMAGE_ARROW_BACK).setText(msgs.getString("back"));
-        backButton.addSelectionListener(new BackButtonSelectionAdapter());
+        final ImageButton backButton = new ImageButton(toolBar, SWT.PUSH, MT.IMAGE_BACK, MT.IMAGE_BACK_HOVER);
+        FormDataSet.attach(backButton).atLeft().atTop();
+        backButton.addMouseListener(new BackButtonMouseAdapter());
 
         final Button exportButton = new Button(toolBar, SWT.PUSH);
         FormDataSet.attach(exportButton).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
@@ -147,10 +147,10 @@ public class ReportPage extends Composite {
      * ==================================================
      */
 
-    private class BackButtonSelectionAdapter extends SelectionAdapter {
+    private class BackButtonMouseAdapter extends MouseAdapter {
 
         @Override
-        public void widgetSelected(SelectionEvent e) {
+        public void mouseDown(MouseEvent e) {
             MyApplication.get().getWindow().toMainPage();
         }
     }

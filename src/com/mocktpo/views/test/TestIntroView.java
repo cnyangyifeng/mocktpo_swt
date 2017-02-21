@@ -7,6 +7,7 @@ import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
+import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.*;
 import com.mocktpo.widgets.ImageButton;
 import org.eclipse.swt.SWT;
@@ -54,14 +55,14 @@ public class TestIntroView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        FormLayoutSet.layout(viewPort);
+        GridLayoutSet.layout(viewPort).marginTop(VIEW_PORT_PADDING_TOP).verticalSpacing(50);
 
         final Label imageLabel = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(imageLabel).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
+        GridDataSet.attach(imageLabel).topCenter();
         LabelSet.decorate(imageLabel).setImage(MT.IMAGE_ETS_TOEFL);
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(descriptionTextWidget).atLeft().atTopTo(imageLabel, 50).atRight();
+        GridDataSet.attach(descriptionTextWidget).topCenter();
         StyledTextSet.decorate(descriptionTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
         StyleRangeUtils.decorate(descriptionTextWidget, vo.getStyledText("description").getStyles());
     }

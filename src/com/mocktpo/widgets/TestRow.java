@@ -119,15 +119,13 @@ public class TestRow extends Composite {
         FormDataSet.attach(divider).atLeft().atTopTo(sectionsComposite, 10).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
 
-        final Button continueButton = new Button(c, SWT.PUSH);
-        FormDataSet.attach(continueButton).atLeft().atTopTo(divider, 10).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(continueButton).setText(msgs.getString("continue"));
-        continueButton.addSelectionListener(new ContinueButtonSelectionAdapter());
+        final ImageButton continueButton = new ImageButton(c, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
+        FormDataSet.attach(continueButton).atLeft().atTopTo(divider, 10);
+        continueButton.addMouseListener(new ContinueButtonMouseAdapter());
 
-        final Button reportButton = new Button(c, SWT.PUSH);
-        FormDataSet.attach(reportButton).atLeftTo(continueButton, 10).atTopTo(continueButton, 0, SWT.TOP).atBottom().withWidth(LC.BUTTON_WIDTH_HINT).withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(reportButton).setText(msgs.getString("report"));
-        reportButton.addSelectionListener(new ReportButtonSelectionAdapter());
+        final ImageButton reportButton = new ImageButton(c, SWT.PUSH, MT.IMAGE_REPORT, MT.IMAGE_REPORT_HOVER);
+        FormDataSet.attach(reportButton).atLeftTo(continueButton, 10).atTopTo(continueButton, 0, SWT.TOP);
+        reportButton.addMouseListener(new ReportButtonMouseAdapter());
     }
 
     /*
@@ -138,18 +136,18 @@ public class TestRow extends Composite {
      * ==================================================
      */
 
-    private class ContinueButtonSelectionAdapter extends SelectionAdapter {
+    private class ContinueButtonMouseAdapter extends MouseAdapter {
 
         @Override
-        public void widgetSelected(SelectionEvent e) {
+        public void mouseDown(MouseEvent e) {
             MyApplication.get().getWindow().toTestPage(userTestSession);
         }
     }
 
-    private class ReportButtonSelectionAdapter extends SelectionAdapter {
+    private class ReportButtonMouseAdapter extends MouseAdapter {
 
         @Override
-        public void widgetSelected(SelectionEvent e) {
+        public void mouseDown(MouseEvent e) {
             MyApplication.get().getWindow().toReportPage(userTestSession);
         }
     }
