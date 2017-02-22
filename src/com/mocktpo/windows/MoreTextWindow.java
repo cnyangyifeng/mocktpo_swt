@@ -80,9 +80,9 @@ public class MoreTextWindow {
     }
 
     private void initWidgets() {
-        final CLabel titleLabel = new CLabel(background, SWT.CENTER);
+        final Label titleLabel = new Label(background, SWT.CENTER);
         FormDataSet.attach(titleLabel).atLeft().atTop().atRight();
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
+        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("more_text"));
 
         final ImageButton continueButton = new ImageButton(background, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(continueButton).fromLeft(50, -LC.CONTINUE_BUTTON_WIDTH / 2).atBottom(20);

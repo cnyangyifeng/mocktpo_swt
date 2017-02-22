@@ -36,7 +36,7 @@ public class MyApplication {
 
     public void exitApplication() {
         ResourceManager.dispose();
-        if (null != d) {
+        if (null != d && !d.isDisposed()) {
             d.dispose();
         }
         if (null != sqlSession) {
