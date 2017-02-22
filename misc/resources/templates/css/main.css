@@ -1,6 +1,7 @@
 body {
     padding-top: 20px;
     min-height: 1600px;
+    font-family: Arial, sans-serif;
 }
 
 .dl-horizontal dt {
