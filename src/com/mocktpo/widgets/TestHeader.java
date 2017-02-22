@@ -1,13 +1,14 @@
 package com.mocktpo.widgets;
 
-import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.widgets.CompositeSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
@@ -26,6 +27,10 @@ public class TestHeader extends Composite {
     /* Display and Application */
 
     protected Display d;
+
+    /* Widgets */
+
+    private Image backgroundImage;
 
     /*
      * ==================================================
@@ -46,9 +51,8 @@ public class TestHeader extends Composite {
     }
 
     private void golbal() {
-        // TODO DISPOSE IMAGE RESOURCE
-        Image image = new Image(d, ScreenUtils.getClientWidth(d), LC.TEST_HEADER_HEIGHT);
-        GC gc = new GC(image);
+        backgroundImage = new Image(d, ScreenUtils.getClientWidth(d), LC.TEST_HEADER_HEIGHT);
+        GC gc = new GC(backgroundImage);
 
         Color start = ResourceManager.getColor(MT.COLOR_DARK_BLUE);
         Color end = ResourceManager.getColor(MT.COLOR_BURGUNDY);
@@ -58,6 +62,18 @@ public class TestHeader extends Composite {
         gc.fillGradientRectangle(0, 0, ScreenUtils.getClientWidth(d), LC.TEST_HEADER_HEIGHT, false);
         gc.dispose();
 
-        CompositeSet.decorate(this).setBackgroundImage(image);
+        CompositeSet.decorate(this).setBackgroundImage(backgroundImage);
+
+        this.addDisposeListener(new TestHeaderDisposeListener());
+    }
+
+    private class TestHeaderDisposeListener implements DisposeListener {
+
+        @Override
+        public void widgetDisposed(DisposeEvent e) {
+            if (null != backgroundImage && !backgroundImage.isDisposed()) {
+                backgroundImage.dispose();
+            }
+        }
     }
 }
