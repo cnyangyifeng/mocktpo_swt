@@ -144,12 +144,12 @@ public class ReadingPassageView extends SashTestView {
                 indicator.setText("");
             } else if (selection > 0 && selection <= reserved) {
                 indicator.setText(msgs.getString("beginning"));
-            } else if (selection >= maximum - thumb - reserved) {
+            } else /* if (selection >= maximum - thumb - reserved) */ {
                 indicator.setText(msgs.getString("more_available"));
                 goneThrough = true;
-            } else {
+            } /* else {
                 indicator.setText(msgs.getString("more_available"));
-            }
+            } */
         }
     }
 }
