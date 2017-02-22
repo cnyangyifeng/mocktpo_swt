@@ -28,7 +28,7 @@ public class ReadingPassageView extends SashTestView {
 
     /* Properties */
 
-    protected boolean goneThrough;
+    private boolean goneThrough;
 
     /*
      * ==================================================
