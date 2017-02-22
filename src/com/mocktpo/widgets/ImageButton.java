@@ -1,11 +1,8 @@
 package com.mocktpo.widgets;
 
-import com.mocktpo.util.widgets.CompositeSet;
-import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.ResourceManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackListener;
 import org.eclipse.swt.graphics.Image;
@@ -59,10 +56,8 @@ public class ImageButton extends Composite {
     }
 
     private void golbal() {
-        CompositeSet.decorate(this).setBackgroundImage(normal);
-        this.setBackgroundMode(SWT.INHERIT_FORCE);
+        setBackgroundImage(normal);
         addMouseTrackListener(new ImageButtonMouseTrackListener());
-        FormLayoutSet.layout(this);
     }
 
     @Override

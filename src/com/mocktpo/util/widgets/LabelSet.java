@@ -50,6 +50,11 @@ public class LabelSet {
         return this;
     }
 
+    public LabelSet setBackgroundImage(Image image) {
+        c.setBackgroundImage(image);
+        return this;
+    }
+
     /*
      * ==================================================
      *
