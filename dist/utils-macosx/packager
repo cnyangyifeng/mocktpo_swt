@@ -11,59 +11,55 @@ if [ -d $DIST_DIR ]; then
 fi
 mkdir $DIST_DIR
 
-cd $DIST_DIR
-if [ -d MockTPO.app ]; then
-  rm -rf MockTPO.app
+if [ -d $DIST_DIR/MockTPO.app ]; then
+  rm -rf $DIST_DIR/MockTPO.app
 fi
-mkdir MockTPO.app
-echo "[MockTPO] MockTPO.app created."
+mkdir $DIST_DIR/MockTPO.app
 
-cd MockTPO.app
-mkdir Contents
-echo "[MockTPO] MockTPO.app/Contents created."
+mkdir $DIST_DIR/MockTPO.app/Contents
+echo "MockTPO.app/Contents created."
 
-cd Contents
-cp $BASE_DIR/Info.plist $BASE_DIR/PkgInfo .
-echo "[MockTPO] MockTPO.app/Contents/Info.plist copyed."
-echo "[MockTPO] MockTPO.app/Contents/PkgInfo copyed."
+cp $BASE_DIR/Info.plist $DIST_DIR/MockTPO.app/Contents
+echo "MockTPO.app/Contents/Info.plist copyed."
+cp $BASE_DIR/PkgInfo $DIST_DIR/MockTPO.app/Contents
+echo "MockTPO.app/Contents/PkgInfo copyed."
 
-mkdir Resources
-echo "[MockTPO] MockTPO.app/Contents/Resources created."
+mkdir $DIST_DIR/MockTPO.app/Contents/Resources
+echo "MockTPO.app/Contents/Resources created."
 
-cd Resources
 iconutil -c icns $BASE_DIR/icon.iconset
-mv $BASE_DIR/icon.icns .
-echo "[MockTPO] MockTPO.app/Contents/Resources/icon.icns copyed."
+mv $BASE_DIR/icon.icns $DIST_DIR/MockTPO.app/Contents/Resources
+echo "MockTPO.app/Contents/Resources/icon.icns copyed."
 
-cd ..
-mkdir MacOS
-echo "[MockTPO] MockTPO.app/Contents/MacOS created."
+mkdir $DIST_DIR/MockTPO.app/Contents/MacOS
+echo "MockTPO.app/Contents/MacOS created."
 
-cd MacOS
-cp -a $BIN_DIR/. .
-echo "[MockTPO] MockTPO.app/Contents/MacOS/[binaries and configuration files] copyed."
-cp $BASE_DIR/mocktpo .
-echo "[MockTPO] MockTPO.app/Contents/MacOS/mocktpo copyed."
+cp -a $BIN_DIR/. $DIST_DIR/MockTPO.app/Contents/MacOS
+echo "MockTPO.app/Contents/MacOS/[binaries and configurations] copyed."
+cp $BASE_DIR/mocktpo $DIST_DIR/MockTPO.app/Contents/MacOS
+echo "MockTPO.app/Contents/MacOS/mocktpo copyed."
+cp -r $BASE_DIR/jre $DIST_DIR/MockTPO.app/Contents/MacOS
+echo "MockTPO.app/Contents/MacOS/jre copyed."
 
-cd $DIST_DIR
-if [ -f MockTPO.dmg ]; then
-  rm -rf MockTPO.dmg
+echo "MockTPO.app created."
+
+if [ -f $DIST_DIR/MockTPO.dmg ]; then
+  rm -rf $DIST_DIR/MockTPO.dmg
 fi
-hdiutil create -srcfolder MockTPO.app MockTPO.dmg > /dev/null
-hdiutil internet-enable -yes MockTPO.dmg > /dev/null
-echo "[MockTPO] MockTPO.dmg copyed."
-# rm -rf MockTPO.app
-echo "[MockTPO] MockTPO.app deleted."
+hdiutil create -srcfolder $DIST_DIR/MockTPO.app $DIST_DIR/MockTPO.dmg > /dev/null
+hdiutil internet-enable -yes $DIST_DIR/MockTPO.dmg > /dev/null
+echo "MockTPO.dmg created."
 
-hdiutil attach MockTPO.dmg > /dev/null
-echo "[MockTPO] MockTPO.dmg attached."
+# rm -rf $DIST_DIR/MockTPO.app
+# echo "MockTPO.app deleted."
 
-if [ -d /Applications/MockTPO.app ]; then
-  sudo rm -rf /Applications/MockTPO.app
-fi
-sudo cp -a /Volumes/MockTPO/MockTPO.app /Applications
-echo "[MockTPO] MockTPO.app installed."
-umount `mount | grep MockTPO | cut -d " " -f1`
-echo "[MockTPO] MockTPO.dmg unmounted."
+# hdiutil attach $DIST_DIR/MockTPO.dmg > /dev/null
+# echo "MockTPO.dmg attached."
 
-echo "[MockTPO] Nice day."
+# if [ -d /Applications/MockTPO.app ]; then
+#   sudo rm -rf /Applications/MockTPO.app
+# fi
+# sudo cp -a /Volumes/MockTPO/MockTPO.app /Applications
+# echo "MockTPO.app installed."
+# umount `mount | grep MockTPO | cut -d " " -f1`
+# echo "MockTPO.dmg unmounted."
