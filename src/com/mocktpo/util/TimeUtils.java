@@ -54,7 +54,7 @@ public class TimeUtils {
     }
 
     public static String displayClockTime(long time) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(time);
         return df.format(calendar.getTime());
