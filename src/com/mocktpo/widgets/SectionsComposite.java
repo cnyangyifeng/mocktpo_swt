@@ -95,24 +95,25 @@ public class SectionsComposite extends Composite {
         }
 
         private void golbal() {
-            RowLayoutSet.layout(this);
+            RowLayoutSet.layout(this).spacing(10);
         }
 
         private void initBody() {
             checkLabel = new Label(this, SWT.NONE);
-            LabelSet.decorate(checkLabel).setImage(MT.IMAGE_BOXED);
+            LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_BOXED);
             if (enabled) {
                 checkLabel.addMouseListener(chooseAnswerAdapter);
                 checkLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
+            } else {
+                checkLabel.setVisible(false);
             }
             choiceLabel = new Label(this, SWT.WRAP);
-            LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setText(text);
+            LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(text);
             if (enabled) {
-                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_BLACK);
                 choiceLabel.addMouseListener(chooseAnswerAdapter);
                 choiceLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
             } else {
-                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_GRAY40);
+                LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL_ITALIC);
             }
         }
 
@@ -129,13 +130,14 @@ public class SectionsComposite extends Composite {
             if (enabled) {
                 checkLabel.addMouseListener(chooseAnswerAdapter);
                 checkLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
+                checkLabel.setVisible(false);
                 choiceLabel.addMouseListener(chooseAnswerAdapter);
                 choiceLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
             } else {
                 checkLabel.removeMouseListener(chooseAnswerAdapter);
-                checkLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
+                checkLabel.removeMouseTrackListener(checkWidgetMouseTrackAdapter);
                 choiceLabel.removeMouseListener(chooseAnswerAdapter);
-                choiceLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
+                choiceLabel.removeMouseTrackListener(checkWidgetMouseTrackAdapter);
             }
         }
 
@@ -144,9 +146,9 @@ public class SectionsComposite extends Composite {
             @Override
             public void mouseDown(MouseEvent e) {
                 if (checked) {
-                    LabelSet.decorate(checkLabel).setImage(MT.IMAGE_UNBOXED);
+                    LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_UNBOXED);
                 } else {
-                    LabelSet.decorate(checkLabel).setImage(MT.IMAGE_BOXED);
+                    LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_BOXED);
                 }
                 checked = !checked;
             }
@@ -159,7 +161,7 @@ public class SectionsComposite extends Composite {
             }
 
             public void mouseExit(MouseEvent e) {
-                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_BLACK);
+                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_GRAY20);
             }
         }
     }

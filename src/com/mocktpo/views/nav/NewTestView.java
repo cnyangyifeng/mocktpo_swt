@@ -13,12 +13,15 @@ import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.ButtonSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.widgets.ImageButton;
 import com.mocktpo.widgets.TestCard;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.*;
@@ -85,10 +88,9 @@ public class NewTestView extends Composite {
         ButtonSet.decorate(sortByNameButton).setText(msgs.getString("sort_by_name"));
         sortByNameButton.addSelectionListener(new SortButtonSelectionAdapter());
 
-        final Button importButton = new Button(toolBar, SWT.PUSH);
+        final ImageButton importButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
         FormDataSet.attach(importButton).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(importButton).setText(msgs.getString("import"));
-        importButton.addSelectionListener(new ImportButtonSelectionAdapter());
+        importButton.addMouseListener(new ImportButtonMouseAdapter());
     }
 
     private void initBody() {
@@ -151,10 +153,10 @@ public class NewTestView extends Composite {
         }
     }
 
-    private class ImportButtonSelectionAdapter extends SelectionAdapter {
+    private class ImportButtonMouseAdapter extends MouseAdapter {
 
         @Override
-        public void widgetSelected(SelectionEvent e) {
+        public void mouseDown(MouseEvent e) {
             FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.OPEN);
             dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
             dialog.setFilterExtensions(new String[]{"*.zip"});

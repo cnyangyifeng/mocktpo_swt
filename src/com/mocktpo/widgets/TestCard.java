@@ -100,14 +100,18 @@ public class TestCard extends Composite {
         CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(c).marginWidth(0).marginHeight(0);
 
+        final CLabel sectionsLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(sectionsLabel).atLeft().atTop().atRight();
+        CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("select_sections"));
+
         sectionsComposite = new SectionsComposite(c, SWT.NONE, 2, true);
-        FormDataSet.attach(sectionsComposite).atLeft().atTop().atRight();
+        FormDataSet.attach(sectionsComposite).atLeft().atTopTo(sectionsLabel, 10).atRight();
 
         final Label divider = new Label(c, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(sectionsComposite, 10).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
 
-        final ImageButton newTestButton = new ImageButton(c, SWT.PUSH, MT.IMAGE_NEW_TEST, MT.IMAGE_NEW_TEST_HOVER);
+        final ImageButton newTestButton = new ImageButton(c, SWT.PUSH, MT.IMAGE_SYSTEM_NEW_TEST, MT.IMAGE_SYSTEM_NEW_TEST_HOVER);
         FormDataSet.attach(newTestButton).atLeft().atTopTo(divider, 10);
         newTestButton.addMouseListener(new NewTestButtonMouseAdapter());
     }

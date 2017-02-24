@@ -14,7 +14,6 @@ import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.AnswerUtils;
-import com.mocktpo.util.widgets.ButtonSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.QuestionAndAnswerDetailsVo;
@@ -29,7 +28,6 @@ import org.eclipse.swt.browser.BrowserFunction;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -101,13 +99,12 @@ public class ReportPage extends Composite {
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final ImageButton backButton = new ImageButton(toolBar, SWT.PUSH, MT.IMAGE_BACK, MT.IMAGE_BACK_HOVER);
+        final ImageButton backButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_BACK, MT.IMAGE_SYSTEM_BACK_HOVER);
         FormDataSet.attach(backButton).atLeft().atTop();
         backButton.addMouseListener(new BackButtonMouseAdapter());
 
-        final Button exportButton = new Button(toolBar, SWT.PUSH);
+        final ImageButton exportButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT, MT.IMAGE_SYSTEM_EXPORT_HOVER);
         FormDataSet.attach(exportButton).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(exportButton).setText(msgs.getString("export"));
     }
 
     private void initBody() {

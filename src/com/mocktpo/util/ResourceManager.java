@@ -29,7 +29,9 @@ public class ResourceManager {
         caches.putIfAbsent(MT.COLOR_BURGUNDY, new Color(d, 132, 0, 50)); // #840032
         caches.putIfAbsent(MT.COLOR_DARK_ORANGE, new Color(d, 255, 140, 0)); // #ff8c00
         caches.putIfAbsent(MT.COLOR_DARK_BLUE, new Color(d, 47, 82, 140)); // #2f528c
+        caches.putIfAbsent(MT.COLOR_GRAY20, new Color(d, 51, 51, 51)); // #333333
         caches.putIfAbsent(MT.COLOR_GRAY40, new Color(d, 102, 102, 102)); // #666666
+        caches.putIfAbsent(MT.COLOR_GRAY60, new Color(d, 153, 153, 153)); // #999999
         caches.putIfAbsent(MT.COLOR_GREEN, new Color(d, 0, 128, 0)); // #008000
         caches.putIfAbsent(MT.COLOR_INDIGO, new Color(d, 55, 50, 125)); // #37327d
         caches.putIfAbsent(MT.COLOR_ORANGE, new Color(d, 255, 165, 0)); // #ffa500
@@ -69,6 +71,7 @@ public class ResourceManager {
         /* 12px, 9pt, 75% */
         caches.putIfAbsent(MT.FONT_SMALL, FontUtils.getFont(d, 12));
         caches.putIfAbsent(MT.FONT_SMALL_BOLD, FontUtils.getFont(d, 12, SWT.BOLD));
+        caches.putIfAbsent(MT.FONT_SMALL_ITALIC, FontUtils.getFont(d, 12, SWT.ITALIC));
         /* 15px, 11pt, 95% */
         caches.putIfAbsent(MT.FONT_MEDIUM, FontUtils.getFont(d, 15));
         caches.putIfAbsent(MT.FONT_MEDIUM_BOLD, FontUtils.getFont(d, 15, SWT.BOLD));
@@ -94,9 +97,6 @@ public class ResourceManager {
          * ==================================================
          */
 
-        caches.putIfAbsent(MT.IMAGE_APP_ICON, ImageUtils.load(d, "app_icon"));
-        caches.putIfAbsent(MT.IMAGE_BACK, ImageUtils.load(d, "back"));
-        caches.putIfAbsent(MT.IMAGE_BACK_HOVER, ImageUtils.load(d, "back_h"));
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL, ImageUtils.load(d, "back_o"));
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL_DISABLED, ImageUtils.load(d, "back_o_d"));
         caches.putIfAbsent(MT.IMAGE_BACK_OVAL_HOVER, ImageUtils.load(d, "back_o_h"));
@@ -114,8 +114,6 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL, ImageUtils.load(d, "continue_o"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL_DISABLED, ImageUtils.load(d, "continue_o_d"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL_HOVER, ImageUtils.load(d, "continue_o_h"));
-        caches.putIfAbsent(MT.IMAGE_DELETE, ImageUtils.load(d, "delete"));
-        caches.putIfAbsent(MT.IMAGE_DELETE_HOVER, ImageUtils.load(d, "delete_h"));
         caches.putIfAbsent(MT.IMAGE_ETS_TOEFL, ImageUtils.load(d, "ets_toefl"));
         caches.putIfAbsent(MT.IMAGE_GO_TO_QUESTION, ImageUtils.load(d, "go_to_question"));
         caches.putIfAbsent(MT.IMAGE_GO_TO_QUESTION_HOVER, ImageUtils.load(d, "go_to_question_h"));
@@ -126,9 +124,6 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_HIDE_TIME, ImageUtils.load(d, "hide_time"));
         caches.putIfAbsent(MT.IMAGE_HIDE_TIME_DISABLED, ImageUtils.load(d, "hide_time_d"));
         caches.putIfAbsent(MT.IMAGE_HIDE_TIME_HOVER, ImageUtils.load(d, "hide_time_h"));
-        caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, "logo"));
-        caches.putIfAbsent(MT.IMAGE_NEW_TEST, ImageUtils.load(d, "new_test"));
-        caches.putIfAbsent(MT.IMAGE_NEW_TEST_HOVER, ImageUtils.load(d, "new_test_h"));
         caches.putIfAbsent(MT.IMAGE_NEXT_OVAL, ImageUtils.load(d, "next_o"));
         caches.putIfAbsent(MT.IMAGE_NEXT_OVAL_DISABLED, ImageUtils.load(d, "next_o_d"));
         caches.putIfAbsent(MT.IMAGE_NEXT_OVAL_HOVER, ImageUtils.load(d, "next_o_h"));
@@ -145,8 +140,6 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN, ImageUtils.load(d, "record_again"));
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN_DISABLED, ImageUtils.load(d, "record_again_d"));
         caches.putIfAbsent(MT.IMAGE_RECORD_AGAIN_HOVER, ImageUtils.load(d, "record_again_h"));
-        caches.putIfAbsent(MT.IMAGE_REPORT, ImageUtils.load(d, "report"));
-        caches.putIfAbsent(MT.IMAGE_REPORT_HOVER, ImageUtils.load(d, "report_h"));
         caches.putIfAbsent(MT.IMAGE_RETURN, ImageUtils.load(d, "return"));
         caches.putIfAbsent(MT.IMAGE_RETURN_HOVER, ImageUtils.load(d, "return_h"));
         caches.putIfAbsent(MT.IMAGE_RETURN_TO_QUESTION, ImageUtils.load(d, "return_to_question"));
@@ -159,9 +152,6 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME, ImageUtils.load(d, "show_time"));
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME_DISABLED, ImageUtils.load(d, "show_time_d"));
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME_HOVER, ImageUtils.load(d, "show_time_h"));
-        caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, "splash"));
-        caches.putIfAbsent(MT.IMAGE_STAR, ImageUtils.load(d, "star"));
-        caches.putIfAbsent(MT.IMAGE_STAR_OUTLINE, ImageUtils.load(d, "star_outline"));
         caches.putIfAbsent(MT.IMAGE_STOP_RECORDING, ImageUtils.load(d, "stop_recording"));
         caches.putIfAbsent(MT.IMAGE_STOP_RECORDING_HOVER, ImageUtils.load(d, "stop_recording_h"));
         caches.putIfAbsent(MT.IMAGE_UNBOXED, ImageUtils.load(d, "unboxed"));
@@ -172,6 +162,28 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_VIEW_TEXT_HOVER, ImageUtils.load(d, "view_text_h"));
         caches.putIfAbsent(MT.IMAGE_VOLUME_OVAL, ImageUtils.load(d, "volume_o"));
         caches.putIfAbsent(MT.IMAGE_VOLUME_OVAL_HOVER, ImageUtils.load(d, "volume_o_h"));
+
+        caches.putIfAbsent(MT.IMAGE_APP_ICON, ImageUtils.load(d, "app_icon"));
+        caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, "logo"));
+        caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, "splash"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK, ImageUtils.load(d, "sys_back"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK_HOVER, ImageUtils.load(d, "sys_back_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_BOXED, ImageUtils.load(d, "sys_boxed"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE, ImageUtils.load(d, "sys_continue"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE_HOVER, ImageUtils.load(d, "sys_continue_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_DELETE, ImageUtils.load(d, "sys_delete"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_DELETE_HOVER, ImageUtils.load(d, "sys_delete_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT, ImageUtils.load(d, "sys_export"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_HOVER, ImageUtils.load(d, "sys_export_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_IMPORT, ImageUtils.load(d, "sys_import"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_IMPORT_HOVER, ImageUtils.load(d, "sys_import_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_TEST, ImageUtils.load(d, "sys_new_test"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_TEST_HOVER, ImageUtils.load(d, "sys_new_test_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT, ImageUtils.load(d, "sys_report"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT_HOVER, ImageUtils.load(d, "sys_report_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_STAR, ImageUtils.load(d, "sys_star"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_STAR_OUTLINE, ImageUtils.load(d, "sys_star_outline"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_UNBOXED, ImageUtils.load(d, "sys_unboxed"));
     }
 
     public static void dispose() {

@@ -35,11 +35,11 @@ public class StarsComposite extends Composite {
     private void initBody() {
         for (int i = 0; i < count; i++) {
             final Label starLabel = new Label(this, SWT.NONE);
-            LabelSet.decorate(starLabel).setImage(MT.IMAGE_STAR);
+            LabelSet.decorate(starLabel).setImage(MT.IMAGE_SYSTEM_STAR);
         }
         for (int i = 0; i < TOTAL_STARS_COUNT - count; i++) {
             final Label starLabel = new Label(this, SWT.NONE);
-            LabelSet.decorate(starLabel).setImage(MT.IMAGE_STAR_OUTLINE);
+            LabelSet.decorate(starLabel).setImage(MT.IMAGE_SYSTEM_STAR_OUTLINE);
         }
     }
 }
