@@ -29,7 +29,7 @@ public class StarsComposite extends Composite {
     }
 
     private void golbal() {
-        RowLayoutSet.layout(this);
+        RowLayoutSet.layout(this).marginWidth(0).marginHeight(0);
     }
 
     private void initBody() {

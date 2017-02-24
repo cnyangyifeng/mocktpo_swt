@@ -183,7 +183,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
         final Composite ac = new Composite(viewPort, SWT.CENTER);
         FormDataSet.attach(ac).fromLeft(50, -ScreenUtils.getClientWidth(d) / 4).atTopTo(tipsTextWidget, 10).withWidth(ScreenUtils.getClientWidth(d) / 2);
         FormLayoutSet.layout(ac).marginHeight(10).spacing(10);
-        ac.addPaintListener(new BorderedCompositePaintListener());
+        ac.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         String question = vo.getStyledText("question").getText();
         String[] questions = question.split(MT.STRING_SEMICOLON);

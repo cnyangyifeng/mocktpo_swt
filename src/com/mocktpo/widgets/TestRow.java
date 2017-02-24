@@ -40,7 +40,6 @@ public class TestRow extends Composite {
 
     /* Widgets */
 
-    private Composite header;
     private CLabel deleteLabel;
 
     /* Properties */
@@ -64,23 +63,22 @@ public class TestRow extends Composite {
 
     private void init() {
         golbal();
-        initHeader();
-        initActionBar();
+        initWidgets();
     }
 
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
-        FormLayoutSet.layout(this).marginWidth(10).marginHeight(10);
+        FormLayoutSet.layout(this).marginWidth(10).marginHeight(10).spacing(0);
     }
 
-    private void initHeader() {
-        header = new Composite(this, SWT.NONE);
+    private void initWidgets() {
+        final Composite header = new Composite(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight();
         CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE);
-        FormLayoutSet.layout(header);
+        FormLayoutSet.layout(header).marginWidth(0).marginHeight(0).spacing(0);
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(titleLabel).atLeft().atTop(5).withWidth(TITLE_WIDTH);
+        FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
         CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(userTestSession.getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, userTestSession.getStars());
@@ -100,33 +98,43 @@ public class TestRow extends Composite {
         FormDataSet.attach(startTimeLabel).atLeftTo(lastVisitTimeLabel, 20).atTopTo(lastVisitTimeLabel, 0, SWT.TOP).atRight();
         CLabelSet.decorate(startTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getStartTime()) + MT.STRING_SPACE + msgs.getString("initialized"));
 
-        final Label divider = new Label(header, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(lastVisitTimeLabel, 10).atRight().withHeight(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
-    }
+        final Label divider1 = new Label(header, SWT.NONE);
+        FormDataSet.attach(divider1).atLeft().atTopTo(lastVisitTimeLabel, 10).atRight().withHeight(1);
+        LabelSet.decorate(divider1).setBackground(MT.COLOR_WHITE_SMOKE);
 
-    private void initActionBar() {
-        final Composite c = new Composite(this, SWT.NONE);
-        FormDataSet.attach(c).atLeft().atTopTo(header, 10).atRight();
-        CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
-        FormLayoutSet.layout(c).marginWidth(0).marginHeight(0);
+        final Composite body = new Composite(this, SWT.NONE);
+        FormDataSet.attach(body).atLeft().atTopTo(header).atRight();
+        CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
+        FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
 
-        final CLabel sectionsLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(sectionsLabel).atLeft().atTop().atRight();
+        final CLabel progressLabel = new CLabel(body, SWT.NONE);
+        FormDataSet.attach(progressLabel).atLeft().atTop(10).atRight();
+        CLabelSet.decorate(progressLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("progress"));
+
+        final TestProgressBar progressBar = new TestProgressBar(body, SWT.NONE, 400, 8, 30);
+        FormDataSet.attach(progressBar).atLeft().atTopTo(progressLabel, 10);
+
+        final CLabel sectionsLabel = new CLabel(body, SWT.NONE);
+        FormDataSet.attach(sectionsLabel).atLeft().atTopTo(progressBar, 20).atRight();
         CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("selected_sections"));
 
-        final SectionsComposite sectionsComposite = new SectionsComposite(c, SWT.NONE, 4, false);
+        final SectionsComposite sectionsComposite = new SectionsComposite(body, SWT.NONE, 4, false);
         FormDataSet.attach(sectionsComposite).atLeft().atTopTo(sectionsLabel, 10).atRight();
 
-        final Label divider = new Label(c, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(sectionsComposite, 10).atRight().withHeight(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
+        final Label divider2 = new Label(body, SWT.NONE);
+        FormDataSet.attach(divider2).atLeft().atTopTo(sectionsComposite, 15).atRight().withHeight(1);
+        LabelSet.decorate(divider2).setBackground(MT.COLOR_WHITE_SMOKE);
 
-        final ImageButton continueButton = new ImageButton(c, SWT.NONE, MT.IMAGE_SYSTEM_CONTINUE, MT.IMAGE_SYSTEM_CONTINUE_HOVER);
-        FormDataSet.attach(continueButton).atLeft().atTopTo(divider, 10);
+        final Composite footer = new Composite(this, SWT.NONE);
+        FormDataSet.attach(footer).atLeft().atTopTo(body).atRight();
+        CompositeSet.decorate(footer).setBackground(MT.COLOR_WHITE);
+        FormLayoutSet.layout(footer).marginWidth(0).marginHeight(10).spacing(0);
+
+        final ImageButton continueButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_CONTINUE, MT.IMAGE_SYSTEM_CONTINUE_HOVER);
+        FormDataSet.attach(continueButton).atLeft().atTop(10);
         continueButton.addMouseListener(new ContinueButtonMouseAdapter());
 
-        final ImageButton reportButton = new ImageButton(c, SWT.PUSH, MT.IMAGE_SYSTEM_REPORT, MT.IMAGE_SYSTEM_REPORT_HOVER);
+        final ImageButton reportButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_REPORT, MT.IMAGE_SYSTEM_REPORT_HOVER);
         FormDataSet.attach(reportButton).atLeftTo(continueButton, 10).atTopTo(continueButton, 0, SWT.TOP);
         reportButton.addMouseListener(new ReportButtonMouseAdapter());
     }

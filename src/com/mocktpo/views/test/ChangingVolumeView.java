@@ -88,7 +88,7 @@ public class ChangingVolumeView extends ResponsiveTestView {
         final StyledText footnoteTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(footnoteTextWidget).fromLeft(50, -FOOTNOTE_TEXT_WIDTH / 2).atTopTo(descriptionTextWidget, 50).withWidth(FOOTNOTE_TEXT_WIDTH);
         StyledTextSet.decorate(footnoteTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_ITALIC_TEXT).setForeground(MT.COLOR_DARK_BLUE).setLineSpacing(5).setMarginHeight(50).setText(vo.getStyledText("footnote").getText());
-        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener());
+        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
     }
 
     /*

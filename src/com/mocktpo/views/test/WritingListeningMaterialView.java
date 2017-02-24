@@ -120,7 +120,7 @@ public class WritingListeningMaterialView extends ResponsiveTestView {
         FormDataSet.attach(pc).fromLeft(50, -AUDIO_BAR_CONTAINER_WIDTH / 2).atTopTo(illustrationLabel, 30).withWidth(AUDIO_BAR_CONTAINER_WIDTH).withHeight(AUDIO_BAR_CONTAINER_HEIGHT);
         CompositeSet.decorate(pc).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         FormLayoutSet.layout(pc).marginWidth(10).marginHeight(8);
-        pc.addPaintListener(new BorderedCompositePaintListener());
+        pc.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         audioBar = new ProgressBar(pc, SWT.NONE);
         FormDataSet.attach(audioBar).atLeft().atTop().atRight().atBottom();

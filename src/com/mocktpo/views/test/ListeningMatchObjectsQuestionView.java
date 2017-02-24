@@ -137,7 +137,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
         FormDataSet.attach(ac).atLeft().atTopTo(tipsTextWidget, 20).atRight();
         CompositeSet.decorate(ac).setVisible(false);
         FormLayoutSet.layout(ac).marginWidth(1).marginHeight(1);
-        ac.addPaintListener(new BorderedCompositePaintListener());
+        ac.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         final StyledText questionTextHeader = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextHeader).atLeft().atTop().fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);

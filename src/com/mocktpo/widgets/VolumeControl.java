@@ -43,8 +43,8 @@ public class VolumeControl extends Composite {
 
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_DARK_BLUE);
-        GridLayoutSet.layout(this).marginWidth(5);
-        addPaintListener(new BorderedCompositePaintListener());
+        GridLayoutSet.layout(this);
+        addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         s = new Scale(this, SWT.BORDER);
         ScaleSet.decorate(s).setIncrement(1).setMaximum(10).setMinimum(0).setPageIncrement(1).setSelection(10);

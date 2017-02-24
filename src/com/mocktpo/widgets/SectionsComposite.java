@@ -44,7 +44,7 @@ public class SectionsComposite extends Composite {
     }
 
     private void golbal() {
-        GridLayoutSet.layout(this).numColumns(numColumns).makeColumnsEqualWidth(true);
+        GridLayoutSet.layout(this).numColumns(numColumns).makeColumnsEqualWidth(true).marginWidth(0).marginHeight(0).horizontalSpacing(10).verticalSpacing(10);
     }
 
     private void initBody() {
@@ -95,7 +95,7 @@ public class SectionsComposite extends Composite {
         }
 
         private void golbal() {
-            RowLayoutSet.layout(this).spacing(10);
+            RowLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(10);
         }
 
         private void initBody() {
@@ -161,7 +161,7 @@ public class SectionsComposite extends Composite {
             }
 
             public void mouseExit(MouseEvent e) {
-                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_GRAY20);
+                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_GRAY40);
             }
         }
     }

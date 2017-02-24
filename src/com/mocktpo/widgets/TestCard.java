@@ -41,7 +41,6 @@ public class TestCard extends Composite {
 
     /* Widgets */
 
-    private Composite header;
     private SectionsComposite sectionsComposite;
 
     /* Properties */
@@ -67,52 +66,54 @@ public class TestCard extends Composite {
 
     private void init() {
         golbal();
-        initHeader();
-        initActionBar();
+        initWidgets();
     }
 
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
-        FormLayoutSet.layout(this).marginWidth(10).marginHeight(10);
+        FormLayoutSet.layout(this).marginWidth(10).marginHeight(10).spacing(0);
     }
 
-    private void initHeader() {
-        header = new Composite(this, SWT.NONE);
+    private void initWidgets() {
+        final Composite header = new Composite(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight();
         CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE);
-        FormLayoutSet.layout(header);
+        FormLayoutSet.layout(header).marginWidth(0).marginHeight(0).spacing(0);
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(titleLabel).atLeft().atTop(5).withWidth(TITLE_WIDTH);
+        FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
         CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(testSchema.getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testSchema.getStars());
-        FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 15).atRight();
+        FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
 
-        final Label divider = new Label(header, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(starsComposite, 10).atRight().withHeight(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
-    }
+        final Label divider1 = new Label(header, SWT.NONE);
+        FormDataSet.attach(divider1).atLeft().atTopTo(starsComposite, 10).atRight().withHeight(1);
+        LabelSet.decorate(divider1).setBackground(MT.COLOR_WHITE_SMOKE);
 
-    private void initActionBar() {
-        final Composite c = new Composite(this, SWT.NONE);
-        FormDataSet.attach(c).atLeft().atTopTo(header, 10).atRight();
-        CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
-        FormLayoutSet.layout(c).marginWidth(0).marginHeight(0);
+        final Composite body = new Composite(this, SWT.NONE);
+        FormDataSet.attach(body).atLeft().atTopTo(header).atRight();
+        CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
+        FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
 
-        final CLabel sectionsLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(sectionsLabel).atLeft().atTop().atRight();
+        final CLabel sectionsLabel = new CLabel(body, SWT.NONE);
+        FormDataSet.attach(sectionsLabel).atLeft().atTop(10).atRight();
         CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("select_sections"));
 
-        sectionsComposite = new SectionsComposite(c, SWT.NONE, 2, true);
+        sectionsComposite = new SectionsComposite(body, SWT.NONE, 2, true);
         FormDataSet.attach(sectionsComposite).atLeft().atTopTo(sectionsLabel, 10).atRight();
 
-        final Label divider = new Label(c, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(sectionsComposite, 10).atRight().withHeight(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
+        final Label divider2 = new Label(body, SWT.NONE);
+        FormDataSet.attach(divider2).atLeft().atTopTo(sectionsComposite, 10).atRight().withHeight(1);
+        LabelSet.decorate(divider2).setBackground(MT.COLOR_WHITE_SMOKE);
 
-        final ImageButton newTestButton = new ImageButton(c, SWT.PUSH, MT.IMAGE_SYSTEM_NEW_TEST, MT.IMAGE_SYSTEM_NEW_TEST_HOVER);
-        FormDataSet.attach(newTestButton).atLeft().atTopTo(divider, 10);
+        final Composite footer = new Composite(this, SWT.NONE);
+        FormDataSet.attach(footer).atLeft().atTopTo(body).atRight();
+        CompositeSet.decorate(footer).setBackground(MT.COLOR_WHITE);
+        FormLayoutSet.layout(footer).marginWidth(0).marginHeight(10).spacing(0);
+
+        final ImageButton newTestButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_NEW_TEST, MT.IMAGE_SYSTEM_NEW_TEST_HOVER);
+        FormDataSet.attach(newTestButton).atLeft().atTop(10);
         newTestButton.addMouseListener(new NewTestButtonMouseAdapter());
     }
 

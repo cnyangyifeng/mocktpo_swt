@@ -3,14 +3,12 @@ package com.mocktpo.views.nav;
 import com.mocktpo.MyApplication;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.UnzipUtils;
-import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
-import com.mocktpo.util.widgets.ButtonSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.widgets.ImageButton;
@@ -22,8 +20,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.*;
 
 import java.io.File;
@@ -77,19 +73,18 @@ public class NewTestView extends Composite {
         toolBar = new Composite(this, SWT.NONE);
         FormDataSet.attach(toolBar).atLeft().atTop().atRight();
         CompositeSet.decorate(toolBar).setBackground(MT.COLOR_WHITE_SMOKE);
-        FormLayoutSet.layout(toolBar).marginWidth(10).marginHeight(5).spacing(5);
+        FormLayoutSet.layout(toolBar).marginWidth(10).marginHeight(10);
 
         final Label divider = new Label(this, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final Button sortByNameButton = new Button(toolBar, SWT.PUSH);
-        FormDataSet.attach(sortByNameButton).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT);
-        ButtonSet.decorate(sortByNameButton).setText(msgs.getString("sort_by_name"));
-        sortByNameButton.addSelectionListener(new SortButtonSelectionAdapter());
+        final ImageButton sortButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
+        FormDataSet.attach(sortButton).atLeft().atTop();
+        sortButton.addMouseListener(new SortButtonMouseAdapter());
 
         final ImageButton importButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
-        FormDataSet.attach(importButton).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
+        FormDataSet.attach(importButton).atTop().atRight();
         importButton.addMouseListener(new ImportButtonMouseAdapter());
     }
 
@@ -145,11 +140,11 @@ public class NewTestView extends Composite {
      * ==================================================
      */
 
-    private class SortButtonSelectionAdapter extends SelectionAdapter {
+    private class SortButtonMouseAdapter extends MouseAdapter {
 
         @Override
-        public void widgetSelected(SelectionEvent e) {
-            logger.info("Test cards sorted by name successfully.");
+        public void mouseDown(MouseEvent e) {
+            logger.info("Test cards sorted successfully.");
         }
     }
 

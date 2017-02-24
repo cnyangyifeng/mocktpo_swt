@@ -155,7 +155,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         final Composite ac = new Composite(viewPort, SWT.CENTER);
         FormDataSet.attach(ac).fromLeft(50, -ScreenUtils.getClientWidth(d) / 4).atTopTo(tipsTextWidget, 10).withWidth(ScreenUtils.getClientWidth(d) / 2);
         FormLayoutSet.layout(ac).marginWidth(10).marginHeight(10);
-        ac.addPaintListener(new BorderedCompositePaintListener());
+        ac.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         final StyledText questionTextWidget = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft(10).atTop().atRight(10);

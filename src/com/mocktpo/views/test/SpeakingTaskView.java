@@ -137,7 +137,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
         Composite timerPanel = new Composite(timerContainer, SWT.NONE);
         FormDataSet.attach(timerPanel).fromLeft(50, -TIMER_PANEL_WIDTH / 2).atTopTo(responseTimeLabel, 30).withWidth(TIMER_PANEL_WIDTH);
         FormLayoutSet.layout(timerPanel).marginWidth(1).marginHeight(1);
-        timerPanel.addPaintListener(new BorderedCompositePaintListener());
+        timerPanel.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         timerHeader = new CLabel(timerPanel, SWT.CENTER);
         FormDataSet.attach(timerHeader).atLeft().atTop().atRight();

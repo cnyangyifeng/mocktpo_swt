@@ -193,13 +193,13 @@ public class AdjustingMicrophoneView extends StackTestView {
         final StyledText footnoteTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(footnoteTextWidget).fromLeft(50, -FOOTNOTE_TEXT_WIDTH / 2).atTopTo(descriptionTextWidget, 20).withWidth(FOOTNOTE_TEXT_WIDTH);
         StyledTextSet.decorate(footnoteTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_ITALIC_TEXT).setForeground(MT.COLOR_DARK_BLUE).setLineSpacing(5).setMarginHeight(20).setText(vo.getStyledText("footnote").getText());
-        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener());
+        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         timerPanel = new Composite(viewPort, SWT.NONE);
         FormDataSet.attach(timerPanel).fromLeft(50, -TIMER_PANEL_WIDTH / 2).atTopTo(footnoteTextWidget, 20).withWidth(TIMER_PANEL_WIDTH);
         CompositeSet.decorate(timerPanel).setVisible(false);
         FormLayoutSet.layout(timerPanel).marginWidth(1).marginHeight(1);
-        timerPanel.addPaintListener(new BorderedCompositePaintListener());
+        timerPanel.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         final CLabel timerHeader = new CLabel(timerPanel, SWT.CENTER);
         FormDataSet.attach(timerHeader).atLeft().atTop().atRight();
