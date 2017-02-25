@@ -16,7 +16,7 @@ import java.util.List;
 
 public class PersistenceUtils {
 
-    public static UserTestSession newSession(String fileAlias, TestSchemaVo testSchema, boolean readingSectionEnabled, boolean listeningSectionEnabled, boolean speakingSectionEnabled, boolean writingSectionEnabled) {
+    public static UserTestSession newSession(String fileAlias, TestSchemaVo testSchema, boolean readingSelected, boolean listeningSelected, boolean speakingSelected, boolean writingSelected) {
         UserTestSession userTestSession = new UserTestSession();
         userTestSession.setTid(testSchema.getTid());
         userTestSession.setTitle(testSchema.getTitle());
@@ -35,12 +35,13 @@ public class PersistenceUtils {
         userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
         userTestSession.setVolume(1.0);
         userTestSession.setVolumeControlHidden(true);
-        userTestSession.setReadingSectionEnabled(readingSectionEnabled);
-        userTestSession.setListeningSectionEnabled(listeningSectionEnabled);
-        userTestSession.setSpeakingSectionEnabled(speakingSectionEnabled);
-        userTestSession.setWritingSectionEnabled(writingSectionEnabled);
+        userTestSession.setReadingSelected(readingSelected);
+        userTestSession.setListeningSelected(listeningSelected);
+        userTestSession.setSpeakingSelected(speakingSelected);
+        userTestSession.setWritingSelected(writingSelected);
         userTestSession.setLastViewId(1);
         userTestSession.setMaxViewId(1);
+        userTestSession.setTotalViewCount(testSchema.getTotalViewCount(readingSelected, listeningSelected, speakingSelected, writingSelected));
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).insert(userTestSession);
@@ -194,7 +195,7 @@ public class PersistenceUtils {
         UserTestAnswer userTestAnswer = new UserTestAnswer();
         userTestAnswer.setSid(userTestSession.getSid());
         userTestAnswer.setViewId(userTestSession.getLastViewId());
-        userTestAnswer.setSectionType(page.getTestSchema().getView(userTestSession.getLastViewId()).getSectionType());
+        userTestAnswer.setSectionType(page.getTestSchema().getViewVo(userTestSession.getLastViewId()).getSectionType());
         userTestAnswer.setAnswer("");
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();

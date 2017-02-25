@@ -3,9 +3,12 @@ package com.mocktpo.pages;
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
+import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.constants.ST;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.views.test.*;
 import com.mocktpo.vo.TestSchemaVo;
+import com.mocktpo.vo.TestViewVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -69,14 +72,7 @@ public class TestPage extends Composite {
      */
 
     public void resume() {
-        if (null != testSchema) {
-            if (userTestSession.getLastViewId() >= testSchema.getTotalViewCount()) {
-                MyApplication.get().getWindow().toReportPage(userTestSession);
-            } else {
-                stack.topControl = getLastTestView();
-                this.layout();
-            }
-        }
+        resume(this.userTestSession);
     }
 
     public void resume(UserTestSession userTestSession) {
@@ -86,20 +82,83 @@ public class TestPage extends Composite {
         this.userTestSession = userTestSession;
 
         if (null != testSchema) {
-            if (userTestSession.getLastViewId() >= testSchema.getTotalViewCount()) {
-                MyApplication.get().getWindow().toReportPage(userTestSession);
-            } else {
-                stack.topControl = getLastTestView();
+            TestView testView = getLastTestView();
+            if (null != testView) {
+                stack.topControl = testView;
                 this.layout();
+            } else {
+                MyApplication.get().getWindow().toReportPage(userTestSession);
             }
         }
     }
 
     private TestView getLastTestView() {
         int lastViewId = userTestSession.getLastViewId();
-        int lastViewType = testSchema.getView(lastViewId).getViewType();
+        if (testSchema.getTestEndViewId() < lastViewId) {
+            return null;
+        }
+        TestViewVo viewVo = testSchema.getViewVo(lastViewId);
+
+        if (ST.SECTION_TYPE_READING == viewVo.getSectionType() && !userTestSession.isReadingSelected()) {
+            if (userTestSession.isListeningSelected()) {
+                lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_HEADSET_ON);
+                viewVo = testSchema.getViewVo(lastViewId);
+                return getTestView(viewVo);
+            } else {
+                if (userTestSession.isSpeakingSelected()) {
+                    lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
+                    viewVo = testSchema.getViewVo(lastViewId);
+                    return getTestView(viewVo);
+                } else {
+                    if (userTestSession.isWritingSelected()) {
+                        lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                        viewVo = testSchema.getViewVo(lastViewId);
+                        return getTestView(viewVo);
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
+
+        if (ST.SECTION_TYPE_LISTENING == viewVo.getSectionType() && !userTestSession.isListeningSelected()) {
+            if (userTestSession.isSpeakingSelected()) {
+                lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
+                viewVo = testSchema.getViewVo(lastViewId);
+                return getTestView(viewVo);
+            } else {
+                if (userTestSession.isWritingSelected()) {
+                    lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                    viewVo = testSchema.getViewVo(lastViewId);
+                    return getTestView(viewVo);
+                } else {
+                    return null;
+                }
+            }
+        }
+
+        if (ST.SECTION_TYPE_SPEAKING == viewVo.getSectionType() && !userTestSession.isSpeakingSelected()) {
+            if (userTestSession.isWritingSelected()) {
+                lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                viewVo = testSchema.getViewVo(lastViewId);
+                return getTestView(viewVo);
+            } else {
+                return null;
+            }
+        }
+
+        if (ST.SECTION_TYPE_WRITING == viewVo.getSectionType() && !userTestSession.isWritingSelected()) {
+            return null;
+        }
+
+        return getTestView(viewVo);
+    }
+
+    private TestView getTestView(TestViewVo viewVo) {
+        PersistenceUtils.saveToView(userTestSession, viewVo.getViewId());
+        int viewType = viewVo.getViewType();
         TestView tv = null;
-        switch (lastViewType) {
+        switch (viewType) {
             /* General View Types */
             case VT.VIEW_TYPE_TEST_INTRO:
                 tv = new TestIntroView(this, SWT.NONE);

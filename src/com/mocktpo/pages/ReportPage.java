@@ -218,7 +218,7 @@ public class ReportPage extends Composite {
         @Override
         public Object function(Object[] args) {
             int sectionType = ((Double) args[0]).intValue();
-            List<TestViewVo> viewVos = ReportPage.this.testSchema.getViews();
+            List<TestViewVo> viewVos = ReportPage.this.testSchema.getViewVos();
             List<QuestionAndAnswerDetailsVo> result = new ArrayList<QuestionAndAnswerDetailsVo>();
             for (TestViewVo viewVo : viewVos) {
                 if (sectionType == viewVo.getSectionType() && viewVo.isAnswerable()) {

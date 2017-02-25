@@ -171,7 +171,7 @@ public class ReadingReviewView extends Composite {
     }
 
     private void updateHeader() {
-        TestViewVo vo = page.getTestSchema().getView(page.getUserTestSession().getLastViewId());
+        TestViewVo vo = page.getTestSchema().getViewVo(page.getUserTestSession().getLastViewId());
         if (vo.isQuestionCaptionVisible()) {
             caption = new StyledText(header, SWT.SINGLE);
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
@@ -230,7 +230,7 @@ public class ReadingReviewView extends Composite {
         final ReadingReviewTableRow tableHeader = new ReadingReviewTableRow(viewPort, SWT.NONE, msgs.getString("number"), msgs.getString("description"), msgs.getString("status"), 0, true);
         GridDataSet.attach(tableHeader).fillBoth();
 
-        for (TestViewVo vo : page.getTestSchema().getViews()) {
+        for (TestViewVo vo : page.getTestSchema().getViewVos()) {
             if (ST.SECTION_TYPE_READING == vo.getSectionType() && vo.isAnswerable()) {
                 String statusText = getStatusText(vo.getViewId());
                 final ReadingReviewTableRow row = new ReadingReviewTableRow(viewPort, SWT.NONE, Integer.toString(vo.getQuestionNumberInSection()), getDescriptionText(vo), statusText, vo.getViewId());
@@ -307,7 +307,7 @@ public class ReadingReviewView extends Composite {
 
     public void startTimer() {
         if (timed) {
-            TestViewVo vo = page.getTestSchema().getView(page.getUserTestSession().getLastViewId());
+            TestViewVo vo = page.getTestSchema().getViewVo(page.getUserTestSession().getLastViewId());
 
             /*
              * ==================================================
@@ -371,7 +371,7 @@ public class ReadingReviewView extends Composite {
         public void run() {
             if (!d.isDisposed()) {
                 final UserTestSession userTestSession = page.getUserTestSession();
-                TestViewVo vo = page.getTestSchema().getView(page.getUserTestSession().getLastViewId());
+                TestViewVo vo = page.getTestSchema().getViewVo(page.getUserTestSession().getLastViewId());
                 PersistenceUtils.saveRemainingViewTime(userTestSession, vo, countDown);
                 d.asyncExec(new Runnable() {
                     @Override

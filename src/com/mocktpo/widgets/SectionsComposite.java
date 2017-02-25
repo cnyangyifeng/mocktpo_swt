@@ -26,64 +26,45 @@ public class SectionsComposite extends Composite {
 
     private CheckWidget readingCheckWidget, listeningCheckWidget, speakingCheckWidget, writingcheckWidget;
 
-    /* Properties */
-
-    private int numColumns;
-    private boolean enabled;
-
-    public SectionsComposite(Composite parent, int style, int numColumns, boolean enabled) {
+    public SectionsComposite(Composite parent, int style, int numColumns, boolean enabled, boolean readingSelected, boolean listeningSelected, boolean speakingSelected, boolean writingSelected) {
         super(parent, style);
-        this.numColumns = numColumns;
-        this.enabled = enabled;
-        init();
-    }
-
-    private void init() {
-        golbal();
-        initBody();
-    }
-
-    private void golbal() {
         GridLayoutSet.layout(this).numColumns(numColumns).makeColumnsEqualWidth(true).marginWidth(0).marginHeight(0).horizontalSpacing(10).verticalSpacing(10);
+        readingCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("reading"), enabled, readingSelected);
+        listeningCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("listening"), enabled, listeningSelected);
+        speakingCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("speaking"), enabled, speakingSelected);
+        writingcheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("writing"), enabled, writingSelected);
     }
 
-    private void initBody() {
-        readingCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("reading"), enabled);
-        listeningCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("listening"), enabled);
-        speakingCheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("speaking"), enabled);
-        writingcheckWidget = new CheckWidget(this, SWT.NONE, msgs.getString("writing"), enabled);
+    public boolean isReadingSelected() {
+        return readingCheckWidget.isSelected();
     }
 
-    public boolean isReadingSectionEnabled() {
-        return readingCheckWidget.isChecked();
+    public boolean isListeningSelected() {
+        return listeningCheckWidget.isSelected();
     }
 
-    public boolean isListeningSectionEnabled() {
-        return listeningCheckWidget.isChecked();
+    public boolean isSpeakingSelected() {
+        return speakingCheckWidget.isSelected();
     }
 
-    public boolean isSpeakingSectionEnabled() {
-        return speakingCheckWidget.isChecked();
-    }
-
-    public boolean isWritingSectionEnabled() {
-        return writingcheckWidget.isChecked();
+    public boolean isWritingSelected() {
+        return writingcheckWidget.isSelected();
     }
 
     private class CheckWidget extends Composite {
 
         private Label checkLabel, choiceLabel;
-        private boolean checked, enabled;
+        private boolean enabled, selected;
         private String text;
 
         private ChooseAnswerAdapter chooseAnswerAdapter;
         private CheckWidgetMouseTrackAdapter checkWidgetMouseTrackAdapter;
 
-        public CheckWidget(Composite parent, int style, String text, boolean enabled) {
+        public CheckWidget(Composite parent, int style, String text, boolean enabled, boolean selected) {
             super(parent, style);
-            this.checked = true;
-            this.enabled = enabled;
             this.text = text;
+            this.enabled = enabled;
+            this.selected = selected;
             this.chooseAnswerAdapter = new ChooseAnswerAdapter();
             this.checkWidgetMouseTrackAdapter = new CheckWidgetMouseTrackAdapter();
             init();
@@ -100,64 +81,52 @@ public class SectionsComposite extends Composite {
 
         private void initBody() {
             checkLabel = new Label(this, SWT.NONE);
-            LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_BOXED);
             if (enabled) {
                 checkLabel.addMouseListener(chooseAnswerAdapter);
                 checkLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
-            } else {
-                checkLabel.setVisible(false);
             }
+            if (selected) {
+                LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_BOXED);
+            } else {
+                LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_UNBOXED);
+            }
+
             choiceLabel = new Label(this, SWT.WRAP);
-            LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(text);
+            LabelSet.decorate(choiceLabel).setText(text);
             if (enabled) {
+                LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40);
                 choiceLabel.addMouseListener(chooseAnswerAdapter);
                 choiceLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
             } else {
-                LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL_ITALIC);
+                if (selected) {
+                    LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40);
+                } else {
+                    LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL_ITALIC).setForeground(MT.COLOR_GRAY60);
+                }
             }
         }
 
-        public boolean isChecked() {
-            return checked;
-        }
-
-        public boolean isEnabled() {
-            return enabled;
-        }
-
-        public void setEnabled(boolean enabled) {
-            this.enabled = enabled;
-            if (enabled) {
-                checkLabel.addMouseListener(chooseAnswerAdapter);
-                checkLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
-                checkLabel.setVisible(false);
-                choiceLabel.addMouseListener(chooseAnswerAdapter);
-                choiceLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
-            } else {
-                checkLabel.removeMouseListener(chooseAnswerAdapter);
-                checkLabel.removeMouseTrackListener(checkWidgetMouseTrackAdapter);
-                choiceLabel.removeMouseListener(chooseAnswerAdapter);
-                choiceLabel.removeMouseTrackListener(checkWidgetMouseTrackAdapter);
-            }
+        public boolean isSelected() {
+            return selected;
         }
 
         private class ChooseAnswerAdapter extends MouseAdapter {
 
             @Override
             public void mouseDown(MouseEvent e) {
-                if (checked) {
+                if (selected) {
                     LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_UNBOXED);
                 } else {
                     LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_BOXED);
                 }
-                checked = !checked;
+                selected = !selected;
             }
         }
 
         private class CheckWidgetMouseTrackAdapter extends MouseTrackAdapter {
 
             public void mouseEnter(MouseEvent e) {
-                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_DARK_BLUE);
+                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_GRAY20);
             }
 
             public void mouseExit(MouseEvent e) {

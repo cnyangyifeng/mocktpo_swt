@@ -53,12 +53,13 @@ public class UserTestSessionMapperTest {
             userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
             userTestSession.setVolume(1.0);
             userTestSession.setVolumeControlHidden(true);
-            userTestSession.setReadingSectionEnabled(true);
-            userTestSession.setListeningSectionEnabled(true);
-            userTestSession.setSpeakingSectionEnabled(true);
-            userTestSession.setWritingSectionEnabled(true);
+            userTestSession.setReadingSelected(true);
+            userTestSession.setListeningSelected(true);
+            userTestSession.setSpeakingSelected(true);
+            userTestSession.setWritingSelected(true);
             userTestSession.setLastViewId(1);
             userTestSession.setMaxViewId(1);
+            userTestSession.setTotalViewCount(1000);
             mapper.insert(userTestSession);
         }
     }
@@ -92,12 +93,13 @@ public class UserTestSessionMapperTest {
         userTestSession.setIndependentWritingTime(MT.TIME_INDEPENDENT_WRITING_TASK);
         userTestSession.setVolume(1.0);
         userTestSession.setVolumeControlHidden(true);
-        userTestSession.setReadingSectionEnabled(true);
-        userTestSession.setListeningSectionEnabled(true);
-        userTestSession.setSpeakingSectionEnabled(true);
-        userTestSession.setWritingSectionEnabled(true);
+        userTestSession.setReadingSelected(true);
+        userTestSession.setListeningSelected(true);
+        userTestSession.setSpeakingSelected(true);
+        userTestSession.setWritingSelected(true);
         userTestSession.setLastViewId(1);
         userTestSession.setMaxViewId(1);
+        userTestSession.setTotalViewCount(1000);
         mapper.update(userTestSession);
     }
 

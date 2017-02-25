@@ -1,9 +1,9 @@
 package com.mocktpo.vo;
 
-import com.mocktpo.orm.domain.UserTestAnswer;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.ST;
 import com.mocktpo.util.constants.VT;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,14 +14,20 @@ public class TestSchemaVo implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final int INITIAL_CACHE_SIZE = 64;
 
-    private List<TestViewVo> views = new ArrayList<TestViewVo>(INITIAL_CACHE_SIZE);
+    /* Logger */
+
+    protected static final Logger logger = LogManager.getLogger();
+
+    /* Properties */
+
+    private List<TestViewVo> viewVos = new ArrayList<TestViewVo>(INITIAL_CACHE_SIZE);
 
     private int tid;
     private String title;
     private int stars;
 
-    public TestViewVo getView(int viewId) {
-        for (TestViewVo v : views) {
+    public TestViewVo getViewVo(int viewId) {
+        for (TestViewVo v : viewVos) {
             if (viewId == v.getViewId()) {
                 return v;
             }
@@ -29,12 +35,12 @@ public class TestSchemaVo implements Serializable {
         return null;
     }
 
-    public List<TestViewVo> getViews() {
-        return views;
+    public List<TestViewVo> getViewVos() {
+        return viewVos;
     }
 
-    public void setViews(List<TestViewVo> views) {
-        this.views = views;
+    public void setViewVos(List<TestViewVo> viewVos) {
+        this.viewVos = viewVos;
     }
 
     public int getTid() {
@@ -71,7 +77,7 @@ public class TestSchemaVo implements Serializable {
 
     public int getTotalQuestionCountInSection(int sectionType) {
         int count = 0;
-        for (TestViewVo vo : this.getViews()) {
+        for (TestViewVo vo : this.getViewVos()) {
             if (vo.getSectionType() == sectionType && vo.isAnswerable()) {
                 count++;
             }
@@ -81,7 +87,7 @@ public class TestSchemaVo implements Serializable {
 
     public int getTotalQuestionCountInListeningSection(int sectionType, int listeningGroupId) {
         int count = 0;
-        for (TestViewVo vo : this.getViews()) {
+        for (TestViewVo vo : this.getViewVos()) {
             if (vo.getSectionType() == sectionType && vo.getListeningGroupId() == listeningGroupId && vo.isAnswerable()) {
                 count++;
             }
@@ -90,7 +96,7 @@ public class TestSchemaVo implements Serializable {
     }
 
     public int getNextViewIdWhileTimeOut(int viewId) {
-        TestViewVo vo = this.getView(viewId);
+        TestViewVo vo = this.getViewVo(viewId);
         int nextViewId = viewId;
         switch (vo.getSectionType()) {
             case ST.SECTION_TYPE_NONE:
@@ -136,7 +142,7 @@ public class TestSchemaVo implements Serializable {
 
     public int getFirstViewIdByViewType(int viewType) {
         int viewId = 0;
-        for (TestViewVo vo : this.getViews()) {
+        for (TestViewVo vo : this.getViewVos()) {
             if (viewType == vo.getViewType()) {
                 viewId = vo.getViewId();
             }
@@ -144,8 +150,31 @@ public class TestSchemaVo implements Serializable {
         return viewId;
     }
 
-    public int getTotalViewCount() {
-        return this.getViews().size();
+    public int getTestEndViewId() {
+        int endViewId = 0;
+        for (TestViewVo vo : this.getViewVos()) {
+            if (VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK_END == vo.getViewType()) {
+                endViewId = vo.getViewId();
+            }
+        }
+        return endViewId;
+    }
+
+    public int getTotalViewCount(boolean readingSelected, boolean listeningSelected, boolean speakingSelected, boolean writingSelected) {
+        List<TestViewVo> viewVos = this.getViewVos();
+        int count = 0;
+        for (TestViewVo viewVo : viewVos) {
+            int sectionType = viewVo.getSectionType();
+            if ((readingSelected && ST.SECTION_TYPE_READING == sectionType) ||
+                    (listeningSelected && ST.SECTION_TYPE_LISTENING == sectionType) ||
+                    (speakingSelected && ST.SECTION_TYPE_SPEAKING == sectionType) ||
+                    (writingSelected && ST.SECTION_TYPE_WRITING == sectionType) ||
+                    (ST.SECTION_TYPE_NONE == sectionType)) {
+                count++;
+            }
+        }
+        logger.info("Total view count: {}", count);
+        return count;
     }
 
     @Override

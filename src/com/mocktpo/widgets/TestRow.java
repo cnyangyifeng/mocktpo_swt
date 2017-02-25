@@ -28,6 +28,8 @@ public class TestRow extends Composite {
     /* Constants */
 
     private static final int TITLE_WIDTH = 400;
+    private static final int PROGRESS_BAR_WIDTH = 400;
+    private static final int PROGRESS_BAR_HEIGHT = 6;
 
     /* Logger and Messages */
 
@@ -111,14 +113,15 @@ public class TestRow extends Composite {
         FormDataSet.attach(progressLabel).atLeft().atTop(10).atRight();
         CLabelSet.decorate(progressLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("progress"));
 
-        final TestProgressBar progressBar = new TestProgressBar(body, SWT.NONE, 400, 8, 30);
+        int selection = 100 * userTestSession.getMaxViewId() / userTestSession.getTotalViewCount();
+        final TestProgressBar progressBar = new TestProgressBar(body, SWT.NONE, PROGRESS_BAR_WIDTH, PROGRESS_BAR_HEIGHT, selection);
         FormDataSet.attach(progressBar).atLeft().atTopTo(progressLabel, 10);
 
         final CLabel sectionsLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(sectionsLabel).atLeft().atTopTo(progressBar, 20).atRight();
         CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("selected_sections"));
 
-        final SectionsComposite sectionsComposite = new SectionsComposite(body, SWT.NONE, 4, false);
+        final SectionsComposite sectionsComposite = new SectionsComposite(body, SWT.NONE, 4, false, userTestSession.isReadingSelected(), userTestSession.isListeningSelected(), userTestSession.isSpeakingSelected(), userTestSession.isWritingSelected());
         FormDataSet.attach(sectionsComposite).atLeft().atTopTo(sectionsLabel, 10).atRight();
 
         final Label divider2 = new Label(body, SWT.NONE);

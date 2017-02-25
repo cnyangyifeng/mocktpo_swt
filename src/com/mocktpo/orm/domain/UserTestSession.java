@@ -24,12 +24,13 @@ public class UserTestSession {
     private int independentWritingTime;
     private double volume;
     private boolean volumeControlHidden;
-    private boolean readingSectionEnabled;
-    private boolean listeningSectionEnabled;
-    private boolean speakingSectionEnabled;
-    private boolean writingSectionEnabled;
+    private boolean readingSelected;
+    private boolean listeningSelected;
+    private boolean speakingSelected;
+    private boolean writingSelected;
     private int lastViewId;
     private int maxViewId;
+    private int totalViewCount;
 
     public int getSid() {
         return sid;
@@ -175,36 +176,36 @@ public class UserTestSession {
         this.volumeControlHidden = volumeControlHidden;
     }
 
-    public boolean isReadingSectionEnabled() {
-        return readingSectionEnabled;
+    public boolean isReadingSelected() {
+        return readingSelected;
     }
 
-    public void setReadingSectionEnabled(boolean readingSectionEnabled) {
-        this.readingSectionEnabled = readingSectionEnabled;
+    public void setReadingSelected(boolean readingSelected) {
+        this.readingSelected = readingSelected;
     }
 
-    public boolean isListeningSectionEnabled() {
-        return listeningSectionEnabled;
+    public boolean isListeningSelected() {
+        return listeningSelected;
     }
 
-    public void setListeningSectionEnabled(boolean listeningSectionEnabled) {
-        this.listeningSectionEnabled = listeningSectionEnabled;
+    public void setListeningSelected(boolean listeningSelected) {
+        this.listeningSelected = listeningSelected;
     }
 
-    public boolean isSpeakingSectionEnabled() {
-        return speakingSectionEnabled;
+    public boolean isSpeakingSelected() {
+        return speakingSelected;
     }
 
-    public void setSpeakingSectionEnabled(boolean speakingSectionEnabled) {
-        this.speakingSectionEnabled = speakingSectionEnabled;
+    public void setSpeakingSelected(boolean speakingSelected) {
+        this.speakingSelected = speakingSelected;
     }
 
-    public boolean isWritingSectionEnabled() {
-        return writingSectionEnabled;
+    public boolean isWritingSelected() {
+        return writingSelected;
     }
 
-    public void setWritingSectionEnabled(boolean writingSectionEnabled) {
-        this.writingSectionEnabled = writingSectionEnabled;
+    public void setWritingSelected(boolean writingSelected) {
+        this.writingSelected = writingSelected;
     }
 
     public int getLastViewId() {
@@ -223,6 +224,14 @@ public class UserTestSession {
         if (maxViewId > this.maxViewId) {
             this.maxViewId = maxViewId;
         }
+    }
+
+    public int getTotalViewCount() {
+        return totalViewCount;
+    }
+
+    public void setTotalViewCount(int totalViewCount) {
+        this.totalViewCount = totalViewCount;
     }
 
     /*

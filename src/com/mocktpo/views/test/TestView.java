@@ -84,7 +84,7 @@ public abstract class TestView extends Composite {
         super(page, style);
         this.d = page.getDisplay();
         this.page = page;
-        this.vo = page.getTestSchema().getView(page.getUserTestSession().getLastViewId());
+        this.vo = page.getTestSchema().getViewVo(page.getUserTestSession().getLastViewId());
         this.volumeControlVisible = !page.getUserTestSession().isVolumeControlHidden();
         init();
         alloc();

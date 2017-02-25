@@ -2,7 +2,7 @@
   "tid": 1,
   "title": "TPO 1",
   "stars": 2,
-  "views": [
+  "viewVos": [
     {
       "viewId": 1,
       "viewType": 1,

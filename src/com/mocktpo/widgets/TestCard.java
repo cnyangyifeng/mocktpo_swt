@@ -100,7 +100,7 @@ public class TestCard extends Composite {
         FormDataSet.attach(sectionsLabel).atLeft().atTop(10).atRight();
         CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("select_sections"));
 
-        sectionsComposite = new SectionsComposite(body, SWT.NONE, 2, true);
+        sectionsComposite = new SectionsComposite(body, SWT.NONE, 2, true, false, false, false, false);
         FormDataSet.attach(sectionsComposite).atLeft().atTopTo(sectionsLabel, 10).atRight();
 
         final Label divider2 = new Label(body, SWT.NONE);
@@ -129,17 +129,17 @@ public class TestCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            boolean readingSectionEnabled = sectionsComposite.isReadingSectionEnabled();
-            boolean listeningSectionEnabled = sectionsComposite.isListeningSectionEnabled();
-            boolean speakingSectionEnabled = sectionsComposite.isSpeakingSectionEnabled();
-            boolean writingSectionEnabled = sectionsComposite.isWritingSectionEnabled();
-            if (!readingSectionEnabled && !listeningSectionEnabled && !speakingSectionEnabled && !writingSectionEnabled) {
+            boolean readingSelected = sectionsComposite.isReadingSelected();
+            boolean listeningSelected = sectionsComposite.isListeningSelected();
+            boolean speakingSelected = sectionsComposite.isSpeakingSelected();
+            boolean writingSelected = sectionsComposite.isWritingSelected();
+            if (!readingSelected && !listeningSelected && !speakingSelected && !writingSelected) {
                 MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.OK);
                 box.setText(msgs.getString("select_sections"));
                 box.setMessage(msgs.getString("select_sections_to_start"));
                 box.open();
             } else {
-                UserTestSession userTestSession = PersistenceUtils.newSession(fileAlias, testSchema, readingSectionEnabled, listeningSectionEnabled, speakingSectionEnabled, writingSectionEnabled);
+                UserTestSession userTestSession = PersistenceUtils.newSession(fileAlias, testSchema, readingSelected, listeningSelected, speakingSelected, writingSelected);
                 MyApplication.get().getWindow().toTestPage(userTestSession);
             }
         }
