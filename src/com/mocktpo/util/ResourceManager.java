@@ -64,6 +64,8 @@ public class ResourceManager {
          * ==================================================
          */
 
+        FontUtils.loadExternalFonts(d);
+
         /* 8px, 6pt, 50% */
         caches.putIfAbsent(MT.FONT_XX_SMALL, FontUtils.getFont(d, 8));
         /* 10px, 7.5pt(8pt), 62.5% */
@@ -108,8 +110,6 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_CONFIRM_RESPONSE_HOVER, ImageUtils.load(d, "confirm_response_h"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE, ImageUtils.load(d, "continue"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_DISABLED, ImageUtils.load(d, "continue_d"));
-        caches.putIfAbsent(MT.IMAGE_CONTINUE_DEBUG, ImageUtils.load(d, "continue_debug"));
-        caches.putIfAbsent(MT.IMAGE_CONTINUE_DEBUG_HOVER, ImageUtils.load(d, "continue_debug_h"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_HOVER, ImageUtils.load(d, "continue_h"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL, ImageUtils.load(d, "continue_o"));
         caches.putIfAbsent(MT.IMAGE_CONTINUE_OVAL_DISABLED, ImageUtils.load(d, "continue_o_d"));
@@ -177,8 +177,12 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_HOVER, ImageUtils.load(d, "sys_export_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_IMPORT, ImageUtils.load(d, "sys_import"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_IMPORT_HOVER, ImageUtils.load(d, "sys_import_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_MY_NOTEBOOK, ImageUtils.load(d, "sys_my_notebook"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_MY_NOTEBOOK_HOVER, ImageUtils.load(d, "sys_my_notebook_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_TEST, ImageUtils.load(d, "sys_new_test"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_TEST_HOVER, ImageUtils.load(d, "sys_new_test_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_REFERENCE_ANSWERS, ImageUtils.load(d, "sys_reference_answers"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_REFERENCE_ANSWERS_HOVER, ImageUtils.load(d, "sys_reference_answers_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT, ImageUtils.load(d, "sys_report"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT_HOVER, ImageUtils.load(d, "sys_report_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STAR, ImageUtils.load(d, "sys_star"));

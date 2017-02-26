@@ -117,6 +117,10 @@ public class TestRow extends Composite {
         final TestProgressBar progressBar = new TestProgressBar(body, SWT.NONE, PROGRESS_BAR_WIDTH, PROGRESS_BAR_HEIGHT, selection);
         FormDataSet.attach(progressBar).atLeft().atTopTo(progressLabel, 10);
 
+        final CLabel selectionLabel = new CLabel(body, SWT.NONE);
+        FormDataSet.attach(selectionLabel).atLeftTo(progressBar, 10).atTopTo(progressBar, -5, SWT.TOP);
+        CLabelSet.decorate(selectionLabel).setFont(MT.FONT_SMALL_ITALIC).setForeground(MT.COLOR_GRAY40).setText(Integer.toString(selection) + MT.STRING_PERCENTAGE);
+
         final CLabel sectionsLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(sectionsLabel).atLeft().atTopTo(progressBar, 20).atRight();
         CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("selected_sections"));

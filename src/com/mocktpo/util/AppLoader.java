@@ -43,8 +43,6 @@ public class AppLoader extends Thread {
         userTestSessionMapper.schema();
         final UserTestAnswerMapper userTestAnswerMapper = app.getSqlSession().getMapper(UserTestAnswerMapper.class);
         userTestAnswerMapper.schema();
-        splash.setVisible(true);
-        // splash.proceed(msgs.getString("configuring_data"));
         splash.proceed(msgs.getString("welcome"));
         splash.close();
     }

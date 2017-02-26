@@ -231,6 +231,7 @@ public class ReportPage extends Composite {
                     } else {
                         detailsVo.setAnswer("NOT SEEN");
                     }
+                    logger.info("viewVo: {}", viewVo);
                     result.add(detailsVo);
                 }
             }

@@ -3,9 +3,9 @@ package com.mocktpo.views.test;
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestAnswer;
 import com.mocktpo.pages.TestPage;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.TestAudioPlayer;
 import com.mocktpo.util.TimeUtils;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.ST;
@@ -52,6 +52,8 @@ public abstract class TestView extends Composite {
     protected TestFooter footer;
 
     protected ImageButton pauseTestButton;
+    protected ImageButton referenceAnswersButton;
+    protected ImageButton myNotebookButton;
 
     protected Label timerLabel;
     protected ImageButton timerButton;
@@ -139,6 +141,30 @@ public abstract class TestView extends Composite {
         pauseTestButton = new ImageButton(header, SWT.NONE, MT.IMAGE_PAUSE_TEST, MT.IMAGE_PAUSE_TEST_HOVER);
         FormDataSet.attach(pauseTestButton).atLeft(10).atBottom(10);
         pauseTestButton.addMouseListener(new PauseTestButtonMouseAdapter());
+
+        /*
+         * ==================================================
+         *
+         * Reference Answers Button
+         *
+         * ==================================================
+         */
+
+        referenceAnswersButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_REFERENCE_ANSWERS, MT.IMAGE_SYSTEM_REFERENCE_ANSWERS_HOVER);
+        FormDataSet.attach(referenceAnswersButton).atLeftTo(pauseTestButton, 10).atBottom(10);
+        referenceAnswersButton.addMouseListener(new PauseTestButtonMouseAdapter());
+
+        /*
+         * ==================================================
+         *
+         * My Notebook Button
+         *
+         * ==================================================
+         */
+
+        myNotebookButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_MY_NOTEBOOK, MT.IMAGE_SYSTEM_MY_NOTEBOOK_HOVER);
+        FormDataSet.attach(myNotebookButton).atLeftTo(referenceAnswersButton, 10).atBottom(10);
+        myNotebookButton.addMouseListener(new PauseTestButtonMouseAdapter());
 
         /*
          * ==================================================

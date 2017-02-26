@@ -95,6 +95,7 @@ public class TestPage extends Composite {
     private TestView getLastTestView() {
         int lastViewId = userTestSession.getLastViewId();
         if (testSchema.getTestEndViewId() < lastViewId) {
+            PersistenceUtils.saveToView(userTestSession, testSchema.getTestEndViewId());
             return null;
         }
         TestViewVo viewVo = testSchema.getViewVo(lastViewId);
