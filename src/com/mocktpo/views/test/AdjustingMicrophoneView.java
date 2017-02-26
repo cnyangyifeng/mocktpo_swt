@@ -119,7 +119,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionAdapter());
 
-        final ImageButton skipButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_CONTINUE, MT.IMAGE_SYSTEM_CONTINUE_HOVER);
+        final ImageButton skipButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SKIP, MT.IMAGE_SKIP_HOVER);
         FormDataSet.attach(skipButton).atRightTo(playbackResponseButton, 10).atTopTo(continueButton, 0, SWT.TOP);
         skipButton.addMouseListener(new MouseAdapter() {
             @Override

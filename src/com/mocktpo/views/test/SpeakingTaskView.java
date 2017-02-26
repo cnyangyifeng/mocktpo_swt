@@ -91,7 +91,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
         volumeControl.setSelection(((Double) (page.getUserTestSession().getVolume() * 10)).intValue());
         volumeControl.addSelectionListener(new VolumeControlSelectionAdapter());
 
-        final ImageButton skipButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_CONTINUE, MT.IMAGE_SYSTEM_CONTINUE_HOVER);
+        final ImageButton skipButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SKIP, MT.IMAGE_SKIP_HOVER);
         FormDataSet.attach(skipButton).atRightTo(volumeOvalButton, 16).atTopTo(volumeOvalButton, 8, SWT.TOP);
         skipButton.addMouseListener(new MouseAdapter() {
             @Override

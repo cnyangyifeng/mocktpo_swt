@@ -152,6 +152,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME, ImageUtils.load(d, "show_time"));
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME_DISABLED, ImageUtils.load(d, "show_time_d"));
         caches.putIfAbsent(MT.IMAGE_SHOW_TIME_HOVER, ImageUtils.load(d, "show_time_h"));
+        caches.putIfAbsent(MT.IMAGE_SKIP, ImageUtils.load(d, "skip"));
+        caches.putIfAbsent(MT.IMAGE_SKIP_HOVER, ImageUtils.load(d, "skip_h"));
         caches.putIfAbsent(MT.IMAGE_STOP_RECORDING, ImageUtils.load(d, "stop_recording"));
         caches.putIfAbsent(MT.IMAGE_STOP_RECORDING_HOVER, ImageUtils.load(d, "stop_recording_h"));
         caches.putIfAbsent(MT.IMAGE_UNBOXED, ImageUtils.load(d, "unboxed"));
