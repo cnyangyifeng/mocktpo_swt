@@ -4,33 +4,49 @@ import com.mocktpo.vo.StyleRangeVo;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestSchemaVo;
 import com.mocktpo.vo.TestViewVo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TestSchemaUtils {
+
+    /* Logger and Messages */
+
+    protected static final Logger logger = LogManager.getLogger();
+    protected static final ResourceBundle schema = ResourceBundle.getBundle("data.schemas.s");
 
     private TestSchemaUtils() {
     }
 
     public static void generate() {
         TestSchemaVo testSchemaVo = new TestSchemaVo();
-        testSchemaVo.setTid(2);
-        testSchemaVo.setTitle("TPO 2");
-        testSchemaVo.setStars(5);
+        testSchemaVo.setTid(Integer.parseInt(schema.getString("tid")));
+        testSchemaVo.setTitle(schema.getString("title"));
+        testSchemaVo.setStars(Integer.parseInt(schema.getString("stars")));
         testSchemaVo.setViewVos(initViewVos());
-        ConfigUtils.save("tpo2", testSchemaVo);
+        ConfigUtils.save(schema.getString("fileAlias"), testSchemaVo);
     }
 
     private static List<TestViewVo> initViewVos() {
         List<TestViewVo> viewVos = new ArrayList<TestViewVo>();
         viewVos.add(initTestIntroView(1));
         viewVos.add(initGeneralTestInfoView(2));
-        // viewVos.add(initReadingSectionDirectionsView(3));
-        viewVos.add(initBreakPointView(3));
-        viewVos.add(initTestEndView(4));
+        viewVos.add(initReadingSectionDirectionsView(3));
+        viewVos.add(initReadingPassageView(4, schema.getString("RP1H"), schema.getString("RP1")));
+        viewVos.add(initReadingQuestionView(5, Integer.parseInt(schema.getString("RP1Q1PO")), 1, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q1"), schema.getString("RP1Q1CA"), schema.getString("RP1Q1CB"), schema.getString("RP1Q1CC"), schema.getString("RP1Q1CD"), null));
+        viewVos.add(initReadingQuestionView(6, Integer.parseInt(schema.getString("RP1Q2PO")), 2, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q2"), schema.getString("RP1Q2CA"), schema.getString("RP1Q2CB"), schema.getString("RP1Q2CC"), schema.getString("RP1Q2CD"), schema.getString("RP1Q2F")));
+        viewVos.add(initReadingQuestionView(7, Integer.parseInt(schema.getString("RP1Q3PO")), 3, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q3"), schema.getString("RP1Q3CA"), schema.getString("RP1Q3CB"), schema.getString("RP1Q3CC"), schema.getString("RP1Q3CD"), null));
+        viewVos.add(initReadingQuestionView(8, Integer.parseInt(schema.getString("RP1Q4PO")), 4, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q4"), schema.getString("RP1Q4CA"), schema.getString("RP1Q4CB"), schema.getString("RP1Q4CC"), schema.getString("RP1Q4CD"), schema.getString("RP1Q4F")));
+        viewVos.add(initReadingQuestionView(9, Integer.parseInt(schema.getString("RP1Q5PO")), 5, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q5"), schema.getString("RP1Q5CA"), schema.getString("RP1Q5CB"), schema.getString("RP1Q5CC"), schema.getString("RP1Q5CD"), null));
+        viewVos.add(initReadingQuestionView(10, Integer.parseInt(schema.getString("RP1Q6PO")), 6, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q6"), schema.getString("RP1Q6CA"), schema.getString("RP1Q6CB"), schema.getString("RP1Q6CC"), schema.getString("RP1Q6CD"), schema.getString("RP1Q6F")));
+        viewVos.add(initReadingQuestionView(11, Integer.parseInt(schema.getString("RP1Q7PO")), 7, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q7"), schema.getString("RP1Q7CA"), schema.getString("RP1Q7CB"), schema.getString("RP1Q7CC"), schema.getString("RP1Q7CD"), null));
+        viewVos.add(initReadingQuestionView(12, Integer.parseInt(schema.getString("RP1Q8PO")), 8, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q8"), schema.getString("RP1Q8CA"), schema.getString("RP1Q8CB"), schema.getString("RP1Q8CC"), schema.getString("RP1Q8CD"), schema.getString("RP1Q8F")));
+        viewVos.add(initReadingQuestionView(13, Integer.parseInt(schema.getString("RP1Q9PO")), 9, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q9"), schema.getString("RP1Q9CA"), schema.getString("RP1Q9CB"), schema.getString("RP1Q9CC"), schema.getString("RP1Q9CD"), null));
+        viewVos.add(initReadingQuestionView(14, Integer.parseInt(schema.getString("RP1Q10PO")), 10, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q10"), schema.getString("RP1Q10CA"), schema.getString("RP1Q10CB"), schema.getString("RP1Q10CC"), schema.getString("RP1Q10CD"), null));
+        viewVos.add(initReadingQuestionView(15, Integer.parseInt(schema.getString("RP1Q11PO")), 11, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q11"), schema.getString("RP1Q11CA"), schema.getString("RP1Q11CB"), schema.getString("RP1Q11CC"), schema.getString("RP1Q11CD"), null));
+        viewVos.add(initBreakPointView(16));
+        viewVos.add(initTestEndView(17));
         return viewVos;
     }
 
@@ -176,6 +192,84 @@ public class TestSchemaUtils {
             put("heading", headingVo);
             put("description", descriptionVo);
         }};
+        viewVo.setBody(body);
+
+        return viewVo;
+    }
+
+    private static TestViewVo initReadingPassageView(int viewId, String heading, String passage) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(12);
+        viewVo.setViewTypeName("Reading Passage");
+        viewVo.setSectionType(1);
+        viewVo.setSectionTypeName("Reading");
+        viewVo.setFirstPassage(true);
+        viewVo.setTimed(true);
+
+        final StyledTextVo headingVo = new StyledTextVo();
+        headingVo.setText(heading);
+
+        final StyledTextVo passageVo = new StyledTextVo();
+        passageVo.setText(passage);
+
+        Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
+            put("heading", headingVo);
+            put("passage", passageVo);
+        }};
+        viewVo.setBody(body);
+
+        return viewVo;
+    }
+
+    private static TestViewVo initReadingQuestionView(int viewId, int passageOffset, int questionNumberInSection, String heading, String passage, String question, String choiceA, String choiceB, String choiceC, String choiceD, String footnote) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(13);
+        viewVo.setViewTypeName("Reading Question");
+        viewVo.setSectionType(1);
+        viewVo.setSectionTypeName("Reading");
+        viewVo.setPassageOffset(passageOffset);
+        viewVo.setTimed(true);
+        viewVo.setQuestionCaptionVisible(true);
+        viewVo.setQuestionNumberInSection(questionNumberInSection);
+        viewVo.setAnswerable(true);
+
+        final StyledTextVo headingVo = new StyledTextVo();
+        headingVo.setText(heading);
+
+        final StyledTextVo passageVo = new StyledTextVo();
+        passageVo.setText(passage);
+
+        final StyledTextVo questionVo = new StyledTextVo();
+        questionVo.setText(question);
+
+        final StyledTextVo choiceAVo = new StyledTextVo();
+        choiceAVo.setText(choiceA);
+
+        final StyledTextVo choiceBVo = new StyledTextVo();
+        choiceBVo.setText(choiceB);
+
+        final StyledTextVo choiceCVo = new StyledTextVo();
+        choiceCVo.setText(choiceC);
+
+        final StyledTextVo choiceDVo = new StyledTextVo();
+        choiceDVo.setText(choiceD);
+
+        Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
+            put("heading", headingVo);
+            put("passage", passageVo);
+            put("question", questionVo);
+            put("choiceA", choiceAVo);
+            put("choiceB", choiceBVo);
+            put("choiceC", choiceCVo);
+            put("choiceD", choiceDVo);
+        }};
+        if (null != footnote) {
+            final StyledTextVo footnoteVo = new StyledTextVo();
+            footnoteVo.setText(footnote);
+            body.put("footnote", footnoteVo);
+        }
         viewVo.setBody(body);
 
         return viewVo;
