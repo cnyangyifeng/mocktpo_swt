@@ -101,7 +101,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
                 PersistenceUtils.saveToNextView(ListeningQuestionView.this);
-                page.resume(page.getUserTestSession());
+                page.resume();
             }
         });
     }
@@ -120,7 +120,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
         questionTextWidget.addPaintObjectListener(new StyledTextPaintImageListener());
 
         checkLabelA = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(checkLabelA).atLeft(10).atTopTo(questionTextWidget, 20 + LC.CHECK_LABEL_MARGIN_TOP);
+        FormDataSet.attach(checkLabelA).atLeft(10).atTopTo(questionTextWidget, 20);
         LabelSet.decorate(checkLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
         checkLabelA.addMouseListener(new ChooseAnswerAdapter());
 
@@ -130,7 +130,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
         choiceLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelB = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(checkLabelB).atLeft(10).atTopTo(choiceLabelA, 20 + LC.CHECK_LABEL_MARGIN_TOP);
+        FormDataSet.attach(checkLabelB).atLeft(10).atTopTo(choiceLabelA, 20);
         LabelSet.decorate(checkLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
         checkLabelB.addMouseListener(new ChooseAnswerAdapter());
 
@@ -140,7 +140,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
         choiceLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelC = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(checkLabelC).atLeft(10).atTopTo(choiceLabelB, 20 + LC.CHECK_LABEL_MARGIN_TOP);
+        FormDataSet.attach(checkLabelC).atLeft(10).atTopTo(choiceLabelB, 20);
         LabelSet.decorate(checkLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
         checkLabelC.addMouseListener(new ChooseAnswerAdapter());
 
@@ -150,7 +150,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
         choiceLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelD = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(checkLabelD).atLeft(10).atTopTo(choiceLabelC, 20 + LC.CHECK_LABEL_MARGIN_TOP);
+        FormDataSet.attach(checkLabelD).atLeft(10).atTopTo(choiceLabelC, 20);
         LabelSet.decorate(checkLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED).setVisible(false);
         checkLabelD.addMouseListener(new ChooseAnswerAdapter());
 
@@ -251,7 +251,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             if (isOk()) {
                 release();
                 PersistenceUtils.saveToNextView(ListeningQuestionView.this);
-                page.resume(page.getUserTestSession());
+                page.resume();
             } else {
                 nextOvalButton.setEnabled(true);
                 okOvalButton.setEnabled(false);

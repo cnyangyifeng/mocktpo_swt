@@ -8,14 +8,16 @@ import com.mocktpo.util.WordCountUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
-import com.mocktpo.util.widgets.*;
+import com.mocktpo.util.widgets.CLabelSet;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
+import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.widgets.ImageButton;
 import com.mocktpo.widgets.VolumeControl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.*;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Scale;
 
 public class IndependentWritingTaskView extends SashTestView {
@@ -102,20 +104,17 @@ public class IndependentWritingTaskView extends SashTestView {
 
     @Override
     public void updateRight() {
-        Button copyButton = new Button(right, SWT.PUSH);
-        FormDataSet.attach(copyButton).atLeft(10).atTop(10).withHeight(LC.BUTTON_HEIGHT_HINT_2);
-        ButtonSet.decorate(copyButton).setText(msgs.getString("copy"));
-        copyButton.addSelectionListener(new CopyButtonSelectionAdapter());
+        ImageButton copyButton = new ImageButton(right, SWT.NONE, MT.IMAGE_SYSTEM_COPY, MT.IMAGE_SYSTEM_COPY_HOVER);
+        FormDataSet.attach(copyButton).atLeft(10).atTop(10);
+        copyButton.addMouseListener(new CopyButtonMouseAdapter());
 
-        Button cutButton = new Button(right, SWT.PUSH);
-        FormDataSet.attach(cutButton).atLeftTo(copyButton, 10).atTopTo(copyButton, 0, SWT.TOP).withHeight(LC.BUTTON_HEIGHT_HINT_2);
-        ButtonSet.decorate(cutButton).setText(msgs.getString("cut"));
-        cutButton.addSelectionListener(new CutButtonSelectionAdapter());
+        ImageButton cutButton = new ImageButton(right, SWT.NONE, MT.IMAGE_SYSTEM_CUT, MT.IMAGE_SYSTEM_CUT_HOVER);
+        FormDataSet.attach(cutButton).atLeftTo(copyButton, 10).atTopTo(copyButton, 0, SWT.TOP);
+        cutButton.addMouseListener(new CutButtonMouseAdapter());
 
-        Button pasteButton = new Button(right, SWT.PUSH);
-        FormDataSet.attach(pasteButton).atLeftTo(cutButton, 10).atTopTo(copyButton, 0, SWT.TOP).withHeight(LC.BUTTON_HEIGHT_HINT_2);
-        ButtonSet.decorate(pasteButton).setText(msgs.getString("paste"));
-        pasteButton.addSelectionListener(new PasteButtonSelectionAdapter());
+        ImageButton pasteButton = new ImageButton(right, SWT.NONE, MT.IMAGE_SYSTEM_PASTE, MT.IMAGE_SYSTEM_PASTE_HOVER);
+        FormDataSet.attach(pasteButton).atLeftTo(cutButton, 10).atTopTo(copyButton, 0, SWT.TOP);
+        pasteButton.addMouseListener(new PasteButtonMouseAdapter());
 
         wordCountLabel = new CLabel(right, SWT.NONE);
         FormDataSet.attach(wordCountLabel).atTopTo(copyButton, 0, SWT.TOP).atRight(10).atBottomTo(pasteButton, 0, SWT.BOTTOM).withWidth(WORD_COUNT_LABEL_WIDTH);
@@ -183,26 +182,26 @@ public class IndependentWritingTaskView extends SashTestView {
         }
     }
 
-    private class CopyButtonSelectionAdapter extends SelectionAdapter {
+    private class CopyButtonMouseAdapter extends MouseAdapter {
 
         @Override
-        public void widgetSelected(SelectionEvent e) {
+        public void mouseDown(MouseEvent e) {
             writingTextWidget.copy();
         }
     }
 
-    private class CutButtonSelectionAdapter extends SelectionAdapter {
+    private class CutButtonMouseAdapter extends MouseAdapter {
 
         @Override
-        public void widgetSelected(SelectionEvent e) {
+        public void mouseDown(MouseEvent e) {
             writingTextWidget.cut();
         }
     }
 
-    private class PasteButtonSelectionAdapter extends SelectionAdapter {
+    private class PasteButtonMouseAdapter extends MouseAdapter {
 
         @Override
-        public void widgetSelected(SelectionEvent e) {
+        public void mouseDown(MouseEvent e) {
             writingTextWidget.paste();
         }
     }

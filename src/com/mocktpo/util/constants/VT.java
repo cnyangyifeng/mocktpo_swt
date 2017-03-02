@@ -10,6 +10,7 @@ public interface VT {
     int VIEW_TYPE_TEST_INTRO = 1;
     int VIEW_TYPE_GENERAL_TEST_INFO = 2;
     int VIEW_TYPE_BREAK_POINT = 3;
+    int VIEW_TYPE_TEST_END = 4;
 
     /* Reading Section View Types */
 

@@ -14,6 +14,19 @@ public class StyleRangeVo implements Serializable {
     private boolean underline;
     private String image;
 
+    public StyleRangeVo() {
+    }
+
+    public StyleRangeVo(int start, int length, int fontStyle, int foreground, int background, boolean underline, String image) {
+        this.start = start;
+        this.length = length;
+        this.fontStyle = fontStyle;
+        this.foreground = foreground;
+        this.background = background;
+        this.underline = underline;
+        this.image = image;
+    }
+
     public int getStart() {
         return start;
     }

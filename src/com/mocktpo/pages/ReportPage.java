@@ -7,7 +7,6 @@ import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.TimeUtils;
-import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.constants.VT;
@@ -104,7 +103,7 @@ public class ReportPage extends Composite {
         backButton.addMouseListener(new BackButtonMouseAdapter());
 
         final ImageButton exportButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT, MT.IMAGE_SYSTEM_EXPORT_HOVER);
-        FormDataSet.attach(exportButton).atTop().atRight().withHeight(LC.BUTTON_HEIGHT_HINT);
+        FormDataSet.attach(exportButton).atTop().atRight();
     }
 
     private void initBody() {
@@ -205,7 +204,7 @@ public class ReportPage extends Composite {
         @Override
         public Object function(Object[] args) {
             int sectionType = ((Double) args[0]).intValue();
-            return ReportPage.this.testSchema.getTotalQuestionCountInSection(sectionType);
+            return ReportPage.this.testSchema.findTotalQuestionCountInSection(sectionType);
         }
     }
 
@@ -218,10 +217,12 @@ public class ReportPage extends Composite {
         @Override
         public Object function(Object[] args) {
             int sectionType = ((Double) args[0]).intValue();
+            logger.info("sectionType: {}", sectionType);
             List<TestViewVo> viewVos = ReportPage.this.testSchema.getViewVos();
             List<QuestionAndAnswerDetailsVo> result = new ArrayList<QuestionAndAnswerDetailsVo>();
             for (TestViewVo viewVo : viewVos) {
                 if (sectionType == viewVo.getSectionType() && viewVo.isAnswerable()) {
+                    logger.info("sectionType: {}, viewVo: {}", sectionType, getQuestionText(viewVo));
                     QuestionAndAnswerDetailsVo detailsVo = new QuestionAndAnswerDetailsVo();
                     detailsVo.setQuestionNumberInSection(viewVo.getQuestionNumberInSection());
                     detailsVo.setQuestion(getQuestionText(viewVo));
@@ -231,7 +232,6 @@ public class ReportPage extends Composite {
                     } else {
                         detailsVo.setAnswer("NOT SEEN");
                     }
-                    logger.info("viewVo: {}", viewVo);
                     result.add(detailsVo);
                 }
             }

@@ -129,7 +129,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledText("tips").getStyles());
 
         boxLabelA = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(boxLabelA).atLeft(10).atTopTo(tipsTextWidget, 20 + LC.BOX_LABEL_MARGIN_TOP);
+        FormDataSet.attach(boxLabelA).atLeft(10).atTopTo(tipsTextWidget, 20);
         LabelSet.decorate(boxLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNBOXED).setVisible(false);
         boxLabelA.addMouseListener(new ChooseAnswerAdapter());
 
@@ -139,7 +139,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         choiceLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         boxLabelB = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(boxLabelB).atLeft(10).atTopTo(choiceLabelA, 20 + LC.BOX_LABEL_MARGIN_TOP);
+        FormDataSet.attach(boxLabelB).atLeft(10).atTopTo(choiceLabelA, 20);
         LabelSet.decorate(boxLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNBOXED).setVisible(false);
         boxLabelB.addMouseListener(new ChooseAnswerAdapter());
 
@@ -149,7 +149,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         choiceLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         boxLabelC = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(boxLabelC).atLeft(10).atTopTo(choiceLabelB, 20 + LC.BOX_LABEL_MARGIN_TOP);
+        FormDataSet.attach(boxLabelC).atLeft(10).atTopTo(choiceLabelB, 20);
         LabelSet.decorate(boxLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNBOXED).setVisible(false);
         boxLabelC.addMouseListener(new ChooseAnswerAdapter());
 
@@ -159,7 +159,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         choiceLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         boxLabelD = new Label(viewPort, SWT.NONE);
-        FormDataSet.attach(boxLabelD).atLeft(10).atTopTo(choiceLabelC, 20 + LC.BOX_LABEL_MARGIN_TOP);
+        FormDataSet.attach(boxLabelD).atLeft(10).atTopTo(choiceLabelC, 20);
         LabelSet.decorate(boxLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNBOXED).setVisible(false);
         boxLabelD.addMouseListener(new ChooseAnswerAdapter());
 
@@ -170,7 +170,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
 
         if (3 == vo.getTotalAnswerCount()) {
             checkLabelE = new Label(viewPort, SWT.NONE);
-            FormDataSet.attach(checkLabelE).atLeft(10).atTopTo(choiceLabelD, 20 + LC.BOX_LABEL_MARGIN_TOP);
+            FormDataSet.attach(checkLabelE).atLeft(10).atTopTo(choiceLabelD, 20);
             LabelSet.decorate(checkLabelE).setData(MT.KEY_CHOICE, MT.CHOICE_E).setImage(MT.IMAGE_UNBOXED).setVisible(false);
             checkLabelE.addMouseListener(new ChooseAnswerAdapter());
 

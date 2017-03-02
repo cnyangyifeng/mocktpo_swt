@@ -173,6 +173,10 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BOXED, ImageUtils.load(d, "sys_boxed"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE, ImageUtils.load(d, "sys_continue"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE_HOVER, ImageUtils.load(d, "sys_continue_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_COPY, ImageUtils.load(d, "sys_copy"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_COPY_HOVER, ImageUtils.load(d, "sys_copy_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CUT, ImageUtils.load(d, "sys_cut"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CUT_HOVER, ImageUtils.load(d, "sys_cut_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_DELETE, ImageUtils.load(d, "sys_delete"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_DELETE_HOVER, ImageUtils.load(d, "sys_delete_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT, ImageUtils.load(d, "sys_export"));
@@ -183,6 +187,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_MY_NOTEBOOK_HOVER, ImageUtils.load(d, "sys_my_notebook_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_TEST, ImageUtils.load(d, "sys_new_test"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_TEST_HOVER, ImageUtils.load(d, "sys_new_test_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_PASTE, ImageUtils.load(d, "sys_paste"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_PASTE_HOVER, ImageUtils.load(d, "sys_paste_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REFERENCE_ANSWERS, ImageUtils.load(d, "sys_reference_answers"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REFERENCE_ANSWERS_HOVER, ImageUtils.load(d, "sys_reference_answers_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT, ImageUtils.load(d, "sys_report"));

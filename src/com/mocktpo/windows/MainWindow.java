@@ -110,27 +110,21 @@ public class MainWindow {
      */
 
     public void toMainPage() {
-        if (null == mp) {
-            mp = new MainPage(s, SWT.NONE);
-        }
+        mp = new MainPage(s, SWT.NONE);
         mp.toLoadTestView();
         stack.topControl = mp;
         s.layout();
     }
 
     public void toTestPage(UserTestSession userTestSession) {
-        if (null == tp) {
-            tp = new TestPage(s, SWT.NONE, userTestSession);
-        }
-        tp.resume(userTestSession);
+        tp = new TestPage(s, SWT.NONE, userTestSession);
+        tp.resume();
         stack.topControl = tp;
         s.layout();
     }
 
     public void toReportPage(UserTestSession userTestSession) {
-        // if (null == rp) {
-            rp = new ReportPage(s, SWT.NONE, userTestSession);
-        // }
+        rp = new ReportPage(s, SWT.NONE, userTestSession);
         stack.topControl = rp;
         s.layout();
     }

@@ -75,7 +75,7 @@ public class TestSchemaVo implements Serializable {
      * ==================================================
      */
 
-    public int getTotalQuestionCountInSection(int sectionType) {
+    public int findTotalQuestionCountInSection(int sectionType) {
         int count = 0;
         for (TestViewVo vo : this.getViewVos()) {
             if (vo.getSectionType() == sectionType && vo.isAnswerable()) {
@@ -85,7 +85,7 @@ public class TestSchemaVo implements Serializable {
         return count;
     }
 
-    public int getTotalQuestionCountInListeningSection(int sectionType, int listeningGroupId) {
+    public int findTotalQuestionCountInListeningSection(int sectionType, int listeningGroupId) {
         int count = 0;
         for (TestViewVo vo : this.getViewVos()) {
             if (vo.getSectionType() == sectionType && vo.getListeningGroupId() == listeningGroupId && vo.isAnswerable()) {
@@ -95,22 +95,22 @@ public class TestSchemaVo implements Serializable {
         return count;
     }
 
-    public int getNextViewIdWhileTimeOut(int viewId) {
+    public int findNextViewIdWhileTimeOut(int viewId) {
         TestViewVo vo = this.getViewVo(viewId);
         int nextViewId = viewId;
         switch (vo.getSectionType()) {
             case ST.SECTION_TYPE_NONE:
                 break;
             case ST.SECTION_TYPE_READING:
-                nextViewId = getFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_HEADSET_ON);
+                nextViewId = findFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_HEADSET_ON);
                 break;
             case ST.SECTION_TYPE_LISTENING:
                 switch (vo.getListeningGroupId()) {
                     case 1:
-                        nextViewId = getFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_DIRECTIONS);
+                        nextViewId = findFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_DIRECTIONS);
                         break;
                     case 2:
-                        nextViewId = getFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
+                        nextViewId = findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
                         break;
                 }
                 break;
@@ -140,7 +140,7 @@ public class TestSchemaVo implements Serializable {
         return nextViewId;
     }
 
-    public int getFirstViewIdByViewType(int viewType) {
+    public int findFirstViewIdByViewType(int viewType) {
         int viewId = 0;
         for (TestViewVo vo : this.getViewVos()) {
             if (viewType == vo.getViewType()) {
@@ -150,17 +150,17 @@ public class TestSchemaVo implements Serializable {
         return viewId;
     }
 
-    public int getTestEndViewId() {
+    public int findTestEndViewId() {
         int endViewId = 0;
         for (TestViewVo vo : this.getViewVos()) {
-            if (VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK_END == vo.getViewType()) {
+            if (VT.VIEW_TYPE_TEST_END == vo.getViewType()) {
                 endViewId = vo.getViewId();
             }
         }
         return endViewId;
     }
 
-    public int getTotalViewCount(boolean readingSelected, boolean listeningSelected, boolean speakingSelected, boolean writingSelected) {
+    public int findTotalViewCount(boolean readingSelected, boolean listeningSelected, boolean speakingSelected, boolean writingSelected) {
         List<TestViewVo> viewVos = this.getViewVos();
         int count = 0;
         for (TestViewVo viewVo : viewVos) {

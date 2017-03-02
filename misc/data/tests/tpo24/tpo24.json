@@ -3800,6 +3800,18 @@
           "text": "You still have time to write your response. As long as there is time remaining, you can continue writing or revising your response.\u000a\u000aClick on Return to continue writing your response. Click on Continue to leave this question.\u000a\u000aOnce you leave this question, you will not be able to return and you may not continue writing."
         }
       }
+    },
+    {
+      "viewId": 130,
+      "viewType": 4,
+      "viewTypeName": "Test End",
+      "sectionType": 0,
+      "sectionTypeName": "",
+      "body": {
+        "description": {
+          "text": "The testing session is complete.\u000a\u000aClick on Continue to see your Score Report."
+        }
+      }
     }
   ]
 }

@@ -113,7 +113,8 @@ public class TestRow extends Composite {
         FormDataSet.attach(progressLabel).atLeft().atTop(10).atRight();
         CLabelSet.decorate(progressLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("progress"));
 
-        int selection = 100 * userTestSession.getMaxViewId() / userTestSession.getTotalViewCount();
+        // TODO PROGRESS CALCULATION
+        int selection = 100 * (userTestSession.getMaxViewId() - 1) / userTestSession.getTotalViewCount();
         final TestProgressBar progressBar = new TestProgressBar(body, SWT.NONE, PROGRESS_BAR_WIDTH, PROGRESS_BAR_HEIGHT, selection);
         FormDataSet.attach(progressBar).atLeft().atTopTo(progressLabel, 10);
 

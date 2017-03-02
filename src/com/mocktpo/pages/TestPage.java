@@ -72,15 +72,7 @@ public class TestPage extends Composite {
      */
 
     public void resume() {
-        resume(this.userTestSession);
-    }
-
-    public void resume(UserTestSession userTestSession) {
-        if (this.userTestSession.getTid() != userTestSession.getTid()) {
-            this.testSchema = ConfigUtils.load(userTestSession.getFileAlias(), TestSchemaVo.class);
-        }
-        this.userTestSession = userTestSession;
-
+        this.testSchema = ConfigUtils.load(userTestSession.getFileAlias(), TestSchemaVo.class);
         if (null != testSchema) {
             TestView testView = getLastTestView();
             if (null != testView) {
@@ -94,25 +86,25 @@ public class TestPage extends Composite {
 
     private TestView getLastTestView() {
         int lastViewId = userTestSession.getLastViewId();
-        if (testSchema.getTestEndViewId() < lastViewId) {
-            PersistenceUtils.saveToView(userTestSession, testSchema.getTestEndViewId());
+        if (testSchema.findTestEndViewId() < lastViewId) {
+            PersistenceUtils.saveToView(userTestSession, testSchema.findTestEndViewId());
             return null;
         }
         TestViewVo viewVo = testSchema.getViewVo(lastViewId);
 
         if (ST.SECTION_TYPE_READING == viewVo.getSectionType() && !userTestSession.isReadingSelected()) {
             if (userTestSession.isListeningSelected()) {
-                lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_HEADSET_ON);
+                lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_HEADSET_ON);
                 viewVo = testSchema.getViewVo(lastViewId);
                 return getTestView(viewVo);
             } else {
                 if (userTestSession.isSpeakingSelected()) {
-                    lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
+                    lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
                     viewVo = testSchema.getViewVo(lastViewId);
                     return getTestView(viewVo);
                 } else {
                     if (userTestSession.isWritingSelected()) {
-                        lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                        lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
                         viewVo = testSchema.getViewVo(lastViewId);
                         return getTestView(viewVo);
                     } else {
@@ -124,12 +116,12 @@ public class TestPage extends Composite {
 
         if (ST.SECTION_TYPE_LISTENING == viewVo.getSectionType() && !userTestSession.isListeningSelected()) {
             if (userTestSession.isSpeakingSelected()) {
-                lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
+                lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
                 viewVo = testSchema.getViewVo(lastViewId);
                 return getTestView(viewVo);
             } else {
                 if (userTestSession.isWritingSelected()) {
-                    lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                    lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
                     viewVo = testSchema.getViewVo(lastViewId);
                     return getTestView(viewVo);
                 } else {
@@ -140,7 +132,7 @@ public class TestPage extends Composite {
 
         if (ST.SECTION_TYPE_SPEAKING == viewVo.getSectionType() && !userTestSession.isSpeakingSelected()) {
             if (userTestSession.isWritingSelected()) {
-                lastViewId = testSchema.getFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
                 viewVo = testSchema.getViewVo(lastViewId);
                 return getTestView(viewVo);
             } else {
@@ -169,6 +161,9 @@ public class TestPage extends Composite {
                 break;
             case VT.VIEW_TYPE_BREAK_POINT:
                 tv = new BreakPointView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_TEST_END:
+                tv = new TestEndView(this, SWT.NONE);
                 break;
             /* Reading Section View Types */
             case VT.VIEW_TYPE_READING_SECTION_DIRECTIONS:

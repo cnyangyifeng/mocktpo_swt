@@ -175,7 +175,7 @@ public class ReadingReviewView extends Composite {
         if (vo.isQuestionCaptionVisible()) {
             caption = new StyledText(header, SWT.SINGLE);
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestSchema().getTotalQuestionCountInSection(ST.SECTION_TYPE_READING));
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestSchema().findTotalQuestionCountInSection(ST.SECTION_TYPE_READING));
         }
 
         final ImageButton goToQuestionButton = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
@@ -383,12 +383,12 @@ public class ReadingReviewView extends Composite {
                     if (timed) {
                         stopTimer();
                     }
-                    int lastViewId = page.getTestSchema().getNextViewIdWhileTimeOut(page.getUserTestSession().getLastViewId());
+                    int lastViewId = page.getTestSchema().findNextViewIdWhileTimeOut(page.getUserTestSession().getLastViewId());
                     PersistenceUtils.saveToView(userTestSession, lastViewId);
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-                            MyApplication.get().getWindow().toTestPage(userTestSession);
+                            page.resume();
                         }
                     });
                 }
@@ -432,7 +432,7 @@ public class ReadingReviewView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            if (selectedViewId == page.getTestSchema().getFirstViewIdByViewType(VT.VIEW_TYPE_READING_SECTION_END)) {
+            if (selectedViewId == page.getTestSchema().findFirstViewIdByViewType(VT.VIEW_TYPE_READING_SECTION_END)) {
                 return;
             }
             if (selectedViewId > page.getUserTestSession().getMaxViewId()) {
@@ -440,7 +440,7 @@ public class ReadingReviewView extends Composite {
             }
             release();
             PersistenceUtils.saveToView(page.getUserTestSession(), selectedViewId);
-            page.resume(page.getUserTestSession());
+            page.resume();
         }
     }
 
@@ -449,7 +449,7 @@ public class ReadingReviewView extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            page.resume(page.getUserTestSession());
+            page.resume();
         }
     }
 

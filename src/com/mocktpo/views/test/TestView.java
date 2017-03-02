@@ -179,9 +179,9 @@ public abstract class TestView extends Composite {
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
             int totalQuestionCount;
             if (ST.SECTION_TYPE_LISTENING == vo.getSectionType()) {
-                totalQuestionCount = page.getTestSchema().getTotalQuestionCountInListeningSection(vo.getSectionType(), vo.getListeningGroupId());
+                totalQuestionCount = page.getTestSchema().findTotalQuestionCountInListeningSection(vo.getSectionType(), vo.getListeningGroupId());
             } else {
-                totalQuestionCount = page.getTestSchema().getTotalQuestionCountInSection(vo.getSectionType());
+                totalQuestionCount = page.getTestSchema().findTotalQuestionCountInSection(vo.getSectionType());
             }
             StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + totalQuestionCount);
         }
@@ -331,12 +331,12 @@ public abstract class TestView extends Composite {
                 });
                 if (0 >= countDown) {
                     release();
-                    int lastViewId = page.getTestSchema().getNextViewIdWhileTimeOut(vo.getViewId());
+                    int lastViewId = page.getTestSchema().findNextViewIdWhileTimeOut(vo.getViewId());
                     PersistenceUtils.saveToView(page.getUserTestSession(), lastViewId);
                     d.asyncExec(new Runnable() {
                         @Override
                         public void run() {
-                            MyApplication.get().getWindow().toTestPage(page.getUserTestSession());
+                            page.resume();
                         }
                     });
                 }

@@ -20,10 +20,10 @@ public class UserAudioRecorder {
 
     private final Object lock = new Object();
 
-    public UserAudioRecorder(String fileName) {
+    public UserAudioRecorder(String fileAlias) {
         try {
             File rootPath = new File(this.getClass().getResource(URLDecoder.decode(RC.USERS_DATA_DIR, "utf-8")).toURI());
-            file = new File(rootPath.toString() + MT.STRING_SLASH + fileName + RC.WAV_FILE_TYPE_SUFFIX);
+            file = new File(rootPath.toString() + MT.STRING_SLASH + fileAlias + RC.WAV_FILE_TYPE_SUFFIX);
             if (!file.exists()) {
                 logger.info("User audio file created: {}.", file.createNewFile());
             }

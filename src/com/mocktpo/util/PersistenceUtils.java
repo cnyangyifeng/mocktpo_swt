@@ -41,7 +41,7 @@ public class PersistenceUtils {
         userTestSession.setWritingSelected(writingSelected);
         userTestSession.setLastViewId(1);
         userTestSession.setMaxViewId(1);
-        userTestSession.setTotalViewCount(testSchema.getTotalViewCount(readingSelected, listeningSelected, speakingSelected, writingSelected));
+        userTestSession.setTotalViewCount(testSchema.findTotalViewCount(readingSelected, listeningSelected, speakingSelected, writingSelected));
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).insert(userTestSession);

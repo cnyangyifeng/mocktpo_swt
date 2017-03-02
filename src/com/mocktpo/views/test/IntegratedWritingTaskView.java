@@ -1,13 +1,18 @@
 package com.mocktpo.views.test;
 
 import com.mocktpo.pages.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.util.KeyBindingSet;
+import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
+import com.mocktpo.util.WordCountUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.*;
+import com.mocktpo.util.widgets.CLabelSet;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
+import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.widgets.ImageButton;
 import com.mocktpo.widgets.VolumeControl;
 import org.eclipse.swt.SWT;
@@ -15,7 +20,6 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.*;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Scale;
 
@@ -58,7 +62,6 @@ public class IntegratedWritingTaskView extends SashTestView2 {
 
     @Override
     public void updateHeader() {
-
         final ImageButton nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
         FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
         nextOvalButton.addMouseListener(new NextOvalButtonMouseAdapter());
@@ -97,7 +100,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
         StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledText("directions").getStyles());
 
         final StyledText questionTextWidget = new StyledText(top, SWT.WRAP);
-        FormDataSet.attach(questionTextWidget).atLeft(5).atTopTo(directionsTextWidget).atRight(5);
+        FormDataSet.attach(questionTextWidget).atLeft(5).atTopTo(directionsTextWidget, 5).atRight(5);
         StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
     }
@@ -123,20 +126,17 @@ public class IntegratedWritingTaskView extends SashTestView2 {
 
     @Override
     public void updateRight() {
-        Button copyButton = new Button(right, SWT.PUSH);
-        FormDataSet.attach(copyButton).atLeft().atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
-        ButtonSet.decorate(copyButton).setText(msgs.getString("copy"));
-        copyButton.addSelectionListener(new CopyButtonSelectionAdapter());
+        ImageButton copyButton = new ImageButton(right, SWT.NONE, MT.IMAGE_SYSTEM_COPY, MT.IMAGE_SYSTEM_COPY_HOVER);
+        FormDataSet.attach(copyButton).atLeft().atTop();
+        copyButton.addMouseListener(new CopyButtonMouseAdapter());
 
-        Button cutButton = new Button(right, SWT.PUSH);
-        FormDataSet.attach(cutButton).atLeftTo(copyButton).atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
-        ButtonSet.decorate(cutButton).setText(msgs.getString("cut"));
-        cutButton.addSelectionListener(new CutButtonSelectionAdapter());
+        ImageButton cutButton = new ImageButton(right, SWT.NONE, MT.IMAGE_SYSTEM_CUT, MT.IMAGE_SYSTEM_CUT_HOVER);
+        FormDataSet.attach(cutButton).atLeftTo(copyButton).atTop();
+        cutButton.addMouseListener(new CutButtonMouseAdapter());
 
-        Button pasteButton = new Button(right, SWT.PUSH);
-        FormDataSet.attach(pasteButton).atLeftTo(cutButton).atTop().withHeight(LC.BUTTON_HEIGHT_HINT_2);
-        ButtonSet.decorate(pasteButton).setText(msgs.getString("paste"));
-        pasteButton.addSelectionListener(new PasteButtonSelectionAdapter());
+        ImageButton pasteButton = new ImageButton(right, SWT.NONE, MT.IMAGE_SYSTEM_PASTE, MT.IMAGE_SYSTEM_PASTE_HOVER);
+        FormDataSet.attach(pasteButton).atLeftTo(cutButton).atTop();
+        pasteButton.addMouseListener(new PasteButtonMouseAdapter());
 
         wordCountLabel = new CLabel(right, SWT.NONE);
         FormDataSet.attach(wordCountLabel).atTopTo(pasteButton, 0, SWT.TOP).atRight().atBottomTo(pasteButton, 0, SWT.BOTTOM).withWidth(WORD_COUNT_LABEL_WIDTH);
@@ -204,26 +204,26 @@ public class IntegratedWritingTaskView extends SashTestView2 {
         }
     }
 
-    private class CopyButtonSelectionAdapter extends SelectionAdapter {
+    private class CopyButtonMouseAdapter extends MouseAdapter {
 
         @Override
-        public void widgetSelected(SelectionEvent e) {
+        public void mouseDown(MouseEvent e) {
             writingTextWidget.copy();
         }
     }
 
-    private class CutButtonSelectionAdapter extends SelectionAdapter {
+    private class CutButtonMouseAdapter extends MouseAdapter {
 
         @Override
-        public void widgetSelected(SelectionEvent e) {
+        public void mouseDown(MouseEvent e) {
             writingTextWidget.cut();
         }
     }
 
-    private class PasteButtonSelectionAdapter extends SelectionAdapter {
+    private class PasteButtonMouseAdapter extends MouseAdapter {
 
         @Override
-        public void widgetSelected(SelectionEvent e) {
+        public void mouseDown(MouseEvent e) {
             writingTextWidget.paste();
         }
     }

@@ -1,20 +1,25 @@
 package com.mocktpo.views.test;
 
 import com.mocktpo.pages.TestPage;
-import com.mocktpo.util.*;
-import com.mocktpo.util.constants.LC;
-import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.*;
+import com.mocktpo.util.widgets.CLabelSet;
+import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
+import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.widgets.ImageButton;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.*;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -82,7 +87,7 @@ public class ReadingQuestionView extends SashTestView {
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
 
         checkLabelA = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkLabelA).atLeft(10).atTopTo(questionTextWidget, 20 + LC.CHECK_LABEL_MARGIN_TOP);
+        FormDataSet.attach(checkLabelA).atLeft(10).atTopTo(questionTextWidget, 20);
         LabelSet.decorate(checkLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setImage(MT.IMAGE_UNCHECKED);
         checkLabelA.addMouseListener(new ChooseAnswerAdapter());
 
@@ -92,7 +97,7 @@ public class ReadingQuestionView extends SashTestView {
         choiceLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelB = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkLabelB).atLeft(10).atTopTo(choiceLabelA, 20 + LC.CHECK_LABEL_MARGIN_TOP);
+        FormDataSet.attach(checkLabelB).atLeft(10).atTopTo(choiceLabelA, 20);
         LabelSet.decorate(checkLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setImage(MT.IMAGE_UNCHECKED);
         checkLabelB.addMouseListener(new ChooseAnswerAdapter());
 
@@ -102,7 +107,7 @@ public class ReadingQuestionView extends SashTestView {
         choiceLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelC = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkLabelC).atLeft(10).atTopTo(choiceLabelB, 20 + LC.CHECK_LABEL_MARGIN_TOP);
+        FormDataSet.attach(checkLabelC).atLeft(10).atTopTo(choiceLabelB, 20);
         LabelSet.decorate(checkLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setImage(MT.IMAGE_UNCHECKED);
         checkLabelC.addMouseListener(new ChooseAnswerAdapter());
 
@@ -112,7 +117,7 @@ public class ReadingQuestionView extends SashTestView {
         choiceLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelD = new Label(c, SWT.NONE);
-        FormDataSet.attach(checkLabelD).atLeft(10).atTopTo(choiceLabelC, 20 + LC.CHECK_LABEL_MARGIN_TOP);
+        FormDataSet.attach(checkLabelD).atLeft(10).atTopTo(choiceLabelC, 20);
         LabelSet.decorate(checkLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setImage(MT.IMAGE_UNCHECKED);
         checkLabelD.addMouseListener(new ChooseAnswerAdapter());
 
