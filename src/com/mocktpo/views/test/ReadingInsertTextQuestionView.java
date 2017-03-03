@@ -1,12 +1,14 @@
 package com.mocktpo.views.test;
 
 import com.mocktpo.pages.TestPage;
-import com.mocktpo.util.*;
-import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.*;
+import com.mocktpo.util.widgets.CLabelSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
+import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.widgets.ImageButton;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
@@ -22,10 +24,6 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 
 public class ReadingInsertTextQuestionView extends SashTestView {
-
-    /* Constants */
-
-    private static final String SQUARE = "\u2588";
 
     /* Widgets */
 
@@ -394,7 +392,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    passageTextWidget.replaceTextRange(insertPointA, insertTextLength, SQUARE);
+                    passageTextWidget.replaceTextRange(insertPointA, insertTextLength, MT.STRING_SQUARE);
                     passageTextWidget.setStyleRange(new StyleRange(insertPointA, 1, null, null, SWT.NORMAL));
                     insertPointB -= change;
                     insertPointC -= change;
@@ -575,7 +573,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    passageTextWidget.replaceTextRange(insertPointB, insertTextLength, SQUARE);
+                    passageTextWidget.replaceTextRange(insertPointB, insertTextLength, MT.STRING_SQUARE);
                     passageTextWidget.setStyleRange(new StyleRange(insertPointB, 1, null, null, SWT.NORMAL));
                     insertPointC -= change;
                     insertPointD -= change;
@@ -750,7 +748,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    passageTextWidget.replaceTextRange(insertPointC, insertTextLength, SQUARE);
+                    passageTextWidget.replaceTextRange(insertPointC, insertTextLength, MT.STRING_SQUARE);
                     passageTextWidget.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
                     insertPointD -= change;
 
@@ -916,7 +914,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
                      * ==================================================
                      */
 
-                    passageTextWidget.replaceTextRange(insertPointD, insertTextLength, SQUARE);
+                    passageTextWidget.replaceTextRange(insertPointD, insertTextLength, MT.STRING_SQUARE);
                     passageTextWidget.setStyleRange(new StyleRange(insertPointC, 1, null, null, SWT.NORMAL));
 
                     /*

@@ -1,5 +1,8 @@
 package com.mocktpo.vo;
 
+import com.mocktpo.util.constants.MT;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 
 public class StyleRangeVo implements Serializable {
@@ -25,6 +28,20 @@ public class StyleRangeVo implements Serializable {
         this.background = background;
         this.underline = underline;
         this.image = image;
+    }
+
+    public StyleRangeVo(String style) {
+        if (StringUtils.isEmpty(style)) {
+            return;
+        }
+        String[] arr = style.split(MT.STRING_COMMA);
+        this.start = Integer.parseInt(arr[0]);
+        this.length = Integer.parseInt(arr[1]);
+        this.fontStyle = Integer.parseInt(arr[2]);
+        this.foreground = Integer.parseInt(arr[3]);
+        this.background = Integer.parseInt(arr[4]);
+        this.underline = Boolean.parseBoolean(arr[5]);
+        this.image = null;
     }
 
     public int getStart() {

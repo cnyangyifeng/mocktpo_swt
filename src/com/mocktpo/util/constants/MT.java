@@ -246,9 +246,10 @@ public interface MT {
     String STRING_QUESTION = "Question";
     String STRING_OF = "of";
     String STRING_PERCENTAGE = "%";
-    String STRING_SPACE = " ";
     String STRING_SEMICOLON = ";";
     String STRING_SLASH = "/";
+    String STRING_SPACE = " ";
+    String STRING_SQUARE = "\u2588";
 
     /*
      * ==================================================

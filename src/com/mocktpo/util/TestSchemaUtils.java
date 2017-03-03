@@ -33,20 +33,23 @@ public class TestSchemaUtils {
         viewVos.add(initTestIntroView(1));
         viewVos.add(initGeneralTestInfoView(2));
         viewVos.add(initReadingSectionDirectionsView(3));
-        viewVos.add(initReadingPassageView(4, schema.getString("RP1H"), schema.getString("RP1")));
-        viewVos.add(initReadingQuestionView(5, Integer.parseInt(schema.getString("RP1Q1PO")), 1, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q1"), schema.getString("RP1Q1CA"), schema.getString("RP1Q1CB"), schema.getString("RP1Q1CC"), schema.getString("RP1Q1CD"), null));
-        viewVos.add(initReadingQuestionView(6, Integer.parseInt(schema.getString("RP1Q2PO")), 2, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q2"), schema.getString("RP1Q2CA"), schema.getString("RP1Q2CB"), schema.getString("RP1Q2CC"), schema.getString("RP1Q2CD"), schema.getString("RP1Q2F")));
-        viewVos.add(initReadingQuestionView(7, Integer.parseInt(schema.getString("RP1Q3PO")), 3, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q3"), schema.getString("RP1Q3CA"), schema.getString("RP1Q3CB"), schema.getString("RP1Q3CC"), schema.getString("RP1Q3CD"), null));
-        viewVos.add(initReadingQuestionView(8, Integer.parseInt(schema.getString("RP1Q4PO")), 4, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q4"), schema.getString("RP1Q4CA"), schema.getString("RP1Q4CB"), schema.getString("RP1Q4CC"), schema.getString("RP1Q4CD"), schema.getString("RP1Q4F")));
-        viewVos.add(initReadingQuestionView(9, Integer.parseInt(schema.getString("RP1Q5PO")), 5, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q5"), schema.getString("RP1Q5CA"), schema.getString("RP1Q5CB"), schema.getString("RP1Q5CC"), schema.getString("RP1Q5CD"), null));
-        viewVos.add(initReadingQuestionView(10, Integer.parseInt(schema.getString("RP1Q6PO")), 6, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q6"), schema.getString("RP1Q6CA"), schema.getString("RP1Q6CB"), schema.getString("RP1Q6CC"), schema.getString("RP1Q6CD"), schema.getString("RP1Q6F")));
-        viewVos.add(initReadingQuestionView(11, Integer.parseInt(schema.getString("RP1Q7PO")), 7, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q7"), schema.getString("RP1Q7CA"), schema.getString("RP1Q7CB"), schema.getString("RP1Q7CC"), schema.getString("RP1Q7CD"), null));
-        viewVos.add(initReadingQuestionView(12, Integer.parseInt(schema.getString("RP1Q8PO")), 8, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q8"), schema.getString("RP1Q8CA"), schema.getString("RP1Q8CB"), schema.getString("RP1Q8CC"), schema.getString("RP1Q8CD"), schema.getString("RP1Q8F")));
-        viewVos.add(initReadingQuestionView(13, Integer.parseInt(schema.getString("RP1Q9PO")), 9, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q9"), schema.getString("RP1Q9CA"), schema.getString("RP1Q9CB"), schema.getString("RP1Q9CC"), schema.getString("RP1Q9CD"), null));
-        viewVos.add(initReadingQuestionView(14, Integer.parseInt(schema.getString("RP1Q10PO")), 10, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q10"), schema.getString("RP1Q10CA"), schema.getString("RP1Q10CB"), schema.getString("RP1Q10CC"), schema.getString("RP1Q10CD"), null));
-        viewVos.add(initReadingQuestionView(15, Integer.parseInt(schema.getString("RP1Q11PO")), 11, schema.getString("RP1H"), schema.getString("RP1"), schema.getString("RP1Q11"), schema.getString("RP1Q11CA"), schema.getString("RP1Q11CB"), schema.getString("RP1Q11CC"), schema.getString("RP1Q11CD"), null));
-        viewVos.add(initBreakPointView(16));
-        viewVos.add(initTestEndView(17));
+        viewVos.add(initReadingPassageView(4, schema.getString("RP1H"), schema.getString("RP1P")));
+        viewVos.add(initReadingQuestionView(5, 1, schema.getString("RP1H"), schema.getString("RP1Q1P"), Integer.parseInt(schema.getString("RP1Q1PO")), new StyleRangeVo(schema.getString("RP1Q1PS")), schema.getString("RP1Q1"), new StyleRangeVo(schema.getString("RP1Q1S")), schema.getString("RP1Q1CA"), schema.getString("RP1Q1CB"), schema.getString("RP1Q1CC"), schema.getString("RP1Q1CD"), null));
+        viewVos.add(initReadingQuestionView(6, 2, schema.getString("RP1H"), schema.getString("RP1Q2P"), Integer.parseInt(schema.getString("RP1Q2PO")), new StyleRangeVo(schema.getString("RP1Q2PS")), schema.getString("RP1Q2"), new StyleRangeVo(schema.getString("RP1Q2S")), schema.getString("RP1Q2CA"), schema.getString("RP1Q2CB"), schema.getString("RP1Q2CC"), schema.getString("RP1Q2CD"), schema.getString("RP1Q2F")));
+        viewVos.add(initReadingQuestionView(7, 3, schema.getString("RP1H"), schema.getString("RP1Q3P"), Integer.parseInt(schema.getString("RP1Q3PO")), new StyleRangeVo(schema.getString("RP1Q3PS")), schema.getString("RP1Q3"), new StyleRangeVo(schema.getString("RP1Q3S")), schema.getString("RP1Q3CA"), schema.getString("RP1Q3CB"), schema.getString("RP1Q3CC"), schema.getString("RP1Q3CD"), null));
+        viewVos.add(initReadingQuestionView(8, 4, schema.getString("RP1H"), schema.getString("RP1Q4P"), Integer.parseInt(schema.getString("RP1Q4PO")), new StyleRangeVo(schema.getString("RP1Q4PS")), schema.getString("RP1Q4"), new StyleRangeVo(schema.getString("RP1Q4S")), schema.getString("RP1Q4CA"), schema.getString("RP1Q4CB"), schema.getString("RP1Q4CC"), schema.getString("RP1Q4CD"), schema.getString("RP1Q4F")));
+        viewVos.add(initReadingQuestionView(9, 5, schema.getString("RP1H"), schema.getString("RP1Q5P"), Integer.parseInt(schema.getString("RP1Q5PO")), new StyleRangeVo(schema.getString("RP1Q5PS")), schema.getString("RP1Q5"), new StyleRangeVo(schema.getString("RP1Q5S")), schema.getString("RP1Q5CA"), schema.getString("RP1Q5CB"), schema.getString("RP1Q5CC"), schema.getString("RP1Q5CD"), null));
+        viewVos.add(initReadingQuestionView(10, 6, schema.getString("RP1H"), schema.getString("RP1Q6P"), Integer.parseInt(schema.getString("RP1Q6PO")), new StyleRangeVo(schema.getString("RP1Q6PS")), schema.getString("RP1Q6"), new StyleRangeVo(schema.getString("RP1Q6S")), schema.getString("RP1Q6CA"), schema.getString("RP1Q6CB"), schema.getString("RP1Q6CC"), schema.getString("RP1Q6CD"), schema.getString("RP1Q6F")));
+        viewVos.add(initReadingQuestionView(11, 7, schema.getString("RP1H"), schema.getString("RP1Q7P"), Integer.parseInt(schema.getString("RP1Q7PO")), new StyleRangeVo(schema.getString("RP1Q7PS")), schema.getString("RP1Q7"), new StyleRangeVo(schema.getString("RP1Q7S")), schema.getString("RP1Q7CA"), schema.getString("RP1Q7CB"), schema.getString("RP1Q7CC"), schema.getString("RP1Q7CD"), null));
+        viewVos.add(initReadingQuestionView(12, 8, schema.getString("RP1H"), schema.getString("RP1Q8P"), Integer.parseInt(schema.getString("RP1Q8PO")), new StyleRangeVo(schema.getString("RP1Q8PS")), schema.getString("RP1Q8"), new StyleRangeVo(schema.getString("RP1Q8S")), schema.getString("RP1Q8CA"), schema.getString("RP1Q8CB"), schema.getString("RP1Q8CC"), schema.getString("RP1Q8CD"), schema.getString("RP1Q8F")));
+        viewVos.add(initReadingQuestionView(13, 9, schema.getString("RP1H"), schema.getString("RP1Q9P"), Integer.parseInt(schema.getString("RP1Q9PO")), new StyleRangeVo(schema.getString("RP1Q9PS")), schema.getString("RP1Q9"), new StyleRangeVo(schema.getString("RP1Q9S")), schema.getString("RP1Q9CA"), schema.getString("RP1Q9CB"), schema.getString("RP1Q9CC"), schema.getString("RP1Q9CD"), null));
+        viewVos.add(initReadingQuestionView(14, 10, schema.getString("RP1H"), schema.getString("RP1Q10P"), Integer.parseInt(schema.getString("RP1Q10PO")), new StyleRangeVo(schema.getString("RP1Q10PS")), schema.getString("RP1Q10"), new StyleRangeVo(schema.getString("RP1Q10S")), schema.getString("RP1Q10CA"), schema.getString("RP1Q10CB"), schema.getString("RP1Q10CC"), schema.getString("RP1Q10CD"), null));
+        viewVos.add(initReadingQuestionView(15, 11, schema.getString("RP1H"), schema.getString("RP1Q11P"), Integer.parseInt(schema.getString("RP1Q11PO")), new StyleRangeVo(schema.getString("RP1Q11PS")), schema.getString("RP1Q11"), new StyleRangeVo(schema.getString("RP1Q11S")), schema.getString("RP1Q11CA"), schema.getString("RP1Q11CB"), schema.getString("RP1Q11CC"), schema.getString("RP1Q11CD"), null));
+        viewVos.add(initReadingInsertTextQuestionView(16, 12, schema.getString("RP1H"), schema.getString("RP1Q12P"), Integer.parseInt(schema.getString("RP1Q12PO")), schema.getString("RP1Q12IT"), schema.getString("RP1Q12IPA"), schema.getString("RP1Q12IPB"), schema.getString("RP1Q12IPC"), schema.getString("RP1Q12IPD")));
+        viewVos.add(initReadingProseSummaryQuestionView(17, 13, schema.getString("RP1H"), schema.getString("RP1Q13P"), schema.getString("RP1Q13"), schema.getString("RP1Q13CA"), schema.getString("RP1Q13CB"), schema.getString("RP1Q13CC"), schema.getString("RP1Q13CD"), schema.getString("RP1Q13CE"), schema.getString("RP1Q13CF")));
+        viewVos.add(initReadingSectionEndView(18));
+        viewVos.add(initBreakPointView(19));
+        viewVos.add(initTestEndView(20));
         return viewVos;
     }
 
@@ -68,10 +71,10 @@ public class TestSchemaUtils {
 
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText("EDUCATIONAL TESTING SERVICE, ETS, the ETS logo, TOEFL and TOEFL iBT are registered trademarks of Educational Testing Service (ETS) in the United States and other countries.\n\nClick on Continue to go on.");
-        List<StyleRangeVo> descriptionStylesVo = new ArrayList<StyleRangeVo>() {{
+        List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
             add(new StyleRangeVo(183, 8, 1, 0, 0, false, null));
         }};
-        descriptionVo.setStyles(descriptionStylesVo);
+        descriptionVo.setStyles(descriptionStyleVos);
 
         Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
             put("description", descriptionVo);
@@ -94,7 +97,7 @@ public class TestSchemaUtils {
 
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText("This test measures your ability to use English in an academic context. There are 4 sections.\n\nIn the Reading section, you will read several passages and answer questions about them.\n\nIn the Listening section, you will hear several conversations and lectures and answer questions about them.\n\nIn the Speaking section, you will answer 6 questions. Some of the questions ask you to speak about your own experience. Other questions ask you to speak about lectures and reading passages.\n\nIn the Writing section, you will answer 2 questions. The first question asks you to write about the relationship between a lecture you will hear and a passage you will read. The second question asks you to write an essay about a topic of general interest based on your experience.\n\nDuring this practice test, you may click Pause icon at any time. This will stop the test until you decide to continue. You may continue the test in a few minutes, or at any time during the period that your test is activated.\n\nThere will be directions for each section which explain how to answer the questions in that section.\n\nYou should work quickly but carefully on the Reading and Listening questions. Some questions are more difficult than others, but try to answer every one to the best of your ability. If you are not sure of the answer to a question, make the best guess that you can. The questions that you answer by speaking and by writing are each separately timed. Try to answer every one of these questions as completely as possible in the time allowed.\n\nClick on Continue to go on.");
-        List<StyleRangeVo> descriptionStylesVo = new ArrayList<StyleRangeVo>() {{
+        List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
             add(new StyleRangeVo(101, 7, 1, 0, 0, false, null));
             add(new StyleRangeVo(190, 9, 1, 0, 0, false, null));
             add(new StyleRangeVo(299, 8, 1, 0, 0, false, null));
@@ -102,7 +105,7 @@ public class TestSchemaUtils {
             add(new StyleRangeVo(806, 5, 1, 0, 0, false, null));
             add(new StyleRangeVo(1542, 8, 1, 0, 0, false, null));
         }};
-        descriptionVo.setStyles(descriptionStylesVo);
+        descriptionVo.setStyles(descriptionStyleVos);
 
         Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
             put("heading", headingVo);
@@ -123,11 +126,11 @@ public class TestSchemaUtils {
 
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText("You may now take a break. In an actual test there is a ten-minute break at this point.\n\nClick on Continue when you are ready to go on to the next section.\n\nIf you do not wish to take a break, click on Continue now.");
-        List<StyleRangeVo> descriptionStylesVo = new ArrayList<StyleRangeVo>() {{
+        List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
             add(new StyleRangeVo(97, 8, 1, 0, 0, false, null));
             add(new StyleRangeVo(201, 8, 1, 0, 0, false, null));
         }};
-        descriptionVo.setStyles(descriptionStylesVo);
+        descriptionVo.setStyles(descriptionStyleVos);
 
         Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
             put("description", descriptionVo);
@@ -177,7 +180,7 @@ public class TestSchemaUtils {
 
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText("In this part of the Reading section, you will read 3 passages. In the test you will have 60 minutes to read the passage and answer the questions.\n\nMost questions are worth 1 point but the last question in each set is worth more than 1 point. The directions indicate how many points you may receive.\n\nSome passages include a word or phrase that is underlined in blue. Click on the word or phrase to see a definition or an explanation.\n\nWhen you want to move to the next question. click on Next. You may skip questions and go back to them later if you want to return to previous questions. click on Back.\n\nYou can click on Review at any time and the review screen will show you which questions you have answered and which you have not answered. From this review screen, you may go directly to any question you have already seen in the Reading section.\n\nClick on Continue to go on.");
-        List<StyleRangeVo> descriptionStylesVo = new ArrayList<StyleRangeVo>() {{
+        List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
             add(new StyleRangeVo(51, 10, 1, 0, 0, false, null));
             add(new StyleRangeVo(89, 10, 1, 0, 0, false, null));
             add(new StyleRangeVo(347, 10, 1, 0, 0, false, null));
@@ -186,7 +189,7 @@ public class TestSchemaUtils {
             add(new StyleRangeVo(621, 6, 1, 0, 0, false, null));
             add(new StyleRangeVo(860, 8, 1, 0, 0, false, null));
         }};
-        descriptionVo.setStyles(descriptionStylesVo);
+        descriptionVo.setStyles(descriptionStyleVos);
 
         Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
             put("heading", headingVo);
@@ -222,7 +225,7 @@ public class TestSchemaUtils {
         return viewVo;
     }
 
-    private static TestViewVo initReadingQuestionView(int viewId, int passageOffset, int questionNumberInSection, String heading, String passage, String question, String choiceA, String choiceB, String choiceC, String choiceD, String footnote) {
+    private static TestViewVo initReadingQuestionView(int viewId, int questionNumberInSection, String heading, String passage, int passageOffset, final StyleRangeVo passageStyleVo, String question, final StyleRangeVo questionStyleVo, String choiceA, String choiceB, String choiceC, String choiceD, String footnote) {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(13);
@@ -240,9 +243,21 @@ public class TestSchemaUtils {
 
         final StyledTextVo passageVo = new StyledTextVo();
         passageVo.setText(passage);
+        if (null != passageStyleVo) {
+            List<StyleRangeVo> passageStyleVos = new ArrayList<StyleRangeVo>() {{
+                add(passageStyleVo);
+            }};
+            passageVo.setStyles(passageStyleVos);
+        }
 
         final StyledTextVo questionVo = new StyledTextVo();
         questionVo.setText(question);
+        if (null != questionStyleVo) {
+            List<StyleRangeVo> questionStyleVos = new ArrayList<StyleRangeVo>() {{
+                add(questionStyleVo);
+            }};
+            questionVo.setStyles(questionStyleVos);
+        }
 
         final StyledTextVo choiceAVo = new StyledTextVo();
         choiceAVo.setText(choiceA);
@@ -270,6 +285,170 @@ public class TestSchemaUtils {
             footnoteVo.setText(footnote);
             body.put("footnote", footnoteVo);
         }
+        viewVo.setBody(body);
+
+        return viewVo;
+    }
+
+    private static TestViewVo initReadingInsertTextQuestionView(int viewId, int questionNumberInSection, String heading, String passage, int passageOffset, String insertText, final String insertPointA, final String insertPointB, final String insertPointC, final String insertPointD) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(14);
+        viewVo.setViewTypeName("Reading Insert Text Question");
+        viewVo.setSectionType(1);
+        viewVo.setSectionTypeName("Reading");
+        viewVo.setPassageOffset(passageOffset);
+        viewVo.setTimed(true);
+        viewVo.setQuestionCaptionVisible(true);
+        viewVo.setQuestionNumberInSection(questionNumberInSection);
+        viewVo.setAnswerable(true);
+
+        final StyledTextVo headingVo = new StyledTextVo();
+        headingVo.setText(heading);
+
+        final StyledTextVo passageVo = new StyledTextVo();
+        passageVo.setText(passage);
+
+        final StyledTextVo questionVo = new StyledTextVo();
+        questionVo.setText("Look at the four squares [ \u2588 ] that indicate where the following sentence could be added to the passage.");
+
+        final StyledTextVo insertTextVo = new StyledTextVo();
+        insertTextVo.setText(insertText);
+
+        final StyledTextVo insertPointAVo = new StyledTextVo();
+        insertPointAVo.setText("\u2588");
+        List<StyleRangeVo> insertPointAStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(Integer.parseInt(insertPointA), 0, 0, 0, 0, false, null));
+        }};
+        insertPointAVo.setStyles(insertPointAStyleVos);
+
+        final StyledTextVo insertPointBVo = new StyledTextVo();
+        insertPointBVo.setText("\u2588");
+        List<StyleRangeVo> insertPointBStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(Integer.parseInt(insertPointB), 0, 0, 0, 0, false, null));
+        }};
+        insertPointBVo.setStyles(insertPointBStyleVos);
+
+        final StyledTextVo insertPointCVo = new StyledTextVo();
+        insertPointCVo.setText("\u2588");
+        List<StyleRangeVo> insertPointCStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(Integer.parseInt(insertPointC), 0, 0, 0, 0, false, null));
+        }};
+        insertPointCVo.setStyles(insertPointCStyleVos);
+
+        final StyledTextVo insertPointDVo = new StyledTextVo();
+        insertPointDVo.setText("\u2588");
+        List<StyleRangeVo> insertPointDStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(Integer.parseInt(insertPointD), 0, 0, 0, 0, false, null));
+        }};
+        insertPointDVo.setStyles(insertPointDStyleVos);
+
+        final StyledTextVo footnoteVo = new StyledTextVo();
+        footnoteVo.setText("Where would the sentence best fit? Click on a square to add the sentence to the passage.");
+
+        Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
+            put("heading", headingVo);
+            put("passage", passageVo);
+            put("question", questionVo);
+            put("insertText", insertTextVo);
+            put("insertPointA", insertPointAVo);
+            put("insertPointB", insertPointBVo);
+            put("insertPointC", insertPointCVo);
+            put("insertPointD", insertPointDVo);
+            put("footnote", footnoteVo);
+        }};
+        viewVo.setBody(body);
+
+        return viewVo;
+    }
+
+    private static TestViewVo initReadingProseSummaryQuestionView(int viewId, int questionNumberInSection, String heading, String passage, String question, String choiceA, String choiceB, String choiceC, String choiceD, String choiceE, String choiceF) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(15);
+        viewVo.setViewTypeName("Reading Prose Summary Question");
+        viewVo.setSectionType(1);
+        viewVo.setSectionTypeName("Reading");
+        viewVo.setTimed(true);
+        viewVo.setQuestionCaptionVisible(true);
+        viewVo.setQuestionNumberInSection(questionNumberInSection);
+        viewVo.setAnswerable(true);
+
+        final StyledTextVo headingVo = new StyledTextVo();
+        headingVo.setText(heading);
+
+        final StyledTextVo passageVo = new StyledTextVo();
+        passageVo.setText(passage);
+
+        final StyledTextVo directionsVo = new StyledTextVo();
+        directionsVo.setText("Directions: An introductory sentence for a brief summary of the passage is provided below. Complete the summary by selecting the THREE answer choices that express the most important ideas in the passage. Some sentences do not belong in the summary because they express ideas that are not presented in the passage or are minor ideas in the passage. This question is worth 2 points.");
+        List<StyleRangeVo> directionsStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(0, 11, 1, 0, 0, false, null));
+            add(new StyleRangeVo(348, 32, 1, 0, 0, false, null));
+        }};
+        directionsVo.setStyles(directionsStyleVos);
+
+        final StyledTextVo tipsVo = new StyledTextVo();
+        tipsVo.setText("Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\nTo review the passage, click VIEW TEXT.");
+        List<StyleRangeVo> tipsStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(128, 9, 1, 0, 0, false, null));
+        }};
+        tipsVo.setStyles(tipsStyleVos);
+
+        final StyledTextVo questionVo = new StyledTextVo();
+        questionVo.setText(question);
+
+        final StyledTextVo choiceAVo = new StyledTextVo();
+        choiceAVo.setText(choiceA);
+
+        final StyledTextVo choiceBVo = new StyledTextVo();
+        choiceBVo.setText(choiceB);
+
+        final StyledTextVo choiceCVo = new StyledTextVo();
+        choiceCVo.setText(choiceC);
+
+        final StyledTextVo choiceDVo = new StyledTextVo();
+        choiceDVo.setText(choiceD);
+
+        final StyledTextVo choiceEVo = new StyledTextVo();
+        choiceEVo.setText(choiceE);
+
+        final StyledTextVo choiceFVo = new StyledTextVo();
+        choiceFVo.setText(choiceF);
+
+        Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
+            put("heading", headingVo);
+            put("passage", passageVo);
+            put("directions", directionsVo);
+            put("tips", tipsVo);
+            put("question", questionVo);
+            put("choiceA", choiceAVo);
+            put("choiceB", choiceBVo);
+            put("choiceC", choiceCVo);
+            put("choiceD", choiceDVo);
+            put("choiceE", choiceEVo);
+            put("choiceF", choiceFVo);
+        }};
+        viewVo.setBody(body);
+
+        return viewVo;
+    }
+
+    private static TestViewVo initReadingSectionEndView(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(17);
+        viewVo.setViewTypeName("Reading Section End");
+        viewVo.setSectionType(1);
+        viewVo.setSectionTypeName("Reading");
+        viewVo.setTimed(true);
+
+        final StyledTextVo descriptionVo = new StyledTextVo();
+        descriptionVo.setText("You have seen all of the questions in the Reading section. You may go back and review. As long as there is time remaining. You can check your work.\n\nClick on Return to go back to the last question.\n\nClick on Review to go to the Review screen.\n\nClick on Continue to go on to the next section of the test.\n\nOnce you leave the Reading section, you WILL NOT be able to return to it.");
+
+        Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
+            put("description", descriptionVo);
+        }};
         viewVo.setBody(body);
 
         return viewVo;
