@@ -4,6 +4,7 @@ import com.mocktpo.vo.StyleRangeVo;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestSchemaVo;
 import com.mocktpo.vo.TestViewVo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,26 +31,42 @@ public class TestSchemaUtils {
 
     private static List<TestViewVo> initViewVos() {
         List<TestViewVo> viewVos = new ArrayList<TestViewVo>();
-        viewVos.add(initTestIntroView(1));
-        viewVos.add(initGeneralTestInfoView(2));
-        viewVos.add(initReadingSectionDirectionsView(3));
-        viewVos.add(initReadingPassageView(4, schema.getString("RP1H"), schema.getString("RP1P")));
-        viewVos.add(initReadingQuestionView(5, 1, schema.getString("RP1H"), schema.getString("RP1Q1P"), Integer.parseInt(schema.getString("RP1Q1PO")), new StyleRangeVo(schema.getString("RP1Q1PS")), schema.getString("RP1Q1"), new StyleRangeVo(schema.getString("RP1Q1S")), schema.getString("RP1Q1CA"), schema.getString("RP1Q1CB"), schema.getString("RP1Q1CC"), schema.getString("RP1Q1CD"), null));
-        viewVos.add(initReadingQuestionView(6, 2, schema.getString("RP1H"), schema.getString("RP1Q2P"), Integer.parseInt(schema.getString("RP1Q2PO")), new StyleRangeVo(schema.getString("RP1Q2PS")), schema.getString("RP1Q2"), new StyleRangeVo(schema.getString("RP1Q2S")), schema.getString("RP1Q2CA"), schema.getString("RP1Q2CB"), schema.getString("RP1Q2CC"), schema.getString("RP1Q2CD"), schema.getString("RP1Q2F")));
-        viewVos.add(initReadingQuestionView(7, 3, schema.getString("RP1H"), schema.getString("RP1Q3P"), Integer.parseInt(schema.getString("RP1Q3PO")), new StyleRangeVo(schema.getString("RP1Q3PS")), schema.getString("RP1Q3"), new StyleRangeVo(schema.getString("RP1Q3S")), schema.getString("RP1Q3CA"), schema.getString("RP1Q3CB"), schema.getString("RP1Q3CC"), schema.getString("RP1Q3CD"), null));
-        viewVos.add(initReadingQuestionView(8, 4, schema.getString("RP1H"), schema.getString("RP1Q4P"), Integer.parseInt(schema.getString("RP1Q4PO")), new StyleRangeVo(schema.getString("RP1Q4PS")), schema.getString("RP1Q4"), new StyleRangeVo(schema.getString("RP1Q4S")), schema.getString("RP1Q4CA"), schema.getString("RP1Q4CB"), schema.getString("RP1Q4CC"), schema.getString("RP1Q4CD"), schema.getString("RP1Q4F")));
-        viewVos.add(initReadingQuestionView(9, 5, schema.getString("RP1H"), schema.getString("RP1Q5P"), Integer.parseInt(schema.getString("RP1Q5PO")), new StyleRangeVo(schema.getString("RP1Q5PS")), schema.getString("RP1Q5"), new StyleRangeVo(schema.getString("RP1Q5S")), schema.getString("RP1Q5CA"), schema.getString("RP1Q5CB"), schema.getString("RP1Q5CC"), schema.getString("RP1Q5CD"), null));
-        viewVos.add(initReadingQuestionView(10, 6, schema.getString("RP1H"), schema.getString("RP1Q6P"), Integer.parseInt(schema.getString("RP1Q6PO")), new StyleRangeVo(schema.getString("RP1Q6PS")), schema.getString("RP1Q6"), new StyleRangeVo(schema.getString("RP1Q6S")), schema.getString("RP1Q6CA"), schema.getString("RP1Q6CB"), schema.getString("RP1Q6CC"), schema.getString("RP1Q6CD"), schema.getString("RP1Q6F")));
-        viewVos.add(initReadingQuestionView(11, 7, schema.getString("RP1H"), schema.getString("RP1Q7P"), Integer.parseInt(schema.getString("RP1Q7PO")), new StyleRangeVo(schema.getString("RP1Q7PS")), schema.getString("RP1Q7"), new StyleRangeVo(schema.getString("RP1Q7S")), schema.getString("RP1Q7CA"), schema.getString("RP1Q7CB"), schema.getString("RP1Q7CC"), schema.getString("RP1Q7CD"), null));
-        viewVos.add(initReadingQuestionView(12, 8, schema.getString("RP1H"), schema.getString("RP1Q8P"), Integer.parseInt(schema.getString("RP1Q8PO")), new StyleRangeVo(schema.getString("RP1Q8PS")), schema.getString("RP1Q8"), new StyleRangeVo(schema.getString("RP1Q8S")), schema.getString("RP1Q8CA"), schema.getString("RP1Q8CB"), schema.getString("RP1Q8CC"), schema.getString("RP1Q8CD"), schema.getString("RP1Q8F")));
-        viewVos.add(initReadingQuestionView(13, 9, schema.getString("RP1H"), schema.getString("RP1Q9P"), Integer.parseInt(schema.getString("RP1Q9PO")), new StyleRangeVo(schema.getString("RP1Q9PS")), schema.getString("RP1Q9"), new StyleRangeVo(schema.getString("RP1Q9S")), schema.getString("RP1Q9CA"), schema.getString("RP1Q9CB"), schema.getString("RP1Q9CC"), schema.getString("RP1Q9CD"), null));
-        viewVos.add(initReadingQuestionView(14, 10, schema.getString("RP1H"), schema.getString("RP1Q10P"), Integer.parseInt(schema.getString("RP1Q10PO")), new StyleRangeVo(schema.getString("RP1Q10PS")), schema.getString("RP1Q10"), new StyleRangeVo(schema.getString("RP1Q10S")), schema.getString("RP1Q10CA"), schema.getString("RP1Q10CB"), schema.getString("RP1Q10CC"), schema.getString("RP1Q10CD"), null));
-        viewVos.add(initReadingQuestionView(15, 11, schema.getString("RP1H"), schema.getString("RP1Q11P"), Integer.parseInt(schema.getString("RP1Q11PO")), new StyleRangeVo(schema.getString("RP1Q11PS")), schema.getString("RP1Q11"), new StyleRangeVo(schema.getString("RP1Q11S")), schema.getString("RP1Q11CA"), schema.getString("RP1Q11CB"), schema.getString("RP1Q11CC"), schema.getString("RP1Q11CD"), null));
-        viewVos.add(initReadingInsertTextQuestionView(16, 12, schema.getString("RP1H"), schema.getString("RP1Q12P"), Integer.parseInt(schema.getString("RP1Q12PO")), schema.getString("RP1Q12IT"), schema.getString("RP1Q12IPA"), schema.getString("RP1Q12IPB"), schema.getString("RP1Q12IPC"), schema.getString("RP1Q12IPD")));
-        viewVos.add(initReadingProseSummaryQuestionView(17, 13, schema.getString("RP1H"), schema.getString("RP1Q13P"), schema.getString("RP1Q13"), schema.getString("RP1Q13CA"), schema.getString("RP1Q13CB"), schema.getString("RP1Q13CC"), schema.getString("RP1Q13CD"), schema.getString("RP1Q13CE"), schema.getString("RP1Q13CF")));
-        viewVos.add(initReadingSectionEndView(18));
-        viewVos.add(initBreakPointView(19));
-        viewVos.add(initTestEndView(20));
+        int viewId = 0;
+        viewVos.add(initTestIntroView(++viewId));
+        viewVos.add(initGeneralTestInfoView(++viewId));
+        int questionNumber = 0;
+        viewVos.add(initReadingSectionDirectionsView(++viewId));
+        viewVos.add(initReadingPassageView(++viewId, schema.getString("RP1H"), schema.getString("RP1P"), true));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q1P"), Integer.parseInt(schema.getString("RP1Q1PO")), new StyleRangeVo(schema.getString("RP1Q1PS")), schema.getString("RP1Q1"), new StyleRangeVo(schema.getString("RP1Q1S")), schema.getString("RP1Q1CA"), schema.getString("RP1Q1CB"), schema.getString("RP1Q1CC"), schema.getString("RP1Q1CD"), schema.getString("RP1Q1F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q2P"), Integer.parseInt(schema.getString("RP1Q2PO")), new StyleRangeVo(schema.getString("RP1Q2PS")), schema.getString("RP1Q2"), new StyleRangeVo(schema.getString("RP1Q2S")), schema.getString("RP1Q2CA"), schema.getString("RP1Q2CB"), schema.getString("RP1Q2CC"), schema.getString("RP1Q2CD"), schema.getString("RP1Q2F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q3P"), Integer.parseInt(schema.getString("RP1Q3PO")), new StyleRangeVo(schema.getString("RP1Q3PS")), schema.getString("RP1Q3"), new StyleRangeVo(schema.getString("RP1Q3S")), schema.getString("RP1Q3CA"), schema.getString("RP1Q3CB"), schema.getString("RP1Q3CC"), schema.getString("RP1Q3CD"), schema.getString("RP1Q3F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q4P"), Integer.parseInt(schema.getString("RP1Q4PO")), new StyleRangeVo(schema.getString("RP1Q4PS")), schema.getString("RP1Q4"), new StyleRangeVo(schema.getString("RP1Q4S")), schema.getString("RP1Q4CA"), schema.getString("RP1Q4CB"), schema.getString("RP1Q4CC"), schema.getString("RP1Q4CD"), schema.getString("RP1Q4F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q5P"), Integer.parseInt(schema.getString("RP1Q5PO")), new StyleRangeVo(schema.getString("RP1Q5PS")), schema.getString("RP1Q5"), new StyleRangeVo(schema.getString("RP1Q5S")), schema.getString("RP1Q5CA"), schema.getString("RP1Q5CB"), schema.getString("RP1Q5CC"), schema.getString("RP1Q5CD"), schema.getString("RP1Q5F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q6P"), Integer.parseInt(schema.getString("RP1Q6PO")), new StyleRangeVo(schema.getString("RP1Q6PS")), schema.getString("RP1Q6"), new StyleRangeVo(schema.getString("RP1Q6S")), schema.getString("RP1Q6CA"), schema.getString("RP1Q6CB"), schema.getString("RP1Q6CC"), schema.getString("RP1Q6CD"), schema.getString("RP1Q6F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q7P"), Integer.parseInt(schema.getString("RP1Q7PO")), new StyleRangeVo(schema.getString("RP1Q7PS")), schema.getString("RP1Q7"), new StyleRangeVo(schema.getString("RP1Q7S")), schema.getString("RP1Q7CA"), schema.getString("RP1Q7CB"), schema.getString("RP1Q7CC"), schema.getString("RP1Q7CD"), schema.getString("RP1Q7F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q8P"), Integer.parseInt(schema.getString("RP1Q8PO")), new StyleRangeVo(schema.getString("RP1Q8PS")), schema.getString("RP1Q8"), new StyleRangeVo(schema.getString("RP1Q8S")), schema.getString("RP1Q8CA"), schema.getString("RP1Q8CB"), schema.getString("RP1Q8CC"), schema.getString("RP1Q8CD"), schema.getString("RP1Q8F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q9P"), Integer.parseInt(schema.getString("RP1Q9PO")), new StyleRangeVo(schema.getString("RP1Q9PS")), schema.getString("RP1Q9"), new StyleRangeVo(schema.getString("RP1Q9S")), schema.getString("RP1Q9CA"), schema.getString("RP1Q9CB"), schema.getString("RP1Q9CC"), schema.getString("RP1Q9CD"), schema.getString("RP1Q9F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q10P"), Integer.parseInt(schema.getString("RP1Q10PO")), new StyleRangeVo(schema.getString("RP1Q10PS")), schema.getString("RP1Q10"), new StyleRangeVo(schema.getString("RP1Q10S")), schema.getString("RP1Q10CA"), schema.getString("RP1Q10CB"), schema.getString("RP1Q10CC"), schema.getString("RP1Q10CD"), schema.getString("RP1Q10F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q11P"), Integer.parseInt(schema.getString("RP1Q11PO")), new StyleRangeVo(schema.getString("RP1Q11PS")), schema.getString("RP1Q11"), new StyleRangeVo(schema.getString("RP1Q11S")), schema.getString("RP1Q11CA"), schema.getString("RP1Q11CB"), schema.getString("RP1Q11CC"), schema.getString("RP1Q11CD"), schema.getString("RP1Q11F")));
+        viewVos.add(initReadingInsertTextQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q12P"), Integer.parseInt(schema.getString("RP1Q12PO")), schema.getString("RP1Q12IT"), schema.getString("RP1Q12IPA"), schema.getString("RP1Q12IPB"), schema.getString("RP1Q12IPC"), schema.getString("RP1Q12IPD")));
+        viewVos.add(initReadingProseSummaryQuestionView(++viewId, ++questionNumber, schema.getString("RP1H"), schema.getString("RP1Q13P"), schema.getString("RP1Q13"), schema.getString("RP1Q13CA"), schema.getString("RP1Q13CB"), schema.getString("RP1Q13CC"), schema.getString("RP1Q13CD"), schema.getString("RP1Q13CE"), schema.getString("RP1Q13CF")));
+        viewVos.add(initReadingPassageView(++viewId, schema.getString("RP2H"), schema.getString("RP2P"), false));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q1P"), Integer.parseInt(schema.getString("RP2Q1PO")), new StyleRangeVo(schema.getString("RP2Q1PS")), schema.getString("RP2Q1"), new StyleRangeVo(schema.getString("RP2Q1S")), schema.getString("RP2Q1CA"), schema.getString("RP2Q1CB"), schema.getString("RP2Q1CC"), schema.getString("RP2Q1CD"), schema.getString("RP2Q1F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q2P"), Integer.parseInt(schema.getString("RP2Q2PO")), new StyleRangeVo(schema.getString("RP2Q2PS")), schema.getString("RP2Q2"), new StyleRangeVo(schema.getString("RP2Q2S")), schema.getString("RP2Q2CA"), schema.getString("RP2Q2CB"), schema.getString("RP2Q2CC"), schema.getString("RP2Q2CD"), schema.getString("RP2Q2F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q3P"), Integer.parseInt(schema.getString("RP2Q3PO")), new StyleRangeVo(schema.getString("RP2Q3PS")), schema.getString("RP2Q3"), new StyleRangeVo(schema.getString("RP2Q3S")), schema.getString("RP2Q3CA"), schema.getString("RP2Q3CB"), schema.getString("RP2Q3CC"), schema.getString("RP2Q3CD"), schema.getString("RP2Q3F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q4P"), Integer.parseInt(schema.getString("RP2Q4PO")), new StyleRangeVo(schema.getString("RP2Q4PS")), schema.getString("RP2Q4"), new StyleRangeVo(schema.getString("RP2Q4S")), schema.getString("RP2Q4CA"), schema.getString("RP2Q4CB"), schema.getString("RP2Q4CC"), schema.getString("RP2Q4CD"), schema.getString("RP2Q4F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q5P"), Integer.parseInt(schema.getString("RP2Q5PO")), new StyleRangeVo(schema.getString("RP2Q5PS")), schema.getString("RP2Q5"), new StyleRangeVo(schema.getString("RP2Q5S")), schema.getString("RP2Q5CA"), schema.getString("RP2Q5CB"), schema.getString("RP2Q5CC"), schema.getString("RP2Q5CD"), schema.getString("RP2Q5F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q6P"), Integer.parseInt(schema.getString("RP2Q6PO")), new StyleRangeVo(schema.getString("RP2Q6PS")), schema.getString("RP2Q6"), new StyleRangeVo(schema.getString("RP2Q6S")), schema.getString("RP2Q6CA"), schema.getString("RP2Q6CB"), schema.getString("RP2Q6CC"), schema.getString("RP2Q6CD"), schema.getString("RP2Q6F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q7P"), Integer.parseInt(schema.getString("RP2Q7PO")), new StyleRangeVo(schema.getString("RP2Q7PS")), schema.getString("RP2Q7"), new StyleRangeVo(schema.getString("RP2Q7S")), schema.getString("RP2Q7CA"), schema.getString("RP2Q7CB"), schema.getString("RP2Q7CC"), schema.getString("RP2Q7CD"), schema.getString("RP2Q7F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q8P"), Integer.parseInt(schema.getString("RP2Q8PO")), new StyleRangeVo(schema.getString("RP2Q8PS")), schema.getString("RP2Q8"), new StyleRangeVo(schema.getString("RP2Q8S")), schema.getString("RP2Q8CA"), schema.getString("RP2Q8CB"), schema.getString("RP2Q8CC"), schema.getString("RP2Q8CD"), schema.getString("RP2Q8F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q9P"), Integer.parseInt(schema.getString("RP2Q9PO")), new StyleRangeVo(schema.getString("RP2Q9PS")), schema.getString("RP2Q9"), new StyleRangeVo(schema.getString("RP2Q9S")), schema.getString("RP2Q9CA"), schema.getString("RP2Q9CB"), schema.getString("RP2Q9CC"), schema.getString("RP2Q9CD"), schema.getString("RP2Q9F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q10P"), Integer.parseInt(schema.getString("RP2Q10PO")), new StyleRangeVo(schema.getString("RP2Q10PS")), schema.getString("RP2Q10"), new StyleRangeVo(schema.getString("RP2Q10S")), schema.getString("RP2Q10CA"), schema.getString("RP2Q10CB"), schema.getString("RP2Q10CC"), schema.getString("RP2Q10CD"), schema.getString("RP2Q10F")));
+        viewVos.add(initReadingQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q11P"), Integer.parseInt(schema.getString("RP2Q11PO")), new StyleRangeVo(schema.getString("RP2Q11PS")), schema.getString("RP2Q11"), new StyleRangeVo(schema.getString("RP2Q11S")), schema.getString("RP2Q11CA"), schema.getString("RP2Q11CB"), schema.getString("RP2Q11CC"), schema.getString("RP2Q11CD"), schema.getString("RP2Q11F")));
+        viewVos.add(initReadingInsertTextQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q12P"), Integer.parseInt(schema.getString("RP2Q12PO")), schema.getString("RP2Q12IT"), schema.getString("RP2Q12IPA"), schema.getString("RP2Q12IPB"), schema.getString("RP2Q12IPC"), schema.getString("RP2Q12IPD")));
+        viewVos.add(initReadingProseSummaryQuestionView(++viewId, ++questionNumber, schema.getString("RP2H"), schema.getString("RP2Q13P"), schema.getString("RP2Q13"), schema.getString("RP2Q13CA"), schema.getString("RP2Q13CB"), schema.getString("RP2Q13CC"), schema.getString("RP2Q13CD"), schema.getString("RP2Q13CE"), schema.getString("RP2Q13CF")));
+        viewVos.add(initReadingSectionEndView(++viewId));
+        viewVos.add(initBreakPointView(++viewId));
+        viewVos.add(initTestEndView(++viewId));
         return viewVos;
     }
 
@@ -200,14 +217,14 @@ public class TestSchemaUtils {
         return viewVo;
     }
 
-    private static TestViewVo initReadingPassageView(int viewId, String heading, String passage) {
+    private static TestViewVo initReadingPassageView(int viewId, String heading, String passage, boolean firstPassage) {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(12);
         viewVo.setViewTypeName("Reading Passage");
         viewVo.setSectionType(1);
         viewVo.setSectionTypeName("Reading");
-        viewVo.setFirstPassage(true);
+        viewVo.setFirstPassage(firstPassage);
         viewVo.setTimed(true);
 
         final StyledTextVo headingVo = new StyledTextVo();
@@ -280,7 +297,7 @@ public class TestSchemaUtils {
             put("choiceC", choiceCVo);
             put("choiceD", choiceDVo);
         }};
-        if (null != footnote) {
+        if (!StringUtils.isEmpty(footnote)) {
             final StyledTextVo footnoteVo = new StyledTextVo();
             footnoteVo.setText(footnote);
             body.put("footnote", footnoteVo);
