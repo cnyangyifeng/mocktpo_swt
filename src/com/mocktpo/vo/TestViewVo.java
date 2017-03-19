@@ -1,9 +1,5 @@
 package com.mocktpo.vo;
 
-import com.mocktpo.orm.domain.UserTestAnswer;
-import com.mocktpo.util.PersistenceUtils;
-import com.mocktpo.util.constants.VT;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +37,7 @@ public class TestViewVo implements Serializable {
     private int questionNumberInSection;
     private boolean answerable;
     private int totalAnswerCount;
+    private String rightAnswers;
 
     public StyledTextVo getStyledText(String key) {
         for (String i : body.keySet()) {
