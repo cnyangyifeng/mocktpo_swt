@@ -50,16 +50,16 @@ hdiutil create -srcfolder $DIST_DIR/MockTPO.app $DIST_DIR/MockTPO.dmg > /dev/nul
 hdiutil internet-enable -yes $DIST_DIR/MockTPO.dmg > /dev/null
 echo "MockTPO.dmg created."
 
-# rm -rf $DIST_DIR/MockTPO.app
-# echo "MockTPO.app deleted."
+rm -rf $DIST_DIR/MockTPO.app
+echo "MockTPO.app deleted."
 
-# hdiutil attach $DIST_DIR/MockTPO.dmg > /dev/null
-# echo "MockTPO.dmg attached."
+hdiutil attach $DIST_DIR/MockTPO.dmg > /dev/null
+echo "MockTPO.dmg attached."
 
-# if [ -d /Applications/MockTPO.app ]; then
-#   sudo rm -rf /Applications/MockTPO.app
-# fi
-# sudo cp -a /Volumes/MockTPO/MockTPO.app /Applications
-# echo "MockTPO.app installed."
-# umount `mount | grep MockTPO | cut -d " " -f1`
-# echo "MockTPO.dmg unmounted."
+if [ -d /Applications/MockTPO.app ]; then
+  sudo rm -rf /Applications/MockTPO.app
+fi
+sudo cp -a /Volumes/MockTPO/MockTPO.app /Applications
+echo "MockTPO.app installed."
+umount `mount | grep MockTPO | cut -d " " -f1`
+echo "MockTPO.dmg unmounted."

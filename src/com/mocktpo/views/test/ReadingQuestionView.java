@@ -135,6 +135,14 @@ public class ReadingQuestionView extends SashTestView {
         updateWidgetsForAnswers();
     }
 
+    /*
+     * ==================================================
+     *
+     * Update Widgets for Answers
+     *
+     * ==================================================
+     */
+
     private void updateWidgetsForAnswers() {
         if (StringUtils.isEmpty(answerText)) {
             answer = MT.CHOICE_NONE;

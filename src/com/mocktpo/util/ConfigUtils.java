@@ -42,11 +42,11 @@ public class ConfigUtils {
             File rootPath = new File(ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).toURI());
             File packagePath = new File(rootPath.toString() + MT.STRING_SLASH + fileAlias);
             if (!packagePath.exists()) {
-                logger.info("Test package created: {}.", packagePath.mkdir());
+                logger.info("Test package folder created: {}.", packagePath.mkdir());
             }
             File file = new File(packagePath.toString() + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX);
             if (!file.exists()) {
-                logger.info("Test package created: {}.", file.createNewFile());
+                logger.info("Test package schema file created: {}.", file.createNewFile());
             }
             FileUtils.writeStringToFile(file, JSON.toJSONString(object), "utf-8", false);
         } catch (Exception e) {

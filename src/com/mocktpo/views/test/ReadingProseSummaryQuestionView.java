@@ -2,10 +2,10 @@ package com.mocktpo.views.test;
 
 import com.mocktpo.events.BorderedCompositePaintListener;
 import com.mocktpo.pages.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
@@ -162,7 +162,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("question").getText());
 
         final Label bullet1 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(bullet1).atLeft().atTopTo(questionTextWidget, 18);
+        FormDataSet.attach(bullet1).atLeft().atTopTo(questionTextWidget, 20);
         LabelSet.decorate(bullet1).setImage(MT.IMAGE_BULLET);
 
         final DroppableAnswerComposite blank1 = new DroppableAnswerComposite(ac, SWT.WRAP | SWT.TOP, ANSWER_1);
@@ -172,7 +172,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         blank1.addMouseListener(new AnswerCompositeMouseAdapter());
 
         final Label bullet2 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(bullet2).atLeft().atTopTo(blank1, 18);
+        FormDataSet.attach(bullet2).atLeft().atTopTo(blank1, 20);
         LabelSet.decorate(bullet2).setImage(MT.IMAGE_BULLET);
 
         final DroppableAnswerComposite blank2 = new DroppableAnswerComposite(ac, SWT.WRAP, ANSWER_2);
@@ -182,7 +182,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         blank2.addMouseListener(new AnswerCompositeMouseAdapter());
 
         final Label bullet3 = new Label(ac, SWT.NONE);
-        FormDataSet.attach(bullet3).atLeft().atTopTo(blank2, 18);
+        FormDataSet.attach(bullet3).atLeft().atTopTo(blank2, 20);
         LabelSet.decorate(bullet3).setImage(MT.IMAGE_BULLET);
 
         final DroppableAnswerComposite blank3 = new DroppableAnswerComposite(ac, SWT.WRAP, ANSWER_3);
@@ -229,6 +229,18 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         sc.setMinSize(inner.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
         return c;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Update Widgets for Answers
+     *
+     * ==================================================
+     */
+
+    private void updateWidgetsForAnswers() {
+        logger.info("logger");
     }
 
     private Composite initPassageSubView() {

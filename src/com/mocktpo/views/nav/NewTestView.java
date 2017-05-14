@@ -79,9 +79,9 @@ public class NewTestView extends Composite {
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final ImageButton sortButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
-        FormDataSet.attach(sortButton).atLeft().atTop();
-        sortButton.addMouseListener(new SortButtonMouseAdapter());
+//        final ImageButton sortButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
+//        FormDataSet.attach(sortButton).atLeft().atTop();
+//        sortButton.addMouseListener(new SortButtonMouseAdapter());
 
         final ImageButton importButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
         FormDataSet.attach(importButton).atTop().atRight();

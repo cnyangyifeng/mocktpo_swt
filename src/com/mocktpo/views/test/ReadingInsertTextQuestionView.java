@@ -135,7 +135,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
         passageTextWidget.addControlListener(new PassageTextControlAdapter());
         passageTextWidget.addMouseListener(new PassageTextMouseAdapter());
 
-        // updateUIForAnswer();
+        updateWidgetsForAnswers();
 
         rightScrolled.setContent(c);
         rightScrolled.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -144,12 +144,12 @@ public class ReadingInsertTextQuestionView extends SashTestView {
     /*
      * ==================================================
      *
-     * UI Updates for Answer
+     * Update Widgets for Answers
      *
      * ==================================================
      */
 
-    private void updateUIForAnswer() {
+    private void updateWidgetsForAnswers() {
 
         int insertTextLength = insertText.length();
         int change = insertTextLength - 1;
