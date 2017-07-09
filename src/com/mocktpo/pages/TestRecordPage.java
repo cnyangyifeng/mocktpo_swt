@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class TestRecordsPage extends Composite {
+public class TestRecordPage extends Composite {
 
     /* Logger and Messages */
 
@@ -70,7 +70,7 @@ public class TestRecordsPage extends Composite {
      * ==================================================
      */
 
-    public TestRecordsPage(Composite parent, int style, UserTestSession userTestSession) {
+    public TestRecordPage(Composite parent, int style, UserTestSession userTestSession) {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
@@ -167,7 +167,7 @@ public class TestRecordsPage extends Composite {
 
         @Override
         public Object function(Object[] args) {
-            return TestRecordsPage.this.testSchema.getTitle();
+            return TestRecordPage.this.testSchema.getTitle();
         }
     }
 
@@ -179,7 +179,7 @@ public class TestRecordsPage extends Composite {
 
         @Override
         public Object function(Object[] args) {
-            return TimeUtils.displayClockTime(TestRecordsPage.this.userTestSession.getStartTime());
+            return TimeUtils.displayClockTime(TestRecordPage.this.userTestSession.getStartTime());
         }
     }
 
@@ -191,7 +191,7 @@ public class TestRecordsPage extends Composite {
 
         @Override
         public Object function(Object[] args) {
-            return TimeUtils.displayClockTime(TestRecordsPage.this.userTestSession.getLastVisitTime());
+            return TimeUtils.displayClockTime(TestRecordPage.this.userTestSession.getLastVisitTime());
         }
     }
 
@@ -204,7 +204,7 @@ public class TestRecordsPage extends Composite {
         @Override
         public Object function(Object[] args) {
             int sectionType = ((Double) args[0]).intValue();
-            return TestRecordsPage.this.testSchema.findTotalQuestionCountInSection(sectionType);
+            return TestRecordPage.this.testSchema.findTotalQuestionCountInSection(sectionType);
         }
     }
 
@@ -218,7 +218,7 @@ public class TestRecordsPage extends Composite {
         public Object function(Object[] args) {
             int sectionType = ((Double) args[0]).intValue();
             logger.info("sectionType: {}", sectionType);
-            List<TestViewVo> viewVos = TestRecordsPage.this.testSchema.getViewVos();
+            List<TestViewVo> viewVos = TestRecordPage.this.testSchema.getViewVos();
             List<QuestionAndAnswerDetailsVo> result = new ArrayList<QuestionAndAnswerDetailsVo>();
             for (TestViewVo viewVo : viewVos) {
                 if (viewVo.getSectionType() == sectionType && viewVo.isAnswerable()) {
@@ -226,7 +226,7 @@ public class TestRecordsPage extends Composite {
                     QuestionAndAnswerDetailsVo detailsVo = new QuestionAndAnswerDetailsVo();
                     detailsVo.setQuestionNumberInSection(viewVo.getQuestionNumberInSection());
                     detailsVo.setQuestion(getQuestionText(viewVo));
-                    UserTestAnswer userTestAnswer = PersistenceUtils.findAnswer(TestRecordsPage.this.userTestSession, viewVo.getViewId());
+                    UserTestAnswer userTestAnswer = PersistenceUtils.findAnswer(TestRecordPage.this.userTestSession, viewVo.getViewId());
                     if (userTestAnswer != null) {
                         detailsVo.setAnswer(AnswerUtils.toAlphabeticAnswer(userTestAnswer.getAnswer()));
                     } else {

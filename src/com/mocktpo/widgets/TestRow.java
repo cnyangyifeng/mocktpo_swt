@@ -144,6 +144,10 @@ public class TestRow extends Composite {
             final ImageButton continueButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_CONTINUE, MT.IMAGE_SYSTEM_CONTINUE_HOVER);
             FormDataSet.attach(continueButton).atLeft().atTop(10);
             continueButton.addMouseListener(new ContinueButtonMouseAdapter());
+
+            final ImageButton reportButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_REPORT, MT.IMAGE_SYSTEM_REPORT_HOVER);
+            FormDataSet.attach(reportButton).atLeftTo(continueButton, 10).atTopTo(continueButton, 0, SWT.TOP);
+            reportButton.addMouseListener(new ReportButtonMouseAdapter());
         } else {
             final ImageButton reportButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_REPORT, MT.IMAGE_SYSTEM_REPORT_HOVER);
             FormDataSet.attach(reportButton).atLeft().atTop(10);
@@ -171,7 +175,7 @@ public class TestRow extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toReportPage(userTestSession);
+            MyApplication.get().getWindow().toTestRecordPage(userTestSession);
         }
     }
 

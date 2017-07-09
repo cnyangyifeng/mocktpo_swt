@@ -5,8 +5,10 @@ import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
-import com.mocktpo.views.nav.TestRecordsView;
+import com.mocktpo.views.nav.NewPracticeView;
 import com.mocktpo.views.nav.NewTestView;
+import com.mocktpo.views.nav.PracticeRecordsView;
+import com.mocktpo.views.nav.TestRecordsView;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -45,8 +47,10 @@ public class MainPage extends Composite {
     private CLabel practiceRecordsLabel;
 
     private Composite body;
-    private TestRecordsView testRecordsView;
     private NewTestView newTestView;
+    private TestRecordsView testRecordsView;
+    private NewPracticeView newPracticeView;
+    private PracticeRecordsView practiceRecordsView;
 
     /*
      * ==================================================
@@ -128,12 +132,25 @@ public class MainPage extends Composite {
      * ==================================================
      */
 
+    public void toNewTestView() {
+        if (newTestView == null) {
+            newTestView = new NewTestView(body, SWT.NONE);
+        }
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_GRAY20);
+        CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(newPracticeLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(practiceRecordsLabel).setBackground(MT.COLOR_BLACK);
+        newTestView.refreshCards();
+        stack.topControl = newTestView;
+        body.layout();
+    }
+
     public void toTestRecordsView() {
         if (testRecordsView == null) {
             testRecordsView = new TestRecordsView(body, SWT.NONE);
         }
-        CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_GRAY20);
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_GRAY20);
         CLabelSet.decorate(newPracticeLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(practiceRecordsLabel).setBackground(MT.COLOR_BLACK);
         testRecordsView.refreshRows();
@@ -141,16 +158,29 @@ public class MainPage extends Composite {
         body.layout();
     }
 
-    public void toNewTestView() {
-        if (newTestView == null) {
-            newTestView = new NewTestView(body, SWT.NONE);
+    public void toNewPracticeView() {
+        if (newPracticeView == null) {
+            newPracticeView = new NewPracticeView(body, SWT.NONE);
         }
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_GRAY20);
-        CLabelSet.decorate(newPracticeLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(newPracticeLabel).setBackground(MT.COLOR_GRAY20);
         CLabelSet.decorate(practiceRecordsLabel).setBackground(MT.COLOR_BLACK);
-        newTestView.refreshCards();
-        stack.topControl = newTestView;
+        newPracticeView.refreshCards();
+        stack.topControl = newPracticeView;
+        body.layout();
+    }
+
+    public void toPracticeRecordsView() {
+        if (practiceRecordsView == null) {
+            practiceRecordsView = new PracticeRecordsView(body, SWT.NONE);
+        }
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(newPracticeLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(practiceRecordsLabel).setBackground(MT.COLOR_GRAY20);
+        practiceRecordsView.refreshRows();
+        stack.topControl = practiceRecordsView;
         body.layout();
     }
 
@@ -175,10 +205,14 @@ public class MainPage extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             String text = ((CLabel) e.widget).getText();
-            if (msgs.getString("test_records").equals(text)) {
-                toTestRecordsView();
-            } else if (msgs.getString("new_test").equals(text)) {
+            if (msgs.getString("new_test").equals(text)) {
                 toNewTestView();
+            } else if (msgs.getString("test_records").equals(text)) {
+                toTestRecordsView();
+            } else if (msgs.getString("new_practice").equals(text)) {
+                toNewPracticeView();
+            } else if (msgs.getString("practice_records").equals(text)) {
+                toPracticeRecordsView();
             }
         }
     }

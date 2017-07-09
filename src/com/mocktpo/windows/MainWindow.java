@@ -3,8 +3,8 @@ package com.mocktpo.windows;
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.pages.MainPage;
-import com.mocktpo.pages.TestRecordsPage;
 import com.mocktpo.pages.TestPage;
+import com.mocktpo.pages.TestRecordPage;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.WindowUtils;
 import com.mocktpo.util.constants.MT;
@@ -42,8 +42,6 @@ public class MainWindow {
     /* Views */
 
     private MainPage mainPage;
-    private TestPage testPage;
-    private TestRecordsPage reportPage;
 
     /*
      * ==================================================
@@ -123,15 +121,14 @@ public class MainWindow {
     }
 
     public void toTestPage(UserTestSession userTestSession) {
-        testPage = new TestPage(s, SWT.NONE, userTestSession);
+        final TestPage testPage = new TestPage(s, SWT.NONE, userTestSession);
         testPage.resume();
         stack.topControl = testPage;
         s.layout();
     }
 
-    public void toReportPage(UserTestSession userTestSession) {
-        reportPage = new TestRecordsPage(s, SWT.NONE, userTestSession);
-        stack.topControl = reportPage;
+    public void toTestRecordPage(UserTestSession userTestSession) {
+        stack.topControl = new TestRecordPage(s, SWT.NONE, userTestSession);
         s.layout();
     }
 
