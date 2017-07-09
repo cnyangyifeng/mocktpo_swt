@@ -231,7 +231,7 @@ public class ReadingReviewView extends Composite {
         GridDataSet.attach(tableHeader).fillBoth();
 
         for (TestViewVo vo : page.getTestSchema().getViewVos()) {
-            if (ST.SECTION_TYPE_READING == vo.getSectionType() && vo.isAnswerable()) {
+            if (vo.getSectionType() == ST.SECTION_TYPE_READING && vo.isAnswerable()) {
                 String statusText = getStatusText(vo.getViewId());
                 final ReadingReviewTableRow row = new ReadingReviewTableRow(viewPort, SWT.NONE, Integer.toString(vo.getQuestionNumberInSection()), getDescriptionText(vo), statusText, vo.getViewId());
                 GridDataSet.attach(row).fillBoth();
@@ -265,7 +265,7 @@ public class ReadingReviewView extends Composite {
     private String getStatusText(int viewId) {
         String text;
         UserTestAnswer userTestAnswer = PersistenceUtils.findAnswer(page.getUserTestSession(), viewId);
-        if (null != userTestAnswer) {
+        if (userTestAnswer != null) {
             String readingAnswer = userTestAnswer.getAnswer();
             if (!StringUtils.isEmpty(readingAnswer)) {
                 text = STATUS_TEXT_ANSWERED;
@@ -348,10 +348,10 @@ public class ReadingReviewView extends Composite {
 
     public void stopTimer() {
         if (timed) {
-            if (null != timerTask) {
+            if (timerTask != null) {
                 timerTask.cancel();
             }
-            if (null != timer) {
+            if (timer != null) {
                 timer.purge();
             }
         }
@@ -379,7 +379,7 @@ public class ReadingReviewView extends Composite {
                         LabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(countDown--));
                     }
                 });
-                if (0 >= countDown) {
+                if (countDown <= 0) {
                     if (timed) {
                         stopTimer();
                     }
@@ -409,7 +409,7 @@ public class ReadingReviewView extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            MyApplication.get().getWindow().toMainPage();
+            MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
         }
     }
 
@@ -460,7 +460,7 @@ public class ReadingReviewView extends Composite {
             ReadingReviewTableRow c = (ReadingReviewTableRow) ((Label) e.widget).getParent();
             if (selectedTableRow != c) {
                 c.setSelectionBackground();
-                if (null != selectedTableRow) {
+                if (selectedTableRow != null) {
                     selectedTableRow.resetBackground();
                 }
                 selectedTableRow = c;

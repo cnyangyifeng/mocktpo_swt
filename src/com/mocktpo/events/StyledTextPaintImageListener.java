@@ -10,7 +10,7 @@ public class StyledTextPaintImageListener implements PaintObjectListener {
     @Override
     public void paintObject(PaintObjectEvent e) {
         StyleRange style = e.style;
-        if (null != style.data) {
+        if (style.data != null) {
             Image image = (Image) style.data;
             if (!image.isDisposed()) {
                 int x = e.x;

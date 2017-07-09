@@ -41,7 +41,9 @@ public class PersistenceUtils {
         userTestSession.setWritingSelected(writingSelected);
         userTestSession.setLastViewId(1);
         userTestSession.setMaxViewId(1);
+        userTestSession.setVisitedViewCount(1);
         userTestSession.setTotalViewCount(testSchema.findTotalViewCount(readingSelected, listeningSelected, speakingSelected, writingSelected));
+        userTestSession.setTestComplete(false);
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).insert(userTestSession);
@@ -91,6 +93,19 @@ public class PersistenceUtils {
         userTestSession.setLastVisitTime(System.currentTimeMillis());
         userTestSession.setLastViewId(testView.getVo().getViewId() + 1);
         userTestSession.setMaxViewId(testView.getVo().getViewId() + 1);
+        int visitedViewCount = userTestSession.getVisitedViewCount();
+        userTestSession.setVisitedViewCount(visitedViewCount + 1);
+
+        SqlSession sqlSession = MyApplication.get().getSqlSession();
+        sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);
+        sqlSession.commit();
+    }
+
+    public static void saveToTestEnd(TestView testView) {
+        TestPage page = testView.getPage();
+        UserTestSession userTestSession = page.getUserTestSession();
+
+        userTestSession.setTestComplete(true);
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
         sqlSession.getMapper(UserTestSessionMapper.class).update(userTestSession);

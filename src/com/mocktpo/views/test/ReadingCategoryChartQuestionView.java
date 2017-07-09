@@ -109,12 +109,12 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
     protected Composite getSubView(int subViewId) {
         switch (subViewId) {
             case SUB_VIEW_QUESTION:
-                if (null == questionView) {
+                if (questionView == null) {
                     questionView = initQuestionSubView();
                 }
                 return questionView;
             case SUB_VIEW_PASSAGE:
-                if (null == passageView) {
+                if (passageView == null) {
                     passageView = initPassageSubView();
                 }
                 return passageView;

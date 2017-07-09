@@ -1,19 +1,19 @@
 package com.mocktpo.views.test;
 
-import com.mocktpo.windows.RequiredAnswerWindow;
 import com.mocktpo.events.BorderedCompositePaintListener;
 import com.mocktpo.events.StyledTextPaintImageListener;
 import com.mocktpo.pages.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.widgets.*;
 import com.mocktpo.widgets.ImageButton;
 import com.mocktpo.widgets.VolumeControl;
+import com.mocktpo.windows.RequiredAnswerWindow;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -257,7 +257,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
             answer1 = answer2 = answer3 = answer4 = answer5 = MT.CHOICE_NEVER_CHECK_MARKED;
         } else {
             String[] arr = answerText.split(MT.STRING_COMMA);
-            if (5 == arr.length) {
+            if (arr.length == 5) {
                 answer1 = Integer.parseInt(arr[0]);
                 markWidgetsForAnswers(answer1, yesLabel1, noLabel1);
                 answer2 = Integer.parseInt(arr[1]);
@@ -358,11 +358,9 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
                 nextOvalButton.setEnabled(true);
                 okOvalButton.setEnabled(false);
                 if (isNull()) {
-                    RequiredAnswerWindow d = new RequiredAnswerWindow(MT.REQUIRED_ANSWER_WINDOW_TYPE_NO_ANSWER_FOR_MANY);
-                    d.openAndWaitForDisposal();
+                    new RequiredAnswerWindow(MT.REQUIRED_ANSWER_WINDOW_TYPE_NO_ANSWER_FOR_MANY).openAndWaitForDisposal();
                 } else {
-                    RequiredAnswerWindow d = new RequiredAnswerWindow(MT.REQUIRED_ANSWER_WINDOW_TYPE_INCORRECT_ANSWER_COUNT);
-                    d.openAndWaitForDisposal();
+                    new RequiredAnswerWindow(MT.REQUIRED_ANSWER_WINDOW_TYPE_INCORRECT_ANSWER_COUNT).openAndWaitForDisposal();
                 }
             }
         }

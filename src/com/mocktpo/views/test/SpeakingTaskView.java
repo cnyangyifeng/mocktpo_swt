@@ -225,13 +225,13 @@ public class SpeakingTaskView extends ResponsiveTestView {
     }
 
     private void stopPreparation() {
-        if (null != audioPlayer) {
+        if (audioPlayer != null) {
             audioPlayer.stop();
         }
-        if (null != preparationTimerTask) {
+        if (preparationTimerTask != null) {
             preparationTimerTask.cancel();
         }
-        if (null != preparationTimer) {
+        if (preparationTimer != null) {
             preparationTimer.purge();
         }
         if (!d.isDisposed()) {
@@ -288,13 +288,13 @@ public class SpeakingTaskView extends ResponsiveTestView {
     }
 
     private void stopAudioRecording() {
-        if (null != audioRecorder) {
+        if (audioRecorder != null) {
             audioRecorder.stop();
         }
-        if (null != audioRecorderTimerTask) {
+        if (audioRecorderTimerTask != null) {
             audioRecorderTimerTask.cancel();
         }
-        if (null != audioRecorderTimer) {
+        if (audioRecorderTimer != null) {
             audioRecorderTimer.purge();
         }
     }
@@ -380,7 +380,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
                     }
                 });
             }
-            if (0 >= preparationCountDown) {
+            if (preparationCountDown <= 0) {
                 stopPreparation();
                 startAudioRecording();
             }
@@ -407,7 +407,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
                     }
                 });
             }
-            if (0 >= recorderCountDown) {
+            if (recorderCountDown <= 0) {
                 stopAudioRecording();
                 goToNextTestView();
             }

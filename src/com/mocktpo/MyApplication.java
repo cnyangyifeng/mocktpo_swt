@@ -36,10 +36,10 @@ public class MyApplication {
 
     public void exitApplication() {
         ResourceManager.dispose();
-        if (null != d && !d.isDisposed()) {
+        if (d != null && !d.isDisposed()) {
             d.dispose();
         }
-        if (null != sqlSession) {
+        if (sqlSession != null) {
             sqlSession.close();
         }
         System.exit(0);
@@ -83,9 +83,9 @@ public class MyApplication {
     }
 
     public static MyApplication get() {
-        if (null == inst) {
+        if (inst == null) {
             synchronized (MyApplication.class) {
-                if (null == inst) {
+                if (inst == null) {
                     inst = new MyApplication();
                 }
             }

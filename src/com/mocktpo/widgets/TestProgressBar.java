@@ -48,7 +48,7 @@ public class TestProgressBar extends Composite {
     private void initBody() {
         final Composite background = new Composite(this, SWT.NONE);
         RowDataSet.attach(background).withWidth(this.width).withHeight(this.height);
-        CompositeSet.decorate(background).setBackground(MT.COLOR_GRAY60);
+        CompositeSet.decorate(background).setBackground(MT.COLOR_WHITE_SMOKE);
         FormLayoutSet.layout(background).marginWidth(0).marginHeight(0).spacing(0);
 
         int selectionWidth = this.width * this.selection / 100;

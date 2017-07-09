@@ -3,7 +3,7 @@ package com.mocktpo.windows;
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.pages.MainPage;
-import com.mocktpo.pages.ReportPage;
+import com.mocktpo.pages.TestRecordsPage;
 import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.WindowUtils;
@@ -41,9 +41,9 @@ public class MainWindow {
 
     /* Views */
 
-    private MainPage mp;
-    private TestPage tp;
-    private ReportPage rp;
+    private MainPage mainPage;
+    private TestPage testPage;
+    private TestRecordsPage reportPage;
 
     /*
      * ==================================================
@@ -78,7 +78,7 @@ public class MainWindow {
     private void initViews() {
         stack = new StackLayout();
         s.setLayout(stack);
-        toMainPage();
+        toMainPageAndToNewTestView();
     }
 
     public void openAndWaitForDisposal() {
@@ -109,23 +109,29 @@ public class MainWindow {
      * ==================================================
      */
 
-    public void toMainPage() {
-        mp = new MainPage(s, SWT.NONE);
-        mp.toLoadTestView();
-        stack.topControl = mp;
+    public void toMainPageAndToNewTestView() {
+        mainPage = new MainPage(s, SWT.NONE);
+        stack.topControl = mainPage;
+        s.layout();
+    }
+
+    public void toMainPageAndToTestRecordsView() {
+        mainPage = new MainPage(s, SWT.NONE);
+        mainPage.toTestRecordsView();
+        stack.topControl = mainPage;
         s.layout();
     }
 
     public void toTestPage(UserTestSession userTestSession) {
-        tp = new TestPage(s, SWT.NONE, userTestSession);
-        tp.resume();
-        stack.topControl = tp;
+        testPage = new TestPage(s, SWT.NONE, userTestSession);
+        testPage.resume();
+        stack.topControl = testPage;
         s.layout();
     }
 
     public void toReportPage(UserTestSession userTestSession) {
-        rp = new ReportPage(s, SWT.NONE, userTestSession);
-        stack.topControl = rp;
+        reportPage = new TestRecordsPage(s, SWT.NONE, userTestSession);
+        stack.topControl = reportPage;
         s.layout();
     }
 

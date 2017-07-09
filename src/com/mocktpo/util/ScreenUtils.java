@@ -44,7 +44,7 @@ public class ScreenUtils {
     }
 
     public static Point getScreenSize(Display d) {
-        if (null == screenSize) {
+        if (screenSize == null) {
             Rectangle bounds = d.getPrimaryMonitor().getBounds();
             screenSize = new Point(bounds.width, bounds.height);
         }
@@ -52,7 +52,7 @@ public class ScreenUtils {
     }
 
     public static Point getViewPort(Display d) {
-        if (null == viewPort) {
+        if (viewPort == null) {
             float proportion = 0.9f;
             int w = (int) (d.getPrimaryMonitor().getClientArea().width * proportion);
             int h = (int) (d.getPrimaryMonitor().getClientArea().height * proportion);
@@ -62,7 +62,7 @@ public class ScreenUtils {
     }
 
     public static Point getClientSize(Display d) {
-        if (null == clientSize) {
+        if (clientSize == null) {
             Rectangle bounds = d.getPrimaryMonitor().getClientArea();
             clientSize = new Point(bounds.width, bounds.height);
         }

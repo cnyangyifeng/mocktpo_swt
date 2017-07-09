@@ -1,6 +1,5 @@
 package com.mocktpo.pages;
 
-import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.PersistenceUtils;
@@ -73,26 +72,17 @@ public class TestPage extends Composite {
 
     public void resume() {
         this.testSchema = ConfigUtils.load(userTestSession.getFileAlias(), TestSchemaVo.class);
-        if (null != testSchema) {
-            TestView testView = getLastTestView();
-            if (null != testView) {
-                stack.topControl = testView;
-                this.layout();
-            } else {
-                MyApplication.get().getWindow().toReportPage(userTestSession);
-            }
+        if (testSchema != null) {
+            stack.topControl = getLastTestView();
+            this.layout();
         }
     }
 
     private TestView getLastTestView() {
         int lastViewId = userTestSession.getLastViewId();
-        if (testSchema.findTestEndViewId() < lastViewId) {
-            PersistenceUtils.saveToView(userTestSession, testSchema.findTestEndViewId());
-            return null;
-        }
         TestViewVo viewVo = testSchema.getViewVo(lastViewId);
 
-        if (ST.SECTION_TYPE_READING == viewVo.getSectionType() && !userTestSession.isReadingSelected()) {
+        if (viewVo.getSectionType() == ST.SECTION_TYPE_READING && !userTestSession.isReadingSelected()) {
             if (userTestSession.isListeningSelected()) {
                 lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_HEADSET_ON);
                 viewVo = testSchema.getViewVo(lastViewId);
@@ -108,13 +98,15 @@ public class TestPage extends Composite {
                         viewVo = testSchema.getViewVo(lastViewId);
                         return getTestView(viewVo);
                     } else {
-                        return null;
+                        lastViewId = testSchema.findTestEndViewId();
+                        viewVo = testSchema.getViewVo(lastViewId);
+                        return getTestView(viewVo);
                     }
                 }
             }
         }
 
-        if (ST.SECTION_TYPE_LISTENING == viewVo.getSectionType() && !userTestSession.isListeningSelected()) {
+        if (viewVo.getSectionType() == ST.SECTION_TYPE_LISTENING && !userTestSession.isListeningSelected()) {
             if (userTestSession.isSpeakingSelected()) {
                 lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
                 viewVo = testSchema.getViewVo(lastViewId);
@@ -125,23 +117,29 @@ public class TestPage extends Composite {
                     viewVo = testSchema.getViewVo(lastViewId);
                     return getTestView(viewVo);
                 } else {
-                    return null;
+                    lastViewId = testSchema.findTestEndViewId();
+                    viewVo = testSchema.getViewVo(lastViewId);
+                    return getTestView(viewVo);
                 }
             }
         }
 
-        if (ST.SECTION_TYPE_SPEAKING == viewVo.getSectionType() && !userTestSession.isSpeakingSelected()) {
+        if (viewVo.getSectionType() == ST.SECTION_TYPE_SPEAKING && !userTestSession.isSpeakingSelected()) {
             if (userTestSession.isWritingSelected()) {
                 lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
                 viewVo = testSchema.getViewVo(lastViewId);
                 return getTestView(viewVo);
             } else {
-                return null;
+                lastViewId = testSchema.findTestEndViewId();
+                viewVo = testSchema.getViewVo(lastViewId);
+                return getTestView(viewVo);
             }
         }
 
-        if (ST.SECTION_TYPE_WRITING == viewVo.getSectionType() && !userTestSession.isWritingSelected()) {
-            return null;
+        if (viewVo.getSectionType() == ST.SECTION_TYPE_WRITING && !userTestSession.isWritingSelected()) {
+            lastViewId = testSchema.findTestEndViewId();
+            viewVo = testSchema.getViewVo(lastViewId);
+            return getTestView(viewVo);
         }
 
         return getTestView(viewVo);

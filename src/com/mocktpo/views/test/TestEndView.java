@@ -1,5 +1,6 @@
 package com.mocktpo.views.test;
 
+import com.mocktpo.MyApplication;
 import com.mocktpo.pages.TestPage;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.ScreenUtils;
@@ -74,8 +75,8 @@ public class TestEndView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            PersistenceUtils.saveToNextView(TestEndView.this);
-            page.resume();
+            PersistenceUtils.saveToTestEnd(TestEndView.this);
+            MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
         }
     }
 }

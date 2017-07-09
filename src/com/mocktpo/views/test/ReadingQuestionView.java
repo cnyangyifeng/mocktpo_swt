@@ -126,7 +126,7 @@ public class ReadingQuestionView extends SashTestView {
         LabelSet.decorate(choiceLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD").getText());
         choiceLabelD.addMouseListener(new ChooseAnswerAdapter());
 
-        if (null != vo.getStyledText("footnote")) {
+        if (vo.getStyledText("footnote") != null) {
             final StyledText footnoteTextWidget = new StyledText(c, SWT.WRAP);
             FormDataSet.attach(footnoteTextWidget).atLeft().atTopTo(choiceLabelD, 40).atRight();
             StyledTextSet.decorate(footnoteTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());

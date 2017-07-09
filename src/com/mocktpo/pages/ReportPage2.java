@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ReportPage extends Composite {
+public class ReportPage2 extends Composite {
 
     /* Logger and Messages */
 
@@ -70,7 +70,7 @@ public class ReportPage extends Composite {
      * ==================================================
      */
 
-    public ReportPage(Composite parent, int style, UserTestSession userTestSession) {
+    public ReportPage2(Composite parent, int style, UserTestSession userTestSession) {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
@@ -147,7 +147,7 @@ public class ReportPage extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toMainPage();
+            MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
         }
     }
 
@@ -167,7 +167,7 @@ public class ReportPage extends Composite {
 
         @Override
         public Object function(Object[] args) {
-            return ReportPage.this.testSchema.getTitle();
+            return ReportPage2.this.testSchema.getTitle();
         }
     }
 
@@ -179,7 +179,7 @@ public class ReportPage extends Composite {
 
         @Override
         public Object function(Object[] args) {
-            return TimeUtils.displayClockTime(ReportPage.this.userTestSession.getStartTime());
+            return TimeUtils.displayClockTime(ReportPage2.this.userTestSession.getStartTime());
         }
     }
 
@@ -191,7 +191,7 @@ public class ReportPage extends Composite {
 
         @Override
         public Object function(Object[] args) {
-            return TimeUtils.displayClockTime(ReportPage.this.userTestSession.getLastVisitTime());
+            return TimeUtils.displayClockTime(ReportPage2.this.userTestSession.getLastVisitTime());
         }
     }
 
@@ -204,7 +204,7 @@ public class ReportPage extends Composite {
         @Override
         public Object function(Object[] args) {
             int sectionType = ((Double) args[0]).intValue();
-            return ReportPage.this.testSchema.findTotalQuestionCountInSection(sectionType);
+            return ReportPage2.this.testSchema.findTotalQuestionCountInSection(sectionType);
         }
     }
 
@@ -218,16 +218,16 @@ public class ReportPage extends Composite {
         public Object function(Object[] args) {
             int sectionType = ((Double) args[0]).intValue();
             logger.info("sectionType: {}", sectionType);
-            List<TestViewVo> viewVos = ReportPage.this.testSchema.getViewVos();
+            List<TestViewVo> viewVos = ReportPage2.this.testSchema.getViewVos();
             List<QuestionAndAnswerDetailsVo> result = new ArrayList<QuestionAndAnswerDetailsVo>();
             for (TestViewVo viewVo : viewVos) {
-                if (sectionType == viewVo.getSectionType() && viewVo.isAnswerable()) {
+                if (viewVo.getSectionType() == sectionType && viewVo.isAnswerable()) {
                     logger.info("sectionType: {}, viewVo: {}", sectionType, getQuestionText(viewVo));
                     QuestionAndAnswerDetailsVo detailsVo = new QuestionAndAnswerDetailsVo();
                     detailsVo.setQuestionNumberInSection(viewVo.getQuestionNumberInSection());
                     detailsVo.setQuestion(getQuestionText(viewVo));
-                    UserTestAnswer userTestAnswer = PersistenceUtils.findAnswer(ReportPage.this.userTestSession, viewVo.getViewId());
-                    if (null != userTestAnswer) {
+                    UserTestAnswer userTestAnswer = PersistenceUtils.findAnswer(ReportPage2.this.userTestSession, viewVo.getViewId());
+                    if (userTestAnswer != null) {
                         detailsVo.setAnswer(AnswerUtils.toAlphabeticAnswer(userTestAnswer.getAnswer()));
                     } else {
                         detailsVo.setAnswer("NOT SEEN");

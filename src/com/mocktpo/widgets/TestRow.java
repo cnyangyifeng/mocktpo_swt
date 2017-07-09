@@ -88,7 +88,7 @@ public class TestRow extends Composite {
 
         deleteLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(deleteLabel).atBottomTo(titleLabel, 0, SWT.BOTTOM).atRight();
-        CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_GRAY40).setFont(MT.FONT_SMALL).setImage(MT.IMAGE_SYSTEM_DELETE);
+        CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_GRAY60).setFont(MT.FONT_SMALL).setText(msgs.getString("delete"));
         deleteLabel.addMouseListener(new DeleteLabelMouseAdapter());
         deleteLabel.addMouseTrackListener(new DeleteLabelMouseTrackAdapter());
 
@@ -113,14 +113,16 @@ public class TestRow extends Composite {
         FormDataSet.attach(progressLabel).atLeft().atTop(10).atRight();
         CLabelSet.decorate(progressLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("progress"));
 
-        // TODO PROGRESS CALCULATION
-        int selection = 100 * (userTestSession.getMaxViewId() - 1) / userTestSession.getTotalViewCount();
+        int selection = 100 * userTestSession.getVisitedViewCount() / userTestSession.getTotalViewCount();
+        if (userTestSession.isTestComplete() || selection > 100) {
+            selection = 100;
+        }
         final TestProgressBar progressBar = new TestProgressBar(body, SWT.NONE, PROGRESS_BAR_WIDTH, PROGRESS_BAR_HEIGHT, selection);
         FormDataSet.attach(progressBar).atLeft().atTopTo(progressLabel, 10);
 
         final CLabel selectionLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(selectionLabel).atLeftTo(progressBar, 10).atTopTo(progressBar, -5, SWT.TOP);
-        CLabelSet.decorate(selectionLabel).setFont(MT.FONT_SMALL_ITALIC).setForeground(MT.COLOR_GRAY40).setText(Integer.toString(selection) + MT.STRING_PERCENTAGE);
+        CLabelSet.decorate(selectionLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(Integer.toString(selection) + MT.STRING_PERCENTAGE);
 
         final CLabel sectionsLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(sectionsLabel).atLeft().atTopTo(progressBar, 20).atRight();
@@ -138,13 +140,15 @@ public class TestRow extends Composite {
         CompositeSet.decorate(footer).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(footer).marginWidth(0).marginHeight(10).spacing(0);
 
-        final ImageButton continueButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_CONTINUE, MT.IMAGE_SYSTEM_CONTINUE_HOVER);
-        FormDataSet.attach(continueButton).atLeft().atTop(10);
-        continueButton.addMouseListener(new ContinueButtonMouseAdapter());
-
-        final ImageButton reportButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_REPORT, MT.IMAGE_SYSTEM_REPORT_HOVER);
-        FormDataSet.attach(reportButton).atLeftTo(continueButton, 10).atTopTo(continueButton, 0, SWT.TOP);
-        reportButton.addMouseListener(new ReportButtonMouseAdapter());
+        if (!userTestSession.isTestComplete()) {
+            final ImageButton continueButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_CONTINUE, MT.IMAGE_SYSTEM_CONTINUE_HOVER);
+            FormDataSet.attach(continueButton).atLeft().atTop(10);
+            continueButton.addMouseListener(new ContinueButtonMouseAdapter());
+        } else {
+            final ImageButton reportButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_REPORT, MT.IMAGE_SYSTEM_REPORT_HOVER);
+            FormDataSet.attach(reportButton).atLeft().atTop(10);
+            reportButton.addMouseListener(new ReportButtonMouseAdapter());
+        }
     }
 
     /*
@@ -176,18 +180,18 @@ public class TestRow extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             PersistenceUtils.deleteSession(userTestSession);
-            MyApplication.get().getWindow().toMainPage();
+            MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
         }
     }
 
     public class DeleteLabelMouseTrackAdapter extends MouseTrackAdapter {
 
         public void mouseEnter(MouseEvent e) {
-            CLabelSet.decorate(deleteLabel).setImage(MT.IMAGE_SYSTEM_DELETE_HOVER);
+            CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_BLACK);
         }
 
         public void mouseExit(MouseEvent e) {
-            CLabelSet.decorate(deleteLabel).setImage(MT.IMAGE_SYSTEM_DELETE);
+            CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_GRAY60);
         }
     }
 }

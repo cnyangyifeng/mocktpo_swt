@@ -168,7 +168,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         LabelSet.decorate(choiceLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD").getText()).setVisible(false);
         choiceLabelD.addMouseListener(new ChooseAnswerAdapter());
 
-        if (3 == vo.getTotalAnswerCount()) {
+        if (vo.getTotalAnswerCount() == 3) {
             checkLabelE = new Label(viewPort, SWT.NONE);
             FormDataSet.attach(checkLabelE).atLeft(10).atTopTo(choiceLabelD, 20);
             LabelSet.decorate(checkLabelE).setData(MT.KEY_CHOICE, MT.CHOICE_E).setImage(MT.IMAGE_UNBOXED).setVisible(false);
@@ -187,7 +187,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         if (StringUtils.isEmpty(answerText)) {
             answer1 = MT.CHOICE_NONE;
             answer2 = MT.CHOICE_NONE;
-            if (3 == vo.getTotalAnswerCount()) {
+            if (vo.getTotalAnswerCount() == 3) {
                 answer3 = MT.CHOICE_NONE;
             }
         } else {
@@ -368,16 +368,16 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             int a = (Integer) e.widget.getData(MT.KEY_CHOICE);
-            if (2 == vo.getTotalAnswerCount()) {
+            if (vo.getTotalAnswerCount() == 2) {
                 if (a == answer1) {
                     answer1 = MT.CHOICE_NONE;
                 } else if (a == answer2) {
                     answer2 = MT.CHOICE_NONE;
                 } else {
-                    if (MT.CHOICE_NONE == answer1) {
+                    if (answer1 == MT.CHOICE_NONE) {
                         answer1 = a;
                     } else {
-                        if (MT.CHOICE_NONE == answer2) {
+                        if (answer2 == MT.CHOICE_NONE) {
                             answer2 = a;
                         } else {
                             nextOvalButton.setEnabled(true);
@@ -420,7 +420,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                 }
                 logger.info("[Listening Multiple-Answers Question {}] Answers: ({}, {})", vo.getQuestionNumberInSection(), answer1, answer2);
                 answerText = answer1 + MT.STRING_COMMA + answer2;
-            } else if (3 == vo.getTotalAnswerCount()) {
+            } else if (vo.getTotalAnswerCount() == 3) {
                 if (a == answer1) {
                     answer1 = MT.CHOICE_NONE;
                 } else if (a == answer2) {
@@ -428,13 +428,13 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                 } else if (a == answer3) {
                     answer3 = MT.CHOICE_NONE;
                 } else {
-                    if (MT.CHOICE_NONE == answer1) {
+                    if (answer1 == MT.CHOICE_NONE) {
                         answer1 = a;
                     } else {
-                        if (MT.CHOICE_NONE == answer2) {
+                        if (answer2 == MT.CHOICE_NONE) {
                             answer2 = a;
                         } else {
-                            if (MT.CHOICE_NONE == answer3) {
+                            if (answer3 == MT.CHOICE_NONE) {
                                 answer3 = a;
                             } else {
                                 nextOvalButton.setEnabled(true);
@@ -527,7 +527,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
                             LabelSet.decorate(choiceLabelC).setVisible(true);
                             LabelSet.decorate(boxLabelD).setVisible(true);
                             LabelSet.decorate(choiceLabelD).setVisible(true);
-                            if (3 == vo.getTotalAnswerCount()) {
+                            if (vo.getTotalAnswerCount() == 3) {
                                 LabelSet.decorate(checkLabelE).setVisible(true);
                                 LabelSet.decorate(choiceLabelE).setVisible(true);
                             }

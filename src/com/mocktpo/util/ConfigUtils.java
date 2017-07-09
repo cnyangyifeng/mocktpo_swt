@@ -21,7 +21,7 @@ public class ConfigUtils {
     }
 
     public static <T> T load(String fileAlias, Class<T> clazz) {
-        if (null == fileAlias) {
+        if (fileAlias == null) {
             return null;
         }
         try {
@@ -35,7 +35,7 @@ public class ConfigUtils {
     }
 
     public static void save(String fileAlias, Object object) {
-        if (null == fileAlias) {
+        if (fileAlias == null) {
             return;
         }
         try {

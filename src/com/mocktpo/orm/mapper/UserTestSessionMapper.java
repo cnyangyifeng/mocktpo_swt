@@ -33,7 +33,9 @@ public interface UserTestSessionMapper {
             "MT_WRITING_SELECTED BOOLEAN,",
             "MT_LAST_VIEW_ID INT,",
             "MT_MAX_VIEW_ID INT,",
-            "MT_TOTAL_VIEW_COUNT INT",
+            "MT_VISITED_VIEW_COUNT INT,",
+            "MT_TOTAL_VIEW_COUNT INT,",
+            "MT_TEST_COMPLETE INT",
             ")"
     })
     void schema();
@@ -68,7 +70,9 @@ public interface UserTestSessionMapper {
             "MT_WRITING_SELECTED,",
             "MT_LAST_VIEW_ID,",
             "MT_MAX_VIEW_ID,",
-            "MT_TOTAL_VIEW_COUNT",
+            "MT_VISITED_VIEW_COUNT,",
+            "MT_TOTAL_VIEW_COUNT,",
+            "MT_TEST_COMPLETE",
             ") VALUES (",
             "#{tid},",
             "#{title},",
@@ -93,7 +97,9 @@ public interface UserTestSessionMapper {
             "#{writingSelected},",
             "#{lastViewId},",
             "#{maxViewId},",
-            "#{totalViewCount}",
+            "#{visitedViewCount},",
+            "#{totalViewCount},",
+            "#{testComplete}",
             ")"
     })
     @Options(useGeneratedKeys = true, keyProperty = "sid")
@@ -125,7 +131,9 @@ public interface UserTestSessionMapper {
             "MT_WRITING_SELECTED = #{writingSelected},",
             "MT_LAST_VIEW_ID = #{lastViewId},",
             "MT_MAX_VIEW_ID = #{maxViewId},",
-            "MT_TOTAL_VIEW_COUNT = #{totalViewCount}",
+            "MT_VISITED_VIEW_COUNT = #{visitedViewCount},",
+            "MT_TOTAL_VIEW_COUNT = #{totalViewCount},",
+            "MT_TEST_COMPLETE = #{testComplete}",
             "WHERE",
             "MT_SID = #{sid}"
     })
@@ -157,7 +165,9 @@ public interface UserTestSessionMapper {
             "MT_WRITING_SELECTED AS writingSelected,",
             "MT_LAST_VIEW_ID AS lastViewId,",
             "MT_MAX_VIEW_ID AS maxViewId,",
-            "MT_TOTAL_VIEW_COUNT AS totalViewCount",
+            "MT_VISITED_VIEW_COUNT AS visitedViewCount,",
+            "MT_TOTAL_VIEW_COUNT AS totalViewCount,",
+            "MT_TEST_COMPLETE AS testComplete",
             "FROM MT_USER_TEST_SESSION",
             "ORDER BY MT_LAST_VISIT_TIME DESC"
     })

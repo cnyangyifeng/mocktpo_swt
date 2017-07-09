@@ -39,7 +39,7 @@ public class UnzipUtils {
     }
 
     public static void unzip(String zipFileName) {
-        if (null == zipFileName) {
+        if (zipFileName == null) {
             return;
         }
         try {

@@ -65,7 +65,7 @@ public class ImageButton extends Composite {
         if (b) {
             setBackgroundImage(normal);
         } else {
-            if (null != disabled) {
+            if (disabled != null) {
                 setBackgroundImage(disabled);
             }
         }
@@ -75,7 +75,7 @@ public class ImageButton extends Composite {
     @Override
     public Point computeSize(int wh, int hh, boolean changed) {
         int width = 0, height = 0;
-        if (null != normal) {
+        if (normal != null) {
             Rectangle bounds = normal.getBounds();
             width = bounds.width;
             height = bounds.height;

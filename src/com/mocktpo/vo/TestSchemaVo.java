@@ -28,7 +28,7 @@ public class TestSchemaVo implements Serializable {
 
     public TestViewVo getViewVo(int viewId) {
         for (TestViewVo v : viewVos) {
-            if (viewId == v.getViewId()) {
+            if (v.getViewId() == viewId) {
                 return v;
             }
         }
@@ -143,7 +143,7 @@ public class TestSchemaVo implements Serializable {
     public int findFirstViewIdByViewType(int viewType) {
         int viewId = 0;
         for (TestViewVo vo : this.getViewVos()) {
-            if (viewType == vo.getViewType()) {
+            if (vo.getViewType() == viewType) {
                 viewId = vo.getViewId();
             }
         }
@@ -153,7 +153,7 @@ public class TestSchemaVo implements Serializable {
     public int findTestEndViewId() {
         int endViewId = 0;
         for (TestViewVo vo : this.getViewVos()) {
-            if (VT.VIEW_TYPE_TEST_END == vo.getViewType()) {
+            if (vo.getViewType() == VT.VIEW_TYPE_TEST_END) {
                 endViewId = vo.getViewId();
             }
         }
@@ -165,11 +165,11 @@ public class TestSchemaVo implements Serializable {
         int count = 0;
         for (TestViewVo viewVo : viewVos) {
             int sectionType = viewVo.getSectionType();
-            if ((readingSelected && ST.SECTION_TYPE_READING == sectionType) ||
-                    (listeningSelected && ST.SECTION_TYPE_LISTENING == sectionType) ||
-                    (speakingSelected && ST.SECTION_TYPE_SPEAKING == sectionType) ||
-                    (writingSelected && ST.SECTION_TYPE_WRITING == sectionType) ||
-                    (ST.SECTION_TYPE_NONE == sectionType)) {
+            if ((readingSelected && sectionType == ST.SECTION_TYPE_READING) ||
+                    (listeningSelected && sectionType == ST.SECTION_TYPE_LISTENING) ||
+                    (speakingSelected && sectionType == ST.SECTION_TYPE_SPEAKING) ||
+                    (writingSelected && sectionType == ST.SECTION_TYPE_WRITING) ||
+                    (sectionType == ST.SECTION_TYPE_NONE)) {
                 count++;
             }
         }

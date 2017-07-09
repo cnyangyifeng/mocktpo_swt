@@ -71,7 +71,7 @@ public class TestHeader extends Composite {
 
         @Override
         public void widgetDisposed(DisposeEvent e) {
-            if (null != backgroundImage && !backgroundImage.isDisposed()) {
+            if (backgroundImage != null && !backgroundImage.isDisposed()) {
                 backgroundImage.dispose();
             }
         }

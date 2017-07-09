@@ -19,7 +19,7 @@ public class StyleRangeUtils {
     }
 
     public static void decorate(StyledText st, List<StyleRangeVo> srvs) {
-        if (null == srvs) {
+        if (srvs == null) {
             return;
         }
         List<StyleRange> srs = new ArrayList<StyleRange>();
@@ -28,15 +28,15 @@ public class StyleRangeUtils {
             sr.start = srv.getStart();
             sr.length = srv.getLength();
             /* Font Style */
-            if (0 != srv.getFontStyle()) {
+            if (srv.getFontStyle() != 0) {
                 sr.fontStyle = srv.getFontStyle();
             }
             /* Foreground */
-            if (0 != srv.getForeground()) {
+            if (srv.getForeground() != 0) {
                 sr.foreground = ResourceManager.getColor(srv.getForeground());
             }
             /* Background */
-            if (0 != srv.getBackground()) {
+            if (srv.getBackground() != 0) {
                 sr.background = ResourceManager.getColor(srv.getBackground());
             }
             /* Underline */

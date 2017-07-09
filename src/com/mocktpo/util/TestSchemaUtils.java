@@ -274,7 +274,7 @@ public class TestSchemaUtils {
 
         final StyledTextVo passageVo = new StyledTextVo();
         passageVo.setText(passage);
-        if (null != passageStyleVo) {
+        if (passageStyleVo != null) {
             List<StyleRangeVo> passageStyleVos = new ArrayList<StyleRangeVo>() {{
                 add(passageStyleVo);
             }};
@@ -283,7 +283,7 @@ public class TestSchemaUtils {
 
         final StyledTextVo questionVo = new StyledTextVo();
         questionVo.setText(question);
-        if (null != questionStyleVo) {
+        if (questionStyleVo != null) {
             List<StyleRangeVo> questionStyleVos = new ArrayList<StyleRangeVo>() {{
                 add(questionStyleVo);
             }};

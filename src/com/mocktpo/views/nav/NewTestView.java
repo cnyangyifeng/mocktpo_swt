@@ -79,12 +79,8 @@ public class NewTestView extends Composite {
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-//        final ImageButton sortButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
-//        FormDataSet.attach(sortButton).atLeft().atTop();
-//        sortButton.addMouseListener(new SortButtonMouseAdapter());
-
         final ImageButton importButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
-        FormDataSet.attach(importButton).atTop().atRight();
+        FormDataSet.attach(importButton).atLeft().atTop();
         importButton.addMouseListener(new ImportButtonMouseAdapter());
     }
 
@@ -112,7 +108,7 @@ public class NewTestView extends Composite {
             for (File testDir : testDirs) {
                 String testDirName = testDir.getName();
                 URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + testDirName + MT.STRING_SLASH + testDirName + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
-                if (null != url) {
+                if (url != null) {
                     TestCard card = new TestCard(body, SWT.NONE, testDir.getName());
                     GridDataSet.attach(card).fillHorizontal();
                 }
@@ -140,14 +136,6 @@ public class NewTestView extends Composite {
      * ==================================================
      */
 
-    private class SortButtonMouseAdapter extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            logger.info("Test cards sorted successfully.");
-        }
-    }
-
     private class ImportButtonMouseAdapter extends MouseAdapter {
 
         @Override
@@ -158,7 +146,7 @@ public class NewTestView extends Composite {
             String absoluteFileName = dialog.open();
             UnzipUtils.unzip(absoluteFileName);
             String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(absoluteFileName));
-            if (null != fileAlias) {
+            if (fileAlias != null) {
                 refreshCards();
             }
         }

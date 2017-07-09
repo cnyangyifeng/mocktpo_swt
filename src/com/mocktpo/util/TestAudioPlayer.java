@@ -69,7 +69,7 @@ public class TestAudioPlayer {
                         lock.wait();
                         line.start();
                     }
-                    if (-1 == bytesRead || isStopped()) {
+                    if (bytesRead == -1 || isStopped()) {
                         stopped = true;
                         break;
                     }
@@ -89,13 +89,13 @@ public class TestAudioPlayer {
     }
 
     public void stop() {
-        if (null != line && !isStopped()) {
+        if (line != null && !isStopped()) {
             stopped = true;
         }
     }
 
     public void pause() {
-        if (null != line && !isPaused()) {
+        if (line != null && !isPaused()) {
             paused = true;
         }
     }

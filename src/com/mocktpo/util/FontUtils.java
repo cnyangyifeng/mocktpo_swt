@@ -34,13 +34,13 @@ public class FontUtils {
             }
         });
         FontData fd = arf.get();
-        if (null != name) {
+        if (name != null) {
             fd.setName(name);
         }
-        if (0 != height) {
+        if (height != 0) {
             fd.setHeight(pixelsToPoints(d, height));
         }
-        if (SWT.NORMAL != style) {
+        if (style != SWT.NORMAL) {
             fd.setStyle(style);
         }
         return new Font(d, fd);

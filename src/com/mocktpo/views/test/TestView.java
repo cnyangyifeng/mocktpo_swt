@@ -52,8 +52,6 @@ public abstract class TestView extends Composite {
     protected TestFooter footer;
 
     protected ImageButton pauseTestButton;
-    protected ImageButton referenceAnswersButton;
-    protected ImageButton myNotebookButton;
 
     protected Label timerLabel;
     protected ImageButton timerButton;
@@ -145,30 +143,6 @@ public abstract class TestView extends Composite {
         /*
          * ==================================================
          *
-         * Reference Answers Button
-         *
-         * ==================================================
-         */
-
-        referenceAnswersButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_REFERENCE_ANSWERS, MT.IMAGE_SYSTEM_REFERENCE_ANSWERS_HOVER);
-        FormDataSet.attach(referenceAnswersButton).atLeftTo(pauseTestButton, 10).atBottom(10);
-        referenceAnswersButton.addMouseListener(new PauseTestButtonMouseAdapter());
-
-        /*
-         * ==================================================
-         *
-         * My Notebook Button
-         *
-         * ==================================================
-         */
-
-        myNotebookButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_MY_NOTEBOOK, MT.IMAGE_SYSTEM_MY_NOTEBOOK_HOVER);
-        FormDataSet.attach(myNotebookButton).atLeftTo(referenceAnswersButton, 10).atBottom(10);
-        myNotebookButton.addMouseListener(new PauseTestButtonMouseAdapter());
-
-        /*
-         * ==================================================
-         *
          * Caption
          *
          * ==================================================
@@ -178,7 +152,7 @@ public abstract class TestView extends Composite {
             final StyledText caption = new StyledText(header, SWT.SINGLE);
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
             int totalQuestionCount;
-            if (ST.SECTION_TYPE_LISTENING == vo.getSectionType()) {
+            if (vo.getSectionType() == ST.SECTION_TYPE_LISTENING) {
                 totalQuestionCount = page.getTestSchema().findTotalQuestionCountInListeningSection(vo.getSectionType(), vo.getListeningGroupId());
             } else {
                 totalQuestionCount = page.getTestSchema().findTotalQuestionCountInSection(vo.getSectionType());
@@ -207,7 +181,7 @@ public abstract class TestView extends Composite {
     protected void initAnswer() {
         if (vo.isAnswerable()) {
             UserTestAnswer userTestAnswer = PersistenceUtils.findAnswer(this);
-            if (null == userTestAnswer) {
+            if (userTestAnswer == null) {
                 userTestAnswer = PersistenceUtils.newAnswer(this);
             }
             answerText = userTestAnswer.getAnswer();
@@ -300,10 +274,10 @@ public abstract class TestView extends Composite {
 
     public void stopTimer() {
         if (vo.isTimed()) {
-            if (null != timerTask) {
+            if (timerTask != null) {
                 timerTask.cancel();
             }
-            if (null != timer) {
+            if (timer != null) {
                 timer.purge();
             }
         }
@@ -329,7 +303,7 @@ public abstract class TestView extends Composite {
                         LabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(countDown--));
                     }
                 });
-                if (0 >= countDown) {
+                if (countDown <= 0) {
                     release();
                     int lastViewId = page.getTestSchema().findNextViewIdWhileTimeOut(vo.getViewId());
                     PersistenceUtils.saveToView(page.getUserTestSession(), lastViewId);
@@ -366,13 +340,13 @@ public abstract class TestView extends Composite {
     }
 
     public void stopAudio() {
-        if (vo.isWithAudio() && null != audioPlayer) {
+        if (vo.isWithAudio() && audioPlayer != null) {
             audioPlayer.stop();
         }
     }
 
     public void setAudioVolume(double value) {
-        if (vo.isWithAudio() && null != audioPlayer) {
+        if (vo.isWithAudio() && audioPlayer != null) {
             audioPlayer.setVolume(value);
         }
     }
@@ -419,7 +393,7 @@ public abstract class TestView extends Composite {
         public void mouseDown(MouseEvent e) {
             release();
             PersistenceUtils.saveToView(TestView.this);
-            MyApplication.get().getWindow().toMainPage();
+            MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
         }
     }
 

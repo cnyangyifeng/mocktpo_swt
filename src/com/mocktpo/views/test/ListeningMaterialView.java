@@ -181,7 +181,7 @@ public class ListeningMaterialView extends ResponsiveTestView {
             long timeElapsed = (Long) e.getNewValue();
             final AtomicReference<Integer> rl = new AtomicReference<Integer>();
             for (Integer location : illustrations.keySet()) {
-                if (timeElapsed / 1000 == location) {
+                if (location == timeElapsed / 1000) {
                     rl.set(location);
                     if (!d.isDisposed()) {
                         d.asyncExec(new Runnable() {

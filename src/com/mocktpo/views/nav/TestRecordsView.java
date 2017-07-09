@@ -8,24 +8,19 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
-import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.widgets.ImageButton;
 import com.mocktpo.widgets.TestRow;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class LoadTestView extends Composite {
+public class TestRecordsView extends Composite {
 
     /* Logger and Messages */
 
@@ -38,7 +33,6 @@ public class LoadTestView extends Composite {
 
     /* Widgets */
 
-    private Composite toolBar;
     private ScrolledComposite sc;
     private Composite body;
 
@@ -50,7 +44,7 @@ public class LoadTestView extends Composite {
      * ==================================================
      */
 
-    public LoadTestView(Composite parent, int style) {
+    public TestRecordsView(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();
@@ -58,7 +52,6 @@ public class LoadTestView extends Composite {
 
     private void init() {
         golbal();
-        initToolBar();
         initBody();
     }
 
@@ -66,24 +59,9 @@ public class LoadTestView extends Composite {
         FormLayoutSet.layout(this);
     }
 
-    private void initToolBar() {
-        toolBar = new Composite(this, SWT.NONE);
-        FormDataSet.attach(toolBar).atLeft().atTop().atRight();
-        CompositeSet.decorate(toolBar).setBackground(MT.COLOR_WHITE_SMOKE);
-        FormLayoutSet.layout(toolBar).marginWidth(10).marginHeight(10);
-
-        final Label divider = new Label(this, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
-
-        final ImageButton sortButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
-        FormDataSet.attach(sortButton).atLeft().atTop();
-        sortButton.addMouseListener(new SortButtonMouseAdapter());
-    }
-
     private void initBody() {
         sc = new ScrolledComposite(this, SWT.V_SCROLL);
-        FormDataSet.attach(sc).atLeft().atTopTo(toolBar).atRight().atBottom();
+        FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
         sc.setExpandHorizontal(true);
         sc.setExpandVertical(true);
 
@@ -110,21 +88,5 @@ public class LoadTestView extends Composite {
             c.dispose();
         }
         initRows();
-    }
-
-    /*
-     * ==================================================
-     *
-     * Listeners
-     *
-     * ==================================================
-     */
-
-    private class SortButtonMouseAdapter extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            logger.info("Test rows sorted successfully.");
-        }
     }
 }

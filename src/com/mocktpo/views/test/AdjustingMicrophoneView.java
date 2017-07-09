@@ -141,12 +141,12 @@ public class AdjustingMicrophoneView extends StackTestView {
     protected Composite getSubView(int subViewId) {
         switch (subViewId) {
             case SUB_VIEW_RECORDING:
-                if (null == recordingView) {
+                if (recordingView == null) {
                     recordingView = initRecordingSubView();
                 }
                 return recordingView;
             case SUB_VIEW_RESPONSE:
-                if (null == responseView) {
+                if (responseView == null) {
                     responseView = initResponseSubView();
                 }
                 return responseView;
@@ -333,13 +333,13 @@ public class AdjustingMicrophoneView extends StackTestView {
     }
 
     private void stopAudioRecording() {
-        if (null != audioRecorder) {
+        if (audioRecorder != null) {
             audioRecorder.stop();
         }
-        if (null != audioRecorderTimerTask) {
+        if (audioRecorderTimerTask != null) {
             audioRecorderTimerTask.cancel();
         }
-        if (null != audioRecorderTimer) {
+        if (audioRecorderTimer != null) {
             audioRecorderTimer.purge();
         }
         if (subViewId == SUB_VIEW_RECORDING) {
@@ -492,7 +492,7 @@ public class AdjustingMicrophoneView extends StackTestView {
                     }
                 });
             }
-            if (0 >= recorderCountDown) {
+            if (recorderCountDown <= 0) {
                 stopAudioRecording();
             }
         }

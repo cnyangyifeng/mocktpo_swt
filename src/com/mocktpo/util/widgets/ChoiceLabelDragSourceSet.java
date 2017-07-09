@@ -16,7 +16,7 @@ public class ChoiceLabelDragSourceSet {
         dragSource.addDragListener(new DragSourceAdapter() {
             @Override
             public void dragStart(DragSourceEvent e) {
-                if (0 == c.getText().length()) {
+                if (c.getText().length() == 0) {
                     e.doit = false;
                 }
             }
