@@ -169,7 +169,7 @@ public interface UserTestSessionMapper {
             "MT_TOTAL_VIEW_COUNT AS totalViewCount,",
             "MT_TEST_COMPLETE AS testComplete",
             "FROM MT_USER_TEST_SESSION",
-            "ORDER BY MT_LAST_VISIT_TIME DESC"
+            "ORDER BY MT_START_TIME DESC"
     })
     List<UserTestSession> find();
 

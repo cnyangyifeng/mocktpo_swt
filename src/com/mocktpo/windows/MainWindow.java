@@ -128,7 +128,8 @@ public class MainWindow {
     }
 
     public void toTestRecordPage(UserTestSession userTestSession) {
-        stack.topControl = new TestRecordPage(s, SWT.NONE, userTestSession);
+        final TestRecordPage testRecordPage = new TestRecordPage(s, SWT.NONE, userTestSession);
+        stack.topControl = testRecordPage;
         s.layout();
     }
 
