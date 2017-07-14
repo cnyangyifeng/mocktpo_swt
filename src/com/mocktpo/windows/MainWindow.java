@@ -2,9 +2,9 @@ package com.mocktpo.windows;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.pages.MainPage;
-import com.mocktpo.pages.TestPage;
-import com.mocktpo.pages.ReportPage;
+import com.mocktpo.modules.nav.MainPage;
+import com.mocktpo.modules.test.TestPage;
+import com.mocktpo.modules.report.ReportPage;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.WindowUtils;
 import com.mocktpo.util.constants.MT;

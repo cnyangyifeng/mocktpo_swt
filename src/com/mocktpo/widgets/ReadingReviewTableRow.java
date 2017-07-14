@@ -1,10 +1,10 @@
 package com.mocktpo.widgets;
 
-import com.mocktpo.util.*;
+import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
+import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -155,11 +155,9 @@ public class ReadingReviewTableRow extends Composite {
     @Override
     public void setEnabled(boolean enabled) {
         if (!enabled) {
-            Color fc = ResourceManager.getColor(MT.COLOR_GRAY60);
-            LabelSet.decorate(numberCell).setForeground(fc);
-            LabelSet.decorate(descriptionCell).setForeground(fc);
-            LabelSet.decorate(statusCell).setForeground(fc);
-            // TODO Dispose fc
+            LabelSet.decorate(numberCell).setForeground(MT.COLOR_GRAY60);
+            LabelSet.decorate(descriptionCell).setForeground(MT.COLOR_GRAY60);
+            LabelSet.decorate(statusCell).setForeground(MT.COLOR_GRAY60);
         }
     }
 
