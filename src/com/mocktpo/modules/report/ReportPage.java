@@ -12,7 +12,7 @@ import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.TestSchemaVo;
-import com.mocktpo.widgets.ImageButton;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;

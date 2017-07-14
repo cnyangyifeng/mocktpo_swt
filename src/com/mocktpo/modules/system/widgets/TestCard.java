@@ -1,4 +1,4 @@
-package com.mocktpo.widgets;
+package com.mocktpo.modules.system.widgets;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;

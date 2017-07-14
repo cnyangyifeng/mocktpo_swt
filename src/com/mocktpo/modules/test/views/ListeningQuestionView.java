@@ -1,7 +1,7 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.windows.RequiredAnswerWindow;
-import com.mocktpo.events.StyledTextPaintImageListener;
+import com.mocktpo.modules.test.listeners.StyledTextPaintImageListener;
 import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
@@ -11,8 +11,8 @@ import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.widgets.*;
-import com.mocktpo.widgets.ImageButton;
-import com.mocktpo.widgets.VolumeControl;
+import com.mocktpo.modules.system.widgets.ImageButton;
+import com.mocktpo.modules.test.widgets.VolumeControl;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;

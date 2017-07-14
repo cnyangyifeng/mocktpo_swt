@@ -1,7 +1,7 @@
 package com.mocktpo.util.widgets;
 
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.widgets.DroppableAnswerComposite;
+import com.mocktpo.modules.test.widgets.DroppableAnswerComposite;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.dnd.*;
 

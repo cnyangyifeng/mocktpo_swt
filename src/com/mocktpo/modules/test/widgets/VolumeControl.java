@@ -1,6 +1,6 @@
-package com.mocktpo.widgets;
+package com.mocktpo.modules.test.widgets;
 
-import com.mocktpo.events.BorderedCompositePaintListener;
+import com.mocktpo.modules.test.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;

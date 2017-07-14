@@ -9,7 +9,7 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.*;
-import com.mocktpo.widgets.ImageButton;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;

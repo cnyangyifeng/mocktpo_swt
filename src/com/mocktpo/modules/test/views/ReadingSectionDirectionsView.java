@@ -7,7 +7,7 @@ import com.mocktpo.util.widgets.StyleRangeUtils;
 import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.PersistenceUtils;
-import com.mocktpo.widgets.ImageButton;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseAdapter;

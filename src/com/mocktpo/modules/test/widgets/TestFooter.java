@@ -1,4 +1,4 @@
-package com.mocktpo.widgets;
+package com.mocktpo.modules.test.widgets;
 
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.MT;

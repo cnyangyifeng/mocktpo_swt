@@ -1,4 +1,4 @@
-package com.mocktpo.modules.nav.views;
+package com.mocktpo.modules.system.views;
 
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.PersistenceUtils;
@@ -8,7 +8,7 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
-import com.mocktpo.widgets.TestRow;
+import com.mocktpo.modules.system.widgets.TestRow;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;

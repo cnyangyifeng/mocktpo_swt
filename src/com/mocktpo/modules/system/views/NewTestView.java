@@ -1,4 +1,4 @@
-package com.mocktpo.modules.nav.views;
+package com.mocktpo.modules.system.views;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.util.ConfigUtils;
@@ -11,8 +11,8 @@ import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.widgets.ImageButton;
-import com.mocktpo.widgets.TestCard;
+import com.mocktpo.modules.system.widgets.ImageButton;
+import com.mocktpo.modules.system.widgets.TestCard;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +28,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ResourceBundle;
 
-public class NewPracticeView extends Composite {
+public class NewTestView extends Composite {
 
     /* Logger and Messages */
 
@@ -53,7 +53,7 @@ public class NewPracticeView extends Composite {
      * ==================================================
      */
 
-    public NewPracticeView(Composite parent, int style) {
+    public NewTestView(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();

@@ -8,7 +8,7 @@ import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.*;
-import com.mocktpo.widgets.ImageButton;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseAdapter;

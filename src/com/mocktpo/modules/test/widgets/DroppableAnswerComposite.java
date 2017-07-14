@@ -1,4 +1,4 @@
-package com.mocktpo.widgets;
+package com.mocktpo.modules.test.widgets;
 
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;

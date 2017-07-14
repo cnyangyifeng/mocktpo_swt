@@ -1,4 +1,4 @@
-package com.mocktpo.events;
+package com.mocktpo.modules.test.listeners;
 
 import com.mocktpo.util.ResourceManager;
 import org.eclipse.swt.events.PaintEvent;

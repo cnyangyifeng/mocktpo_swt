@@ -8,7 +8,7 @@ import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.*;
-import com.mocktpo.widgets.ImageButton;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;

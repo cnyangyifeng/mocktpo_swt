@@ -1,6 +1,6 @@
 package com.mocktpo.modules.test.views;
 
-import com.mocktpo.events.StyledTextPaintImageListener;
+import com.mocktpo.modules.test.listeners.StyledTextPaintImageListener;
 import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.ScreenUtils;
@@ -13,8 +13,8 @@ import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.util.widgets.StyleRangeUtils;
 import com.mocktpo.util.widgets.StyledTextSet;
-import com.mocktpo.widgets.ImageButton;
-import com.mocktpo.widgets.VolumeControl;
+import com.mocktpo.modules.system.widgets.ImageButton;
+import com.mocktpo.modules.test.widgets.VolumeControl;
 import com.mocktpo.windows.RequiredAnswerWindow;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;

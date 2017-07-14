@@ -1,6 +1,6 @@
 package com.mocktpo.modules.test.views;
 
-import com.mocktpo.events.BorderedCompositePaintListener;
+import com.mocktpo.modules.test.listeners.BorderedCompositePaintListener;
 import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.ScreenUtils;
@@ -11,8 +11,8 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.*;
-import com.mocktpo.widgets.DroppableAnswerComposite;
-import com.mocktpo.widgets.ImageButton;
+import com.mocktpo.modules.test.widgets.DroppableAnswerComposite;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;

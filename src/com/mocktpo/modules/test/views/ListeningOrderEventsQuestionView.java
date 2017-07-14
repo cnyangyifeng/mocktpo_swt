@@ -1,8 +1,8 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.windows.RequiredAnswerWindow;
-import com.mocktpo.events.BorderedCompositePaintListener;
-import com.mocktpo.events.StyledTextPaintImageListener;
+import com.mocktpo.modules.test.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.test.listeners.StyledTextPaintImageListener;
 import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
@@ -12,9 +12,9 @@ import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.widgets.*;
-import com.mocktpo.widgets.DroppableAnswerComposite;
-import com.mocktpo.widgets.ImageButton;
-import com.mocktpo.widgets.VolumeControl;
+import com.mocktpo.modules.test.widgets.DroppableAnswerComposite;
+import com.mocktpo.modules.system.widgets.ImageButton;
+import com.mocktpo.modules.test.widgets.VolumeControl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;

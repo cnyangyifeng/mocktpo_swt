@@ -2,7 +2,7 @@ package com.mocktpo.windows;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.modules.nav.MainPage;
+import com.mocktpo.modules.system.MainPage;
 import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.modules.report.ReportPage;
 import com.mocktpo.util.ResourceManager;

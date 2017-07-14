@@ -1,4 +1,4 @@
-package com.mocktpo.events;
+package com.mocktpo.modules.test.listeners;
 
 import org.eclipse.swt.custom.PaintObjectEvent;
 import org.eclipse.swt.custom.PaintObjectListener;

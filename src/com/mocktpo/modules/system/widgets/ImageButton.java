@@ -1,4 +1,4 @@
-package com.mocktpo.widgets;
+package com.mocktpo.modules.system.widgets;
 
 import com.mocktpo.util.ResourceManager;
 import org.apache.logging.log4j.LogManager;
