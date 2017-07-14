@@ -13,7 +13,9 @@ public class TimeUtils {
     private static final int ONE_MINUTE_IN_MILLISECONDS = 60000;
     private static final int TWO_MINUTES_IN_MILLISECONDS = 120000;
     private static final int ONE_HOUR_IN_MILLISECONDS = 3600000;
+    private static final int TWO_HOURS_IN_MILLISECONDS = 7200000;
     private static final int ONE_DAY_IN_MILLISECONDS = 86400000;
+    private static final int TWO_DAYS_IN_MILLISECONDS = 172800000;
     private static final int ONE_WEEK_IN_MILLISECONDS = 604800000;
 
     /* Messages */
@@ -33,17 +35,21 @@ public class TimeUtils {
 
     public static String displaySocialTime(long time) {
         long duration = System.currentTimeMillis() - time;
-        if (duration <= TEN_SECONDS_IN_MILLISECONDS) {
+        if (duration < TEN_SECONDS_IN_MILLISECONDS) {
             return msgs.getString("just_now");
-        } else if (duration <= ONE_MINUTE_IN_MILLISECONDS) {
+        } else if (duration < ONE_MINUTE_IN_MILLISECONDS) {
             return msgs.getString("a_few_seconds_ago");
-        } else if (duration <= TWO_MINUTES_IN_MILLISECONDS) {
+        } else if (duration < TWO_MINUTES_IN_MILLISECONDS) {
             return msgs.getString("one_minute_ago");
-        } else if (duration <= ONE_HOUR_IN_MILLISECONDS) {
+        } else if (duration < ONE_HOUR_IN_MILLISECONDS) {
             return (duration / ONE_MINUTE_IN_MILLISECONDS) + MT.STRING_SPACE + msgs.getString("minutes_ago");
-        } else if (duration <= ONE_DAY_IN_MILLISECONDS) {
+        } else if (duration < TWO_HOURS_IN_MILLISECONDS) {
+            return msgs.getString("one_hour_ago");
+        } else if (duration < ONE_DAY_IN_MILLISECONDS) {
             return (duration / ONE_HOUR_IN_MILLISECONDS) + MT.STRING_SPACE + msgs.getString("hours_ago");
-        } else if (duration <= ONE_WEEK_IN_MILLISECONDS) {
+        } else if (duration < TWO_DAYS_IN_MILLISECONDS) {
+            return msgs.getString("one_day_ago");
+        } else if (duration < ONE_WEEK_IN_MILLISECONDS) {
             return (duration / ONE_DAY_IN_MILLISECONDS) + MT.STRING_SPACE + msgs.getString("days_ago");
         } else {
             SimpleDateFormat df = new SimpleDateFormat("MM/dd");

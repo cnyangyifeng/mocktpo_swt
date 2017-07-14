@@ -153,7 +153,7 @@ public abstract class TestView extends Composite {
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
             int totalQuestionCount;
             if (vo.getSectionType() == ST.SECTION_TYPE_LISTENING) {
-                totalQuestionCount = page.getTestSchema().findTotalQuestionCountInListeningSection(vo.getSectionType(), vo.getListeningGroupId());
+                totalQuestionCount = page.getTestSchema().findTotalQuestionCountInListeningSectionAndGroup(vo.getSectionType(), vo.getListeningGroupId());
             } else {
                 totalQuestionCount = page.getTestSchema().findTotalQuestionCountInSection(vo.getSectionType());
             }

@@ -85,7 +85,7 @@ public class TestSchemaVo implements Serializable {
         return count;
     }
 
-    public int findTotalQuestionCountInListeningSection(int sectionType, int listeningGroupId) {
+    public int findTotalQuestionCountInListeningSectionAndGroup(int sectionType, int listeningGroupId) {
         int count = 0;
         for (TestViewVo vo : this.getViewVos()) {
             if (vo.getSectionType() == sectionType && vo.getListeningGroupId() == listeningGroupId && vo.isAnswerable()) {

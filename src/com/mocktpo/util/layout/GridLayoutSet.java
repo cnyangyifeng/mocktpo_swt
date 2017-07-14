@@ -16,6 +16,12 @@ public class GridLayoutSet {
         c.setLayout(l);
     }
 
+    public GridLayoutSet spacing(int n) {
+        l.horizontalSpacing = n;
+        l.verticalSpacing = n;
+        return this;
+    }
+
     public GridLayoutSet horizontalSpacing(int n) {
         l.horizontalSpacing = n;
         return this;

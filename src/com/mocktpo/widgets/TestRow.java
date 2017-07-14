@@ -92,16 +92,16 @@ public class TestRow extends Composite {
         deleteLabel.addMouseListener(new DeleteLabelMouseAdapter());
         deleteLabel.addMouseTrackListener(new DeleteLabelMouseTrackAdapter());
 
-        final CLabel lastVisitTimeLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(lastVisitTimeLabel).atLeft().atTopTo(titleLabel, 10);
-        CLabelSet.decorate(lastVisitTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getLastVisitTime()) + MT.STRING_SPACE + msgs.getString("visited"));
+        final CLabel startTimePreLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(startTimePreLabel).atLeft().atTopTo(titleLabel, 10);
+        CLabelSet.decorate(startTimePreLabel).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("start_time"));
 
         final CLabel startTimeLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(startTimeLabel).atLeftTo(lastVisitTimeLabel, 20).atTopTo(lastVisitTimeLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(startTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getStartTime()) + MT.STRING_SPACE + msgs.getString("initialized"));
+        FormDataSet.attach(startTimeLabel).atLeftTo(startTimePreLabel, 5).atTopTo(startTimePreLabel, 0, SWT.TOP).atRight();
+        CLabelSet.decorate(startTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getStartTime()));
 
         final Label divider1 = new Label(header, SWT.NONE);
-        FormDataSet.attach(divider1).atLeft().atTopTo(lastVisitTimeLabel, 10).atRight().withHeight(1);
+        FormDataSet.attach(divider1).atLeft().atTopTo(startTimePreLabel, 10).atRight().withHeight(1);
         LabelSet.decorate(divider1).setBackground(MT.COLOR_WHITE_SMOKE);
 
         final Composite body = new Composite(this, SWT.NONE);

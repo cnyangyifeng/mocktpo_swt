@@ -4,7 +4,7 @@ import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.pages.MainPage;
 import com.mocktpo.pages.TestPage;
-import com.mocktpo.pages.TestRecordPage;
+import com.mocktpo.pages.ReportPage;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.WindowUtils;
 import com.mocktpo.util.constants.MT;
@@ -128,7 +128,7 @@ public class MainWindow {
     }
 
     public void toTestRecordPage(UserTestSession userTestSession) {
-        final TestRecordPage testRecordPage = new TestRecordPage(s, SWT.NONE, userTestSession);
+        final ReportPage testRecordPage = new ReportPage(s, SWT.NONE, userTestSession);
         stack.topControl = testRecordPage;
         s.layout();
     }

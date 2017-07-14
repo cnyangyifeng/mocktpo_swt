@@ -6,19 +6,19 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
 
 /********************************************************************************
- * 
+ *
  * 2560 : 1920 : 1280 = 2x : 1.5x : 1x
  *
  * Use Large (2x) images, if screen width approximately equals with 2560px;
- * 
+ *
  * e.g. 2560x1600 (8:5), or above
- * 
+ *
  * Use Medium (1.5x) images, if screen width approximately equals with 1920px;
  *
  * e.g. 1920x1200 (8:5), 1920x1080 (16:9), 1680x1050 (8:5), 1600x900 (16:9)
- * 
+ *
  * Use Small (1x) images, if screen width approximately equals with 1280px;
- * 
+ *
  * e.g. 1440x900 (8:5), 1366x768 (16:9), 1280x1024 (5:4), 1280x800 (8:5)
  *
  *******************************************************************************/
