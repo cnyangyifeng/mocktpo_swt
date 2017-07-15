@@ -1,7 +1,7 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
@@ -11,6 +11,10 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.widgets.Composite;
 
 public abstract class ResponsiveTestView extends TestView {
+
+    /* Constants */
+
+    private static final int VIEW_PORT_PADDING_WIDTH = 50;
 
     /* Widgets */
 
@@ -40,7 +44,7 @@ public abstract class ResponsiveTestView extends TestView {
         GridLayoutSet.layout(body).marginBottom(50);
 
         viewPort = new Composite(body, SWT.NONE);
-        GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x);
+        GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 
         /*
