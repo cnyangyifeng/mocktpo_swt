@@ -1,9 +1,13 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.modules.system.widgets.ImageButton;
+import com.mocktpo.modules.test.TestPage;
+import com.mocktpo.modules.test.widgets.ReadingReviewTableRow;
+import com.mocktpo.modules.test.widgets.TestFooter;
+import com.mocktpo.modules.test.widgets.TestHeader;
 import com.mocktpo.orm.domain.UserTestAnswer;
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.TimeUtils;
@@ -19,10 +23,6 @@ import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.vo.TestViewVo;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.ReadingReviewTableRow;
-import com.mocktpo.modules.test.widgets.TestFooter;
-import com.mocktpo.modules.test.widgets.TestHeader;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,9 +46,11 @@ public class ReadingReviewView extends Composite {
 
     /* Constants */
 
-    public static final String STATUS_TEXT_NOT_SEEN = "Not Seen";
-    public static final String STATUS_TEXT_NOT_ANSWERED = "Not Answered";
-    public static final String STATUS_TEXT_ANSWERED = "Answered";
+    private static final int VIEW_PORT_PADDING_WIDTH = 50;
+
+    private static final String STATUS_TEXT_NOT_SEEN = "Not Seen";
+    private static final String STATUS_TEXT_NOT_ANSWERED = "Not Answered";
+    private static final String STATUS_TEXT_ANSWERED = "Answered";
 
     /* Logger and Messages */
 
@@ -202,7 +204,7 @@ public class ReadingReviewView extends Composite {
         GridLayoutSet.layout(body).marginBottom(50);
 
         viewPort = new Composite(body, SWT.NONE);
-        GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x);
+        GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         GridLayoutSet.layout(viewPort).verticalSpacing(0);
 
         /*
