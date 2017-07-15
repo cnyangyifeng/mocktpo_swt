@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="6.1.2" transformSequenceNumber="5">
-  <directoryPresets config="../../../bin/resources/images" />
-  <application name="MockTPO" distributionSourceDir="" applicationId="7142-6849-0165-9065" mediaDir="../../dist-win32" mediaFilePattern="${compiler:sys.shortName}-Installer-${compiler:sys.version}" compression="6" lzmaCompression="true" pack200Compression="true" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="MockTPO" publisher="Beijing MengMa Educational Technologies Inc." publisherWeb="http://www.cnmengma.com" version="1.0.1" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="9d820872533e2e21" javaMinVersion="1.7" javaMaxVersion="1.8" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
+  <directoryPresets config="../.." />
+  <application name="MockTPO" distributionSourceDir="" applicationId="7142-6849-0165-9065" mediaDir="../../dist-win32" mediaFilePattern="${compiler:sys.shortName}-Installer-${compiler:sys.version}" compression="6" lzmaCompression="true" pack200Compression="true" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="MockTPO" publisher="Beijing MengMa Educational Technologies Inc." publisherWeb="http://www.cnmengma.com" version="1.0.0" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="9d820872533e2e21" javaMinVersion="1.7" javaMaxVersion="1.8" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
     <languages skipLanguageSelection="false" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
       <additionalLanguages />
@@ -22,7 +22,7 @@
       <mountPoint id="76" root="" location="" mode="755" />
     </mountPoints>
     <entries>
-      <dirEntry mountPoint="76" file="../../../bin" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="bin" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+      <dirEntry mountPoint="76" file="../../bin" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="bin" excludeSuffixes="" dirMode="755" overrideDirMode="false">
         <exclude />
       </dirEntry>
     </entries>
@@ -59,7 +59,7 @@
         <content />
       </infoPlist>
       <iconImageFiles>
-        <file path="../../../bin/resources/images/icon.png" />
+        <file path="../../bin/resources/images/app_icon.png" />
       </iconImageFiles>
     </launcher>
   </launchers>
