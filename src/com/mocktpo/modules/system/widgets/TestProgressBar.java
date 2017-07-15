@@ -51,8 +51,8 @@ public class TestProgressBar extends Composite {
         CompositeSet.decorate(background).setBackground(MT.COLOR_WHITE_SMOKE);
         FormLayoutSet.layout(background).marginWidth(0).marginHeight(0).spacing(0);
 
-        int selectionWidth = this.width * this.selection / 100;
         final Label selectionLabel = new Label(background, SWT.NONE);
+        int selectionWidth = this.width * this.selection / 100;
         FormDataSet.attach(selectionLabel).atLeft().atTop().atBottom().withWidth(selectionWidth);
         LabelSet.decorate(selectionLabel).setBackground(MT.COLOR_GRAY20);
     }

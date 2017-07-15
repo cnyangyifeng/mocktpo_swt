@@ -95,7 +95,7 @@ public class ReportPage extends Composite {
 
         final CLabel titleLabel = new CLabel(toolBar, SWT.NONE);
         FormDataSet.attach(titleLabel).fromLeft(50, -LC.REPORT_TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(LC.REPORT_TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY40).setText(testSchema.getTitle() + MT.STRING_SPACE + msgs.getString("score_report"));
+        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(testSchema.getTitle() + MT.STRING_SPACE + msgs.getString("score_report"));
 
         final ImageButton exportButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT, MT.IMAGE_SYSTEM_EXPORT_HOVER);
         FormDataSet.attach(exportButton).atTop().atRight();

@@ -43,7 +43,7 @@ public class AppLoader extends Thread {
         userTestSessionMapper.schema();
         final UserTestAnswerMapper userTestAnswerMapper = app.getSqlSession().getMapper(UserTestAnswerMapper.class);
         userTestAnswerMapper.schema();
-        splash.proceed(msgs.getString("welcome"));
+        splash.proceed(msgs.getString("complete"));
         splash.close();
     }
 }
