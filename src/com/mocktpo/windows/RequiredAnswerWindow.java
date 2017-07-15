@@ -16,6 +16,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -82,19 +86,27 @@ public class RequiredAnswerWindow {
         FormDataSet.attach(background).atLeft().atTop().atRight().atBottom();
         CLabelSet.decorate(background).setGradientBackground(MT.COLOR_INDIGO, MT.COLOR_WHITE_SMOKE, true);
         FormLayoutSet.layout(background).marginHeight(20);
+
+        background.addPaintListener(new PaintListener() {
+            @Override
+            public void paintControl(PaintEvent e) {
+                GC gc = e.gc;
+                gc.setFont(ResourceManager.getFont(MT.FONT_MEDIUM_BOLD));
+                gc.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
+                Point p = gc.textExtent(msgs.getString("required_answer"));
+                gc.drawString(msgs.getString("required_answer"), (s.getBounds().width - p.x) / 2, 20, true);
+            }
+        });
+
     }
 
     private void initWidgets() {
-        final Label titleLabel = new Label(background, SWT.CENTER);
-        FormDataSet.attach(titleLabel).atLeft().atTop().atRight();
-        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setText(msgs.getString("required_answer"));
-
         final ImageButton continueButton = new ImageButton(background, SWT.NONE, MT.IMAGE_RETURN_TO_QUESTION, MT.IMAGE_RETURN_TO_QUESTION_HOVER);
         FormDataSet.attach(continueButton).fromLeft(50, -LC.RETURN_TO_QUESTION_BUTTON_WIDTH / 2).atBottom(20);
         continueButton.addMouseListener(new ReturnToQuestionButtonMouseAdapter());
 
         final Composite c = new Composite(background, SWT.NONE);
-        FormDataSet.attach(c).atLeft(20).atTopTo(titleLabel, 20).atRight(20).atBottomTo(continueButton, 40, SWT.TOP);
+        FormDataSet.attach(c).atLeft(20).atTop(60).atRight(20).atBottomTo(continueButton, 40, SWT.TOP);
         CompositeSet.decorate(c).setBackground(MT.COLOR_WHITE);
         GridLayoutSet.layout(c).marginWidth(10).marginHeight(10);
 
