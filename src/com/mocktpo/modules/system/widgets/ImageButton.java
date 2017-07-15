@@ -5,6 +5,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackListener;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
@@ -29,6 +31,10 @@ public class ImageButton extends Composite {
     private Image normal;
     private Image hover;
     private Image disabled;
+
+    /* Listeners */
+
+    private PaintListener paintListener;
 
     public ImageButton(Composite parent, int style, int normal, int hover) {
         this(parent, style, ResourceManager.getImage(normal), ResourceManager.getImage(hover), null);
@@ -56,17 +62,17 @@ public class ImageButton extends Composite {
     }
 
     private void golbal() {
-        setBackgroundImage(normal);
+        setTransparentBackgroundImage(normal);
         addMouseTrackListener(new ImageButtonMouseTrackListener());
     }
 
     @Override
     public void setEnabled(boolean b) {
         if (b) {
-            setBackgroundImage(normal);
+            setTransparentBackgroundImage(normal);
         } else {
             if (disabled != null) {
-                setBackgroundImage(disabled);
+                setTransparentBackgroundImage(disabled);
             }
         }
         super.setEnabled(b);
@@ -107,7 +113,21 @@ public class ImageButton extends Composite {
         this.normal = normal;
         this.hover = hover;
         this.disabled = disabled;
-        this.setBackgroundImage(this.normal);
+        this.setTransparentBackgroundImage(this.normal);
+    }
+
+    private void setTransparentBackgroundImage(final Image image) {
+        if (this.paintListener != null) {
+            this.removePaintListener(this.paintListener);
+        }
+        this.paintListener = new PaintListener() {
+            @Override
+            public void paintControl(PaintEvent e) {
+                e.gc.drawImage(image, 0, 0);
+            }
+        };
+        this.addPaintListener(paintListener);
+        this.redraw();
     }
 
     /*
@@ -123,14 +143,14 @@ public class ImageButton extends Composite {
         @Override
         public void mouseEnter(MouseEvent e) {
             if (isEnabled()) {
-                setBackgroundImage(hover);
+                setTransparentBackgroundImage(hover);
             }
         }
 
         @Override
         public void mouseExit(MouseEvent e) {
             if (isEnabled()) {
-                setBackgroundImage(normal);
+                setTransparentBackgroundImage(normal);
             }
         }
 
