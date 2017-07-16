@@ -1,8 +1,10 @@
 package com.mocktpo.modules.report;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
+import com.mocktpo.util.PDFUtils;
 import com.mocktpo.util.TimeUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -12,7 +14,7 @@ import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.TestSchemaVo;
-import com.mocktpo.modules.system.widgets.ImageButton;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -21,10 +23,9 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.*;
 
+import java.io.File;
 import java.util.ResourceBundle;
 
 public class ReportPage extends Composite {
@@ -99,6 +100,7 @@ public class ReportPage extends Composite {
 
         final ImageButton exportButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT, MT.IMAGE_SYSTEM_EXPORT_HOVER);
         FormDataSet.attach(exportButton).atTop().atRight();
+        exportButton.addMouseListener(new ExportButtonMouseAdapter());
 
         final CLabel startTimeLabel = new CLabel(toolBar, SWT.NONE);
         FormDataSet.attach(startTimeLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(exportButton, 20).atBottomTo(backButton, 0, SWT.BOTTOM);
@@ -148,6 +150,39 @@ public class ReportPage extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
+        }
+    }
+
+    private class ExportButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.SAVE);
+            dialog.setFilterNames(new String[]{"PDF File (*.pdf)"});
+            dialog.setFilterExtensions(new String[]{"*.pdf"});
+            dialog.setFileName(userTestSession.getFileAlias() + ".pdf");
+            boolean done = false;
+            while (!done) {
+                String absoluteFileName = dialog.open();
+                if (!StringUtils.isEmpty(absoluteFileName)) {
+                    File file = new File(absoluteFileName);
+                    if (file.exists()) {
+                        MessageBox box = new MessageBox(dialog.getParent(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
+                        box.setText(msgs.getString("file_exists"));
+                        box.setMessage("\"" + userTestSession.getFileAlias() + "\" " + msgs.getString("exists_and_replace"));
+                        int response = box.open();
+                        if (response == SWT.YES) {
+                            PDFUtils.save(absoluteFileName);
+                            done = true;
+                        }
+                    } else {
+                        PDFUtils.save(absoluteFileName);
+                        done = true;
+                    }
+                } else {
+                    done = true;
+                }
+            }
         }
     }
 }
