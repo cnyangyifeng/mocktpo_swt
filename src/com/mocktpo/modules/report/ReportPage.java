@@ -169,7 +169,7 @@ public class ReportPage extends Composite {
                     if (file.exists()) {
                         MessageBox box = new MessageBox(dialog.getParent(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
                         box.setText(msgs.getString("file_exists"));
-                        box.setMessage("\"" + userTestSession.getFileAlias() + "\" " + msgs.getString("exists_and_replace"));
+                        box.setMessage("\"" + userTestSession.getFileAlias() + ".pdf\" " + msgs.getString("exists_and_replace"));
                         int response = box.open();
                         if (response == SWT.YES) {
                             PDFUtils.save(absoluteFileName);
