@@ -26,11 +26,11 @@ public class TestPage extends Composite {
 
     /* Display */
 
-    protected Display d;
+    private Display d;
 
     /* Stack */
 
-    protected StackLayout stack;
+    private StackLayout stack;
 
     /* Properties */
 

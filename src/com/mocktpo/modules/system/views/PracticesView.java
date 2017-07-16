@@ -37,7 +37,7 @@ public class PracticesView extends Composite {
 
     /* Display */
 
-    protected Display d;
+    private Display d;
 
     /* Widgets */
 

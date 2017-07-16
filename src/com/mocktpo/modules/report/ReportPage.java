@@ -36,11 +36,11 @@ public class ReportPage extends Composite {
 
     /* Display */
 
-    protected Display d;
+    private Display d;
 
     /* Stack */
 
-    protected StackLayout stack;
+    private StackLayout stack;
 
     /* Widgets */
 

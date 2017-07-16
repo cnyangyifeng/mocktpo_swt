@@ -29,7 +29,7 @@ public class PracticeRecordsView extends Composite {
 
     /* Display */
 
-    protected Display d;
+    private Display d;
 
     /* Widgets */
 

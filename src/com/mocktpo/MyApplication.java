@@ -18,10 +18,10 @@ public class MyApplication {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    protected MainWindow win;
-    protected Display d;
+    private MainWindow win;
+    private Display d;
 
-    protected SqlSession sqlSession;
+    private SqlSession sqlSession;
 
     private void init() {
         Display.setAppName(msgs.getString("app_name"));

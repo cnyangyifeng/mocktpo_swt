@@ -59,40 +59,40 @@ public class ReadingReviewView extends Composite {
 
     /* Display */
 
-    protected Display d;
+    private Display d;
 
     /* Page */
 
-    protected TestPage page;
+    private TestPage page;
 
     /* Widgets */
 
-    protected TestHeader header;
-    protected ImageButton pauseTestButton;
-    protected Label timerLabel;
-    protected ImageButton timerButton;
+    private TestHeader header;
+    private ImageButton pauseTestButton;
+    private Label timerLabel;
+    private ImageButton timerButton;
 
-    protected StyledText caption;
+    private StyledText caption;
 
-    protected TestFooter footer;
+    private TestFooter footer;
 
-    protected ScrolledComposite sc;
-    protected Composite body;
-    protected Composite viewPort;
+    private ScrolledComposite sc;
+    private Composite body;
+    private Composite viewPort;
 
-    protected ReadingReviewTableRow selectedTableRow;
+    private ReadingReviewTableRow selectedTableRow;
 
     /* Properties */
 
-    protected int selectedViewId;
+    private int selectedViewId;
 
     /* Timer */
 
-    protected int countDown;
-    protected Timer timer;
-    protected TestTimerTask timerTask;
+    private int countDown;
+    private Timer timer;
+    private TestTimerTask timerTask;
 
-    protected boolean timed;
+    private boolean timed;
 
     /*
      * ==================================================

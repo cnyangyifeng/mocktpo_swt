@@ -28,12 +28,12 @@ public class MainWindow {
 
     /* Application */
 
-    protected MyApplication app;
+    private MyApplication app;
 
     /* Display and Shell */
 
-    protected Display d;
-    protected Shell s;
+    private Display d;
+    private Shell s;
 
     /* Layouts */
 

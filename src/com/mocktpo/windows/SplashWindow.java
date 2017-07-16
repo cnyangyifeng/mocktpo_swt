@@ -27,11 +27,11 @@ public class SplashWindow {
 
     /* Application */
 
-    protected MyApplication app;
+    private MyApplication app;
 
     /* Display and Shell */
 
-    protected Display d;
+    private Display d;
     private Shell s;
 
     /* Widgets */

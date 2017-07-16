@@ -25,7 +25,7 @@ public class DroppableAnswerComposite extends Composite {
 
     /* Display and Application */
 
-    protected Display d;
+    private Display d;
 
     /* Widgets */
 

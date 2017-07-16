@@ -45,7 +45,6 @@ public class WritingListeningMaterialView extends ResponsiveTestView {
     /* Properties */
 
     private Map<Integer, Image> illustrations;
-
     private PropertyChangeListener listener;
 
     /*
