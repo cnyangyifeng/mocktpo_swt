@@ -1,4 +1,4 @@
-package com.mocktpo.modules.system.views;
+package com.mocktpo.modules.report.views;
 
 import com.mocktpo.modules.system.widgets.TestRow;
 import com.mocktpo.orm.domain.UserTestSession;
@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Display;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class TestRecordsView extends Composite {
+public class WritingReportView extends Composite {
 
     /* Logger and Messages */
 
@@ -44,7 +44,7 @@ public class TestRecordsView extends Composite {
      * ==================================================
      */
 
-    public TestRecordsView(Composite parent, int style) {
+    public WritingReportView(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();

@@ -41,15 +41,20 @@ public interface LC {
      * ==================================================
      */
 
+    /* Test Module */
     int CAPTION_WIDTH = 180;
     int CONTINUE_BUTTON_WIDTH = 74;
     int LISTENING_DND_QUESTION_HEIGHT = 50;
     int READING_DND_QUESTION_WIDTH = 480;
     int READING_DND_QUESTION_HEIGHT = 60;
-    int REPORT_TITLE_WIDTH = 300;
     int RETURN_TO_QUESTION_BUTTON_WIDTH = 74;
     int TEST_HEADER_HEIGHT = 90;
     int VOLUME_CONTROL_WIDTH = 100;
+
+    /* Report Module */
+    int REPORT_TITLE_WIDTH = 300;
+    int REPORT_SECTION_LABEL_WIDTH = 90;
+    int REPORT_SECTION_LABEL_HEIGHT = 30;
 
     /*
      * ==================================================

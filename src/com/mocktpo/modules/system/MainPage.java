@@ -91,12 +91,12 @@ public class MainPage extends Composite {
         newTestLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(newTestLabel).atLeft().atTopTo(testsPreLabel).atRight().withHeight(60);
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("new_test"));
-        newTestLabel.addMouseListener(new SidebarItemAdapter());
+        newTestLabel.addMouseListener(new SidebarItemMouseAdapter());
 
         testRecordsLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testRecordsLabel).atLeft().atTopTo(newTestLabel).atRight().withHeight(60);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_GRAY20).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("test_records"));
-        testRecordsLabel.addMouseListener(new SidebarItemAdapter());
+        testRecordsLabel.addMouseListener(new SidebarItemMouseAdapter());
 
         final CLabel practicesPreLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(practicesPreLabel).atLeft().atTopTo(testRecordsLabel).atRight().withHeight(60);
@@ -105,7 +105,7 @@ public class MainPage extends Composite {
         practicesLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(practicesLabel).atLeft().atTopTo(practicesPreLabel).atRight().withHeight(60);
         CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("practices"));
-        practicesLabel.addMouseListener(new SidebarItemAdapter());
+        practicesLabel.addMouseListener(new SidebarItemMouseAdapter());
     }
 
     private void initPages() {
@@ -176,7 +176,7 @@ public class MainPage extends Composite {
         }
     }
 
-    private class SidebarItemAdapter extends MouseAdapter {
+    private class SidebarItemMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {

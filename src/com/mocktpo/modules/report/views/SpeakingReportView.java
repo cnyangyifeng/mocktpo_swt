@@ -1,5 +1,6 @@
-package com.mocktpo.modules.system.views;
+package com.mocktpo.modules.report.views;
 
+import com.mocktpo.modules.system.widgets.TestRow;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.MT;
@@ -8,7 +9,6 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
-import com.mocktpo.modules.system.widgets.TestRow;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Display;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class PracticeRecordsView extends Composite {
+public class SpeakingReportView extends Composite {
 
     /* Logger and Messages */
 
@@ -44,7 +44,7 @@ public class PracticeRecordsView extends Composite {
      * ==================================================
      */
 
-    public PracticeRecordsView(Composite parent, int style) {
+    public SpeakingReportView(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();
@@ -66,13 +66,13 @@ public class PracticeRecordsView extends Composite {
         sc.setExpandVertical(true);
 
         body = new Composite(sc, SWT.NONE);
-        sc.setContent(body);
-
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         GridLayoutSet.layout(body).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
+
+        sc.setContent(body);
     }
 
-    public void initRows() {
+    private void initRows() {
         List<UserTestSession> sessions = PersistenceUtils.findSessions();
         for (UserTestSession session : sessions) {
             TestRow row = new TestRow(body, SWT.NONE, session);

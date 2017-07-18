@@ -91,10 +91,10 @@ public class NewTestView extends Composite {
         sc.setExpandVertical(true);
 
         body = new Composite(sc, SWT.NONE);
-        sc.setContent(body);
-
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
+
+        sc.setContent(body);
     }
 
     private void initCards() {
