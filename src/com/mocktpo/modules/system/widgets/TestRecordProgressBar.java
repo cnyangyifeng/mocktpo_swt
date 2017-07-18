@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Label;
 
 import java.util.ResourceBundle;
 
-public class TestProgressBar extends Composite {
+public class TestRecordProgressBar extends Composite {
 
     /* Logger and Messages */
 
@@ -28,7 +28,7 @@ public class TestProgressBar extends Composite {
     private int height;
     private int selection;
 
-    public TestProgressBar(Composite parent, int style, int width, int height, int selection) {
+    public TestRecordProgressBar(Composite parent, int style, int width, int height, int selection) {
         super(parent, style);
         this.width = width;
         this.height = height;

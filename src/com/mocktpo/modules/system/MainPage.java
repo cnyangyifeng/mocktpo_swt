@@ -2,6 +2,7 @@ package com.mocktpo.modules.system;
 
 import com.mocktpo.modules.system.views.NewTestView;
 import com.mocktpo.modules.system.views.PracticesView;
+import com.mocktpo.modules.system.views.TestPapersView;
 import com.mocktpo.modules.system.views.TestRecordsView;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -42,11 +43,13 @@ public class MainPage extends Composite {
     private Composite sidebar;
     private CLabel newTestLabel;
     private CLabel testRecordsLabel;
+    private CLabel testPapersLabel;
     private CLabel practicesLabel;
 
     private Composite body;
     private NewTestView newTestView;
     private TestRecordsView testRecordsView;
+    private TestPapersView testPapersView;
     private PracticesView practicesView;
 
     /*
@@ -98,8 +101,13 @@ public class MainPage extends Composite {
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_GRAY20).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("test_records"));
         testRecordsLabel.addMouseListener(new SidebarItemMouseAdapter());
 
+        testPapersLabel = new CLabel(sidebar, SWT.NONE);
+        FormDataSet.attach(testPapersLabel).atLeft().atTopTo(testRecordsLabel).atRight().withHeight(60);
+        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_GRAY20).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_ORANGE).setLeftMargin(20).setText(msgs.getString("test_papers"));
+        testPapersLabel.addMouseListener(new SidebarItemMouseAdapter());
+
         final CLabel practicesPreLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(practicesPreLabel).atLeft().atTopTo(testRecordsLabel).atRight().withHeight(60);
+        FormDataSet.attach(practicesPreLabel).atLeft().atTopTo(testPapersLabel).atRight().withHeight(60);
         CLabelSet.decorate(practicesPreLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY60).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("practices"));
 
         practicesLabel = new CLabel(sidebar, SWT.NONE);
@@ -130,6 +138,7 @@ public class MainPage extends Composite {
         }
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_GRAY20);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK);
         newTestView.refreshCards();
         stack.topControl = newTestView;
@@ -142,9 +151,23 @@ public class MainPage extends Composite {
         }
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_GRAY20);
+        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK);
         testRecordsView.refreshRows();
         stack.topControl = testRecordsView;
+        body.layout();
+    }
+
+    public void toTestPapersView() {
+        if (testPapersView == null) {
+            testPapersView = new TestPapersView(body, SWT.NONE);
+        }
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_GRAY20);
+        CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK);
+        testPapersView.refreshCards();
+        stack.topControl = testPapersView;
         body.layout();
     }
 
@@ -154,6 +177,7 @@ public class MainPage extends Composite {
         }
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_GRAY20);
         practicesView.refreshCards();
         stack.topControl = practicesView;
@@ -185,6 +209,8 @@ public class MainPage extends Composite {
                 toNewTestView();
             } else if (msgs.getString("test_records").equals(text)) {
                 toTestRecordsView();
+            } else if (msgs.getString("test_papers").equals(text)) {
+                toTestPapersView();
             } else if (msgs.getString("practices").equals(text)) {
                 toPracticesView();
             }

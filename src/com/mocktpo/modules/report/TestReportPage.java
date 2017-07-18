@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.*;
 import java.io.File;
 import java.util.ResourceBundle;
 
-public class ReportPage extends Composite {
+public class TestReportPage extends Composite {
 
     /* Logger and Messages */
 
@@ -73,7 +73,7 @@ public class ReportPage extends Composite {
      * ==================================================
      */
 
-    public ReportPage(Composite parent, int style, UserTestSession userTestSession) {
+    public TestReportPage(Composite parent, int style, UserTestSession userTestSession) {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
@@ -123,22 +123,22 @@ public class ReportPage extends Composite {
 
         readingLabel = new CLabel(toolBar, SWT.NONE);
         FormDataSet.attach(readingLabel).fromLeft(50, -LC.REPORT_SECTION_LABEL_WIDTH * 2).atTopTo(titleLabel, 10).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
-        CLabelSet.decorate(readingLabel).setAlignment(SWT.CENTER).setBackground(MT.COLOR_DARK_BLUE).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_WHITE).setText(msgs.getString("reading"));
+        CLabelSet.decorate(readingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
         readingLabel.addMouseListener(new SectionTabItemMouseAdapter());
 
         listeningLabel = new CLabel(toolBar, SWT.NONE);
         FormDataSet.attach(listeningLabel).fromLeft(50, -LC.REPORT_SECTION_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
-        CLabelSet.decorate(listeningLabel).setAlignment(SWT.CENTER).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("listening"));
+        CLabelSet.decorate(listeningLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("listening"));
         listeningLabel.addMouseListener(new SectionTabItemMouseAdapter());
 
         speakingLabel = new CLabel(toolBar, SWT.NONE);
         FormDataSet.attach(speakingLabel).fromLeft(50).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
-        CLabelSet.decorate(speakingLabel).setAlignment(SWT.CENTER).setBackground(MT.COLOR_GRAY60).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("speaking"));
+        CLabelSet.decorate(speakingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("speaking"));
         speakingLabel.addMouseListener(new SectionTabItemMouseAdapter());
 
         writingLabel = new CLabel(toolBar, SWT.NONE);
         FormDataSet.attach(writingLabel).fromLeft(50, LC.REPORT_SECTION_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
-        CLabelSet.decorate(writingLabel).setAlignment(SWT.CENTER).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("writing"));
+        CLabelSet.decorate(writingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("writing"));
         writingLabel.addMouseListener(new SectionTabItemMouseAdapter());
     }
 

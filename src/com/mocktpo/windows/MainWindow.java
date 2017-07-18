@@ -1,10 +1,11 @@
 package com.mocktpo.windows;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTestSession;
+import com.mocktpo.modules.editor.TestEditorPage;
+import com.mocktpo.modules.report.TestReportPage;
 import com.mocktpo.modules.system.MainPage;
 import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.modules.report.ReportPage;
+import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.WindowUtils;
 import com.mocktpo.util.constants.MT;
@@ -120,6 +121,13 @@ public class MainWindow {
         s.layout();
     }
 
+    public void toMainPageAndToTestPapersView() {
+        mainPage = new MainPage(s, SWT.NONE);
+        mainPage.toTestPapersView();
+        stack.topControl = mainPage;
+        s.layout();
+    }
+
     public void toTestPage(UserTestSession userTestSession) {
         final TestPage testPage = new TestPage(s, SWT.NONE, userTestSession);
         testPage.resume();
@@ -127,9 +135,15 @@ public class MainWindow {
         s.layout();
     }
 
-    public void toTestRecordPage(UserTestSession userTestSession) {
-        final ReportPage testRecordPage = new ReportPage(s, SWT.NONE, userTestSession);
-        stack.topControl = testRecordPage;
+    public void toTestReportPage(UserTestSession userTestSession) {
+        final TestReportPage testReportPage = new TestReportPage(s, SWT.NONE, userTestSession);
+        stack.topControl = testReportPage;
+        s.layout();
+    }
+
+    public void toTestEditorPage() {
+        final TestEditorPage testEditorPage = new TestEditorPage(s, SWT.NONE);
+        stack.topControl = testEditorPage;
         s.layout();
     }
 

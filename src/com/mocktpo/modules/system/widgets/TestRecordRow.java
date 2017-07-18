@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Label;
 
 import java.util.ResourceBundle;
 
-public class TestRow extends Composite {
+public class TestRecordRow extends Composite {
 
     /* Constants */
 
@@ -56,7 +56,7 @@ public class TestRow extends Composite {
      * ==================================================
      */
 
-    public TestRow(Composite parent, int style, UserTestSession userTestSession) {
+    public TestRecordRow(Composite parent, int style, UserTestSession userTestSession) {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
@@ -115,7 +115,7 @@ public class TestRow extends Composite {
         if (userTestSession.isTestComplete() || selection > 100) {
             selection = 100;
         }
-        final TestProgressBar progressBar = new TestProgressBar(body, SWT.NONE, PROGRESS_BAR_WIDTH, PROGRESS_BAR_HEIGHT, selection);
+        final TestRecordProgressBar progressBar = new TestRecordProgressBar(body, SWT.NONE, PROGRESS_BAR_WIDTH, PROGRESS_BAR_HEIGHT, selection);
         FormDataSet.attach(progressBar).atLeft().atTopTo(progressLabel, 10);
 
         final CLabel selectionLabel = new CLabel(body, SWT.NONE);
@@ -172,7 +172,7 @@ public class TestRow extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toTestRecordPage(userTestSession);
+            MyApplication.get().getWindow().toTestReportPage(userTestSession);
         }
     }
 

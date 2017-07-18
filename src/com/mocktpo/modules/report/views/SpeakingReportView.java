@@ -1,6 +1,6 @@
 package com.mocktpo.modules.report.views;
 
-import com.mocktpo.modules.system.widgets.TestRow;
+import com.mocktpo.modules.system.widgets.TestRecordRow;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.MT;
@@ -75,7 +75,7 @@ public class SpeakingReportView extends Composite {
     private void initRows() {
         List<UserTestSession> sessions = PersistenceUtils.findSessions();
         for (UserTestSession session : sessions) {
-            TestRow row = new TestRow(body, SWT.NONE, session);
+            TestRecordRow row = new TestRecordRow(body, SWT.NONE, session);
             GridDataSet.attach(row).fillHorizontal();
         }
         body.layout();
