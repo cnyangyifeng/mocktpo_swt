@@ -76,7 +76,6 @@ public class TestRow extends Composite {
     private void initWidgets() {
         final Composite header = new Composite(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight();
-        CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(header).marginWidth(0).marginHeight(0).spacing(0);
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
@@ -106,7 +105,6 @@ public class TestRow extends Composite {
 
         final Composite body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight();
-        CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
 
         final CLabel progressLabel = new CLabel(body, SWT.NONE);
@@ -137,7 +135,6 @@ public class TestRow extends Composite {
 
         final Composite footer = new Composite(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atTopTo(body).atRight();
-        CompositeSet.decorate(footer).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(footer).marginWidth(0).marginHeight(10).spacing(0);
 
         if (!userTestSession.isTestComplete()) {

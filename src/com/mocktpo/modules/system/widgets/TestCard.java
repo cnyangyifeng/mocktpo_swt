@@ -77,7 +77,6 @@ public class TestCard extends Composite {
     private void initWidgets() {
         final Composite header = new Composite(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight();
-        CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(header).marginWidth(0).marginHeight(0).spacing(0);
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
@@ -93,7 +92,6 @@ public class TestCard extends Composite {
 
         final Composite body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight();
-        CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
 
         final CLabel sectionsLabel = new CLabel(body, SWT.NONE);
@@ -109,7 +107,6 @@ public class TestCard extends Composite {
 
         final Composite footer = new Composite(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atTopTo(body).atRight();
-        CompositeSet.decorate(footer).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(footer).marginWidth(0).marginHeight(10).spacing(0);
 
         final ImageButton newTestButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_NEW_TEST, MT.IMAGE_SYSTEM_NEW_TEST_HOVER);
