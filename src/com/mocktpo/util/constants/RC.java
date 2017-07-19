@@ -38,7 +38,8 @@ public interface RC {
     String FONTS_DIR = "/resources/fonts/";
     String IMAGES_DIR = "/resources/images/";
     String TESTS_DATA_DIR = "/data/tests/";
-    String USERS_DATA_DIR = "/data/users/";
+    String REPORTS_DATA_DIR = "/data/reports/";
+    String SANDBOX_DATA_DIR = "/data/sandbox/";
 
     /*
      * ==================================================

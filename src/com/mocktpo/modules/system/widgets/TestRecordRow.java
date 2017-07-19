@@ -71,6 +71,7 @@ public class TestRecordRow extends Composite {
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(this).marginWidth(10).marginHeight(10).spacing(0);
+        // this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
     }
 
     private void initWidgets() {
@@ -87,7 +88,7 @@ public class TestRecordRow extends Composite {
 
         deleteLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(deleteLabel).atBottomTo(titleLabel, 0, SWT.BOTTOM).atRight();
-        CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_GRAY60).setFont(MT.FONT_SMALL).setText(msgs.getString("delete"));
+        CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_GRAY60).setFont(MT.FONT_SMALL).setText(msgs.getString("delete_this_record"));
         deleteLabel.addMouseListener(new DeleteLabelMouseAdapter());
         deleteLabel.addMouseTrackListener(new DeleteLabelMouseTrackAdapter());
 

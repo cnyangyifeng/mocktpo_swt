@@ -79,9 +79,9 @@ public class TestPapersView extends Composite {
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final ImageButton importButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
-        FormDataSet.attach(importButton).atLeft().atTop();
-        importButton.addMouseListener(new ImportButtonMouseAdapter());
+        final ImageButton newTestPaperButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_NEW_TEST_PAPER, MT.IMAGE_SYSTEM_NEW_TEST_PAPER_HOVER);
+        FormDataSet.attach(newTestPaperButton).atLeft().atTop();
+        newTestPaperButton.addMouseListener(new ImportButtonMouseAdapter());
     }
 
     private void initBody() {

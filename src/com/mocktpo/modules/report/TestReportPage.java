@@ -109,12 +109,12 @@ public class TestReportPage extends Composite {
         FormDataSet.attach(titleLabel).fromLeft(50, -LC.REPORT_TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(LC.REPORT_TITLE_WIDTH);
         CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(testSchema.getTitle() + MT.STRING_SPACE + msgs.getString("score_report"));
 
-        final ImageButton exportButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT, MT.IMAGE_SYSTEM_EXPORT_HOVER);
-        FormDataSet.attach(exportButton).atTop().atRight();
-        exportButton.addMouseListener(new ExportButtonMouseAdapter());
+        final ImageButton exportAsPdfButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_PDF, MT.IMAGE_SYSTEM_EXPORT_AS_PDF_HOVER);
+        FormDataSet.attach(exportAsPdfButton).atTop().atRight();
+        exportAsPdfButton.addMouseListener(new ExportAsPdfButtonMouseAdapter());
 
         final CLabel startTimeLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(startTimeLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(exportButton, 20).atBottomTo(backButton, 0, SWT.BOTTOM);
+        FormDataSet.attach(startTimeLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(exportAsPdfButton, 20).atBottomTo(backButton, 0, SWT.BOTTOM);
         CLabelSet.decorate(startTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displayClockTime(userTestSession.getStartTime()));
 
         final CLabel startTimePreLabel = new CLabel(toolBar, SWT.NONE);
@@ -227,7 +227,7 @@ public class TestReportPage extends Composite {
         }
     }
 
-    private class ExportButtonMouseAdapter extends MouseAdapter {
+    private class ExportAsPdfButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
