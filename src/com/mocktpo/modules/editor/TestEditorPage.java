@@ -41,10 +41,12 @@ public class TestEditorPage extends Composite {
     /* Widgets */
 
     private Composite toolBar;
+    private CLabel generalLabel;
     private CLabel readingLabel;
     private CLabel listeningLabel;
     private CLabel speakingLabel;
     private CLabel writingLabel;
+    private CLabel previewLabel;
 
     private Composite body;
 
@@ -102,6 +104,11 @@ public class TestEditorPage extends Composite {
         FormDataSet.attach(startTimePreLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(startTimeLabel).atBottomTo(backButton, 0, SWT.BOTTOM);
         CLabelSet.decorate(startTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("start_time"));
 
+        generalLabel = new CLabel(toolBar, SWT.NONE);
+        FormDataSet.attach(generalLabel).fromLeft(50, -LC.REPORT_SECTION_LABEL_WIDTH * 3).atTopTo(titleLabel, 10).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
+        CLabelSet.decorate(generalLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("general"));
+        generalLabel.addMouseListener(new SectionTabItemMouseAdapter());
+
         readingLabel = new CLabel(toolBar, SWT.NONE);
         FormDataSet.attach(readingLabel).fromLeft(50, -LC.REPORT_SECTION_LABEL_WIDTH * 2).atTopTo(titleLabel, 10).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
         CLabelSet.decorate(readingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
@@ -121,6 +128,11 @@ public class TestEditorPage extends Composite {
         FormDataSet.attach(writingLabel).fromLeft(50, LC.REPORT_SECTION_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
         CLabelSet.decorate(writingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("writing"));
         writingLabel.addMouseListener(new SectionTabItemMouseAdapter());
+
+        previewLabel = new CLabel(toolBar, SWT.NONE);
+        FormDataSet.attach(previewLabel).fromLeft(50, LC.REPORT_SECTION_LABEL_WIDTH * 2).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
+        CLabelSet.decorate(previewLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("preview"));
+        previewLabel.addMouseListener(new SectionTabItemMouseAdapter());
     }
 
     private void initBody() {
@@ -128,7 +140,7 @@ public class TestEditorPage extends Composite {
         FormDataSet.attach(body).atLeft().atTopTo(toolBar).atRight().atBottom();
         stack = new StackLayout();
         body.setLayout(stack);
-        toReadingReportView();
+        toGeneralReportView();
     }
 
 
@@ -140,32 +152,58 @@ public class TestEditorPage extends Composite {
      * ==================================================
      */
 
+    public void toGeneralReportView() {
+        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
+        CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+    }
+
     public void toReadingReportView() {
+        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
         CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
     }
 
     public void toListeningReportView() {
+        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
         CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
     }
 
     public void toSpeakingReportView() {
+        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
         CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
     }
 
     public void toWritingReportView() {
+        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
+        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+    }
+
+    public void toPreviewReportView() {
+        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
     }
 
     /*
@@ -222,7 +260,9 @@ public class TestEditorPage extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             String text = ((CLabel) e.widget).getText();
-            if (msgs.getString("reading").equals(text)) {
+            if (msgs.getString("general").equals(text)) {
+                toGeneralReportView();
+            } else if (msgs.getString("reading").equals(text)) {
                 toReadingReportView();
             } else if (msgs.getString("listening").equals(text)) {
                 toListeningReportView();
@@ -230,6 +270,8 @@ public class TestEditorPage extends Composite {
                 toSpeakingReportView();
             } else if (msgs.getString("writing").equals(text)) {
                 toWritingReportView();
+            } else if (msgs.getString("preview").equals(text)) {
+                toPreviewReportView();
             }
         }
     }
