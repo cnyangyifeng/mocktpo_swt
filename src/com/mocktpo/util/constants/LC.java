@@ -51,10 +51,13 @@ public interface LC {
     int TEST_HEADER_HEIGHT = 90;
     int VOLUME_CONTROL_WIDTH = 100;
 
-    /* Report Module */
+    /* Test Report Module */
     int REPORT_TITLE_WIDTH = 300;
     int REPORT_SECTION_LABEL_WIDTH = 90;
     int REPORT_SECTION_LABEL_HEIGHT = 30;
+
+    /* Test Editor Module */
+    int REPORT_STEP_BUTTON_WIDTH = 120;
 
     /*
      * ==================================================

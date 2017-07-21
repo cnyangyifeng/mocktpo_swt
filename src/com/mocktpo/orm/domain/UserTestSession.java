@@ -4,10 +4,12 @@ import com.mocktpo.util.constants.ST;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.vo.TestViewVo;
 
+import java.util.UUID;
+
 public class UserTestSession {
 
     private int sid;
-    private int tid;
+    private String tid;
     private String title;
     private String fileAlias;
     private int stars;
@@ -42,11 +44,11 @@ public class UserTestSession {
         this.sid = sid;
     }
 
-    public int getTid() {
+    public String getTid() {
         return tid;
     }
 
-    public void setTid(int tid) {
+    public void setTid(String tid) {
         this.tid = tid;
     }
 

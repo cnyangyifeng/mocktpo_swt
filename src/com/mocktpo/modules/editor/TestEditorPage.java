@@ -40,15 +40,17 @@ public class TestEditorPage extends Composite {
 
     /* Widgets */
 
-    private Composite toolBar;
-    private CLabel generalLabel;
-    private CLabel readingLabel;
-    private CLabel listeningLabel;
-    private CLabel speakingLabel;
-    private CLabel writingLabel;
-    private CLabel previewLabel;
+    private Composite header;
+    private ImageButton generalButton;
+    private ImageButton readingButton;
+    private ImageButton listeningButton;
+    private ImageButton speakingButton;
+    private ImageButton writingButton;
+    private ImageButton previewButton;
 
     private Composite body;
+
+    private Composite footer;
 
     /*
      * ==================================================
@@ -66,7 +68,8 @@ public class TestEditorPage extends Composite {
 
     private void init() {
         golbal();
-        initToolBar();
+        initHeader();
+        initFooter();
         initBody();
     }
 
@@ -74,75 +77,95 @@ public class TestEditorPage extends Composite {
         FormLayoutSet.layout(this);
     }
 
-    private void initToolBar() {
-        toolBar = new Composite(this, SWT.NONE);
-        FormDataSet.attach(toolBar).atLeft().atTop().atRight();
-        CompositeSet.decorate(toolBar).setBackground(MT.COLOR_WHITE_SMOKE);
-        FormLayoutSet.layout(toolBar).marginWidth(10).marginHeight(10).spacing(5);
+    private void initHeader() {
+        header = new Composite(this, SWT.NONE);
+        FormDataSet.attach(header).atLeft().atTop().atRight();
+        CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE_SMOKE);
+        FormLayoutSet.layout(header).marginWidth(10).marginHeight(10).spacing(5);
 
         final Label divider = new Label(this, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
+        FormDataSet.attach(divider).atLeft().atTopTo(header).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final ImageButton backButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_BACK, MT.IMAGE_SYSTEM_BACK_HOVER);
+        final ImageButton backButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_BACK, MT.IMAGE_SYSTEM_BACK_HOVER);
         FormDataSet.attach(backButton).atLeft().atTop();
         backButton.addMouseListener(new BackButtonMouseAdapter());
 
-        final CLabel titleLabel = new CLabel(toolBar, SWT.NONE);
+        final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).fromLeft(50, -LC.REPORT_TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(LC.REPORT_TITLE_WIDTH);
         CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("test_papers"));
 
-        final ImageButton exportAsZipButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_HOVER);
-        FormDataSet.attach(exportAsZipButton).atTop().atRight();
-        exportAsZipButton.addMouseListener(new ExportAsZipButtonMouseAdapter());
+        final CLabel endTimeLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(endTimeLabel).atTopTo(backButton, 0, SWT.TOP).atRight().atBottomTo(backButton, 0, SWT.BOTTOM);
+        CLabelSet.decorate(endTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText("0000-00-00 00:00:00");
 
-        final CLabel startTimeLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(startTimeLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(exportAsZipButton, 20).atBottomTo(backButton, 0, SWT.BOTTOM);
-        CLabelSet.decorate(startTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText("xx");
+        final CLabel endTimePreLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(endTimePreLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(endTimeLabel).atBottomTo(backButton, 0, SWT.BOTTOM);
+        CLabelSet.decorate(endTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("end_time"));
 
-        final CLabel startTimePreLabel = new CLabel(toolBar, SWT.NONE);
+        final CLabel startTimeLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(startTimeLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(endTimePreLabel, 20).atBottomTo(backButton, 0, SWT.BOTTOM);
+        CLabelSet.decorate(startTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText("0000-00-00 00:00:00");
+
+        final CLabel startTimePreLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(startTimePreLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(startTimeLabel).atBottomTo(backButton, 0, SWT.BOTTOM);
         CLabelSet.decorate(startTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("start_time"));
 
-        generalLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(generalLabel).fromLeft(50, -LC.REPORT_SECTION_LABEL_WIDTH * 3).atTopTo(titleLabel, 10).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
-        CLabelSet.decorate(generalLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("general"));
-        generalLabel.addMouseListener(new SectionTabItemMouseAdapter());
+        generalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
+        FormDataSet.attach(generalButton).fromLeft(50, -LC.REPORT_STEP_BUTTON_WIDTH * 3).atTopTo(titleLabel, 10);
+        generalButton.addMouseListener(new StepButtonMouseAdapter());
 
-        readingLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(readingLabel).fromLeft(50, -LC.REPORT_SECTION_LABEL_WIDTH * 2).atTopTo(titleLabel, 10).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
-        CLabelSet.decorate(readingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
-        readingLabel.addMouseListener(new SectionTabItemMouseAdapter());
+        readingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
+        FormDataSet.attach(readingButton).fromLeft(50, -LC.REPORT_STEP_BUTTON_WIDTH * 2).atTopTo(generalButton, 0, SWT.TOP);
+        readingButton.addMouseListener(new StepButtonMouseAdapter());
 
-        listeningLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(listeningLabel).fromLeft(50, -LC.REPORT_SECTION_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
-        CLabelSet.decorate(listeningLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("listening"));
-        listeningLabel.addMouseListener(new SectionTabItemMouseAdapter());
+        listeningButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
+        FormDataSet.attach(listeningButton).fromLeft(50, -LC.REPORT_STEP_BUTTON_WIDTH).atTopTo(generalButton, 0, SWT.TOP);
+        listeningButton.addMouseListener(new StepButtonMouseAdapter());
 
-        speakingLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(speakingLabel).fromLeft(50).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
-        CLabelSet.decorate(speakingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("speaking"));
-        speakingLabel.addMouseListener(new SectionTabItemMouseAdapter());
+        speakingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
+        FormDataSet.attach(speakingButton).fromLeft(50).atTopTo(generalButton, 0, SWT.TOP);
+        speakingButton.addMouseListener(new StepButtonMouseAdapter());
 
-        writingLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(writingLabel).fromLeft(50, LC.REPORT_SECTION_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
-        CLabelSet.decorate(writingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("writing"));
-        writingLabel.addMouseListener(new SectionTabItemMouseAdapter());
+        writingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
+        FormDataSet.attach(writingButton).fromLeft(50, LC.REPORT_STEP_BUTTON_WIDTH).atTopTo(generalButton, 0, SWT.TOP);
+        writingButton.addMouseListener(new StepButtonMouseAdapter());
 
-        previewLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(previewLabel).fromLeft(50, LC.REPORT_SECTION_LABEL_WIDTH * 2).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
-        CLabelSet.decorate(previewLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("preview"));
-        previewLabel.addMouseListener(new SectionTabItemMouseAdapter());
+        previewButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
+        FormDataSet.attach(previewButton).fromLeft(50, LC.REPORT_STEP_BUTTON_WIDTH * 2).atTopTo(generalButton, 0, SWT.TOP);
+        previewButton.addMouseListener(new StepButtonMouseAdapter());
+    }
+
+    private void initFooter() {
+        footer = new Composite(this, SWT.NONE);
+        FormDataSet.attach(footer).atLeft().atRight().atBottom();
+        CompositeSet.decorate(footer).setBackground(MT.COLOR_WHITE_SMOKE);
+        FormLayoutSet.layout(footer).marginWidth(10).marginHeight(10).spacing(5);
+
+        final Label divider = new Label(this, SWT.NONE);
+        FormDataSet.attach(divider).atLeft().atRight().atBottomTo(footer, 0, SWT.TOP).withHeight(1);
+        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
+
+        final ImageButton backButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_BACK, MT.IMAGE_SYSTEM_BACK_HOVER);
+        FormDataSet.attach(backButton).atLeft().atTop();
+        backButton.addMouseListener(new BackButtonMouseAdapter());
+
+        final CLabel titleLabel = new CLabel(footer, SWT.NONE);
+        FormDataSet.attach(titleLabel).fromLeft(50, -LC.REPORT_TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(LC.REPORT_TITLE_WIDTH);
+        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("test_papers"));
+
+        final ImageButton exportAsZipButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_HOVER);
+        FormDataSet.attach(exportAsZipButton).atTop().atRight();
+        exportAsZipButton.addMouseListener(new ExportAsZipButtonMouseAdapter());
     }
 
     private void initBody() {
         body = new Composite(this, SWT.NONE);
-        FormDataSet.attach(body).atLeft().atTopTo(toolBar).atRight().atBottom();
+        FormDataSet.attach(body).atLeft().atTopTo(header).atRight().atBottomTo(footer);
         stack = new StackLayout();
         body.setLayout(stack);
         toGeneralReportView();
     }
-
 
     /*
      * ==================================================
@@ -153,57 +176,21 @@ public class TestEditorPage extends Composite {
      */
 
     public void toGeneralReportView() {
-        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
-        CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
     }
 
     public void toReadingReportView() {
-        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
-        CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
     }
 
     public void toListeningReportView() {
-        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
-        CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
     }
 
     public void toSpeakingReportView() {
-        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
-        CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
     }
 
     public void toWritingReportView() {
-        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
-        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
     }
 
     public void toPreviewReportView() {
-        CLabelSet.decorate(generalLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
-        CLabelSet.decorate(previewLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
     }
 
     /*
@@ -255,24 +242,10 @@ public class TestEditorPage extends Composite {
         }
     }
 
-    private class SectionTabItemMouseAdapter extends MouseAdapter {
+    private class StepButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            String text = ((CLabel) e.widget).getText();
-            if (msgs.getString("general").equals(text)) {
-                toGeneralReportView();
-            } else if (msgs.getString("reading").equals(text)) {
-                toReadingReportView();
-            } else if (msgs.getString("listening").equals(text)) {
-                toListeningReportView();
-            } else if (msgs.getString("speaking").equals(text)) {
-                toSpeakingReportView();
-            } else if (msgs.getString("writing").equals(text)) {
-                toWritingReportView();
-            } else if (msgs.getString("preview").equals(text)) {
-                toPreviewReportView();
-            }
         }
     }
 }

@@ -23,7 +23,7 @@ public class TestSchemaUtils {
 
     public static void generate() {
         TestSchemaVo testSchemaVo = new TestSchemaVo();
-        testSchemaVo.setTid(Integer.parseInt(schema.getString("tid")));
+        testSchemaVo.setTid(schema.getString("tid"));
         testSchemaVo.setTitle(schema.getString("title"));
         testSchemaVo.setStars(Integer.parseInt(schema.getString("stars")));
         testSchemaVo.setViewVos(initViewVos());

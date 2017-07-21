@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class TestSchemaVo implements Serializable {
 
@@ -22,7 +23,7 @@ public class TestSchemaVo implements Serializable {
 
     private List<TestViewVo> viewVos = new ArrayList<TestViewVo>(INITIAL_CACHE_SIZE);
 
-    private int tid;
+    private String tid;
     private String title;
     private int stars;
 
@@ -43,11 +44,11 @@ public class TestSchemaVo implements Serializable {
         this.viewVos = viewVos;
     }
 
-    public int getTid() {
+    public String getTid() {
         return tid;
     }
 
-    public void setTid(int tid) {
+    public void setTid(String tid) {
         this.tid = tid;
     }
 
