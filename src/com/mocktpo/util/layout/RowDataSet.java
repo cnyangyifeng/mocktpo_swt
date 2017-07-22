@@ -5,8 +5,6 @@ import org.eclipse.swt.widgets.Control;
 
 public class RowDataSet {
 
-    private static final int DENOMINATOR = 100;
-
     private RowData data;
 
     public static RowDataSet attach(Control c) {
@@ -26,9 +24,5 @@ public class RowDataSet {
     public RowDataSet withHeight(int height) {
         data.height = height;
         return this;
-    }
-
-    public RowData getFormData() {
-        return data;
     }
 }

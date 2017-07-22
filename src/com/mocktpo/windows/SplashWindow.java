@@ -25,10 +25,6 @@ public class SplashWindow {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Application */
-
-    private MyApplication app;
-
     /* Display and Shell */
 
     private Display d;
@@ -54,8 +50,7 @@ public class SplashWindow {
      */
 
     public SplashWindow() {
-        this.app = MyApplication.get();
-        this.d = app.getDisplay();
+        this.d = MyApplication.get().getDisplay();
         init();
     }
 
@@ -153,17 +148,5 @@ public class SplashWindow {
         white.dispose();
         b.dispose();
         ico.dispose();
-    }
-
-    /*
-     * ==================================================
-     *
-     * Getters and Setters
-     *
-     * ==================================================
-     */
-
-    public Display getDisplay() {
-        return d;
     }
 }

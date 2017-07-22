@@ -50,8 +50,4 @@ public class FormLayoutSet {
         l.spacing = n;
         return this;
     }
-
-    public FormLayout getFormLayout() {
-        return l;
-    }
 }

@@ -37,10 +37,6 @@ public class RequiredAnswerWindow {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Application */
-
-    private MyApplication app;
-
     /* Display and Shell */
 
     private Display d;
@@ -63,8 +59,7 @@ public class RequiredAnswerWindow {
      */
 
     public RequiredAnswerWindow(int type) {
-        this.app = MyApplication.get();
-        this.d = app.getDisplay();
+        this.d = MyApplication.get().getDisplay();
         this.type = type;
         init();
     }

@@ -60,8 +60,4 @@ public class RowLayoutSet {
         l.spacing = n;
         return this;
     }
-
-    public RowLayout getRowLayout() {
-        return l;
-    }
 }

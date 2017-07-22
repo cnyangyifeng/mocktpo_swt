@@ -10,7 +10,6 @@ import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.PDFUtils;
 import com.mocktpo.util.TimeUtils;
-import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -33,6 +32,12 @@ import java.util.ResourceBundle;
 
 public class TestReportPage extends Composite {
 
+    /* Constants */
+
+    private static final int TITLE_WIDTH = 300;
+    private static final int SECTION_LABEL_WIDTH = 90;
+    private static final int SECTION_LABEL_HEIGHT = 30;
+
     /* Logger and Messages */
 
     protected static final Logger logger = LogManager.getLogger();
@@ -48,7 +53,7 @@ public class TestReportPage extends Composite {
 
     /* Widgets */
 
-    private Composite toolBar;
+    private Composite header;
     private CLabel readingLabel;
     private CLabel listeningLabel;
     private CLabel speakingLabel;
@@ -83,7 +88,7 @@ public class TestReportPage extends Composite {
 
     private void init() {
         golbal();
-        initToolBar();
+        initHeader();
         initBody();
     }
 
@@ -91,60 +96,60 @@ public class TestReportPage extends Composite {
         FormLayoutSet.layout(this);
     }
 
-    private void initToolBar() {
-        toolBar = new Composite(this, SWT.NONE);
-        FormDataSet.attach(toolBar).atLeft().atTop().atRight();
-        CompositeSet.decorate(toolBar).setBackground(MT.COLOR_WHITE_SMOKE);
-        FormLayoutSet.layout(toolBar).marginWidth(10).marginHeight(10).spacing(5);
+    private void initHeader() {
+        header = new Composite(this, SWT.NONE);
+        FormDataSet.attach(header).atLeft().atTop().atRight();
+        CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE_SMOKE);
+        FormLayoutSet.layout(header).marginWidth(10).marginHeight(10).spacing(5);
 
         final Label divider = new Label(this, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
+        FormDataSet.attach(divider).atLeft().atTopTo(header).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final ImageButton backButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_BACK, MT.IMAGE_SYSTEM_BACK_HOVER);
+        final ImageButton backButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_BACK, MT.IMAGE_SYSTEM_BACK_HOVER);
         FormDataSet.attach(backButton).atLeft().atTop();
         backButton.addMouseListener(new BackButtonMouseAdapter());
 
-        final CLabel titleLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(titleLabel).fromLeft(50, -LC.REPORT_TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(LC.REPORT_TITLE_WIDTH);
+        final CLabel titleLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(titleLabel).fromLeft(50, -TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
         CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(testSchema.getTitle() + MT.STRING_SPACE + msgs.getString("score_report"));
 
-        final ImageButton exportAsPdfButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_PDF, MT.IMAGE_SYSTEM_EXPORT_AS_PDF_HOVER);
+        final ImageButton exportAsPdfButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_PDF, MT.IMAGE_SYSTEM_EXPORT_AS_PDF_HOVER);
         FormDataSet.attach(exportAsPdfButton).atTop().atRight();
         exportAsPdfButton.addMouseListener(new ExportAsPdfButtonMouseAdapter());
 
-        final CLabel startTimeLabel = new CLabel(toolBar, SWT.NONE);
+        final CLabel startTimeLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(startTimeLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(exportAsPdfButton, 20).atBottomTo(backButton, 0, SWT.BOTTOM);
         CLabelSet.decorate(startTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displayClockTime(userTestSession.getStartTime()));
 
-        final CLabel startTimePreLabel = new CLabel(toolBar, SWT.NONE);
+        final CLabel startTimePreLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(startTimePreLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(startTimeLabel).atBottomTo(backButton, 0, SWT.BOTTOM);
         CLabelSet.decorate(startTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("start_time"));
 
-        readingLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(readingLabel).fromLeft(50, -LC.REPORT_SECTION_LABEL_WIDTH * 2).atTopTo(titleLabel, 10).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
+        readingLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(readingLabel).fromLeft(50, -SECTION_LABEL_WIDTH * 2).atTopTo(titleLabel, 10).withWidth(SECTION_LABEL_WIDTH).withHeight(SECTION_LABEL_HEIGHT);
         CLabelSet.decorate(readingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
         readingLabel.addMouseListener(new SectionTabItemMouseAdapter());
 
-        listeningLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(listeningLabel).fromLeft(50, -LC.REPORT_SECTION_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
+        listeningLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(listeningLabel).fromLeft(50, -SECTION_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(SECTION_LABEL_WIDTH).withHeight(SECTION_LABEL_HEIGHT);
         CLabelSet.decorate(listeningLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("listening"));
         listeningLabel.addMouseListener(new SectionTabItemMouseAdapter());
 
-        speakingLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(speakingLabel).fromLeft(50).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
+        speakingLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(speakingLabel).fromLeft(50).atTopTo(readingLabel, 0, SWT.TOP).withWidth(SECTION_LABEL_WIDTH).withHeight(SECTION_LABEL_HEIGHT);
         CLabelSet.decorate(speakingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("speaking"));
         speakingLabel.addMouseListener(new SectionTabItemMouseAdapter());
 
-        writingLabel = new CLabel(toolBar, SWT.NONE);
-        FormDataSet.attach(writingLabel).fromLeft(50, LC.REPORT_SECTION_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(LC.REPORT_SECTION_LABEL_WIDTH).withHeight(LC.REPORT_SECTION_LABEL_HEIGHT);
+        writingLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(writingLabel).fromLeft(50, SECTION_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(SECTION_LABEL_WIDTH).withHeight(SECTION_LABEL_HEIGHT);
         CLabelSet.decorate(writingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("writing"));
         writingLabel.addMouseListener(new SectionTabItemMouseAdapter());
     }
 
     private void initBody() {
         body = new Composite(this, SWT.NONE);
-        FormDataSet.attach(body).atLeft().atTopTo(toolBar).atRight().atBottom();
+        FormDataSet.attach(body).atLeft().atTopTo(header).atRight().atBottom();
         stack = new StackLayout();
         body.setLayout(stack);
         toReadingReportView();

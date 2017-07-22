@@ -71,8 +71,4 @@ public class GridLayoutSet {
         l.marginHeight = n;
         return this;
     }
-
-    public GridLayout getGridLayout() {
-        return l;
-    }
 }

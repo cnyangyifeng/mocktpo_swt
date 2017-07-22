@@ -154,8 +154,4 @@ public class FormDataSet {
         data.height = height;
         return this;
     }
-
-    public FormData getFormData() {
-        return data;
-    }
 }

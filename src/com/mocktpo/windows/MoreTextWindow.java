@@ -37,10 +37,6 @@ public class MoreTextWindow {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Application */
-
-    private MyApplication app;
-
     /* Display and Shell */
 
     private Display d;
@@ -59,8 +55,7 @@ public class MoreTextWindow {
      */
 
     public MoreTextWindow() {
-        this.app = MyApplication.get();
-        this.d = app.getDisplay();
+        this.d = MyApplication.get().getDisplay();
         init();
     }
 

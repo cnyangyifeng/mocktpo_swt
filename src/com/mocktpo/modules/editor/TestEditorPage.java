@@ -3,7 +3,6 @@ package com.mocktpo.modules.editor;
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.PDFUtils;
-import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -24,6 +23,11 @@ import java.io.File;
 import java.util.ResourceBundle;
 
 public class TestEditorPage extends Composite {
+
+    /* Constants */
+
+    private static final int TITLE_WIDTH = 300;
+    private static final int STEP_BUTTON_WIDTH = 120;
 
     /* Logger and Messages */
 
@@ -92,7 +96,7 @@ public class TestEditorPage extends Composite {
         backButton.addMouseListener(new BackButtonMouseAdapter());
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(titleLabel).fromLeft(50, -LC.REPORT_TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(LC.REPORT_TITLE_WIDTH);
+        FormDataSet.attach(titleLabel).fromLeft(50, -TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
         CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("test_papers"));
 
         final CLabel endTimeLabel = new CLabel(header, SWT.NONE);
@@ -112,28 +116,28 @@ public class TestEditorPage extends Composite {
         CLabelSet.decorate(startTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("start_time"));
 
         generalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
-        FormDataSet.attach(generalButton).fromLeft(50, -LC.REPORT_STEP_BUTTON_WIDTH * 3).atTopTo(titleLabel, 10);
-        generalButton.addMouseListener(new StepButtonMouseAdapter());
+        FormDataSet.attach(generalButton).fromLeft(50, -STEP_BUTTON_WIDTH * 3).atTopTo(titleLabel, 10);
+        generalButton.addMouseListener(new GeneralButtonMouseAdapter());
 
         readingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
-        FormDataSet.attach(readingButton).fromLeft(50, -LC.REPORT_STEP_BUTTON_WIDTH * 2).atTopTo(generalButton, 0, SWT.TOP);
-        readingButton.addMouseListener(new StepButtonMouseAdapter());
+        FormDataSet.attach(readingButton).fromLeft(50, -STEP_BUTTON_WIDTH * 2).atTopTo(generalButton, 0, SWT.TOP);
+        readingButton.addMouseListener(new ReadingButtonMouseAdapter());
 
         listeningButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
-        FormDataSet.attach(listeningButton).fromLeft(50, -LC.REPORT_STEP_BUTTON_WIDTH).atTopTo(generalButton, 0, SWT.TOP);
-        listeningButton.addMouseListener(new StepButtonMouseAdapter());
+        FormDataSet.attach(listeningButton).fromLeft(50, -STEP_BUTTON_WIDTH).atTopTo(generalButton, 0, SWT.TOP);
+        listeningButton.addMouseListener(new ListeningButtonMouseAdapter());
 
         speakingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
         FormDataSet.attach(speakingButton).fromLeft(50).atTopTo(generalButton, 0, SWT.TOP);
-        speakingButton.addMouseListener(new StepButtonMouseAdapter());
+        speakingButton.addMouseListener(new SpeakingButtonMouseAdapter());
 
         writingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
-        FormDataSet.attach(writingButton).fromLeft(50, LC.REPORT_STEP_BUTTON_WIDTH).atTopTo(generalButton, 0, SWT.TOP);
-        writingButton.addMouseListener(new StepButtonMouseAdapter());
+        FormDataSet.attach(writingButton).fromLeft(50, STEP_BUTTON_WIDTH).atTopTo(generalButton, 0, SWT.TOP);
+        writingButton.addMouseListener(new WritingButtonMouseAdapter());
 
         previewButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
-        FormDataSet.attach(previewButton).fromLeft(50, LC.REPORT_STEP_BUTTON_WIDTH * 2).atTopTo(generalButton, 0, SWT.TOP);
-        previewButton.addMouseListener(new StepButtonMouseAdapter());
+        FormDataSet.attach(previewButton).fromLeft(50, STEP_BUTTON_WIDTH * 2).atTopTo(generalButton, 0, SWT.TOP);
+        previewButton.addMouseListener(new PreviewButtonMouseAdapter());
     }
 
     private void initFooter() {
@@ -151,7 +155,7 @@ public class TestEditorPage extends Composite {
         backButton.addMouseListener(new BackButtonMouseAdapter());
 
         final CLabel titleLabel = new CLabel(footer, SWT.NONE);
-        FormDataSet.attach(titleLabel).fromLeft(50, -LC.REPORT_TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(LC.REPORT_TITLE_WIDTH);
+        FormDataSet.attach(titleLabel).fromLeft(50, -TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
         CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("test_papers"));
 
         final ImageButton exportAsZipButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_HOVER);
@@ -176,21 +180,57 @@ public class TestEditorPage extends Composite {
      */
 
     public void toGeneralReportView() {
+        generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
+        readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
+        listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
+        speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
+        writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
+        previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
     }
 
     public void toReadingReportView() {
+        generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
+        readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING_HOVER, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
+        listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
+        speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
+        writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
+        previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
     }
 
     public void toListeningReportView() {
+        generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
+        readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
+        listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
+        speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
+        writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
+        previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
     }
 
     public void toSpeakingReportView() {
+        generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
+        readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
+        listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
+        speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
+        writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
+        previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
     }
 
     public void toWritingReportView() {
+        generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
+        readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
+        listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
+        speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
+        writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING_HOVER, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
+        previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
     }
 
     public void toPreviewReportView() {
+        generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
+        readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
+        listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
+        speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
+        writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
+        previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
     }
 
     /*
@@ -242,10 +282,51 @@ public class TestEditorPage extends Composite {
         }
     }
 
-    private class StepButtonMouseAdapter extends MouseAdapter {
+    private class GeneralButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
+            toGeneralReportView();
+        }
+    }
+
+    private class ReadingButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            toReadingReportView();
+        }
+    }
+
+    private class ListeningButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            toListeningReportView();
+        }
+    }
+
+    private class SpeakingButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            toSpeakingReportView();
+        }
+    }
+
+    private class WritingButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            toWritingReportView();
+        }
+    }
+
+    private class PreviewButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            toPreviewReportView();
         }
     }
 }

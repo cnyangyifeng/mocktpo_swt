@@ -23,7 +23,7 @@ public class DroppableAnswerComposite extends Composite {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Display and Application */
+    /* Display */
 
     private Display d;
 
