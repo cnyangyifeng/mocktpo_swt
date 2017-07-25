@@ -1,4 +1,4 @@
-package com.mocktpo.modules.editor.views;
+package com.mocktpo.modules.paper.views;
 
 import com.mocktpo.modules.system.widgets.TestRecordRow;
 import com.mocktpo.orm.domain.UserTestSession;
@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Display;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class GeneralEditorView extends Composite {
+public class GeneralPaperView extends Composite {
 
     /* Logger and Messages */
 
@@ -44,7 +44,7 @@ public class GeneralEditorView extends Composite {
      * ==================================================
      */
 
-    public GeneralEditorView(Composite parent, int style) {
+    public GeneralPaperView(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();

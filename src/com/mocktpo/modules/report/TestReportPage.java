@@ -16,7 +16,7 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.vo.TestSchemaVo;
+import com.mocktpo.vo.TestPaperVo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -67,7 +67,7 @@ public class TestReportPage extends Composite {
 
     /* Properties */
 
-    private TestSchemaVo testSchema;
+    private TestPaperVo testPaper;
     private UserTestSession userTestSession;
 
     /*
@@ -82,7 +82,7 @@ public class TestReportPage extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
-        this.testSchema = ConfigUtils.load(this.userTestSession.getFileAlias(), TestSchemaVo.class);
+        this.testPaper = ConfigUtils.load(this.userTestSession.getFileAlias(), TestPaperVo.class);
         init();
     }
 
@@ -112,7 +112,7 @@ public class TestReportPage extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).fromLeft(50, -TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(testSchema.getTitle() + MT.STRING_SPACE + msgs.getString("score_report"));
+        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(testPaper.getTitle() + MT.STRING_SPACE + msgs.getString("score_report"));
 
         final ImageButton exportAsPdfButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_PDF, MT.IMAGE_SYSTEM_EXPORT_AS_PDF_HOVER);
         FormDataSet.attach(exportAsPdfButton).atTop().atRight();

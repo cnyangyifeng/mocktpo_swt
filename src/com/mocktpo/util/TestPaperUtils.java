@@ -3,7 +3,7 @@ package com.mocktpo.util;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.vo.StyleRangeVo;
 import com.mocktpo.vo.StyledTextVo;
-import com.mocktpo.vo.TestSchemaVo;
+import com.mocktpo.vo.TestPaperVo;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -11,23 +11,23 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
-public class TestSchemaUtils {
+public class TestPaperUtils {
 
     /* Logger and Messages */
 
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle schema = ResourceBundle.getBundle("data.schemas.s3");
 
-    private TestSchemaUtils() {
+    private TestPaperUtils() {
     }
 
     public static void generate() {
-        TestSchemaVo testSchemaVo = new TestSchemaVo();
-        testSchemaVo.setTid(schema.getString("tid"));
-        testSchemaVo.setTitle(schema.getString("title"));
-        testSchemaVo.setStars(Integer.parseInt(schema.getString("stars")));
-        testSchemaVo.setViewVos(initViewVos());
-        ConfigUtils.save(schema.getString("fileAlias"), testSchemaVo);
+        TestPaperVo testPaperVo = new TestPaperVo();
+        testPaperVo.setTid(schema.getString("tid"));
+        testPaperVo.setTitle(schema.getString("title"));
+        testPaperVo.setStars(Integer.parseInt(schema.getString("stars")));
+        testPaperVo.setViewVos(initViewVos());
+        ConfigUtils.save(schema.getString("fileAlias"), testPaperVo);
     }
 
     private static List<TestViewVo> initViewVos() {
@@ -530,6 +530,6 @@ public class TestSchemaUtils {
     }
 
     public static void main(String[] args) {
-        TestSchemaUtils.generate();
+        TestPaperUtils.generate();
     }
 }

@@ -10,7 +10,7 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.vo.TestSchemaVo;
+import com.mocktpo.vo.TestPaperVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -46,7 +46,7 @@ public class TestCard extends Composite {
     /* Properties */
 
     private String fileAlias;
-    private TestSchemaVo testSchema;
+    private TestPaperVo testPaper;
 
     /*
      * ==================================================
@@ -60,7 +60,7 @@ public class TestCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testSchema = ConfigUtils.load(fileAlias, TestSchemaVo.class);
+        this.testPaper = ConfigUtils.load(fileAlias, TestPaperVo.class);
         init();
     }
 
@@ -82,9 +82,9 @@ public class TestCard extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(testSchema.getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(testPaper.getTitle());
 
-        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testSchema.getStars());
+        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testPaper.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
 
         final Label divider1 = new Label(header, SWT.NONE);
@@ -137,7 +137,7 @@ public class TestCard extends Composite {
                 box.setMessage(msgs.getString("select_sections_to_start"));
                 box.open();
             } else {
-                UserTestSession userTestSession = PersistenceUtils.newSession(fileAlias, testSchema, readingSelected, listeningSelected, speakingSelected, writingSelected);
+                UserTestSession userTestSession = PersistenceUtils.newSession(fileAlias, testPaper, readingSelected, listeningSelected, speakingSelected, writingSelected);
                 MyApplication.get().getWindow().toTestPage(userTestSession);
             }
         }

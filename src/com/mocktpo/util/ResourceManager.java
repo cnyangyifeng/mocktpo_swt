@@ -179,8 +179,6 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CUT_HOVER, ImageUtils.load(d, "sys_cut_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EDIT, ImageUtils.load(d, "sys_edit"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EDIT_HOVER, ImageUtils.load(d, "sys_edit_h"));
-        caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT, ImageUtils.load(d, "sys_export"));
-        caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_HOVER, ImageUtils.load(d, "sys_export_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_PDF, ImageUtils.load(d, "sys_export_as_pdf"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_PDF_HOVER, ImageUtils.load(d, "sys_export_as_pdf_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_ZIP, ImageUtils.load(d, "sys_export_as_zip"));
@@ -199,16 +197,22 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STAR_OUTLINE, ImageUtils.load(d, "sys_star_outline"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_GENERAL, ImageUtils.load(d, "sys_step_general"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER, ImageUtils.load(d, "sys_step_general_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_GENERAL_DISABLED, ImageUtils.load(d, "sys_step_general_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_LISTENING, ImageUtils.load(d, "sys_step_listening"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER, ImageUtils.load(d, "sys_step_listening_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_LISTENING_DISABLED, ImageUtils.load(d, "sys_step_listening_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_PREVIEW, ImageUtils.load(d, "sys_step_preview"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER, ImageUtils.load(d, "sys_step_preview_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_PREVIEW_DISABLED, ImageUtils.load(d, "sys_step_preview_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_READING, ImageUtils.load(d, "sys_step_reading"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_READING_HOVER, ImageUtils.load(d, "sys_step_reading_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_READING_DISABLED, ImageUtils.load(d, "sys_step_reading_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_SPEAKING, ImageUtils.load(d, "sys_step_speaking"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER, ImageUtils.load(d, "sys_step_speaking_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_SPEAKING_DISABLED, ImageUtils.load(d, "sys_step_speaking_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_WRITING, ImageUtils.load(d, "sys_step_writing"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_WRITING_HOVER, ImageUtils.load(d, "sys_step_writing_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_WRITING_DISABLED, ImageUtils.load(d, "sys_step_writing_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_UNBOXED, ImageUtils.load(d, "sys_unboxed"));
     }
 

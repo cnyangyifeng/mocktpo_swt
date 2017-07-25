@@ -1,4 +1,4 @@
-package com.mocktpo.modules.editor;
+package com.mocktpo.modules.paper;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.widgets.ImageButton;
@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.*;
 import java.io.File;
 import java.util.ResourceBundle;
 
-public class TestEditorPage extends Composite {
+public class TestPaperPage extends Composite {
 
     /* Constants */
 
@@ -64,7 +64,7 @@ public class TestEditorPage extends Composite {
      * ==================================================
      */
 
-    public TestEditorPage(Composite parent, int style) {
+    public TestPaperPage(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();
@@ -85,7 +85,7 @@ public class TestEditorPage extends Composite {
         header = new Composite(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight();
         CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE_SMOKE);
-        FormLayoutSet.layout(header).marginWidth(10).marginHeight(10).spacing(5);
+        FormLayoutSet.layout(header).marginWidth(10).marginHeight(10).spacing(0);
 
         final Label divider = new Label(this, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(header).atRight().withHeight(1);
@@ -95,47 +95,27 @@ public class TestEditorPage extends Composite {
         FormDataSet.attach(backButton).atLeft().atTop();
         backButton.addMouseListener(new BackButtonMouseAdapter());
 
-        final CLabel titleLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(titleLabel).fromLeft(50, -TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("test_papers"));
-
-        final CLabel endTimeLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(endTimeLabel).atTopTo(backButton, 0, SWT.TOP).atRight().atBottomTo(backButton, 0, SWT.BOTTOM);
-        CLabelSet.decorate(endTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText("0000-00-00 00:00:00");
-
-        final CLabel endTimePreLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(endTimePreLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(endTimeLabel).atBottomTo(backButton, 0, SWT.BOTTOM);
-        CLabelSet.decorate(endTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("end_time"));
-
-        final CLabel startTimeLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(startTimeLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(endTimePreLabel, 20).atBottomTo(backButton, 0, SWT.BOTTOM);
-        CLabelSet.decorate(startTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText("0000-00-00 00:00:00");
-
-        final CLabel startTimePreLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(startTimePreLabel).atTopTo(backButton, 0, SWT.TOP).atRightTo(startTimeLabel).atBottomTo(backButton, 0, SWT.BOTTOM);
-        CLabelSet.decorate(startTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("start_time"));
-
-        generalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
-        FormDataSet.attach(generalButton).fromLeft(50, -STEP_BUTTON_WIDTH * 3).atTopTo(titleLabel, 10);
+        generalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER, MT.IMAGE_SYSTEM_STEP_GENERAL_DISABLED);
+        FormDataSet.attach(generalButton).fromLeft(50, -STEP_BUTTON_WIDTH * 3).atTopTo(backButton, 2, SWT.TOP);
         generalButton.addMouseListener(new GeneralButtonMouseAdapter());
 
-        readingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
+        readingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER, MT.IMAGE_SYSTEM_STEP_READING_DISABLED);
         FormDataSet.attach(readingButton).fromLeft(50, -STEP_BUTTON_WIDTH * 2).atTopTo(generalButton, 0, SWT.TOP);
         readingButton.addMouseListener(new ReadingButtonMouseAdapter());
 
-        listeningButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
+        listeningButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER, MT.IMAGE_SYSTEM_STEP_LISTENING_DISABLED);
         FormDataSet.attach(listeningButton).fromLeft(50, -STEP_BUTTON_WIDTH).atTopTo(generalButton, 0, SWT.TOP);
         listeningButton.addMouseListener(new ListeningButtonMouseAdapter());
 
-        speakingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
+        speakingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER, MT.IMAGE_SYSTEM_STEP_SPEAKING_DISABLED);
         FormDataSet.attach(speakingButton).fromLeft(50).atTopTo(generalButton, 0, SWT.TOP);
         speakingButton.addMouseListener(new SpeakingButtonMouseAdapter());
 
-        writingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
+        writingButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER, MT.IMAGE_SYSTEM_STEP_WRITING_DISABLED);
         FormDataSet.attach(writingButton).fromLeft(50, STEP_BUTTON_WIDTH).atTopTo(generalButton, 0, SWT.TOP);
         writingButton.addMouseListener(new WritingButtonMouseAdapter());
 
-        previewButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
+        previewButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER, MT.IMAGE_SYSTEM_STEP_PREVIEW_DISABLED);
         FormDataSet.attach(previewButton).fromLeft(50, STEP_BUTTON_WIDTH * 2).atTopTo(generalButton, 0, SWT.TOP);
         previewButton.addMouseListener(new PreviewButtonMouseAdapter());
     }
@@ -154,9 +134,9 @@ public class TestEditorPage extends Composite {
         FormDataSet.attach(backButton).atLeft().atTop();
         backButton.addMouseListener(new BackButtonMouseAdapter());
 
-        final CLabel titleLabel = new CLabel(footer, SWT.NONE);
+        final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).fromLeft(50, -TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("test_papers"));
+        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("untitled"));
 
         final ImageButton exportAsZipButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_HOVER);
         FormDataSet.attach(exportAsZipButton).atTop().atRight();

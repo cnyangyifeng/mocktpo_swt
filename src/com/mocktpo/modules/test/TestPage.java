@@ -6,7 +6,7 @@ import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.ST;
 import com.mocktpo.util.constants.VT;
-import com.mocktpo.vo.TestSchemaVo;
+import com.mocktpo.vo.TestPaperVo;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,7 +34,7 @@ public class TestPage extends Composite {
 
     /* Properties */
 
-    private TestSchemaVo testSchema;
+    private TestPaperVo testPaper;
     private UserTestSession userTestSession;
 
     /*
@@ -49,7 +49,7 @@ public class TestPage extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
-        this.testSchema = ConfigUtils.load(this.userTestSession.getFileAlias(), TestSchemaVo.class);
+        this.testPaper = ConfigUtils.load(this.userTestSession.getFileAlias(), TestPaperVo.class);
         init();
     }
 
@@ -71,8 +71,8 @@ public class TestPage extends Composite {
      */
 
     public void resume() {
-        this.testSchema = ConfigUtils.load(userTestSession.getFileAlias(), TestSchemaVo.class);
-        if (testSchema != null) {
+        this.testPaper = ConfigUtils.load(userTestSession.getFileAlias(), TestPaperVo.class);
+        if (testPaper != null) {
             stack.topControl = getLastTestView();
             this.layout();
         }
@@ -80,26 +80,26 @@ public class TestPage extends Composite {
 
     private TestView getLastTestView() {
         int lastViewId = userTestSession.getLastViewId();
-        TestViewVo viewVo = testSchema.getViewVo(lastViewId);
+        TestViewVo viewVo = testPaper.getViewVo(lastViewId);
 
         if (viewVo.getSectionType() == ST.SECTION_TYPE_READING && !userTestSession.isReadingSelected()) {
             if (userTestSession.isListeningSelected()) {
-                lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_HEADSET_ON);
-                viewVo = testSchema.getViewVo(lastViewId);
+                lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_HEADSET_ON);
+                viewVo = testPaper.getViewVo(lastViewId);
                 return getTestView(viewVo);
             } else {
                 if (userTestSession.isSpeakingSelected()) {
-                    lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
-                    viewVo = testSchema.getViewVo(lastViewId);
+                    lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
+                    viewVo = testPaper.getViewVo(lastViewId);
                     return getTestView(viewVo);
                 } else {
                     if (userTestSession.isWritingSelected()) {
-                        lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
-                        viewVo = testSchema.getViewVo(lastViewId);
+                        lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                        viewVo = testPaper.getViewVo(lastViewId);
                         return getTestView(viewVo);
                     } else {
-                        lastViewId = testSchema.findTestEndViewId();
-                        viewVo = testSchema.getViewVo(lastViewId);
+                        lastViewId = testPaper.findTestEndViewId();
+                        viewVo = testPaper.getViewVo(lastViewId);
                         return getTestView(viewVo);
                     }
                 }
@@ -108,17 +108,17 @@ public class TestPage extends Composite {
 
         if (viewVo.getSectionType() == ST.SECTION_TYPE_LISTENING && !userTestSession.isListeningSelected()) {
             if (userTestSession.isSpeakingSelected()) {
-                lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
-                viewVo = testSchema.getViewVo(lastViewId);
+                lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
+                viewVo = testPaper.getViewVo(lastViewId);
                 return getTestView(viewVo);
             } else {
                 if (userTestSession.isWritingSelected()) {
-                    lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
-                    viewVo = testSchema.getViewVo(lastViewId);
+                    lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                    viewVo = testPaper.getViewVo(lastViewId);
                     return getTestView(viewVo);
                 } else {
-                    lastViewId = testSchema.findTestEndViewId();
-                    viewVo = testSchema.getViewVo(lastViewId);
+                    lastViewId = testPaper.findTestEndViewId();
+                    viewVo = testPaper.getViewVo(lastViewId);
                     return getTestView(viewVo);
                 }
             }
@@ -126,19 +126,19 @@ public class TestPage extends Composite {
 
         if (viewVo.getSectionType() == ST.SECTION_TYPE_SPEAKING && !userTestSession.isSpeakingSelected()) {
             if (userTestSession.isWritingSelected()) {
-                lastViewId = testSchema.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
-                viewVo = testSchema.getViewVo(lastViewId);
+                lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                viewVo = testPaper.getViewVo(lastViewId);
                 return getTestView(viewVo);
             } else {
-                lastViewId = testSchema.findTestEndViewId();
-                viewVo = testSchema.getViewVo(lastViewId);
+                lastViewId = testPaper.findTestEndViewId();
+                viewVo = testPaper.getViewVo(lastViewId);
                 return getTestView(viewVo);
             }
         }
 
         if (viewVo.getSectionType() == ST.SECTION_TYPE_WRITING && !userTestSession.isWritingSelected()) {
-            lastViewId = testSchema.findTestEndViewId();
-            viewVo = testSchema.getViewVo(lastViewId);
+            lastViewId = testPaper.findTestEndViewId();
+            viewVo = testPaper.getViewVo(lastViewId);
             return getTestView(viewVo);
         }
 
@@ -297,8 +297,8 @@ public class TestPage extends Composite {
      * ==================================================
      */
 
-    public TestSchemaVo getTestSchema() {
-        return testSchema;
+    public TestPaperVo getTestPaper() {
+        return testPaper;
     }
 
     public UserTestSession getUserTestSession() {

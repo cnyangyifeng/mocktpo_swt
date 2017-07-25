@@ -84,7 +84,7 @@ public abstract class TestView extends Composite {
         super(page, style);
         this.d = page.getDisplay();
         this.page = page;
-        this.vo = page.getTestSchema().getViewVo(page.getUserTestSession().getLastViewId());
+        this.vo = page.getTestPaper().getViewVo(page.getUserTestSession().getLastViewId());
         this.volumeControlVisible = !page.getUserTestSession().isVolumeControlHidden();
         init();
         alloc();
@@ -126,7 +126,7 @@ public abstract class TestView extends Composite {
 
         final Label titleLabel = new Label(header, SWT.WRAP);
         FormDataSet.attach(titleLabel).atLeft(10).atTop(10);
-        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestSchema().getTitle() + MT.STRING_SPACE + vo.getSectionTypeName());
+        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestPaper().getTitle() + MT.STRING_SPACE + vo.getSectionTypeName());
 
         /*
          * ==================================================
@@ -153,9 +153,9 @@ public abstract class TestView extends Composite {
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
             int totalQuestionCount;
             if (vo.getSectionType() == ST.SECTION_TYPE_LISTENING) {
-                totalQuestionCount = page.getTestSchema().findTotalQuestionCountInListeningSectionAndGroup(vo.getSectionType(), vo.getListeningGroupId());
+                totalQuestionCount = page.getTestPaper().findTotalQuestionCountInListeningSectionAndGroup(vo.getSectionType(), vo.getListeningGroupId());
             } else {
-                totalQuestionCount = page.getTestSchema().findTotalQuestionCountInSection(vo.getSectionType());
+                totalQuestionCount = page.getTestPaper().findTotalQuestionCountInSection(vo.getSectionType());
             }
             StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + totalQuestionCount);
         }
@@ -305,7 +305,7 @@ public abstract class TestView extends Composite {
                 });
                 if (countDown <= 0) {
                     release();
-                    int lastViewId = page.getTestSchema().findNextViewIdWhileTimeOut(vo.getViewId());
+                    int lastViewId = page.getTestPaper().findNextViewIdWhileTimeOut(vo.getViewId());
                     PersistenceUtils.saveToView(page.getUserTestSession(), lastViewId);
                     d.asyncExec(new Runnable() {
                         @Override

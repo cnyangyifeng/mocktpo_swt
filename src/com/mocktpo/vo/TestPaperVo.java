@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class TestSchemaVo implements Serializable {
+public class TestPaperVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final int INITIAL_CACHE_SIZE = 64;

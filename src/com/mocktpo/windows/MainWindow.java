@@ -1,7 +1,7 @@
 package com.mocktpo.windows;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.modules.editor.TestEditorPage;
+import com.mocktpo.modules.paper.TestPaperPage;
 import com.mocktpo.modules.report.TestReportPage;
 import com.mocktpo.modules.system.MainPage;
 import com.mocktpo.modules.test.TestPage;
@@ -141,9 +141,9 @@ public class MainWindow {
         s.layout();
     }
 
-    public void toTestEditorPage() {
-        final TestEditorPage testEditorPage = new TestEditorPage(s, SWT.NONE);
-        stack.topControl = testEditorPage;
+    public void toTestPaperPage() {
+        final TestPaperPage testPaperPage = new TestPaperPage(s, SWT.NONE);
+        stack.topControl = testPaperPage;
         s.layout();
     }
 
