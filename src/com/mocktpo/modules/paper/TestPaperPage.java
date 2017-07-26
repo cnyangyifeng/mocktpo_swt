@@ -167,9 +167,6 @@ public class TestPaperPage extends Composite {
      */
 
     public void toGeneralPaperView() {
-        if (generalPaperView == null) {
-            generalPaperView = new GeneralPaperView(body, SWT.NONE);
-        }
         generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
         readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
@@ -177,7 +174,9 @@ public class TestPaperPage extends Composite {
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
 
-        generalPaperView.refreshRows();
+        if (generalPaperView == null) {
+            generalPaperView = new GeneralPaperView(body, SWT.NONE);
+        }
         stack.topControl = generalPaperView;
         body.layout();
     }
@@ -189,6 +188,12 @@ public class TestPaperPage extends Composite {
         speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
+
+        if (readingPaperView == null) {
+            readingPaperView = new ReadingPaperView(body, SWT.NONE);
+        }
+        stack.topControl = readingPaperView;
+        body.layout();
     }
 
     public void toListeningPaperView() {
@@ -198,6 +203,12 @@ public class TestPaperPage extends Composite {
         speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
+
+        if (listeningPaperView == null) {
+            listeningPaperView = new ListeningPaperView(body, SWT.NONE);
+        }
+        stack.topControl = listeningPaperView;
+        body.layout();
     }
 
     public void toSpeakingPaperView() {
@@ -207,6 +218,12 @@ public class TestPaperPage extends Composite {
         speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
+
+        if (speakingPaperView == null) {
+            speakingPaperView = new SpeakingPaperView(body, SWT.NONE);
+        }
+        stack.topControl = speakingPaperView;
+        body.layout();
     }
 
     public void toWritingPaperView() {
@@ -216,6 +233,12 @@ public class TestPaperPage extends Composite {
         speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING_HOVER, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
+
+        if (writingPaperView == null) {
+            writingPaperView = new WritingPaperView(body, SWT.NONE);
+        }
+        stack.topControl = writingPaperView;
+        body.layout();
     }
 
     public void toPreviewPaperView() {
@@ -225,6 +248,12 @@ public class TestPaperPage extends Composite {
         speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
+
+        if (previewPaperView == null) {
+            previewPaperView = new PreviewPaperView(body, SWT.NONE);
+        }
+        stack.topControl = previewPaperView;
+        body.layout();
     }
 
     /*

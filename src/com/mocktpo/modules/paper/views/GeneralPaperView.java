@@ -1,8 +1,6 @@
 package com.mocktpo.modules.paper.views;
 
-import com.mocktpo.modules.system.widgets.TestRecordRow;
-import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -14,13 +12,15 @@ import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class GeneralPaperView extends Composite {
+
+    /* Constants */
+
+    private static final int VIEW_PORT_PADDING_WIDTH = 50;
 
     /* Logger and Messages */
 
@@ -35,6 +35,7 @@ public class GeneralPaperView extends Composite {
 
     private ScrolledComposite sc;
     private Composite body;
+    private Composite viewPort;
 
     /*
      * ==================================================
@@ -66,27 +67,28 @@ public class GeneralPaperView extends Composite {
         sc.setExpandVertical(true);
 
         body = new Composite(sc, SWT.NONE);
-        CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-        GridLayoutSet.layout(body).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
+        GridLayoutSet.layout(body).marginBottom(50);
+
+        viewPort = new Composite(body, SWT.NONE);
+        GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
+        GridLayoutSet.layout(viewPort).verticalSpacing(0);
+
+        /*
+         * ==================================================
+         *
+         * Body Updates
+         *
+         * ==================================================
+         */
+
+        updateBody();
 
         sc.setContent(body);
-    }
-
-    private void initRows() {
-        List<UserTestSession> sessions = PersistenceUtils.findSessions();
-        for (UserTestSession session : sessions) {
-            TestRecordRow row = new TestRecordRow(body, SWT.NONE, session);
-            GridDataSet.attach(row).fillHorizontal();
-        }
-        body.layout();
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-        sc.setOrigin(0, 0);
     }
 
-    public void refreshRows() {
-        for (Control c : body.getChildren()) {
-            c.dispose();
-        }
-        initRows();
+
+    private void updateBody() {
+        CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
     }
 }
