@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class TestPaperVo implements Serializable {
 

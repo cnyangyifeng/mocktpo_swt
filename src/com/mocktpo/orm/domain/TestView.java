@@ -1,15 +1,6 @@
-package com.mocktpo.vo;
+package com.mocktpo.orm.domain;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
-public class TestViewVo implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    private static final int INITIAL_CACHE_SIZE = 64;
-
-    private Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>(INITIAL_CACHE_SIZE);
+public class TestView {
 
     private int viewId;
     private int viewType;
@@ -37,23 +28,6 @@ public class TestViewVo implements Serializable {
     private int questionNumberInSection;
     private boolean answerable;
     private int totalAnswerCount;
-
-    public StyledTextVo getStyledText(String key) {
-        for (String i : body.keySet()) {
-            if (i.equals(key)) {
-                return body.get(i);
-            }
-        }
-        return null;
-    }
-
-    public Map<String, StyledTextVo> getBody() {
-        return body;
-    }
-
-    public void setBody(Map<String, StyledTextVo> body) {
-        this.body = body;
-    }
 
     public int getViewId() {
         return viewId;

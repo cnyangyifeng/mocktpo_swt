@@ -1,6 +1,7 @@
 package com.mocktpo.modules.paper;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.modules.paper.views.*;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.PDFUtils;
 import com.mocktpo.util.constants.MT;
@@ -53,6 +54,12 @@ public class TestPaperPage extends Composite {
     private ImageButton previewButton;
 
     private Composite body;
+    private GeneralPaperView generalPaperView;
+    private ReadingPaperView readingPaperView;
+    private ListeningPaperView listeningPaperView;
+    private SpeakingPaperView speakingPaperView;
+    private WritingPaperView writingPaperView;
+    private PreviewPaperView previewPaperView;
 
     private Composite footer;
 
@@ -148,7 +155,7 @@ public class TestPaperPage extends Composite {
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight().atBottomTo(footer);
         stack = new StackLayout();
         body.setLayout(stack);
-        toGeneralReportView();
+        toGeneralPaperView();
     }
 
     /*
@@ -159,16 +166,23 @@ public class TestPaperPage extends Composite {
      * ==================================================
      */
 
-    public void toGeneralReportView() {
+    public void toGeneralPaperView() {
+        if (generalPaperView == null) {
+            generalPaperView = new GeneralPaperView(body, SWT.NONE);
+        }
         generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
         readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
         speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
+
+        generalPaperView.refreshRows();
+        stack.topControl = generalPaperView;
+        body.layout();
     }
 
-    public void toReadingReportView() {
+    public void toReadingPaperView() {
         generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
         readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING_HOVER, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
@@ -177,7 +191,7 @@ public class TestPaperPage extends Composite {
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
     }
 
-    public void toListeningReportView() {
+    public void toListeningPaperView() {
         generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
         readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
@@ -186,7 +200,7 @@ public class TestPaperPage extends Composite {
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
     }
 
-    public void toSpeakingReportView() {
+    public void toSpeakingPaperView() {
         generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
         readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
@@ -195,7 +209,7 @@ public class TestPaperPage extends Composite {
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
     }
 
-    public void toWritingReportView() {
+    public void toWritingPaperView() {
         generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
         readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
@@ -204,7 +218,7 @@ public class TestPaperPage extends Composite {
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
     }
 
-    public void toPreviewReportView() {
+    public void toPreviewPaperView() {
         generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
         readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
@@ -266,7 +280,7 @@ public class TestPaperPage extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            toGeneralReportView();
+            toGeneralPaperView();
         }
     }
 
@@ -274,7 +288,7 @@ public class TestPaperPage extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            toReadingReportView();
+            toReadingPaperView();
         }
     }
 
@@ -282,7 +296,7 @@ public class TestPaperPage extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            toListeningReportView();
+            toListeningPaperView();
         }
     }
 
@@ -290,7 +304,7 @@ public class TestPaperPage extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            toSpeakingReportView();
+            toSpeakingPaperView();
         }
     }
 
@@ -298,7 +312,7 @@ public class TestPaperPage extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            toWritingReportView();
+            toWritingPaperView();
         }
     }
 
@@ -306,7 +320,7 @@ public class TestPaperPage extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            toPreviewReportView();
+            toPreviewPaperView();
         }
     }
 }

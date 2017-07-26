@@ -94,17 +94,17 @@ public class MainPage extends Composite {
         newTestLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(newTestLabel).atLeft().atTopTo(testsPreLabel).atRight().withHeight(60);
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("new_test"));
-        newTestLabel.addMouseListener(new SidebarItemMouseAdapter());
+        newTestLabel.addMouseListener(new NewTestLabelMouseAdapter());
 
         testRecordsLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testRecordsLabel).atLeft().atTopTo(newTestLabel).atRight().withHeight(60);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_GRAY20).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("test_records"));
-        testRecordsLabel.addMouseListener(new SidebarItemMouseAdapter());
+        testRecordsLabel.addMouseListener(new TestRecordsLabelMouseAdapter());
 
         testPapersLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testPapersLabel).atLeft().atTopTo(testRecordsLabel).atRight().withHeight(60);
         CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_GRAY20).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_ORANGE).setLeftMargin(20).setText(msgs.getString("test_papers"));
-        testPapersLabel.addMouseListener(new SidebarItemMouseAdapter());
+        testPapersLabel.addMouseListener(new TestPapersLabelMouseAdapter());
 
         final CLabel practicesPreLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(practicesPreLabel).atLeft().atTopTo(testPapersLabel).atRight().withHeight(60);
@@ -113,7 +113,7 @@ public class MainPage extends Composite {
         practicesLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(practicesLabel).atLeft().atTopTo(practicesPreLabel).atRight().withHeight(60);
         CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("practices"));
-        practicesLabel.addMouseListener(new SidebarItemMouseAdapter());
+        practicesLabel.addMouseListener(new PracticesLabelMouseAdapter());
     }
 
     private void initPages() {
@@ -133,52 +133,56 @@ public class MainPage extends Composite {
      */
 
     public void toNewTestView() {
-        if (newTestView == null) {
-            newTestView = new NewTestView(body, SWT.NONE);
-        }
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_GRAY20);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK);
+
+        if (newTestView == null) {
+            newTestView = new NewTestView(body, SWT.NONE);
+        }
         newTestView.refreshCards();
         stack.topControl = newTestView;
         body.layout();
     }
 
     public void toTestRecordsView() {
-        if (testRecordsView == null) {
-            testRecordsView = new TestRecordsView(body, SWT.NONE);
-        }
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_GRAY20);
         CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK);
+
+        if (testRecordsView == null) {
+            testRecordsView = new TestRecordsView(body, SWT.NONE);
+        }
         testRecordsView.refreshRows();
         stack.topControl = testRecordsView;
         body.layout();
     }
 
     public void toTestPapersView() {
-        if (testPapersView == null) {
-            testPapersView = new TestPapersView(body, SWT.NONE);
-        }
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_GRAY20);
         CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK);
+
+        if (testPapersView == null) {
+            testPapersView = new TestPapersView(body, SWT.NONE);
+        }
         testPapersView.refreshCards();
         stack.topControl = testPapersView;
         body.layout();
     }
 
     public void toPracticesView() {
-        if (practicesView == null) {
-            practicesView = new PracticesView(body, SWT.NONE);
-        }
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_GRAY20);
+
+        if (practicesView == null) {
+            practicesView = new PracticesView(body, SWT.NONE);
+        }
         practicesView.refreshCards();
         stack.topControl = practicesView;
         body.layout();
@@ -200,20 +204,35 @@ public class MainPage extends Composite {
         }
     }
 
-    private class SidebarItemMouseAdapter extends MouseAdapter {
+    private class NewTestLabelMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            String text = ((CLabel) e.widget).getText();
-            if (msgs.getString("new_test").equals(text)) {
-                toNewTestView();
-            } else if (msgs.getString("test_records").equals(text)) {
-                toTestRecordsView();
-            } else if (msgs.getString("test_papers").equals(text)) {
-                toTestPapersView();
-            } else if (msgs.getString("practices").equals(text)) {
-                toPracticesView();
-            }
+            toNewTestView();
+        }
+    }
+
+    private class TestRecordsLabelMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            toTestRecordsView();
+        }
+    }
+
+    private class TestPapersLabelMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            toTestPapersView();
+        }
+    }
+
+    private class PracticesLabelMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            toPracticesView();
         }
     }
 }

@@ -165,52 +165,56 @@ public class TestReportPage extends Composite {
      */
 
     public void toReadingReportView() {
-        if (readingReportView == null) {
-            readingReportView = new ReadingReportView(body, SWT.NONE);
-        }
         CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
         CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+
+        if (readingReportView == null) {
+            readingReportView = new ReadingReportView(body, SWT.NONE);
+        }
         readingReportView.refreshRows();
         stack.topControl = readingReportView;
         body.layout();
     }
 
     public void toListeningReportView() {
-        if (listeningReportView == null) {
-            listeningReportView = new ListeningReportView(body, SWT.NONE);
-        }
         CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
         CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+
+        if (listeningReportView == null) {
+            listeningReportView = new ListeningReportView(body, SWT.NONE);
+        }
         listeningReportView.refreshRows();
         stack.topControl = listeningReportView;
         body.layout();
     }
 
     public void toSpeakingReportView() {
-        if (speakingReportView == null) {
-            speakingReportView = new SpeakingReportView(body, SWT.NONE);
-        }
         CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
         CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
+
+        if (speakingReportView == null) {
+            speakingReportView = new SpeakingReportView(body, SWT.NONE);
+        }
         speakingReportView.refreshRows();
         stack.topControl = speakingReportView;
         body.layout();
     }
 
     public void toWritingReportView() {
-        if (writingReportView == null) {
-            writingReportView = new WritingReportView(body, SWT.NONE);
-        }
         CLabelSet.decorate(readingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(listeningLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(speakingLabel).setBackground(MT.COLOR_WHITE).setForeground(MT.COLOR_GRAY40);
         CLabelSet.decorate(writingLabel).setBackground(MT.COLOR_DARK_BLUE).setForeground(MT.COLOR_WHITE);
+
+        if (writingReportView == null) {
+            writingReportView = new WritingReportView(body, SWT.NONE);
+        }
         writingReportView.refreshRows();
         stack.topControl = writingReportView;
         body.layout();
