@@ -39,7 +39,7 @@ public class TestPaperCard extends Composite {
     /* Properties */
 
     private String fileAlias;
-    private TestPaperVo testPaper;
+    private TestPaperVo testPaperVo;
 
     /*
      * ==================================================
@@ -53,7 +53,7 @@ public class TestPaperCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testPaper = ConfigUtils.load(fileAlias, TestPaperVo.class);
+        this.testPaperVo = ConfigUtils.load(fileAlias, TestPaperVo.class);
         init();
     }
 
@@ -75,9 +75,9 @@ public class TestPaperCard extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(testPaper.getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(testPaperVo.getTitle());
 
-        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testPaper.getStars());
+        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testPaperVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
 
         final Label divider1 = new Label(header, SWT.NONE);

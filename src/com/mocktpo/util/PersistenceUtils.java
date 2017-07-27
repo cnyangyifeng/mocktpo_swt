@@ -16,12 +16,12 @@ import java.util.List;
 
 public class PersistenceUtils {
 
-    public static UserTestSession newSession(String fileAlias, TestPaperVo testPaper, boolean readingSelected, boolean listeningSelected, boolean speakingSelected, boolean writingSelected) {
+    public static UserTestSession newSession(String fileAlias, TestPaperVo testPaperVo, boolean readingSelected, boolean listeningSelected, boolean speakingSelected, boolean writingSelected) {
         UserTestSession userTestSession = new UserTestSession();
-        userTestSession.setTid(testPaper.getTid());
-        userTestSession.setTitle(testPaper.getTitle());
+        userTestSession.setTid(testPaperVo.getTid());
+        userTestSession.setTitle(testPaperVo.getTitle());
         userTestSession.setFileAlias(fileAlias);
-        userTestSession.setStars(testPaper.getStars());
+        userTestSession.setStars(testPaperVo.getStars());
         userTestSession.setStartTime(System.currentTimeMillis());
         userTestSession.setLastVisitTime(System.currentTimeMillis());
         userTestSession.setTimerHidden(false);
@@ -42,7 +42,7 @@ public class PersistenceUtils {
         userTestSession.setLastViewId(1);
         userTestSession.setMaxViewId(1);
         userTestSession.setVisitedViewCount(1);
-        userTestSession.setTotalViewCount(testPaper.findTotalViewCount(readingSelected, listeningSelected, speakingSelected, writingSelected));
+        userTestSession.setTotalViewCount(testPaperVo.findTotalViewCount(readingSelected, listeningSelected, speakingSelected, writingSelected));
         userTestSession.setTestComplete(false);
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
@@ -210,7 +210,7 @@ public class PersistenceUtils {
         UserTestAnswer userTestAnswer = new UserTestAnswer();
         userTestAnswer.setSid(userTestSession.getSid());
         userTestAnswer.setViewId(userTestSession.getLastViewId());
-        userTestAnswer.setSectionType(page.getTestPaper().getViewVo(userTestSession.getLastViewId()).getSectionType());
+        userTestAnswer.setSectionType(page.getTestPaperVo().getViewVo(userTestSession.getLastViewId()).getSectionType());
         userTestAnswer.setAnswer("");
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();

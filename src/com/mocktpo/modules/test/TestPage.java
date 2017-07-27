@@ -34,7 +34,7 @@ public class TestPage extends Composite {
 
     /* Properties */
 
-    private TestPaperVo testPaper;
+    private TestPaperVo testPaperVo;
     private UserTestSession userTestSession;
 
     /*
@@ -49,7 +49,7 @@ public class TestPage extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
-        this.testPaper = ConfigUtils.load(this.userTestSession.getFileAlias(), TestPaperVo.class);
+        this.testPaperVo = ConfigUtils.load(this.userTestSession.getFileAlias(), TestPaperVo.class);
         init();
     }
 
@@ -71,8 +71,8 @@ public class TestPage extends Composite {
      */
 
     public void resume() {
-        this.testPaper = ConfigUtils.load(userTestSession.getFileAlias(), TestPaperVo.class);
-        if (testPaper != null) {
+        this.testPaperVo = ConfigUtils.load(userTestSession.getFileAlias(), TestPaperVo.class);
+        if (testPaperVo != null) {
             stack.topControl = getLastTestView();
             this.layout();
         }
@@ -80,26 +80,26 @@ public class TestPage extends Composite {
 
     private TestView getLastTestView() {
         int lastViewId = userTestSession.getLastViewId();
-        TestViewVo viewVo = testPaper.getViewVo(lastViewId);
+        TestViewVo viewVo = testPaperVo.getViewVo(lastViewId);
 
         if (viewVo.getSectionType() == ST.SECTION_TYPE_READING && !userTestSession.isReadingSelected()) {
             if (userTestSession.isListeningSelected()) {
-                lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_HEADSET_ON);
-                viewVo = testPaper.getViewVo(lastViewId);
+                lastViewId = testPaperVo.findFirstViewIdByViewType(VT.VIEW_TYPE_LISTENING_HEADSET_ON);
+                viewVo = testPaperVo.getViewVo(lastViewId);
                 return getTestView(viewVo);
             } else {
                 if (userTestSession.isSpeakingSelected()) {
-                    lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
-                    viewVo = testPaper.getViewVo(lastViewId);
+                    lastViewId = testPaperVo.findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
+                    viewVo = testPaperVo.getViewVo(lastViewId);
                     return getTestView(viewVo);
                 } else {
                     if (userTestSession.isWritingSelected()) {
-                        lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
-                        viewVo = testPaper.getViewVo(lastViewId);
+                        lastViewId = testPaperVo.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                        viewVo = testPaperVo.getViewVo(lastViewId);
                         return getTestView(viewVo);
                     } else {
-                        lastViewId = testPaper.findTestEndViewId();
-                        viewVo = testPaper.getViewVo(lastViewId);
+                        lastViewId = testPaperVo.findTestEndViewId();
+                        viewVo = testPaperVo.getViewVo(lastViewId);
                         return getTestView(viewVo);
                     }
                 }
@@ -108,17 +108,17 @@ public class TestPage extends Composite {
 
         if (viewVo.getSectionType() == ST.SECTION_TYPE_LISTENING && !userTestSession.isListeningSelected()) {
             if (userTestSession.isSpeakingSelected()) {
-                lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
-                viewVo = testPaper.getViewVo(lastViewId);
+                lastViewId = testPaperVo.findFirstViewIdByViewType(VT.VIEW_TYPE_SPEAKING_HEADSET_ON);
+                viewVo = testPaperVo.getViewVo(lastViewId);
                 return getTestView(viewVo);
             } else {
                 if (userTestSession.isWritingSelected()) {
-                    lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
-                    viewVo = testPaper.getViewVo(lastViewId);
+                    lastViewId = testPaperVo.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                    viewVo = testPaperVo.getViewVo(lastViewId);
                     return getTestView(viewVo);
                 } else {
-                    lastViewId = testPaper.findTestEndViewId();
-                    viewVo = testPaper.getViewVo(lastViewId);
+                    lastViewId = testPaperVo.findTestEndViewId();
+                    viewVo = testPaperVo.getViewVo(lastViewId);
                     return getTestView(viewVo);
                 }
             }
@@ -126,19 +126,19 @@ public class TestPage extends Composite {
 
         if (viewVo.getSectionType() == ST.SECTION_TYPE_SPEAKING && !userTestSession.isSpeakingSelected()) {
             if (userTestSession.isWritingSelected()) {
-                lastViewId = testPaper.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
-                viewVo = testPaper.getViewVo(lastViewId);
+                lastViewId = testPaperVo.findFirstViewIdByViewType(VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS);
+                viewVo = testPaperVo.getViewVo(lastViewId);
                 return getTestView(viewVo);
             } else {
-                lastViewId = testPaper.findTestEndViewId();
-                viewVo = testPaper.getViewVo(lastViewId);
+                lastViewId = testPaperVo.findTestEndViewId();
+                viewVo = testPaperVo.getViewVo(lastViewId);
                 return getTestView(viewVo);
             }
         }
 
         if (viewVo.getSectionType() == ST.SECTION_TYPE_WRITING && !userTestSession.isWritingSelected()) {
-            lastViewId = testPaper.findTestEndViewId();
-            viewVo = testPaper.getViewVo(lastViewId);
+            lastViewId = testPaperVo.findTestEndViewId();
+            viewVo = testPaperVo.getViewVo(lastViewId);
             return getTestView(viewVo);
         }
 
@@ -297,8 +297,8 @@ public class TestPage extends Composite {
      * ==================================================
      */
 
-    public TestPaperVo getTestPaper() {
-        return testPaper;
+    public TestPaperVo getTestPaperVo() {
+        return testPaperVo;
     }
 
     public UserTestSession getUserTestSession() {
