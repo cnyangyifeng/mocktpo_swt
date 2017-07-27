@@ -1,6 +1,6 @@
 package com.mocktpo.modules.test.views;
 
-import com.mocktpo.modules.test.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
@@ -233,9 +233,6 @@ public class AdjustingMicrophoneView extends StackTestView {
         GridLayoutSet.layout(inner).marginBottom(50);
 
         final Composite viewPort = new Composite(inner, SWT.NONE);
-        GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x);
-        FormLayoutSet.layout(viewPort);
-
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
         FormLayoutSet.layout(viewPort);
 

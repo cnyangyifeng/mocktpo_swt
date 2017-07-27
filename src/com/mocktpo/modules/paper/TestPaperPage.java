@@ -131,23 +131,23 @@ public class TestPaperPage extends Composite {
         footer = new Composite(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atRight().atBottom();
         CompositeSet.decorate(footer).setBackground(MT.COLOR_WHITE_SMOKE);
-        FormLayoutSet.layout(footer).marginWidth(10).marginHeight(10).spacing(5);
+        FormLayoutSet.layout(footer).marginWidth(10).marginHeight(10).spacing(10);
 
         final Label divider = new Label(this, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atRight().atBottomTo(footer, 0, SWT.TOP).withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final ImageButton backButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_BACK, MT.IMAGE_SYSTEM_BACK_HOVER);
-        FormDataSet.attach(backButton).atLeft().atTop();
-        backButton.addMouseListener(new BackButtonMouseAdapter());
-
-        final CLabel titleLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(titleLabel).fromLeft(50, -TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("untitled"));
-
         final ImageButton exportAsZipButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_HOVER);
         FormDataSet.attach(exportAsZipButton).atTop().atRight();
         exportAsZipButton.addMouseListener(new ExportAsZipButtonMouseAdapter());
+
+        final ImageButton saveButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_BACK, MT.IMAGE_SYSTEM_BACK_HOVER);
+        FormDataSet.attach(saveButton).atTopTo(exportAsZipButton, 0, SWT.TOP).atRightTo(exportAsZipButton);
+        saveButton.addMouseListener(new SaveButtonMouseAdapter());
+
+        final CLabel titleLabel = new CLabel(footer, SWT.NONE);
+        FormDataSet.attach(titleLabel).fromLeft(50, -TITLE_WIDTH / 2).atTopTo(exportAsZipButton, 0, SWT.TOP).atBottomTo(exportAsZipButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
+        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("untitled"));
     }
 
     private void initBody() {
@@ -302,6 +302,14 @@ public class TestPaperPage extends Composite {
                     done = true;
                 }
             }
+        }
+    }
+
+    private class SaveButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            MyApplication.get().getWindow().toMainPageAndToTestPapersView();
         }
     }
 

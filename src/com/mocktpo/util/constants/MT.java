@@ -268,6 +268,8 @@ public interface MT {
     String STRING_SLASH = "/";
     String STRING_SPACE = " ";
     String STRING_SQUARE = "\u2588";
+    String STRING_STAR = "*";
+    String STRING_TAB = "\t";
 
     /*
      * ==================================================

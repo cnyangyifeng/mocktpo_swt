@@ -1,6 +1,6 @@
 package com.mocktpo.modules.test.views;
 
-import com.mocktpo.modules.test.listeners.StyledTextPaintImageListener;
+import com.mocktpo.modules.system.listeners.StyledTextPaintImageListener;
 import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.ScreenUtils;

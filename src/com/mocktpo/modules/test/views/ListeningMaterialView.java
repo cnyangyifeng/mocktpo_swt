@@ -1,6 +1,6 @@
 package com.mocktpo.modules.test.views;
 
-import com.mocktpo.modules.test.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;

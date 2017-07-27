@@ -100,7 +100,7 @@ public class TestReportPage extends Composite {
         header = new Composite(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight();
         CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE_SMOKE);
-        FormLayoutSet.layout(header).marginWidth(10).marginHeight(10).spacing(5);
+        FormLayoutSet.layout(header).marginWidth(10).marginHeight(10).spacing(10);
 
         final Label divider = new Label(this, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(header).atRight().withHeight(1);

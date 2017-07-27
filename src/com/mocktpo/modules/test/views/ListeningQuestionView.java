@@ -1,7 +1,7 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.windows.RequiredAnswerWindow;
-import com.mocktpo.modules.test.listeners.StyledTextPaintImageListener;
+import com.mocktpo.modules.system.listeners.StyledTextPaintImageListener;
 import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
