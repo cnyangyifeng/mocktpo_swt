@@ -63,6 +63,13 @@ public class TestPaperPage extends Composite {
 
     private Composite footer;
     private ImageButton exportAsZipButton;
+    private ImageButton saveButton;
+    private CLabel titleLabel;
+
+    /* Properties */
+
+    private boolean initialized;
+
 
     /*
      * ==================================================
@@ -148,12 +155,12 @@ public class TestPaperPage extends Composite {
         exportAsZipButton.setEnabled(false);
         exportAsZipButton.addMouseListener(new ExportAsZipButtonMouseAdapter());
 
-        final ImageButton saveButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_SAVE, MT.IMAGE_SYSTEM_SAVE_HOVER);
+        saveButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_SAVE, MT.IMAGE_SYSTEM_SAVE_HOVER);
         FormDataSet.attach(saveButton).atTopTo(exportAsZipButton, 0, SWT.TOP).atRightTo(exportAsZipButton);
         saveButton.addMouseListener(new SaveButtonMouseAdapter());
 
-        final CLabel titleLabel = new CLabel(footer, SWT.NONE);
-        FormDataSet.attach(titleLabel).fromLeft(50, -TITLE_WIDTH / 2).atTopTo(exportAsZipButton, 0, SWT.TOP).atBottomTo(exportAsZipButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
+        titleLabel = new CLabel(footer, SWT.NONE);
+        FormDataSet.attach(titleLabel).atTopTo(exportAsZipButton, 0, SWT.TOP).atRightTo(saveButton, 10).atBottomTo(exportAsZipButton, 0, SWT.BOTTOM);
         CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("untitled") + MT.STRING_SPACE + MT.STRING_STAR);
     }
 
@@ -174,12 +181,14 @@ public class TestPaperPage extends Composite {
      */
 
     public void toGeneralPaperView() {
-        generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL_CHECKED, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
-        readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
-        listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
-        speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
-        writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
-        previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
+        generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL_CHECKED, MT.IMAGE_SYSTEM_STEP_GENERAL_CHECKED);
+        if (initialized) {
+            readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
+            listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
+            speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
+            writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
+            previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
+        }
 
         if (generalPaperView == null) {
             generalPaperView = new GeneralPaperView(body, SWT.NONE);
@@ -190,7 +199,7 @@ public class TestPaperPage extends Composite {
 
     public void toReadingPaperView() {
         generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
-        readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING_CHECKED, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
+        readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING_CHECKED, MT.IMAGE_SYSTEM_STEP_READING_CHECKED);
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
         speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
@@ -206,7 +215,7 @@ public class TestPaperPage extends Composite {
     public void toListeningPaperView() {
         generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
         readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
-        listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING_CHECKED, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
+        listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING_CHECKED, MT.IMAGE_SYSTEM_STEP_LISTENING_CHECKED);
         speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
@@ -222,7 +231,7 @@ public class TestPaperPage extends Composite {
         generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL, MT.IMAGE_SYSTEM_STEP_GENERAL_HOVER);
         readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
-        speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING_CHECKED, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
+        speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING_CHECKED, MT.IMAGE_SYSTEM_STEP_SPEAKING_CHECKED);
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
 
@@ -238,7 +247,7 @@ public class TestPaperPage extends Composite {
         readingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_READING, MT.IMAGE_SYSTEM_STEP_READING_HOVER);
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
         speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
-        writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING_CHECKED, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
+        writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING_CHECKED, MT.IMAGE_SYSTEM_STEP_WRITING_CHECKED);
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
 
         if (writingPaperView == null) {
@@ -254,7 +263,7 @@ public class TestPaperPage extends Composite {
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING, MT.IMAGE_SYSTEM_STEP_LISTENING_HOVER);
         speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING, MT.IMAGE_SYSTEM_STEP_SPEAKING_HOVER);
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING, MT.IMAGE_SYSTEM_STEP_WRITING_HOVER);
-        previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW_CHECKED, MT.IMAGE_SYSTEM_STEP_PREVIEW_HOVER);
+        previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW_CHECKED, MT.IMAGE_SYSTEM_STEP_PREVIEW_CHECKED);
 
         if (previewPaperView == null) {
             previewPaperView = new PreviewPaperView(body, SWT.NONE);
@@ -316,6 +325,7 @@ public class TestPaperPage extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
+            initialized = true;
             readingButton.setEnabled(true);
             listeningButton.setEnabled(true);
             speakingButton.setEnabled(true);
