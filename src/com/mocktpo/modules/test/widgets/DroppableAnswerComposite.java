@@ -51,7 +51,7 @@ public class DroppableAnswerComposite extends Composite {
     }
 
     private void golbal() {
-        FormLayoutSet.layout(this);
+        FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
 
     private void initBody() {

@@ -81,7 +81,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
     public void updateLeft() {
         final Composite c = new Composite(left, SWT.NONE);
         FormDataSet.attach(c).atLeft().atTop().atRight().atBottom();
-        FormLayoutSet.layout(c).marginWidth(20).marginHeight(20);
+        FormLayoutSet.layout(c).marginWidth(20).marginHeight(20).spacing(0);
 
         final StyledText questionTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft().atTop().atRight();

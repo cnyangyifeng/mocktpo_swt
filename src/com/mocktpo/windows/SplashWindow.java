@@ -68,7 +68,7 @@ public class SplashWindow {
         s.setImage(ico);
         s.setBackground(white);
         s.setBackgroundMode(SWT.INHERIT_FORCE);
-        FormLayoutSet.layout(s);
+        FormLayoutSet.layout(s).marginWidth(0).marginHeight(0).spacing(0);
     }
 
     private void initBackground() {

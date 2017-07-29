@@ -1,18 +1,20 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
+import com.mocktpo.modules.test.widgets.VolumeControl;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
-import com.mocktpo.util.widgets.*;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.util.widgets.CLabelSet;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
+import com.mocktpo.util.widgets.StyledTextSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -165,7 +167,7 @@ public class AdjustingMicrophoneView extends StackTestView {
     private Composite initRecordingSubView() {
         final Composite c = new Composite(body, SWT.NONE);
         CompositeSet.decorate(c).setBackground(MT.COLOR_BEIGE);
-        FormLayoutSet.layout(c);
+        FormLayoutSet.layout(c).marginWidth(0).marginHeight(0).spacing(0);
 
         final ScrolledComposite sc = new ScrolledComposite(c, SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
@@ -177,7 +179,7 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         final Composite viewPort = new Composite(inner, SWT.NONE);
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        FormLayoutSet.layout(viewPort);
+        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
 
         final StyledText headingTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
@@ -196,7 +198,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         timerPanel = new Composite(viewPort, SWT.NONE);
         FormDataSet.attach(timerPanel).fromLeft(50, -TIMER_PANEL_WIDTH / 2).atTopTo(footnoteTextWidget, 20).withWidth(TIMER_PANEL_WIDTH);
         CompositeSet.decorate(timerPanel).setVisible(false);
-        FormLayoutSet.layout(timerPanel).marginWidth(1).marginHeight(1);
+        FormLayoutSet.layout(timerPanel).marginWidth(1).marginHeight(1).spacing(0);
         timerPanel.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         final CLabel timerHeader = new CLabel(timerPanel, SWT.CENTER);
@@ -222,7 +224,7 @@ public class AdjustingMicrophoneView extends StackTestView {
     private Composite initResponseSubView() {
         final Composite c = new Composite(body, SWT.NONE);
         CompositeSet.decorate(c).setBackground(MT.COLOR_BEIGE);
-        FormLayoutSet.layout(c);
+        FormLayoutSet.layout(c).marginWidth(0).marginHeight(0).spacing(0);
 
         final ScrolledComposite sc = new ScrolledComposite(c, SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
@@ -234,7 +236,7 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         final Composite viewPort = new Composite(inner, SWT.NONE);
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        FormLayoutSet.layout(viewPort);
+        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
 
         StyledText responseTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(responseTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP_2).atRight();

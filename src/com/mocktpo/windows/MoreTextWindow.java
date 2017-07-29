@@ -71,14 +71,14 @@ public class MoreTextWindow {
         s.setBackgroundMode(SWT.INHERIT_FORCE);
         WindowUtils.setModalWindowBoundsToTheLeft(s);
         WindowUtils.disableFullscreen(s);
-        FormLayoutSet.layout(s);
+        FormLayoutSet.layout(s).marginWidth(0).marginHeight(0).spacing(0);
     }
 
     private void initBackground() {
         background = new CLabel(s, SWT.NONE);
         FormDataSet.attach(background).atLeft().atTop().atRight().atBottom();
         CLabelSet.decorate(background).setGradientBackground(MT.COLOR_INDIGO, MT.COLOR_WHITE_SMOKE, true);
-        FormLayoutSet.layout(background).marginHeight(20);
+        FormLayoutSet.layout(background).marginWidth(0).marginHeight(20).spacing(0);
 
         background.addPaintListener(new PaintListener() {
             @Override

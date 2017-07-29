@@ -9,6 +9,7 @@ import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.WindowUtils;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.vo.TestPaperVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -141,8 +142,8 @@ public class MainWindow {
         s.layout();
     }
 
-    public void toTestPaperPage() {
-        final TestPaperPage testPaperPage = new TestPaperPage(s, SWT.NONE);
+    public void toTestPaperPage(TestPaperVo testPaperVo) {
+        final TestPaperPage testPaperPage = new TestPaperPage(s, SWT.NONE, testPaperVo);
         stack.topControl = testPaperPage;
         s.layout();
     }

@@ -132,7 +132,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
     private Composite initQuestionSubView() {
         final Composite c = new Composite(body, SWT.NONE);
-        FormLayoutSet.layout(c);
+        FormLayoutSet.layout(c).marginWidth(0).marginHeight(0).spacing(0);
 
         final ScrolledComposite sc = new ScrolledComposite(c, SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
@@ -144,7 +144,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         final Composite viewPort = new Composite(inner, SWT.NONE);
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x);
-        FormLayoutSet.layout(viewPort);
+        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
 
         /*
          * ==================================================
@@ -182,7 +182,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         final Composite ac = new Composite(viewPort, SWT.CENTER);
         FormDataSet.attach(ac).fromLeft(50, -ScreenUtils.getClientWidth(d) / 4).atTopTo(tipsTextWidget, 10).withWidth(ScreenUtils.getClientWidth(d) / 2);
-        FormLayoutSet.layout(ac).marginHeight(10).spacing(10);
+        FormLayoutSet.layout(ac).marginWidth(0).marginHeight(10).spacing(10);
         ac.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         String question = vo.getStyledText("question").getText();
@@ -286,11 +286,11 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
     private Composite initPassageSubView() {
         final Composite c = new Composite(body, SWT.NONE);
-        FormLayoutSet.layout(c);
+        FormLayoutSet.layout(c).marginWidth(0).marginHeight(0).spacing(0);
 
         final Composite left = new Composite(c, SWT.NONE);
         FormDataSet.attach(left).atLeft().atTop().fromRight(50).atBottom();
-        FormLayoutSet.layout(left);
+        FormLayoutSet.layout(left).marginWidth(0).marginHeight(0).spacing(0);
 
         final Label divider = new Label(left, SWT.VERTICAL);
         FormDataSet.attach(divider).atTop().atRight().atBottom().withWidth(1);
@@ -298,7 +298,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         rightPassageView = new Composite(c, SWT.NONE);
         FormDataSet.attach(rightPassageView).atLeftTo(left).atTop().atRight().atBottom();
-        FormLayoutSet.layout(rightPassageView);
+        FormLayoutSet.layout(rightPassageView).marginWidth(0).marginHeight(0).spacing(0);
 
         initRightBody();
 

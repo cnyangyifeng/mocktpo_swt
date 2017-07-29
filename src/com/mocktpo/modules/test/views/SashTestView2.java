@@ -37,17 +37,17 @@ public abstract class SashTestView2 extends TestView {
         final Composite body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight().atBottomTo(footer);
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
-        FormLayoutSet.layout(body);
+        FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
 
         top = new Composite(body, SWT.BORDER);
         FormDataSet.attach(top).atLeft().atTop().atRight().withHeight(TOP_HEIGHT);
-        FormLayoutSet.layout(top).marginWidth(10).marginHeight(10);
+        FormLayoutSet.layout(top).marginWidth(10).marginHeight(10).spacing(0);
 
         updateTop();
 
         left = new Composite(body, SWT.BORDER);
         FormDataSet.attach(left).atLeft().atTopTo(top, 5).fromRight(50).atBottom();
-        FormLayoutSet.layout(left);
+        FormLayoutSet.layout(left).marginWidth(0).marginHeight(0).spacing(0);
 
         updateLeft();
 

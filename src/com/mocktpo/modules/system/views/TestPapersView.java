@@ -4,7 +4,6 @@ import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.system.widgets.TestPaperCard;
 import com.mocktpo.util.ConfigUtils;
-import com.mocktpo.util.UnzipUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.layout.FormDataSet;
@@ -13,14 +12,17 @@ import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import org.apache.commons.io.FilenameUtils;
+import com.mocktpo.vo.TestPaperVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.widgets.*;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -66,14 +68,14 @@ public class TestPapersView extends Composite {
     }
 
     private void golbal() {
-        FormLayoutSet.layout(this);
+        FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
 
     private void initToolBar() {
         toolBar = new Composite(this, SWT.NONE);
         FormDataSet.attach(toolBar).atLeft().atTop().atRight();
         CompositeSet.decorate(toolBar).setBackground(MT.COLOR_WHITE_SMOKE);
-        FormLayoutSet.layout(toolBar).marginWidth(10).marginHeight(10);
+        FormLayoutSet.layout(toolBar).marginWidth(10).marginHeight(10).spacing(0);
 
         final Label divider = new Label(this, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
@@ -81,7 +83,7 @@ public class TestPapersView extends Composite {
 
         final ImageButton newTestPaperButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_NEW_TEST_PAPER, MT.IMAGE_SYSTEM_NEW_TEST_PAPER_HOVER);
         FormDataSet.attach(newTestPaperButton).atLeft().atTop();
-        newTestPaperButton.addMouseListener(new ImportButtonMouseAdapter());
+        newTestPaperButton.addMouseListener(new NewTestPaperButtonMouseAdapter());
     }
 
     private void initBody() {
@@ -99,7 +101,7 @@ public class TestPapersView extends Composite {
 
     private void initCards() {
         try {
-            File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).toURI()).listFiles(new FileFilter() {
+            File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.SANDBOX_DATA_DIR, "utf-8")).toURI()).listFiles(new FileFilter() {
                 @Override
                 public boolean accept(File file) {
                     return file.isDirectory();
@@ -107,7 +109,7 @@ public class TestPapersView extends Composite {
             });
             for (File testDir : testDirs) {
                 String testDirName = testDir.getName();
-                URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + testDirName + MT.STRING_SLASH + testDirName + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
+                URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.SANDBOX_DATA_DIR + testDirName + MT.STRING_SLASH + testDirName + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
                 if (url != null) {
                     TestPaperCard card = new TestPaperCard(body, SWT.NONE, testDir.getName());
                     GridDataSet.attach(card).fillHorizontal();
@@ -136,19 +138,11 @@ public class TestPapersView extends Composite {
      * ==================================================
      */
 
-    private class ImportButtonMouseAdapter extends MouseAdapter {
+    private class NewTestPaperButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.OPEN);
-            dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
-            dialog.setFilterExtensions(new String[]{"*.zip"});
-            String absoluteFileName = dialog.open();
-            UnzipUtils.unzip(absoluteFileName);
-            String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(absoluteFileName));
-            if (fileAlias != null) {
-                refreshCards();
-            }
+            MyApplication.get().getWindow().toTestPaperPage(new TestPaperVo());
         }
     }
 }

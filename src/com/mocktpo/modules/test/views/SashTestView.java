@@ -34,11 +34,11 @@ public abstract class SashTestView extends TestView {
         final Composite body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight().atBottomTo(footer);
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
-        FormLayoutSet.layout(body);
+        FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
 
         left = new Composite(body, SWT.NONE);
         FormDataSet.attach(left).atLeft().atTop().fromRight(50).atBottom();
-        FormLayoutSet.layout(left);
+        FormLayoutSet.layout(left).marginWidth(0).marginHeight(0).spacing(0);
 
         final Label divider = new Label(left, SWT.VERTICAL);
         FormDataSet.attach(divider).atTop().atRight().atBottom().withWidth(1);
@@ -48,7 +48,7 @@ public abstract class SashTestView extends TestView {
 
         right = new Composite(body, SWT.NONE);
         FormDataSet.attach(right).atLeftTo(left).atTop().atRight().atBottom();
-        FormLayoutSet.layout(right);
+        FormLayoutSet.layout(right).marginWidth(0).marginHeight(0).spacing(0);
 
         updateRight();
     }

@@ -57,7 +57,7 @@ public class IndependentWritingTaskEndView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        FormLayoutSet.layout(viewPort);
+        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(descriptionTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();

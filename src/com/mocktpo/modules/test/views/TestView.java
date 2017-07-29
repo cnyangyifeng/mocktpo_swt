@@ -99,7 +99,7 @@ public abstract class TestView extends Composite {
     }
 
     private void golbal() {
-        FormLayoutSet.layout(this);
+        FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
 
     private void initHeader() {
@@ -114,7 +114,7 @@ public abstract class TestView extends Composite {
 
         header = new TestHeader(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight().withHeight(LC.TEST_HEADER_HEIGHT);
-        FormLayoutSet.layout(header);
+        FormLayoutSet.layout(header).marginWidth(0).marginHeight(0).spacing(0);
 
         /*
          * ==================================================

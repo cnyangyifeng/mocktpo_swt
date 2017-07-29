@@ -115,7 +115,7 @@ public class ListeningMultipleAnswersQuestionView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        FormLayoutSet.layout(viewPort);
+        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
 
         final StyledText questionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();

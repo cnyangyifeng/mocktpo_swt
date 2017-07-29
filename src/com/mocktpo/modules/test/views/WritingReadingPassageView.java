@@ -87,7 +87,7 @@ public class WritingReadingPassageView extends SashTestView2 {
         sc.setExpandVertical(true);
 
         final Composite c = new Composite(sc, SWT.NONE);
-        FormLayoutSet.layout(c).marginWidth(10).marginTop(10).marginBottom(100);
+        FormLayoutSet.layout(c).marginWidth(10).marginTop(10).marginBottom(100).spacing(0);
 
         final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(passageTextWidget).atLeft().atTop().atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));

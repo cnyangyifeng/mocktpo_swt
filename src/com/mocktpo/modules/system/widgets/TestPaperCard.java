@@ -53,7 +53,7 @@ public class TestPaperCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testPaperVo = ConfigUtils.load(fileAlias, TestPaperVo.class);
+        this.testPaperVo = ConfigUtils.loadFromSandbox(fileAlias, TestPaperVo.class);
         init();
     }
 
@@ -105,7 +105,7 @@ public class TestPaperCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toTestPaperPage();
+            MyApplication.get().getWindow().toTestPaperPage(testPaperVo);
         }
     }
 }

@@ -73,7 +73,7 @@ public class MainPage extends Composite {
     }
 
     private void golbal() {
-        FormLayoutSet.layout(this);
+        FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
         addListener(SWT.Resize, new AppWindowResizeListener());
     }
 
@@ -81,7 +81,7 @@ public class MainPage extends Composite {
         sidebar = new Composite(this, SWT.NONE);
         FormDataSet.attach(sidebar).atLeft().atTop().atBottom().withWidth(this.getBounds().width / 6);
         CompositeSet.decorate(sidebar).setBackground(MT.COLOR_BLACK);
-        FormLayoutSet.layout(sidebar);
+        FormLayoutSet.layout(sidebar).marginWidth(0).marginHeight(0).spacing(0);
 
         final CLabel brandLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(brandLabel).atLeft().atTop().atRight().withHeight(80);

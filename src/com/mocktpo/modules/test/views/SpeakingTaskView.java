@@ -108,7 +108,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        FormLayoutSet.layout(viewPort);
+        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
 
         final StyledText questionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft(20).atTop(VIEW_PORT_PADDING_TOP).atRight(20);
@@ -118,7 +118,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
         timerContainer = new Composite(viewPort, SWT.NONE);
         FormDataSet.attach(timerContainer).atLeft().atTopTo(questionTextWidget, 20).atRight();
         CompositeSet.decorate(timerContainer).setVisible(false);
-        FormLayoutSet.layout(timerContainer).marginWidth(1).marginHeight(1);
+        FormLayoutSet.layout(timerContainer).marginWidth(1).marginHeight(1).spacing(0);
 
         final Label divider = new Label(timerContainer, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTop().atRight().withHeight(2);
@@ -134,7 +134,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
         Composite timerPanel = new Composite(timerContainer, SWT.NONE);
         FormDataSet.attach(timerPanel).fromLeft(50, -TIMER_PANEL_WIDTH / 2).atTopTo(responseTimeLabel, 30).withWidth(TIMER_PANEL_WIDTH);
-        FormLayoutSet.layout(timerPanel).marginWidth(1).marginHeight(1);
+        FormLayoutSet.layout(timerPanel).marginWidth(1).marginHeight(1).spacing(0);
         timerPanel.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         timerHeader = new CLabel(timerPanel, SWT.CENTER);

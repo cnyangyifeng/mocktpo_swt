@@ -119,7 +119,7 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        FormLayoutSet.layout(viewPort);
+        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
 
         final StyledText questionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
@@ -135,7 +135,7 @@ public class ListeningOrderEventsQuestionView extends ResponsiveTestView {
         ac = new Composite(viewPort, SWT.NONE);
         FormDataSet.attach(ac).atLeft().atTopTo(tipsTextWidget, 20).atRight();
         CompositeSet.decorate(ac).setVisible(false);
-        FormLayoutSet.layout(ac).marginWidth(1).marginHeight(1);
+        FormLayoutSet.layout(ac).marginWidth(1).marginHeight(1).spacing(0);
 
         final DroppableAnswerComposite blank1 = new DroppableAnswerComposite(ac, SWT.WRAP | SWT.TOP, ANSWER_1);
         FormDataSet.attach(blank1).atLeft().atTop().atRight().withHeight(LC.LISTENING_DND_QUESTION_HEIGHT);

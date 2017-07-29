@@ -1,7 +1,6 @@
-package com.mocktpo.modules.test.views;
+package com.mocktpo.modules.paper.views;
 
-import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.util.ScreenUtils;
+import com.mocktpo.modules.paper.TestPaperPage;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
@@ -10,11 +9,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.widgets.Composite;
 
-public abstract class ResponsiveTestView extends TestView {
+public abstract class ResponsiveTestPaperView extends TestPaperView {
 
     /* Constants */
 
-    private static final int VIEW_PORT_PADDING_WIDTH = 50;
+    protected static final int VIEW_PORT_WIDTH = 720;
 
     /* Widgets */
 
@@ -29,7 +28,7 @@ public abstract class ResponsiveTestView extends TestView {
      * ==================================================
      */
 
-    public ResponsiveTestView(TestPage page, int style) {
+    public ResponsiveTestPaperView(TestPaperPage page, int style) {
         super(page, style);
     }
 
@@ -41,11 +40,11 @@ public abstract class ResponsiveTestView extends TestView {
         sc.setExpandVertical(true);
 
         body = new Composite(sc, SWT.NONE);
-        GridLayoutSet.layout(body).marginBottom(50);
+        GridLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
 
         viewPort = new Composite(body, SWT.NONE);
-        GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
+        GridDataSet.attach(viewPort).topCenter().withWidth(VIEW_PORT_WIDTH);
+        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(50).spacing(10);
 
         /*
          * ==================================================

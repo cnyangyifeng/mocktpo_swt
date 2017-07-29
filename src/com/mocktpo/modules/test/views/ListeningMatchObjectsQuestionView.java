@@ -118,7 +118,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);
-        FormLayoutSet.layout(viewPort);
+        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
 
         final StyledText directionsTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(directionsTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
@@ -134,7 +134,7 @@ public class ListeningMatchObjectsQuestionView extends ResponsiveTestView {
         ac = new Composite(viewPort, SWT.NONE);
         FormDataSet.attach(ac).atLeft().atTopTo(tipsTextWidget, 20).atRight();
         CompositeSet.decorate(ac).setVisible(false);
-        FormLayoutSet.layout(ac).marginWidth(1).marginHeight(1);
+        FormLayoutSet.layout(ac).marginWidth(1).marginHeight(1).spacing(0);
         ac.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         final StyledText questionTextHeader = new StyledText(ac, SWT.WRAP);
