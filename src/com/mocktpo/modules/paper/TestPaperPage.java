@@ -125,7 +125,7 @@ public class TestPaperPage extends Composite {
     }
 
     public void save() {
-        String fileAlias = StringUtils.trim(StringUtils.lowerCase(testPaperVo.getTitle()));
+        String fileAlias = StringUtils.deleteWhitespace(StringUtils.lowerCase(testPaperVo.getTitle()));
         ConfigUtils.save(fileAlias, testPaperVo);
         setInitialized(true);
     }

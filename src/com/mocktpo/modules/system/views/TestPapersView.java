@@ -29,6 +29,7 @@ import java.io.FileFilter;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class TestPapersView extends Composite {
 
@@ -94,7 +95,7 @@ public class TestPapersView extends Composite {
 
         body = new Composite(sc, SWT.NONE);
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-        GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
+        GridLayoutSet.layout(body).numColumns(3).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
 
         sc.setContent(body);
     }
@@ -142,7 +143,11 @@ public class TestPapersView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toTestPaperPage(new TestPaperVo());
+            TestPaperVo testPaperVo = new TestPaperVo();
+            testPaperVo.setTid(UUID.randomUUID().toString());
+            testPaperVo.setTitle("");
+            testPaperVo.setStars(0);
+            MyApplication.get().getWindow().toTestPaperPage(testPaperVo);
         }
     }
 }

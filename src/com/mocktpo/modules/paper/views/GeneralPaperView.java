@@ -12,6 +12,7 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.h2.util.StringUtils;
 
 public class GeneralPaperView extends ResponsiveTestPaperView {
 
@@ -63,7 +64,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
     public void updateBody() {
         titleText = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(titleText).atLeft(PRE_LABEL_WIDTH).atTop().atRight().withHeight(INPUT_TEXT_HEIGHT);
-        StyledTextSet.decorate(titleText).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10);
+        StyledTextSet.decorate(titleText).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(page.getTestPaperVo().getTitle());
         KeyBindingSet.bind(titleText).traverse().selectAll();
         titleText.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         titleText.addKeyListener(new TitleTextKeyAdapter());
@@ -74,7 +75,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
         starsText = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(starsText).atLeft(PRE_LABEL_WIDTH).atTopTo(titleText).withWidth(40).withHeight(INPUT_TEXT_HEIGHT);
-        StyledTextSet.decorate(starsText).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText("3");
+        StyledTextSet.decorate(starsText).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getTestPaperVo().getStars()));
         KeyBindingSet.bind(starsText).traverse().selectAll();
         starsText.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         starsText.addKeyListener(new StarsTextKeyAdapter());
@@ -114,7 +115,20 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            page.getTestPaperVo().setTitle(starsText.getText());
+            String st = starsText.getText();
+            if (StringUtils.isNumber(st)) {
+                try {
+                    Integer stars = Integer.parseInt(st);
+                    if (stars < 0) {
+                        stars = 0;
+                    } else if (stars > 5) {
+                        stars = 5;
+                    }
+                    page.getTestPaperVo().setStars(stars);
+                } catch (NumberFormatException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 }
