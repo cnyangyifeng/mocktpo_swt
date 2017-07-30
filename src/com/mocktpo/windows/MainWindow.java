@@ -142,6 +142,12 @@ public class MainWindow {
         s.layout();
     }
 
+    public void toTestPaperPage() {
+        final TestPaperPage testPaperPage = new TestPaperPage(s, SWT.NONE);
+        stack.topControl = testPaperPage;
+        s.layout();
+    }
+
     public void toTestPaperPage(TestPaperVo testPaperVo) {
         final TestPaperPage testPaperPage = new TestPaperPage(s, SWT.NONE, testPaperVo);
         stack.topControl = testPaperPage;

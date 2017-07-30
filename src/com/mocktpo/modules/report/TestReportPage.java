@@ -241,6 +241,7 @@ public class TestReportPage extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.SAVE);
+            dialog.setText(msgs.getString("export"));
             dialog.setFilterNames(new String[]{"PDF File (*.pdf)"});
             dialog.setFilterExtensions(new String[]{"*.pdf"});
             dialog.setFileName(userTestSession.getFileAlias() + ".pdf");
@@ -252,7 +253,7 @@ public class TestReportPage extends Composite {
                     if (file.exists()) {
                         MessageBox box = new MessageBox(dialog.getParent(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
                         box.setText(msgs.getString("file_exists"));
-                        box.setMessage("\"" + userTestSession.getFileAlias() + ".pdf\" " + msgs.getString("exists_and_replace"));
+                        box.setMessage("\"" + userTestSession.getFileAlias() + ".pdf\" " + msgs.getString("replace_or_not"));
                         int response = box.open();
                         if (response == SWT.YES) {
                             PDFUtils.save(absoluteFileName);

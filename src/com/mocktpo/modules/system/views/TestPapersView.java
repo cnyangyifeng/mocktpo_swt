@@ -13,6 +13,7 @@ import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.TestPaperVo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -95,14 +96,14 @@ public class TestPapersView extends Composite {
 
         body = new Composite(sc, SWT.NONE);
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-        GridLayoutSet.layout(body).numColumns(3).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
+        GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
 
         sc.setContent(body);
     }
 
     private void initCards() {
         try {
-            File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.SANDBOX_DATA_DIR, "utf-8")).toURI()).listFiles(new FileFilter() {
+            File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.WORKS_DATA_DIR, "utf-8")).toURI()).listFiles(new FileFilter() {
                 @Override
                 public boolean accept(File file) {
                     return file.isDirectory();
@@ -110,7 +111,7 @@ public class TestPapersView extends Composite {
             });
             for (File testDir : testDirs) {
                 String testDirName = testDir.getName();
-                URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.SANDBOX_DATA_DIR + testDirName + MT.STRING_SLASH + testDirName + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
+                URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.WORKS_DATA_DIR + testDirName + MT.STRING_SLASH + testDirName + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
                 if (url != null) {
                     TestPaperCard card = new TestPaperCard(body, SWT.NONE, testDir.getName());
                     GridDataSet.attach(card).fillHorizontal();
@@ -143,11 +144,7 @@ public class TestPapersView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            TestPaperVo testPaperVo = new TestPaperVo();
-            testPaperVo.setTid(UUID.randomUUID().toString());
-            testPaperVo.setTitle("");
-            testPaperVo.setStars(0);
-            MyApplication.get().getWindow().toTestPaperPage(testPaperVo);
+            MyApplication.get().getWindow().toTestPaperPage();
         }
     }
 }

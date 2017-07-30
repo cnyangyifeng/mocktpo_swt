@@ -34,12 +34,12 @@ public class ConfigUtils {
         return null;
     }
 
-    public static <T> T loadFromSandbox(String fileAlias, Class<T> clazz) {
+    public static <T> T pull(String fileAlias, Class<T> clazz) {
         if (fileAlias == null) {
             return null;
         }
         try {
-            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.SANDBOX_DATA_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
+            URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.WORKS_DATA_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
             String json = FileUtils.readFileToString(new File(url.toURI()), "utf-8");
             return JSON.parseObject(json, clazz);
         } catch (Exception e) {
@@ -48,12 +48,12 @@ public class ConfigUtils {
         return null;
     }
 
-    public static void save(String fileAlias, Object object) {
+    public static void push(String fileAlias, Object object) {
         if (fileAlias == null) {
             return;
         }
         try {
-            File rootPath = new File(ConfigUtils.class.getResource(URLDecoder.decode(RC.SANDBOX_DATA_DIR, "utf-8")).toURI());
+            File rootPath = new File(ConfigUtils.class.getResource(URLDecoder.decode(RC.WORKS_DATA_DIR, "utf-8")).toURI());
             File packagePath = new File(rootPath.toString() + MT.STRING_SLASH + fileAlias);
             if (!packagePath.exists()) {
                 logger.info("Test package folder created: {}.", packagePath.mkdir());

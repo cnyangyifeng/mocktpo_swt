@@ -39,7 +39,7 @@ public interface RC {
     String IMAGES_DIR = "/resources/images/";
     String TESTS_DATA_DIR = "/data/tests/";
     String REPORTS_DATA_DIR = "/data/reports/";
-    String SANDBOX_DATA_DIR = "/data/sandbox/";
+    String WORKS_DATA_DIR = "/data/works/";
 
     /*
      * ==================================================

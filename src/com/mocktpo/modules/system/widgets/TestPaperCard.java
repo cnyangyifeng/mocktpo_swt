@@ -9,6 +9,7 @@ import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.TestPaperVo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -53,7 +54,7 @@ public class TestPaperCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testPaperVo = ConfigUtils.loadFromSandbox(fileAlias, TestPaperVo.class);
+        this.testPaperVo = ConfigUtils.pull(fileAlias, TestPaperVo.class);
         init();
     }
 
@@ -73,9 +74,9 @@ public class TestPaperCard extends Composite {
         FormDataSet.attach(header).atLeft().atTop().atRight();
         FormLayoutSet.layout(header).marginWidth(0).marginHeight(0).spacing(0);
 
-        final CLabel titleLabel = new CLabel(header, SWT.NONE);
+        final CLabel titleLabel = new CLabel(header, SWT.MULTI);
         FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(testPaperVo.getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testPaperVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
@@ -91,6 +92,14 @@ public class TestPaperCard extends Composite {
         final ImageButton editButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_EDIT, MT.IMAGE_SYSTEM_EDIT_HOVER);
         FormDataSet.attach(editButton).atLeft().atTop(10);
         editButton.addMouseListener(new EditButtonMouseAdapter());
+    }
+
+    private String getTitle() {
+        String title = testPaperVo.getTitle();
+        if (StringUtils.isEmpty(title)) {
+            title = msgs.getString("untitled");
+        }
+        return title;
     }
 
     /*

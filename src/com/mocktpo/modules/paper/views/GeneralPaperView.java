@@ -10,11 +10,16 @@ import com.mocktpo.util.widgets.StyledTextSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.KeyAdapter;
-import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.h2.util.StringUtils;
 
 public class GeneralPaperView extends ResponsiveTestPaperView {
+
+    /* Constants */
+
+    private static final int INPUT_TEXT_HEIGHT = 22;
+    private static final int PRE_LABEL_WIDTH = 120;
 
     /* Widgets */
 
@@ -44,7 +49,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
     @Override
     public void updateHeader() {
         generalButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_GENERAL_CHECKED, MT.IMAGE_SYSTEM_STEP_GENERAL_CHECKED);
-        if (!page.isInitialized()) {
+        if (page.isFirstRun()) {
             readingButton.setEnabled(false);
             listeningButton.setEnabled(false);
             speakingButton.setEnabled(false);
@@ -55,7 +60,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
     @Override
     public void updateFooter() {
-        if (!page.isInitialized()) {
+        if (page.isFirstRun()) {
             exportAsZipButton.setEnabled(false);
         }
     }
@@ -67,7 +72,8 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
         StyledTextSet.decorate(titleText).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(page.getTestPaperVo().getTitle());
         KeyBindingSet.bind(titleText).traverse().selectAll();
         titleText.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
-        titleText.addKeyListener(new TitleTextKeyAdapter());
+        titleText.addModifyListener(new TitleTextModifyListener());
+        titleText.setSelection(titleText.getText().length());
 
         final CLabel titlePreLabel = new CLabel(viewPort, SWT.NONE);
         FormDataSet.attach(titlePreLabel).atLeft().atTopTo(titleText, 0, SWT.TOP).atRightTo(titleText, 0, SWT.LEFT).atBottomTo(titleText, 0, SWT.BOTTOM);
@@ -78,7 +84,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
         StyledTextSet.decorate(starsText).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getTestPaperVo().getStars()));
         KeyBindingSet.bind(starsText).traverse().selectAll();
         starsText.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
-        starsText.addKeyListener(new StarsTextKeyAdapter());
+        starsText.addModifyListener(new StarsTextModifyListener());
 
         final CLabel starsPreLabel = new CLabel(viewPort, SWT.NONE);
         FormDataSet.attach(starsPreLabel).atLeft().atTopTo(starsText, 0, SWT.TOP).atRightTo(starsText, 0, SWT.LEFT).atBottomTo(starsText, 0, SWT.BOTTOM);
@@ -103,18 +109,19 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
      * ==================================================
      */
 
-    private class TitleTextKeyAdapter extends KeyAdapter {
+    private class TitleTextModifyListener implements ModifyListener {
 
         @Override
-        public void keyPressed(KeyEvent e) {
+        public void modifyText(ModifyEvent e) {
             page.getTestPaperVo().setTitle(titleText.getText());
+            page.enterUnsavedMode();
         }
     }
 
-    private class StarsTextKeyAdapter extends KeyAdapter {
+    private class StarsTextModifyListener implements ModifyListener {
 
         @Override
-        public void keyPressed(KeyEvent e) {
+        public void modifyText(ModifyEvent e) {
             String st = starsText.getText();
             if (StringUtils.isNumber(st)) {
                 try {
@@ -129,6 +136,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
                     ex.printStackTrace();
                 }
             }
+            page.enterUnsavedMode();
         }
     }
 }

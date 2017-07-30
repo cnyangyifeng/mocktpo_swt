@@ -27,7 +27,7 @@ public class TestPaperUtils {
         testPaperVo.setTitle(schema.getString("title"));
         testPaperVo.setStars(Integer.parseInt(schema.getString("stars")));
         testPaperVo.setViewVos(initViewVos());
-        ConfigUtils.save(schema.getString("fileAlias"), testPaperVo);
+        ConfigUtils.push(schema.getString("fileAlias"), testPaperVo);
     }
 
     private static List<TestViewVo> initViewVos() {

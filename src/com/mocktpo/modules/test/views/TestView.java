@@ -1,8 +1,11 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.orm.domain.UserTestAnswer;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
+import com.mocktpo.modules.test.widgets.TestFooter;
+import com.mocktpo.modules.test.widgets.TestHeader;
+import com.mocktpo.orm.domain.UserTestAnswer;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.TestAudioPlayer;
 import com.mocktpo.util.TimeUtils;
@@ -14,9 +17,6 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.vo.TestViewVo;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.TestFooter;
-import com.mocktpo.modules.test.widgets.TestHeader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -102,6 +102,14 @@ public abstract class TestView extends Composite {
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
 
+    /*
+     * ==================================================
+     *
+     * Header Initialization
+     *
+     * ==================================================
+     */
+
     private void initHeader() {
 
         /*
@@ -171,12 +179,36 @@ public abstract class TestView extends Composite {
         updateHeader();
     }
 
+    /*
+     * ==================================================
+     *
+     * Footer Initialization
+     *
+     * ==================================================
+     */
+
     private void initFooter() {
         footer = new TestFooter(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atRight().atBottom();
     }
 
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
+
     protected abstract void initBody();
+
+    /*
+     * ==================================================
+     *
+     * Answer Initialization
+     *
+     * ==================================================
+     */
 
     protected void initAnswer() {
         if (vo.isAnswerable()) {

@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 public class TestPaperPage extends Composite {
 
@@ -40,7 +41,8 @@ public class TestPaperPage extends Composite {
     /* Properties */
 
     private TestPaperVo testPaperVo;
-    private boolean initialized;
+    private boolean firstRun;
+    private boolean unsaved;
 
     /*
      * ==================================================
@@ -50,10 +52,25 @@ public class TestPaperPage extends Composite {
      * ==================================================
      */
 
+    public TestPaperPage(Composite parent, int style) {
+        super(parent, style);
+        this.d = parent.getDisplay();
+
+        TestPaperVo testPaperVo = new TestPaperVo();
+        testPaperVo.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
+        testPaperVo.setTitle("");
+        testPaperVo.setStars(0);
+        this.testPaperVo = testPaperVo;
+        this.firstRun = true;
+
+        init();
+    }
+
     public TestPaperPage(Composite parent, int style, TestPaperVo testPaperVo) {
         super(parent, style);
         this.d = parent.getDisplay();
         this.testPaperVo = testPaperVo;
+        this.firstRun = false;
         init();
     }
 
@@ -124,10 +141,49 @@ public class TestPaperPage extends Composite {
         this.layout();
     }
 
+    /*
+     * ==================================================
+     *
+     * Save
+     *
+     * ==================================================
+     */
+
     public void save() {
-        String fileAlias = StringUtils.deleteWhitespace(StringUtils.lowerCase(testPaperVo.getTitle()));
-        ConfigUtils.save(fileAlias, testPaperVo);
-        setInitialized(true);
+        ConfigUtils.push(testPaperVo.getTid(), testPaperVo);
+        setFirstRun(false);
+        enterSavedMode();
+    }
+
+    public void enterUnsavedMode() {
+        setUnsaved(true);
+        updateTitleLabels();
+    }
+
+    public void enterSavedMode() {
+        setUnsaved(false);
+        updateTitleLabels();
+    }
+
+    private void updateTitleLabels() {
+        if (generalPaperView != null) {
+            generalPaperView.updateTitleLabel();
+        }
+        if (readingPaperView != null) {
+            readingPaperView.updateTitleLabel();
+        }
+        if (listeningPaperView != null) {
+            listeningPaperView.updateTitleLabel();
+        }
+        if (speakingPaperView != null) {
+            speakingPaperView.updateTitleLabel();
+        }
+        if (writingPaperView != null) {
+            writingPaperView.updateTitleLabel();
+        }
+        if (previewPaperView != null) {
+            previewPaperView.updateTitleLabel();
+        }
     }
 
     /*
@@ -146,11 +202,19 @@ public class TestPaperPage extends Composite {
         this.testPaperVo = testPaperVo;
     }
 
-    public boolean isInitialized() {
-        return initialized;
+    public boolean isFirstRun() {
+        return firstRun;
     }
 
-    public void setInitialized(boolean initialized) {
-        this.initialized = initialized;
+    public void setFirstRun(boolean firstRun) {
+        this.firstRun = firstRun;
+    }
+
+    public boolean isUnsaved() {
+        return unsaved;
+    }
+
+    public void setUnsaved(boolean unsaved) {
+        this.unsaved = unsaved;
     }
 }

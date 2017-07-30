@@ -26,9 +26,8 @@ public abstract class TestPaperView extends Composite {
 
     /* Constants */
 
-    protected static final int STEP_BUTTON_WIDTH = 120;
-    protected static final int INPUT_TEXT_HEIGHT = 22;
-    protected static final int PRE_LABEL_WIDTH = 120;
+    private static final int STEP_BUTTON_WIDTH = 120;
+    private static final int TITLE_WIDTH = 360;
 
     /* Logger and Messages */
 
@@ -82,6 +81,14 @@ public abstract class TestPaperView extends Composite {
     private void golbal() {
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
+
+    /*
+     * ==================================================
+     *
+     * Header Initialization
+     *
+     * ==================================================
+     */
 
     private void initHeader() {
 
@@ -157,6 +164,14 @@ public abstract class TestPaperView extends Composite {
         updateHeader();
     }
 
+    /*
+     * ==================================================
+     *
+     * Footer Initialization
+     *
+     * ==================================================
+     */
+
     private void initFooter() {
         footer = new Composite(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atRight().atBottom();
@@ -176,8 +191,9 @@ public abstract class TestPaperView extends Composite {
         saveButton.addMouseListener(new SaveButtonMouseAdapter());
 
         titleLabel = new CLabel(footer, SWT.NONE);
-        FormDataSet.attach(titleLabel).atTopTo(exportAsZipButton, 0, SWT.TOP).atRightTo(saveButton, 10).atBottomTo(exportAsZipButton, 0, SWT.BOTTOM);
-        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("untitled") + MT.STRING_SPACE + MT.STRING_STAR);
+        FormDataSet.attach(titleLabel).atTopTo(exportAsZipButton, 0, SWT.TOP).atRightTo(saveButton, 10).atBottomTo(exportAsZipButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
+        CLabelSet.decorate(titleLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GRAY40);
+        updateTitleLabel();
 
         /*
          * ==================================================
@@ -189,6 +205,27 @@ public abstract class TestPaperView extends Composite {
 
         updateFooter();
     }
+
+    public void updateTitleLabel() {
+        String title = page.getTestPaperVo().getTitle();
+        if (StringUtils.isEmpty(title)) {
+            title = msgs.getString("untitled");
+        }
+        if (page.isUnsaved()) {
+            title = title + MT.STRING_SPACE + MT.STRING_STAR;
+            CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_ORANGE_RED).setText(title);
+        } else {
+            CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_GRAY40).setText(title);
+        }
+    }
+
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
 
     protected abstract void initBody();
 
@@ -216,17 +253,20 @@ public abstract class TestPaperView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toMainPageAndToTestPapersView();
+            if (page.isUnsaved()) {
+                MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
+                box.setText(msgs.getString("test_paper_unsaved"));
+                box.setMessage(msgs.getString("save_or_not"));
+                int response = box.open();
+                if (response == SWT.YES) {
+                    page.save();
+                    MyApplication.get().getWindow().toMainPageAndToTestPapersView();
+                }
+            } else {
+                MyApplication.get().getWindow().toMainPageAndToTestPapersView();
+            }
         }
     }
-
-    /*
-     * ==================================================
-     *
-     * Listeners
-     *
-     * ==================================================
-     */
 
     private class GeneralButtonMouseAdapter extends MouseAdapter {
 
@@ -281,6 +321,7 @@ public abstract class TestPaperView extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.SAVE);
+            dialog.setText(msgs.getString("export"));
             dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
             dialog.setFilterExtensions(new String[]{"*.zip"});
             dialog.setFileName("xx.zip");
@@ -292,7 +333,7 @@ public abstract class TestPaperView extends Composite {
                     if (file.exists()) {
                         MessageBox box = new MessageBox(dialog.getParent(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
                         box.setText(msgs.getString("file_exists"));
-                        box.setMessage("\"xx.zip\" " + msgs.getString("exists_and_replace"));
+                        box.setMessage("\"xx.zip\" " + msgs.getString("replace_or_not"));
                         int response = box.open();
                         if (response == SWT.YES) {
                             PDFUtils.save(absoluteFileName);
@@ -314,7 +355,7 @@ public abstract class TestPaperView extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             page.save();
-            if (page.isInitialized()) {
+            if (!page.isFirstRun()) {
                 readingButton.setEnabled(true);
                 listeningButton.setEnabled(true);
                 speakingButton.setEnabled(true);
