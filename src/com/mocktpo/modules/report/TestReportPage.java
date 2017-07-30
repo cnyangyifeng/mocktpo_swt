@@ -112,7 +112,7 @@ public class TestReportPage extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).fromLeft(50, -TITLE_WIDTH / 2).atTopTo(backButton, 0, SWT.TOP).atBottomTo(backButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_GRAY20).setText(testPaperVo.getTitle() + MT.STRING_SPACE + msgs.getString("score_report"));
+        CLabelSet.decorate(titleLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_LARGE_BOLD).setForeground(MT.COLOR_BLACK).setText(testPaperVo.getTitle() + MT.STRING_SPACE + msgs.getString("score_report"));
 
         final ImageButton exportAsPdfButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_PDF, MT.IMAGE_SYSTEM_EXPORT_AS_PDF_HOVER);
         FormDataSet.attach(exportAsPdfButton).atTop().atRight();

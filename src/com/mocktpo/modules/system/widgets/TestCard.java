@@ -82,7 +82,7 @@ public class TestCard extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(testPaperVo.getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(testPaperVo.getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testPaperVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
@@ -97,7 +97,7 @@ public class TestCard extends Composite {
 
         final CLabel sectionsLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(sectionsLabel).atLeft().atTop(10).atRight();
-        CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("select_sections"));
+        CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("sections"));
 
         sectionsComposite = new SectionsComposite(body, SWT.NONE, 2, true, false, false, false, false);
         FormDataSet.attach(sectionsComposite).atLeft().atTopTo(sectionsLabel, 10).atRight();
@@ -133,7 +133,7 @@ public class TestCard extends Composite {
             boolean writingSelected = sectionsComposite.isWritingSelected();
             if (!readingSelected && !listeningSelected && !speakingSelected && !writingSelected) {
                 MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.OK);
-                box.setText(msgs.getString("select_sections"));
+                box.setText(msgs.getString("select"));
                 box.setMessage(msgs.getString("select_sections_to_start"));
                 box.open();
             } else {

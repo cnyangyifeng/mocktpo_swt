@@ -126,7 +126,7 @@ public class SectionsComposite extends Composite {
         private class CheckWidgetMouseTrackAdapter extends MouseTrackAdapter {
 
             public void mouseEnter(MouseEvent e) {
-                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_GRAY20);
+                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_DARK_BLUE);
             }
 
             public void mouseExit(MouseEvent e) {

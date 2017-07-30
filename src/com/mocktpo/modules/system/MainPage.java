@@ -87,12 +87,12 @@ public class MainPage extends Composite {
         FormDataSet.attach(brandLabel).atLeft().atTop().atRight().withHeight(80);
         CLabelSet.decorate(brandLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_X_LARGE_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_LOGO).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("app_name_alt"));
 
-        final CLabel testsPreLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(testsPreLabel).atLeft().atTopTo(brandLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testsPreLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY60).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("tests"));
+        final CLabel testsSectionLabel = new CLabel(sidebar, SWT.NONE);
+        FormDataSet.attach(testsSectionLabel).atLeft().atTopTo(brandLabel).atRight().withHeight(60);
+        CLabelSet.decorate(testsSectionLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY60).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("tests"));
 
         newTestLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(newTestLabel).atLeft().atTopTo(testsPreLabel).atRight().withHeight(60);
+        FormDataSet.attach(newTestLabel).atLeft().atTopTo(testsSectionLabel).atRight().withHeight(60);
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("new_test"));
         newTestLabel.addMouseListener(new NewTestLabelMouseAdapter());
 
@@ -106,12 +106,12 @@ public class MainPage extends Composite {
         CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_GRAY20).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_ORANGE).setLeftMargin(20).setText(msgs.getString("test_papers"));
         testPapersLabel.addMouseListener(new TestPapersLabelMouseAdapter());
 
-        final CLabel practicesPreLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(practicesPreLabel).atLeft().atTopTo(testPapersLabel).atRight().withHeight(60);
-        CLabelSet.decorate(practicesPreLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY60).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("practices"));
+        final CLabel practicesSectionLabel = new CLabel(sidebar, SWT.NONE);
+        FormDataSet.attach(practicesSectionLabel).atLeft().atTopTo(testPapersLabel).atRight().withHeight(60);
+        CLabelSet.decorate(practicesSectionLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY60).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("practices"));
 
         practicesLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(practicesLabel).atLeft().atTopTo(practicesPreLabel).atRight().withHeight(60);
+        FormDataSet.attach(practicesLabel).atLeft().atTopTo(practicesSectionLabel).atRight().withHeight(60);
         CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("practices"));
         practicesLabel.addMouseListener(new PracticesLabelMouseAdapter());
     }

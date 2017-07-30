@@ -76,7 +76,7 @@ public class TestPaperCard extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.MULTI);
         FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setText(getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testPaperVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
@@ -116,5 +116,21 @@ public class TestPaperCard extends Composite {
         public void mouseDown(MouseEvent e) {
             MyApplication.get().getWindow().toTestPaperPage(testPaperVo);
         }
+    }
+
+    /*
+     * ==================================================
+     *
+     * Getters and Setters
+     *
+     * ==================================================
+     */
+
+    public String getFileAlias() {
+        return fileAlias;
+    }
+
+    public void setFileAlias(String fileAlias) {
+        this.fileAlias = fileAlias;
     }
 }
