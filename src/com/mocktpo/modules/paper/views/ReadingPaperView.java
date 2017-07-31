@@ -1,9 +1,7 @@
 package com.mocktpo.modules.paper.views;
 
 import com.mocktpo.modules.paper.TestPaperPage;
-import com.mocktpo.modules.system.widgets.TestRecordCard;
-import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.modules.system.widgets.TestPaperViewCard;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.GridDataSet;
@@ -13,8 +11,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-
-import java.util.List;
 
 public class ReadingPaperView extends SashTestPaperView {
 
@@ -80,9 +76,8 @@ public class ReadingPaperView extends SashTestPaperView {
      */
 
     private void initTestPaperViewCards() {
-        List<UserTestSession> sessions = PersistenceUtils.findSessions();
-        for (UserTestSession session : sessions) {
-            TestRecordCard card = new TestRecordCard(lb, SWT.NONE, session);
+        for (int i = 0; i < 10; i++) {
+            TestPaperViewCard card = new TestPaperViewCard(lb, SWT.NONE, i);
             GridDataSet.attach(card).fillHorizontal();
         }
         lb.layout();

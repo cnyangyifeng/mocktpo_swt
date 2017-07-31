@@ -4,7 +4,7 @@ import com.mocktpo.util.ResourceManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseTrackListener;
+import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Image;
@@ -63,7 +63,7 @@ public class ImageButton extends Composite {
 
     private void golbal() {
         setTransparentBackgroundImage(normal);
-        addMouseTrackListener(new ImageButtonMouseTrackListener());
+        addMouseTrackListener(new ImageButtonMouseTrackAdapter());
     }
 
     @Override
@@ -138,7 +138,7 @@ public class ImageButton extends Composite {
      * ==================================================
      */
 
-    private class ImageButtonMouseTrackListener implements MouseTrackListener {
+    private class ImageButtonMouseTrackAdapter extends MouseTrackAdapter {
 
         @Override
         public void mouseEnter(MouseEvent e) {
@@ -152,10 +152,6 @@ public class ImageButton extends Composite {
             if (isEnabled()) {
                 setTransparentBackgroundImage(normal);
             }
-        }
-
-        @Override
-        public void mouseHover(MouseEvent e) {
         }
     }
 }

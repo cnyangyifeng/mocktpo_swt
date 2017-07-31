@@ -1,32 +1,23 @@
 package com.mocktpo.modules.system.widgets;
 
-import com.mocktpo.MyApplication;
-import com.mocktpo.util.ConfigUtils;
+import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
-import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.vo.TestPaperVo;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 
 import java.util.ResourceBundle;
 
 public class TestPaperViewCard extends Composite {
-
-    /* Constants */
-
-    private static final int TITLE_WIDTH = 200;
 
     /* Logger and Messages */
 
@@ -37,10 +28,19 @@ public class TestPaperViewCard extends Composite {
 
     private Display d;
 
+
+    /* Widgets */
+
+    private Composite inner;
+
+    /* Listeners */
+
+    private BorderedCompositePaintListener defaultBorderPaintListener;
+    private BorderedCompositePaintListener hoveredBorderPaintListener;
+
     /* Properties */
 
-    private String fileAlias;
-    private TestPaperVo testPaperVo;
+    private int viewId;
 
     /*
      * ==================================================
@@ -50,11 +50,12 @@ public class TestPaperViewCard extends Composite {
      * ==================================================
      */
 
-    public TestPaperViewCard(Composite parent, int style, String fileAlias) {
+    public TestPaperViewCard(Composite parent, int style, int viewId) {
         super(parent, style);
         this.d = parent.getDisplay();
-        this.fileAlias = fileAlias;
-        this.testPaperVo = ConfigUtils.pull(fileAlias, TestPaperVo.class);
+        this.viewId = viewId;
+        this.defaultBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED);
+        this.hoveredBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_GRAY60);
         init();
     }
 
@@ -65,42 +66,21 @@ public class TestPaperViewCard extends Composite {
 
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
-        FormLayoutSet.layout(this).marginWidth(10).marginHeight(10).spacing(0);
-        // this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
 
     private void initWidgets() {
-        final Composite header = new Composite(this, SWT.NONE);
-        FormDataSet.attach(header).atLeft().atTop().atRight();
-        FormLayoutSet.layout(header).marginWidth(0).marginHeight(0).spacing(0);
+        inner = new Composite(this, SWT.NONE);
+        FormDataSet.attach(inner).atLeft().atTop().atRight().withHeight(150);
+        FormLayoutSet.layout(inner).marginWidth(0).marginHeight(0).spacing(0);
+        inner.addPaintListener(defaultBorderPaintListener);
+        inner.addMouseTrackListener(new BorderMouseTrackAdapter());
 
-        final CLabel titleLabel = new CLabel(header, SWT.MULTI);
-        FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(getTitle());
-
-        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testPaperVo.getStars());
-        FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
-
-        final Label divider1 = new Label(header, SWT.NONE);
-        FormDataSet.attach(divider1).atLeft().atTopTo(starsComposite, 20).atRight().withHeight(1);
-        LabelSet.decorate(divider1).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-
-        final Composite footer = new Composite(this, SWT.NONE);
-        FormDataSet.attach(footer).atLeft().atTopTo(header).atRight();
-        FormLayoutSet.layout(footer).marginWidth(0).marginHeight(10).spacing(0);
-
-        final ImageButton editButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_EDIT, MT.IMAGE_SYSTEM_EDIT_HOVER);
-        FormDataSet.attach(editButton).atLeft().atTop(10);
-        editButton.addMouseListener(new EditButtonMouseAdapter());
+        final CLabel viewIdLabel = new CLabel(inner, SWT.NONE);
+        FormDataSet.attach(viewIdLabel).atLeft(10).atBottom(10);
+        CLabelSet.decorate(viewIdLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(Integer.toString(viewId));
     }
 
-    private String getTitle() {
-        String title = testPaperVo.getTitle();
-        if (StringUtils.isEmpty(title)) {
-            title = msgs.getString("untitled");
-        }
-        return title;
-    }
 
     /*
      * ==================================================
@@ -110,27 +90,20 @@ public class TestPaperViewCard extends Composite {
      * ==================================================
      */
 
-    private class EditButtonMouseAdapter extends MouseAdapter {
+    private class BorderMouseTrackAdapter extends MouseTrackAdapter {
 
         @Override
-        public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toTestPaperPage(testPaperVo);
+        public void mouseEnter(MouseEvent e) {
+            inner.removePaintListener(defaultBorderPaintListener);
+            inner.addPaintListener(hoveredBorderPaintListener);
+            TestPaperViewCard.this.redraw();
         }
-    }
 
-    /*
-     * ==================================================
-     *
-     * Getters and Setters
-     *
-     * ==================================================
-     */
-
-    public String getFileAlias() {
-        return fileAlias;
-    }
-
-    public void setFileAlias(String fileAlias) {
-        this.fileAlias = fileAlias;
+        @Override
+        public void mouseExit(MouseEvent e) {
+            inner.removePaintListener(hoveredBorderPaintListener);
+            inner.addPaintListener(defaultBorderPaintListener);
+            TestPaperViewCard.this.redraw();
+        }
     }
 }
