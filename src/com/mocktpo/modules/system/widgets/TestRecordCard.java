@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Label;
 
 import java.util.ResourceBundle;
 
-public class TestRecordRow extends Composite {
+public class TestRecordCard extends Composite {
 
     /* Constants */
 
@@ -56,7 +56,7 @@ public class TestRecordRow extends Composite {
      * ==================================================
      */
 
-    public TestRecordRow(Composite parent, int style, UserTestSession userTestSession) {
+    public TestRecordCard(Composite parent, int style, UserTestSession userTestSession) {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;

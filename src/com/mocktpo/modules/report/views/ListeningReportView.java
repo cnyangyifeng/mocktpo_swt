@@ -1,6 +1,6 @@
 package com.mocktpo.modules.report.views;
 
-import com.mocktpo.modules.system.widgets.TestRecordRow;
+import com.mocktpo.modules.system.widgets.TestRecordCard;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.MT;
@@ -75,8 +75,8 @@ public class ListeningReportView extends Composite {
     private void initRows() {
         List<UserTestSession> sessions = PersistenceUtils.findSessions();
         for (UserTestSession session : sessions) {
-            TestRecordRow row = new TestRecordRow(body, SWT.NONE, session);
-            GridDataSet.attach(row).fillHorizontal();
+            TestRecordCard card = new TestRecordCard(body, SWT.NONE, session);
+            GridDataSet.attach(card).fillHorizontal();
         }
         body.layout();
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));

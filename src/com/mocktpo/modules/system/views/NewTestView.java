@@ -1,6 +1,8 @@
 package com.mocktpo.modules.system.views;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.modules.system.widgets.ImageButton;
+import com.mocktpo.modules.system.widgets.TestCard;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.UnzipUtils;
 import com.mocktpo.util.constants.MT;
@@ -11,8 +13,6 @@ import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.system.widgets.TestCard;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -97,7 +97,7 @@ public class NewTestView extends Composite {
         sc.setContent(body);
     }
 
-    private void initCards() {
+    private void initTestCards() {
         try {
             File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).toURI()).listFiles(new FileFilter() {
                 @Override
@@ -121,11 +121,11 @@ public class NewTestView extends Composite {
         sc.setOrigin(0, 0);
     }
 
-    public void refreshCards() {
+    public void refreshTestCards() {
         for (Control c : body.getChildren()) {
             c.dispose();
         }
-        initCards();
+        initTestCards();
     }
 
     /*
@@ -147,7 +147,7 @@ public class NewTestView extends Composite {
             UnzipUtils.unzip(absoluteFileName);
             String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(absoluteFileName));
             if (fileAlias != null) {
-                refreshCards();
+                refreshTestCards();
             }
         }
     }

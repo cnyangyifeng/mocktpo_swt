@@ -1,10 +1,12 @@
 package com.mocktpo.modules.paper.views;
 
 import com.mocktpo.modules.paper.TestPaperPage;
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
+import com.mocktpo.util.widgets.CompositeSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.widgets.Composite;
@@ -41,6 +43,7 @@ public abstract class ResponsiveTestPaperView extends TestPaperView {
 
         body = new Composite(sc, SWT.NONE);
         GridLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
+        CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
 
         viewPort = new Composite(body, SWT.NONE);
         GridDataSet.attach(viewPort).topCenter().withWidth(VIEW_PORT_WIDTH);

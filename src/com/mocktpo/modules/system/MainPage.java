@@ -141,7 +141,7 @@ public class MainPage extends Composite {
         if (newTestView == null) {
             newTestView = new NewTestView(body, SWT.NONE);
         }
-        newTestView.refreshCards();
+        newTestView.refreshTestCards();
         stack.topControl = newTestView;
         body.layout();
     }
@@ -155,7 +155,7 @@ public class MainPage extends Composite {
         if (testRecordsView == null) {
             testRecordsView = new TestRecordsView(body, SWT.NONE);
         }
-        testRecordsView.refreshRows();
+        testRecordsView.refreshTestRecordCards();
         stack.topControl = testRecordsView;
         body.layout();
     }

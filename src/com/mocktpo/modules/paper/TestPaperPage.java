@@ -105,6 +105,7 @@ public class TestPaperPage extends Composite {
         if (readingPaperView == null) {
             readingPaperView = new ReadingPaperView(this, SWT.NONE);
         }
+        readingPaperView.refreshTestPaperViewCards();
         stack.topControl = readingPaperView;
         this.layout();
     }
