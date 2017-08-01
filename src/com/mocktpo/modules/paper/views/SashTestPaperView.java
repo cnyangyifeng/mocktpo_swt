@@ -4,7 +4,6 @@ import com.mocktpo.modules.paper.TestPaperPage;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;

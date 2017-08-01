@@ -10,16 +10,24 @@ import org.eclipse.swt.widgets.Control;
 public class BorderedCompositePaintListener implements PaintListener {
 
     private int color;
+    private int lineWidth;
 
     public BorderedCompositePaintListener(int color) {
         this.color = color;
+        this.lineWidth = 1;
+    }
+
+    public BorderedCompositePaintListener(int color, int lineWidth) {
+        this.color = color;
+        this.lineWidth = lineWidth;
     }
 
     @Override
     public void paintControl(PaintEvent e) {
         GC gc = e.gc;
         Rectangle c = ((Control) e.widget).getBounds();
+        gc.setLineWidth(lineWidth);
         gc.setForeground(ResourceManager.getColor(this.color));
-        gc.drawRectangle(0, 0, c.width - 1, c.height - 1);
+        gc.drawRectangle(lineWidth / 2, lineWidth / 2, c.width - lineWidth, c.height - lineWidth);
     }
 }

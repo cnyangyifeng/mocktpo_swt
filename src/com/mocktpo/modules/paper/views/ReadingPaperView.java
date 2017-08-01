@@ -4,15 +4,21 @@ import com.mocktpo.modules.paper.TestPaperPage;
 import com.mocktpo.modules.system.widgets.TestPaperViewCard;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
+import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 public class ReadingPaperView extends SashTestPaperView {
+
+    /* Stack */
+
+    private StackLayout viewStack;
 
     /* Widgets */
 
@@ -65,7 +71,16 @@ public class ReadingPaperView extends SashTestPaperView {
 
     @Override
     public void updateRight() {
+        FormLayoutSet.layout(right).marginWidth(0).marginHeight(0).spacing(0);
+        viewStack = new StackLayout();
+        right.setLayout(viewStack);
+//        viewStack.topControl = getTestPaperView();
+        right.layout();
     }
+
+//    private TestPaperView getTestPaperView() {
+
+//    }
 
     /*
      * ==================================================
@@ -76,7 +91,7 @@ public class ReadingPaperView extends SashTestPaperView {
      */
 
     private void initTestPaperViewCards() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             TestPaperViewCard card = new TestPaperViewCard(lb, SWT.NONE, i);
             GridDataSet.attach(card).fillHorizontal();
         }

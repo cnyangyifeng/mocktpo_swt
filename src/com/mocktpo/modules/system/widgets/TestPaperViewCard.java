@@ -60,7 +60,7 @@ public class TestPaperViewCard extends Composite {
         this.viewId = viewId;
         this.defaultBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED);
         this.hoveredBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_GRAY60);
-        this.checkedBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_DARK_BLUE);
+        this.checkedBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_DARK_BLUE, 4);
         init();
     }
 
