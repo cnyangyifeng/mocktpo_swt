@@ -74,13 +74,15 @@ public class ReadingPaperView extends SashTestPaperView {
         FormLayoutSet.layout(right).marginWidth(0).marginHeight(0).spacing(0);
         viewStack = new StackLayout();
         right.setLayout(viewStack);
-//        viewStack.topControl = getTestPaperView();
+        viewStack.topControl = getTestPaperView();
         right.layout();
     }
 
-//    private TestPaperView getTestPaperView() {
-
-//    }
+    private TestEditorView getTestPaperView() {
+        TestEditorView tpv;
+        tpv = new ReadingPassageEditorView(page, SWT.NONE);
+        return tpv;
+    }
 
     /*
      * ==================================================

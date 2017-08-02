@@ -15,7 +15,7 @@ public abstract class ResponsiveTestPaperView extends TestPaperView {
 
     /* Constants */
 
-    protected static final int VIEW_PORT_WIDTH = 720;
+    private static final int VIEW_PORT_WIDTH = 720;
 
     /* Widgets */
 
