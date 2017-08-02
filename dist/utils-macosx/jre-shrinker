@@ -1,0 +1,46 @@
+#!/bin/bash
+
+export BASE_DIR=`dirname $0`
+export JRE_DIR=$BASE_DIR/jre
+
+reset
+
+echo "Please refer to http://www.oracle.com/technetwork/java/javase/jre-8-readme-2095710.html."
+
+cp $JRE_DIR/bin/java $JRE_DIR
+rm -rf $JRE_DIR/bin
+mkdir $JRE_DIR/bin
+mv $JRE_DIR/java $JRE_DIR/bin
+echo "Keeps bin/java."
+
+rm -rf $JRE_DIR/lib/applet
+rm -rf $JRE_DIR/lib/charsets.jar
+rm -rf $JRE_DIR/lib/ext
+rm -rf $JRE_DIR/lib/jfr
+rm -rf $JRE_DIR/lib/jfr.jar
+rm -rf $JRE_DIR/lib/management
+rm -rf $JRE_DIR/lib/management-agent.jar
+echo "Removes applet, charsets.jar, ext, management, management-agent.jar."
+
+rm -rf $JRE_DIR/lib/javafx.properties
+rm -rf $JRE_DIR/lib/jfxswt.jar
+rm -rf $JRE_DIR/lib/libdecora_sse.dylib
+rm -rf $JRE_DIR/lib/libfxplugins.dylib
+rm -rf $JRE_DIR/lib/libglass.dylib
+rm -rf $JRE_DIR/lib/libglib-lite.dylib
+rm -rf $JRE_DIR/lib/libgstreamer-lite.dylib
+rm -rf $JRE_DIR/lib/libjavafx_font_t2k.dylib
+rm -rf $JRE_DIR/lib/libjavafx_font.dylib
+rm -rf $JRE_DIR/lib/libjavafx_iio.dylib
+rm -rf $JRE_DIR/lib/libjfxmedia_avf.dylib
+rm -rf $JRE_DIR/lib/libjfxmedia_qtkit.dylib
+rm -rf $JRE_DIR/lib/libjfxmedia.dylib
+rm -rf $JRE_DIR/lib/libjfxwebkit.dylib
+rm -rf $JRE_DIR/lib/libprism_common.dylib
+rm -rf $JRE_DIR/lib/libprism_es2.dylib
+rm -rf $JRE_DIR/lib/libprism_sw.dylib
+echo "Removes all JavaFx-related files."
+
+rm -rf $JRE_DIR/lib/fonts
+rm -rf $JRE_DIR/lib/fontconfig*
+echo "Removes all fonts and font configurations."
