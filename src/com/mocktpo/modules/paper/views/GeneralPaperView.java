@@ -5,6 +5,7 @@ import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.KeyBindingSet;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
+import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.StyledTextSet;
 import org.eclipse.swt.SWT;
@@ -18,13 +19,12 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
     /* Constants */
 
-    private static final int INPUT_TEXT_HEIGHT = 22;
     private static final int PRE_LABEL_WIDTH = 120;
 
     /* Widgets */
 
-    private StyledText titleText;
-    private StyledText starsText;
+    private StyledText titleTextWidget;
+    private StyledText starsTextWidget;
 
     /*
      * ==================================================
@@ -67,37 +67,39 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
     @Override
     public void updateBody() {
-        titleText = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(titleText).atLeft(PRE_LABEL_WIDTH).atTop().atRight().withHeight(INPUT_TEXT_HEIGHT);
-        StyledTextSet.decorate(titleText).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(page.getTestPaperVo().getTitle());
-        KeyBindingSet.bind(titleText).traverse().selectAll();
-        titleText.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
-        titleText.addModifyListener(new TitleTextModifyListener());
-        titleText.setSelection(titleText.getText().length());
+        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(50).spacing(10);
+
+        titleTextWidget = new StyledText(viewPort, SWT.SINGLE);
+        FormDataSet.attach(titleTextWidget).atLeft(PRE_LABEL_WIDTH).atTop().atRight();
+        StyledTextSet.decorate(titleTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestPaperVo().getTitle());
+        KeyBindingSet.bind(titleTextWidget).traverse().selectAll();
+        titleTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        titleTextWidget.addModifyListener(new TitleTextModifyListener());
+        titleTextWidget.setSelection(titleTextWidget.getText().length());
 
         final CLabel titlePreLabel = new CLabel(viewPort, SWT.NONE);
-        FormDataSet.attach(titlePreLabel).atLeft().atTopTo(titleText, 0, SWT.TOP).atRightTo(titleText, 0, SWT.LEFT).atBottomTo(titleText, 0, SWT.BOTTOM);
+        FormDataSet.attach(titlePreLabel).atLeft().atTopTo(titleTextWidget, 0, SWT.TOP).atRightTo(titleTextWidget, 0, SWT.LEFT).atBottomTo(titleTextWidget, 0, SWT.BOTTOM);
         CLabelSet.decorate(titlePreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("title") + MT.STRING_TAB + MT.STRING_STAR);
 
-        starsText = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(starsText).atLeft(PRE_LABEL_WIDTH).atTopTo(titleText).withWidth(40).withHeight(INPUT_TEXT_HEIGHT);
-        StyledTextSet.decorate(starsText).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getTestPaperVo().getStars()));
-        KeyBindingSet.bind(starsText).traverse().selectAll();
-        starsText.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
-        starsText.addModifyListener(new StarsTextModifyListener());
+        starsTextWidget = new StyledText(viewPort, SWT.SINGLE);
+        FormDataSet.attach(starsTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(titleTextWidget).withWidth(40);
+        StyledTextSet.decorate(starsTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getTestPaperVo().getStars()));
+        KeyBindingSet.bind(starsTextWidget).traverse().selectAll();
+        starsTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        starsTextWidget.addModifyListener(new StarsTextModifyListener());
 
         final CLabel starsPreLabel = new CLabel(viewPort, SWT.NONE);
-        FormDataSet.attach(starsPreLabel).atLeft().atTopTo(starsText, 0, SWT.TOP).atRightTo(starsText, 0, SWT.LEFT).atBottomTo(starsText, 0, SWT.BOTTOM);
+        FormDataSet.attach(starsPreLabel).atLeft().atTopTo(starsTextWidget, 0, SWT.TOP).atRightTo(starsTextWidget, 0, SWT.LEFT).atBottomTo(starsTextWidget, 0, SWT.BOTTOM);
         CLabelSet.decorate(starsPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("stars") + MT.STRING_TAB + MT.STRING_STAR);
 
-        final StyledText authorText = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(authorText).atLeft(PRE_LABEL_WIDTH).atTopTo(starsText).withWidth(240).withHeight(INPUT_TEXT_HEIGHT);
-        StyledTextSet.decorate(authorText).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10);
-        KeyBindingSet.bind(authorText).traverse().selectAll();
-        authorText.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        final StyledText authorTextWidget = new StyledText(viewPort, SWT.SINGLE);
+        FormDataSet.attach(authorTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(starsTextWidget).withWidth(240);
+        StyledTextSet.decorate(authorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10);
+        KeyBindingSet.bind(authorTextWidget).traverse().selectAll();
+        authorTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel authorPreLabel = new CLabel(viewPort, SWT.NONE);
-        FormDataSet.attach(authorPreLabel).atLeft().atTopTo(authorText, 0, SWT.TOP).atRightTo(authorText, 0, SWT.LEFT).atBottomTo(authorText, 0, SWT.BOTTOM);
+        FormDataSet.attach(authorPreLabel).atLeft().atTopTo(authorTextWidget, 0, SWT.TOP).atRightTo(authorTextWidget, 0, SWT.LEFT).atBottomTo(authorTextWidget, 0, SWT.BOTTOM);
         CLabelSet.decorate(authorPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("author") + MT.STRING_TAB + MT.STRING_STAR);
     }
 
@@ -113,7 +115,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
         @Override
         public void modifyText(ModifyEvent e) {
-            page.getTestPaperVo().setTitle(titleText.getText());
+            page.getTestPaperVo().setTitle(titleTextWidget.getText());
             page.enterUnsavedMode();
         }
     }
@@ -122,7 +124,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
         @Override
         public void modifyText(ModifyEvent e) {
-            String st = starsText.getText();
+            String st = starsTextWidget.getText();
             if (StringUtils.isNumber(st)) {
                 try {
                     Integer stars = Integer.parseInt(st);

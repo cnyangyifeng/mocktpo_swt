@@ -365,4 +365,20 @@ public abstract class TestPaperView extends Composite {
             }
         }
     }
+
+    /*
+     * ==================================================
+     *
+     * Getters and Setters
+     *
+     * ==================================================
+     */
+
+    public TestPaperPage getTestPaperPage() {
+        return page;
+    }
+
+    public void setTestPaperPage(TestPaperPage page) {
+        this.page = page;
+    }
 }

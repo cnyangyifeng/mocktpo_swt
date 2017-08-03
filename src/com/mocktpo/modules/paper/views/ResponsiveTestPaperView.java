@@ -47,7 +47,7 @@ public abstract class ResponsiveTestPaperView extends TestPaperView {
 
         viewPort = new Composite(body, SWT.NONE);
         GridDataSet.attach(viewPort).topCenter().withWidth(VIEW_PORT_WIDTH);
-        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(50).spacing(10);
+        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
 
         /*
          * ==================================================

@@ -1,14 +1,16 @@
 package com.mocktpo.modules.test.views;
 
-import com.mocktpo.windows.MoreTextWindow;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.util.*;
-import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.*;
-import com.mocktpo.modules.system.widgets.ImageButton;
+import com.mocktpo.util.widgets.CLabelSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
+import com.mocktpo.util.widgets.StyledTextSet;
+import com.mocktpo.windows.MoreTextWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -88,7 +90,7 @@ public class ReadingPassageView extends SashTestView {
         FormDataSet.attach(headingTextWidget).atLeft().atTop().atRight();
         StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading").getText());
 
-        final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
+        final StyledText passageTextWidget = new StyledText(c, SWT.MULTI | SWT.WRAP);
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
         StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledText("passage").getStyles());

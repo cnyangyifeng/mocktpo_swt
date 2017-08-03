@@ -1,6 +1,5 @@
 package com.mocktpo.modules.paper.views;
 
-import com.mocktpo.modules.paper.TestPaperPage;
 import com.mocktpo.util.layout.FormLayoutSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,9 +19,9 @@ public abstract class TestEditorView extends Composite {
 
     protected Display d;
 
-    /* Page */
+    /* Paper View */
 
-    protected TestPaperPage page;
+    protected TestPaperView paperView;
 
     /*
      * ==================================================
@@ -32,10 +31,10 @@ public abstract class TestEditorView extends Composite {
      * ==================================================
      */
 
-    public TestEditorView(TestPaperPage page, int style) {
-        super(page, style);
-        this.d = page.getDisplay();
-        this.page = page;
+    public TestEditorView(SashTestPaperView paperView, int style) {
+        super(paperView.getRight(), style);
+        this.d = paperView.getDisplay();
+        this.paperView = paperView;
         init();
     }
 
