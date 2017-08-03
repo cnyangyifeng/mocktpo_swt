@@ -62,8 +62,8 @@ public class TestIntroView extends ResponsiveTestView {
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
         GridDataSet.attach(descriptionTextWidget).topCenter();
-        StyledTextSet.decorate(descriptionTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
-        StyleRangeUtils.decorate(descriptionTextWidget, vo.getStyledText("description").getStyles());
+        StyledTextSet.decorate(descriptionTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description"));
+        StyleRangeUtils.decorate(descriptionTextWidget, vo.getStyledTextStyles("description"));
     }
 
     /*

@@ -35,6 +35,16 @@ public class TestPaperVo implements Serializable {
         return null;
     }
 
+    public void addViewVo(TestViewVo viewVo) {
+        viewVos.add(viewVo);
+    }
+
+    public void removeViewVo(TestViewVo viewVo) {
+        if (viewVos.contains(viewVo)) {
+            viewVos.remove(viewVo);
+        }
+    }
+
     public List<TestViewVo> getViewVos() {
         return viewVos;
     }

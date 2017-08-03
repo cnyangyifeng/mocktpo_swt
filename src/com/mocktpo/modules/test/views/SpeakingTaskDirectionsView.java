@@ -92,7 +92,7 @@ public class SpeakingTaskDirectionsView extends ResponsiveTestView {
 
         final StyledText topTextWidget = new StyledText(viewPort, SWT.WRAP);
         GridDataSet.attach(topTextWidget).topCenter();
-        StyledTextSet.decorate(topTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("top").getText());
+        StyledTextSet.decorate(topTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("top"));
 
         final Label imageLabel = new Label(viewPort, SWT.NONE);
         GridDataSet.attach(imageLabel).topCenter();

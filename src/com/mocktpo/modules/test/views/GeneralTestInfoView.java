@@ -52,12 +52,12 @@ public class GeneralTestInfoView extends ResponsiveTestView {
 
         final StyledText headingTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledText("heading").getText());
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledText("heading"));
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(descriptionTextWidget).atLeft().atTopTo(headingTextWidget, 50).atRight();
-        StyledTextSet.decorate(descriptionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description").getText());
-        StyleRangeUtils.decorate(descriptionTextWidget, vo.getStyledText("description").getStyles());
+        StyledTextSet.decorate(descriptionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description"));
+        StyleRangeUtils.decorate(descriptionTextWidget, vo.getStyledTextStyles("description"));
     }
 
     /*

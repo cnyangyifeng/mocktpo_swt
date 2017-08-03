@@ -93,13 +93,13 @@ public class IndependentWritingTaskView extends SashTestView {
     public void updateLeft() {
         final StyledText directionsTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP);
         FormDataSet.attach(directionsTextWidget).atLeft(10).atTop(10).atRight(10).withWidth(ScreenUtils.getHalfClientWidth(d));
-        StyledTextSet.decorate(directionsTextWidget).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("directions").getText());
-        StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledText("directions").getStyles());
+        StyledTextSet.decorate(directionsTextWidget).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("directions"));
+        StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledTextStyles("directions"));
 
         final StyledText questionTextWidget = new StyledText(left, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeftTo(directionsTextWidget, 0, SWT.LEFT).atTopTo(directionsTextWidget, 10).atRightTo(directionsTextWidget, 0, SWT.RIGHT).withWidth(ScreenUtils.getHalfClientWidth(d));
-        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
-        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question"));
+        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
     }
 
     @Override

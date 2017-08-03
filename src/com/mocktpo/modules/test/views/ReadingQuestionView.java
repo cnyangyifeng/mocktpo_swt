@@ -83,8 +83,8 @@ public class ReadingQuestionView extends SashTestView {
 
         final StyledText questionTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft().atTop().atRight();
-        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
-        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question"));
+        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
 
         checkLabelA = new Label(c, SWT.NONE);
         FormDataSet.attach(checkLabelA).atLeft(10).atTopTo(questionTextWidget, 20);
@@ -93,7 +93,7 @@ public class ReadingQuestionView extends SashTestView {
 
         final Label choiceLabelA = new Label(c, SWT.WRAP);
         FormDataSet.attach(choiceLabelA).atLeftTo(checkLabelA, 10).atTopTo(questionTextWidget, 20).atRight();
-        LabelSet.decorate(choiceLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA").getText());
+        LabelSet.decorate(choiceLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA"));
         choiceLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelB = new Label(c, SWT.NONE);
@@ -103,7 +103,7 @@ public class ReadingQuestionView extends SashTestView {
 
         final Label choiceLabelB = new Label(c, SWT.WRAP);
         FormDataSet.attach(choiceLabelB).atLeftTo(checkLabelB, 10).atTopTo(choiceLabelA, 20).atRight();
-        LabelSet.decorate(choiceLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB").getText());
+        LabelSet.decorate(choiceLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB"));
         choiceLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelC = new Label(c, SWT.NONE);
@@ -113,7 +113,7 @@ public class ReadingQuestionView extends SashTestView {
 
         final Label choiceLabelC = new Label(c, SWT.WRAP);
         FormDataSet.attach(choiceLabelC).atLeftTo(checkLabelC, 10).atTopTo(choiceLabelB, 20).atRight();
-        LabelSet.decorate(choiceLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC").getText());
+        LabelSet.decorate(choiceLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC"));
         choiceLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelD = new Label(c, SWT.NONE);
@@ -123,13 +123,13 @@ public class ReadingQuestionView extends SashTestView {
 
         final Label choiceLabelD = new Label(c, SWT.WRAP);
         FormDataSet.attach(choiceLabelD).atLeftTo(checkLabelD, 10).atTopTo(choiceLabelC, 20).atRight();
-        LabelSet.decorate(choiceLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD").getText());
+        LabelSet.decorate(choiceLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD"));
         choiceLabelD.addMouseListener(new ChooseAnswerAdapter());
 
         if (vo.getStyledText("footnote") != null) {
             final StyledText footnoteTextWidget = new StyledText(c, SWT.WRAP);
             FormDataSet.attach(footnoteTextWidget).atLeft().atTopTo(choiceLabelD, 40).atRight();
-            StyledTextSet.decorate(footnoteTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote").getText());
+            StyledTextSet.decorate(footnoteTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("footnote"));
         }
 
         updateWidgetsForAnswers();
@@ -191,12 +191,12 @@ public class ReadingQuestionView extends SashTestView {
 
         final StyledText headingTextWidget = new StyledText(c, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTop().atRight();
-        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading").getText());
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading"));
 
         final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
-        StyledTextSet.decorate(passageTextWidget).setNoCaret().setCursor(MT.CURSOR_ARROW).setEditable(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
-        StyleRangeUtils.decorate(passageTextWidget, vo.getStyledText("passage").getStyles());
+        StyledTextSet.decorate(passageTextWidget).setNoCaret().setCursor(MT.CURSOR_ARROW).setEditable(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage"));
+        StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
         passageTextWidget.addControlListener(new ParagraphTextControlAdapter());
 
         rightScrolled.setContent(c);

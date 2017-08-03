@@ -61,7 +61,7 @@ public class IndependentWritingTaskEndView extends ResponsiveTestView {
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(descriptionTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(descriptionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
+        StyledTextSet.decorate(descriptionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description"));
     }
 
     /*

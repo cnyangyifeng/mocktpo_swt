@@ -2,6 +2,7 @@ package com.mocktpo.vo;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TestViewVo implements Serializable {
@@ -13,7 +14,6 @@ public class TestViewVo implements Serializable {
 
     private int viewId;
     private int viewType;
-    private String viewTypeName;
     private int sectionType;
     private String sectionTypeName;
     private int listeningGroupId;
@@ -38,15 +38,6 @@ public class TestViewVo implements Serializable {
     private boolean answerable;
     private int totalAnswerCount;
 
-    public StyledTextVo getStyledText(String key) {
-        for (String i : body.keySet()) {
-            if (i.equals(key)) {
-                return body.get(i);
-            }
-        }
-        return null;
-    }
-
     public Map<String, StyledTextVo> getBody() {
         return body;
     }
@@ -69,14 +60,6 @@ public class TestViewVo implements Serializable {
 
     public void setViewType(int viewType) {
         this.viewType = viewType;
-    }
-
-    public String getViewTypeName() {
-        return viewTypeName;
-    }
-
-    public void setViewTypeName(String viewTypeName) {
-        this.viewTypeName = viewTypeName;
     }
 
     public int getSectionType() {
@@ -261,5 +244,45 @@ public class TestViewVo implements Serializable {
 
     public void setTotalAnswerCount(int totalAnswerCount) {
         this.totalAnswerCount = totalAnswerCount;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Body StyledTextVo Related Getters and Setters
+     *
+     * ==================================================
+     */
+
+    private StyledTextVo getStyledTextVo(String key) {
+        Map<String, StyledTextVo> body = getBody();
+        if (body != null) {
+            return body.get(key);
+        } else {
+            return null;
+        }
+    }
+
+    public void setStyledTextVo(String key, StyledTextVo textVo) {
+        Map<String, StyledTextVo> body = getBody();
+        if (body != null) {
+            body.put(key, textVo);
+        }
+    }
+
+    public String getStyledText(String key) {
+        StyledTextVo styledTextVo = getStyledTextVo(key);
+        if (styledTextVo != null) {
+            return styledTextVo.getText();
+        }
+        return "";
+    }
+
+    public List<StyleRangeVo> getStyledTextStyles(String key) {
+        StyledTextVo styledTextVo = getStyledTextVo(key);
+        if (styledTextVo != null) {
+            return styledTextVo.getStyles();
+        }
+        return null;
     }
 }

@@ -58,7 +58,7 @@ public class ListeningHeadsetOnView extends ResponsiveTestView {
 
         final StyledText topTextWidget = new StyledText(viewPort, SWT.WRAP);
         GridDataSet.attach(topTextWidget).topCenter();
-        StyledTextSet.decorate(topTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("top").getText());
+        StyledTextSet.decorate(topTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("top"));
 
         final Label imageLabel = new Label(viewPort, SWT.NONE);
         GridDataSet.attach(imageLabel).topCenter();
@@ -66,8 +66,8 @@ public class ListeningHeadsetOnView extends ResponsiveTestView {
 
         final StyledText bottomTextWidget = new StyledText(viewPort, SWT.WRAP);
         GridDataSet.attach(bottomTextWidget).topCenter();
-        StyledTextSet.decorate(bottomTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("bottom").getText());
-        StyleRangeUtils.decorate(bottomTextWidget, vo.getStyledText("bottom").getStyles());
+        StyledTextSet.decorate(bottomTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("bottom"));
+        StyleRangeUtils.decorate(bottomTextWidget, vo.getStyledTextStyles("bottom"));
     }
 
     /*

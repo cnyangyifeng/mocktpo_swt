@@ -57,7 +57,7 @@ public class SpeakingSectionEndView extends ResponsiveTestView {
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
         GridDataSet.attach(descriptionTextWidget).topCenter();
-        StyledTextSet.decorate(descriptionTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description").getText());
+        StyledTextSet.decorate(descriptionTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("description"));
     }
 
     /*

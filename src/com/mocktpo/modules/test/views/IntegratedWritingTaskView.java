@@ -96,13 +96,13 @@ public class IntegratedWritingTaskView extends SashTestView2 {
     public void updateTop() {
         final StyledText directionsTextWidget = new StyledText(top, SWT.BORDER | SWT.WRAP);
         FormDataSet.attach(directionsTextWidget).atLeft().atTop().atRight();
-        StyledTextSet.decorate(directionsTextWidget).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("directions").getText());
-        StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledText("directions").getStyles());
+        StyledTextSet.decorate(directionsTextWidget).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("directions"));
+        StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledTextStyles("directions"));
 
         final StyledText questionTextWidget = new StyledText(top, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft(5).atTopTo(directionsTextWidget, 5).atRight(5);
-        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question").getText());
-        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledText("question").getStyles());
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question"));
+        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
     }
 
     @Override
@@ -117,8 +117,8 @@ public class IntegratedWritingTaskView extends SashTestView2 {
 
         final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(passageTextWidget).atLeft().atTop().atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
-        StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
-        StyleRangeUtils.decorate(passageTextWidget, vo.getStyledText("passage").getStyles());
+        StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage"));
+        StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
 
         sc.setContent(c);
         sc.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));

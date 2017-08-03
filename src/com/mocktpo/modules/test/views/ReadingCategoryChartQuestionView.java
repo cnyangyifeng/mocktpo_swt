@@ -1,18 +1,18 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.modules.test.widgets.DroppableAnswerComposite;
+import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.*;
-import com.mocktpo.modules.test.widgets.DroppableAnswerComposite;
-import com.mocktpo.modules.system.widgets.ImageButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -156,8 +156,8 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         final StyledText directionsTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(directionsTextWidget).atLeft().atTop(5).atRight();
-        StyledTextSet.decorate(directionsTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("directions").getText());
-        StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledText("directions").getStyles());
+        StyledTextSet.decorate(directionsTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("directions"));
+        StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledTextStyles("directions"));
 
         /*
          * ==================================================
@@ -169,8 +169,8 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         final StyledText tipsTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(tipsTextWidget).atLeft().atTopTo(directionsTextWidget, 5).atRight();
-        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips").getText());
-        StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledText("tips").getStyles());
+        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips"));
+        StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledTextStyles("tips"));
 
         /*
          * ==================================================
@@ -185,7 +185,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
         FormLayoutSet.layout(ac).marginWidth(0).marginHeight(10).spacing(10);
         ac.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
-        String question = vo.getStyledText("question").getText();
+        String question = vo.getStyledText("question");
         String[] questions = question.split(MT.STRING_SEMICOLON);
 
         /* Category 1 */
@@ -245,37 +245,37 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         choiceA = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceA).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(l, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA").getText());
+        LabelSet.decorate(choiceA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA"));
         ChoiceLabelDragSourceSet.drag(choiceA);
 
         choiceB = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceB).fromLeft(50, 10).atTopTo(l, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB").getText());
+        LabelSet.decorate(choiceB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB"));
         ChoiceLabelDragSourceSet.drag(choiceB);
 
         choiceC = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceC).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(choiceA, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC").getText());
+        LabelSet.decorate(choiceC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC"));
         ChoiceLabelDragSourceSet.drag(choiceC);
 
         choiceD = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceD).fromLeft(50, 10).atTopTo(choiceB, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD").getText());
+        LabelSet.decorate(choiceD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD"));
         ChoiceLabelDragSourceSet.drag(choiceD);
 
         choiceE = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceE).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(choiceC, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceE).setData(MT.KEY_CHOICE, MT.CHOICE_E).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceE").getText());
+        LabelSet.decorate(choiceE).setData(MT.KEY_CHOICE, MT.CHOICE_E).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceE"));
         ChoiceLabelDragSourceSet.drag(choiceE);
 
         choiceF = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceF).fromLeft(50, 10).atTopTo(choiceD, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceF).setData(MT.KEY_CHOICE, MT.CHOICE_F).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceF").getText());
+        LabelSet.decorate(choiceF).setData(MT.KEY_CHOICE, MT.CHOICE_F).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceF"));
         ChoiceLabelDragSourceSet.drag(choiceF);
 
         choiceG = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceG).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(choiceE, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceG).setData(MT.KEY_CHOICE, MT.CHOICE_G).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceG").getText());
+        LabelSet.decorate(choiceG).setData(MT.KEY_CHOICE, MT.CHOICE_G).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceG"));
         ChoiceLabelDragSourceSet.drag(choiceG);
 
         sc.setContent(inner);
@@ -316,12 +316,12 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
 
         final StyledText headingTextWidget = new StyledText(c, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTop().atRight();
-        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading").getText());
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading"));
 
         final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
-        StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage").getText());
-        StyleRangeUtils.decorate(passageTextWidget, vo.getStyledText("passage").getStyles());
+        StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage"));
+        StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
 
         sc.setContent(c);
         sc.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
@@ -397,25 +397,25 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
             int oldAnswer = (Integer) e.getOldValue();
             switch (oldAnswer) {
                 case MT.CHOICE_A:
-                    LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
+                    LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA"));
                     break;
                 case MT.CHOICE_B:
-                    LabelSet.decorate(choiceB).setText(vo.getStyledText("choiceB").getText());
+                    LabelSet.decorate(choiceB).setText(vo.getStyledText("choiceB"));
                     break;
                 case MT.CHOICE_C:
-                    LabelSet.decorate(choiceC).setText(vo.getStyledText("choiceC").getText());
+                    LabelSet.decorate(choiceC).setText(vo.getStyledText("choiceC"));
                     break;
                 case MT.CHOICE_D:
-                    LabelSet.decorate(choiceD).setText(vo.getStyledText("choiceD").getText());
+                    LabelSet.decorate(choiceD).setText(vo.getStyledText("choiceD"));
                     break;
                 case MT.CHOICE_E:
-                    LabelSet.decorate(choiceE).setText(vo.getStyledText("choiceE").getText());
+                    LabelSet.decorate(choiceE).setText(vo.getStyledText("choiceE"));
                     break;
                 case MT.CHOICE_F:
-                    LabelSet.decorate(choiceF).setText(vo.getStyledText("choiceF").getText());
+                    LabelSet.decorate(choiceF).setText(vo.getStyledText("choiceF"));
                     break;
                 case MT.CHOICE_G:
-                    LabelSet.decorate(choiceG).setText(vo.getStyledText("choiceG").getText());
+                    LabelSet.decorate(choiceG).setText(vo.getStyledText("choiceG"));
                     break;
             }
             int newAnswer = (Integer) e.getNewValue();
@@ -455,25 +455,25 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
             int answer = (Integer) answerLabel.getData(MT.KEY_CHOICE);
             switch (answer) {
                 case MT.CHOICE_A:
-                    LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA").getText());
+                    LabelSet.decorate(choiceA).setText(vo.getStyledText("choiceA"));
                     break;
                 case MT.CHOICE_B:
-                    LabelSet.decorate(choiceB).setText(vo.getStyledText("choiceB").getText());
+                    LabelSet.decorate(choiceB).setText(vo.getStyledText("choiceB"));
                     break;
                 case MT.CHOICE_C:
-                    LabelSet.decorate(choiceC).setText(vo.getStyledText("choiceC").getText());
+                    LabelSet.decorate(choiceC).setText(vo.getStyledText("choiceC"));
                     break;
                 case MT.CHOICE_D:
-                    LabelSet.decorate(choiceD).setText(vo.getStyledText("choiceD").getText());
+                    LabelSet.decorate(choiceD).setText(vo.getStyledText("choiceD"));
                     break;
                 case MT.CHOICE_E:
-                    LabelSet.decorate(choiceE).setText(vo.getStyledText("choiceE").getText());
+                    LabelSet.decorate(choiceE).setText(vo.getStyledText("choiceE"));
                     break;
                 case MT.CHOICE_F:
-                    LabelSet.decorate(choiceF).setText(vo.getStyledText("choiceF").getText());
+                    LabelSet.decorate(choiceF).setText(vo.getStyledText("choiceF"));
                     break;
                 case MT.CHOICE_G:
-                    LabelSet.decorate(choiceG).setText(vo.getStyledText("choiceG").getText());
+                    LabelSet.decorate(choiceG).setText(vo.getStyledText("choiceG"));
                     break;
             }
             answerLabel.setText("");

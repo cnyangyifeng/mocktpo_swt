@@ -97,7 +97,7 @@ public class TestPaperUtils {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(1);
-        viewVo.setViewTypeName("Test Introduction");
+        // viewVo.setViewTypeName("Test Introduction");
         viewVo.setSectionType(0);
         viewVo.setSectionTypeName("");
 
@@ -120,7 +120,7 @@ public class TestPaperUtils {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(2);
-        viewVo.setViewTypeName("General Test Information");
+        // viewVo.setViewTypeName("General Test Information");
         viewVo.setSectionType(0);
         viewVo.setSectionTypeName("");
 
@@ -152,7 +152,7 @@ public class TestPaperUtils {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(3);
-        viewVo.setViewTypeName("Break Point");
+        // viewVo.setViewTypeName("Break Point");
         viewVo.setSectionType(0);
         viewVo.setSectionTypeName("");
 
@@ -176,7 +176,7 @@ public class TestPaperUtils {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(4);
-        viewVo.setViewTypeName("Test End");
+        // viewVo.setViewTypeName("Test End");
         viewVo.setSectionType(0);
         viewVo.setSectionTypeName("");
 
@@ -203,7 +203,7 @@ public class TestPaperUtils {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(11);
-        viewVo.setViewTypeName("Reading Section Directions");
+        // viewVo.setViewTypeName("Reading Section Directions");
         viewVo.setSectionType(1);
         viewVo.setSectionTypeName("Reading");
 
@@ -236,7 +236,7 @@ public class TestPaperUtils {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(12);
-        viewVo.setViewTypeName("Reading Passage");
+        // viewVo.setViewTypeName("Reading Passage");
         viewVo.setSectionType(1);
         viewVo.setSectionTypeName("Reading");
         viewVo.setFirstPassage(firstPassage);
@@ -261,7 +261,7 @@ public class TestPaperUtils {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(13);
-        viewVo.setViewTypeName("Reading Question");
+        // viewVo.setViewTypeName("Reading Question");
         viewVo.setSectionType(1);
         viewVo.setSectionTypeName("Reading");
         viewVo.setPassageOffset(passageOffset);
@@ -326,7 +326,7 @@ public class TestPaperUtils {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(14);
-        viewVo.setViewTypeName("Reading Insert Text Question");
+        // viewVo.setViewTypeName("Reading Insert Text Question");
         viewVo.setSectionType(1);
         viewVo.setSectionTypeName("Reading");
         viewVo.setPassageOffset(passageOffset);
@@ -398,7 +398,7 @@ public class TestPaperUtils {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(15);
-        viewVo.setViewTypeName("Reading Prose Summary Question");
+        // viewVo.setViewTypeName("Reading Prose Summary Question");
         viewVo.setSectionType(1);
         viewVo.setSectionTypeName("Reading");
         viewVo.setTimed(true);
@@ -470,7 +470,7 @@ public class TestPaperUtils {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(17);
-        viewVo.setViewTypeName("Reading Section End");
+        // viewVo.setViewTypeName("Reading Section End");
         viewVo.setSectionType(1);
         viewVo.setSectionTypeName("Reading");
         viewVo.setTimed(true);

@@ -20,8 +20,8 @@ public abstract class SashTestEditorView extends TestEditorView {
      * ==================================================
      */
 
-    public SashTestEditorView(SashTestPaperView paperView, int style) {
-        super(paperView, style);
+    public SashTestEditorView(SashTestPaperView paperView, int style, int viewId) {
+        super(paperView, style, viewId);
     }
 
     @Override

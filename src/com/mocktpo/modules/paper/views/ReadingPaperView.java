@@ -80,7 +80,7 @@ public class ReadingPaperView extends SashTestPaperView {
 
     private TestEditorView getTestPaperView() {
         TestEditorView tpv;
-        tpv = new ReadingPassageEditorView(this, SWT.NONE);
+        tpv = new ReadingPassageEditorView(this, SWT.NONE, 1);
         return tpv;
     }
 

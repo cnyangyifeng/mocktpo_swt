@@ -147,7 +147,7 @@ public class ReadingReviewView extends Composite {
 
         final Label titleLabel = new Label(header, SWT.WRAP);
         FormDataSet.attach(titleLabel).atLeft(10).atTop(10);
-        LabelSet.decorate(titleLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestPaperVo().getTitle() + MT.STRING_SPACE + "Reading");
+        LabelSet.decorate(titleLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestPaperVo().getTitle() + MT.STRING_SPACE + msgs.getString("reading"));
 
         /*
          * ==================================================
@@ -257,9 +257,9 @@ public class ReadingReviewView extends Composite {
     private String getDescriptionText(TestViewVo vo) {
         String text;
         if (vo.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION) {
-            text = vo.getStyledText("directions").getText() + MT.STRING_SPACE + vo.getStyledText("question").getText();
+            text = vo.getStyledText("directions") + MT.STRING_SPACE + vo.getStyledText("question");
         } else {
-            text = vo.getStyledText("question").getText();
+            text = vo.getStyledText("question");
         }
         return text;
     }
