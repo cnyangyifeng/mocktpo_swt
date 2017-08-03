@@ -119,9 +119,8 @@ public class ReadingPassageEditorView extends SashTestEditorView {
         @Override
         public void modifyText(ModifyEvent e) {
             StyledTextVo passageTextVo = new StyledTextVo();
-            passageTextVo.setText(headingTextWidget.getText());
+            passageTextVo.setText(passageTextWidget.getText());
             viewVo.setStyledTextVo("passage", passageTextVo);
-            page.getTestPaperVo();
             page.enterUnsavedMode();
         }
     }
