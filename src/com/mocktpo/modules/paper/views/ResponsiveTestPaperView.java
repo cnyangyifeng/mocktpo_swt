@@ -43,7 +43,7 @@ public abstract class ResponsiveTestPaperView extends TestPaperView {
 
         body = new Composite(sc, SWT.NONE);
         GridLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
-        CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
+        CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
 
         viewPort = new Composite(body, SWT.NONE);
         GridDataSet.attach(viewPort).topCenter().withWidth(VIEW_PORT_WIDTH);

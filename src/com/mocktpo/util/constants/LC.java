@@ -42,6 +42,7 @@ public interface LC {
      */
 
     /* Test Module */
+
     int CAPTION_WIDTH = 180;
     int CONTINUE_BUTTON_WIDTH = 74;
     int LISTENING_DND_QUESTION_HEIGHT = 50;
@@ -50,6 +51,10 @@ public interface LC {
     int RETURN_TO_QUESTION_BUTTON_WIDTH = 74;
     int TEST_HEADER_HEIGHT = 90;
     int VOLUME_CONTROL_WIDTH = 100;
+
+    /* Paper Module */
+
+    int SINGLE_LINE_TEXT_WIDGET_HEIGHT = 22;
 
     /*
      * ==================================================

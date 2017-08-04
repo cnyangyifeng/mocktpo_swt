@@ -263,16 +263,29 @@ public interface MT {
     /*
      * ==================================================
      *
+     * Languages
+     *
+     * ==================================================
+     */
+
+    String LANGUAGE_SIMPLIFIED_CHINESE = "Simplified Chinese";
+    String LANGUAGE_TRADITIONAL_CHINESE = "Traditional Chinese";
+
+    /*
+     * ==================================================
+     *
      * Strings
      *
      * ==================================================
      */
 
+    String STRING_CLOSED_BRACKET = ")";
     String STRING_COLON = ":";
     String STRING_COMMA = ",";
-    String STRING_QUESTION = "Question";
     String STRING_OF = "of";
+    String STRING_OPEN_BRACKET = "(";
     String STRING_PERCENTAGE = "%";
+    String STRING_QUESTION = "Question";
     String STRING_SEMICOLON = ";";
     String STRING_SLASH = "/";
     String STRING_SPACE = " ";
