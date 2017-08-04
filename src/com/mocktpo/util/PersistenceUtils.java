@@ -23,7 +23,7 @@ public class PersistenceUtils {
         userTestSession.setFileAlias(fileAlias);
         userTestSession.setStars(testPaperVo.getStars());
         userTestSession.setStartTime(System.currentTimeMillis());
-        userTestSession.setLastVisitTime(System.currentTimeMillis());
+        userTestSession.setLastVisitedTime(System.currentTimeMillis());
         userTestSession.setTimerHidden(false);
         userTestSession.setReadingTime(MT.TIME_READING_SECTION);
         userTestSession.setListeningTime1(MT.TIME_LISTENING_PER_SUB_SECTION);
@@ -64,7 +64,7 @@ public class PersistenceUtils {
     }
 
     public static void saveToView(UserTestSession userTestSession, int viewId) {
-        userTestSession.setLastVisitTime(System.currentTimeMillis());
+        userTestSession.setLastVisitedTime(System.currentTimeMillis());
         userTestSession.setLastViewId(viewId);
         userTestSession.setMaxViewId(viewId);
 
@@ -77,7 +77,7 @@ public class PersistenceUtils {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
 
-        userTestSession.setLastVisitTime(System.currentTimeMillis());
+        userTestSession.setLastVisitedTime(System.currentTimeMillis());
         userTestSession.setLastViewId(testView.getVo().getViewId());
         userTestSession.setMaxViewId(testView.getVo().getViewId());
 
@@ -90,7 +90,7 @@ public class PersistenceUtils {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
 
-        userTestSession.setLastVisitTime(System.currentTimeMillis());
+        userTestSession.setLastVisitedTime(System.currentTimeMillis());
         userTestSession.setLastViewId(testView.getVo().getViewId() + 1);
         userTestSession.setMaxViewId(testView.getVo().getViewId() + 1);
         int visitedViewCount = userTestSession.getVisitedViewCount();
@@ -116,7 +116,7 @@ public class PersistenceUtils {
         TestPage page = testView.getPage();
         UserTestSession userTestSession = page.getUserTestSession();
 
-        userTestSession.setLastVisitTime(System.currentTimeMillis());
+        userTestSession.setLastVisitedTime(System.currentTimeMillis());
         userTestSession.setLastViewId(testView.getVo().getViewId() - 1);
         userTestSession.setMaxViewId(testView.getVo().getViewId() - 1);
 

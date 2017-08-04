@@ -1,12 +1,8 @@
 package com.mocktpo.modules.paper.views;
 
 import com.mocktpo.modules.paper.TestPaperPage;
-import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.orm.domain.TestPaper;
-import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.vo.StyledTextVo;
-import com.mocktpo.vo.TestPaperVo;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

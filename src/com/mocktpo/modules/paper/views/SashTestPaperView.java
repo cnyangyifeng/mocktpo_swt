@@ -35,7 +35,7 @@ public abstract class SashTestPaperView extends TestPaperView {
         FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
 
         left = new Composite(body, SWT.NONE);
-        FormDataSet.attach(left).atLeft().atTop().fromRight(80).atBottom();
+        FormDataSet.attach(left).atLeft().atTop().atBottom();
         FormLayoutSet.layout(left).marginWidth(0).marginHeight(0).spacing(0);
 
         final Label divider = new Label(left, SWT.VERTICAL);

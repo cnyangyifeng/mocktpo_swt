@@ -97,8 +97,16 @@ public class TestRecordCard extends Composite {
         CLabelSet.decorate(startTimePreLabel).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("start_time"));
 
         final CLabel startTimeLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(startTimeLabel).atLeftTo(startTimePreLabel, 5).atTopTo(startTimePreLabel, 0, SWT.TOP).atRight();
+        FormDataSet.attach(startTimeLabel).atLeftTo(startTimePreLabel, 5).atTopTo(startTimePreLabel, 0, SWT.TOP);
         CLabelSet.decorate(startTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getStartTime()));
+
+        final CLabel lastVisitedTimePreLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(lastVisitedTimePreLabel).atLeftTo(startTimeLabel, 40).atTopTo(startTimePreLabel, 0, SWT.TOP);
+        CLabelSet.decorate(lastVisitedTimePreLabel).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("last_visited_time"));
+
+        final CLabel lastVisitedTimeLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(lastVisitedTimeLabel).atLeftTo(lastVisitedTimePreLabel, 5).atTopTo(startTimePreLabel, 0, SWT.TOP).atRight();
+        CLabelSet.decorate(lastVisitedTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getLastVisitedTime()));
 
         final Label divider1 = new Label(header, SWT.NONE);
         FormDataSet.attach(divider1).atLeft().atTopTo(startTimePreLabel, 10).atRight().withHeight(1);

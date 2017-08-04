@@ -4,8 +4,6 @@ import com.mocktpo.util.constants.ST;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.vo.TestViewVo;
 
-import java.util.UUID;
-
 public class UserTestSession {
 
     private int sid;
@@ -14,7 +12,7 @@ public class UserTestSession {
     private String fileAlias;
     private int stars;
     private long startTime;
-    private long lastVisitTime;
+    private long lastVisitedTime;
     private boolean timerHidden;
     private int readingTime;
     private int listeningTime1;
@@ -84,12 +82,12 @@ public class UserTestSession {
         this.startTime = startTime;
     }
 
-    public long getLastVisitTime() {
-        return lastVisitTime;
+    public long getLastVisitedTime() {
+        return lastVisitedTime;
     }
 
-    public void setLastVisitTime(long lastVisitTime) {
-        this.lastVisitTime = lastVisitTime;
+    public void setLastVisitedTime(long lastVisitTime) {
+        this.lastVisitedTime = lastVisitTime;
     }
 
     public boolean isTimerHidden() {
@@ -365,6 +363,6 @@ public class UserTestSession {
 
     @Override
     public String toString() {
-        return "{\nsid:" + this.getSid() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nfileAlias:" + this.getFileAlias() + ",\nstars:" + this.getStars() + ",\nstartTime:" + this.getStartTime() + ",\nlastVisitTime:" + this.getLastVisitTime() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nspeakingReadingTime1:" + this.getSpeakingReadingTime1() + ",\nspeakingReadingTime2:" + this.getSpeakingReadingTime2() + ",\nwritingReadingTime:" + this.getWritingReadingTime() + ",\nintegratedWritingTime:" + this.getIntegratedWritingTime() + ",\nindependentWritingTime:" + this.getIndependentWritingTime() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\nreadingSelected:" + this.isReadingSelected() + ",\nlisteningSelected:" + this.isListeningSelected() + ",\nspeakingSelected:" + this.isSpeakingSelected() + ",\nwritingSelected:" + this.isWritingSelected() + ",\nlastViewId:" + this.getLastViewId() + ",\nmaxViewId:" + this.getMaxViewId() + ",\nvisitedViewCount:" + this.getVisitedViewCount() + ",\ntotalViewCount:" + this.getTotalViewCount() + ",\ntestComplete:" + this.isTestComplete() + "\n}";
+        return "{\nsid:" + this.getSid() + ",\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nfileAlias:" + this.getFileAlias() + ",\nstars:" + this.getStars() + ",\nstartTime:" + this.getStartTime() + ",\nlastVisitedTime:" + this.getLastVisitedTime() + ",\ntimerHidden:" + this.isTimerHidden() + ",\nreadingTime:" + this.getReadingTime() + ",\nlisteningTime1:" + this.getListeningTime1() + ",\nlisteningTime2:" + this.getListeningTime2() + ",\nspeakingReadingTime1:" + this.getSpeakingReadingTime1() + ",\nspeakingReadingTime2:" + this.getSpeakingReadingTime2() + ",\nwritingReadingTime:" + this.getWritingReadingTime() + ",\nintegratedWritingTime:" + this.getIntegratedWritingTime() + ",\nindependentWritingTime:" + this.getIndependentWritingTime() + ",\nvolume:" + this.getVolume() + ",\nvolumeControlHidden:" + this.isVolumeControlHidden() + ",\nreadingSelected:" + this.isReadingSelected() + ",\nlisteningSelected:" + this.isListeningSelected() + ",\nspeakingSelected:" + this.isSpeakingSelected() + ",\nwritingSelected:" + this.isWritingSelected() + ",\nlastViewId:" + this.getLastViewId() + ",\nmaxViewId:" + this.getMaxViewId() + ",\nvisitedViewCount:" + this.getVisitedViewCount() + ",\ntotalViewCount:" + this.getTotalViewCount() + ",\ntestComplete:" + this.isTestComplete() + "\n}";
     }
 }

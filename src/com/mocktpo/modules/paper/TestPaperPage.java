@@ -60,6 +60,8 @@ public class TestPaperPage extends Composite {
         testPaperVo.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
         testPaperVo.setTitle("");
         testPaperVo.setStars(0);
+        testPaperVo.setAuthor("");
+        testPaperVo.setCreatedTime(System.currentTimeMillis());
         this.testPaperVo = testPaperVo;
         this.firstRun = true;
 

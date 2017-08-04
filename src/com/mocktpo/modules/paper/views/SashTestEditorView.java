@@ -35,7 +35,7 @@ public abstract class SashTestEditorView extends TestEditorView {
 
         final Label divider = new Label(body, SWT.VERTICAL);
         FormDataSet.attach(divider).atTop(0).fromRight(50).atBottom(0).withWidth(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_WHITE_SMOKE);
+        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
         left = new Composite(body, SWT.NONE);
         FormDataSet.attach(left).atLeft().atTop().fromRight(50).atBottom();

@@ -1,7 +1,6 @@
 package com.mocktpo.modules.paper.views;
 
 import com.mocktpo.modules.paper.TestPaperPage;
-import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.KeyBindingSet;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -28,6 +27,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
     private StyledText titleTextWidget;
     private StyledText starsTextWidget;
+    private StyledText authorTextWidget;
 
     /*
      * ==================================================
@@ -72,38 +72,36 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
     public void updateBody() {
         FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(50).spacing(10);
 
-        titleTextWidget = new StyledText(viewPort, SWT.SINGLE);
+        titleTextWidget = new StyledText(viewPort, SWT.BORDER | SWT.SINGLE);
         FormDataSet.attach(titleTextWidget).atLeft(PRE_LABEL_WIDTH).atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(titleTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestPaperVo().getTitle());
         KeyBindingSet.bind(titleTextWidget).traverse().selectAll();
-        titleTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
-        titleTextWidget.addModifyListener(new TitleTextModifyListener());
+        titleTextWidget.addModifyListener(new TitleTextWidgetModifyListener());
         titleTextWidget.setSelection(titleTextWidget.getText().length());
 
         final CLabel titlePreLabel = new CLabel(viewPort, SWT.NONE);
         FormDataSet.attach(titlePreLabel).atLeft().atTopTo(titleTextWidget, 0, SWT.TOP).atRightTo(titleTextWidget, 0, SWT.LEFT).atBottomTo(titleTextWidget, 0, SWT.BOTTOM);
-        CLabelSet.decorate(titlePreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("title") + MT.STRING_TAB + MT.STRING_STAR);
+        CLabelSet.decorate(titlePreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("title"));
 
-        starsTextWidget = new StyledText(viewPort, SWT.SINGLE);
+        starsTextWidget = new StyledText(viewPort, SWT.BORDER | SWT.SINGLE);
         FormDataSet.attach(starsTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(titleTextWidget).withWidth(STARS_TEXT_WIDGET_WIDTH).withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(starsTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getTestPaperVo().getStars()));
         KeyBindingSet.bind(starsTextWidget).traverse().selectAll();
-        starsTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
-        starsTextWidget.addModifyListener(new StarsTextModifyListener());
+        starsTextWidget.addModifyListener(new StarsTextWidgetModifyListener());
 
         final CLabel starsPreLabel = new CLabel(viewPort, SWT.NONE);
         FormDataSet.attach(starsPreLabel).atLeft().atTopTo(starsTextWidget, 0, SWT.TOP).atRightTo(starsTextWidget, 0, SWT.LEFT).atBottomTo(starsTextWidget, 0, SWT.BOTTOM);
-        CLabelSet.decorate(starsPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("stars") + MT.STRING_TAB + MT.STRING_STAR);
+        CLabelSet.decorate(starsPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("stars"));
 
-        final StyledText authorTextWidget = new StyledText(viewPort, SWT.SINGLE);
+        authorTextWidget = new StyledText(viewPort, SWT.BORDER | SWT.SINGLE);
         FormDataSet.attach(authorTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(starsTextWidget).withWidth(AUTHOR_TEXT_WIDGET_WIDTH).withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(authorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10);
+        StyledTextSet.decorate(authorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestPaperVo().getAuthor());
         KeyBindingSet.bind(authorTextWidget).traverse().selectAll();
-        authorTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        authorTextWidget.addModifyListener(new AuthorTextWidgetModifyListener());
 
         final CLabel authorPreLabel = new CLabel(viewPort, SWT.NONE);
         FormDataSet.attach(authorPreLabel).atLeft().atTopTo(authorTextWidget, 0, SWT.TOP).atRightTo(authorTextWidget, 0, SWT.LEFT).atBottomTo(authorTextWidget, 0, SWT.BOTTOM);
-        CLabelSet.decorate(authorPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("author") + MT.STRING_TAB + MT.STRING_STAR);
+        CLabelSet.decorate(authorPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("author"));
     }
 
     /*
@@ -114,7 +112,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
      * ==================================================
      */
 
-    private class TitleTextModifyListener implements ModifyListener {
+    private class TitleTextWidgetModifyListener implements ModifyListener {
 
         @Override
         public void modifyText(ModifyEvent e) {
@@ -123,7 +121,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
         }
     }
 
-    private class StarsTextModifyListener implements ModifyListener {
+    private class StarsTextWidgetModifyListener implements ModifyListener {
 
         @Override
         public void modifyText(ModifyEvent e) {
@@ -141,6 +139,15 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
                     ex.printStackTrace();
                 }
             }
+            page.enterUnsavedMode();
+        }
+    }
+
+    private class AuthorTextWidgetModifyListener implements ModifyListener {
+
+        @Override
+        public void modifyText(ModifyEvent e) {
+            page.getTestPaperVo().setAuthor(authorTextWidget.getText());
             page.enterUnsavedMode();
         }
     }
