@@ -1,5 +1,6 @@
 package com.mocktpo.modules.paper.views;
 
+import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.KeyBindingSet;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -71,12 +72,13 @@ public class ReadingPassageEditorView extends SashTestEditorView {
         FormDataSet.attach(headingPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(headingPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("heading") + MT.STRING_TAB + MT.STRING_STAR);
 
-        headingTextWidget = new StyledText(left, SWT.BORDER | SWT.SINGLE);
+        headingTextWidget = new StyledText(left, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledText("heading"));
         KeyBindingSet.bind(headingTextWidget).selectAll();
         headingTextWidget.addModifyListener(new HeadingTextModifyListener());
         headingTextWidget.setSelection(headingTextWidget.getText().length());
+        headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel passagePreLabel = new CLabel(left, SWT.NONE);
         FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
@@ -96,17 +98,18 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
         final CLabel headingPreLabel = new CLabel(right, SWT.NONE);
         FormDataSet.attach(headingPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(headingPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("heading") + MT.STRING_SPACE + MT.STRING_OPEN_BRACKET + MT.LANGUAGE_SIMPLIFIED_CHINESE + MT.STRING_CLOSED_BRACKET);
+        CLabelSet.decorate(headingPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("heading") + MT.STRING_SPACE + MT.STRING_OPEN_BRACKET + MT.STRING_SPACE + MT.LANGUAGE_SIMPLIFIED_CHINESE + MT.STRING_SPACE + MT.STRING_CLOSED_BRACKET);
 
-        localizedHeadingTextWidget = new StyledText(right, SWT.BORDER | SWT.SINGLE);
+        localizedHeadingTextWidget = new StyledText(right, SWT.SINGLE);
         FormDataSet.attach(localizedHeadingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(localizedHeadingTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledText("localizedHeading"));
         KeyBindingSet.bind(localizedHeadingTextWidget).selectAll();
         localizedHeadingTextWidget.addModifyListener(new LocalizedHeadingTextModifyListener());
+        localizedHeadingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel passagePreLabel = new CLabel(right, SWT.NONE);
         FormDataSet.attach(passagePreLabel).atLeft().atTopTo(localizedHeadingTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("passage") + MT.STRING_SPACE + MT.STRING_OPEN_BRACKET + MT.LANGUAGE_SIMPLIFIED_CHINESE + MT.STRING_CLOSED_BRACKET);
+        CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("passage") + MT.STRING_SPACE + MT.STRING_OPEN_BRACKET + MT.STRING_SPACE + MT.LANGUAGE_SIMPLIFIED_CHINESE + MT.STRING_SPACE + MT.STRING_CLOSED_BRACKET);
 
         localizedPassageTextWidget = new StyledText(right, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(localizedPassageTextWidget).atLeft().atTopTo(passagePreLabel).atRight().atBottom();
