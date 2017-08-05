@@ -12,7 +12,6 @@ import java.util.List;
 public class TestPaperVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final int INITIAL_CACHE_SIZE = 64;
 
     /* Logger */
 
@@ -20,7 +19,7 @@ public class TestPaperVo implements Serializable {
 
     /* Properties */
 
-    private List<TestViewVo> viewVos = new ArrayList<TestViewVo>(INITIAL_CACHE_SIZE);
+    private List<TestViewVo> viewVos = new ArrayList<TestViewVo>();
 
     private String tid;
     private String title;

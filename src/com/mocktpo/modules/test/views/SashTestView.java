@@ -29,6 +29,14 @@ public abstract class SashTestView extends TestView {
         super(page, style);
     }
 
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
+
     @Override
     protected void initBody() {
         final Composite body = new Composite(this, SWT.NONE);

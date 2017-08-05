@@ -77,7 +77,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
      */
 
     @Override
-    public void updateHeader() {
+    protected void updateHeader() {
         final ImageButton nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
         FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
         nextOvalButton.addMouseListener(new NextOvalButtonMouseAdapter());
@@ -100,7 +100,7 @@ public class ReadingCategoryChartQuestionView extends StackTestView {
     }
 
     @Override
-    public void updateBody() {
+    protected void updateBody() {
         subViewId = SUB_VIEW_QUESTION;
         stack.topControl = getSubView(subViewId);
         body.layout();

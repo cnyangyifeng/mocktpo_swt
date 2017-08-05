@@ -96,6 +96,14 @@ public class TestReportPage extends Composite {
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
 
+    /*
+     * ==================================================
+     *
+     * Header Initialization
+     *
+     * ==================================================
+     */
+
     private void initHeader() {
         header = new Composite(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight();
@@ -147,6 +155,14 @@ public class TestReportPage extends Composite {
         writingLabel.addMouseListener(new SectionTabItemMouseAdapter());
     }
 
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
+
     private void initBody() {
         body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight().atBottom();
@@ -159,7 +175,7 @@ public class TestReportPage extends Composite {
     /*
      * ==================================================
      *
-     * Page Controls
+     * View Controls
      *
      * ==================================================
      */

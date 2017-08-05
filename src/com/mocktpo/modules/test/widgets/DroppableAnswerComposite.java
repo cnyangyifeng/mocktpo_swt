@@ -1,9 +1,9 @@
 package com.mocktpo.modules.test.widgets;
 
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.util.constants.MT;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -53,6 +53,14 @@ public class DroppableAnswerComposite extends Composite {
     private void golbal() {
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
+
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
 
     private void initBody() {
         label = new Label(this, SWT.WRAP);

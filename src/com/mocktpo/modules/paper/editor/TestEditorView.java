@@ -1,6 +1,7 @@
-package com.mocktpo.modules.paper.views;
+package com.mocktpo.modules.paper.editor;
 
 import com.mocktpo.modules.paper.TestPaperPage;
+import com.mocktpo.modules.paper.views.SashTestPaperView;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
@@ -44,7 +45,7 @@ public abstract class TestEditorView extends Composite {
         super(paperView.getRight(), style);
         this.d = paperView.getDisplay();
         this.page = paperView.getTestPaperPage();
-        initTestViewVo(viewId);
+        initViewVo(viewId);
         init();
     }
 
@@ -56,14 +57,14 @@ public abstract class TestEditorView extends Composite {
      * ==================================================
      */
 
-    private void initTestViewVo(int viewId) {
-        this.viewVo = page.getTestPaperVo().getViewVo(viewId);
+    private void initViewVo(int viewId) {
+        this.viewVo = page.getVo().getViewVo(viewId);
         if (viewVo == null) {
             viewVo = new TestViewVo();
             viewVo.setViewId(viewId);
             Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>();
             viewVo.setBody(body);
-            page.getTestPaperVo().addViewVo(viewVo);
+            page.getVo().addViewVo(viewVo);
         }
         updateTestViewVo();
     }

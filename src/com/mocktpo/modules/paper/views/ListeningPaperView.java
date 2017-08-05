@@ -27,17 +27,17 @@ public class ListeningPaperView extends ResponsiveTestPaperView {
      */
 
     @Override
-    public void updateHeader() {
+    protected void updateHeader() {
         listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING_CHECKED, MT.IMAGE_SYSTEM_STEP_LISTENING_CHECKED);
     }
 
     @Override
-    public void updateFooter() {
+    protected void updateFooter() {
 
     }
 
     @Override
-    public void updateBody() {
+    protected void updateBody() {
         CompositeSet.decorate(body).setBackground(MT.COLOR_ORANGE);
     }
 }

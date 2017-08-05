@@ -1,6 +1,7 @@
 package com.mocktpo.modules.system.widgets;
 
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
+import com.mocktpo.util.TestViewTypeUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -50,6 +51,7 @@ public class TestPaperViewCard extends Composite {
 
     /* Properties */
 
+    private int viewType;
     private int viewId;
     private boolean checked;
 
@@ -61,9 +63,10 @@ public class TestPaperViewCard extends Composite {
      * ==================================================
      */
 
-    public TestPaperViewCard(Composite parent, int style, int viewId) {
+    public TestPaperViewCard(Composite parent, int style, int viewType, int viewId) {
         super(parent, style);
         this.d = parent.getDisplay();
+        this.viewType = viewType;
         this.viewId = viewId;
         this.defaultBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED);
         this.hoveredBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_GRAY60);
@@ -96,7 +99,9 @@ public class TestPaperViewCard extends Composite {
 
         final Label viewTypeNameLabel = new Label(inner, SWT.WRAP);
         FormDataSet.attach(viewTypeNameLabel).atLeft(10).atTop(10).atRight(10);
-        LabelSet.decorate(viewTypeNameLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText("Listening Multiple Answers Question View");
+        LabelSet.decorate(viewTypeNameLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(TestViewTypeUtils.getViewTypeName(viewType));
+        viewTypeNameLabel.addMouseListener(new CardInnerMouseAdapter());
+        viewTypeNameLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
     }
 
     /*

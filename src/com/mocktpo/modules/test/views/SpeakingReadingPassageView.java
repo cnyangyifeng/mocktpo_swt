@@ -50,7 +50,7 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
      */
 
     @Override
-    public void updateHeader() {
+    protected void updateHeader() {
         PersistenceUtils.saveSpeakingReadingTime(this);
 
         final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
@@ -76,7 +76,7 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
     }
 
     @Override
-    public void updateBody() {
+    protected void updateBody() {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         StyledText readingTimeTextWidget = new StyledText(viewPort, SWT.SINGLE);

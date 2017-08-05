@@ -69,6 +69,14 @@ public class NewTestView extends Composite {
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
 
+    /*
+     * ==================================================
+     *
+     * Tool Bar Initialization
+     *
+     * ==================================================
+     */
+
     private void initToolBar() {
         toolBar = new Composite(this, SWT.NONE);
         FormDataSet.attach(toolBar).atLeft().atTop().atRight();
@@ -84,6 +92,14 @@ public class NewTestView extends Composite {
         importButton.addMouseListener(new ImportButtonMouseAdapter());
     }
 
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
+
     private void initBody() {
         sc = new ScrolledComposite(this, SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTopTo(toolBar).atRight().atBottom();
@@ -95,6 +111,21 @@ public class NewTestView extends Composite {
         GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
 
         sc.setContent(body);
+    }
+
+    /*
+     * ==================================================
+     *
+     * Test Cards Operations
+     *
+     * ==================================================
+     */
+
+    public void refreshTestCards() {
+        for (Control c : body.getChildren()) {
+            c.dispose();
+        }
+        initTestCards();
     }
 
     private void initTestCards() {
@@ -119,13 +150,6 @@ public class NewTestView extends Composite {
         body.layout();
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
         sc.setOrigin(0, 0);
-    }
-
-    public void refreshTestCards() {
-        for (Control c : body.getChildren()) {
-            c.dispose();
-        }
-        initTestCards();
     }
 
     /*

@@ -34,6 +34,14 @@ public abstract class ResponsiveTestPaperView extends TestPaperView {
         super(page, style);
     }
 
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
+
     @Override
     protected void initBody() {
         final ScrolledComposite sc = new ScrolledComposite(this, SWT.V_SCROLL);

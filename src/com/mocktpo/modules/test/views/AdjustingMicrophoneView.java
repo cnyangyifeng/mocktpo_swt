@@ -95,7 +95,7 @@ public class AdjustingMicrophoneView extends StackTestView {
      */
 
     @Override
-    public void updateHeader() {
+    protected void updateHeader() {
         final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
         FormDataSet.attach(volumeOvalButton).atRight(10).atTop(10);
         volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseAdapter());
@@ -134,13 +134,13 @@ public class AdjustingMicrophoneView extends StackTestView {
     }
 
     @Override
-    public void updateBody() {
+    protected void updateBody() {
         subViewId = SUB_VIEW_RECORDING;
         stack.topControl = getSubView(subViewId);
         body.layout();
     }
 
-    protected Composite getSubView(int subViewId) {
+    private Composite getSubView(int subViewId) {
         switch (subViewId) {
             case SUB_VIEW_RECORDING:
                 if (recordingView == null) {

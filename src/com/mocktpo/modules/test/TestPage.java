@@ -146,11 +146,15 @@ public class TestPage extends Composite {
     }
 
     private TestView getTestView(TestViewVo viewVo) {
+
         PersistenceUtils.saveToView(userTestSession, viewVo.getViewId());
         int viewType = viewVo.getViewType();
         TestView tv = null;
+
         switch (viewType) {
+
             /* General View Types */
+
             case VT.VIEW_TYPE_TEST_INTRO:
                 tv = new TestIntroView(this, SWT.NONE);
                 break;
@@ -163,7 +167,9 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_TEST_END:
                 tv = new TestEndView(this, SWT.NONE);
                 break;
+
             /* Reading Section View Types */
+
             case VT.VIEW_TYPE_READING_SECTION_DIRECTIONS:
                 tv = new ReadingSectionDirectionsView(this, SWT.NONE);
                 break;
@@ -185,7 +191,9 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_READING_SECTION_END:
                 tv = new ReadingSectionEndView(this, SWT.NONE);
                 break;
+
             /* Listening Section View Types */
+
             case VT.VIEW_TYPE_LISTENING_HEADSET_ON:
                 tv = new ListeningHeadsetOnView(this, SWT.NONE);
                 break;
@@ -219,7 +227,9 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_LISTENING_DIRECTIONS:
                 tv = new ListeningDirectionsView(this, SWT.NONE);
                 break;
+
             /* Speaking Section View Types */
+
             case VT.VIEW_TYPE_SPEAKING_HEADSET_ON:
                 tv = new SpeakingHeadsetOnView(this, SWT.NONE);
                 break;
@@ -244,7 +254,9 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_SPEAKING_SECTION_END:
                 tv = new SpeakingSectionEndView(this, SWT.NONE);
                 break;
+
             /* Writing Section View Types */
+
             case VT.VIEW_TYPE_WRITING_SECTION_DIRECTIONS:
                 tv = new WritingSectionDirectionsView(this, SWT.NONE);
                 break;
@@ -273,6 +285,7 @@ public class TestPage extends Composite {
                 tv = new IndependentWritingTaskEndView(this, SWT.NONE);
                 break;
         }
+
         return tv;
     }
 

@@ -68,8 +68,8 @@ public class MainPage extends Composite {
 
     private void init() {
         golbal();
-        initSidebar();
-        initPages();
+        initSideBar();
+        initViews();
     }
 
     private void golbal() {
@@ -77,7 +77,15 @@ public class MainPage extends Composite {
         addListener(SWT.Resize, new AppWindowResizeListener());
     }
 
-    private void initSidebar() {
+    /*
+     * ==================================================
+     *
+     * Side Bar Initialization
+     *
+     * ==================================================
+     */
+
+    private void initSideBar() {
         sidebar = new Composite(this, SWT.NONE);
         FormDataSet.attach(sidebar).atLeft().atTop().atBottom().withWidth(this.getBounds().width / 6);
         CompositeSet.decorate(sidebar).setBackground(MT.COLOR_BLACK);
@@ -116,7 +124,15 @@ public class MainPage extends Composite {
         practicesLabel.addMouseListener(new PracticesLabelMouseAdapter());
     }
 
-    private void initPages() {
+    /*
+     * ==================================================
+     *
+     * Views Initialization
+     *
+     * ==================================================
+     */
+
+    private void initViews() {
         body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeftTo(sidebar).atTop().atRight().atBottom();
         stack = new StackLayout();
@@ -127,7 +143,7 @@ public class MainPage extends Composite {
     /*
      * ==================================================
      *
-     * Page Controls
+     * View Controls
      *
      * ==================================================
      */

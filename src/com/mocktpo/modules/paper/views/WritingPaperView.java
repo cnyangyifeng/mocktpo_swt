@@ -27,17 +27,17 @@ public class WritingPaperView extends ResponsiveTestPaperView {
      */
 
     @Override
-    public void updateHeader() {
+    protected void updateHeader() {
         writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING_CHECKED, MT.IMAGE_SYSTEM_STEP_WRITING_CHECKED);
     }
 
     @Override
-    public void updateFooter() {
+    protected void updateFooter() {
 
     }
 
     @Override
-    public void updateBody() {
+    protected void updateBody() {
         CompositeSet.decorate(body).setBackground(MT.COLOR_ORANGE_RED);
     }
 }

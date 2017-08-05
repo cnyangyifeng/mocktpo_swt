@@ -27,17 +27,17 @@ public class SpeakingPaperView extends ResponsiveTestPaperView {
      */
 
     @Override
-    public void updateHeader() {
+    protected void updateHeader() {
         speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING_CHECKED, MT.IMAGE_SYSTEM_STEP_SPEAKING_CHECKED);
     }
 
     @Override
-    public void updateFooter() {
+    protected void updateFooter() {
 
     }
 
     @Override
-    public void updateBody() {
+    protected void updateBody() {
         CompositeSet.decorate(body).setBackground(MT.COLOR_OXFORD_BLUE);
     }
 }

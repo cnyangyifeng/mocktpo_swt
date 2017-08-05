@@ -123,6 +123,14 @@ public class ReadingReviewView extends Composite {
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
 
+    /*
+     * ==================================================
+     *
+     * Header Initialization
+     *
+     * ==================================================
+     */
+
     private void initHeader() {
 
         /*
@@ -172,27 +180,26 @@ public class ReadingReviewView extends Composite {
         updateHeader();
     }
 
-    private void updateHeader() {
-        TestViewVo vo = page.getTestPaperVo().getViewVo(page.getUserTestSession().getLastViewId());
-        if (vo.isQuestionCaptionVisible()) {
-            caption = new StyledText(header, SWT.SINGLE);
-            FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestPaperVo().findTotalQuestionCountInSection(ST.SECTION_TYPE_READING));
-        }
-
-        final ImageButton goToQuestionButton = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
-        FormDataSet.attach(goToQuestionButton).atRight(10).atTop(10);
-        goToQuestionButton.addMouseListener(new GoToQuestionButtonMouseAdapter());
-
-        final ImageButton returnButton = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
-        FormDataSet.attach(returnButton).atRightTo(goToQuestionButton, 10).atTopTo(goToQuestionButton, 0, SWT.TOP);
-        returnButton.addMouseListener(new ReturnButtonMouseAdapter());
-    }
+    /*
+     * ==================================================
+     *
+     * Footer Initialization
+     *
+     * ==================================================
+     */
 
     private void initFooter() {
         footer = new TestFooter(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atRight().atBottom();
     }
+
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
 
     private void initBody() {
         sc = new ScrolledComposite(this, SWT.V_SCROLL);
@@ -219,6 +226,31 @@ public class ReadingReviewView extends Composite {
 
         sc.setContent(body);
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+    }
+
+    /*
+     * ==================================================
+     *
+     * Widget Updates
+     *
+     * ==================================================
+     */
+
+    private void updateHeader() {
+        TestViewVo vo = page.getTestPaperVo().getViewVo(page.getUserTestSession().getLastViewId());
+        if (vo.isQuestionCaptionVisible()) {
+            caption = new StyledText(header, SWT.SINGLE);
+            FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestPaperVo().findTotalQuestionCountInSection(ST.SECTION_TYPE_READING));
+        }
+
+        final ImageButton goToQuestionButton = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
+        FormDataSet.attach(goToQuestionButton).atRight(10).atTop(10);
+        goToQuestionButton.addMouseListener(new GoToQuestionButtonMouseAdapter());
+
+        final ImageButton returnButton = new ImageButton(header, SWT.NONE, MT.IMAGE_RETURN, MT.IMAGE_RETURN_HOVER);
+        FormDataSet.attach(returnButton).atRightTo(goToQuestionButton, 10).atTopTo(goToQuestionButton, 0, SWT.TOP);
+        returnButton.addMouseListener(new ReturnButtonMouseAdapter());
     }
 
     private void updateBody() {

@@ -11,6 +11,10 @@ import org.eclipse.swt.widgets.Label;
 
 public abstract class SashTestPaperView extends TestPaperView {
 
+    /* Constants */
+
+    private static final int LEFT_COMPOSITE_WIDTH = 232;
+
     /* Widgets */
 
     protected Composite left;
@@ -28,6 +32,14 @@ public abstract class SashTestPaperView extends TestPaperView {
         super(page, style);
     }
 
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
+
     @Override
     protected void initBody() {
         final Composite body = new Composite(this, SWT.NONE);
@@ -35,7 +47,7 @@ public abstract class SashTestPaperView extends TestPaperView {
         FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
 
         left = new Composite(body, SWT.NONE);
-        FormDataSet.attach(left).atLeft().atTop().atBottom();
+        FormDataSet.attach(left).atLeft().atTop().atBottom().withWidth(LEFT_COMPOSITE_WIDTH);
         FormLayoutSet.layout(left).marginWidth(0).marginHeight(0).spacing(0);
 
         final Label divider = new Label(left, SWT.VERTICAL);

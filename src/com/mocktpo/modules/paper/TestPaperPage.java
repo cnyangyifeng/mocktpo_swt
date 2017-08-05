@@ -40,7 +40,7 @@ public class TestPaperPage extends Composite {
 
     /* Properties */
 
-    private TestPaperVo testPaperVo;
+    private TestPaperVo vo;
     private boolean firstRun;
     private boolean unsaved;
 
@@ -55,25 +55,26 @@ public class TestPaperPage extends Composite {
     public TestPaperPage(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
-
-        TestPaperVo testPaperVo = new TestPaperVo();
-        testPaperVo.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
-        testPaperVo.setTitle("");
-        testPaperVo.setStars(0);
-        testPaperVo.setAuthor("");
-        testPaperVo.setCreatedTime(System.currentTimeMillis());
-        this.testPaperVo = testPaperVo;
+        initVo();
         this.firstRun = true;
-
         init();
     }
 
     public TestPaperPage(Composite parent, int style, TestPaperVo testPaperVo) {
         super(parent, style);
         this.d = parent.getDisplay();
-        this.testPaperVo = testPaperVo;
+        this.vo = testPaperVo;
         this.firstRun = false;
         init();
+    }
+
+    private void initVo() {
+        this.vo = new TestPaperVo();
+        vo.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
+        vo.setTitle("");
+        vo.setStars(0);
+        vo.setAuthor("");
+        vo.setCreatedTime(System.currentTimeMillis());
     }
 
     private void init() {
@@ -90,7 +91,7 @@ public class TestPaperPage extends Composite {
     /*
      * ==================================================
      *
-     * Page Controls
+     * View Controls
      *
      * ==================================================
      */
@@ -153,7 +154,7 @@ public class TestPaperPage extends Composite {
      */
 
     public void save() {
-        ConfigUtils.push(testPaperVo.getTid(), testPaperVo);
+        ConfigUtils.push(vo.getTid(), vo);
         setFirstRun(false);
         enterSavedMode();
     }
@@ -168,7 +169,7 @@ public class TestPaperPage extends Composite {
         updateTitleLabels();
     }
 
-    private void updateTitleLabels() {
+    public void updateTitleLabels() {
         if (generalPaperView != null) {
             generalPaperView.updateTitleLabel();
         }
@@ -197,12 +198,12 @@ public class TestPaperPage extends Composite {
      * ==================================================
      */
 
-    public TestPaperVo getTestPaperVo() {
-        return testPaperVo;
+    public TestPaperVo getVo() {
+        return vo;
     }
 
-    public void setTestPaperVo(TestPaperVo testPaperVo) {
-        this.testPaperVo = testPaperVo;
+    public void setVo(TestPaperVo vo) {
+        this.vo = vo;
     }
 
     public boolean isFirstRun() {

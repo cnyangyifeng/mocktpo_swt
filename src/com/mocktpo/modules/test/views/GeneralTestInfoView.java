@@ -40,14 +40,14 @@ public class GeneralTestInfoView extends ResponsiveTestView {
      */
 
     @Override
-    public void updateHeader() {
+    protected void updateHeader() {
         final ImageButton continueButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE, MT.IMAGE_CONTINUE_HOVER);
         FormDataSet.attach(continueButton).atRight(10).atTop(10);
         continueButton.addMouseListener(new ContinueButtonMouseAdapter());
     }
 
     @Override
-    public void updateBody() {
+    protected void updateBody() {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         final StyledText headingTextWidget = new StyledText(viewPort, SWT.SINGLE);

@@ -27,17 +27,17 @@ public class PreviewPaperView extends ResponsiveTestPaperView {
      */
 
     @Override
-    public void updateHeader() {
+    protected void updateHeader() {
         previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW_CHECKED, MT.IMAGE_SYSTEM_STEP_PREVIEW_CHECKED);
     }
 
     @Override
-    public void updateFooter() {
+    protected void updateFooter() {
 
     }
 
     @Override
-    public void updateBody() {
+    protected void updateBody() {
         CompositeSet.decorate(body).setBackground(MT.COLOR_DARK_BLUE);
     }
 }

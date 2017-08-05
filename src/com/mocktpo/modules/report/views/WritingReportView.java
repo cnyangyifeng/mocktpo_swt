@@ -59,6 +59,14 @@ public class WritingReportView extends Composite {
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
 
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
+
     private void initBody() {
         sc = new ScrolledComposite(this, SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();

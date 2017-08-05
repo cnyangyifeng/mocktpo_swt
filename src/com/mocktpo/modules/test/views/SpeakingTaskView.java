@@ -80,7 +80,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
      */
 
     @Override
-    public void updateHeader() {
+    protected void updateHeader() {
         final ImageButton volumeOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_VOLUME_OVAL, MT.IMAGE_VOLUME_OVAL_HOVER);
         FormDataSet.attach(volumeOvalButton).atRight(10).atTop(10);
         volumeOvalButton.addMouseListener(new VolumeOvalButtonMouseAdapter());
@@ -104,7 +104,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
     }
 
     @Override
-    public void updateBody() {
+    protected void updateBody() {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x - VIEW_PORT_PADDING_WIDTH * 2);

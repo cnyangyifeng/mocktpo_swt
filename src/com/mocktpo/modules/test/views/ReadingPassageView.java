@@ -53,7 +53,7 @@ public class ReadingPassageView extends SashTestView {
      */
 
     @Override
-    public void updateHeader() {
+    protected void updateHeader() {
         final ImageButton continueOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_CONTINUE_OVAL, MT.IMAGE_CONTINUE_OVAL_HOVER, MT.IMAGE_CONTINUE_OVAL_DISABLED);
         FormDataSet.attach(continueOvalButton).atRight(10).atTop(10);
         continueOvalButton.addMouseListener(new ContinueOvalButtonMouseAdapter());

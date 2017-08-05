@@ -49,7 +49,7 @@ public class IndependentWritingDirectionsView extends ResponsiveTestView {
      */
 
     @Override
-    public void updateHeader() {
+    protected void updateHeader() {
         final ImageButton nextOvalButton = new ImageButton(header, SWT.NONE, MT.IMAGE_NEXT_OVAL, MT.IMAGE_NEXT_OVAL_HOVER, MT.IMAGE_NEXT_OVAL_DISABLED);
         FormDataSet.attach(nextOvalButton).atRight(10).atTop(10);
         nextOvalButton.setEnabled(false);
@@ -74,7 +74,7 @@ public class IndependentWritingDirectionsView extends ResponsiveTestView {
     }
 
     @Override
-    public void updateBody() {
+    protected void updateBody() {
         CompositeSet.decorate(body).setBackground(MT.COLOR_BEIGE);
 
         final StyledText headingTextWidget = new StyledText(viewPort, SWT.SINGLE);

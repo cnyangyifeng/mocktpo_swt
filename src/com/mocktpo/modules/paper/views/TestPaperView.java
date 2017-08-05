@@ -207,7 +207,7 @@ public abstract class TestPaperView extends Composite {
     }
 
     public void updateTitleLabel() {
-        String title = page.getTestPaperVo().getTitle();
+        String title = page.getVo().getTitle();
         if (StringUtils.isEmpty(title)) {
             title = msgs.getString("untitled");
         }

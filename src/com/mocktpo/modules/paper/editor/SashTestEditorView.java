@@ -1,5 +1,6 @@
-package com.mocktpo.modules.paper.views;
+package com.mocktpo.modules.paper.editor;
 
+import com.mocktpo.modules.paper.views.SashTestPaperView;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -26,6 +27,14 @@ public abstract class SashTestEditorView extends TestEditorView {
     public SashTestEditorView(SashTestPaperView paperView, int style, int viewId) {
         super(paperView, style, viewId);
     }
+
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
 
     @Override
     protected void initBody() {

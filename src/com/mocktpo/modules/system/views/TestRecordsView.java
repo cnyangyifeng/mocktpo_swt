@@ -59,6 +59,14 @@ public class TestRecordsView extends Composite {
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
 
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
+
     private void initBody() {
         sc = new ScrolledComposite(this, SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
@@ -72,6 +80,21 @@ public class TestRecordsView extends Composite {
         sc.setContent(body);
     }
 
+    /*
+     * ==================================================
+     *
+     * Test Record Cards Operations
+     *
+     * ==================================================
+     */
+
+    public void refreshTestRecordCards() {
+        for (Control c : body.getChildren()) {
+            c.dispose();
+        }
+        initTestRecordCards();
+    }
+
     private void initTestRecordCards() {
         List<UserTestSession> sessions = PersistenceUtils.findSessions();
         for (UserTestSession session : sessions) {
@@ -81,12 +104,5 @@ public class TestRecordsView extends Composite {
         body.layout();
         sc.setMinSize(body.computeSize(SWT.DEFAULT, SWT.DEFAULT));
         sc.setOrigin(0, 0);
-    }
-
-    public void refreshTestRecordCards() {
-        for (Control c : body.getChildren()) {
-            c.dispose();
-        }
-        initTestRecordCards();
     }
 }

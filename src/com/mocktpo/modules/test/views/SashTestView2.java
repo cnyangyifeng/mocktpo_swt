@@ -1,10 +1,10 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.widgets.CompositeSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
@@ -31,6 +31,14 @@ public abstract class SashTestView2 extends TestView {
     public SashTestView2(TestPage page, int style) {
         super(page, style);
     }
+
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
 
     @Override
     protected void initBody() {
