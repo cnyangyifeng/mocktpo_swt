@@ -31,7 +31,7 @@ public abstract class TestEditorView extends Composite {
 
     /* Paper View */
 
-    protected TestViewVo viewVo;
+    protected TestViewVo vo;
 
     /*
      * ==================================================
@@ -58,13 +58,13 @@ public abstract class TestEditorView extends Composite {
      */
 
     private void initViewVo(int viewId) {
-        this.viewVo = page.getVo().getViewVo(viewId);
-        if (viewVo == null) {
-            viewVo = new TestViewVo();
-            viewVo.setViewId(viewId);
+        this.vo = page.getTestPaperVo().getViewVo(viewId);
+        if (vo == null) {
+            vo = new TestViewVo();
+            vo.setViewId(viewId);
             Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>();
-            viewVo.setBody(body);
-            page.getVo().addViewVo(viewVo);
+            vo.setBody(body);
+            page.getTestPaperVo().addViewVo(vo);
         }
         updateTestViewVo();
     }

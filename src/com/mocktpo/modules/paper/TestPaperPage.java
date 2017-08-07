@@ -198,11 +198,11 @@ public class TestPaperPage extends Composite {
      * ==================================================
      */
 
-    public TestPaperVo getVo() {
+    public TestPaperVo getTestPaperVo() {
         return vo;
     }
 
-    public void setVo(TestPaperVo vo) {
+    public void setTestPaperVo(TestPaperVo vo) {
         this.vo = vo;
     }
 

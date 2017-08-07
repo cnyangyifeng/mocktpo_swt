@@ -75,7 +75,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
         titleTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(titleTextWidget).atLeft(PRE_LABEL_WIDTH).atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(titleTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getVo().getTitle());
+        StyledTextSet.decorate(titleTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestPaperVo().getTitle());
         KeyBindingSet.bind(titleTextWidget).traverse().selectAll();
         titleTextWidget.addModifyListener(new TitleTextWidgetModifyListener());
         titleTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -87,7 +87,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
         starsTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(starsTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(titleTextWidget).withWidth(STARS_TEXT_WIDGET_WIDTH).withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(starsTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getVo().getStars()));
+        StyledTextSet.decorate(starsTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getTestPaperVo().getStars()));
         KeyBindingSet.bind(starsTextWidget).traverse().selectAll();
         starsTextWidget.addModifyListener(new StarsTextWidgetModifyListener());
         starsTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -98,7 +98,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
         authorTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(authorTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(starsTextWidget).withWidth(AUTHOR_TEXT_WIDGET_WIDTH).withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(authorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getVo().getAuthor());
+        StyledTextSet.decorate(authorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestPaperVo().getAuthor());
         KeyBindingSet.bind(authorTextWidget).traverse().selectAll();
         authorTextWidget.addModifyListener(new AuthorTextWidgetModifyListener());
         authorTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -120,7 +120,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
         @Override
         public void modifyText(ModifyEvent e) {
-            page.getVo().setTitle(titleTextWidget.getText());
+            page.getTestPaperVo().setTitle(titleTextWidget.getText());
             page.enterUnsavedMode();
         }
     }
@@ -138,7 +138,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
                     } else if (stars > 5) {
                         stars = 5;
                     }
-                    page.getVo().setStars(stars);
+                    page.getTestPaperVo().setStars(stars);
                 } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
@@ -151,7 +151,7 @@ public class GeneralPaperView extends ResponsiveTestPaperView {
 
         @Override
         public void modifyText(ModifyEvent e) {
-            page.getVo().setAuthor(authorTextWidget.getText());
+            page.getTestPaperVo().setAuthor(authorTextWidget.getText());
             page.enterUnsavedMode();
         }
     }

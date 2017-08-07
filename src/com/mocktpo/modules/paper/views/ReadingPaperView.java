@@ -93,7 +93,7 @@ public class ReadingPaperView extends SashTestPaperView {
 
     private TestEditorView getTestPaperView() {
         TestEditorView view = null;
-        List<TestViewVo> viewVos = page.getVo().getViewVos();
+        List<TestViewVo> viewVos = page.getTestPaperVo().getViewVos();
         int totalViewCount = viewVos.size();
         if (totalViewCount > 0 && checkedViewNumber >= 0 && checkedViewNumber < totalViewCount) {
             TestViewVo viewVo = viewVos.get(checkedViewNumber);
@@ -119,7 +119,7 @@ public class ReadingPaperView extends SashTestPaperView {
      */
 
     private void initTestPaperViewCards() {
-        List<TestViewVo> viewVos = page.getVo().getViewVos();
+        List<TestViewVo> viewVos = page.getTestPaperVo().getViewVos();
         for (int i = 0; i < viewVos.size(); i++) {
             TestViewVo viewVo = viewVos.get(i);
             // Check Section Type
