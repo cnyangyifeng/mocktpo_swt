@@ -128,6 +128,7 @@ public class TestPaperViewCard extends Composite {
                 TestPaperViewCard.this.redraw();
             }
             checked = !checked;
+
         }
     }
 

@@ -77,6 +77,8 @@ public class ReadingPaperView extends SashTestPaperView {
         newReadingPassageButton.addMouseListener(new NewReadingPassageButtonMouseAdapter());
 
         newReadingQuestionButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_NEW_READING_QUESTION, MT.IMAGE_SYSTEM_NEW_READING_QUESTION_HOVER);
+        FormDataSet.attach(newReadingQuestionButton).atLeftTo(newReadingPassageButton).atTopTo(newReadingPassageButton, 0, SWT.TOP);
+        newReadingQuestionButton.addMouseTrackListener(new NewReadingQuestionButtonMouseTrackAdapter());
     }
 
     @Override
@@ -161,6 +163,12 @@ public class ReadingPaperView extends SashTestPaperView {
 
         @Override
         public void mouseDown(MouseEvent e) {
+            // TODO Add a new reading passage view to the current list
+            TestPaperViewCard card = new TestPaperViewCard(lb, SWT.NONE, VT.VIEW_TYPE_READING_PASSAGE, 1);
+            GridDataSet.attach(card).fillHorizontal();
+            lb.layout();
+            lsc.setMinSize(lb.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+            lsc.setOrigin(0, 0);
         }
     }
 
