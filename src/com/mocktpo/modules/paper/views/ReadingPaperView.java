@@ -3,6 +3,7 @@ package com.mocktpo.modules.paper.views;
 import com.mocktpo.modules.paper.TestPaperPage;
 import com.mocktpo.modules.paper.editor.ReadingPassageEditorView;
 import com.mocktpo.modules.paper.editor.TestEditorView;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.system.widgets.TestPaperViewCard;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.VT;
@@ -15,6 +16,9 @@ import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
@@ -36,6 +40,9 @@ public class ReadingPaperView extends SashTestPaperView {
 
     private ScrolledComposite lsc;
     private Composite lb;
+
+    private ImageButton newReadingPassageButton;
+    private ImageButton newReadingQuestionButton;
 
     /*
      * ==================================================
@@ -65,7 +72,11 @@ public class ReadingPaperView extends SashTestPaperView {
 
     @Override
     protected void updateFooter() {
+        newReadingPassageButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_NEW_READING_PASSAGE, MT.IMAGE_SYSTEM_NEW_READING_PASSAGE_HOVER);
+        FormDataSet.attach(newReadingPassageButton).atLeft().atTop();
+        newReadingPassageButton.addMouseListener(new NewReadingPassageButtonMouseAdapter());
 
+        newReadingQuestionButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_NEW_READING_QUESTION, MT.IMAGE_SYSTEM_NEW_READING_QUESTION_HOVER);
     }
 
     @Override
@@ -122,7 +133,7 @@ public class ReadingPaperView extends SashTestPaperView {
         List<TestViewVo> viewVos = page.getTestPaperVo().getViewVos();
         for (int i = 0; i < viewVos.size(); i++) {
             TestViewVo viewVo = viewVos.get(i);
-            // Check Section Type
+            // TODO Check Section Type
             TestPaperViewCard card = new TestPaperViewCard(lb, SWT.NONE, viewVo.getViewType(), i + 1);
             GridDataSet.attach(card).fillHorizontal();
         }
@@ -136,5 +147,29 @@ public class ReadingPaperView extends SashTestPaperView {
             c.dispose();
         }
         initTestPaperViewCards();
+    }
+
+    /*
+     * ==================================================
+     *
+     * Listeners
+     *
+     * ==================================================
+     */
+
+    private class NewReadingPassageButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+        }
+    }
+
+    private class NewReadingQuestionButtonMouseTrackAdapter extends MouseTrackAdapter {
+
+        public void mouseEnter(MouseEvent var1) {
+        }
+
+        public void mouseExit(MouseEvent var1) {
+        }
     }
 }

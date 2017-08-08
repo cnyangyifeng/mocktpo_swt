@@ -54,8 +54,8 @@ public class TestViewTypeUtils {
             case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
                 viewTypeName = "Reading Prose Summary Question";
                 break;
-            case VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION:
-                viewTypeName = "Reading Category Chart Question";
+            case VT.VIEW_TYPE_READING_FILL_IN_A_TABLE_QUESTION:
+                viewTypeName = "Reading Fill in a Table Question";
                 break;
             case VT.VIEW_TYPE_READING_SECTION_END:
                 viewTypeName = "Reading Section End";
@@ -81,14 +81,14 @@ public class TestViewTypeUtils {
             case VT.VIEW_TYPE_LISTENING_QUESTION:
                 viewTypeName = "Listening Question";
                 break;
-            case VT.VIEW_TYPE_LISTENING_MULTIPLE_ANSWERS_QUESTION:
-                viewTypeName = "Listening Multiple Answers Question";
+            case VT.VIEW_TYPE_LISTENING_MULTIPLE_RESPONSE_QUESTION:
+                viewTypeName = "Listening Multiple Response Question";
                 break;
-            case VT.VIEW_TYPE_LISTENING_ORDER_EVENTS_QUESTION:
-                viewTypeName = "Listening Order Events Question";
+            case VT.VIEW_TYPE_LISTENING_SORT_EVENTS_QUESTION:
+                viewTypeName = "Listening Sort Events Question";
                 break;
-            case VT.VIEW_TYPE_LISTENING_MATCH_OBJECTS_QUESTION:
-                viewTypeName = "Listening Match Objects Question";
+            case VT.VIEW_TYPE_LISTENING_CATEGORIZE_OBJECTS_QUESTION:
+                viewTypeName = "Listening Categorize Objects Question";
                 break;
             case VT.VIEW_TYPE_LISTENING_SECTION_END:
                 viewTypeName = "Listening Section End";

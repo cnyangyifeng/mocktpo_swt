@@ -1161,7 +1161,7 @@
     {
       "viewId": 32,
       "viewType": 16,
-      "viewTypeName": "Reading Category Chart Question",
+      "viewTypeName": "Reading Fill in a Table Question",
       "sectionType": 1,
       "sectionTypeName": "Reading",
       "timed": true,
@@ -1934,7 +1934,7 @@
     {
       "viewId": 54,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple Answers Question",
+      "viewTypeName": "Listening Multiple Response Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "listeningGroupId": 1,
@@ -2126,7 +2126,7 @@
     {
       "viewId": 61,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple Answers Question",
+      "viewTypeName": "Listening Multiple Response Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "listeningGroupId": 1,
@@ -2301,7 +2301,7 @@
     {
       "viewId": 67,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple Answers Question",
+      "viewTypeName": "Listening Multiple Response Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "listeningGroupId": 1,
@@ -2369,7 +2369,7 @@
     {
       "viewId": 69,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple Answers Question",
+      "viewTypeName": "Listening Multiple Response Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "listeningGroupId": 1,
@@ -2600,7 +2600,7 @@
     {
       "viewId": 78,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple Answers Question",
+      "viewTypeName": "Listening Multiple Response Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "listeningGroupId": 2,
@@ -2668,7 +2668,7 @@
     {
       "viewId": 80,
       "viewType": 29,
-      "viewTypeName": "Listening Match Objects Question",
+      "viewTypeName": "Listening Categorize Objects Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "listeningGroupId": 2,
@@ -3009,7 +3009,7 @@
     {
       "viewId": 92,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple Answers Question",
+      "viewTypeName": "Listening Multiple Response Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "listeningGroupId": 2,

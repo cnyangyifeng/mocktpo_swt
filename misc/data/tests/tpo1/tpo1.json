@@ -2457,7 +2457,7 @@
     {
       "viewId": 70,
       "viewType": 28,
-      "viewTypeName": "Listening Order Events Question",
+      "viewTypeName": "Listening Sort Events Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "listeningGroupId": 1,
@@ -2748,7 +2748,7 @@
     {
       "viewId": 81,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple Answers Question",
+      "viewTypeName": "Listening Multiple Response Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "listeningGroupId": 2,
@@ -2894,7 +2894,7 @@
     {
       "viewId": 86,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple Answers Question",
+      "viewTypeName": "Listening Multiple Response Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "listeningGroupId": 2,
@@ -2994,7 +2994,7 @@
     {
       "viewId": 89,
       "viewType": 27,
-      "viewTypeName": "Listening Multiple Answers Question",
+      "viewTypeName": "Listening Multiple Response Question",
       "sectionType": 2,
       "sectionTypeName": "Listening",
       "listeningGroupId": 2,

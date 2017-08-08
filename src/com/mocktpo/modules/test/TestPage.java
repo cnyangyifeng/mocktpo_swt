@@ -185,8 +185,8 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
                 tv = new ReadingProseSummaryQuestionView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_READING_CATEGORY_CHART_QUESTION:
-                tv = new ReadingCategoryChartQuestionView(this, SWT.NONE);
+            case VT.VIEW_TYPE_READING_FILL_IN_A_TABLE_QUESTION:
+                tv = new ReadingFillInATableQuestionView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_READING_SECTION_END:
                 tv = new ReadingSectionEndView(this, SWT.NONE);
@@ -212,14 +212,14 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_LISTENING_QUESTION:
                 tv = new ListeningQuestionView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_LISTENING_MULTIPLE_ANSWERS_QUESTION:
-                tv = new ListeningMultipleAnswersQuestionView(this, SWT.NONE);
+            case VT.VIEW_TYPE_LISTENING_MULTIPLE_RESPONSE_QUESTION:
+                tv = new ListeningMultipleResponseQuestionView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_LISTENING_ORDER_EVENTS_QUESTION:
-                tv = new ListeningOrderEventsQuestionView(this, SWT.NONE);
+            case VT.VIEW_TYPE_LISTENING_SORT_EVENTS_QUESTION:
+                tv = new ListeningSortEventsQuestionView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_LISTENING_MATCH_OBJECTS_QUESTION:
-                tv = new ListeningMatchObjectsQuestionView(this, SWT.NONE);
+            case VT.VIEW_TYPE_LISTENING_CATEGORIZE_OBJECTS_QUESTION:
+                tv = new ListeningCategorizeObjectsQuestionView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_LISTENING_SECTION_END:
                 tv = new ListeningSectionEndView(this, SWT.NONE);
