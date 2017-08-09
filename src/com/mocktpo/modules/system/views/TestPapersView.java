@@ -12,8 +12,6 @@ import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.vo.TestPaperVo;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -30,7 +28,6 @@ import java.io.FileFilter;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ResourceBundle;
-import java.util.UUID;
 
 public class TestPapersView extends Composite {
 
@@ -73,6 +70,14 @@ public class TestPapersView extends Composite {
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }
 
+    /*
+     * ==================================================
+     *
+     * Tool Bar Initialization
+     *
+     * ==================================================
+     */
+
     private void initToolBar() {
         toolBar = new Composite(this, SWT.NONE);
         FormDataSet.attach(toolBar).atLeft().atTop().atRight();
@@ -88,6 +93,14 @@ public class TestPapersView extends Composite {
         newTestPaperButton.addMouseListener(new NewTestPaperButtonMouseAdapter());
     }
 
+    /*
+     * ==================================================
+     *
+     * Body Initialization
+     *
+     * ==================================================
+     */
+
     private void initBody() {
         sc = new ScrolledComposite(this, SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTopTo(toolBar).atRight().atBottom();
@@ -99,6 +112,21 @@ public class TestPapersView extends Composite {
         GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
 
         sc.setContent(body);
+    }
+
+    /*
+     * ==================================================
+     *
+     * Test Paper Cards Operations
+     *
+     * ==================================================
+     */
+
+    public void refreshCards() {
+        for (Control c : body.getChildren()) {
+            c.dispose();
+        }
+        initCards();
     }
 
     private void initCards() {
@@ -125,13 +153,6 @@ public class TestPapersView extends Composite {
         sc.setOrigin(0, 0);
     }
 
-    public void refreshCards() {
-        for (Control c : body.getChildren()) {
-            c.dispose();
-        }
-        initCards();
-    }
-
     /*
      * ==================================================
      *
@@ -144,7 +165,7 @@ public class TestPapersView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toTestPaperPage();
+            MyApplication.get().getWindow().toTestEditorPage();
         }
     }
 }

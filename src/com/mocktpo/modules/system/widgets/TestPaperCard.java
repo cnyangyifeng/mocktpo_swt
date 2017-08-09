@@ -9,7 +9,7 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.vo.TestPaperVo;
+import com.mocktpo.vo.TestVo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,7 +41,7 @@ public class TestPaperCard extends Composite {
     /* Properties */
 
     private String fileAlias;
-    private TestPaperVo testPaperVo;
+    private TestVo testVo;
 
     /*
      * ==================================================
@@ -55,7 +55,7 @@ public class TestPaperCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testPaperVo = ConfigUtils.pull(fileAlias, TestPaperVo.class);
+        this.testVo = ConfigUtils.pull(fileAlias, TestVo.class);
         init();
     }
 
@@ -79,7 +79,7 @@ public class TestPaperCard extends Composite {
         FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
         CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(getTitle());
 
-        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testPaperVo.getStars());
+        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
 
         final Label divider1 = new Label(header, SWT.NONE);
@@ -131,7 +131,7 @@ public class TestPaperCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toTestPaperPage(testPaperVo);
+            MyApplication.get().getWindow().toTestEditorPage(testVo);
         }
     }
 
@@ -152,7 +152,7 @@ public class TestPaperCard extends Composite {
     }
 
     private String getTitle() {
-        String title = testPaperVo.getTitle();
+        String title = testVo.getTitle();
         if (StringUtils.isEmpty(title)) {
             title = msgs.getString("untitled");
         }
@@ -160,7 +160,7 @@ public class TestPaperCard extends Composite {
     }
 
     public String getAuthor() {
-        String author = testPaperVo.getAuthor();
+        String author = testVo.getAuthor();
         if (StringUtils.isEmpty(author)) {
             author = msgs.getString("anonymous");
         }
@@ -168,7 +168,7 @@ public class TestPaperCard extends Composite {
     }
 
     public String getCreatedTime() {
-        long createdTime = testPaperVo.getCreatedTime();
+        long createdTime = testVo.getCreatedTime();
         if (createdTime == 0) {
             return msgs.getString("unknown");
         } else {

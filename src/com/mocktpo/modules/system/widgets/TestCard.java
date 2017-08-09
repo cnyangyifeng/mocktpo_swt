@@ -10,7 +10,7 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.vo.TestPaperVo;
+import com.mocktpo.vo.TestVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -46,7 +46,7 @@ public class TestCard extends Composite {
     /* Properties */
 
     private String fileAlias;
-    private TestPaperVo testPaperVo;
+    private TestVo testVo;
 
     /*
      * ==================================================
@@ -60,7 +60,7 @@ public class TestCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testPaperVo = ConfigUtils.load(fileAlias, TestPaperVo.class);
+        this.testVo = ConfigUtils.load(fileAlias, TestVo.class);
         init();
     }
 
@@ -82,9 +82,9 @@ public class TestCard extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(testPaperVo.getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(testVo.getTitle());
 
-        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testPaperVo.getStars());
+        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
 
         final Label divider1 = new Label(header, SWT.NONE);
@@ -137,7 +137,7 @@ public class TestCard extends Composite {
                 box.setMessage(msgs.getString("select_sections_to_start"));
                 box.open();
             } else {
-                UserTestSession userTestSession = PersistenceUtils.newSession(fileAlias, testPaperVo, readingSelected, listeningSelected, speakingSelected, writingSelected);
+                UserTestSession userTestSession = PersistenceUtils.newSession(fileAlias, testVo, readingSelected, listeningSelected, speakingSelected, writingSelected);
                 MyApplication.get().getWindow().toTestPage(userTestSession);
             }
         }

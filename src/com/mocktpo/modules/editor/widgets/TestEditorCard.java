@@ -1,5 +1,7 @@
-package com.mocktpo.modules.system.widgets;
+package com.mocktpo.modules.editor.widgets;
 
+import com.mocktpo.modules.editor.TestEditorPage;
+import com.mocktpo.modules.editor.layers.SashTestEditorLayer;
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.TestViewTypeUtils;
 import com.mocktpo.util.constants.MT;
@@ -7,6 +9,7 @@ import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.vo.TestViewVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -19,12 +22,12 @@ import org.eclipse.swt.widgets.Label;
 
 import java.util.ResourceBundle;
 
-public class TestPaperViewCard extends Composite {
+public class TestEditorCard extends Composite {
 
     /* Constants */
 
-    private static final int TEST_PAPER_VIEW_CARD_WIDTH = 192;
-    private static final int TEST_PAPER_VIEW_CARD_HEIGHT = 120;
+    private static final int TEST_EDITOR_CARD_WIDTH = 192;
+    private static final int TEST_EDITOR_CARD_HEIGHT = 120;
 
     /* Logger and Messages */
 
@@ -35,6 +38,9 @@ public class TestPaperViewCard extends Composite {
 
     private Display d;
 
+    /* Page */
+
+    private TestEditorPage page;
 
     /* Widgets */
 
@@ -49,7 +55,7 @@ public class TestPaperViewCard extends Composite {
 
     /* Properties */
 
-    private int viewType;
+    private TestViewVo viewVo;
     private boolean checked;
 
     /*
@@ -60,15 +66,48 @@ public class TestPaperViewCard extends Composite {
      * ==================================================
      */
 
-    public TestPaperViewCard(Composite parent, int style, int viewType) {
-        super(parent, style);
-        this.d = parent.getDisplay();
-        this.viewType = viewType;
+    public TestEditorCard(SashTestEditorLayer editorLayer, int style, TestViewVo viewVo) {
+        super(editorLayer.getLeftBody(), style);
+        this.d = editorLayer.getDisplay();
+        this.page = editorLayer.getTestEditorPage();
+        initViewVo(viewVo);
+        initListeners();
+        init();
+    }
+
+    /*
+     * ==================================================
+     *
+     * Data Initialization
+     *
+     * ==================================================
+     */
+
+    private void initViewVo(TestViewVo viewVo) {
+        this.viewVo = viewVo;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Listeners Initialization
+     *
+     * ==================================================
+     */
+
+    private void initListeners() {
         this.defaultBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED);
         this.hoveredBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_GRAY60);
         this.checkedBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_DARK_BLUE, 2);
-        init();
     }
+
+    /*
+     * ==================================================
+     *
+     * UI Initialization
+     *
+     * ==================================================
+     */
 
     private void init() {
         golbal();
@@ -81,7 +120,7 @@ public class TestPaperViewCard extends Composite {
 
     private void initWidgets() {
         inner = new Composite(this, SWT.NONE);
-        FormDataSet.attach(inner).atLeft().atTop().atRight().withWidth(TEST_PAPER_VIEW_CARD_WIDTH).withHeight(TEST_PAPER_VIEW_CARD_HEIGHT);
+        FormDataSet.attach(inner).atLeft().atTop().atRight().withWidth(TEST_EDITOR_CARD_WIDTH).withHeight(TEST_EDITOR_CARD_HEIGHT);
         CompositeSet.decorate(inner).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(inner).marginWidth(0).marginHeight(0).spacing(0);
         borderPaintListener = defaultBorderPaintListener;
@@ -91,7 +130,7 @@ public class TestPaperViewCard extends Composite {
 
         final Label viewTypeNameLabel = new Label(inner, SWT.WRAP);
         FormDataSet.attach(viewTypeNameLabel).atLeft(10).atTop(10).atRight(10);
-        LabelSet.decorate(viewTypeNameLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(TestViewTypeUtils.getViewTypeName(viewType));
+        LabelSet.decorate(viewTypeNameLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(TestViewTypeUtils.getViewTypeName(viewVo.getViewType()));
         viewTypeNameLabel.addMouseListener(new CardInnerMouseAdapter());
         viewTypeNameLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
     }
@@ -112,12 +151,12 @@ public class TestPaperViewCard extends Composite {
                 inner.removePaintListener(borderPaintListener);
                 borderPaintListener = checkedBorderPaintListener;
                 inner.addPaintListener(borderPaintListener);
-                TestPaperViewCard.this.redraw();
+                TestEditorCard.this.redraw();
             } else {
                 inner.removePaintListener(borderPaintListener);
                 borderPaintListener = defaultBorderPaintListener;
                 inner.addPaintListener(borderPaintListener);
-                TestPaperViewCard.this.redraw();
+                TestEditorCard.this.redraw();
             }
             checked = !checked;
 
@@ -132,7 +171,7 @@ public class TestPaperViewCard extends Composite {
                 inner.removePaintListener(borderPaintListener);
                 borderPaintListener = hoveredBorderPaintListener;
                 inner.addPaintListener(borderPaintListener);
-                TestPaperViewCard.this.redraw();
+                TestEditorCard.this.redraw();
             }
         }
 
@@ -142,7 +181,7 @@ public class TestPaperViewCard extends Composite {
                 inner.removePaintListener(borderPaintListener);
                 borderPaintListener = defaultBorderPaintListener;
                 inner.addPaintListener(borderPaintListener);
-                TestPaperViewCard.this.redraw();
+                TestEditorCard.this.redraw();
             }
         }
     }
@@ -160,6 +199,6 @@ public class TestPaperViewCard extends Composite {
     }
 
     public void setChecked(boolean checked) {
-
+        this.checked = checked;
     }
 }

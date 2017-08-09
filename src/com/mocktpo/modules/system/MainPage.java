@@ -1,7 +1,6 @@
 package com.mocktpo.modules.system;
 
 import com.mocktpo.modules.system.views.NewTestView;
-import com.mocktpo.modules.system.views.PracticesView;
 import com.mocktpo.modules.system.views.TestPapersView;
 import com.mocktpo.modules.system.views.TestRecordsView;
 import com.mocktpo.util.constants.MT;
@@ -44,13 +43,11 @@ public class MainPage extends Composite {
     private CLabel newTestLabel;
     private CLabel testRecordsLabel;
     private CLabel testPapersLabel;
-    private CLabel practicesLabel;
 
     private Composite body;
     private NewTestView newTestView;
     private TestRecordsView testRecordsView;
     private TestPapersView testPapersView;
-    private PracticesView practicesView;
 
     /*
      * ==================================================
@@ -113,15 +110,6 @@ public class MainPage extends Composite {
         FormDataSet.attach(testPapersLabel).atLeft().atTopTo(testRecordsLabel).atRight().withHeight(60);
         CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_GRAY20).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_ORANGE).setLeftMargin(20).setText(msgs.getString("test_papers"));
         testPapersLabel.addMouseListener(new TestPapersLabelMouseAdapter());
-
-        final CLabel practicesSectionLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(practicesSectionLabel).atLeft().atTopTo(testPapersLabel).atRight().withHeight(60);
-        CLabelSet.decorate(practicesSectionLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY60).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("practices"));
-
-        practicesLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(practicesLabel).atLeft().atTopTo(practicesSectionLabel).atRight().withHeight(60);
-        CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("practices"));
-        practicesLabel.addMouseListener(new PracticesLabelMouseAdapter());
     }
 
     /*
@@ -152,12 +140,11 @@ public class MainPage extends Composite {
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_GRAY20);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK);
 
         if (newTestView == null) {
             newTestView = new NewTestView(body, SWT.NONE);
         }
-        newTestView.refreshTestCards();
+        newTestView.refreshCards();
         stack.topControl = newTestView;
         body.layout();
     }
@@ -166,12 +153,11 @@ public class MainPage extends Composite {
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_GRAY20);
         CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK);
 
         if (testRecordsView == null) {
             testRecordsView = new TestRecordsView(body, SWT.NONE);
         }
-        testRecordsView.refreshTestRecordCards();
+        testRecordsView.refreshCards();
         stack.topControl = testRecordsView;
         body.layout();
     }
@@ -180,27 +166,12 @@ public class MainPage extends Composite {
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_GRAY20);
-        CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_BLACK);
 
         if (testPapersView == null) {
             testPapersView = new TestPapersView(body, SWT.NONE);
         }
         testPapersView.refreshCards();
         stack.topControl = testPapersView;
-        body.layout();
-    }
-
-    public void toPracticesView() {
-        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(practicesLabel).setBackground(MT.COLOR_GRAY20);
-
-        if (practicesView == null) {
-            practicesView = new PracticesView(body, SWT.NONE);
-        }
-        practicesView.refreshCards();
-        stack.topControl = practicesView;
         body.layout();
     }
 
@@ -241,14 +212,6 @@ public class MainPage extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             toTestPapersView();
-        }
-    }
-
-    private class PracticesLabelMouseAdapter extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            toPracticesView();
         }
     }
 }

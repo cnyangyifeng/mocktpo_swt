@@ -1,10 +1,10 @@
-package com.mocktpo.modules.paper.views;
+package com.mocktpo.modules.editor.layers;
 
-import com.mocktpo.modules.paper.TestPaperPage;
+import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.widgets.CompositeSet;
 
-public class WritingPaperView extends ResponsiveTestPaperView {
+public class PreviewEditorLayer extends ResponsiveTestEditorLayer {
 
     /*
      * ==================================================
@@ -14,7 +14,7 @@ public class WritingPaperView extends ResponsiveTestPaperView {
      * ==================================================
      */
 
-    public WritingPaperView(TestPaperPage page, int style) {
+    public PreviewEditorLayer(TestEditorPage page, int style) {
         super(page, style);
     }
 
@@ -28,7 +28,7 @@ public class WritingPaperView extends ResponsiveTestPaperView {
 
     @Override
     protected void updateHeader() {
-        writingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_WRITING_CHECKED, MT.IMAGE_SYSTEM_STEP_WRITING_CHECKED);
+        previewButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_PREVIEW_CHECKED, MT.IMAGE_SYSTEM_STEP_PREVIEW_CHECKED);
     }
 
     @Override
@@ -38,6 +38,6 @@ public class WritingPaperView extends ResponsiveTestPaperView {
 
     @Override
     protected void updateBody() {
-        CompositeSet.decorate(body).setBackground(MT.COLOR_ORANGE_RED);
+        CompositeSet.decorate(body).setBackground(MT.COLOR_DARK_BLUE);
     }
 }

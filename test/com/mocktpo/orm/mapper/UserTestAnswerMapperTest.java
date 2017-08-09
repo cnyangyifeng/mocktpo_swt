@@ -21,7 +21,7 @@ public class UserTestAnswerMapperTest {
     }
 
     @Test
-    public void testPaper() {
+    public void testSchema() {
         mapper.schema();
     }
 

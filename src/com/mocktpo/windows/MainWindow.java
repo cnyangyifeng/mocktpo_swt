@@ -1,7 +1,7 @@
 package com.mocktpo.windows;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.modules.paper.TestPaperPage;
+import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.modules.report.TestReportPage;
 import com.mocktpo.modules.system.MainPage;
 import com.mocktpo.modules.test.TestPage;
@@ -9,7 +9,7 @@ import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.WindowUtils;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.vo.TestPaperVo;
+import com.mocktpo.vo.TestVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -142,15 +142,15 @@ public class MainWindow {
         s.layout();
     }
 
-    public void toTestPaperPage() {
-        final TestPaperPage testPaperPage = new TestPaperPage(s, SWT.NONE);
-        stack.topControl = testPaperPage;
+    public void toTestEditorPage() {
+        final TestEditorPage testEditorPage = new TestEditorPage(s, SWT.NONE);
+        stack.topControl = testEditorPage;
         s.layout();
     }
 
-    public void toTestPaperPage(TestPaperVo testPaperVo) {
-        final TestPaperPage testPaperPage = new TestPaperPage(s, SWT.NONE, testPaperVo);
-        stack.topControl = testPaperPage;
+    public void toTestEditorPage(TestVo testVo) {
+        final TestEditorPage testEditorPage = new TestEditorPage(s, SWT.NONE, testVo);
+        stack.topControl = testEditorPage;
         s.layout();
     }
 

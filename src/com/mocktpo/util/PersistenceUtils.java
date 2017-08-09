@@ -8,7 +8,7 @@ import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.vo.TestPaperVo;
+import com.mocktpo.vo.TestVo;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.ibatis.session.SqlSession;
 
@@ -16,12 +16,12 @@ import java.util.List;
 
 public class PersistenceUtils {
 
-    public static UserTestSession newSession(String fileAlias, TestPaperVo testPaperVo, boolean readingSelected, boolean listeningSelected, boolean speakingSelected, boolean writingSelected) {
+    public static UserTestSession newSession(String fileAlias, TestVo testVo, boolean readingSelected, boolean listeningSelected, boolean speakingSelected, boolean writingSelected) {
         UserTestSession userTestSession = new UserTestSession();
-        userTestSession.setTid(testPaperVo.getTid());
-        userTestSession.setTitle(testPaperVo.getTitle());
+        userTestSession.setTid(testVo.getTid());
+        userTestSession.setTitle(testVo.getTitle());
         userTestSession.setFileAlias(fileAlias);
-        userTestSession.setStars(testPaperVo.getStars());
+        userTestSession.setStars(testVo.getStars());
         userTestSession.setStartTime(System.currentTimeMillis());
         userTestSession.setLastVisitedTime(System.currentTimeMillis());
         userTestSession.setTimerHidden(false);
@@ -42,7 +42,7 @@ public class PersistenceUtils {
         userTestSession.setLastViewId(1);
         userTestSession.setMaxViewId(1);
         userTestSession.setVisitedViewCount(1);
-        userTestSession.setTotalViewCount(testPaperVo.findTotalViewCount(readingSelected, listeningSelected, speakingSelected, writingSelected));
+        userTestSession.setTotalViewCount(testVo.findTotalViewCount(readingSelected, listeningSelected, speakingSelected, writingSelected));
         userTestSession.setTestComplete(false);
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
@@ -210,7 +210,7 @@ public class PersistenceUtils {
         UserTestAnswer userTestAnswer = new UserTestAnswer();
         userTestAnswer.setSid(userTestSession.getSid());
         userTestAnswer.setViewId(userTestSession.getLastViewId());
-        userTestAnswer.setSectionType(page.getTestPaperVo().getViewVo(userTestSession.getLastViewId()).getSectionType());
+        userTestAnswer.setSectionType(page.getTestVo().getViewVo(userTestSession.getLastViewId()).getSectionType());
         userTestAnswer.setAnswer("");
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();

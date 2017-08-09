@@ -1,11 +1,13 @@
-package com.mocktpo.modules.paper.editor;
+package com.mocktpo.modules.editor.views;
 
-import com.mocktpo.modules.paper.views.SashTestPaperView;
+import com.mocktpo.modules.editor.layers.SashTestEditorLayer;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
@@ -24,8 +26,8 @@ public abstract class SashTestEditorView extends TestEditorView {
      * ==================================================
      */
 
-    public SashTestEditorView(SashTestPaperView paperView, int style, int viewId) {
-        super(paperView, style, viewId);
+    public SashTestEditorView(SashTestEditorLayer editorView, int style, TestViewVo viewVo) {
+        super(editorView, style, viewVo);
     }
 
     /*

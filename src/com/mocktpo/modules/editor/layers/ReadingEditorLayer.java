@@ -1,46 +1,36 @@
-package com.mocktpo.modules.paper.views;
+package com.mocktpo.modules.editor.layers;
 
-import com.mocktpo.modules.paper.TestPaperPage;
-import com.mocktpo.modules.paper.editor.ReadingPassageEditorView;
-import com.mocktpo.modules.paper.editor.TestEditorView;
+import com.mocktpo.modules.editor.TestEditorPage;
+import com.mocktpo.modules.editor.views.ReadingPassageEditorView;
+import com.mocktpo.modules.editor.views.TestEditorView;
+import com.mocktpo.modules.editor.widgets.TestEditorCard;
 import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.system.widgets.TestPaperViewCard;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormDataSet;
-import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
-import com.mocktpo.util.layout.GridLayoutSet;
-import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackAdapter;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class ReadingPaperView extends SashTestPaperView {
+public class ReadingEditorLayer extends SashTestEditorLayer {
 
-    /* Editor Views */
+    /* Properties */
 
-    private List<TestPaperViewCard> cards;
-    private List<TestEditorView> editorViews;
-    private int checkedId;
-
-    /* Stack */
-
-    private StackLayout viewStack;
+    private List<TestEditorCard> cards;
+    private List<TestEditorView> views;
+    private int currentIndex;
 
     /* Widgets */
-
-    private ScrolledComposite lsc;
-    private Composite lb;
 
     private ImageButton newReadingPassageButton;
     private ImageButton newReadingQuestionButton;
@@ -53,11 +43,11 @@ public class ReadingPaperView extends SashTestPaperView {
      * ==================================================
      */
 
-    public ReadingPaperView(TestPaperPage page, int style) {
+    public ReadingEditorLayer(TestEditorPage page, int style) {
         super(page, style);
-        this.cards = new ArrayList<TestPaperViewCard>();
-        this.editorViews = new ArrayList<TestEditorView>();
-        this.checkedId = 0;
+        this.cards = new ArrayList<TestEditorCard>();
+        this.views = new ArrayList<TestEditorView>();
+        this.currentIndex = 0;
     }
 
     /*
@@ -86,40 +76,22 @@ public class ReadingPaperView extends SashTestPaperView {
 
     @Override
     protected void updateLeft() {
-        lsc = new ScrolledComposite(left, SWT.V_SCROLL);
-        FormDataSet.attach(lsc).atLeft().atTop().atRight().atBottom();
-        lsc.setExpandHorizontal(true);
-        lsc.setExpandVertical(true);
-
-        lb = new Composite(lsc, SWT.NONE);
-        CompositeSet.decorate(lb).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-        GridLayoutSet.layout(lb).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
-
-        lsc.setContent(lb);
     }
 
     @Override
     protected void updateRight() {
-        FormLayoutSet.layout(right).marginWidth(0).marginHeight(0).spacing(0);
-        viewStack = new StackLayout();
-        right.setLayout(viewStack);
-        viewStack.topControl = getTestPaperView();
-        right.layout();
     }
 
-    private TestEditorView getTestPaperView() {
+    private TestEditorView getTestEditorView() {
         TestEditorView view = null;
-        List<TestViewVo> viewVos = page.getTestPaperVo().getViewVos();
+        List<TestViewVo> viewVos = page.getTestVo().getViewVos();
         int totalViewCount = viewVos.size();
-        if (totalViewCount > 0 && checkedId >= 0 && checkedId < totalViewCount) {
-            TestViewVo viewVo = viewVos.get(checkedId);
+        if (totalViewCount > 0 && currentIndex >= 0 && currentIndex < totalViewCount) {
+            TestViewVo viewVo = viewVos.get(currentIndex);
             int viewType = viewVo.getViewType();
             switch (viewType) {
                 case VT.VIEW_TYPE_READING_PASSAGE:
-                    view = new ReadingPassageEditorView(this, SWT.NONE, viewVo.getViewId());
-                    break;
-                default:
-                    view = new ReadingPassageEditorView(this, SWT.NONE, viewVo.getViewId());
+                    view = new ReadingPassageEditorView(this, SWT.NONE, viewVo);
                     break;
             }
         }
@@ -134,24 +106,37 @@ public class ReadingPaperView extends SashTestPaperView {
      * ==================================================
      */
 
-    public void refreshTestPaperViewCards() {
-        for (Control c : lb.getChildren()) {
+    public void refreshEditor() {
+        for (Control c : leftBody.getChildren()) {
             c.dispose();
         }
-        initTestPaperViewCards();
+        initEditor();
     }
 
-    private void initTestPaperViewCards() {
-        List<TestViewVo> viewVos = page.getTestPaperVo().getViewVos();
-        for (int i = 0; i < viewVos.size(); i++) {
-            TestViewVo viewVo = viewVos.get(i);
-            TestPaperViewCard card = new TestPaperViewCard(lb, SWT.NONE, viewVo.getViewType());
+    private void initEditor() {
+        List<TestViewVo> viewVos = page.getTestVo().getViewVos();
+        for (TestViewVo viewVo : viewVos) {
+            TestEditorCard card = new TestEditorCard(this, SWT.NONE, viewVo);
             GridDataSet.attach(card).fillHorizontal();
             cards.add(card);
         }
-        lb.layout();
-        lsc.setMinSize(lb.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+        leftBody.layout();
+        lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
         lsc.setOrigin(0, 0);
+
+        for (TestViewVo viewVo : viewVos) {
+            TestEditorView view = null;
+            switch (viewVo.getViewType()) {
+                case VT.VIEW_TYPE_READING_PASSAGE:
+                    view = new ReadingPassageEditorView(this, SWT.NONE, viewVo);
+                    break;
+            }
+            views.add(view);
+        }
+        if (views.size() > 0) {
+            rightViewStack.topControl = views.get(currentIndex);
+            right.layout();
+        }
     }
 
     /*
@@ -166,21 +151,36 @@ public class ReadingPaperView extends SashTestPaperView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            // TODO Add a new reading passage view to the current list
-            TestPaperViewCard card = new TestPaperViewCard(lb, SWT.NONE, VT.VIEW_TYPE_READING_PASSAGE);
+            int viewId = currentIndex + 1;
+            TestViewVo viewVo = new TestViewVo();
+            viewVo.setViewId(viewId);
+            viewVo.setViewType(VT.VIEW_TYPE_READING_QUESTION);
+            Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>();
+            viewVo.setBody(body);
+            page.getTestVo().addViewVo(viewVo);
+
+            TestEditorCard card = new TestEditorCard(ReadingEditorLayer.this, SWT.NONE, viewVo);
             GridDataSet.attach(card).fillHorizontal();
-            lb.layout();
-            lsc.setMinSize(lb.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+            cards.add(card);
+            leftBody.layout();
+            lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
             lsc.setOrigin(0, 0);
+
+            TestEditorView view = new ReadingPassageEditorView(ReadingEditorLayer.this, SWT.NONE, viewVo);
+            views.add(view);
+            rightViewStack.topControl = view;
+            right.layout();
+
+            page.enterUnsavedMode();
         }
     }
 
     private class NewReadingQuestionButtonMouseTrackAdapter extends MouseTrackAdapter {
 
-        public void mouseEnter(MouseEvent var1) {
+        public void mouseEnter(MouseEvent e) {
         }
 
-        public void mouseExit(MouseEvent var1) {
+        public void mouseExit(MouseEvent e) {
         }
     }
 }

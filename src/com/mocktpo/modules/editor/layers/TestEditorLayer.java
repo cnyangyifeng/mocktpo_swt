@@ -1,7 +1,7 @@
-package com.mocktpo.modules.paper.views;
+package com.mocktpo.modules.editor.layers;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.modules.paper.TestPaperPage;
+import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.PDFUtils;
 import com.mocktpo.util.constants.MT;
@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.*;
 import java.io.File;
 import java.util.ResourceBundle;
 
-public abstract class TestPaperView extends Composite {
+public abstract class TestEditorLayer extends Composite {
 
     /* Constants */
 
@@ -40,7 +40,7 @@ public abstract class TestPaperView extends Composite {
 
     /* Page */
 
-    protected TestPaperPage page;
+    protected TestEditorPage page;
 
     /* Widgets */
 
@@ -64,7 +64,7 @@ public abstract class TestPaperView extends Composite {
      * ==================================================
      */
 
-    public TestPaperView(TestPaperPage page, int style) {
+    public TestEditorLayer(TestEditorPage page, int style) {
         super(page, style);
         this.d = page.getDisplay();
         this.page = page;
@@ -207,7 +207,7 @@ public abstract class TestPaperView extends Composite {
     }
 
     public void updateTitleLabel() {
-        String title = page.getTestPaperVo().getTitle();
+        String title = page.getTestVo().getTitle();
         if (StringUtils.isEmpty(title)) {
             title = msgs.getString("untitled");
         }
@@ -272,7 +272,7 @@ public abstract class TestPaperView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            page.toGeneralPaperView();
+            page.toGeneralEditorLayer();
         }
     }
 
@@ -280,7 +280,7 @@ public abstract class TestPaperView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            page.toReadingPaperView();
+            page.toReadingEditorLayer();
         }
     }
 
@@ -288,7 +288,7 @@ public abstract class TestPaperView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            page.toListeningPaperView();
+            page.toListeningEditorLayer();
         }
     }
 
@@ -296,7 +296,7 @@ public abstract class TestPaperView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            page.toSpeakingPaperView();
+            page.toSpeakingEditorLayer();
         }
     }
 
@@ -304,7 +304,7 @@ public abstract class TestPaperView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            page.toWritingPaperView();
+            page.toWritingEditorLayer();
         }
     }
 
@@ -312,7 +312,7 @@ public abstract class TestPaperView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            page.toPreviewPaperView();
+            page.toPreviewEditorLayer();
         }
     }
 
@@ -374,11 +374,11 @@ public abstract class TestPaperView extends Composite {
      * ==================================================
      */
 
-    public TestPaperPage getTestPaperPage() {
+    public TestEditorPage getTestEditorPage() {
         return page;
     }
 
-    public void setTestPaperPage(TestPaperPage page) {
+    public void setTestEditorPage(TestEditorPage page) {
         this.page = page;
     }
 }

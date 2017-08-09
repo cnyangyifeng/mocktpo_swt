@@ -121,14 +121,14 @@ public class NewTestView extends Composite {
      * ==================================================
      */
 
-    public void refreshTestCards() {
+    public void refreshCards() {
         for (Control c : body.getChildren()) {
             c.dispose();
         }
-        initTestCards();
+        initCards();
     }
 
-    private void initTestCards() {
+    private void initCards() {
         try {
             File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).toURI()).listFiles(new FileFilter() {
                 @Override
@@ -171,7 +171,7 @@ public class NewTestView extends Composite {
             UnzipUtils.unzip(absoluteFileName);
             String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(absoluteFileName));
             if (fileAlias != null) {
-                refreshTestCards();
+                refreshCards();
             }
         }
     }

@@ -155,7 +155,7 @@ public class ReadingReviewView extends Composite {
 
         final Label titleLabel = new Label(header, SWT.WRAP);
         FormDataSet.attach(titleLabel).atLeft(10).atTop(10);
-        LabelSet.decorate(titleLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestPaperVo().getTitle() + MT.STRING_SPACE + msgs.getString("reading"));
+        LabelSet.decorate(titleLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestVo().getTitle() + MT.STRING_SPACE + msgs.getString("reading"));
 
         /*
          * ==================================================
@@ -237,11 +237,11 @@ public class ReadingReviewView extends Composite {
      */
 
     private void updateHeader() {
-        TestViewVo vo = page.getTestPaperVo().getViewVo(page.getUserTestSession().getLastViewId());
+        TestViewVo vo = page.getTestVo().getViewVo(page.getUserTestSession().getLastViewId());
         if (vo.isQuestionCaptionVisible()) {
             caption = new StyledText(header, SWT.SINGLE);
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestPaperVo().findTotalQuestionCountInSection(ST.SECTION_TYPE_READING));
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestVo().findTotalQuestionCountInSection(ST.SECTION_TYPE_READING));
         }
 
         final ImageButton goToQuestionButton = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
@@ -264,7 +264,7 @@ public class ReadingReviewView extends Composite {
         final ReadingReviewTableRow tableHeader = new ReadingReviewTableRow(viewPort, SWT.NONE, msgs.getString("number"), msgs.getString("description"), msgs.getString("status"), 0, true);
         GridDataSet.attach(tableHeader).fillBoth();
 
-        for (TestViewVo vo : page.getTestPaperVo().getViewVos()) {
+        for (TestViewVo vo : page.getTestVo().getViewVos()) {
             if (vo.getSectionType() == ST.SECTION_TYPE_READING && vo.isAnswerable()) {
                 String statusText = getStatusText(vo.getViewId());
                 final ReadingReviewTableRow row = new ReadingReviewTableRow(viewPort, SWT.NONE, Integer.toString(vo.getQuestionNumberInSection()), getDescriptionText(vo), statusText, vo.getViewId());
@@ -341,7 +341,7 @@ public class ReadingReviewView extends Composite {
 
     public void startTimer() {
         if (timed) {
-            TestViewVo vo = page.getTestPaperVo().getViewVo(page.getUserTestSession().getLastViewId());
+            TestViewVo vo = page.getTestVo().getViewVo(page.getUserTestSession().getLastViewId());
 
             /*
              * ==================================================
@@ -405,7 +405,7 @@ public class ReadingReviewView extends Composite {
         public void run() {
             if (!d.isDisposed()) {
                 final UserTestSession userTestSession = page.getUserTestSession();
-                TestViewVo vo = page.getTestPaperVo().getViewVo(page.getUserTestSession().getLastViewId());
+                TestViewVo vo = page.getTestVo().getViewVo(page.getUserTestSession().getLastViewId());
                 PersistenceUtils.saveRemainingViewTime(userTestSession, vo, countDown);
                 d.asyncExec(new Runnable() {
                     @Override
@@ -417,7 +417,7 @@ public class ReadingReviewView extends Composite {
                     if (timed) {
                         stopTimer();
                     }
-                    int lastViewId = page.getTestPaperVo().findNextViewIdWhileTimeOut(page.getUserTestSession().getLastViewId());
+                    int lastViewId = page.getTestVo().findNextViewIdWhileTimeOut(page.getUserTestSession().getLastViewId());
                     PersistenceUtils.saveToView(userTestSession, lastViewId);
                     d.asyncExec(new Runnable() {
                         @Override
@@ -466,7 +466,7 @@ public class ReadingReviewView extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            if (selectedViewId == page.getTestPaperVo().findFirstViewIdByViewType(VT.VIEW_TYPE_READING_SECTION_END)) {
+            if (selectedViewId == page.getTestVo().findFirstViewIdByViewType(VT.VIEW_TYPE_READING_SECTION_END)) {
                 return;
             }
             if (selectedViewId > page.getUserTestSession().getMaxViewId()) {

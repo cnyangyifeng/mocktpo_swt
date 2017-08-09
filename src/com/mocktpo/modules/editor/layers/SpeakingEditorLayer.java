@@ -1,10 +1,10 @@
-package com.mocktpo.modules.paper.views;
+package com.mocktpo.modules.editor.layers;
 
-import com.mocktpo.modules.paper.TestPaperPage;
+import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.widgets.CompositeSet;
 
-public class ListeningPaperView extends ResponsiveTestPaperView {
+public class SpeakingEditorLayer extends ResponsiveTestEditorLayer {
 
     /*
      * ==================================================
@@ -14,7 +14,7 @@ public class ListeningPaperView extends ResponsiveTestPaperView {
      * ==================================================
      */
 
-    public ListeningPaperView(TestPaperPage page, int style) {
+    public SpeakingEditorLayer(TestEditorPage page, int style) {
         super(page, style);
     }
 
@@ -28,7 +28,7 @@ public class ListeningPaperView extends ResponsiveTestPaperView {
 
     @Override
     protected void updateHeader() {
-        listeningButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_LISTENING_CHECKED, MT.IMAGE_SYSTEM_STEP_LISTENING_CHECKED);
+        speakingButton.setBackgroundImages(MT.IMAGE_SYSTEM_STEP_SPEAKING_CHECKED, MT.IMAGE_SYSTEM_STEP_SPEAKING_CHECKED);
     }
 
     @Override
@@ -38,6 +38,6 @@ public class ListeningPaperView extends ResponsiveTestPaperView {
 
     @Override
     protected void updateBody() {
-        CompositeSet.decorate(body).setBackground(MT.COLOR_ORANGE);
+        CompositeSet.decorate(body).setBackground(MT.COLOR_OXFORD_BLUE);
     }
 }

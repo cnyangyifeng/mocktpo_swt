@@ -1,15 +1,19 @@
-package com.mocktpo.modules.paper.views;
+package com.mocktpo.modules.editor.layers;
 
-import com.mocktpo.modules.paper.TestPaperPage;
+import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
+import com.mocktpo.util.layout.GridLayoutSet;
+import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public abstract class SashTestPaperView extends TestPaperView {
+public abstract class SashTestEditorLayer extends TestEditorLayer {
 
     /* Constants */
 
@@ -18,7 +22,11 @@ public abstract class SashTestPaperView extends TestPaperView {
     /* Widgets */
 
     protected Composite left;
+    protected ScrolledComposite lsc;
+    protected Composite leftBody;
+
     protected Composite right;
+    protected StackLayout rightViewStack;
 
     /*
      * ==================================================
@@ -28,7 +36,7 @@ public abstract class SashTestPaperView extends TestPaperView {
      * ==================================================
      */
 
-    public SashTestPaperView(TestPaperPage page, int style) {
+    public SashTestEditorLayer(TestEditorPage page, int style) {
         super(page, style);
     }
 
@@ -54,11 +62,26 @@ public abstract class SashTestPaperView extends TestPaperView {
         FormDataSet.attach(divider).atTop().atRight().atBottom().withWidth(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
+        lsc = new ScrolledComposite(left, SWT.V_SCROLL);
+        FormDataSet.attach(lsc).atLeft().atTop().atRight().atBottom();
+        lsc.setExpandHorizontal(true);
+        lsc.setExpandVertical(true);
+
+        leftBody = new Composite(lsc, SWT.NONE);
+        CompositeSet.decorate(leftBody).setBackground(MT.COLOR_WINDOW_BACKGROUND);
+        GridLayoutSet.layout(leftBody).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
+
+        lsc.setContent(leftBody);
+
         updateLeft();
 
         right = new Composite(body, SWT.NONE);
         FormDataSet.attach(right).atLeftTo(left).atTop().atRight().atBottom();
         FormLayoutSet.layout(right).marginWidth(0).marginHeight(0).spacing(0);
+
+        FormLayoutSet.layout(right).marginWidth(0).marginHeight(0).spacing(0);
+        rightViewStack = new StackLayout();
+        right.setLayout(rightViewStack);
 
         updateRight();
     }
@@ -83,8 +106,8 @@ public abstract class SashTestPaperView extends TestPaperView {
      * ==================================================
      */
 
-    public Composite getLeft() {
-        return left;
+    public Composite getLeftBody() {
+        return leftBody;
     }
 
     public Composite getRight() {

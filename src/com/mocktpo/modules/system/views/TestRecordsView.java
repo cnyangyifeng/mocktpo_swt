@@ -88,14 +88,14 @@ public class TestRecordsView extends Composite {
      * ==================================================
      */
 
-    public void refreshTestRecordCards() {
+    public void refreshCards() {
         for (Control c : body.getChildren()) {
             c.dispose();
         }
-        initTestRecordCards();
+        initCards();
     }
 
-    private void initTestRecordCards() {
+    private void initCards() {
         List<UserTestSession> sessions = PersistenceUtils.findSessions();
         for (UserTestSession session : sessions) {
             TestRecordCard card = new TestRecordCard(body, SWT.NONE, session);

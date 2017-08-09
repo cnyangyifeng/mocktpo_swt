@@ -1,17 +1,14 @@
-package com.mocktpo.modules.paper.editor;
+package com.mocktpo.modules.editor.views;
 
-import com.mocktpo.modules.paper.TestPaperPage;
-import com.mocktpo.modules.paper.views.SashTestPaperView;
+import com.mocktpo.modules.editor.TestEditorPage;
+import com.mocktpo.modules.editor.layers.SashTestEditorLayer;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public abstract class TestEditorView extends Composite {
@@ -27,11 +24,11 @@ public abstract class TestEditorView extends Composite {
 
     /* Page */
 
-    protected TestPaperPage page;
+    protected TestEditorPage page;
 
-    /* Paper View */
+    /* Properties */
 
-    protected TestViewVo vo;
+    protected TestViewVo viewVo;
 
     /*
      * ==================================================
@@ -41,11 +38,11 @@ public abstract class TestEditorView extends Composite {
      * ==================================================
      */
 
-    public TestEditorView(SashTestPaperView paperView, int style, int viewId) {
-        super(paperView.getRight(), style);
-        this.d = paperView.getDisplay();
-        this.page = paperView.getTestPaperPage();
-        initViewVo(viewId);
+    public TestEditorView(SashTestEditorLayer editorLayer, int style, TestViewVo viewVo) {
+        super(editorLayer.getRight(), style);
+        this.d = editorLayer.getDisplay();
+        this.page = editorLayer.getTestEditorPage();
+        initViewVo(viewVo);
         init();
     }
 
@@ -57,15 +54,8 @@ public abstract class TestEditorView extends Composite {
      * ==================================================
      */
 
-    private void initViewVo(int viewId) {
-        this.vo = page.getTestPaperVo().getViewVo(viewId);
-        if (vo == null) {
-            vo = new TestViewVo();
-            vo.setViewId(viewId);
-            Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>();
-            vo.setBody(body);
-            page.getTestPaperVo().addViewVo(vo);
-        }
+    private void initViewVo(TestViewVo viewVo) {
+        this.viewVo = viewVo;
         updateTestViewVo();
     }
 

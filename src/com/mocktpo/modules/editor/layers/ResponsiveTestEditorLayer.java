@@ -1,6 +1,6 @@
-package com.mocktpo.modules.paper.views;
+package com.mocktpo.modules.editor.layers;
 
-import com.mocktpo.modules.paper.TestPaperPage;
+import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -11,7 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.widgets.Composite;
 
-public abstract class ResponsiveTestPaperView extends TestPaperView {
+public abstract class ResponsiveTestEditorLayer extends TestEditorLayer {
 
     /* Constants */
 
@@ -30,7 +30,7 @@ public abstract class ResponsiveTestPaperView extends TestPaperView {
      * ==================================================
      */
 
-    public ResponsiveTestPaperView(TestPaperPage page, int style) {
+    public ResponsiveTestEditorLayer(TestEditorPage page, int style) {
         super(page, style);
     }
 

@@ -52,7 +52,7 @@ public interface LC {
     int TEST_HEADER_HEIGHT = 90;
     int VOLUME_CONTROL_WIDTH = 100;
 
-    /* Paper Module */
+    /* Editor Module */
 
     int SINGLE_LINE_TEXT_WIDGET_HEIGHT = 22;
 

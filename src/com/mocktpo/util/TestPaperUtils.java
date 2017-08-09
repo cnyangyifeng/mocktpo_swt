@@ -3,7 +3,7 @@ package com.mocktpo.util;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.vo.StyleRangeVo;
 import com.mocktpo.vo.StyledTextVo;
-import com.mocktpo.vo.TestPaperVo;
+import com.mocktpo.vo.TestVo;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -22,12 +22,12 @@ public class TestPaperUtils {
     }
 
     public static void generate() {
-        TestPaperVo testPaperVo = new TestPaperVo();
-        testPaperVo.setTid(schema.getString("tid"));
-        testPaperVo.setTitle(schema.getString("title"));
-        testPaperVo.setStars(Integer.parseInt(schema.getString("stars")));
-        testPaperVo.setViewVos(initViewVos());
-        ConfigUtils.push(schema.getString("fileAlias"), testPaperVo);
+        TestVo testVo = new TestVo();
+        testVo.setTid(schema.getString("tid"));
+        testVo.setTitle(schema.getString("title"));
+        testVo.setStars(Integer.parseInt(schema.getString("stars")));
+        testVo.setViewVos(initViewVos());
+        ConfigUtils.push(schema.getString("fileAlias"), testVo);
     }
 
     private static List<TestViewVo> initViewVos() {
