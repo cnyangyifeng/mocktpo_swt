@@ -40,7 +40,7 @@ public class TestPaperPage extends Composite {
 
     /* Properties */
 
-    private TestPaperVo vo;
+    private TestPaperVo testPaperVo;
     private boolean firstRun;
     private boolean unsaved;
 
@@ -55,7 +55,7 @@ public class TestPaperPage extends Composite {
     public TestPaperPage(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
-        initVo();
+        initTestPaperVo();
         this.firstRun = true;
         init();
     }
@@ -63,18 +63,18 @@ public class TestPaperPage extends Composite {
     public TestPaperPage(Composite parent, int style, TestPaperVo testPaperVo) {
         super(parent, style);
         this.d = parent.getDisplay();
-        this.vo = testPaperVo;
+        this.testPaperVo = testPaperVo;
         this.firstRun = false;
         init();
     }
 
-    private void initVo() {
-        this.vo = new TestPaperVo();
-        vo.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
-        vo.setTitle("");
-        vo.setStars(0);
-        vo.setAuthor("");
-        vo.setCreatedTime(System.currentTimeMillis());
+    private void initTestPaperVo() {
+        this.testPaperVo = new TestPaperVo();
+        testPaperVo.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
+        testPaperVo.setTitle("");
+        testPaperVo.setStars(0);
+        testPaperVo.setAuthor("");
+        testPaperVo.setCreatedTime(System.currentTimeMillis());
     }
 
     private void init() {
@@ -154,7 +154,7 @@ public class TestPaperPage extends Composite {
      */
 
     public void save() {
-        ConfigUtils.push(vo.getTid(), vo);
+        ConfigUtils.push(testPaperVo.getTid(), testPaperVo);
         setFirstRun(false);
         enterSavedMode();
     }
@@ -199,11 +199,11 @@ public class TestPaperPage extends Composite {
      */
 
     public TestPaperVo getTestPaperVo() {
-        return vo;
+        return testPaperVo;
     }
 
-    public void setTestPaperVo(TestPaperVo vo) {
-        this.vo = vo;
+    public void setTestPaperVo(TestPaperVo testPaperVo) {
+        this.testPaperVo = testPaperVo;
     }
 
     public boolean isFirstRun() {

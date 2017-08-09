@@ -29,8 +29,9 @@ public class ReadingPaperView extends SashTestPaperView {
 
     /* Editor Views */
 
-    protected List<TestEditorView> views = new ArrayList<TestEditorView>();
-    protected int checkedViewNumber;
+    private List<TestPaperViewCard> cards;
+    private List<TestEditorView> editorViews;
+    private int checkedId;
 
     /* Stack */
 
@@ -54,7 +55,9 @@ public class ReadingPaperView extends SashTestPaperView {
 
     public ReadingPaperView(TestPaperPage page, int style) {
         super(page, style);
-        this.checkedViewNumber = 0;
+        this.cards = new ArrayList<TestPaperViewCard>();
+        this.editorViews = new ArrayList<TestEditorView>();
+        this.checkedId = 0;
     }
 
     /*
@@ -108,8 +111,8 @@ public class ReadingPaperView extends SashTestPaperView {
         TestEditorView view = null;
         List<TestViewVo> viewVos = page.getTestPaperVo().getViewVos();
         int totalViewCount = viewVos.size();
-        if (totalViewCount > 0 && checkedViewNumber >= 0 && checkedViewNumber < totalViewCount) {
-            TestViewVo viewVo = viewVos.get(checkedViewNumber);
+        if (totalViewCount > 0 && checkedId >= 0 && checkedId < totalViewCount) {
+            TestViewVo viewVo = viewVos.get(checkedId);
             int viewType = viewVo.getViewType();
             switch (viewType) {
                 case VT.VIEW_TYPE_READING_PASSAGE:
@@ -131,24 +134,24 @@ public class ReadingPaperView extends SashTestPaperView {
      * ==================================================
      */
 
-    private void initTestPaperViewCards() {
-        List<TestViewVo> viewVos = page.getTestPaperVo().getViewVos();
-        for (int i = 0; i < viewVos.size(); i++) {
-            TestViewVo viewVo = viewVos.get(i);
-            // TODO Check Section Type
-            TestPaperViewCard card = new TestPaperViewCard(lb, SWT.NONE, viewVo.getViewType(), i + 1);
-            GridDataSet.attach(card).fillHorizontal();
-        }
-        lb.layout();
-        lsc.setMinSize(lb.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-        lsc.setOrigin(0, 0);
-    }
-
     public void refreshTestPaperViewCards() {
         for (Control c : lb.getChildren()) {
             c.dispose();
         }
         initTestPaperViewCards();
+    }
+
+    private void initTestPaperViewCards() {
+        List<TestViewVo> viewVos = page.getTestPaperVo().getViewVos();
+        for (int i = 0; i < viewVos.size(); i++) {
+            TestViewVo viewVo = viewVos.get(i);
+            TestPaperViewCard card = new TestPaperViewCard(lb, SWT.NONE, viewVo.getViewType());
+            GridDataSet.attach(card).fillHorizontal();
+            cards.add(card);
+        }
+        lb.layout();
+        lsc.setMinSize(lb.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+        lsc.setOrigin(0, 0);
     }
 
     /*
@@ -164,7 +167,7 @@ public class ReadingPaperView extends SashTestPaperView {
         @Override
         public void mouseDown(MouseEvent e) {
             // TODO Add a new reading passage view to the current list
-            TestPaperViewCard card = new TestPaperViewCard(lb, SWT.NONE, VT.VIEW_TYPE_READING_PASSAGE, 1);
+            TestPaperViewCard card = new TestPaperViewCard(lb, SWT.NONE, VT.VIEW_TYPE_READING_PASSAGE);
             GridDataSet.attach(card).fillHorizontal();
             lb.layout();
             lsc.setMinSize(lb.computeSize(SWT.DEFAULT, SWT.DEFAULT));

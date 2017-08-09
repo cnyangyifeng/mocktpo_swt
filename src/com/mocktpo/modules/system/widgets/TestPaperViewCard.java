@@ -5,13 +5,11 @@ import com.mocktpo.util.TestViewTypeUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackAdapter;
@@ -52,7 +50,6 @@ public class TestPaperViewCard extends Composite {
     /* Properties */
 
     private int viewType;
-    private int viewId;
     private boolean checked;
 
     /*
@@ -63,11 +60,10 @@ public class TestPaperViewCard extends Composite {
      * ==================================================
      */
 
-    public TestPaperViewCard(Composite parent, int style, int viewType, int viewId) {
+    public TestPaperViewCard(Composite parent, int style, int viewType) {
         super(parent, style);
         this.d = parent.getDisplay();
         this.viewType = viewType;
-        this.viewId = viewId;
         this.defaultBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED);
         this.hoveredBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_GRAY60);
         this.checkedBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_DARK_BLUE, 2);
@@ -92,10 +88,6 @@ public class TestPaperViewCard extends Composite {
         inner.addPaintListener(borderPaintListener);
         inner.addMouseListener(new CardInnerMouseAdapter());
         inner.addMouseTrackListener(new CardInnerMouseTrackAdapter());
-
-        final CLabel viewIdLabel = new CLabel(inner, SWT.NONE);
-        FormDataSet.attach(viewIdLabel).atLeft(10).atBottom(10);
-        CLabelSet.decorate(viewIdLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(Integer.toString(viewId));
 
         final Label viewTypeNameLabel = new Label(inner, SWT.WRAP);
         FormDataSet.attach(viewTypeNameLabel).atLeft(10).atTop(10).atRight(10);
@@ -153,5 +145,21 @@ public class TestPaperViewCard extends Composite {
                 TestPaperViewCard.this.redraw();
             }
         }
+    }
+
+    /*
+     * ==================================================
+     *
+     * Getters and Setters
+     *
+     * ==================================================
+     */
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+
     }
 }
