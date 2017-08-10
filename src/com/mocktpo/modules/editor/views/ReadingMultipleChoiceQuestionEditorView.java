@@ -49,7 +49,6 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
     @Override
     protected void updateTestViewVo() {
-        viewVo.setViewType(VT.VIEW_TYPE_READING_PASSAGE);
         viewVo.setSectionType(ST.SECTION_TYPE_READING);
         viewVo.setSectionTypeName(msgs.getString("reading"));
         viewVo.setFirstPassage(true);

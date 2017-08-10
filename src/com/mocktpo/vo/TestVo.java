@@ -206,6 +206,6 @@ public class TestVo implements Serializable {
 
     @Override
     public String toString() {
-        return "{\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + "\n,stars:" + this.getStars() + ",\nauthor:" + this.getAuthor() + ",\ncreatedTime:" + this.getCreatedTime() + "\n}";
+        return "{\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nstars:" + this.getStars() + ",\nauthor:" + this.getAuthor() + ",\ncreatedTime:" + this.getCreatedTime() + ",\nviewVos:" + this.getViewVos() + "\n}";
     }
 }

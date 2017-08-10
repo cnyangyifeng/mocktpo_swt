@@ -285,4 +285,9 @@ public class TestViewVo implements Serializable {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "{\nviewId:" + this.getViewId() + ",\nviewType:" + this.getViewType() + ",\nsectionType:" + this.getSectionType() + ",\nsectionTypeName:" + this.getSectionTypeName() + "\n}";
+    }
 }

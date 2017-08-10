@@ -175,7 +175,6 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
             Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>();
             viewVo.setBody(body);
             page.getTestVo().addViewVo(viewVo);
-logger.info(page.getTestVo());
             TestEditorCard card = new TestEditorCard(ReadingEditorLayer.this, SWT.NONE, viewVo);
             GridDataSet.attach(card).fillHorizontal();
             cards.add(card);
