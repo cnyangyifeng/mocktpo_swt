@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class ReadingQuestionView extends SashTestView {
+public class ReadingMultipleChoiceQuestionView extends SashTestView {
 
     /* Widgets */
 
@@ -44,7 +44,7 @@ public class ReadingQuestionView extends SashTestView {
      * ==================================================
      */
 
-    public ReadingQuestionView(TestPage page, int style) {
+    public ReadingMultipleChoiceQuestionView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -216,7 +216,7 @@ public class ReadingQuestionView extends SashTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            PersistenceUtils.saveToNextView(ReadingQuestionView.this);
+            PersistenceUtils.saveToNextView(ReadingMultipleChoiceQuestionView.this);
             page.resume();
         }
     }
@@ -226,7 +226,7 @@ public class ReadingQuestionView extends SashTestView {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            PersistenceUtils.saveToPreviousView(ReadingQuestionView.this);
+            PersistenceUtils.saveToPreviousView(ReadingMultipleChoiceQuestionView.this);
             page.resume();
         }
     }
@@ -280,7 +280,7 @@ public class ReadingQuestionView extends SashTestView {
             }
             logger.info("[Reading Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
             answerText = Integer.toString(answer);
-            PersistenceUtils.saveAnswer(ReadingQuestionView.this, answerText);
+            PersistenceUtils.saveAnswer(ReadingMultipleChoiceQuestionView.this, answerText);
         }
     }
 

@@ -154,6 +154,7 @@ public class TestEditorPage extends Composite {
      */
 
     public void save() {
+        logger.info("save: {}", testVo);
         ConfigUtils.push(testVo.getTid(), testVo);
         setFirstRun(false);
         enterSavedMode();

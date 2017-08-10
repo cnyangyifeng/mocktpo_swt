@@ -6,8 +6,8 @@ import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.ST;
 import com.mocktpo.util.constants.VT;
-import com.mocktpo.vo.TestVo;
 import com.mocktpo.vo.TestViewVo;
+import com.mocktpo.vo.TestVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -176,8 +176,8 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_READING_PASSAGE:
                 tv = new ReadingPassageView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_READING_QUESTION:
-                tv = new ReadingQuestionView(this, SWT.NONE);
+            case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
+                tv = new ReadingMultipleChoiceQuestionView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION:
                 tv = new ReadingInsertTextQuestionView(this, SWT.NONE);
@@ -209,8 +209,8 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_LISTENING_REPLAY:
                 tv = new ListeningReplayView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_LISTENING_QUESTION:
-                tv = new ListeningQuestionView(this, SWT.NONE);
+            case VT.VIEW_TYPE_LISTENING_MULTIPLE_CHOICE_QUESTION:
+                tv = new ListeningMultipleChoiceQuestionView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_LISTENING_MULTIPLE_RESPONSE_QUESTION:
                 tv = new ListeningMultipleResponseQuestionView(this, SWT.NONE);

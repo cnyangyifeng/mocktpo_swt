@@ -27,7 +27,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Timer;
 
-public class ListeningQuestionView extends ResponsiveTestView {
+public class ListeningMultipleChoiceQuestionView extends ResponsiveTestView {
 
     /* Constants */
 
@@ -56,7 +56,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
      * ==================================================
      */
 
-    public ListeningQuestionView(TestPage page, int style) {
+    public ListeningMultipleChoiceQuestionView(TestPage page, int style) {
         super(page, style);
     }
 
@@ -100,7 +100,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             @Override
             public void mouseDown(MouseEvent mouseEvent) {
                 release();
-                PersistenceUtils.saveToNextView(ListeningQuestionView.this);
+                PersistenceUtils.saveToNextView(ListeningMultipleChoiceQuestionView.this);
                 page.resume();
             }
         });
@@ -250,7 +250,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
 
             if (isOk()) {
                 release();
-                PersistenceUtils.saveToNextView(ListeningQuestionView.this);
+                PersistenceUtils.saveToNextView(ListeningMultipleChoiceQuestionView.this);
                 page.resume();
             } else {
                 nextOvalButton.setEnabled(true);
@@ -274,7 +274,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             volumeControlVisible = !volumeControlVisible;
             CompositeSet.decorate(volumeControl).setVisible(volumeControlVisible);
-            PersistenceUtils.saveVolumeControlVisibility(ListeningQuestionView.this);
+            PersistenceUtils.saveVolumeControlVisibility(ListeningMultipleChoiceQuestionView.this);
         }
     }
 
@@ -285,7 +285,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             Scale s = (Scale) e.widget;
             double selection = s.getSelection(), maximum = s.getMaximum();
             double volume = selection / maximum;
-            PersistenceUtils.saveVolume(ListeningQuestionView.this, volume);
+            PersistenceUtils.saveVolume(ListeningMultipleChoiceQuestionView.this, volume);
             setAudioVolume(volume);
         }
     }
@@ -332,7 +332,7 @@ public class ListeningQuestionView extends ResponsiveTestView {
             }
             logger.info("[Listening Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
             answerText = Integer.toString(answer);
-            PersistenceUtils.saveAnswer(ListeningQuestionView.this, answerText);
+            PersistenceUtils.saveAnswer(ListeningMultipleChoiceQuestionView.this, answerText);
         }
     }
 
