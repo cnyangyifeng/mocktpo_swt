@@ -2,6 +2,7 @@ package com.mocktpo.modules.editor.widgets;
 
 import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.modules.editor.layers.SashTestEditorLayer;
+import com.mocktpo.modules.editor.layers.TestEditorLayer;
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.TestViewTypeUtils;
 import com.mocktpo.util.constants.MT;
@@ -38,9 +39,10 @@ public class TestEditorCard extends Composite {
 
     private Display d;
 
-    /* Page */
+    /* Page and layer */
 
     private TestEditorPage page;
+    private TestEditorLayer layer;
 
     /* Widgets */
 
@@ -70,6 +72,7 @@ public class TestEditorCard extends Composite {
         super(editorLayer.getLeftBody(), style);
         this.d = editorLayer.getDisplay();
         this.page = editorLayer.getTestEditorPage();
+        this.layer = editorLayer;
         initViewVo(viewVo);
         initListeners();
         init();
@@ -147,19 +150,8 @@ public class TestEditorCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            if (!checked) {
-                inner.removePaintListener(borderPaintListener);
-                borderPaintListener = checkedBorderPaintListener;
-                inner.addPaintListener(borderPaintListener);
-                TestEditorCard.this.redraw();
-            } else {
-                inner.removePaintListener(borderPaintListener);
-                borderPaintListener = defaultBorderPaintListener;
-                inner.addPaintListener(borderPaintListener);
-                TestEditorCard.this.redraw();
-            }
-            checked = !checked;
-
+            setChecked(true);
+            // Set other cards to unchecked
         }
     }
 
@@ -200,5 +192,16 @@ public class TestEditorCard extends Composite {
 
     public void setChecked(boolean checked) {
         this.checked = checked;
+        if (checked) {
+            inner.removePaintListener(borderPaintListener);
+            borderPaintListener = checkedBorderPaintListener;
+            inner.addPaintListener(borderPaintListener);
+            TestEditorCard.this.redraw();
+        } else {
+            inner.removePaintListener(borderPaintListener);
+            borderPaintListener = defaultBorderPaintListener;
+            inner.addPaintListener(borderPaintListener);
+            TestEditorCard.this.redraw();
+        }
     }
 }
