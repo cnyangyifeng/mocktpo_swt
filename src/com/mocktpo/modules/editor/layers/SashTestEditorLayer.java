@@ -1,17 +1,28 @@
 package com.mocktpo.modules.editor.layers;
 
 import com.mocktpo.modules.editor.TestEditorPage;
+import com.mocktpo.modules.editor.views.ReadingMultipleChoiceQuestionEditorView;
+import com.mocktpo.modules.editor.views.ReadingPassageEditorView;
+import com.mocktpo.modules.editor.views.TestEditorView;
+import com.mocktpo.modules.editor.widgets.TestEditorCard;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
+import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class SashTestEditorLayer extends TestEditorLayer {
 
@@ -28,6 +39,12 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     protected Composite right;
     protected StackLayout rightViewStack;
 
+    /* Properties */
+
+    protected List<TestEditorCard> cards;
+    protected List<TestEditorView> views;
+    protected int currentViewId;
+
     /*
      * ==================================================
      *
@@ -38,6 +55,13 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
     public SashTestEditorLayer(TestEditorPage page, int style) {
         super(page, style);
+        this.cards = new ArrayList<TestEditorCard>();
+        this.views = new ArrayList<TestEditorView>();
+        if (page.getTestVo().getViewVos().size() > 0) {
+            this.currentViewId = 0;
+        } else {
+            this.currentViewId = -1;
+        }
     }
 
     /*
@@ -97,6 +121,91 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     protected abstract void updateLeft();
 
     protected abstract void updateRight();
+
+    /*
+     * ==================================================
+     *
+     * Test Editor Card Operations
+     *
+     * ==================================================
+     */
+
+    public void refreshCards() {
+        for (Control c : leftBody.getChildren()) {
+            c.dispose();
+        }
+        initCards();
+    }
+
+    private void initCards() {
+        List<TestViewVo> viewVos = page.getTestVo().getViewVos();
+
+        /*
+         * ==================================================
+         *
+         * Update Left Part
+         *
+         * ==================================================
+         */
+
+        cards.clear();
+        for (TestViewVo viewVo : viewVos) {
+            TestEditorCard card = new TestEditorCard(this, SWT.NONE, viewVo);
+            GridDataSet.attach(card).fillHorizontal();
+            cards.add(card);
+        }
+        leftBody.layout();
+        lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+        lsc.setOrigin(0, cards.get(currentViewId).getLocation().y);
+
+        /*
+         * ==================================================
+         *
+         * Update Right Part
+         *
+         * ==================================================
+         */
+
+        views.clear();
+        for (TestViewVo viewVo : viewVos) {
+            TestEditorView view = null;
+            switch (viewVo.getViewType()) {
+                case VT.VIEW_TYPE_READING_PASSAGE:
+                    view = new ReadingPassageEditorView(this, SWT.NONE, viewVo);
+                    break;
+                case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
+                    view = new ReadingMultipleChoiceQuestionEditorView(this, SWT.NONE, viewVo);
+                    break;
+            }
+            views.add(view);
+        }
+
+        toEditorView(currentViewId);
+    }
+
+    /*
+     * ==================================================
+     *
+     * Test Editor View Operations
+     *
+     * ==================================================
+     */
+
+    public void toEditorView(int viewId) {
+        if (currentViewId < 0) {
+            return;
+        }
+
+        TestEditorCard previousCard = cards.get(currentViewId);
+        previousCard.setChecked(false);
+        currentViewId = viewId;
+        TestEditorCard currentCard = cards.get(currentViewId);
+        currentCard.setChecked(true);
+
+        TestEditorView view = views.get(currentViewId);
+        rightViewStack.topControl = view;
+        right.layout();
+    }
 
     /*
      * ==================================================

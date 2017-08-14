@@ -72,7 +72,7 @@ public class TestEditorPage extends Composite {
         this.testVo = new TestVo();
         testVo.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
         testVo.setTitle("");
-        testVo.setStars(0);
+        testVo.setStars(3);
         testVo.setAuthor("");
         testVo.setCreatedTime(System.currentTimeMillis());
     }
@@ -108,7 +108,7 @@ public class TestEditorPage extends Composite {
         if (readingEditorLayer == null) {
             readingEditorLayer = new ReadingEditorLayer(this, SWT.NONE);
         }
-        readingEditorLayer.refreshEditor();
+        readingEditorLayer.refreshCards();
         stack.topControl = readingEditorLayer;
         this.layout();
     }
@@ -157,6 +157,10 @@ public class TestEditorPage extends Composite {
         ConfigUtils.push(testVo.getTid(), testVo);
         setFirstRun(false);
         enterSavedMode();
+    }
+
+    public void edit() {
+        enterUnsavedMode();
     }
 
     public void enterUnsavedMode() {

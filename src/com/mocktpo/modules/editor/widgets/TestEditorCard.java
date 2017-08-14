@@ -2,18 +2,19 @@ package com.mocktpo.modules.editor.widgets;
 
 import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.modules.editor.layers.SashTestEditorLayer;
-import com.mocktpo.modules.editor.layers.TestEditorLayer;
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.TestViewTypeUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
+import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackAdapter;
@@ -42,7 +43,7 @@ public class TestEditorCard extends Composite {
     /* Page and layer */
 
     private TestEditorPage page;
-    private TestEditorLayer layer;
+    private SashTestEditorLayer layer;
 
     /* Widgets */
 
@@ -136,6 +137,10 @@ public class TestEditorCard extends Composite {
         LabelSet.decorate(viewTypeNameLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(TestViewTypeUtils.getViewTypeName(viewVo.getViewType()));
         viewTypeNameLabel.addMouseListener(new CardInnerMouseAdapter());
         viewTypeNameLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
+
+        final CLabel viewIdLabel = new CLabel(inner, SWT.NONE);
+        FormDataSet.attach(viewIdLabel).atLeft(10).atBottom(10);
+        CLabelSet.decorate(viewIdLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(Integer.toString(viewVo.getViewId()));
     }
 
     /*
@@ -150,8 +155,7 @@ public class TestEditorCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            setChecked(true);
-            // Set other cards to unchecked
+            layer.toEditorView(viewVo.getViewId());
         }
     }
 

@@ -110,7 +110,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
             StyledTextVo headingTextVo = new StyledTextVo();
             headingTextVo.setText(headingTextWidget.getText());
             viewVo.setStyledTextVo("heading", headingTextVo);
-            page.enterUnsavedMode();
+            page.edit();
         }
     }
 
@@ -121,7 +121,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
             StyledTextVo passageTextVo = new StyledTextVo();
             passageTextVo.setText(passageTextWidget.getText());
             viewVo.setStyledTextVo("passage", passageTextVo);
-            page.enterUnsavedMode();
+            page.edit();
         }
     }
 }

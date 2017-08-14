@@ -121,7 +121,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
         @Override
         public void modifyText(ModifyEvent e) {
             page.getTestVo().setTitle(titleTextWidget.getText());
-            page.enterUnsavedMode();
+            page.edit();
         }
     }
 
@@ -143,7 +143,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
                     ex.printStackTrace();
                 }
             }
-            page.enterUnsavedMode();
+            page.edit();
         }
     }
 
@@ -152,7 +152,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
         @Override
         public void modifyText(ModifyEvent e) {
             page.getTestVo().setAuthor(authorTextWidget.getText());
-            page.enterUnsavedMode();
+            page.edit();
         }
     }
 }

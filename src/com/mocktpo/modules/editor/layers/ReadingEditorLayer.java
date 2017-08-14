@@ -1,38 +1,19 @@
 package com.mocktpo.modules.editor.layers;
 
 import com.mocktpo.modules.editor.TestEditorPage;
-import com.mocktpo.modules.editor.views.ReadingMultipleChoiceQuestionEditorView;
-import com.mocktpo.modules.editor.views.ReadingPassageEditorView;
-import com.mocktpo.modules.editor.views.TestEditorView;
-import com.mocktpo.modules.editor.widgets.TestEditorCard;
 import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.util.TestEditorUtils;
+import com.mocktpo.util.TestViewUtils;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.ST;
-import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormDataSet;
-import com.mocktpo.util.layout.GridDataSet;
-import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackAdapter;
-import org.eclipse.swt.widgets.Control;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ReadingEditorLayer extends SashTestEditorLayer {
-
-    /* Properties */
-
-    private List<TestEditorCard> cards;
-    private List<TestEditorView> views;
-    private int previousViewId;
-    private int currentViewId;
 
     /* Widgets */
 
@@ -49,9 +30,6 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
     public ReadingEditorLayer(TestEditorPage page, int style) {
         super(page, style);
-        this.cards = new ArrayList<TestEditorCard>();
-        this.views = new ArrayList<TestEditorView>();
-        this.currentViewId = this.previousViewId = 0;
     }
 
     /*
@@ -90,70 +68,6 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
     /*
      * ==================================================
      *
-     * Widget Updates
-     *
-     * ==================================================
-     */
-
-    public void refreshEditor() {
-        for (Control c : leftBody.getChildren()) {
-            c.dispose();
-        }
-        initEditor();
-    }
-
-    private void initEditor() {
-
-        /* Get ViewVos */
-
-        List<TestViewVo> viewVos = page.getTestVo().getViewVos();
-
-        /* Initialize Left Part */
-
-        for (TestViewVo viewVo : viewVos) {
-            TestEditorCard card = new TestEditorCard(this, SWT.NONE, viewVo);
-            GridDataSet.attach(card).fillHorizontal();
-            cards.add(card);
-        }
-        leftBody.layout();
-        lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-        lsc.setOrigin(0, 0);
-
-        /* Initialize Right Part */
-
-        for (TestViewVo viewVo : viewVos) {
-            TestEditorView view = null;
-            switch (viewVo.getViewType()) {
-                case VT.VIEW_TYPE_READING_PASSAGE:
-                    view = new ReadingPassageEditorView(this, SWT.NONE, viewVo);
-                    break;
-                case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
-                    view = new ReadingMultipleChoiceQuestionEditorView(this, SWT.NONE, viewVo);
-                    break;
-            }
-            views.add(view);
-        }
-        if (views.size() > 0) {
-            rightViewStack.topControl = views.get(currentViewId);
-            right.layout();
-        }
-    }
-
-    /*
-     * ==================================================
-     *
-     * Editor View Display
-     *
-     * ==================================================
-     */
-
-    public void checkEditorView() {
-
-    }
-
-    /*
-     * ==================================================
-     *
      * Listeners
      *
      * ==================================================
@@ -163,22 +77,18 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            TestViewVo viewVo = TestEditorUtils.newReadingPassageView(++currentViewId);
-            page.getTestVo().addViewVo(viewVo);
+            TestViewVo viewVo = TestViewUtils.newReadingPassageView(++currentViewId);
+            List<TestViewVo> viewVos = page.getTestVo().getViewVos();
+            viewVos.add(viewVo);
+            for (int i = viewVos.size() - 1; i > currentViewId; i--) {
+                TestViewVo eachAfter = viewVos.get(i - 1);
+                eachAfter.setViewId(i);
+                viewVos.set(i, eachAfter);
+            }
+            viewVos.set(currentViewId, viewVo);
 
-            TestEditorCard card = new TestEditorCard(ReadingEditorLayer.this, SWT.NONE, viewVo);
-            GridDataSet.attach(card).fillHorizontal();
-            cards.add(card);
-            leftBody.layout();
-            lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-            lsc.setOrigin(0, 0);
-
-            TestEditorView view = new ReadingPassageEditorView(ReadingEditorLayer.this, SWT.NONE, viewVo);
-            views.add(view);
-            rightViewStack.topControl = view;
-            right.layout();
-
-            page.enterUnsavedMode();
+            refreshCards();
+            page.save();
         }
     }
 
@@ -186,22 +96,18 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            TestViewVo viewVo = TestEditorUtils.newReadingMultipleChoiceQuestionViewVo(++currentViewId);
-            page.getTestVo().addViewVo(viewVo);
+            TestViewVo viewVo = TestViewUtils.newReadingMultipleChoiceQuestionViewVo(++currentViewId);
+            List<TestViewVo> viewVos = page.getTestVo().getViewVos();
+            viewVos.add(viewVo);
+            for (int i = viewVos.size() - 1; i > currentViewId; i--) {
+                TestViewVo eachAfter = viewVos.get(i - 1);
+                eachAfter.setViewId(i);
+                viewVos.set(i, eachAfter);
+            }
+            viewVos.set(currentViewId, viewVo);
 
-            TestEditorCard card = new TestEditorCard(ReadingEditorLayer.this, SWT.NONE, viewVo);
-            GridDataSet.attach(card).fillHorizontal();
-            cards.add(card);
-            leftBody.layout();
-            lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-            lsc.setOrigin(0, 0);
-
-            TestEditorView view = new ReadingMultipleChoiceQuestionEditorView(ReadingEditorLayer.this, SWT.NONE, viewVo);
-            views.add(view);
-            rightViewStack.topControl = view;
-            right.layout();
-
-            page.enterUnsavedMode();
+            refreshCards();
+            page.save();
         }
     }
 

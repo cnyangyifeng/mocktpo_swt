@@ -116,7 +116,7 @@ public class NewTestView extends Composite {
     /*
      * ==================================================
      *
-     * Test Cards Operations
+     * Test Card Operations
      *
      * ==================================================
      */

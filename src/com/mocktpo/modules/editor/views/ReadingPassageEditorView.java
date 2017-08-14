@@ -133,7 +133,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
             StyledTextVo headingTextVo = new StyledTextVo();
             headingTextVo.setText(headingTextWidget.getText());
             viewVo.setStyledTextVo("heading", headingTextVo);
-            page.enterUnsavedMode();
+            page.edit();
         }
     }
 
@@ -144,7 +144,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
             StyledTextVo passageTextVo = new StyledTextVo();
             passageTextVo.setText(passageTextWidget.getText());
             viewVo.setStyledTextVo("passage", passageTextVo);
-            page.enterUnsavedMode();
+            page.edit();
         }
     }
 
@@ -155,7 +155,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
             StyledTextVo localizedHeadingTextVo = new StyledTextVo();
             localizedHeadingTextVo.setText(headingTranslationTextWidget.getText());
             viewVo.setStyledTextVo("headingTranslation", localizedHeadingTextVo);
-            page.enterUnsavedMode();
+            page.edit();
         }
     }
 
@@ -166,7 +166,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
             StyledTextVo localizedPassageTextVo = new StyledTextVo();
             localizedPassageTextVo.setText(passageTranslationTextWidget.getText());
             viewVo.setStyledTextVo("passageTranslation", localizedPassageTextVo);
-            page.enterUnsavedMode();
+            page.edit();
         }
     }
 }

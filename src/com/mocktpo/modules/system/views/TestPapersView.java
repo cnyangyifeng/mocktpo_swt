@@ -117,7 +117,7 @@ public class TestPapersView extends Composite {
     /*
      * ==================================================
      *
-     * Test Paper Cards Operations
+     * Test Paper Card Operations
      *
      * ==================================================
      */

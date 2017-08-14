@@ -13,14 +13,14 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
-public class TestEditorUtils {
+public class TestViewUtils {
 
     /* Logger and Messages */
 
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    private TestEditorUtils() {
+    private TestViewUtils() {
     }
 //
 //    private static List<TestViewVo> initViewVos() {

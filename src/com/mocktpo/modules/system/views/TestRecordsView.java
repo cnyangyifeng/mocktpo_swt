@@ -83,7 +83,7 @@ public class TestRecordsView extends Composite {
     /*
      * ==================================================
      *
-     * Test Record Cards Operations
+     * Test Record Card Operations
      *
      * ==================================================
      */
