@@ -134,7 +134,12 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         for (Control c : leftBody.getChildren()) {
             c.dispose();
         }
-        initCards();
+        d.asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                initCards();
+            }
+        });
     }
 
     private void initCards() {
@@ -156,7 +161,9 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         }
         leftBody.layout();
         lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-        lsc.setOrigin(0, cards.get(currentViewId).getLocation().y);
+        if (currentViewId >= 0) {
+            lsc.setOrigin(0, cards.get(currentViewId).getLocation().y - 20);
+        }
 
         /*
          * ==================================================
@@ -202,8 +209,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         TestEditorCard currentCard = cards.get(currentViewId);
         currentCard.setChecked(true);
 
-        TestEditorView view = views.get(currentViewId);
-        rightViewStack.topControl = view;
+        rightViewStack.topControl = views.get(currentViewId);
         right.layout();
     }
 

@@ -92,7 +92,12 @@ public class TestRecordsView extends Composite {
         for (Control c : body.getChildren()) {
             c.dispose();
         }
-        initCards();
+        d.asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                initCards();
+            }
+        });
     }
 
     private void initCards() {
