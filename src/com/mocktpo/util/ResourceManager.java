@@ -169,6 +169,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, "logo"));
         caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, "splash"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK, ImageUtils.load(d, "sys_back"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK_DISABLED, ImageUtils.load(d, "sys_back_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK_HOVER, ImageUtils.load(d, "sys_back_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BOXED, ImageUtils.load(d, "sys_boxed"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE, ImageUtils.load(d, "sys_continue"));
@@ -231,6 +232,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT, ImageUtils.load(d, "sys_report"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT_HOVER, ImageUtils.load(d, "sys_report_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_SAVE, ImageUtils.load(d, "sys_save"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_SAVE_DISABLED, ImageUtils.load(d, "sys_save_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_SAVE_HOVER, ImageUtils.load(d, "sys_save_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STAR, ImageUtils.load(d, "sys_star"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STAR_OUTLINE, ImageUtils.load(d, "sys_star_outline"));

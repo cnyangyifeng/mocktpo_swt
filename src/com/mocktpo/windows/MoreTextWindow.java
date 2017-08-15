@@ -88,6 +88,7 @@ public class MoreTextWindow {
                 gc.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
                 Point p = gc.textExtent(msgs.getString("more_text"));
                 gc.drawString(msgs.getString("more_text"), (s.getBounds().width - p.x) / 2, 20, true);
+                gc.dispose();
             }
         });
     }

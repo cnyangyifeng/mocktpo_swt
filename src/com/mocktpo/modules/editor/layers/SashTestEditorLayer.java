@@ -44,6 +44,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     protected List<TestEditorCard> cards;
     protected List<TestEditorView> views;
     protected int currentViewId;
+    protected boolean dirty;
 
     /*
      * ==================================================
@@ -62,6 +63,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         } else {
             this.currentViewId = -1;
         }
+        this.dirty = true;
     }
 
     /*
@@ -131,15 +133,12 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
      */
 
     public void refreshCards() {
-        for (Control c : leftBody.getChildren()) {
-            c.dispose();
-        }
-        d.asyncExec(new Runnable() {
-            @Override
-            public void run() {
-                initCards();
+        if (isDirty()) {
+            for (Control c : leftBody.getChildren()) {
+                c.dispose();
             }
-        });
+            initCards();
+        }
     }
 
     private void initCards() {
@@ -187,6 +186,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
             views.add(view);
         }
 
+        setDirty(false);
         toEditorView(currentViewId);
     }
 
@@ -227,5 +227,13 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
     public Composite getRight() {
         return right;
+    }
+
+    public boolean isDirty() {
+        return dirty;
+    }
+
+    public void setDirty(boolean dirty) {
+        this.dirty = dirty;
     }
 }

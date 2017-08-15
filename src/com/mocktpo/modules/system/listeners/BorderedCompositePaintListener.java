@@ -29,5 +29,6 @@ public class BorderedCompositePaintListener implements PaintListener {
         gc.setLineWidth(lineWidth);
         gc.setForeground(ResourceManager.getColor(this.color));
         gc.drawRectangle(lineWidth / 2, lineWidth / 2, c.width - lineWidth, c.height - lineWidth);
+        gc.dispose();
     }
 }

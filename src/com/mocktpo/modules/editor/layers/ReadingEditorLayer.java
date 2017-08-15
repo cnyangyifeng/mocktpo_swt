@@ -87,6 +87,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
             }
             viewVos.set(currentViewId, viewVo);
 
+            setDirty(true);
             refreshCards();
             page.save();
         }
@@ -106,6 +107,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
             }
             viewVos.set(currentViewId, viewVo);
 
+            setDirty(true);
             refreshCards();
             page.save();
         }

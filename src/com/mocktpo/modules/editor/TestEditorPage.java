@@ -37,6 +37,7 @@ public class TestEditorPage extends Composite {
     private SpeakingEditorLayer speakingEditorLayer;
     private WritingEditorLayer writingEditorLayer;
     private PreviewEditorLayer previewEditorLayer;
+    private LoadingEditorLayer loadingEditorLayer;
 
     /* Properties */
 
@@ -105,36 +106,80 @@ public class TestEditorPage extends Composite {
     }
 
     public void toReadingEditorLayer() {
-        if (readingEditorLayer == null) {
-            readingEditorLayer = new ReadingEditorLayer(this, SWT.NONE);
+        if (loadingEditorLayer == null) {
+            loadingEditorLayer = new LoadingEditorLayer(this, SWT.NONE);
         }
-        readingEditorLayer.refreshCards();
-        stack.topControl = readingEditorLayer;
+        stack.topControl = loadingEditorLayer;
         this.layout();
+
+        d.asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                if (readingEditorLayer == null) {
+                    readingEditorLayer = new ReadingEditorLayer(TestEditorPage.this, SWT.NONE);
+                }
+                readingEditorLayer.refreshCards();
+                stack.topControl = readingEditorLayer;
+                TestEditorPage.this.layout();
+            }
+        });
     }
 
     public void toListeningEditorLayer() {
-        if (listeningEditorLayer == null) {
-            listeningEditorLayer = new ListeningEditorLayer(this, SWT.NONE);
+        if (loadingEditorLayer == null) {
+            loadingEditorLayer = new LoadingEditorLayer(this, SWT.NONE);
         }
-        stack.topControl = listeningEditorLayer;
+        stack.topControl = loadingEditorLayer;
         this.layout();
+
+        d.asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                if (listeningEditorLayer == null) {
+                    listeningEditorLayer = new ListeningEditorLayer(TestEditorPage.this, SWT.NONE);
+                }
+                stack.topControl = listeningEditorLayer;
+                TestEditorPage.this.layout();
+            }
+        });
     }
 
     public void toSpeakingEditorLayer() {
-        if (speakingEditorLayer == null) {
-            speakingEditorLayer = new SpeakingEditorLayer(this, SWT.NONE);
+        if (loadingEditorLayer == null) {
+            loadingEditorLayer = new LoadingEditorLayer(this, SWT.NONE);
         }
-        stack.topControl = speakingEditorLayer;
+        stack.topControl = loadingEditorLayer;
         this.layout();
+
+        d.asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                if (speakingEditorLayer == null) {
+                    speakingEditorLayer = new SpeakingEditorLayer(TestEditorPage.this, SWT.NONE);
+                }
+                stack.topControl = speakingEditorLayer;
+                TestEditorPage.this.layout();
+            }
+        });
     }
 
     public void toWritingEditorLayer() {
-        if (writingEditorLayer == null) {
-            writingEditorLayer = new WritingEditorLayer(this, SWT.NONE);
+        if (loadingEditorLayer == null) {
+            loadingEditorLayer = new LoadingEditorLayer(this, SWT.NONE);
         }
-        stack.topControl = writingEditorLayer;
+        stack.topControl = loadingEditorLayer;
         this.layout();
+
+        d.asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                if (writingEditorLayer == null) {
+                    writingEditorLayer = new WritingEditorLayer(TestEditorPage.this, SWT.NONE);
+                }
+                stack.topControl = writingEditorLayer;
+                TestEditorPage.this.layout();
+            }
+        });
     }
 
     public void toPreviewEditorLayer() {

@@ -95,6 +95,7 @@ public class ReadingReviewTableRow extends Composite {
                 gc.drawLine(0, 0, 0, c.height); // left
                 gc.drawLine(0, 0, c.width, 0); // top
                 gc.drawLine(c.width - 1, 0, c.width - 1, c.height); // right
+                gc.dispose();
             }
         });
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);

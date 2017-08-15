@@ -93,9 +93,9 @@ public class RequiredAnswerWindow {
                 gc.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
                 Point p = gc.textExtent(msgs.getString("required_answer"));
                 gc.drawString(msgs.getString("required_answer"), (s.getBounds().width - p.x) / 2, 20, true);
+                gc.dispose();
             }
         });
-
     }
 
     private void initWidgets() {

@@ -51,6 +51,7 @@ public interface RC {
 
     String HIDPI_SUFFIX = "@2x";
     String PNG_FILE_TYPE_SUFFIX = ".png";
+    String GIF_FILE_TYPE_SUFFIX = ".gif";
 
     /*
      * ==================================================

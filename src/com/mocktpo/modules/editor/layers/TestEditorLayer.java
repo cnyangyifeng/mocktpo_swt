@@ -45,6 +45,7 @@ public abstract class TestEditorLayer extends Composite {
     /* Widgets */
 
     protected Composite header;
+    protected ImageButton backButton;
     protected ImageButton generalButton;
     protected ImageButton readingButton;
     protected ImageButton listeningButton;
@@ -54,6 +55,7 @@ public abstract class TestEditorLayer extends Composite {
 
     protected Composite footer;
     protected ImageButton exportAsZipButton;
+    protected ImageButton saveButton;
     protected CLabel titleLabel;
 
     /*
@@ -117,7 +119,7 @@ public abstract class TestEditorLayer extends Composite {
          * ==================================================
          */
 
-        final ImageButton backButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_BACK, MT.IMAGE_SYSTEM_BACK_HOVER);
+        backButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_BACK, MT.IMAGE_SYSTEM_BACK_HOVER, MT.IMAGE_SYSTEM_BACK_DISABLED);
         FormDataSet.attach(backButton).atLeft().atTop();
         backButton.addMouseListener(new BackButtonMouseAdapter());
 
@@ -186,7 +188,7 @@ public abstract class TestEditorLayer extends Composite {
         FormDataSet.attach(exportAsZipButton).atTop().atRight();
         exportAsZipButton.addMouseListener(new ExportAsZipButtonMouseAdapter());
 
-        final ImageButton saveButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_SAVE, MT.IMAGE_SYSTEM_SAVE_HOVER);
+        saveButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_SAVE, MT.IMAGE_SYSTEM_SAVE_HOVER, MT.IMAGE_SYSTEM_SAVE_DISABLED);
         FormDataSet.attach(saveButton).atTopTo(exportAsZipButton, 0, SWT.TOP).atRightTo(exportAsZipButton);
         saveButton.addMouseListener(new SaveButtonMouseAdapter());
 

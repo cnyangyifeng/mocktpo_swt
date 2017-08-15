@@ -1,6 +1,5 @@
 package com.mocktpo.modules.editor.widgets;
 
-import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.modules.editor.layers.SashTestEditorLayer;
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.TestViewTypeUtils;
@@ -19,7 +18,6 @@ import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
 import java.util.ResourceBundle;
@@ -36,13 +34,8 @@ public class TestEditorCard extends Composite {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Display and Application */
+    /* Layer */
 
-    private Display d;
-
-    /* Page and layer */
-
-    private TestEditorPage page;
     private SashTestEditorLayer layer;
 
     /* Widgets */
@@ -71,8 +64,6 @@ public class TestEditorCard extends Composite {
 
     public TestEditorCard(SashTestEditorLayer editorLayer, int style, TestViewVo viewVo) {
         super(editorLayer.getLeftBody(), style);
-        this.d = editorLayer.getDisplay();
-        this.page = editorLayer.getTestEditorPage();
         this.layer = editorLayer;
         initViewVo(viewVo);
         initListeners();
