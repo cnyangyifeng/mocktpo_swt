@@ -89,13 +89,22 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         body.setLayout(stack);
 
         loadingComposite = new LoadingComposite(body, SWT.NONE);
-        stack.topControl = loadingComposite;
-        body.layout();
+        toLoadingComposite();
 
         mainComposite = new Composite(body, SWT.NONE);
         FormLayoutSet.layout(mainComposite).marginWidth(0).marginHeight(0).spacing(0);
         initLeft();
         initRight();
+    }
+
+    public void toLoadingComposite() {
+        stack.topControl = loadingComposite;
+        body.layout();
+    }
+
+    public void toMainComposite() {
+        stack.topControl = mainComposite;
+        body.layout();
     }
 
     private void initLeft() {
@@ -214,9 +223,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
         setDirty(false);
         toEditorView(currentViewId);
-        stack.topControl = mainComposite;
-        body.layout();
-
+        toMainComposite();
     }
 
     /*
