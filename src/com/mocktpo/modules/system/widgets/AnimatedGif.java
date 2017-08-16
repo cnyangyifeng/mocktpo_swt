@@ -10,13 +10,14 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.ImageLoader;
+import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
 import java.net.URLDecoder;
 import java.util.ResourceBundle;
 
-public class AnimatedGif extends Composite {
+public class AnimatedGif extends Canvas {
 
 
     /* Logger and Messages */
@@ -33,6 +34,7 @@ public class AnimatedGif extends Composite {
     private ImageLoader loader;
     private GC gc;
     private int currentImageId;
+    private volatile boolean animating;
     private Thread animateThread;
 
 
@@ -55,6 +57,7 @@ public class AnimatedGif extends Composite {
         }
         final Image initialFrame = new Image(d, loader.data[0]);
         gc = new GC(initialFrame);
+
         this.addPaintListener(new PaintListener() {
             @Override
             public void paintControl(PaintEvent e) {
@@ -62,6 +65,7 @@ public class AnimatedGif extends Composite {
             }
         });
         this.currentImageId = 0;
+        this.animating = false;
         init();
     }
 
@@ -86,6 +90,7 @@ public class AnimatedGif extends Composite {
     }
 
     public void stop() {
+        animating = false;
         if (animateThread != null) {
             try {
                 animateThread.join();
@@ -99,23 +104,30 @@ public class AnimatedGif extends Composite {
     private Thread newAnimateThread() {
         return new Thread() {
             public void run() {
-                long currentTime = System.currentTimeMillis();
-                int delayTime = loader.data[currentImageId].delayTime;
-                while (currentTime + delayTime * 10 > System.currentTimeMillis()) {
-                    // Wait till the delay time has passed
+                animating = true;
+                while (animating) {
+                    long currentTime = System.currentTimeMillis();
+                    int delayTime = loader.data[currentImageId].delayTime;
+                    while (currentTime + delayTime * 10 > System.currentTimeMillis()) {
+                        // Wait till the delay time has passed
+                    }
+                    if (!d.isDisposed()) {
+                        d.asyncExec(new Runnable() {
+                            public void run() {
+                                currentImageId = (currentImageId == loader.data.length - 1) ? 0 : currentImageId + 1;
+                                ImageData nextFrameData = loader.data[currentImageId];
+                                Image frame = new Image(d, nextFrameData);
+                                gc.drawImage(frame, nextFrameData.x, nextFrameData.y);
+                                frame.dispose();
+                                if (!AnimatedGif.this.isDisposed()) {
+                                    redraw();
+                                }
+                                logger.info(currentImageId);
+                            }
+                        });
+                    }
                 }
-                if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        public void run() {
-                            currentImageId = (currentImageId == loader.data.length - 1) ? 0 : currentImageId + 1;
-                            ImageData nextFrameData = loader.data[currentImageId];
-                            Image frame = new Image(d, nextFrameData);
-                            gc.drawImage(frame, nextFrameData.x, nextFrameData.y);
-                            frame.dispose();
-                            redraw();
-                        }
-                    });
-                }
+                logger.info("stopped");
             }
         };
     }
