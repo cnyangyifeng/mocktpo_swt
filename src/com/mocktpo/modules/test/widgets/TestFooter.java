@@ -47,7 +47,7 @@ public class TestFooter extends Composite {
 
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_DARK_BLUE);
-        GridLayoutSet.layout(this);
+        GridLayoutSet.layout(this).marginWidth(0).marginHeight(0);
     }
 
     private void initCopyright() {

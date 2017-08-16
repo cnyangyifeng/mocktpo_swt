@@ -38,7 +38,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     /* Widgets */
 
     protected Composite body;
-    protected Composite loadingComposite;
+    protected LoadingComposite loadingComposite;
     protected Composite mainComposite;
     protected Composite left;
     protected ScrolledComposite lsc;
@@ -100,6 +100,8 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     public void toLoadingComposite() {
         stack.topControl = loadingComposite;
         body.layout();
+
+        loadingComposite.animate();
     }
 
     public void toMainComposite() {

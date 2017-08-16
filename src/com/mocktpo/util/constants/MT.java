@@ -275,8 +275,6 @@ public interface MT {
     int IMAGE_SYSTEM_STEP_WRITING_HOVER = 495;
     int IMAGE_SYSTEM_UNBOXED = 496;
 
-    int ANIMATED_GIF_LOADING = 601;
-
     /*
      * ==================================================
      *
