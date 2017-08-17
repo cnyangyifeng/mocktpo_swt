@@ -102,7 +102,7 @@ public class AnimatedGif extends Canvas {
     }
 
     private Thread newAnimateThread() {
-        return new Thread() {
+        return new Thread("animated gif") {
             public void run() {
                 animating = true;
                 while (animating) {
@@ -111,6 +111,7 @@ public class AnimatedGif extends Canvas {
                     while (currentTime + delayTime * 10 > System.currentTimeMillis()) {
                         // Wait till the delay time has passed
                     }
+                    logger.info(currentImageId);
                     if (!d.isDisposed()) {
                         d.asyncExec(new Runnable() {
                             public void run() {
