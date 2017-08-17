@@ -18,12 +18,9 @@ import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.ScrollBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +52,6 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     protected List<TestEditorView> views;
     protected int currentViewId;
     protected boolean dirty;
-
-    protected int y;
 
     /*
      * ==================================================
@@ -129,7 +124,6 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         FormDataSet.attach(lsc).atLeft().atTop().atRight().atBottom();
         lsc.setExpandHorizontal(true);
         lsc.setExpandVertical(true);
-        lsc.getVerticalBar().addSelectionListener(new CardsScrollBarSelectionAdapter());
 
         leftBody = new Composite(lsc, SWT.NONE);
         CompositeSet.decorate(leftBody).setBackground(MT.COLOR_WINDOW_BACKGROUND);
@@ -209,8 +203,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         leftBody.layout();
         lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
         if (currentViewId >= 0) {
-            logger.info(y);
-            lsc.setOrigin(0, cards.get(currentViewId).getLocation().y - 20 - y);
+            lsc.setOrigin(0, cards.get(currentViewId).getLocation().y - 20);
         }
 
         /*
@@ -261,24 +254,6 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
         rightViewStack.topControl = views.get(currentViewId);
         right.layout();
-    }
-
-    /*
-     * ==================================================
-     *
-     * Listeners
-     *
-     * ==================================================
-     */
-
-    private class CardsScrollBarSelectionAdapter extends SelectionAdapter {
-
-        @Override
-        public void widgetSelected(SelectionEvent e) {
-            ScrollBar bar = (ScrollBar) e.widget;
-            y = bar.getSelection();
-            logger.info("scroll y: {}", y);
-        }
     }
 
     /*

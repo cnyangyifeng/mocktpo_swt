@@ -105,25 +105,26 @@ public class AnimatedGif extends Canvas {
         return new Thread("animated gif") {
             public void run() {
                 animating = true;
+                logger.info(loader.data[currentImageId]);
                 while (animating) {
                     long currentTime = System.currentTimeMillis();
                     int delayTime = loader.data[currentImageId].delayTime;
                     while (currentTime + delayTime * 10 > System.currentTimeMillis()) {
                         // Wait till the delay time has passed
                     }
-                    logger.info(currentImageId);
                     if (!d.isDisposed()) {
                         d.asyncExec(new Runnable() {
                             public void run() {
                                 currentImageId = (currentImageId == loader.data.length - 1) ? 0 : currentImageId + 1;
-                                ImageData nextFrameData = loader.data[currentImageId];
-                                Image frame = new Image(d, nextFrameData);
-                                gc.drawImage(frame, nextFrameData.x, nextFrameData.y);
-                                frame.dispose();
+                                ImageData frameData = loader.data[currentImageId];
+                                logger.info("frame data: {}", loader.data[currentImageId]);
+                                Image frame = new Image(d, frameData);
+                                logger.info("frame: {}", frame);
+                                gc.drawImage(frame, frameData.x, frameData.y);
+                                // frame.dispose();
                                 if (!AnimatedGif.this.isDisposed()) {
                                     redraw();
                                 }
-                                logger.info(currentImageId);
                             }
                         });
                     }
