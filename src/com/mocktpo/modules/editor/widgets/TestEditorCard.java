@@ -146,7 +146,7 @@ public class TestEditorCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            layer.toEditorView(viewVo.getViewId());
+            layer.checkEditorView(viewVo.getViewId());
         }
     }
 

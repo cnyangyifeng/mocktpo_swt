@@ -65,7 +65,7 @@ public class AnimatedGif extends Canvas {
             }
         });
         this.currentImageId = 0;
-        this.animating = false;
+        this.animating = true;
         init();
     }
 
@@ -77,6 +77,7 @@ public class AnimatedGif extends Canvas {
     }
 
     public void animate() {
+        logger.info("animate");
         if (animateThread == null) {
             animateThread = newAnimateThread();
             animateThread.setDaemon(true);
@@ -90,6 +91,7 @@ public class AnimatedGif extends Canvas {
     }
 
     public void stop() {
+        logger.info("stop");
         animating = false;
         if (animateThread != null) {
             try {
@@ -109,6 +111,7 @@ public class AnimatedGif extends Canvas {
                 while (animating) {
                     long currentTime = System.currentTimeMillis();
                     int delayTime = loader.data[currentImageId].delayTime;
+                    logger.info("delayTime: {}", delayTime);
                     while (currentTime + delayTime * 10 > System.currentTimeMillis()) {
                         // Wait till the delay time has passed
                     }
@@ -117,14 +120,11 @@ public class AnimatedGif extends Canvas {
                             public void run() {
                                 currentImageId = (currentImageId == loader.data.length - 1) ? 0 : currentImageId + 1;
                                 ImageData frameData = loader.data[currentImageId];
-                                logger.info("frame data: {}", loader.data[currentImageId]);
+                                logger.info("frame data: {}", loader.data[currentImageId].disposalMethod);
                                 Image frame = new Image(d, frameData);
                                 logger.info("frame: {}", frame);
-                                gc.drawImage(frame, frameData.x, frameData.y);
-                                // frame.dispose();
-                                if (!AnimatedGif.this.isDisposed()) {
-                                    redraw();
-                                }
+                                gc.drawImage(frame, 0, 0, frameData.width, frameData.height, frameData.x, frameData.y, frameData.width, frameData.height);
+                                frame.dispose();
                             }
                         });
                     }

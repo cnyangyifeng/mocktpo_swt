@@ -89,26 +89,11 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         body.setLayout(stack);
 
         loadingComposite = new LoadingComposite(body, SWT.NONE);
-        toLoadingComposite();
 
         mainComposite = new Composite(body, SWT.NONE);
         FormLayoutSet.layout(mainComposite).marginWidth(0).marginHeight(0).spacing(0);
         initLeft();
         initRight();
-    }
-
-    public void toLoadingComposite() {
-        stack.topControl = loadingComposite;
-        body.layout();
-
-        loadingComposite.animate();
-    }
-
-    public void toMainComposite() {
-        loadingComposite.stop();
-
-        stack.topControl = mainComposite;
-        body.layout();
     }
 
     private void initLeft() {
@@ -170,6 +155,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         if (!isDirty()) {
             return;
         }
+        toLoadingComposite();
         if (!d.isDisposed()) {
             d.asyncExec(new Runnable() {
                 @Override
@@ -178,9 +164,24 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
                         c.dispose();
                     }
                     initCards();
+                    toMainComposite();
                 }
             });
         }
+    }
+
+    public void toLoadingComposite() {
+        stack.topControl = loadingComposite;
+        body.layout();
+
+        loadingComposite.animate();
+    }
+
+    public void toMainComposite() {
+        loadingComposite.stop();
+
+        stack.topControl = mainComposite;
+        body.layout();
     }
 
     private void initCards() {
@@ -228,20 +229,11 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
             views.add(view);
         }
 
+        checkEditorView(currentViewId);
         setDirty(false);
-        toEditorView(currentViewId);
-        toMainComposite();
     }
 
-    /*
-     * ==================================================
-     *
-     * Test Editor View Operations
-     *
-     * ==================================================
-     */
-
-    public void toEditorView(int viewId) {
+    public void checkEditorView(int viewId) {
         if (currentViewId < 0) {
             return;
         }

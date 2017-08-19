@@ -110,7 +110,7 @@ public class TestEditorPage extends Composite {
         }
         readingEditorLayer.refreshCards();
         stack.topControl = readingEditorLayer;
-        TestEditorPage.this.layout();
+        this.layout();
     }
 
     public void toListeningEditorLayer() {
@@ -118,7 +118,7 @@ public class TestEditorPage extends Composite {
             listeningEditorLayer = new ListeningEditorLayer(TestEditorPage.this, SWT.NONE);
         }
         stack.topControl = listeningEditorLayer;
-        TestEditorPage.this.layout();
+        this.layout();
     }
 
     public void toSpeakingEditorLayer() {
@@ -126,7 +126,7 @@ public class TestEditorPage extends Composite {
             speakingEditorLayer = new SpeakingEditorLayer(TestEditorPage.this, SWT.NONE);
         }
         stack.topControl = speakingEditorLayer;
-        TestEditorPage.this.layout();
+        this.layout();
     }
 
     public void toWritingEditorLayer() {
@@ -134,7 +134,7 @@ public class TestEditorPage extends Composite {
             writingEditorLayer = new WritingEditorLayer(TestEditorPage.this, SWT.NONE);
         }
         stack.topControl = writingEditorLayer;
-        TestEditorPage.this.layout();
+        this.layout();
     }
 
     public void toPreviewEditorLayer() {
