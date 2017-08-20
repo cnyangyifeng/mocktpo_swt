@@ -37,6 +37,7 @@ public interface RC {
     String CONFIG_DIR = "/config/";
     String FONTS_DIR = "/resources/fonts/";
     String IMAGES_DIR = "/resources/images/";
+    String TEMPLATES_DIR = "/resources/templates/";
     String TESTS_DATA_DIR = "/data/tests/";
     String REPORTS_DATA_DIR = "/data/reports/";
     String WORKS_DATA_DIR = "/data/works/";

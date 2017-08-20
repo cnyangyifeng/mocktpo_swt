@@ -3,20 +3,22 @@ package com.mocktpo.modules.system.widgets;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
+import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 
 import java.util.ResourceBundle;
 
 public class LoadingComposite extends Composite {
 
-    /* Widgets */
+    /* Logger and Messages */
 
-    private AnimatedGif loader;
+    protected static final Logger logger = LogManager.getLogger();
+    protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
     /*
      * ==================================================
@@ -36,18 +38,17 @@ public class LoadingComposite extends Composite {
     }
 
     private void golbal() {
-        CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
-        GridLayoutSet.layout(this).marginWidth(0).marginHeight(0);
+        CompositeSet.decorate(this).setBackground(MT.COLOR_WINDOW_BACKGROUND);
+        GridLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
 
-        loader = new AnimatedGif(this, SWT.NONE, "loading");
-        GridDataSet.attach(loader).centerBoth().withWidth(128).withHeight(128);
+        CLabel label = new CLabel(this, SWT.NONE);
+        GridDataSet.attach(label).centerBoth();
+        CLabelSet.decorate(label).setForeground(MT.COLOR_GRAY20).setFont(MT.FONT_LARGE_BOLD).setText(msgs.getString("loading_please_wait"));
     }
 
-    public void animate() {
-        loader.animate();
+    public void load() {
     }
 
     public void stop() {
-        loader.stop();
     }
 }

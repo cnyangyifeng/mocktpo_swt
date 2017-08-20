@@ -89,7 +89,6 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         body.setLayout(stack);
 
         loadingComposite = new LoadingComposite(body, SWT.NONE);
-
         mainComposite = new Composite(body, SWT.NONE);
         FormLayoutSet.layout(mainComposite).marginWidth(0).marginHeight(0).spacing(0);
         initLeft();
@@ -164,6 +163,11 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
                         c.dispose();
                     }
                     initCards();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     toMainComposite();
                 }
             });
@@ -171,10 +175,10 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     }
 
     public void toLoadingComposite() {
+        loadingComposite.load();
+
         stack.topControl = loadingComposite;
         body.layout();
-
-        loadingComposite.animate();
     }
 
     public void toMainComposite() {
