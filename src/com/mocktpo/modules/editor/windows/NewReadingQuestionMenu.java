@@ -1,12 +1,13 @@
 package com.mocktpo.modules.editor.windows;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.WindowUtils;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.layout.GridDataSet;
-import com.mocktpo.util.layout.GridLayoutSet;
+import com.mocktpo.util.layout.FormDataSet;
+import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,14 +48,14 @@ public class NewReadingQuestionMenu {
     public NewReadingQuestionMenu() {
         this.d = MyApplication.get().getDisplay();
         this.width = 340;
-        this.height = 240;
+        this.height = 236;
         init();
     }
 
     private void init() {
-        s = new Shell(d, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
+        s = new Shell(d, SWT.NO_TRIM | SWT.APPLICATION_MODAL);
         golbal();
-        initWidgets();
+        initBody();
     }
 
     private void golbal() {
@@ -62,29 +63,30 @@ public class NewReadingQuestionMenu {
         s.setBackgroundMode(SWT.INHERIT_FORCE);
         WindowUtils.setModalWindowBoundsToCenter(s, width, height);
         WindowUtils.disableFullscreen(s);
-        GridLayoutSet.layout(s).marginWidth(0).marginHeight(0).spacing(0);
+        FormLayoutSet.layout(s).marginWidth(0).marginHeight(0).spacing(0);
     }
 
-    private void initWidgets() {
+    private void initBody() {
         Composite body = new Composite(s, SWT.NONE);
-        GridDataSet.attach(body).fillBoth();
-        CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-        GridLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
+        FormDataSet.attach(body).atLeft().atTop().atRight().atBottom();
+        CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
+        body.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        FormLayoutSet.layout(body).marginWidth(20).marginHeight(20).spacing(20);
 
         ImageButton newMulitipleChoiceQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION_HOVER);
-        GridDataSet.attach(newMulitipleChoiceQuestionButton).topCenter();
+        FormDataSet.attach(newMulitipleChoiceQuestionButton).atLeft().atTop();
         newMulitipleChoiceQuestionButton.addMouseListener(new NewMultipleChoiceQuestionButtonMouseAdapter());
 
         ImageButton newInsertTextQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION_HOVER);
-        GridDataSet.attach(newInsertTextQuestionButton).topCenter();
+        FormDataSet.attach(newInsertTextQuestionButton).atLeft().atTopTo(newMulitipleChoiceQuestionButton);
         newInsertTextQuestionButton.addMouseListener(new NewInsertTextQuestionButtonMouseAdapter());
 
         ImageButton newProseSummaryQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION_HOVER);
-        GridDataSet.attach(newProseSummaryQuestionButton).topCenter();
+        FormDataSet.attach(newProseSummaryQuestionButton).atLeft().atTopTo(newInsertTextQuestionButton);
         newProseSummaryQuestionButton.addMouseListener(new NewProseSummaryQuestionButtonMouseAdapter());
 
         ImageButton newFillInATableQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION_HOVER);
-        GridDataSet.attach(newFillInATableQuestionButton).topCenter();
+        FormDataSet.attach(newFillInATableQuestionButton).atLeft().atTopTo(newProseSummaryQuestionButton);
         newFillInATableQuestionButton.addMouseListener(new NewFillInATableQuestionButtonMouseAdapter());
     }
 
@@ -115,14 +117,6 @@ public class NewReadingQuestionMenu {
      *
      * ==================================================
      */
-
-    private class NewReadingPassageButtonMouseAdapter extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            close();
-        }
-    }
 
     private class NewMultipleChoiceQuestionButtonMouseAdapter extends MouseAdapter {
 
