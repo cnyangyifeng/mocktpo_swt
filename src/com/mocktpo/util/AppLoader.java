@@ -3,7 +3,7 @@ package com.mocktpo.util;
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
-import com.mocktpo.windows.SplashWindow;
+import com.mocktpo.modules.system.windows.SplashWindow;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.widgets.Display;

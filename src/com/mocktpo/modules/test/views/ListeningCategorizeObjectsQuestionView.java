@@ -13,7 +13,7 @@ import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.widgets.*;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.widgets.VolumeControl;
-import com.mocktpo.windows.RequiredAnswerWindow;
+import com.mocktpo.modules.test.windows.RequiredAnswerWindow;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;

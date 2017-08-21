@@ -1,4 +1,4 @@
-package com.mocktpo.windows;
+package com.mocktpo.modules.test.windows;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.widgets.ImageButton;
@@ -69,7 +69,7 @@ public class MoreTextWindow {
     private void golbal() {
         s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
         s.setBackgroundMode(SWT.INHERIT_FORCE);
-        WindowUtils.setModalWindowBoundsToTheLeft(s);
+        WindowUtils.setModalWindowBoundsToLeft(s);
         WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s).marginWidth(0).marginHeight(0).spacing(0);
     }

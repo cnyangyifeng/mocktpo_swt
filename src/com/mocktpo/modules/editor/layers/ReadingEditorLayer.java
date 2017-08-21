@@ -1,6 +1,7 @@
 package com.mocktpo.modules.editor.layers;
 
 import com.mocktpo.modules.editor.TestEditorPage;
+import com.mocktpo.modules.editor.windows.NewReadingQuestionMenu;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.TestViewUtils;
 import com.mocktpo.util.constants.MT;
@@ -9,7 +10,6 @@ import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseTrackAdapter;
 
 import java.util.List;
 
@@ -54,7 +54,6 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
         newReadingQuestionButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_NEW_READING_QUESTION, MT.IMAGE_SYSTEM_NEW_READING_QUESTION_HOVER);
         FormDataSet.attach(newReadingQuestionButton).atLeftTo(newReadingPassageButton).atTopTo(newReadingPassageButton, 0, SWT.TOP);
         newReadingQuestionButton.addMouseListener(new NewReadingQuestionButtonMouseAdapter());
-        newReadingQuestionButton.addMouseTrackListener(new NewReadingQuestionButtonMouseTrackAdapter());
     }
 
     @Override
@@ -97,28 +96,21 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            TestViewVo viewVo = TestViewUtils.newReadingMultipleChoiceQuestionViewVo(++currentViewId);
-            List<TestViewVo> viewVos = page.getTestVo().getViewVos();
-            viewVos.add(viewVo);
-            for (int i = viewVos.size() - 1; i > currentViewId; i--) {
-                TestViewVo eachAfter = viewVos.get(i - 1);
-                eachAfter.setViewId(i);
-                viewVos.set(i, eachAfter);
-            }
-            viewVos.set(currentViewId, viewVo);
-            setDirty(true);
+            new NewReadingQuestionMenu().openAndWaitForDisposal();
 
-            page.toReadingEditorLayer();
-            page.save();
-        }
-    }
-
-    private class NewReadingQuestionButtonMouseTrackAdapter extends MouseTrackAdapter {
-
-        public void mouseEnter(MouseEvent e) {
-        }
-
-        public void mouseExit(MouseEvent e) {
+//            TestViewVo viewVo = TestViewUtils.newReadingMultipleChoiceQuestionViewVo(++currentViewId);
+//            List<TestViewVo> viewVos = page.getTestVo().getViewVos();
+//            viewVos.add(viewVo);
+//            for (int i = viewVos.size() - 1; i > currentViewId; i--) {
+//                TestViewVo eachAfter = viewVos.get(i - 1);
+//                eachAfter.setViewId(i);
+//                viewVos.set(i, eachAfter);
+//            }
+//            viewVos.set(currentViewId, viewVo);
+//            setDirty(true);
+//
+//            page.toReadingEditorLayer();
+//            page.save();
         }
     }
 }

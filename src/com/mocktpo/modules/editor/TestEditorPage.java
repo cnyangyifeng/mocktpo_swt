@@ -111,14 +111,13 @@ public class TestEditorPage extends Composite {
             readingEditorLayer = new ReadingEditorLayer(TestEditorPage.this, SWT.NONE);
         }
         if (readingEditorLayer.isDirty()) {
-            waitForLoading();
+            beforeLoading();
             if (!d.isDisposed()) {
                 d.asyncExec(new Runnable() {
                     @Override
                     public void run() {
                         readingEditorLayer.refreshCards();
-                        stack.topControl = readingEditorLayer;
-                        TestEditorPage.this.layout();
+                        afterLoading();
                     }
                 });
             }
@@ -160,12 +159,17 @@ public class TestEditorPage extends Composite {
         this.layout();
     }
 
-    public void waitForLoading() {
+    public void beforeLoading() {
         if (loadingEditorLayer == null) {
             loadingEditorLayer = new LoadingEditorLayer(this, SWT.NONE);
         }
         stack.topControl = loadingEditorLayer;
         this.layout();
+    }
+
+    public void afterLoading() {
+        stack.topControl = readingEditorLayer;
+        TestEditorPage.this.layout();
     }
 
     /*

@@ -1,4 +1,4 @@
-package com.mocktpo.windows;
+package com.mocktpo.modules.system.windows;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.editor.TestEditorPage;

@@ -34,17 +34,24 @@ public class WindowUtils {
         s.setMinimumSize(p.x + reserved, p.y);
     }
 
-    public static void setModalWindowBoundsToTheLeft(Shell s) {
+    public static void setModalWindowBoundsToLeft(Shell s) {
         Point clientSize = ScreenUtils.getClientSize(s.getDisplay());
         int x = (clientSize.x / 2 - LC.MODAL_WINDOW_WIDTH_HINT) / 2;
         int y = (clientSize.y - LC.MODAL_WINDOW_HEIGHT_HINT) / 2;
         s.setBounds(x, y, LC.MODAL_WINDOW_WIDTH_HINT, LC.MODAL_WINDOW_HEIGHT_HINT);
     }
 
-    public static void setModalWindowBoundsToTheCenter(Shell s) {
+    public static void setModalWindowBoundsToCenter(Shell s) {
         Point clientSize = ScreenUtils.getClientSize(s.getDisplay());
         int x = (clientSize.x - LC.MODAL_WINDOW_WIDTH_HINT) / 2;
         int y = (clientSize.y - LC.MODAL_WINDOW_HEIGHT_HINT) / 2;
         s.setBounds(x, y, LC.MODAL_WINDOW_WIDTH_HINT, LC.MODAL_WINDOW_HEIGHT_HINT);
+    }
+
+    public static void setModalWindowBoundsToCenter(Shell s, int width, int height) {
+        Point clientSize = ScreenUtils.getClientSize(s.getDisplay());
+        int x = (clientSize.x - width) / 2;
+        int y = (clientSize.y - height) / 2;
+        s.setBounds(x, y, width, height);
     }
 }
