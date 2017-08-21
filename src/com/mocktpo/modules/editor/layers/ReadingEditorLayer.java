@@ -85,11 +85,11 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
     }
 
-    public void newProseSummaryQuestion() {
+    public void newReadingProseSummaryQuestion() {
 
     }
 
-    public void newFillInATableQuestion() {
+    public void newReadingFillInATableQuestion() {
 
     }
 
@@ -127,7 +127,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
         public void mouseDown(MouseEvent e) {
             int leftBottomX = newReadingQuestionButton.getLocation().x - 20;
             int leftBottomY = getBounds().height - 54;
-            new NewReadingQuestionWindow(leftBottomX, leftBottomY).openAndWaitForDisposal();
+            new NewReadingQuestionWindow(ReadingEditorLayer.this, leftBottomX, leftBottomY).openAndWaitForDisposal();
         }
     }
 }

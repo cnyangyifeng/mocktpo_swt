@@ -1,6 +1,7 @@
 package com.mocktpo.modules.editor.windows;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.modules.editor.layers.ReadingEditorLayer;
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.ResourceManager;
@@ -32,6 +33,10 @@ public class NewReadingQuestionWindow {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
+    /* Reading Editor Layer */
+
+    private ReadingEditorLayer layer;
+
     /* Display and Shell */
 
     private Display d;
@@ -50,8 +55,9 @@ public class NewReadingQuestionWindow {
      * ==================================================
      */
 
-    public NewReadingQuestionWindow(int leftBottomX, int leftBottomY) {
+    public NewReadingQuestionWindow(ReadingEditorLayer layer, int leftBottomX, int leftBottomY) {
         this.d = MyApplication.get().getDisplay();
+        this.layer = layer;
         this.x = leftBottomX;
         this.y = leftBottomY - WINDOW_HEIGHT;
         init();
@@ -128,7 +134,7 @@ public class NewReadingQuestionWindow {
         @Override
         public void mouseDown(MouseEvent e) {
             close();
-
+            layer.newReadingMultipleChoiceQuestion();
         }
     }
 
@@ -137,6 +143,7 @@ public class NewReadingQuestionWindow {
         @Override
         public void mouseDown(MouseEvent e) {
             close();
+            layer.newReadingInsertTextQuestion();
         }
     }
 
@@ -145,6 +152,7 @@ public class NewReadingQuestionWindow {
         @Override
         public void mouseDown(MouseEvent e) {
             close();
+            layer.newReadingProseSummaryQuestion();
         }
     }
 
@@ -153,6 +161,7 @@ public class NewReadingQuestionWindow {
         @Override
         public void mouseDown(MouseEvent e) {
             close();
+            layer.newReadingFillInATableQuestion();
         }
     }
 }
