@@ -47,11 +47,4 @@ public class WindowUtils {
         int y = (clientSize.y - LC.MODAL_WINDOW_HEIGHT_HINT) / 2;
         s.setBounds(x, y, LC.MODAL_WINDOW_WIDTH_HINT, LC.MODAL_WINDOW_HEIGHT_HINT);
     }
-
-    public static void setModalWindowBoundsToCenter(Shell s, int width, int height) {
-        Point clientSize = ScreenUtils.getClientSize(s.getDisplay());
-        int x = (clientSize.x - width) / 2;
-        int y = (clientSize.y - height) / 2;
-        s.setBounds(x, y, width, height);
-    }
 }

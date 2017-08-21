@@ -20,7 +20,12 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.util.ResourceBundle;
 
-public class NewReadingQuestionMenu {
+public class NewReadingQuestionWindow {
+
+    /* Constants */
+
+    private static final int WINDOW_WIDTH = 340;
+    private static final int WINDOW_HEIGHT = 236;
 
     /* Logger and Messages */
 
@@ -34,8 +39,8 @@ public class NewReadingQuestionMenu {
 
     /* Properties */
 
-    private int width;
-    private int height;
+    private int x;
+    private int y;
 
     /*
      * ==================================================
@@ -45,10 +50,10 @@ public class NewReadingQuestionMenu {
      * ==================================================
      */
 
-    public NewReadingQuestionMenu() {
+    public NewReadingQuestionWindow(int leftBottomX, int leftBottomY) {
         this.d = MyApplication.get().getDisplay();
-        this.width = 340;
-        this.height = 236;
+        this.x = leftBottomX;
+        this.y = leftBottomY - WINDOW_HEIGHT;
         init();
     }
 
@@ -61,7 +66,7 @@ public class NewReadingQuestionMenu {
     private void golbal() {
         s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
         s.setBackgroundMode(SWT.INHERIT_FORCE);
-        WindowUtils.setModalWindowBoundsToCenter(s, width, height);
+        s.setBounds(x, y, WINDOW_WIDTH, WINDOW_HEIGHT);
         WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s).marginWidth(0).marginHeight(0).spacing(0);
     }
@@ -69,25 +74,25 @@ public class NewReadingQuestionMenu {
     private void initBody() {
         Composite body = new Composite(s, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTop().atRight().atBottom();
-        CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
+        CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE_SMOKE);
         body.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         FormLayoutSet.layout(body).marginWidth(20).marginHeight(20).spacing(20);
 
-        ImageButton newMulitipleChoiceQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION_HOVER);
-        FormDataSet.attach(newMulitipleChoiceQuestionButton).atLeft().atTop();
-        newMulitipleChoiceQuestionButton.addMouseListener(new NewMultipleChoiceQuestionButtonMouseAdapter());
+        ImageButton newReadingMulitipleChoiceQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION_HOVER);
+        FormDataSet.attach(newReadingMulitipleChoiceQuestionButton).atLeft().atTop();
+        newReadingMulitipleChoiceQuestionButton.addMouseListener(new NewReadingMultipleChoiceQuestionButtonMouseAdapter());
 
-        ImageButton newInsertTextQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION_HOVER);
-        FormDataSet.attach(newInsertTextQuestionButton).atLeft().atTopTo(newMulitipleChoiceQuestionButton);
-        newInsertTextQuestionButton.addMouseListener(new NewInsertTextQuestionButtonMouseAdapter());
+        ImageButton newReadingInsertTextQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION_HOVER);
+        FormDataSet.attach(newReadingInsertTextQuestionButton).atLeft().atTopTo(newReadingMulitipleChoiceQuestionButton);
+        newReadingInsertTextQuestionButton.addMouseListener(new NewReadingInsertTextQuestionButtonMouseAdapter());
 
-        ImageButton newProseSummaryQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION_HOVER);
-        FormDataSet.attach(newProseSummaryQuestionButton).atLeft().atTopTo(newInsertTextQuestionButton);
-        newProseSummaryQuestionButton.addMouseListener(new NewProseSummaryQuestionButtonMouseAdapter());
+        ImageButton newReadingProseSummaryQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION_HOVER);
+        FormDataSet.attach(newReadingProseSummaryQuestionButton).atLeft().atTopTo(newReadingInsertTextQuestionButton);
+        newReadingProseSummaryQuestionButton.addMouseListener(new NewReadingProseSummaryQuestionButtonMouseAdapter());
 
-        ImageButton newFillInATableQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION_HOVER);
-        FormDataSet.attach(newFillInATableQuestionButton).atLeft().atTopTo(newProseSummaryQuestionButton);
-        newFillInATableQuestionButton.addMouseListener(new NewFillInATableQuestionButtonMouseAdapter());
+        ImageButton newReadingFillInATableQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION_HOVER);
+        FormDataSet.attach(newReadingFillInATableQuestionButton).atLeft().atTopTo(newReadingProseSummaryQuestionButton);
+        newReadingFillInATableQuestionButton.addMouseListener(new NewReadingFillInATableQuestionButtonMouseAdapter());
     }
 
     public void openAndWaitForDisposal() {
@@ -118,7 +123,16 @@ public class NewReadingQuestionMenu {
      * ==================================================
      */
 
-    private class NewMultipleChoiceQuestionButtonMouseAdapter extends MouseAdapter {
+    private class NewReadingMultipleChoiceQuestionButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            close();
+
+        }
+    }
+
+    private class NewReadingInsertTextQuestionButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -126,7 +140,7 @@ public class NewReadingQuestionMenu {
         }
     }
 
-    private class NewInsertTextQuestionButtonMouseAdapter extends MouseAdapter {
+    private class NewReadingProseSummaryQuestionButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -134,15 +148,7 @@ public class NewReadingQuestionMenu {
         }
     }
 
-    private class NewProseSummaryQuestionButtonMouseAdapter extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            close();
-        }
-    }
-
-    private class NewFillInATableQuestionButtonMouseAdapter extends MouseAdapter {
+    private class NewReadingFillInATableQuestionButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {

@@ -1,7 +1,7 @@
 package com.mocktpo.modules.editor.layers;
 
 import com.mocktpo.modules.editor.TestEditorPage;
-import com.mocktpo.modules.editor.windows.NewReadingQuestionMenu;
+import com.mocktpo.modules.editor.windows.NewReadingQuestionWindow;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.TestViewUtils;
 import com.mocktpo.util.constants.MT;
@@ -10,6 +10,7 @@ import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.graphics.Point;
 
 import java.util.List;
 
@@ -64,6 +65,34 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
     protected void updateRight() {
     }
 
+    public void newReadingMultipleChoiceQuestion() {
+        TestViewVo viewVo = TestViewUtils.newReadingMultipleChoiceQuestionViewVo(++currentViewId);
+        List<TestViewVo> viewVos = page.getTestVo().getViewVos();
+        viewVos.add(viewVo);
+        for (int i = viewVos.size() - 1; i > currentViewId; i--) {
+            TestViewVo eachAfter = viewVos.get(i - 1);
+            eachAfter.setViewId(i);
+            viewVos.set(i, eachAfter);
+        }
+        viewVos.set(currentViewId, viewVo);
+        setDirty(true);
+
+        page.toReadingEditorLayer();
+        page.save();
+    }
+
+    public void newReadingInsertTextQuestion() {
+
+    }
+
+    public void newProseSummaryQuestion() {
+
+    }
+
+    public void newFillInATableQuestion() {
+
+    }
+
     /*
      * ==================================================
      *
@@ -96,21 +125,9 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            new NewReadingQuestionMenu().openAndWaitForDisposal();
-
-//            TestViewVo viewVo = TestViewUtils.newReadingMultipleChoiceQuestionViewVo(++currentViewId);
-//            List<TestViewVo> viewVos = page.getTestVo().getViewVos();
-//            viewVos.add(viewVo);
-//            for (int i = viewVos.size() - 1; i > currentViewId; i--) {
-//                TestViewVo eachAfter = viewVos.get(i - 1);
-//                eachAfter.setViewId(i);
-//                viewVos.set(i, eachAfter);
-//            }
-//            viewVos.set(currentViewId, viewVo);
-//            setDirty(true);
-//
-//            page.toReadingEditorLayer();
-//            page.save();
+            int leftBottomX = newReadingQuestionButton.getLocation().x - 20;
+            int leftBottomY = getBounds().height - 54;
+            new NewReadingQuestionWindow(leftBottomX, leftBottomY).openAndWaitForDisposal();
         }
     }
 }
