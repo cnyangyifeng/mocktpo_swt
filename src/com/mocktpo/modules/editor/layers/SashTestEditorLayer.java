@@ -5,7 +5,6 @@ import com.mocktpo.modules.editor.views.ReadingMultipleChoiceQuestionEditorView;
 import com.mocktpo.modules.editor.views.ReadingPassageEditorView;
 import com.mocktpo.modules.editor.views.TestEditorView;
 import com.mocktpo.modules.editor.widgets.TestEditorCard;
-import com.mocktpo.modules.system.widgets.LoadingComposite;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -31,15 +30,9 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
     private static final int LEFT_COMPOSITE_WIDTH = 232;
 
-    /* Stack */
-
-    private StackLayout stack;
-
     /* Widgets */
 
     protected Composite body;
-    protected LoadingComposite loadingComposite;
-    protected Composite mainComposite;
     protected Composite left;
     protected ScrolledComposite lsc;
     protected Composite leftBody;
@@ -85,18 +78,13 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     protected void initBody() {
         body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight().atBottomTo(footer);
-        stack = new StackLayout();
-        body.setLayout(stack);
-
-        loadingComposite = new LoadingComposite(body, SWT.NONE);
-        mainComposite = new Composite(body, SWT.NONE);
-        FormLayoutSet.layout(mainComposite).marginWidth(0).marginHeight(0).spacing(0);
+        FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
         initLeft();
         initRight();
     }
 
     private void initLeft() {
-        left = new Composite(mainComposite, SWT.NONE);
+        left = new Composite(body, SWT.NONE);
         FormDataSet.attach(left).atLeft().atTop().atBottom().withWidth(LEFT_COMPOSITE_WIDTH);
         FormLayoutSet.layout(left).marginWidth(0).marginHeight(0).spacing(0);
 
@@ -119,7 +107,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     }
 
     private void initRight() {
-        right = new Composite(mainComposite, SWT.NONE);
+        right = new Composite(body, SWT.NONE);
         FormDataSet.attach(right).atLeftTo(left).atTop().atRight().atBottom();
         FormLayoutSet.layout(right).marginWidth(0).marginHeight(0).spacing(0);
 
@@ -151,41 +139,10 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
      */
 
     public void refreshCards() {
-        if (!isDirty()) {
-            return;
+        for (Control c : leftBody.getChildren()) {
+            c.dispose();
         }
-        toLoadingComposite();
-        if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    for (Control c : leftBody.getChildren()) {
-                        c.dispose();
-                    }
-                    initCards();
-                    try {
-                        Thread.sleep(500);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    toMainComposite();
-                }
-            });
-        }
-    }
-
-    public void toLoadingComposite() {
-        loadingComposite.load();
-
-        stack.topControl = loadingComposite;
-        body.layout();
-    }
-
-    public void toMainComposite() {
-        loadingComposite.stop();
-
-        stack.topControl = mainComposite;
-        body.layout();
+        initCards();
     }
 
     private void initCards() {
@@ -208,7 +165,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         leftBody.layout();
         lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
         if (currentViewId >= 0) {
-            lsc.setOrigin(0, cards.get(currentViewId).getLocation().y - 20);
+            lsc.setOrigin(0, cards.get(currentViewId).getLocation().y - 160); // 20+120+20
         }
 
         /*

@@ -1,4 +1,4 @@
-package com.mocktpo.modules.system.widgets;
+package com.mocktpo.modules.editor.layers;
 
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.GridDataSet;
@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import java.util.ResourceBundle;
 
-public class LoadingComposite extends Composite {
+public class LoadingEditorLayer extends Composite {
 
     /* Logger and Messages */
 
@@ -28,7 +28,7 @@ public class LoadingComposite extends Composite {
      * ==================================================
      */
 
-    public LoadingComposite(Composite parent, int style) {
+    public LoadingEditorLayer(Composite parent, int style) {
         super(parent, style);
         init();
     }
@@ -44,11 +44,5 @@ public class LoadingComposite extends Composite {
         CLabel label = new CLabel(this, SWT.NONE);
         GridDataSet.attach(label).centerBoth();
         CLabelSet.decorate(label).setForeground(MT.COLOR_GRAY20).setFont(MT.FONT_LARGE_BOLD).setText(msgs.getString("loading_please_wait"));
-    }
-
-    public void load() {
-    }
-
-    public void stop() {
     }
 }

@@ -38,6 +38,8 @@ public class TestEditorPage extends Composite {
     private WritingEditorLayer writingEditorLayer;
     private PreviewEditorLayer previewEditorLayer;
 
+    private LoadingEditorLayer loadingEditorLayer;
+
     /* Properties */
 
     private TestVo testVo;
@@ -108,9 +110,22 @@ public class TestEditorPage extends Composite {
         if (readingEditorLayer == null) {
             readingEditorLayer = new ReadingEditorLayer(TestEditorPage.this, SWT.NONE);
         }
-        readingEditorLayer.refreshCards();
-        stack.topControl = readingEditorLayer;
-        this.layout();
+        if (readingEditorLayer.isDirty()) {
+            waitForLoading();
+            if (!d.isDisposed()) {
+                d.asyncExec(new Runnable() {
+                    @Override
+                    public void run() {
+                        readingEditorLayer.refreshCards();
+                        stack.topControl = readingEditorLayer;
+                        TestEditorPage.this.layout();
+                    }
+                });
+            }
+        } else {
+            stack.topControl = readingEditorLayer;
+            this.layout();
+        }
     }
 
     public void toListeningEditorLayer() {
@@ -142,6 +157,14 @@ public class TestEditorPage extends Composite {
             previewEditorLayer = new PreviewEditorLayer(this, SWT.NONE);
         }
         stack.topControl = previewEditorLayer;
+        this.layout();
+    }
+
+    public void waitForLoading() {
+        if (loadingEditorLayer == null) {
+            loadingEditorLayer = new LoadingEditorLayer(this, SWT.NONE);
+        }
+        stack.topControl = loadingEditorLayer;
         this.layout();
     }
 

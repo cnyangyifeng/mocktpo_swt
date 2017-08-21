@@ -3,7 +3,6 @@ package com.mocktpo.modules.editor.layers;
 import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
-import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
@@ -55,7 +54,6 @@ public abstract class ResponsiveTestEditorLayer extends TestEditorLayer {
 
         viewPort = new Composite(body, SWT.NONE);
         GridDataSet.attach(viewPort).topCenter().withWidth(VIEW_PORT_WIDTH);
-        FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
 
         /*
          * ==================================================
