@@ -209,6 +209,14 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         right.layout();
     }
 
+    public boolean isFirstCardChecked() {
+        return currentViewId == 0;
+    }
+
+    public boolean isLastCardChecked() {
+        return currentViewId == cards.size() - 1;
+    }
+
     /*
      * ==================================================
      *

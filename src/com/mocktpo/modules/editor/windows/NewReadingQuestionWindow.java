@@ -10,6 +10,7 @@ import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.LabelSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -17,6 +18,7 @@ import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
 import java.util.ResourceBundle;
@@ -26,7 +28,7 @@ public class NewReadingQuestionWindow {
     /* Constants */
 
     private static final int WINDOW_WIDTH = 340;
-    private static final int WINDOW_HEIGHT = 236;
+    private static final int WINDOW_HEIGHT = 310;
 
     /* Logger and Messages */
 
@@ -78,27 +80,35 @@ public class NewReadingQuestionWindow {
     }
 
     private void initBody() {
-        Composite body = new Composite(s, SWT.NONE);
+        final Composite body = new Composite(s, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTop().atRight().atBottom();
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE_SMOKE);
-        body.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        body.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY20, 2));
         FormLayoutSet.layout(body).marginWidth(20).marginHeight(20).spacing(20);
 
-        ImageButton newReadingMulitipleChoiceQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION_HOVER);
+        final ImageButton newReadingMulitipleChoiceQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION_HOVER);
         FormDataSet.attach(newReadingMulitipleChoiceQuestionButton).atLeft().atTop();
         newReadingMulitipleChoiceQuestionButton.addMouseListener(new NewReadingMultipleChoiceQuestionButtonMouseAdapter());
 
-        ImageButton newReadingInsertTextQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION_HOVER);
+        final ImageButton newReadingInsertTextQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION_HOVER);
         FormDataSet.attach(newReadingInsertTextQuestionButton).atLeft().atTopTo(newReadingMulitipleChoiceQuestionButton);
         newReadingInsertTextQuestionButton.addMouseListener(new NewReadingInsertTextQuestionButtonMouseAdapter());
 
-        ImageButton newReadingProseSummaryQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION_HOVER);
+        final ImageButton newReadingProseSummaryQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION_HOVER);
         FormDataSet.attach(newReadingProseSummaryQuestionButton).atLeft().atTopTo(newReadingInsertTextQuestionButton);
         newReadingProseSummaryQuestionButton.addMouseListener(new NewReadingProseSummaryQuestionButtonMouseAdapter());
 
-        ImageButton newReadingFillInATableQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION_HOVER);
+        final ImageButton newReadingFillInATableQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION_HOVER);
         FormDataSet.attach(newReadingFillInATableQuestionButton).atLeft().atTopTo(newReadingProseSummaryQuestionButton);
         newReadingFillInATableQuestionButton.addMouseListener(new NewReadingFillInATableQuestionButtonMouseAdapter());
+
+        final Label divider = new Label(body, SWT.NONE);
+        FormDataSet.attach(divider).atLeft().atTopTo(newReadingFillInATableQuestionButton).atRight().withHeight(1);
+        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
+
+        final ImageButton closeButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION_HOVER);
+        FormDataSet.attach(closeButton).atLeft().atTopTo(divider);
+        closeButton.addMouseListener(new NewReadingFillInATableQuestionButtonMouseAdapter());
     }
 
     public void openAndWaitForDisposal() {

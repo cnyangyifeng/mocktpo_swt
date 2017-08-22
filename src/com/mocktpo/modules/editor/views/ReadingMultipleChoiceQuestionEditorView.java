@@ -5,8 +5,6 @@ import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.KeyBindingSet;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.ST;
-import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;

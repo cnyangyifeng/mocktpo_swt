@@ -2,6 +2,7 @@ package com.mocktpo.modules.editor.widgets;
 
 import com.mocktpo.modules.editor.layers.SashTestEditorLayer;
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.TestViewTypeUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -41,6 +42,9 @@ public class TestEditorCard extends Composite {
     /* Widgets */
 
     private Composite inner;
+    private ImageButton trashButton;
+    private ImageButton sendBackwardButton;
+    private ImageButton bringForwardButton;
 
     /* Listeners */
 
@@ -132,6 +136,36 @@ public class TestEditorCard extends Composite {
         final CLabel viewIdLabel = new CLabel(inner, SWT.NONE);
         FormDataSet.attach(viewIdLabel).atLeft(10).atBottom(10);
         CLabelSet.decorate(viewIdLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(Integer.toString(viewVo.getViewId()));
+
+        trashButton = new ImageButton(inner, SWT.NONE, MT.IMAGE_SYSTEM_TRASH, MT.IMAGE_SYSTEM_TRASH_HOVER);
+        FormDataSet.attach(trashButton).atRight(10).atBottom(10);
+        trashButton.addMouseListener(new TrashButtonMouseAdapter());
+
+        sendBackwardButton = new ImageButton(inner, SWT.NONE, MT.IMAGE_SYSTEM_SEND_BACKWARD, MT.IMAGE_SYSTEM_SEND_BACKWARD_HOVER);
+        FormDataSet.attach(sendBackwardButton).atRightTo(trashButton, 10).atBottom(10);
+        sendBackwardButton.addMouseListener(new SendBackwardButtonMouseAdapter());
+
+        bringForwardButton = new ImageButton(inner, SWT.NONE, MT.IMAGE_SYSTEM_BRING_FORWARD, MT.IMAGE_SYSTEM_BRING_FORWARD_HOVER);
+        FormDataSet.attach(bringForwardButton).atRightTo(sendBackwardButton, 10).atBottom(10);
+        bringForwardButton.addMouseListener(new BringForwardButtonMouseAdapter());
+
+        if (!isChecked()) {
+            trashButton.setVisible(false);
+            sendBackwardButton.setVisible(false);
+            bringForwardButton.setVisible(false);
+        } else {
+            trashButton.setVisible(true);
+            if (layer.isLastCardChecked()) {
+                sendBackwardButton.setVisible(false);
+            } else {
+                sendBackwardButton.setVisible(true);
+            }
+            if (layer.isFirstCardChecked()) {
+                bringForwardButton.setVisible(false);
+            } else {
+                bringForwardButton.setVisible(true);
+            }
+        }
     }
 
     /*
@@ -173,6 +207,31 @@ public class TestEditorCard extends Composite {
         }
     }
 
+    private class TrashButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            layer.getTestEditorPage().delete(viewVo.getViewId());
+            layer.checkEditorView(viewVo.getViewId());
+        }
+    }
+
+    private class SendBackwardButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            layer.checkEditorView(viewVo.getViewId());
+        }
+    }
+
+    private class BringForwardButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            layer.checkEditorView(viewVo.getViewId());
+        }
+    }
+
     /*
      * ==================================================
      *
@@ -191,11 +250,29 @@ public class TestEditorCard extends Composite {
             inner.removePaintListener(borderPaintListener);
             borderPaintListener = checkedBorderPaintListener;
             inner.addPaintListener(borderPaintListener);
+
+            trashButton.setVisible(true);
+            if (layer.isLastCardChecked()) {
+                sendBackwardButton.setVisible(false);
+            } else {
+                sendBackwardButton.setVisible(true);
+            }
+            if (layer.isFirstCardChecked()) {
+                bringForwardButton.setVisible(false);
+            } else {
+                bringForwardButton.setVisible(true);
+            }
+
             TestEditorCard.this.redraw();
         } else {
             inner.removePaintListener(borderPaintListener);
             borderPaintListener = defaultBorderPaintListener;
             inner.addPaintListener(borderPaintListener);
+
+            trashButton.setVisible(false);
+            sendBackwardButton.setVisible(false);
+            bringForwardButton.setVisible(false);
+
             TestEditorCard.this.redraw();
         }
     }

@@ -10,7 +10,6 @@ import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.graphics.Point;
 
 import java.util.List;
 
@@ -65,6 +64,22 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
     protected void updateRight() {
     }
 
+    public void newReadingPassage() {
+        TestViewVo viewVo = TestViewUtils.newReadingPassageViewVo(++currentViewId);
+        List<TestViewVo> viewVos = page.getTestVo().getViewVos();
+        viewVos.add(viewVo);
+        for (int i = viewVos.size() - 1; i > currentViewId; i--) {
+            TestViewVo eachAfter = viewVos.get(i - 1);
+            eachAfter.setViewId(i);
+            viewVos.set(i, eachAfter);
+        }
+        viewVos.set(currentViewId, viewVo);
+        setDirty(true);
+
+        page.toReadingEditorLayer();
+        page.save();
+    }
+
     public void newReadingMultipleChoiceQuestion() {
         TestViewVo viewVo = TestViewUtils.newReadingMultipleChoiceQuestionViewVo(++currentViewId);
         List<TestViewVo> viewVos = page.getTestVo().getViewVos();
@@ -105,19 +120,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            TestViewVo viewVo = TestViewUtils.newReadingPassageView(++currentViewId);
-            List<TestViewVo> viewVos = page.getTestVo().getViewVos();
-            viewVos.add(viewVo);
-            for (int i = viewVos.size() - 1; i > currentViewId; i--) {
-                TestViewVo eachAfter = viewVos.get(i - 1);
-                eachAfter.setViewId(i);
-                viewVos.set(i, eachAfter);
-            }
-            viewVos.set(currentViewId, viewVo);
-            setDirty(true);
-
-            page.toReadingEditorLayer();
-            page.save();
+            newReadingPassage();
         }
     }
 
@@ -126,7 +129,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
         @Override
         public void mouseDown(MouseEvent e) {
             int leftBottomX = newReadingQuestionButton.getLocation().x - 20;
-            int leftBottomY = getBounds().height - 54;
+            int leftBottomY = getBounds().height - 64;
             new NewReadingQuestionWindow(ReadingEditorLayer.this, leftBottomX, leftBottomY).openAndWaitForDisposal();
         }
     }

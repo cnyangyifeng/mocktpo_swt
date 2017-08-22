@@ -172,6 +172,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK_DISABLED, ImageUtils.load(d, "sys_back_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK_HOVER, ImageUtils.load(d, "sys_back_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BOXED, ImageUtils.load(d, "sys_boxed"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_BRING_FORWARD, ImageUtils.load(d, "sys_bring_forward"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_BRING_FORWARD_HOVER, ImageUtils.load(d, "sys_bring_forward_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE, ImageUtils.load(d, "sys_continue"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE_HOVER, ImageUtils.load(d, "sys_continue_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_COPY, ImageUtils.load(d, "sys_copy"));
@@ -234,6 +236,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_SAVE, ImageUtils.load(d, "sys_save"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_SAVE_DISABLED, ImageUtils.load(d, "sys_save_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_SAVE_HOVER, ImageUtils.load(d, "sys_save_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_SEND_BACKWARD, ImageUtils.load(d, "sys_send_backward"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_SEND_BACKWARD_HOVER, ImageUtils.load(d, "sys_send_backward_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STAR, ImageUtils.load(d, "sys_star"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STAR_OUTLINE, ImageUtils.load(d, "sys_star_outline"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_GENERAL, ImageUtils.load(d, "sys_step_general"));
@@ -260,6 +264,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_WRITING_CHECKED, ImageUtils.load(d, "sys_step_writing_c"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_WRITING_DISABLED, ImageUtils.load(d, "sys_step_writing_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_WRITING_HOVER, ImageUtils.load(d, "sys_step_writing_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_TRASH, ImageUtils.load(d, "sys_trash"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_TRASH_HOVER, ImageUtils.load(d, "sys_trash_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_UNBOXED, ImageUtils.load(d, "sys_unboxed"));
     }
 

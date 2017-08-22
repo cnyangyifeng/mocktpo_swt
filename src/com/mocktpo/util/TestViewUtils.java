@@ -5,7 +5,6 @@ import com.mocktpo.util.constants.ST;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.vo.StyleRangeVo;
 import com.mocktpo.vo.StyledTextVo;
-import com.mocktpo.vo.TestVo;
 import com.mocktpo.vo.TestViewVo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -220,7 +219,7 @@ public class TestViewUtils {
         return viewVo;
     }
 
-    public static TestViewVo newReadingPassageView(int viewId) {
+    public static TestViewVo newReadingPassageViewVo(int viewId) {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(VT.VIEW_TYPE_READING_PASSAGE);
