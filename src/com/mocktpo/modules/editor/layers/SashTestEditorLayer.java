@@ -22,6 +22,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class SashTestEditorLayer extends TestEditorLayer {
@@ -56,7 +58,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
     public SashTestEditorLayer(TestEditorPage page, int style) {
         super(page, style);
-        this.cards = new ArrayList<TestEditorCard>();
+        this.cards = new LinkedList<TestEditorCard>();
         this.views = new ArrayList<TestEditorView>();
         if (page.getTestVo().getViewVos().size() > 0) {
             this.currentViewId = 0;
@@ -190,11 +192,11 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
             views.add(view);
         }
 
-        checkEditorView(currentViewId);
+        check(currentViewId);
         setDirty(false);
     }
 
-    public void checkEditorView(int viewId) {
+    public void check(int viewId) {
         if (currentViewId < 0) {
             return;
         }
@@ -207,6 +209,21 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
         rightViewStack.topControl = views.get(currentViewId);
         right.layout();
+    }
+
+    public void delete(int viewId) {
+        List<TestViewVo> viewVos = page.getTestVo().getViewVos();
+        Iterator<TestViewVo> it = viewVos.iterator();
+        while (it.hasNext()) {
+            TestViewVo viewVo = it.next();
+            if (viewVo.getViewId() == viewId) {
+                it.remove();
+            }
+        }
+        setDirty(true);
+
+        page.toReadingEditorLayer();
+        page.save();
     }
 
     public boolean isFirstCardChecked() {

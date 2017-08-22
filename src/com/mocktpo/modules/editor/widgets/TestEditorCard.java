@@ -180,7 +180,7 @@ public class TestEditorCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            layer.checkEditorView(viewVo.getViewId());
+            layer.check(viewVo.getViewId());
         }
     }
 
@@ -211,8 +211,7 @@ public class TestEditorCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            layer.getTestEditorPage().delete(viewVo.getViewId());
-            layer.checkEditorView(viewVo.getViewId());
+            layer.delete(viewVo.getViewId());
         }
     }
 
@@ -220,7 +219,7 @@ public class TestEditorCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            layer.checkEditorView(viewVo.getViewId());
+            layer.check(viewVo.getViewId());
         }
     }
 
@@ -228,7 +227,7 @@ public class TestEditorCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            layer.checkEditorView(viewVo.getViewId());
+            layer.check(viewVo.getViewId());
         }
     }
 

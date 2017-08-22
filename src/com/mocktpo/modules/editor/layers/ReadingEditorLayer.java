@@ -65,8 +65,8 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
     }
 
     public void newReadingPassage() {
-        TestViewVo viewVo = TestViewUtils.newReadingPassageViewVo(++currentViewId);
         List<TestViewVo> viewVos = page.getTestVo().getViewVos();
+        TestViewVo viewVo = TestViewUtils.newReadingPassageViewVo(++currentViewId);
         viewVos.add(viewVo);
         for (int i = viewVos.size() - 1; i > currentViewId; i--) {
             TestViewVo eachAfter = viewVos.get(i - 1);
@@ -81,8 +81,8 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
     }
 
     public void newReadingMultipleChoiceQuestion() {
-        TestViewVo viewVo = TestViewUtils.newReadingMultipleChoiceQuestionViewVo(++currentViewId);
         List<TestViewVo> viewVos = page.getTestVo().getViewVos();
+        TestViewVo viewVo = TestViewUtils.newReadingMultipleChoiceQuestionViewVo(++currentViewId);
         viewVos.add(viewVo);
         for (int i = viewVos.size() - 1; i > currentViewId; i--) {
             TestViewVo eachAfter = viewVos.get(i - 1);
