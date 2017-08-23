@@ -1,29 +1,21 @@
 package com.mocktpo.modules.editor.layers;
 
 import com.mocktpo.modules.editor.TestEditorPage;
-import com.mocktpo.modules.editor.views.ReadingMultipleChoiceQuestionEditorView;
-import com.mocktpo.modules.editor.views.ReadingPassageEditorView;
 import com.mocktpo.modules.editor.views.TestEditorView;
 import com.mocktpo.modules.editor.widgets.TestEditorCard;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.layout.GridLayoutSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 public abstract class SashTestEditorLayer extends TestEditorLayer {
@@ -35,18 +27,20 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     /* Widgets */
 
     protected Composite body;
+
     protected Composite left;
     protected ScrolledComposite lsc;
     protected Composite leftBody;
+    protected List<TestEditorCard> cards;
+
     protected Composite right;
     protected StackLayout rightViewStack;
+    protected List<TestEditorView> views;
 
     /* Properties */
 
-    protected List<TestEditorCard> cards;
-    protected List<TestEditorView> views;
     protected int currentViewId;
-    protected boolean dirty;
+    protected boolean refreshRequired;
 
     /*
      * ==================================================
@@ -58,14 +52,10 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
     public SashTestEditorLayer(TestEditorPage page, int style) {
         super(page, style);
-        this.cards = new LinkedList<TestEditorCard>();
+        this.cards = new ArrayList<TestEditorCard>();
         this.views = new ArrayList<TestEditorView>();
-        if (page.getTestVo().getViewVos().size() > 0) {
-            this.currentViewId = 0;
-        } else {
-            this.currentViewId = -1;
-        }
-        this.dirty = true;
+        this.currentViewId = -1;
+        this.refreshRequired = true;
     }
 
     /*
@@ -135,66 +125,24 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     /*
      * ==================================================
      *
-     * Test Editor Card Operations
+     * Test Editor View Operations
      *
      * ==================================================
      */
 
-    public void refreshCards() {
-        for (Control c : leftBody.getChildren()) {
-            c.dispose();
-        }
-        initCards();
-    }
+    public abstract void trash();
 
-    private void initCards() {
-        List<TestViewVo> viewVos = page.getTestVo().getViewVos();
+    public abstract void sendBackward();
 
-        /*
-         * ==================================================
-         *
-         * Update Left Part
-         *
-         * ==================================================
-         */
+    public abstract void bringForward();
 
-        cards.clear();
-        for (TestViewVo viewVo : viewVos) {
-            TestEditorCard card = new TestEditorCard(this, SWT.NONE, viewVo);
-            GridDataSet.attach(card).fillHorizontal();
-            cards.add(card);
-        }
-        leftBody.layout();
-        lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-        if (currentViewId >= 0) {
-            lsc.setOrigin(0, cards.get(currentViewId).getLocation().y - 160); // 20+120+20
-        }
-
-        /*
-         * ==================================================
-         *
-         * Update Right Part
-         *
-         * ==================================================
-         */
-
-        views.clear();
-        for (TestViewVo viewVo : viewVos) {
-            TestEditorView view = null;
-            switch (viewVo.getViewType()) {
-                case VT.VIEW_TYPE_READING_PASSAGE:
-                    view = new ReadingPassageEditorView(this, SWT.NONE, viewVo);
-                    break;
-                case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
-                    view = new ReadingMultipleChoiceQuestionEditorView(this, SWT.NONE, viewVo);
-                    break;
-            }
-            views.add(view);
-        }
-
-        check(currentViewId);
-        setDirty(false);
-    }
+    /*
+     * ==================================================
+     *
+     * Test Editor Card Operations
+     *
+     * ==================================================
+     */
 
     public void check(int viewId) {
         if (currentViewId < 0) {
@@ -209,21 +157,6 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
         rightViewStack.topControl = views.get(currentViewId);
         right.layout();
-    }
-
-    public void delete(int viewId) {
-        List<TestViewVo> viewVos = page.getTestVo().getViewVos();
-        Iterator<TestViewVo> it = viewVos.iterator();
-        while (it.hasNext()) {
-            TestViewVo viewVo = it.next();
-            if (viewVo.getViewId() == viewId) {
-                it.remove();
-            }
-        }
-        setDirty(true);
-
-        page.toReadingEditorLayer();
-        page.save();
     }
 
     public boolean isFirstCardChecked() {
@@ -250,11 +183,19 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
         return right;
     }
 
-    public boolean isDirty() {
-        return dirty;
+    public int getCurrentViewId() {
+        return currentViewId;
     }
 
-    public void setDirty(boolean dirty) {
-        this.dirty = dirty;
+    public void setCurrentViewId(int currentViewId) {
+        this.currentViewId = currentViewId;
+    }
+
+    public boolean isRefreshRequired() {
+        return refreshRequired;
+    }
+
+    public void setRefreshRequired(boolean refreshRequired) {
+        this.refreshRequired = refreshRequired;
     }
 }

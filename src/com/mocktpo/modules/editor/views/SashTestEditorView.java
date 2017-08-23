@@ -7,7 +7,6 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
@@ -26,8 +25,8 @@ public abstract class SashTestEditorView extends TestEditorView {
      * ==================================================
      */
 
-    public SashTestEditorView(SashTestEditorLayer editorView, int style, TestViewVo viewVo) {
-        super(editorView, style, viewVo);
+    public SashTestEditorView(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
+        super(layer, style, viewVo);
     }
 
     /*

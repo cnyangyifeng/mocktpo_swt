@@ -3,8 +3,7 @@ package com.mocktpo.modules.editor;
 import com.mocktpo.modules.editor.layers.*;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.vo.TestViewVo;
-import com.mocktpo.vo.TestVo;
+import com.mocktpo.vo.TestEditorVo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +12,6 @@ import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
@@ -44,7 +42,7 @@ public class TestEditorPage extends Composite {
 
     /* Properties */
 
-    private TestVo testVo;
+    private TestEditorVo testEditorVo;
     private boolean firstRun;
     private boolean unsaved;
 
@@ -64,21 +62,21 @@ public class TestEditorPage extends Composite {
         init();
     }
 
-    public TestEditorPage(Composite parent, int style, TestVo testVo) {
+    public TestEditorPage(Composite parent, int style, TestEditorVo testEditorVo) {
         super(parent, style);
         this.d = parent.getDisplay();
-        this.testVo = testVo;
+        this.testEditorVo = testEditorVo;
         this.firstRun = false;
         init();
     }
 
     private void initTestVo() {
-        this.testVo = new TestVo();
-        testVo.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
-        testVo.setTitle("");
-        testVo.setStars(3);
-        testVo.setAuthor("");
-        testVo.setCreatedTime(System.currentTimeMillis());
+        this.testEditorVo = new TestEditorVo();
+        testEditorVo.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
+        testEditorVo.setTitle("");
+        testEditorVo.setStars(3);
+        testEditorVo.setAuthor("");
+        testEditorVo.setCreatedTime(System.currentTimeMillis());
     }
 
     private void init() {
@@ -112,7 +110,7 @@ public class TestEditorPage extends Composite {
         if (readingEditorLayer == null) {
             readingEditorLayer = new ReadingEditorLayer(TestEditorPage.this, SWT.NONE);
         }
-        if (readingEditorLayer.isDirty()) {
+        if (readingEditorLayer.isRefreshRequired()) {
             beforeLoading();
             if (!d.isDisposed()) {
                 d.asyncExec(new Runnable() {
@@ -183,7 +181,7 @@ public class TestEditorPage extends Composite {
      */
 
     public void save() {
-        ConfigUtils.push(testVo.getTid(), testVo);
+        ConfigUtils.push(testEditorVo.getTid(), testEditorVo);
         setFirstRun(false);
         enterSavedMode();
     }
@@ -231,12 +229,12 @@ public class TestEditorPage extends Composite {
      * ==================================================
      */
 
-    public TestVo getTestVo() {
-        return testVo;
+    public TestEditorVo getTestEditorVo() {
+        return testEditorVo;
     }
 
-    public void setTestVo(TestVo testVo) {
-        this.testVo = testVo;
+    public void setTestEditorVo(TestEditorVo testEditorVo) {
+        this.testEditorVo = testEditorVo;
     }
 
     public boolean isFirstRun() {

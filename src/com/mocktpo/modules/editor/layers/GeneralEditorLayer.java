@@ -75,7 +75,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
 
         titleTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(titleTextWidget).atLeft(PRE_LABEL_WIDTH).atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(titleTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestVo().getTitle());
+        StyledTextSet.decorate(titleTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestEditorVo().getTitle());
         KeyBindingSet.bind(titleTextWidget).traverse().selectAll();
         titleTextWidget.addModifyListener(new TitleTextWidgetModifyListener());
         titleTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -87,7 +87,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
 
         starsTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(starsTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(titleTextWidget).withWidth(STARS_TEXT_WIDGET_WIDTH).withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(starsTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getTestVo().getStars()));
+        StyledTextSet.decorate(starsTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getTestEditorVo().getStars()));
         KeyBindingSet.bind(starsTextWidget).traverse().selectAll();
         starsTextWidget.addModifyListener(new StarsTextWidgetModifyListener());
         starsTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -98,7 +98,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
 
         authorTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(authorTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(starsTextWidget).withWidth(AUTHOR_TEXT_WIDGET_WIDTH).withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(authorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestVo().getAuthor());
+        StyledTextSet.decorate(authorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestEditorVo().getAuthor());
         KeyBindingSet.bind(authorTextWidget).traverse().selectAll();
         authorTextWidget.addModifyListener(new AuthorTextWidgetModifyListener());
         authorTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -120,7 +120,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
 
         @Override
         public void modifyText(ModifyEvent e) {
-            page.getTestVo().setTitle(titleTextWidget.getText());
+            page.getTestEditorVo().setTitle(titleTextWidget.getText());
             page.edit();
         }
     }
@@ -138,7 +138,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
                     } else if (stars > 5) {
                         stars = 5;
                     }
-                    page.getTestVo().setStars(stars);
+                    page.getTestEditorVo().setStars(stars);
                 } catch (NumberFormatException ex) {
                     ex.printStackTrace();
                 }
@@ -151,7 +151,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
 
         @Override
         public void modifyText(ModifyEvent e) {
-            page.getTestVo().setAuthor(authorTextWidget.getText());
+            page.getTestEditorVo().setAuthor(authorTextWidget.getText());
             page.edit();
         }
     }

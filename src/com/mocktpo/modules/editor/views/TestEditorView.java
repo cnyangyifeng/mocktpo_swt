@@ -38,10 +38,10 @@ public abstract class TestEditorView extends Composite {
      * ==================================================
      */
 
-    public TestEditorView(SashTestEditorLayer editorLayer, int style, TestViewVo viewVo) {
-        super(editorLayer.getRight(), style);
-        this.d = editorLayer.getDisplay();
-        this.page = editorLayer.getTestEditorPage();
+    public TestEditorView(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
+        super(layer.getRight(), style);
+        this.d = layer.getDisplay();
+        this.page = layer.getTestEditorPage();
         initViewVo(viewVo);
         init();
     }

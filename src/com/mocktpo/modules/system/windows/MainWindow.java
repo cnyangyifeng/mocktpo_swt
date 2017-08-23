@@ -9,7 +9,7 @@ import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ResourceManager;
 import com.mocktpo.util.WindowUtils;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.vo.TestVo;
+import com.mocktpo.vo.TestEditorVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -148,7 +148,7 @@ public class MainWindow {
         s.layout();
     }
 
-    public void toTestEditorPage(TestVo testVo) {
+    public void toTestEditorPage(TestEditorVo testVo) {
         final TestEditorPage testEditorPage = new TestEditorPage(s, SWT.NONE, testVo);
         stack.topControl = testEditorPage;
         s.layout();

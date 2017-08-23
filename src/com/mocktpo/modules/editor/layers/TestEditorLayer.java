@@ -209,7 +209,7 @@ public abstract class TestEditorLayer extends Composite {
     }
 
     public void updateTitleLabel() {
-        String title = page.getTestVo().getTitle();
+        String title = page.getTestEditorVo().getTitle();
         if (StringUtils.isEmpty(title)) {
             title = msgs.getString("untitled");
         }

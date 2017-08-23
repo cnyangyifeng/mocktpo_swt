@@ -9,7 +9,7 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.vo.TestVo;
+import com.mocktpo.vo.TestEditorVo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,7 +41,7 @@ public class TestPaperCard extends Composite {
     /* Properties */
 
     private String fileAlias;
-    private TestVo testVo;
+    private TestEditorVo testVo;
 
     /*
      * ==================================================
@@ -55,7 +55,7 @@ public class TestPaperCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testVo = ConfigUtils.pull(fileAlias, TestVo.class);
+        this.testVo = ConfigUtils.loadFormWorks(fileAlias, TestEditorVo.class);
         init();
     }
 

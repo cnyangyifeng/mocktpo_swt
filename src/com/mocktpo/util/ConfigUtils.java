@@ -34,7 +34,7 @@ public class ConfigUtils {
         return null;
     }
 
-    public static <T> T pull(String fileAlias, Class<T> clazz) {
+    public static <T> T loadFormWorks(String fileAlias, Class<T> clazz) {
         if (fileAlias == null) {
             return null;
         }

@@ -33,8 +33,8 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
      * ==================================================
      */
 
-    public ReadingMultipleChoiceQuestionEditorView(SashTestEditorLayer editorView, int style, TestViewVo viewVo) {
-        super(editorView, style, viewVo);
+    public ReadingMultipleChoiceQuestionEditorView(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
+        super(layer, style, viewVo);
     }
 
     /*
