@@ -9,6 +9,7 @@ import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
 import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
@@ -17,6 +18,8 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView {
 
@@ -85,6 +88,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledText("passage"));
         KeyBindingSet.bind(passageTextWidget).selectAll();
         passageTextWidget.addModifyListener(new PassageTextModifyListener());
+        passageTextWidget.addSelectionListener(new PassageTextSelectionListener());
     }
 
     @Override
@@ -120,6 +124,17 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
             passageTextVo.setText(passageTextWidget.getText());
             viewVo.setStyledTextVo("passage", passageTextVo);
             page.edit();
+        }
+    }
+
+    private class PassageTextSelectionListener extends SelectionAdapter {
+
+
+        @Override
+        public void widgetSelected(SelectionEvent e) {
+            logger.info("selection: {}, selection text: {}, selection background: {}, selection count: {}", passageTextWidget.getSelection(), passageTextWidget.getSelectionText(), passageTextWidget.getSelectionBackground(), passageTextWidget.getSelectionCount());
+            StyledTextVo passageTextVo = viewVo.getStyledTextVo("passage");
+            StyleRangeUtils.decorate(passageTextWidget, passageTextVo.getStyles());
         }
     }
 }

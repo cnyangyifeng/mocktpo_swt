@@ -254,7 +254,7 @@ public class TestViewVo implements Serializable {
      * ==================================================
      */
 
-    private StyledTextVo getStyledTextVo(String key) {
+    public StyledTextVo getStyledTextVo(String key) {
         Map<String, StyledTextVo> body = getBody();
         if (body != null) {
             return body.get(key);
