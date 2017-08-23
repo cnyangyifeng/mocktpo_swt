@@ -142,6 +142,9 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
             TestViewVo eachAfter = viewVos.get(i);
             eachAfter.setViewId(i);
         }
+        if (currentViewId == viewVos.size()) {
+            currentViewId--;
+        }
         setRefreshRequired(true);
 
         page.toReadingEditorLayer();
@@ -150,12 +153,36 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
     @Override
     public void sendBackward() {
+        List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
+        TestViewVo current = viewVos.get(currentViewId);
+        current.setViewId(currentViewId + 1);
+        TestViewVo back = viewVos.get(currentViewId + 1);
+        back.setViewId(currentViewId);
+        viewVos.set(currentViewId, back);
+        viewVos.set(currentViewId + 1, current);
 
+        currentViewId++;
+        setRefreshRequired(true);
+
+        page.toReadingEditorLayer();
+        page.save();
     }
 
     @Override
     public void bringForward() {
+        List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
+        TestViewVo current = viewVos.get(currentViewId);
+        current.setViewId(currentViewId - 1);
+        TestViewVo front = viewVos.get(currentViewId - 1);
+        front.setViewId(currentViewId);
+        viewVos.set(currentViewId, front);
+        viewVos.set(currentViewId - 1, current);
 
+        currentViewId--;
+        setRefreshRequired(true);
+
+        page.toReadingEditorLayer();
+        page.save();
     }
 
     /*
@@ -192,10 +219,8 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
         }
         leftBody.layout();
         lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-        if (currentViewId > 0) {
+        if (currentViewId >= 0) {
             lsc.setOrigin(0, cards.get(currentViewId).getLocation().y - 160); // 20+120+20
-        } else {
-            lsc.setOrigin(0, 20);
         }
 
         /*
@@ -220,7 +245,9 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
             views.add(view);
         }
 
-        check(currentViewId);
+        if (currentViewId >= 0) {
+            check(currentViewId);
+        }
         setRefreshRequired(false);
     }
 

@@ -145,10 +145,6 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
      */
 
     public void check(int viewId) {
-        if (currentViewId < 0) {
-            return;
-        }
-
         TestEditorCard previousCard = cards.get(currentViewId);
         previousCard.setChecked(false);
         currentViewId = viewId;
