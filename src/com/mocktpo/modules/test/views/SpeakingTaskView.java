@@ -112,7 +112,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
         final StyledText questionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft(20).atTop(VIEW_PORT_PADDING_TOP).atRight(20);
-        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question"));
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("question"));
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
 
         timerContainer = new Composite(viewPort, SWT.NONE);

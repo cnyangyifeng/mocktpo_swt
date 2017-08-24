@@ -115,7 +115,7 @@ public class ListeningMultipleChoiceQuestionView extends ResponsiveTestView {
 
         final StyledText questionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question"));
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("question"));
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
         questionTextWidget.addPaintObjectListener(new StyledTextPaintImageListener());
 
@@ -126,7 +126,7 @@ public class ListeningMultipleChoiceQuestionView extends ResponsiveTestView {
 
         choiceLabelA = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelA).atLeftTo(checkLabelA, 10).atTopTo(questionTextWidget, 20).atRight();
-        LabelSet.decorate(choiceLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA")).setVisible(false);
+        LabelSet.decorate(choiceLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceA")).setVisible(false);
         choiceLabelA.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelB = new Label(viewPort, SWT.NONE);
@@ -136,7 +136,7 @@ public class ListeningMultipleChoiceQuestionView extends ResponsiveTestView {
 
         choiceLabelB = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelB).atLeftTo(checkLabelB, 10).atTopTo(choiceLabelA, 20).atRight();
-        LabelSet.decorate(choiceLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB")).setVisible(false);
+        LabelSet.decorate(choiceLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceB")).setVisible(false);
         choiceLabelB.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelC = new Label(viewPort, SWT.NONE);
@@ -146,7 +146,7 @@ public class ListeningMultipleChoiceQuestionView extends ResponsiveTestView {
 
         choiceLabelC = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelC).atLeftTo(checkLabelC, 10).atTopTo(choiceLabelB, 20).atRight();
-        LabelSet.decorate(choiceLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC")).setVisible(false);
+        LabelSet.decorate(choiceLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceC")).setVisible(false);
         choiceLabelC.addMouseListener(new ChooseAnswerAdapter());
 
         checkLabelD = new Label(viewPort, SWT.NONE);
@@ -156,7 +156,7 @@ public class ListeningMultipleChoiceQuestionView extends ResponsiveTestView {
 
         choiceLabelD = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceLabelD).atLeftTo(checkLabelD, 10).atTopTo(choiceLabelC, 20).atRight();
-        LabelSet.decorate(choiceLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD")).setVisible(false);
+        LabelSet.decorate(choiceLabelD).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceD")).setVisible(false);
         choiceLabelD.addMouseListener(new ChooseAnswerAdapter());
 
         updateWidgetsForAnswer();

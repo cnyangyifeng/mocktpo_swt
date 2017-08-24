@@ -123,13 +123,13 @@ public class ListeningSortEventsQuestionView extends ResponsiveTestView {
 
         final StyledText questionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("question"));
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("question"));
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
         questionTextWidget.addPaintObjectListener(new StyledTextPaintImageListener());
 
         tipsTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(tipsTextWidget).atLeft().atTopTo(questionTextWidget, 20).atRight();
-        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(5).setText(vo.getStyledText("tips")).setVisible(false);
+        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(5).setText(vo.getStyledTextContent("tips")).setVisible(false);
         StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledTextStyles("tips"));
 
         ac = new Composite(viewPort, SWT.NONE);
@@ -164,17 +164,17 @@ public class ListeningSortEventsQuestionView extends ResponsiveTestView {
 
         checkLabelA = new Label(ac, SWT.WRAP);
         FormDataSet.attach(checkLabelA).atLeft().atTopTo(l, 20).atRight();
-        LabelSet.decorate(checkLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA"));
+        LabelSet.decorate(checkLabelA).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceA"));
         ChoiceLabelDragSourceSet.drag(checkLabelA);
 
         checkLabelB = new Label(ac, SWT.WRAP);
         FormDataSet.attach(checkLabelB).atLeft().atTopTo(checkLabelA, 10).atRight();
-        LabelSet.decorate(checkLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB"));
+        LabelSet.decorate(checkLabelB).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceB"));
         ChoiceLabelDragSourceSet.drag(checkLabelB);
 
         checkLabelC = new Label(ac, SWT.WRAP);
         FormDataSet.attach(checkLabelC).atLeft().atTopTo(checkLabelB, 10).atRight();
-        LabelSet.decorate(checkLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC"));
+        LabelSet.decorate(checkLabelC).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceC"));
         ChoiceLabelDragSourceSet.drag(checkLabelC);
     }
 
@@ -339,13 +339,13 @@ public class ListeningSortEventsQuestionView extends ResponsiveTestView {
             int oldAnswer = (Integer) e.getOldValue();
             switch (oldAnswer) {
                 case MT.CHOICE_A:
-                    LabelSet.decorate(checkLabelA).setText(vo.getStyledText("checkLabelA"));
+                    LabelSet.decorate(checkLabelA).setText(vo.getStyledTextContent("checkLabelA"));
                     break;
                 case MT.CHOICE_B:
-                    LabelSet.decorate(checkLabelB).setText(vo.getStyledText("checkLabelB"));
+                    LabelSet.decorate(checkLabelB).setText(vo.getStyledTextContent("checkLabelB"));
                     break;
                 case MT.CHOICE_C:
-                    LabelSet.decorate(checkLabelC).setText(vo.getStyledText("checkLabelC"));
+                    LabelSet.decorate(checkLabelC).setText(vo.getStyledTextContent("checkLabelC"));
                     break;
             }
             int newAnswer = (Integer) e.getNewValue();
@@ -375,13 +375,13 @@ public class ListeningSortEventsQuestionView extends ResponsiveTestView {
             int answer = (Integer) answerLabel.getData(MT.KEY_CHOICE);
             switch (answer) {
                 case MT.CHOICE_A:
-                    LabelSet.decorate(checkLabelA).setText(vo.getStyledText("checkLabelA"));
+                    LabelSet.decorate(checkLabelA).setText(vo.getStyledTextContent("checkLabelA"));
                     break;
                 case MT.CHOICE_B:
-                    LabelSet.decorate(checkLabelB).setText(vo.getStyledText("checkLabelB"));
+                    LabelSet.decorate(checkLabelB).setText(vo.getStyledTextContent("checkLabelB"));
                     break;
                 case MT.CHOICE_C:
-                    LabelSet.decorate(checkLabelC).setText(vo.getStyledText("checkLabelC"));
+                    LabelSet.decorate(checkLabelC).setText(vo.getStyledTextContent("checkLabelC"));
                     break;
             }
             answerLabel.setText("");

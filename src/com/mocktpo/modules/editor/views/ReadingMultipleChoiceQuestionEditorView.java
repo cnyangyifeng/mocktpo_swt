@@ -73,7 +73,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         headingTextWidget = new StyledText(left, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledText("heading"));
+        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("heading"));
         KeyBindingSet.bind(headingTextWidget).selectAll();
         headingTextWidget.addModifyListener(new HeadingTextModifyListener());
         headingTextWidget.setSelection(headingTextWidget.getText().length());
@@ -85,7 +85,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(passagePreLabel).atRight().atBottom();
-        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledText("passage"));
+        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("passage"));
         KeyBindingSet.bind(passageTextWidget).selectAll();
         passageTextWidget.addModifyListener(new PassageTextModifyListener());
         passageTextWidget.addSelectionListener(new PassageTextSelectionListener());

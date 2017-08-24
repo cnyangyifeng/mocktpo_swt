@@ -58,7 +58,7 @@ public class ListeningHeadsetOnView extends ResponsiveTestView {
 
         final StyledText topTextWidget = new StyledText(viewPort, SWT.WRAP);
         GridDataSet.attach(topTextWidget).topCenter();
-        StyledTextSet.decorate(topTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("top"));
+        StyledTextSet.decorate(topTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("top"));
 
         final Label imageLabel = new Label(viewPort, SWT.NONE);
         GridDataSet.attach(imageLabel).topCenter();
@@ -66,7 +66,7 @@ public class ListeningHeadsetOnView extends ResponsiveTestView {
 
         final StyledText bottomTextWidget = new StyledText(viewPort, SWT.WRAP);
         GridDataSet.attach(bottomTextWidget).topCenter();
-        StyledTextSet.decorate(bottomTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("bottom"));
+        StyledTextSet.decorate(bottomTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("bottom"));
         StyleRangeUtils.decorate(bottomTextWidget, vo.getStyledTextStyles("bottom"));
     }
 

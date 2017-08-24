@@ -46,7 +46,7 @@ public class TestViewTypeUtils {
                 viewTypeName = "Reading Passage";
                 break;
             case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
-                viewTypeName = "Reading Question";
+                viewTypeName = "Reading Multiple Choice Question";
                 break;
             case VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION:
                 viewTypeName = "Reading Insert Text Question";
@@ -79,7 +79,7 @@ public class TestViewTypeUtils {
                 viewTypeName = "Listening Replay";
                 break;
             case VT.VIEW_TYPE_LISTENING_MULTIPLE_CHOICE_QUESTION:
-                viewTypeName = "Listening Question";
+                viewTypeName = "Listening Multiple Choice Question";
                 break;
             case VT.VIEW_TYPE_LISTENING_MULTIPLE_RESPONSE_QUESTION:
                 viewTypeName = "Listening Multiple Response Question";

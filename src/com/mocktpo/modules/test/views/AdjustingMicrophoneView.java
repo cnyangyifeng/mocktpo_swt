@@ -183,16 +183,16 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         final StyledText headingTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledText("heading"));
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledTextContent("heading"));
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(descriptionTextWidget).atLeft().atTopTo(headingTextWidget, 30).atRight();
-        StyledTextSet.decorate(descriptionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("description"));
+        StyledTextSet.decorate(descriptionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("description"));
         StyleRangeUtils.decorate(descriptionTextWidget, vo.getStyledTextStyles("description"));
 
         final StyledText footnoteTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(footnoteTextWidget).fromLeft(50, -FOOTNOTE_TEXT_WIDTH / 2).atTopTo(descriptionTextWidget, 20).withWidth(FOOTNOTE_TEXT_WIDTH);
-        StyledTextSet.decorate(footnoteTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_ITALIC_TEXT).setForeground(MT.COLOR_DARK_BLUE).setLineSpacing(5).setMarginHeight(20).setText(vo.getStyledText("footnote"));
+        StyledTextSet.decorate(footnoteTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_ITALIC_TEXT).setForeground(MT.COLOR_DARK_BLUE).setLineSpacing(5).setMarginHeight(20).setText(vo.getStyledTextContent("footnote"));
         footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
 
         timerPanel = new Composite(viewPort, SWT.NONE);
@@ -240,7 +240,7 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         StyledText responseTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(responseTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP_2).atRight();
-        StyledTextSet.decorate(responseTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("response"));
+        StyledTextSet.decorate(responseTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("response"));
         StyleRangeUtils.decorate(responseTextWidget, vo.getStyledTextStyles("response"));
 
         sc.setContent(inner);

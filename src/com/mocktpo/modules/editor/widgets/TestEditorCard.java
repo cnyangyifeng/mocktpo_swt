@@ -133,9 +133,17 @@ public class TestEditorCard extends Composite {
         viewTypeNameLabel.addMouseListener(new CardInnerMouseAdapter());
         viewTypeNameLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
 
-        final CLabel viewIdLabel = new CLabel(inner, SWT.NONE);
-        FormDataSet.attach(viewIdLabel).atLeft(10).atBottom(10);
-        CLabelSet.decorate(viewIdLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(Integer.toString(viewVo.getViewId()));
+        final CLabel serialNumberLabel = new CLabel(inner, SWT.NONE);
+        FormDataSet.attach(serialNumberLabel).atLeft(10).atBottom(10);
+        CLabelSet.decorate(serialNumberLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(Integer.toString(viewVo.getViewId() + 1));
+        serialNumberLabel.addMouseListener(new CardInnerMouseAdapter());
+        serialNumberLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
+
+        final Label viewDescriptionLabel = new Label(inner, SWT.WRAP);
+        FormDataSet.attach(viewDescriptionLabel).atLeft(10).atTopTo(viewTypeNameLabel, 10).atRight(10).atBottomTo(serialNumberLabel, 10);
+        LabelSet.decorate(viewDescriptionLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(viewVo.getViewDescription());
+        viewDescriptionLabel.addMouseListener(new CardInnerMouseAdapter());
+        viewDescriptionLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
 
         trashButton = new ImageButton(inner, SWT.NONE, MT.IMAGE_SYSTEM_TRASH, MT.IMAGE_SYSTEM_TRASH_HOVER);
         FormDataSet.attach(trashButton).atRight(10).atBottom(10);

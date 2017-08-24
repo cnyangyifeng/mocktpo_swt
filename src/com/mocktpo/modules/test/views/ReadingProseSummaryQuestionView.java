@@ -145,12 +145,12 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
         final StyledText directionsTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(directionsTextWidget).atLeft().atTop(5).atRight();
-        StyledTextSet.decorate(directionsTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("directions"));
+        StyledTextSet.decorate(directionsTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("directions"));
         StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledTextStyles("directions"));
 
         final StyledText tipsTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(tipsTextWidget).atLeft().atTopTo(directionsTextWidget, 5).atRight();
-        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledText("tips"));
+        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledTextContent("tips"));
         StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledTextStyles("tips"));
 
         final Composite ac = new Composite(viewPort, SWT.CENTER);
@@ -160,7 +160,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
         final StyledText questionTextWidget = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft(10).atTop().atRight(10);
-        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledText("question"));
+        StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setLineSpacing(5).setText(vo.getStyledTextContent("question"));
 
         final Label bullet1 = new Label(ac, SWT.NONE);
         FormDataSet.attach(bullet1).atLeft().atTopTo(questionTextWidget, 20);
@@ -198,32 +198,32 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
         choiceALabel = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceALabel).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(l, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceALabel).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceA"));
+        LabelSet.decorate(choiceALabel).setData(MT.KEY_CHOICE, MT.CHOICE_A).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceA"));
         ChoiceLabelDragSourceSet.drag(choiceALabel);
 
         choiceBLabel = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceBLabel).fromLeft(50, 10).atTopTo(l, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceBLabel).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceB"));
+        LabelSet.decorate(choiceBLabel).setData(MT.KEY_CHOICE, MT.CHOICE_B).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceB"));
         ChoiceLabelDragSourceSet.drag(choiceBLabel);
 
         choiceCLabel = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceCLabel).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(choiceALabel, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceCLabel).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceC"));
+        LabelSet.decorate(choiceCLabel).setData(MT.KEY_CHOICE, MT.CHOICE_C).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceC"));
         ChoiceLabelDragSourceSet.drag(choiceCLabel);
 
         choiceDLabel = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceDLabel).fromLeft(50, 10).atTopTo(choiceBLabel, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceDLabel).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceD"));
+        LabelSet.decorate(choiceDLabel).setData(MT.KEY_CHOICE, MT.CHOICE_D).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceD"));
         ChoiceLabelDragSourceSet.drag(choiceDLabel);
 
         choiceELabel = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceELabel).fromLeft(50, -LC.READING_DND_QUESTION_WIDTH - 10).atTopTo(choiceCLabel, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceELabel).setData(MT.KEY_CHOICE, MT.CHOICE_E).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceE"));
+        LabelSet.decorate(choiceELabel).setData(MT.KEY_CHOICE, MT.CHOICE_E).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceE"));
         ChoiceLabelDragSourceSet.drag(choiceELabel);
 
         choiceFLabel = new Label(viewPort, SWT.WRAP);
         FormDataSet.attach(choiceFLabel).fromLeft(50, 10).atTopTo(choiceDLabel, 10).withWidth(LC.READING_DND_QUESTION_WIDTH).withHeight(LC.READING_DND_QUESTION_HEIGHT);
-        LabelSet.decorate(choiceFLabel).setData(MT.KEY_CHOICE, MT.CHOICE_F).setFont(MT.FONT_MEDIUM).setText(vo.getStyledText("choiceF"));
+        LabelSet.decorate(choiceFLabel).setData(MT.KEY_CHOICE, MT.CHOICE_F).setFont(MT.FONT_MEDIUM).setText(vo.getStyledTextContent("choiceF"));
         ChoiceLabelDragSourceSet.drag(choiceFLabel);
 
         updateWidgetsForAnswers();
@@ -324,11 +324,11 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
 
         final StyledText headingTextWidget = new StyledText(c, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTop().atRight();
-        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledText("heading"));
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledTextContent("heading"));
 
         final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
-        StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("passage"));
+        StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
 
         sc.setContent(c);
@@ -407,22 +407,22 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
             int oldAnswer = (Integer) e.getOldValue();
             switch (oldAnswer) {
                 case MT.CHOICE_A:
-                    LabelSet.decorate(choiceALabel).setText(vo.getStyledText("choiceA"));
+                    LabelSet.decorate(choiceALabel).setText(vo.getStyledTextContent("choiceA"));
                     break;
                 case MT.CHOICE_B:
-                    LabelSet.decorate(choiceBLabel).setText(vo.getStyledText("choiceB"));
+                    LabelSet.decorate(choiceBLabel).setText(vo.getStyledTextContent("choiceB"));
                     break;
                 case MT.CHOICE_C:
-                    LabelSet.decorate(choiceCLabel).setText(vo.getStyledText("choiceC"));
+                    LabelSet.decorate(choiceCLabel).setText(vo.getStyledTextContent("choiceC"));
                     break;
                 case MT.CHOICE_D:
-                    LabelSet.decorate(choiceDLabel).setText(vo.getStyledText("choiceD"));
+                    LabelSet.decorate(choiceDLabel).setText(vo.getStyledTextContent("choiceD"));
                     break;
                 case MT.CHOICE_E:
-                    LabelSet.decorate(choiceELabel).setText(vo.getStyledText("choiceE"));
+                    LabelSet.decorate(choiceELabel).setText(vo.getStyledTextContent("choiceE"));
                     break;
                 case MT.CHOICE_F:
-                    LabelSet.decorate(choiceFLabel).setText(vo.getStyledText("choiceF"));
+                    LabelSet.decorate(choiceFLabel).setText(vo.getStyledTextContent("choiceF"));
                     break;
             }
             int newAnswer = (Integer) e.getNewValue();
@@ -452,22 +452,22 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
             int answer = (Integer) answerLabel.getData(MT.KEY_CHOICE);
             switch (answer) {
                 case MT.CHOICE_A:
-                    LabelSet.decorate(choiceALabel).setText(vo.getStyledText("choiceA"));
+                    LabelSet.decorate(choiceALabel).setText(vo.getStyledTextContent("choiceA"));
                     break;
                 case MT.CHOICE_B:
-                    LabelSet.decorate(choiceBLabel).setText(vo.getStyledText("choiceB"));
+                    LabelSet.decorate(choiceBLabel).setText(vo.getStyledTextContent("choiceB"));
                     break;
                 case MT.CHOICE_C:
-                    LabelSet.decorate(choiceCLabel).setText(vo.getStyledText("choiceC"));
+                    LabelSet.decorate(choiceCLabel).setText(vo.getStyledTextContent("choiceC"));
                     break;
                 case MT.CHOICE_D:
-                    LabelSet.decorate(choiceDLabel).setText(vo.getStyledText("choiceD"));
+                    LabelSet.decorate(choiceDLabel).setText(vo.getStyledTextContent("choiceD"));
                     break;
                 case MT.CHOICE_E:
-                    LabelSet.decorate(choiceELabel).setText(vo.getStyledText("choiceE"));
+                    LabelSet.decorate(choiceELabel).setText(vo.getStyledTextContent("choiceE"));
                     break;
                 case MT.CHOICE_F:
-                    LabelSet.decorate(choiceFLabel).setText(vo.getStyledText("choiceF"));
+                    LabelSet.decorate(choiceFLabel).setText(vo.getStyledTextContent("choiceF"));
                     break;
             }
             LabelSet.decorate(answerLabel).setText("");

@@ -122,13 +122,13 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final StyledText directionsTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(directionsTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(directionsTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledText("directions"));
+        StyledTextSet.decorate(directionsTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("directions"));
         StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledTextStyles("directions"));
         directionsTextWidget.addPaintObjectListener(new StyledTextPaintImageListener());
 
         tipsTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(tipsTextWidget).atLeft().atTopTo(directionsTextWidget, 20).atRight();
-        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("tips")).setVisible(false);
+        StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledTextContent("tips")).setVisible(false);
         StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledTextStyles("tips"));
 
         ac = new Composite(viewPort, SWT.NONE);
@@ -165,7 +165,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final StyledText questionTextWidget1 = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget1).atLeft().atTopTo(divider1).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
-        StyledTextSet.decorate(questionTextWidget1).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question1"));
+        StyledTextSet.decorate(questionTextWidget1).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledTextContent("question1"));
 
         yesLabel1 = new Label(ac, SWT.CENTER);
         FormDataSet.attach(yesLabel1).atLeftTo(verticalDivider1).atTopTo(questionTextWidget1, 0, SWT.TOP).atBottomTo(questionTextWidget1, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
@@ -183,7 +183,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final StyledText questionTextWidget2 = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget2).atLeft().atTopTo(divider2).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
-        StyledTextSet.decorate(questionTextWidget2).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question2"));
+        StyledTextSet.decorate(questionTextWidget2).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledTextContent("question2"));
 
         yesLabel2 = new Label(ac, SWT.CENTER);
         FormDataSet.attach(yesLabel2).atLeftTo(verticalDivider1).atTopTo(questionTextWidget2, 0, SWT.TOP).atBottomTo(questionTextWidget2, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
@@ -201,7 +201,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final StyledText questionTextWidget3 = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget3).atLeft().atTopTo(divider3).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
-        StyledTextSet.decorate(questionTextWidget3).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question3"));
+        StyledTextSet.decorate(questionTextWidget3).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledTextContent("question3"));
 
         yesLabel3 = new Label(ac, SWT.CENTER);
         FormDataSet.attach(yesLabel3).atLeftTo(verticalDivider1).atTopTo(questionTextWidget3, 0, SWT.TOP).atBottomTo(questionTextWidget3, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
@@ -219,7 +219,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final StyledText questionTextWidget4 = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget4).atLeft().atTopTo(divider4).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
-        StyledTextSet.decorate(questionTextWidget4).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question4"));
+        StyledTextSet.decorate(questionTextWidget4).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledTextContent("question4"));
 
         yesLabel4 = new Label(ac, SWT.CENTER);
         FormDataSet.attach(yesLabel4).atLeftTo(verticalDivider1).atTopTo(questionTextWidget4, 0, SWT.TOP).atBottomTo(questionTextWidget4, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
@@ -237,7 +237,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final StyledText questionTextWidget5 = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget5).atLeft().atTopTo(divider5).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
-        StyledTextSet.decorate(questionTextWidget5).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledText("question5"));
+        StyledTextSet.decorate(questionTextWidget5).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setMargins(10).setText(vo.getStyledTextContent("question5"));
 
         yesLabel5 = new Label(ac, SWT.CENTER);
         FormDataSet.attach(yesLabel5).atLeftTo(verticalDivider1).atTopTo(questionTextWidget5, 0, SWT.TOP).atBottomTo(questionTextWidget5, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);

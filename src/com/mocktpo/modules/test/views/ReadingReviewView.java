@@ -289,9 +289,9 @@ public class ReadingReviewView extends Composite {
     private String getDescriptionText(TestViewVo vo) {
         String text;
         if (vo.getViewType() == VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION || vo.getViewType() == VT.VIEW_TYPE_READING_FILL_IN_A_TABLE_QUESTION) {
-            text = vo.getStyledText("directions") + MT.STRING_SPACE + vo.getStyledText("question");
+            text = vo.getStyledTextContent("directions") + MT.STRING_SPACE + vo.getStyledTextContent("question");
         } else {
-            text = vo.getStyledText("question");
+            text = vo.getStyledTextContent("question");
         }
         return text;
     }

@@ -1,5 +1,7 @@
 package com.mocktpo.vo;
 
+import com.mocktpo.util.constants.VT;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -249,6 +251,94 @@ public class TestViewVo implements Serializable {
     /*
      * ==================================================
      *
+     * View Description Getter
+     *
+     * ==================================================
+     */
+
+    public String getViewDescription() {
+
+        String viewDescription;
+
+        switch (viewType) {
+
+            /* Reading Section View Types */
+
+            case VT.VIEW_TYPE_READING_PASSAGE:
+                viewDescription = getStyledTextContent("heading");
+                break;
+            case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
+                viewDescription = getStyledTextContent("question");
+                break;
+            case VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION:
+                viewDescription = getStyledTextContent("insertText");
+                break;
+            case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
+                viewDescription = getStyledTextContent("question");
+                break;
+            case VT.VIEW_TYPE_READING_FILL_IN_A_TABLE_QUESTION:
+                viewDescription = getStyledTextContent("question");
+                break;
+
+            /* Listening Section View Types */
+
+            case VT.VIEW_TYPE_LISTENING_MATERIAL:
+                viewDescription = getAudio();
+                break;
+            case VT.VIEW_TYPE_LISTENING_REPLAY:
+                viewDescription = getAudio();
+                break;
+            case VT.VIEW_TYPE_LISTENING_MULTIPLE_CHOICE_QUESTION:
+                viewDescription = getStyledTextContent("question");
+                break;
+            case VT.VIEW_TYPE_LISTENING_MULTIPLE_RESPONSE_QUESTION:
+                viewDescription = getStyledTextContent("question");
+                break;
+            case VT.VIEW_TYPE_LISTENING_SORT_EVENTS_QUESTION:
+                viewDescription = getStyledTextContent("question");
+                break;
+            case VT.VIEW_TYPE_LISTENING_CATEGORIZE_OBJECTS_QUESTION:
+                viewDescription = getStyledTextContent("question");
+                break;
+
+            /* Speaking Section View Types */
+
+            case VT.VIEW_TYPE_SPEAKING_TASK:
+                viewDescription = getStyledTextContent("question");
+                ;
+                break;
+            case VT.VIEW_TYPE_SPEAKING_READING_PASSAGE:
+                viewDescription = getStyledTextContent("heading");
+                break;
+            case VT.VIEW_TYPE_SPEAKING_LISTENING_MATERIAL:
+                viewDescription = getAudio();
+                break;
+
+            /* Writing Section View Types */
+
+            case VT.VIEW_TYPE_WRITING_READING_PASSAGE:
+                viewDescription = getStyledTextContent("heading");
+                break;
+            case VT.VIEW_TYPE_WRITING_LISTENING_MATERIAL:
+                viewDescription = getAudio();
+                break;
+            case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK:
+                viewDescription = getStyledTextContent("question");
+                break;
+            case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK:
+                viewDescription = getStyledTextContent("question");
+                break;
+            default:
+                viewDescription = "";
+                break;
+        }
+
+        return viewDescription;
+    }
+
+    /*
+     * ==================================================
+     *
      * Body StyledTextVo Related Getters and Setters
      *
      * ==================================================
@@ -270,7 +360,7 @@ public class TestViewVo implements Serializable {
         }
     }
 
-    public String getStyledText(String key) {
+    public String getStyledTextContent(String key) {
         StyledTextVo styledTextVo = getStyledTextVo(key);
         if (styledTextVo != null) {
             return styledTextVo.getText();
