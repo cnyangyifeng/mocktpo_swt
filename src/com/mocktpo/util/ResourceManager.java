@@ -174,6 +174,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BOXED, ImageUtils.load(d, "sys_boxed"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BRING_FORWARD, ImageUtils.load(d, "sys_bring_forward"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BRING_FORWARD_HOVER, ImageUtils.load(d, "sys_bring_forward_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_WIDE, ImageUtils.load(d, "sys_cancel_wide"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_WIDE_HOVER, ImageUtils.load(d, "sys_cancel_wide_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE, ImageUtils.load(d, "sys_continue"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE_HOVER, ImageUtils.load(d, "sys_continue_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_COPY, ImageUtils.load(d, "sys_copy"));

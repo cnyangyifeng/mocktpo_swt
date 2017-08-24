@@ -106,9 +106,9 @@ public class NewReadingQuestionWindow {
         FormDataSet.attach(divider).atLeft().atTopTo(newReadingFillInATableQuestionButton).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final ImageButton closeButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION_HOVER);
-        FormDataSet.attach(closeButton).atLeft().atTopTo(divider);
-        closeButton.addMouseListener(new NewReadingFillInATableQuestionButtonMouseAdapter());
+        final ImageButton cancelButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_CANCEL_WIDE, MT.IMAGE_SYSTEM_CANCEL_WIDE_HOVER);
+        FormDataSet.attach(cancelButton).atLeft().atTopTo(divider);
+        cancelButton.addMouseListener(new CancelButtonMouseAdapter());
     }
 
     public void openAndWaitForDisposal() {
@@ -172,6 +172,14 @@ public class NewReadingQuestionWindow {
         public void mouseDown(MouseEvent e) {
             close();
             layer.newReadingFillInATableQuestion();
+        }
+    }
+
+    private class CancelButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            close();
         }
     }
 }

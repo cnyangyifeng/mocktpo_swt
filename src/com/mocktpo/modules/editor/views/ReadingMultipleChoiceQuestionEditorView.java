@@ -15,11 +15,13 @@ import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Composite;
 
 public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView {
 
@@ -76,7 +78,6 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("heading"));
         KeyBindingSet.bind(headingTextWidget).selectAll();
         headingTextWidget.addModifyListener(new HeadingTextModifyListener());
-        headingTextWidget.setSelection(headingTextWidget.getText().length());
         headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel passagePreLabel = new CLabel(left, SWT.NONE);
@@ -93,8 +94,38 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
     @Override
     protected void updateRight() {
-        CompositeSet.decorate(right).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-        FormLayoutSet.layout(right).marginWidth(20).marginHeight(20).spacing(10);
+        final ScrolledComposite rsc = new ScrolledComposite(right, SWT.V_SCROLL);
+        FormDataSet.attach(rsc).atLeft().atTop().atRight().atBottom();
+        rsc.setExpandHorizontal(true);
+        rsc.setExpandVertical(true);
+
+        final Composite rightBody = new Composite(rsc, SWT.NONE);
+        CompositeSet.decorate(rightBody).setBackground(MT.COLOR_WINDOW_BACKGROUND);
+        FormLayoutSet.layout(rightBody).marginWidth(20).marginHeight(20).spacing(10);
+
+        final CLabel headingPreLabel = new CLabel(left, SWT.NONE);
+        FormDataSet.attach(headingPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(headingPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("heading") + MT.STRING_TAB + MT.STRING_STAR);
+
+        headingTextWidget = new StyledText(left, SWT.SINGLE);
+        FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("heading"));
+        KeyBindingSet.bind(headingTextWidget).selectAll();
+        headingTextWidget.addModifyListener(new HeadingTextModifyListener());
+        headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+
+        final CLabel passagePreLabel = new CLabel(left, SWT.NONE);
+        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("passage") + MT.STRING_TAB + MT.STRING_STAR);
+
+        passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
+        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(passagePreLabel).atRight().atBottom();
+        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("passage"));
+        KeyBindingSet.bind(passageTextWidget).selectAll();
+        passageTextWidget.addModifyListener(new PassageTextModifyListener());
+        passageTextWidget.addSelectionListener(new PassageTextSelectionListener());
+
+        rsc.setContent(rightBody);
     }
 
     /*

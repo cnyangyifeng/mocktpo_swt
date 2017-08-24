@@ -129,7 +129,7 @@ public class TestEditorCard extends Composite {
 
         final Label viewTypeNameLabel = new Label(inner, SWT.WRAP);
         FormDataSet.attach(viewTypeNameLabel).atLeft(10).atTop(10).atRight(10);
-        LabelSet.decorate(viewTypeNameLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(TestViewTypeUtils.getViewTypeName(viewVo.getViewType()));
+        LabelSet.decorate(viewTypeNameLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY20).setText(TestViewTypeUtils.getViewTypeName(viewVo.getViewType()));
         viewTypeNameLabel.addMouseListener(new CardInnerMouseAdapter());
         viewTypeNameLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
 
@@ -140,7 +140,7 @@ public class TestEditorCard extends Composite {
         serialNumberLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
 
         final Label viewDescriptionLabel = new Label(inner, SWT.WRAP);
-        FormDataSet.attach(viewDescriptionLabel).atLeft(10).atTopTo(viewTypeNameLabel, 10).atRight(10).atBottomTo(serialNumberLabel, 10);
+        FormDataSet.attach(viewDescriptionLabel).atLeft(10).atTopTo(viewTypeNameLabel, 5).atRight(10).atBottomTo(serialNumberLabel, 5);
         LabelSet.decorate(viewDescriptionLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(viewVo.getViewDescription());
         viewDescriptionLabel.addMouseListener(new CardInnerMouseAdapter());
         viewDescriptionLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());

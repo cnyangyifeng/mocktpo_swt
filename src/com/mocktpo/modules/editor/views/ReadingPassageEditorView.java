@@ -75,7 +75,6 @@ public class ReadingPassageEditorView extends SashTestEditorView {
         StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("heading"));
         KeyBindingSet.bind(headingTextWidget).selectAll();
         headingTextWidget.addModifyListener(new HeadingTextModifyListener());
-        headingTextWidget.setSelection(headingTextWidget.getText().length());
         headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel passagePreLabel = new CLabel(left, SWT.NONE);
