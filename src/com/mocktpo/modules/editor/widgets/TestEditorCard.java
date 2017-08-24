@@ -28,7 +28,7 @@ public class TestEditorCard extends Composite {
     /* Constants */
 
     private static final int TEST_EDITOR_CARD_WIDTH = 192;
-    private static final int TEST_EDITOR_CARD_HEIGHT = 120;
+    private static final int TEST_EDITOR_CARD_HEIGHT = 160;
 
     /* Logger and Messages */
 
@@ -140,12 +140,6 @@ public class TestEditorCard extends Composite {
         serialNumberLabel.addMouseListener(new CardInnerMouseAdapter());
         serialNumberLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
 
-        viewDescriptionLabel = new Label(inner, SWT.WRAP);
-        FormDataSet.attach(viewDescriptionLabel).atLeft(10).atTopTo(viewTypeNameLabel, 5).atRight(10).atBottomTo(serialNumberLabel, 5);
-        LabelSet.decorate(viewDescriptionLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(viewVo.getViewDescription());
-        viewDescriptionLabel.addMouseListener(new CardInnerMouseAdapter());
-        viewDescriptionLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
-
         trashButton = new ImageButton(inner, SWT.NONE, MT.IMAGE_SYSTEM_TRASH, MT.IMAGE_SYSTEM_TRASH_HOVER);
         FormDataSet.attach(trashButton).atRight(10).atBottom(10);
         trashButton.addMouseListener(new TrashButtonMouseAdapter());
@@ -175,6 +169,12 @@ public class TestEditorCard extends Composite {
                 bringForwardButton.setVisible(true);
             }
         }
+
+        viewDescriptionLabel = new Label(inner, SWT.WRAP);
+        FormDataSet.attach(viewDescriptionLabel).atLeft(10).atTopTo(viewTypeNameLabel, 5).atRight(10).atBottomTo(trashButton, 5);
+        LabelSet.decorate(viewDescriptionLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(viewVo.getViewDescription());
+        viewDescriptionLabel.addMouseListener(new CardInnerMouseAdapter());
+        viewDescriptionLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
     }
 
     public void updateDescription(String text) {

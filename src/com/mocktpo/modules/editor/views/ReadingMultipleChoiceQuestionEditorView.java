@@ -29,6 +29,11 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
     private StyledText headingTextWidget;
     private StyledText passageTextWidget;
+    private StyledText questionTextWidget;
+    private StyledText choiceATextWidget;
+    private StyledText choiceBTextWidget;
+    private StyledText choiceCTextWidget;
+    private StyledText choiceDTextWidget;
 
     /*
      * ==================================================
@@ -103,29 +108,29 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         CompositeSet.decorate(rightBody).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         FormLayoutSet.layout(rightBody).marginWidth(20).marginHeight(20).spacing(10);
 
-        final CLabel headingPreLabel = new CLabel(left, SWT.NONE);
-        FormDataSet.attach(headingPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(headingPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("heading") + MT.STRING_TAB + MT.STRING_STAR);
+        final CLabel questionPreLabel = new CLabel(rightBody, SWT.NONE);
+        FormDataSet.attach(questionPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(questionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("question") + MT.STRING_TAB + MT.STRING_STAR);
 
-        headingTextWidget = new StyledText(left, SWT.SINGLE);
-        FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("heading"));
-        KeyBindingSet.bind(headingTextWidget).selectAll();
-        headingTextWidget.addModifyListener(new HeadingTextModifyListener());
-        headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        questionTextWidget = new StyledText(rightBody, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
+        FormDataSet.attach(questionTextWidget).atLeft().atTopTo(questionPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT * 3);
+        StyledTextSet.decorate(questionTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("question"));
+        KeyBindingSet.bind(questionTextWidget).selectAll();
+        questionTextWidget.addModifyListener(new QuestionTextModifyListener());
 
-        final CLabel passagePreLabel = new CLabel(left, SWT.NONE);
-        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("passage") + MT.STRING_TAB + MT.STRING_STAR);
+        final CLabel choiceAPreLabel = new CLabel(rightBody, SWT.NONE);
+        FormDataSet.attach(choiceAPreLabel).atLeft().atTopTo(questionTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(choiceAPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("choice_a") + MT.STRING_TAB + MT.STRING_STAR);
 
-        passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(passagePreLabel).atRight().atBottom();
-        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("passage"));
-        KeyBindingSet.bind(passageTextWidget).selectAll();
-        passageTextWidget.addModifyListener(new PassageTextModifyListener());
-        passageTextWidget.addSelectionListener(new PassageTextSelectionListener());
+        choiceATextWidget = new StyledText(rightBody, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
+        FormDataSet.attach(choiceATextWidget).atLeft().atTopTo(choiceAPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT * 3);
+        StyledTextSet.decorate(choiceATextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("passage"));
+        KeyBindingSet.bind(choiceATextWidget).selectAll();
+        choiceATextWidget.addModifyListener(new ChoiceATextModifyListener());
+        choiceATextWidget.addSelectionListener(new PassageTextSelectionListener());
 
         rsc.setContent(rightBody);
+        rsc.setMinSize(rightBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
     }
 
     /*
@@ -140,8 +145,6 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
-            layer.updateDescription(headingTextWidget.getText());
-
             StyledTextVo headingTextVo = new StyledTextVo();
             headingTextVo.setText(headingTextWidget.getText());
             viewVo.setStyledTextVo("heading", headingTextVo);
@@ -167,6 +170,30 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
             logger.info("selection: {}, selection text: {}, selection background: {}, selection count: {}", passageTextWidget.getSelection(), passageTextWidget.getSelectionText(), passageTextWidget.getSelectionBackground(), passageTextWidget.getSelectionCount());
             StyledTextVo passageTextVo = viewVo.getStyledTextVo("passage");
             StyleRangeUtils.decorate(passageTextWidget, passageTextVo.getStyles());
+        }
+    }
+
+    private class QuestionTextModifyListener implements ModifyListener {
+
+        @Override
+        public void modifyText(ModifyEvent e) {
+            layer.updateDescription(questionTextWidget.getText());
+
+            StyledTextVo questionTextVo = new StyledTextVo();
+            questionTextVo.setText(questionTextWidget.getText());
+            viewVo.setStyledTextVo("question", questionTextVo);
+            page.edit();
+        }
+    }
+
+    private class ChoiceATextModifyListener implements ModifyListener {
+
+        @Override
+        public void modifyText(ModifyEvent e) {
+            StyledTextVo passageTextVo = new StyledTextVo();
+            passageTextVo.setText(choiceATextWidget.getText());
+            viewVo.setStyledTextVo("choiceA", passageTextVo);
+            page.edit();
         }
     }
 }
