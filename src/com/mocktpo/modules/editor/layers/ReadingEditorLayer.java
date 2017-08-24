@@ -245,9 +245,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
             views.add(view);
         }
 
-        if (currentViewId >= 0) {
-            check(currentViewId);
-        }
+        check(currentViewId);
         setRefreshRequired(false);
     }
 

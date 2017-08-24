@@ -145,14 +145,19 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
      */
 
     public void check(int viewId) {
-        TestEditorCard previousCard = cards.get(currentViewId);
-        previousCard.setChecked(false);
-        currentViewId = viewId;
-        TestEditorCard currentCard = cards.get(currentViewId);
-        currentCard.setChecked(true);
+        if (viewId >= 0) {
+            TestEditorCard previousCard = cards.get(currentViewId);
+            previousCard.setChecked(false);
+            currentViewId = viewId;
+            TestEditorCard currentCard = cards.get(currentViewId);
+            currentCard.setChecked(true);
 
-        rightViewStack.topControl = views.get(currentViewId);
-        right.layout();
+            rightViewStack.topControl = views.get(currentViewId);
+            right.layout();
+        } else {
+            rightViewStack.topControl = null;
+            right.layout();
+        }
     }
 
     public boolean isFirstCardChecked() {
