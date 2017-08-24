@@ -122,6 +122,11 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
     protected abstract void updateRight();
 
+    public void updateDescription(String text) {
+        TestEditorCard card = cards.get(currentViewId);
+        card.updateDescription(text);
+    }
+
     /*
      * ==================================================
      *

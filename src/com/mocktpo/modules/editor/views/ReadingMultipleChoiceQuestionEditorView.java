@@ -140,6 +140,8 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
+            layer.updateDescription(headingTextWidget.getText());
+
             StyledTextVo headingTextVo = new StyledTextVo();
             headingTextVo.setText(headingTextWidget.getText());
             viewVo.setStyledTextVo("heading", headingTextVo);
@@ -159,7 +161,6 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
     }
 
     private class PassageTextSelectionListener extends SelectionAdapter {
-
 
         @Override
         public void widgetSelected(SelectionEvent e) {

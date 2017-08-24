@@ -127,6 +127,8 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
         @Override
         public void modifyText(ModifyEvent e) {
+            layer.updateDescription(headingTextWidget.getText());
+
             StyledTextVo headingTextVo = new StyledTextVo();
             headingTextVo.setText(headingTextWidget.getText());
             viewVo.setStyledTextVo("heading", headingTextVo);

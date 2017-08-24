@@ -22,9 +22,10 @@ public abstract class TestEditorView extends Composite {
 
     protected Display d;
 
-    /* Page */
+    /* Page and layer */
 
     protected TestEditorPage page;
+    protected SashTestEditorLayer layer;
 
     /* Properties */
 
@@ -41,6 +42,7 @@ public abstract class TestEditorView extends Composite {
     public TestEditorView(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
         super(layer.getRight(), style);
         this.d = layer.getDisplay();
+        this.layer = layer;
         this.page = layer.getTestEditorPage();
         initViewVo(viewVo);
         init();

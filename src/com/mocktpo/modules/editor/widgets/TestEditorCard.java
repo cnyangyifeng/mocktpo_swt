@@ -42,6 +42,7 @@ public class TestEditorCard extends Composite {
     /* Widgets */
 
     private Composite inner;
+    private Label viewDescriptionLabel;
     private ImageButton trashButton;
     private ImageButton sendBackwardButton;
     private ImageButton bringForwardButton;
@@ -139,7 +140,7 @@ public class TestEditorCard extends Composite {
         serialNumberLabel.addMouseListener(new CardInnerMouseAdapter());
         serialNumberLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
 
-        final Label viewDescriptionLabel = new Label(inner, SWT.WRAP);
+        viewDescriptionLabel = new Label(inner, SWT.WRAP);
         FormDataSet.attach(viewDescriptionLabel).atLeft(10).atTopTo(viewTypeNameLabel, 5).atRight(10).atBottomTo(serialNumberLabel, 5);
         LabelSet.decorate(viewDescriptionLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(viewVo.getViewDescription());
         viewDescriptionLabel.addMouseListener(new CardInnerMouseAdapter());
@@ -174,6 +175,11 @@ public class TestEditorCard extends Composite {
                 bringForwardButton.setVisible(true);
             }
         }
+    }
+
+    public void updateDescription(String text) {
+        viewDescriptionLabel.setText(text);
+        update();
     }
 
     /*
