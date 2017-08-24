@@ -99,7 +99,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
         headingTranslationTextWidget = new StyledText(right, SWT.SINGLE);
         FormDataSet.attach(headingTranslationTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(headingTranslationTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("localizedHeading"));
+        StyledTextSet.decorate(headingTranslationTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("headingTranslation"));
         KeyBindingSet.bind(headingTranslationTextWidget).selectAll();
         headingTranslationTextWidget.addModifyListener(new HeadingTranslationTextModifyListener());
         headingTranslationTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -110,7 +110,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
         passageTranslationTextWidget = new StyledText(right, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(passageTranslationTextWidget).atLeft().atTopTo(passagePreLabel).atRight().atBottom();
-        StyledTextSet.decorate(passageTranslationTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("localizedPassage"));
+        StyledTextSet.decorate(passageTranslationTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("passageTranslation"));
         KeyBindingSet.bind(passageTranslationTextWidget).selectAll();
         passageTranslationTextWidget.addModifyListener(new PassageTranslationTextWidgetTextModifyListener());
     }
