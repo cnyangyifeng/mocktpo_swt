@@ -29,9 +29,8 @@ public class WindowUtils {
     }
 
     public static void setMinimumWindowSize(Shell s) {
-        Point p = ScreenUtils.getViewPort(s.getDisplay());
-        int reserved = 40;
-        s.setMinimumSize(p.x + reserved, p.y);
+        Point p = ScreenUtils.getClientSize(s.getDisplay());
+        s.setMinimumSize(p.x / 2, p.y / 2);
     }
 
     public static void setModalWindowBoundsToLeft(Shell s) {

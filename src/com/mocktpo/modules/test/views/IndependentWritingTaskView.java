@@ -92,12 +92,12 @@ public class IndependentWritingTaskView extends SashTestView {
     @Override
     public void updateLeft() {
         final StyledText directionsTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP);
-        FormDataSet.attach(directionsTextWidget).atLeft(10).atTop(10).atRight(10).withWidth(ScreenUtils.getHalfClientWidth(d));
+        FormDataSet.attach(directionsTextWidget).atLeft(10).atTop(10).atRight(10);
         StyledTextSet.decorate(directionsTextWidget).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledTextContent("directions"));
         StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledTextStyles("directions"));
 
         final StyledText questionTextWidget = new StyledText(left, SWT.WRAP);
-        FormDataSet.attach(questionTextWidget).atLeftTo(directionsTextWidget, 0, SWT.LEFT).atTopTo(directionsTextWidget, 10).atRightTo(directionsTextWidget, 0, SWT.RIGHT).withWidth(ScreenUtils.getHalfClientWidth(d));
+        FormDataSet.attach(questionTextWidget).atLeftTo(directionsTextWidget, 0, SWT.LEFT).atTopTo(directionsTextWidget, 10).atRightTo(directionsTextWidget, 0, SWT.RIGHT);
         StyledTextSet.decorate(questionTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("question"));
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
     }
@@ -120,9 +120,8 @@ public class IndependentWritingTaskView extends SashTestView {
         FormDataSet.attach(wordCountLabel).atTopTo(copyButton, 0, SWT.TOP).atRight(10).atBottomTo(pasteButton, 0, SWT.BOTTOM).withWidth(WORD_COUNT_LABEL_WIDTH);
         CLabelSet.decorate(wordCountLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setText(msgs.getString("word_count") + MT.STRING_SPACE + wordCount);
 
-        int reserved = 10;
         writingTextWidget = new StyledText(right, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-        FormDataSet.attach(writingTextWidget).atLeftTo(copyButton, 0, SWT.LEFT).atTopTo(pasteButton, 10).atBottom(10).withWidth(ScreenUtils.getHalfClientWidth(d) - reserved);
+        FormDataSet.attach(writingTextWidget).atLeftTo(copyButton, 0, SWT.LEFT).atTopTo(pasteButton, 10).atRight(10).atBottom(10);
         StyledTextSet.decorate(writingTextWidget).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5);
         writingTextWidget.addModifyListener(new WritingTextModifyListener());
         KeyBindingSet.bind(writingTextWidget).selectAll();

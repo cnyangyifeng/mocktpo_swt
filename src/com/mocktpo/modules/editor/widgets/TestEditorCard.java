@@ -28,7 +28,7 @@ public class TestEditorCard extends Composite {
     /* Constants */
 
     private static final int TEST_EDITOR_CARD_WIDTH = 192;
-    private static final int TEST_EDITOR_CARD_HEIGHT = 160;
+    private static final int TEST_EDITOR_CARD_HEIGHT = 168;
 
     /* Logger and Messages */
 

@@ -1,0 +1,4 @@
+1. 阅读题不能自动滚动至高亮区；
+2. Reading Fill in a Table Question 不能保存答案；
+3. Listening Sort Events Question 不能取消可选项然后重新排序；不能保存答案；
+4. Integrated Writing Task 当屏幕缩小时，Directions 由两行变为多行，影响显示效果；

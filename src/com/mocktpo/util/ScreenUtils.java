@@ -72,9 +72,4 @@ public class ScreenUtils {
     public static int getClientWidth(Display d) {
         return getClientSize(d).x;
     }
-
-    public static int getHalfClientWidth(Display d) {
-        int reserved = 40;
-        return getClientSize(d).x / 2 - reserved;
-    }
 }

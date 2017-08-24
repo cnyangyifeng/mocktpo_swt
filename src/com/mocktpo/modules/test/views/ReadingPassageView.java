@@ -8,6 +8,7 @@ import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
+import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.StyleRangeUtils;
 import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.modules.test.windows.MoreTextWindow;
@@ -15,10 +16,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.*;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ScrollBar;
 
@@ -77,26 +76,33 @@ public class ReadingPassageView extends SashTestView {
     }
 
     private void initRightBody() {
-        final ScrolledComposite sc = new ScrolledComposite(right, SWT.H_SCROLL | SWT.V_SCROLL);
-        FormDataSet.attach(sc).atLeft().atTopTo(indicator).atRight().atBottom();
-        sc.setExpandHorizontal(true);
-        sc.setExpandVertical(true);
-        sc.getVerticalBar().addSelectionListener(new TextScrollBarSelectionAdapter());
+        final ScrolledComposite rsc = new ScrolledComposite(right, SWT.V_SCROLL);
+        FormDataSet.attach(rsc).atLeft().atTopTo(indicator).atRight().atBottom();
+        rsc.setExpandHorizontal(true);
+        rsc.setExpandVertical(true);
+        rsc.getVerticalBar().addSelectionListener(new TextScrollBarSelectionAdapter());
 
-        final Composite c = new Composite(sc, SWT.NONE);
-        FormLayoutSet.layout(c).marginWidth(10).marginTop(20).marginBottom(100).spacing(20);
+        final Composite c = new Composite(rsc, SWT.NONE);
+        FormLayoutSet.layout(c).marginWidth(20).marginTop(20).marginBottom(0).spacing(20);
 
         final StyledText headingTextWidget = new StyledText(c, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTop().atRight();
         StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledTextContent("heading"));
 
-        final StyledText passageTextWidget = new StyledText(c, SWT.MULTI | SWT.WRAP);
-        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
+        final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atRight();
         StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
 
-        sc.setContent(c);
-        sc.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+        rsc.setContent(c);
+        rsc.addPaintListener(new PaintListener() {
+            @Override
+            public void paintControl(PaintEvent e) {
+                int wh = rsc.getBounds().width;
+                int hh = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
+                rsc.setMinSize(c.computeSize(wh, hh));
+            }
+        });
     }
 
     @Override

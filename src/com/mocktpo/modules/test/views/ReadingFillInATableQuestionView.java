@@ -306,7 +306,7 @@ public class ReadingFillInATableQuestionView extends StackTestView {
     }
 
     private void initRightBody() {
-        final ScrolledComposite sc = new ScrolledComposite(rightPassageView, SWT.H_SCROLL | SWT.V_SCROLL);
+        final ScrolledComposite sc = new ScrolledComposite(rightPassageView, SWT.V_SCROLL);
         FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
         sc.setExpandHorizontal(true);
         sc.setExpandVertical(true);
@@ -319,12 +319,12 @@ public class ReadingFillInATableQuestionView extends StackTestView {
         StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledTextContent("heading"));
 
         final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
+        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atRight().atBottom();
         StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
 
         sc.setContent(c);
-        sc.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+        sc.setMinSize(c.computeSize(c.getBounds().width, SWT.DEFAULT));
     }
 
     /*

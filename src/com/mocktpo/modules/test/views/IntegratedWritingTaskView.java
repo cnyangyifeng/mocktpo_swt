@@ -107,21 +107,28 @@ public class IntegratedWritingTaskView extends SashTestView2 {
 
     @Override
     public void updateLeft() {
-        final ScrolledComposite sc = new ScrolledComposite(left, SWT.H_SCROLL | SWT.V_SCROLL);
-        FormDataSet.attach(sc).atLeft().atTop().atRight().atBottom();
-        sc.setExpandHorizontal(true);
-        sc.setExpandVertical(true);
+        final ScrolledComposite lsc = new ScrolledComposite(left, SWT.V_SCROLL);
+        FormDataSet.attach(lsc).atLeft().atTop().atRight().atBottom();
+        lsc.setExpandHorizontal(true);
+        lsc.setExpandVertical(true);
 
-        final Composite c = new Composite(sc, SWT.NONE);
-        FormLayoutSet.layout(c).marginWidth(10).marginTop(10).marginBottom(100);
+        final Composite c = new Composite(lsc, SWT.NONE);
+        FormLayoutSet.layout(c).marginWidth(10).marginTop(10).marginBottom(0);
 
         final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(passageTextWidget).atLeft().atTop().atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
+        FormDataSet.attach(passageTextWidget).atLeft().atTop().atRight();
         StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
 
-        sc.setContent(c);
-        sc.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+        lsc.setContent(c);
+        lsc.addPaintListener(new PaintListener() {
+            @Override
+            public void paintControl(PaintEvent e) {
+                int wh = lsc.getBounds().width;
+                int hh = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
+                lsc.setMinSize(c.computeSize(wh, hh));
+            }
+        });
     }
 
     @Override
@@ -142,9 +149,8 @@ public class IntegratedWritingTaskView extends SashTestView2 {
         FormDataSet.attach(wordCountLabel).atTopTo(pasteButton, 0, SWT.TOP).atRight().atBottomTo(pasteButton, 0, SWT.BOTTOM).withWidth(WORD_COUNT_LABEL_WIDTH);
         CLabelSet.decorate(wordCountLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setText(msgs.getString("word_count") + MT.STRING_SPACE + wordCount);
 
-        int reserved = 15;
         writingTextWidget = new StyledText(right, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-        FormDataSet.attach(writingTextWidget).atLeftTo(copyButton, 0, SWT.LEFT).atTopTo(pasteButton).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d) - reserved);
+        FormDataSet.attach(writingTextWidget).atLeftTo(copyButton, 0, SWT.LEFT).atTopTo(pasteButton).atRight().atBottom();
         StyledTextSet.decorate(writingTextWidget).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5);
         writingTextWidget.addModifyListener(new WritingTextModifyListener());
         KeyBindingSet.bind(writingTextWidget).selectAll();

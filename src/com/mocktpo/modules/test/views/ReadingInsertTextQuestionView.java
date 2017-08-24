@@ -3,7 +3,6 @@ package com.mocktpo.modules.test.views;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.util.PersistenceUtils;
-import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -16,10 +15,7 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.ControlAdapter;
-import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 
@@ -28,7 +24,7 @@ public class ReadingInsertTextQuestionView extends SashTestView {
     /* Widgets */
 
     private CLabel indicator;
-    private ScrolledComposite rightScrolled;
+    private ScrolledComposite rsc;
     private StyledText passageTextWidget;
 
     /* Properties */
@@ -116,20 +112,20 @@ public class ReadingInsertTextQuestionView extends SashTestView {
     }
 
     private void initRightBody() {
-        rightScrolled = new ScrolledComposite(right, SWT.H_SCROLL | SWT.V_SCROLL);
-        FormDataSet.attach(rightScrolled).atLeft().atTopTo(indicator).atRight().atBottom();
-        rightScrolled.setExpandHorizontal(true);
-        rightScrolled.setExpandVertical(true);
+        rsc = new ScrolledComposite(right, SWT.V_SCROLL);
+        FormDataSet.attach(rsc).atLeft().atTopTo(indicator).atRight().atBottom();
+        rsc.setExpandHorizontal(true);
+        rsc.setExpandVertical(true);
 
-        final Composite c = new Composite(rightScrolled, SWT.NONE);
-        FormLayoutSet.layout(c).marginWidth(10).marginTop(20).marginBottom(100).spacing(20);
+        final Composite c = new Composite(rsc, SWT.NONE);
+        FormLayoutSet.layout(c).marginWidth(20).marginTop(20).marginBottom(0).spacing(20);
 
         final StyledText headingTextWidget = new StyledText(c, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTop().atRight();
         StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledTextContent("heading"));
 
         passageTextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
+        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atRight();
         StyledTextSet.decorate(passageTextWidget).setNoCaret().setCursor(MT.CURSOR_ARROW).setEditable(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
         passageTextWidget.addControlListener(new PassageTextControlAdapter());
@@ -137,8 +133,15 @@ public class ReadingInsertTextQuestionView extends SashTestView {
 
         updateWidgetsForAnswers();
 
-        rightScrolled.setContent(c);
-        rightScrolled.setMinSize(c.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+        rsc.setContent(c);
+        rsc.addPaintListener(new PaintListener() {
+            @Override
+            public void paintControl(PaintEvent e) {
+                int wh = rsc.getBounds().width;
+                int hh = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
+                rsc.setMinSize(c.computeSize(wh, hh));
+            }
+        });
     }
 
     /*
@@ -266,10 +269,10 @@ public class ReadingInsertTextQuestionView extends SashTestView {
         public void controlResized(ControlEvent e) {
             StyledText st = (StyledText) e.widget;
             Rectangle bounds = st.getBounds();
-            int quarter = rightScrolled.getBounds().height / 4;
+            int quarter = rsc.getBounds().height / 4;
             int offsetY = bounds.y + st.getLocationAtOffset(vo.getPassageOffset()).y;
             if (offsetY > quarter) {
-                rightScrolled.setOrigin(0, offsetY - quarter);
+                rsc.setOrigin(0, offsetY - quarter);
             }
         }
     }

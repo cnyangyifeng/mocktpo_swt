@@ -88,7 +88,7 @@ public class SpeakingReadingPassageView extends ResponsiveTestView {
         StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM_BOLD).setText(vo.getStyledTextContent("heading"));
 
         final StyledText passageTextWidget = new StyledText(viewPort, SWT.WRAP);
-        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget, 20).atRight().atBottom().withWidth(ScreenUtils.getHalfClientWidth(d));
+        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget, 20).atRight().atBottom();
         StyledTextSet.decorate(passageTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
     }

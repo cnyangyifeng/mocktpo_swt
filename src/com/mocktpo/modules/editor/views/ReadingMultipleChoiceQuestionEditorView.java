@@ -17,10 +17,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.widgets.Composite;
 
 public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView {
@@ -104,33 +101,69 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         rsc.setExpandHorizontal(true);
         rsc.setExpandVertical(true);
 
-        final Composite rightBody = new Composite(rsc, SWT.NONE);
-        CompositeSet.decorate(rightBody).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-        FormLayoutSet.layout(rightBody).marginWidth(20).marginHeight(20).spacing(10);
+        final Composite c = new Composite(rsc, SWT.NONE);
+        CompositeSet.decorate(c).setBackground(MT.COLOR_WINDOW_BACKGROUND);
+        FormLayoutSet.layout(c).marginWidth(20).marginHeight(20).spacing(10);
 
-        final CLabel questionPreLabel = new CLabel(rightBody, SWT.NONE);
+        final CLabel questionPreLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(questionPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(questionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("question") + MT.STRING_TAB + MT.STRING_STAR);
 
-        questionTextWidget = new StyledText(rightBody, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-        FormDataSet.attach(questionTextWidget).atLeft().atTopTo(questionPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT * 3);
+        questionTextWidget = new StyledText(c, SWT.BORDER | SWT.WRAP);
+        FormDataSet.attach(questionTextWidget).atLeft().atTopTo(questionPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(questionTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("question"));
         KeyBindingSet.bind(questionTextWidget).selectAll();
         questionTextWidget.addModifyListener(new QuestionTextModifyListener());
 
-        final CLabel choiceAPreLabel = new CLabel(rightBody, SWT.NONE);
+        final CLabel choiceAPreLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(choiceAPreLabel).atLeft().atTopTo(questionTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(choiceAPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("choice_a") + MT.STRING_TAB + MT.STRING_STAR);
 
-        choiceATextWidget = new StyledText(rightBody, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-        FormDataSet.attach(choiceATextWidget).atLeft().atTopTo(choiceAPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT * 3);
-        StyledTextSet.decorate(choiceATextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("passage"));
+        choiceATextWidget = new StyledText(c, SWT.BORDER | SWT.WRAP);
+        FormDataSet.attach(choiceATextWidget).atLeft().atTopTo(choiceAPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(choiceATextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("choiceA"));
         KeyBindingSet.bind(choiceATextWidget).selectAll();
         choiceATextWidget.addModifyListener(new ChoiceATextModifyListener());
-        choiceATextWidget.addSelectionListener(new PassageTextSelectionListener());
 
-        rsc.setContent(rightBody);
-        rsc.setMinSize(rightBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+        final CLabel choiceBPreLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(choiceBPreLabel).atLeft().atTopTo(choiceATextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(choiceBPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("choice_b") + MT.STRING_TAB + MT.STRING_STAR);
+
+        choiceBTextWidget = new StyledText(c, SWT.BORDER | SWT.WRAP);
+        FormDataSet.attach(choiceBTextWidget).atLeft().atTopTo(choiceBPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(choiceBTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("choiceB"));
+        KeyBindingSet.bind(choiceBTextWidget).selectAll();
+        choiceBTextWidget.addModifyListener(new ChoiceBTextModifyListener());
+
+        final CLabel choiceCPreLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(choiceCPreLabel).atLeft().atTopTo(choiceBTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(choiceCPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("choice_c") + MT.STRING_TAB + MT.STRING_STAR);
+
+        choiceCTextWidget = new StyledText(c, SWT.BORDER | SWT.WRAP);
+        FormDataSet.attach(choiceCTextWidget).atLeft().atTopTo(choiceCPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(choiceCTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("choiceC"));
+        KeyBindingSet.bind(choiceCTextWidget).selectAll();
+        choiceCTextWidget.addModifyListener(new ChoiceCTextModifyListener());
+
+        final CLabel choiceDPreLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(choiceDPreLabel).atLeft().atTopTo(choiceCTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(choiceDPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("choice_d") + MT.STRING_TAB + MT.STRING_STAR);
+
+        choiceDTextWidget = new StyledText(c, SWT.BORDER | SWT.WRAP);
+        FormDataSet.attach(choiceDTextWidget).atLeft().atTopTo(choiceDPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(choiceDTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("choiceD"));
+        KeyBindingSet.bind(choiceDTextWidget).selectAll();
+        choiceDTextWidget.addModifyListener(new ChoiceDTextModifyListener());
+
+        rsc.setContent(c);
+        rsc.addPaintListener(new PaintListener() {
+            @Override
+            public void paintControl(PaintEvent e) {
+                int wh = rsc.getBounds().width;
+                int hh = choiceDTextWidget.getBounds().y + choiceDTextWidget.getBounds().height + 100;
+                rsc.setMinSize(c.computeSize(wh, hh));
+            }
+        });
     }
 
     /*
@@ -190,9 +223,42 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
-            StyledTextVo passageTextVo = new StyledTextVo();
-            passageTextVo.setText(choiceATextWidget.getText());
-            viewVo.setStyledTextVo("choiceA", passageTextVo);
+            StyledTextVo choiceATextVo = new StyledTextVo();
+            choiceATextVo.setText(choiceATextWidget.getText());
+            viewVo.setStyledTextVo("choiceA", choiceATextVo);
+            page.edit();
+        }
+    }
+
+    private class ChoiceBTextModifyListener implements ModifyListener {
+
+        @Override
+        public void modifyText(ModifyEvent e) {
+            StyledTextVo choiceBTextVo = new StyledTextVo();
+            choiceBTextVo.setText(choiceBTextWidget.getText());
+            viewVo.setStyledTextVo("choiceB", choiceBTextVo);
+            page.edit();
+        }
+    }
+
+    private class ChoiceCTextModifyListener implements ModifyListener {
+
+        @Override
+        public void modifyText(ModifyEvent e) {
+            StyledTextVo choiceCTextVo = new StyledTextVo();
+            choiceCTextVo.setText(choiceCTextWidget.getText());
+            viewVo.setStyledTextVo("choiceC", choiceCTextVo);
+            page.edit();
+        }
+    }
+
+    private class ChoiceDTextModifyListener implements ModifyListener {
+
+        @Override
+        public void modifyText(ModifyEvent e) {
+            StyledTextVo choiceDTextVo = new StyledTextVo();
+            choiceDTextVo.setText(choiceDTextWidget.getText());
+            viewVo.setStyledTextVo("choiceD", choiceDTextVo);
             page.edit();
         }
     }

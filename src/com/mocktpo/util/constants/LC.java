@@ -55,6 +55,7 @@ public interface LC {
     /* Editor Module */
 
     int SINGLE_LINE_TEXT_WIDGET_HEIGHT = 22;
+    int TRIPLE_LINES_TEXT_WIDGET_HEIGHT = 60;
 
     /*
      * ==================================================

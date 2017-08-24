@@ -220,7 +220,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
         leftBody.layout();
         lsc.setMinSize(leftBody.computeSize(SWT.DEFAULT, SWT.DEFAULT));
         if (currentViewId >= 0) {
-            lsc.setOrigin(0, cards.get(currentViewId).getLocation().y - 160); // 20+120+20
+            lsc.setOrigin(0, cards.get(currentViewId).getLocation().y - 208); // 20+120+20
         }
 
         /*
