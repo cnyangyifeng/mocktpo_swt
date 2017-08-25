@@ -15,7 +15,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.*;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -31,6 +34,7 @@ public class ReadingMultipleChoiceQuestionView extends SashTestView {
     /* Properties */
 
     private int answer;
+    private boolean autoScrollRequired;
 
     /*
      * ==================================================
@@ -42,6 +46,7 @@ public class ReadingMultipleChoiceQuestionView extends SashTestView {
 
     public ReadingMultipleChoiceQuestionView(TestPage page, int style) {
         super(page, style);
+        this.autoScrollRequired = true;
     }
 
     /*
@@ -193,7 +198,6 @@ public class ReadingMultipleChoiceQuestionView extends SashTestView {
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(headingTextWidget).atRight();
         StyledTextSet.decorate(passageTextWidget).setNoCaret().setCursor(MT.CURSOR_ARROW).setEditable(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
-        passageTextWidget.addControlListener(new ParagraphTextControlAdapter());
 
         rsc.setContent(c);
         rsc.addPaintListener(new PaintListener() {
@@ -202,6 +206,15 @@ public class ReadingMultipleChoiceQuestionView extends SashTestView {
                 int wh = rsc.getBounds().width;
                 int hh = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
                 rsc.setMinSize(c.computeSize(wh, hh));
+                if (autoScrollRequired) {
+                    Rectangle bounds = passageTextWidget.getBounds();
+                    int quarter = rsc.getBounds().height / 4;
+                    int offsetY = bounds.y + passageTextWidget.getLocationAtOffset(vo.getPassageOffset()).y;
+                    if (offsetY > quarter) {
+                        rsc.setOrigin(0, offsetY - quarter);
+                    }
+                    autoScrollRequired = false;
+                }
             }
         });
     }
@@ -284,20 +297,6 @@ public class ReadingMultipleChoiceQuestionView extends SashTestView {
             logger.info("[Reading Question {}] Answer: {}", vo.getQuestionNumberInSection(), answer);
             answerText = Integer.toString(answer);
             PersistenceUtils.saveAnswer(ReadingMultipleChoiceQuestionView.this, answerText);
-        }
-    }
-
-    private class ParagraphTextControlAdapter extends ControlAdapter {
-
-        @Override
-        public void controlResized(ControlEvent e) {
-            StyledText st = (StyledText) e.widget;
-            Rectangle bounds = st.getBounds();
-            int quarter = rsc.getBounds().height / 4;
-            int offsetY = bounds.y + st.getLocationAtOffset(vo.getPassageOffset()).y;
-            if (offsetY > quarter) {
-                rsc.setOrigin(0, offsetY - quarter);
-            }
         }
     }
 }
