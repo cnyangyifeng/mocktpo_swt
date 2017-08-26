@@ -189,8 +189,14 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_ZIP, ImageUtils.load(d, "sys_export_as_zip"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_DISABLED, ImageUtils.load(d, "sys_export_as_zip_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_HOVER, ImageUtils.load(d, "sys_export_as_zip_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_HIGHLIGHT, ImageUtils.load(d, "sys_highlight"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_HIGHLIGHT_DISABLED, ImageUtils.load(d, "sys_highlight_d"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_HIGHLIGHT_HOVER, ImageUtils.load(d, "sys_highlight_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_IMPORT, ImageUtils.load(d, "sys_import"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_IMPORT_HOVER, ImageUtils.load(d, "sys_import_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_MARK_PARAGRAPHS, ImageUtils.load(d, "sys_mark_paragraphs"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_DISABLED, ImageUtils.load(d, "sys_mark_paragraphs_d"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_HOVER, ImageUtils.load(d, "sys_mark_paragraphs_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_CATEGORIZE_OBJECTS_QUESTION, ImageUtils.load(d, "sys_new_categorize_objects_question"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_CATEGORIZE_OBJECTS_QUESTION_HOVER, ImageUtils.load(d, "sys_new_categorize_objects_question_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION, ImageUtils.load(d, "sys_new_fill_in_a_table_question"));

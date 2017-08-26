@@ -2,6 +2,7 @@ package com.mocktpo.modules.editor.views;
 
 import com.mocktpo.modules.editor.layers.SashTestEditorLayer;
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.KeyBindingSet;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -81,11 +82,19 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel passagePreLabel = new CLabel(left, SWT.NONE);
-        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("passage") + MT.STRING_TAB + MT.STRING_STAR);
 
+        final ImageButton markParagraphsButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_HOVER, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_DISABLED);
+        FormDataSet.attach(markParagraphsButton).atLeft().atTopTo(passagePreLabel);
+        markParagraphsButton.addMouseListener(new MarkParagraphsButtonMouseListener());
+
+        final ImageButton highlightButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_HIGHLIGHT, MT.IMAGE_SYSTEM_HIGHLIGHT_HOVER, MT.IMAGE_SYSTEM_HIGHLIGHT_DISABLED);
+        FormDataSet.attach(highlightButton).atLeftTo(markParagraphsButton).atTopTo(passagePreLabel);
+        highlightButton.addMouseListener(new HighlightButtonMouseListener());
+
         passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(passagePreLabel).atRight().atBottom();
+        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(markParagraphsButton).atRight().atBottom();
         StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("passage"));
         KeyBindingSet.bind(passageTextWidget).selectAll();
         passageTextWidget.addModifyListener(new PassageTextModifyListener());
@@ -182,6 +191,22 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
             headingTextVo.setText(headingTextWidget.getText());
             viewVo.setStyledTextVo("heading", headingTextVo);
             page.edit();
+        }
+    }
+
+    private class MarkParagraphsButtonMouseListener extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            logger.info("mark paragraphs.");
+        }
+    }
+
+    private class HighlightButtonMouseListener extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            logger.info("highlight.");
         }
     }
 
