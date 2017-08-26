@@ -14,9 +14,7 @@ import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.custom.*;
 import org.eclipse.swt.events.*;
 import org.eclipse.swt.widgets.Composite;
 
@@ -91,6 +89,8 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("passage"));
         KeyBindingSet.bind(passageTextWidget).selectAll();
         passageTextWidget.addModifyListener(new PassageTextModifyListener());
+        passageTextWidget.addFocusListener(new PassageTextFocusListener());
+        passageTextWidget.addCaretListener(new PassageTextCaretListener());
         passageTextWidget.addSelectionListener(new PassageTextSelectionListener());
     }
 
@@ -193,6 +193,27 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
             passageTextVo.setText(passageTextWidget.getText());
             viewVo.setStyledTextVo("passage", passageTextVo);
             page.edit();
+        }
+    }
+
+    private class PassageTextFocusListener implements FocusListener {
+
+        @Override
+        public void focusGained(FocusEvent e) {
+            logger.info("focus gained.");
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            logger.info("focus lost.");
+        }
+    }
+
+    private class PassageTextCaretListener implements CaretListener {
+
+        @Override
+        public void caretMoved(CaretEvent e) {
+            logger.info("Passage Text Caret: {}", passageTextWidget.getCaretOffset());
         }
     }
 

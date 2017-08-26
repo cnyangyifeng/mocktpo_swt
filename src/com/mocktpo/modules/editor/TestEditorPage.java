@@ -11,6 +11,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 
 import java.util.ResourceBundle;
 import java.util.UUID;
@@ -85,6 +87,7 @@ public class TestEditorPage extends Composite {
 
     private void golbal() {
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
+        d.addFilter(SWT.KeyDown, new TestEditorPageKeyListener());
         stack = new StackLayout();
         this.setLayout(stack);
         toGeneralEditorLayer();
@@ -247,5 +250,23 @@ public class TestEditorPage extends Composite {
 
     public void setUnsaved(boolean unsaved) {
         this.unsaved = unsaved;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Listeners
+     *
+     * ==================================================
+     */
+
+    private class TestEditorPageKeyListener implements Listener {
+
+        @Override
+        public void handleEvent(Event e) {
+            if (e.stateMask == SWT.MOD1 && e.keyCode == 's') {
+                save();
+            }
+        }
     }
 }
