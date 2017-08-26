@@ -308,6 +308,7 @@ public interface MT {
      * ==================================================
      */
 
+    String STRING_ARROW = "➤";
     String STRING_CLOSED_BRACKET = ")";
     String STRING_COLON = ":";
     String STRING_COMMA = ",";

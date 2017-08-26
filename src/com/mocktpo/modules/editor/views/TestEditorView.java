@@ -29,7 +29,7 @@ public abstract class TestEditorView extends Composite {
 
     /* Properties */
 
-    protected TestViewVo viewVo;
+    protected TestViewVo vo;
 
     /*
      * ==================================================
@@ -57,7 +57,7 @@ public abstract class TestEditorView extends Composite {
      */
 
     private void initViewVo(TestViewVo viewVo) {
-        this.viewVo = viewVo;
+        this.vo = viewVo;
         updateTestViewVo();
     }
 

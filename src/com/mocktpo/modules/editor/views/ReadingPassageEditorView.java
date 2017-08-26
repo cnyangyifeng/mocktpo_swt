@@ -35,8 +35,8 @@ public class ReadingPassageEditorView extends SashTestEditorView {
      * ==================================================
      */
 
-    public ReadingPassageEditorView(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
-        super(layer, style, viewVo);
+    public ReadingPassageEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
+        super(layer, style, vo);
     }
 
     /*
@@ -49,8 +49,8 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
     @Override
     protected void updateTestViewVo() {
-        viewVo.setFirstPassage(true);
-        viewVo.setTimed(true);
+        vo.setFirstPassage(true);
+        vo.setTimed(true);
     }
 
     /*
@@ -72,7 +72,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
         headingTextWidget = new StyledText(left, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("heading"));
+        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("heading"));
         KeyBindingSet.bind(headingTextWidget).selectAll();
         headingTextWidget.addModifyListener(new HeadingTextModifyListener());
         headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -83,7 +83,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
         passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(passagePreLabel).atRight().atBottom();
-        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("passage"));
+        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("passage"));
         KeyBindingSet.bind(passageTextWidget).selectAll();
         passageTextWidget.addModifyListener(new PassageTextModifyListener());
     }
@@ -99,7 +99,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
         headingTranslationTextWidget = new StyledText(right, SWT.SINGLE);
         FormDataSet.attach(headingTranslationTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(headingTranslationTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("headingTranslation"));
+        StyledTextSet.decorate(headingTranslationTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("headingTranslation"));
         KeyBindingSet.bind(headingTranslationTextWidget).selectAll();
         headingTranslationTextWidget.addModifyListener(new HeadingTranslationTextModifyListener());
         headingTranslationTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -110,7 +110,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
         passageTranslationTextWidget = new StyledText(right, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(passageTranslationTextWidget).atLeft().atTopTo(passagePreLabel).atRight().atBottom();
-        StyledTextSet.decorate(passageTranslationTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("passageTranslation"));
+        StyledTextSet.decorate(passageTranslationTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("passageTranslation"));
         KeyBindingSet.bind(passageTranslationTextWidget).selectAll();
         passageTranslationTextWidget.addModifyListener(new PassageTranslationTextWidgetTextModifyListener());
     }
@@ -131,7 +131,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
             StyledTextVo headingTextVo = new StyledTextVo();
             headingTextVo.setText(headingTextWidget.getText());
-            viewVo.setStyledTextVo("heading", headingTextVo);
+            vo.setStyledTextVo("heading", headingTextVo);
             page.edit();
         }
     }
@@ -142,7 +142,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
         public void modifyText(ModifyEvent e) {
             StyledTextVo passageTextVo = new StyledTextVo();
             passageTextVo.setText(passageTextWidget.getText());
-            viewVo.setStyledTextVo("passage", passageTextVo);
+            vo.setStyledTextVo("passage", passageTextVo);
             page.edit();
         }
     }
@@ -153,7 +153,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
         public void modifyText(ModifyEvent e) {
             StyledTextVo localizedHeadingTextVo = new StyledTextVo();
             localizedHeadingTextVo.setText(headingTranslationTextWidget.getText());
-            viewVo.setStyledTextVo("headingTranslation", localizedHeadingTextVo);
+            vo.setStyledTextVo("headingTranslation", localizedHeadingTextVo);
             page.edit();
         }
     }
@@ -164,7 +164,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
         public void modifyText(ModifyEvent e) {
             StyledTextVo localizedPassageTextVo = new StyledTextVo();
             localizedPassageTextVo.setText(passageTranslationTextWidget.getText());
-            viewVo.setStyledTextVo("passageTranslation", localizedPassageTextVo);
+            vo.setStyledTextVo("passageTranslation", localizedPassageTextVo);
             page.edit();
         }
     }

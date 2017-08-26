@@ -12,19 +12,29 @@ import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.StyleRangeUtils;
 import com.mocktpo.util.widgets.StyledTextSet;
+import com.mocktpo.vo.StyleRangeVo;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.*;
+import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.*;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView {
 
     /* Widgets */
 
     private StyledText headingTextWidget;
+    private ImageButton markParagraphsButton;
+    private ImageButton highlightPassageButton;
     private StyledText passageTextWidget;
+    private ImageButton highlightQuestionButton;
     private StyledText questionTextWidget;
     private StyledText choiceATextWidget;
     private StyledText choiceBTextWidget;
@@ -39,8 +49,8 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
      * ==================================================
      */
 
-    public ReadingMultipleChoiceQuestionEditorView(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
-        super(layer, style, viewVo);
+    public ReadingMultipleChoiceQuestionEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
+        super(layer, style, vo);
     }
 
     /*
@@ -53,8 +63,8 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
     @Override
     protected void updateTestViewVo() {
-        viewVo.setFirstPassage(false);
-        viewVo.setTimed(true);
+        vo.setFirstPassage(false);
+        vo.setTimed(true);
     }
 
     /*
@@ -76,31 +86,32 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         headingTextWidget = new StyledText(left, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("heading"));
+        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("heading"));
         KeyBindingSet.bind(headingTextWidget).selectAll();
         headingTextWidget.addModifyListener(new HeadingTextModifyListener());
         headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel passagePreLabel = new CLabel(left, SWT.NONE);
-        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("passage") + MT.STRING_TAB + MT.STRING_STAR);
 
-        final ImageButton markParagraphsButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_HOVER, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_DISABLED);
+        markParagraphsButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_HOVER, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_DISABLED);
         FormDataSet.attach(markParagraphsButton).atLeft().atTopTo(passagePreLabel);
         markParagraphsButton.addMouseListener(new MarkParagraphsButtonMouseListener());
+        markParagraphsButton.setEnabled(false);
 
-        final ImageButton highlightButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_HIGHLIGHT, MT.IMAGE_SYSTEM_HIGHLIGHT_HOVER, MT.IMAGE_SYSTEM_HIGHLIGHT_DISABLED);
-        FormDataSet.attach(highlightButton).atLeftTo(markParagraphsButton).atTopTo(passagePreLabel);
-        highlightButton.addMouseListener(new HighlightButtonMouseListener());
+        highlightPassageButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_HIGHLIGHT, MT.IMAGE_SYSTEM_HIGHLIGHT_HOVER, MT.IMAGE_SYSTEM_HIGHLIGHT_DISABLED);
+        FormDataSet.attach(highlightPassageButton).atLeftTo(markParagraphsButton).atTopTo(passagePreLabel);
+        highlightPassageButton.addMouseListener(new HighlightPassageButtonMouseListener());
+        highlightPassageButton.setEnabled(false);
 
         passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(markParagraphsButton).atRight().atBottom();
-        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("passage"));
+        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("passage"));
+        StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
         KeyBindingSet.bind(passageTextWidget).selectAll();
         passageTextWidget.addModifyListener(new PassageTextModifyListener());
         passageTextWidget.addFocusListener(new PassageTextFocusListener());
-        passageTextWidget.addCaretListener(new PassageTextCaretListener());
-        passageTextWidget.addSelectionListener(new PassageTextSelectionListener());
     }
 
     @Override
@@ -118,11 +129,18 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         FormDataSet.attach(questionPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(questionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("question") + MT.STRING_TAB + MT.STRING_STAR);
 
+        highlightQuestionButton = new ImageButton(c, SWT.NONE, MT.IMAGE_SYSTEM_HIGHLIGHT, MT.IMAGE_SYSTEM_HIGHLIGHT_HOVER, MT.IMAGE_SYSTEM_HIGHLIGHT_DISABLED);
+        FormDataSet.attach(highlightQuestionButton).atLeftTo(markParagraphsButton).atTopTo(questionPreLabel);
+        highlightQuestionButton.addMouseListener(new HighlightQuestionButtonMouseListener());
+        highlightQuestionButton.setEnabled(false);
+
         questionTextWidget = new StyledText(c, SWT.BORDER | SWT.WRAP);
-        FormDataSet.attach(questionTextWidget).atLeft().atTopTo(questionPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(questionTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("question"));
+        FormDataSet.attach(questionTextWidget).atLeft().atTopTo(highlightQuestionButton).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(questionTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("question"));
+        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
         KeyBindingSet.bind(questionTextWidget).selectAll();
         questionTextWidget.addModifyListener(new QuestionTextModifyListener());
+        questionTextWidget.addFocusListener(new QuestionTextFocusListener());
 
         final CLabel choiceAPreLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(choiceAPreLabel).atLeft().atTopTo(questionTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
@@ -130,7 +148,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         choiceATextWidget = new StyledText(c, SWT.BORDER | SWT.WRAP);
         FormDataSet.attach(choiceATextWidget).atLeft().atTopTo(choiceAPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceATextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("choiceA"));
+        StyledTextSet.decorate(choiceATextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceA"));
         KeyBindingSet.bind(choiceATextWidget).selectAll();
         choiceATextWidget.addModifyListener(new ChoiceATextModifyListener());
 
@@ -140,7 +158,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         choiceBTextWidget = new StyledText(c, SWT.BORDER | SWT.WRAP);
         FormDataSet.attach(choiceBTextWidget).atLeft().atTopTo(choiceBPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceBTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("choiceB"));
+        StyledTextSet.decorate(choiceBTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceB"));
         KeyBindingSet.bind(choiceBTextWidget).selectAll();
         choiceBTextWidget.addModifyListener(new ChoiceBTextModifyListener());
 
@@ -150,7 +168,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         choiceCTextWidget = new StyledText(c, SWT.BORDER | SWT.WRAP);
         FormDataSet.attach(choiceCTextWidget).atLeft().atTopTo(choiceCPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceCTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("choiceC"));
+        StyledTextSet.decorate(choiceCTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceC"));
         KeyBindingSet.bind(choiceCTextWidget).selectAll();
         choiceCTextWidget.addModifyListener(new ChoiceCTextModifyListener());
 
@@ -160,7 +178,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         choiceDTextWidget = new StyledText(c, SWT.BORDER | SWT.WRAP);
         FormDataSet.attach(choiceDTextWidget).atLeft().atTopTo(choiceDPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceDTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(viewVo.getStyledTextContent("choiceD"));
+        StyledTextSet.decorate(choiceDTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceD"));
         KeyBindingSet.bind(choiceDTextWidget).selectAll();
         choiceDTextWidget.addModifyListener(new ChoiceDTextModifyListener());
 
@@ -189,7 +207,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         public void modifyText(ModifyEvent e) {
             StyledTextVo headingTextVo = new StyledTextVo();
             headingTextVo.setText(headingTextWidget.getText());
-            viewVo.setStyledTextVo("heading", headingTextVo);
+            vo.setStyledTextVo("heading", headingTextVo);
             page.edit();
         }
     }
@@ -198,15 +216,44 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void mouseDown(MouseEvent e) {
-            logger.info("mark paragraphs.");
+            String text = passageTextWidget.getText();
+            logger.info("before: {}", text);
+            for (int i = passageTextWidget.getCaretOffset() - 1; i >= 0; i--) {
+                if (text.charAt(i) == '\n') {
+                    if (text.charAt(i + 1) != MT.STRING_ARROW.charAt(0)) {
+                        passageTextWidget.setCaretOffset(i + 1);
+                        passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
+                    }
+                    break;
+                }
+                if (i == 0) {
+                    passageTextWidget.setCaretOffset(i);
+                    passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
+                    break;
+                }
+            }
+            text = passageTextWidget.getText();
+            logger.info("after: {}", text);
         }
     }
 
-    private class HighlightButtonMouseListener extends MouseAdapter {
+    private class HighlightPassageButtonMouseListener extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            logger.info("highlight.");
+            List<StyleRangeVo> styles = new ArrayList<StyleRangeVo>();
+            Point p = passageTextWidget.getSelectionRange();
+            styles.add(new StyleRangeVo(p.x, p.y, 0, 0, 91, false, null));
+            StyleRangeUtils.decorate(passageTextWidget, styles);
+            passageTextWidget.setSelection(p.x + p.y);
+
+            StyledTextVo passageTextVo = vo.getStyledTextVo("passage");
+            if (passageTextVo == null) {
+                passageTextVo = new StyledTextVo();
+            }
+            passageTextVo.setStyles(styles);
+            vo.setStyledTextVo("passage", passageTextVo);
+            page.edit();
         }
     }
 
@@ -214,9 +261,12 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
-            StyledTextVo passageTextVo = new StyledTextVo();
+            StyledTextVo passageTextVo = vo.getStyledTextVo("passage");
+            if (passageTextVo == null) {
+                passageTextVo = new StyledTextVo();
+            }
             passageTextVo.setText(passageTextWidget.getText());
-            viewVo.setStyledTextVo("passage", passageTextVo);
+            vo.setStyledTextVo("passage", passageTextVo);
             page.edit();
         }
     }
@@ -225,30 +275,34 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void focusGained(FocusEvent e) {
-            logger.info("focus gained.");
+            markParagraphsButton.setEnabled(true);
+            highlightPassageButton.setEnabled(true);
         }
 
         @Override
         public void focusLost(FocusEvent e) {
-            logger.info("focus lost.");
+            markParagraphsButton.setEnabled(false);
+            highlightPassageButton.setEnabled(false);
         }
     }
 
-    private class PassageTextCaretListener implements CaretListener {
+    private class HighlightQuestionButtonMouseListener extends MouseAdapter {
 
         @Override
-        public void caretMoved(CaretEvent e) {
-            logger.info("Passage Text Caret: {}", passageTextWidget.getCaretOffset());
-        }
-    }
+        public void mouseDown(MouseEvent e) {
+            List<StyleRangeVo> styles = new ArrayList<StyleRangeVo>();
+            Point p = questionTextWidget.getSelectionRange();
+            styles.add(new StyleRangeVo(p.x, p.y, 0, 0, 91, false, null));
+            StyleRangeUtils.decorate(questionTextWidget, styles);
+            questionTextWidget.setSelection(p.x + p.y);
 
-    private class PassageTextSelectionListener extends SelectionAdapter {
-
-        @Override
-        public void widgetSelected(SelectionEvent e) {
-            logger.info("selection: {}, selection text: {}, selection background: {}, selection count: {}", passageTextWidget.getSelection(), passageTextWidget.getSelectionText(), passageTextWidget.getSelectionBackground(), passageTextWidget.getSelectionCount());
-            StyledTextVo passageTextVo = viewVo.getStyledTextVo("passage");
-            StyleRangeUtils.decorate(passageTextWidget, passageTextVo.getStyles());
+            StyledTextVo questionTextVo = vo.getStyledTextVo("question");
+            if (questionTextVo == null) {
+                questionTextVo = new StyledTextVo();
+            }
+            questionTextVo.setStyles(styles);
+            vo.setStyledTextVo("question", questionTextVo);
+            page.edit();
         }
     }
 
@@ -258,10 +312,26 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         public void modifyText(ModifyEvent e) {
             layer.updateDescription(questionTextWidget.getText());
 
-            StyledTextVo questionTextVo = new StyledTextVo();
+            StyledTextVo questionTextVo = vo.getStyledTextVo("question");
+            if (questionTextVo == null) {
+                questionTextVo = new StyledTextVo();
+            }
             questionTextVo.setText(questionTextWidget.getText());
-            viewVo.setStyledTextVo("question", questionTextVo);
+            vo.setStyledTextVo("question", questionTextVo);
             page.edit();
+        }
+    }
+
+    private class QuestionTextFocusListener implements FocusListener {
+
+        @Override
+        public void focusGained(FocusEvent e) {
+            highlightQuestionButton.setEnabled(true);
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            highlightQuestionButton.setEnabled(false);
         }
     }
 
@@ -271,7 +341,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         public void modifyText(ModifyEvent e) {
             StyledTextVo choiceATextVo = new StyledTextVo();
             choiceATextVo.setText(choiceATextWidget.getText());
-            viewVo.setStyledTextVo("choiceA", choiceATextVo);
+            vo.setStyledTextVo("choiceA", choiceATextVo);
             page.edit();
         }
     }
@@ -282,7 +352,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         public void modifyText(ModifyEvent e) {
             StyledTextVo choiceBTextVo = new StyledTextVo();
             choiceBTextVo.setText(choiceBTextWidget.getText());
-            viewVo.setStyledTextVo("choiceB", choiceBTextVo);
+            vo.setStyledTextVo("choiceB", choiceBTextVo);
             page.edit();
         }
     }
@@ -293,7 +363,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         public void modifyText(ModifyEvent e) {
             StyledTextVo choiceCTextVo = new StyledTextVo();
             choiceCTextVo.setText(choiceCTextWidget.getText());
-            viewVo.setStyledTextVo("choiceC", choiceCTextVo);
+            vo.setStyledTextVo("choiceC", choiceCTextVo);
             page.edit();
         }
     }
@@ -304,7 +374,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         public void modifyText(ModifyEvent e) {
             StyledTextVo choiceDTextVo = new StyledTextVo();
             choiceDTextVo.setText(choiceDTextWidget.getText());
-            viewVo.setStyledTextVo("choiceD", choiceDTextVo);
+            vo.setStyledTextVo("choiceD", choiceDTextVo);
             page.edit();
         }
     }

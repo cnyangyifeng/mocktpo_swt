@@ -357,14 +357,18 @@ public abstract class TestEditorLayer extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             page.save();
-            if (!page.isFirstRun()) {
-                readingButton.setEnabled(true);
-                listeningButton.setEnabled(true);
-                speakingButton.setEnabled(true);
-                writingButton.setEnabled(true);
-                previewButton.setEnabled(true);
-                exportAsZipButton.setEnabled(true);
-            }
+            enableControlButtons();
+        }
+    }
+
+    public void enableControlButtons() {
+        if (!page.isFirstRun()) {
+            readingButton.setEnabled(true);
+            listeningButton.setEnabled(true);
+            speakingButton.setEnabled(true);
+            writingButton.setEnabled(true);
+            previewButton.setEnabled(true);
+            exportAsZipButton.setEnabled(true);
         }
     }
 

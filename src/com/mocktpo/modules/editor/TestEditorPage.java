@@ -266,6 +266,7 @@ public class TestEditorPage extends Composite {
         public void handleEvent(Event e) {
             if (e.stateMask == SWT.MOD1 && e.keyCode == 's') {
                 save();
+                generalEditorLayer.enableControlButtons();
             }
         }
     }
