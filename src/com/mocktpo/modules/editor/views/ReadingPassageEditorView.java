@@ -129,7 +129,10 @@ public class ReadingPassageEditorView extends SashTestEditorView {
         public void modifyText(ModifyEvent e) {
             layer.updateDescription(headingTextWidget.getText());
 
-            StyledTextVo headingTextVo = new StyledTextVo();
+            StyledTextVo headingTextVo = vo.getStyledTextVo("heading");
+            if (headingTextVo == null) {
+                headingTextVo = new StyledTextVo();
+            }
             headingTextVo.setText(headingTextWidget.getText());
             vo.setStyledTextVo("heading", headingTextVo);
             page.edit();
@@ -140,7 +143,11 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
         @Override
         public void modifyText(ModifyEvent e) {
-            StyledTextVo passageTextVo = new StyledTextVo();
+
+            StyledTextVo passageTextVo = vo.getStyledTextVo("passage");
+            if (passageTextVo == null) {
+                passageTextVo = new StyledTextVo();
+            }
             passageTextVo.setText(passageTextWidget.getText());
             vo.setStyledTextVo("passage", passageTextVo);
             page.edit();
@@ -151,9 +158,12 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
         @Override
         public void modifyText(ModifyEvent e) {
-            StyledTextVo localizedHeadingTextVo = new StyledTextVo();
-            localizedHeadingTextVo.setText(headingTranslationTextWidget.getText());
-            vo.setStyledTextVo("headingTranslation", localizedHeadingTextVo);
+            StyledTextVo headingTranslatioinVo = vo.getStyledTextVo("headingTranslatioin");
+            if (headingTranslatioinVo == null) {
+                headingTranslatioinVo = new StyledTextVo();
+            }
+            headingTranslatioinVo.setText(headingTranslationTextWidget.getText());
+            vo.setStyledTextVo("headingTranslation", headingTranslatioinVo);
             page.edit();
         }
     }
@@ -162,9 +172,12 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
         @Override
         public void modifyText(ModifyEvent e) {
-            StyledTextVo localizedPassageTextVo = new StyledTextVo();
-            localizedPassageTextVo.setText(passageTranslationTextWidget.getText());
-            vo.setStyledTextVo("passageTranslation", localizedPassageTextVo);
+            StyledTextVo passageTranslationVo = vo.getStyledTextVo("passageTranslation");
+            if (passageTranslationVo == null) {
+                passageTranslationVo = new StyledTextVo();
+            }
+            passageTranslationVo.setText(passageTranslationTextWidget.getText());
+            vo.setStyledTextVo("passageTranslation", passageTranslationVo);
             page.edit();
         }
     }

@@ -308,10 +308,11 @@ public interface MT {
      * ==================================================
      */
 
-    String STRING_ARROW = "➤";
+    String STRING_ARROW = "➤"; // \ \u27a4
     String STRING_CLOSED_BRACKET = ")";
     String STRING_COLON = ":";
     String STRING_COMMA = ",";
+    String STRING_LINEFEED = "\n"; // LF, \\u00a
     String STRING_OF = "of";
     String STRING_OPEN_BRACKET = "(";
     String STRING_PERCENTAGE = "%";
@@ -321,7 +322,7 @@ public interface MT {
     String STRING_SPACE = " ";
     String STRING_SQUARE = "\u2588";
     String STRING_STAR = "*";
-    String STRING_TAB = "\t";
+    String STRING_TAB = "\t"; // HT, Horizontal Tab, \\u009
 
     /*
      * ==================================================

@@ -8,10 +8,7 @@ import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.CLabelSet;
-import com.mocktpo.util.widgets.CompositeSet;
-import com.mocktpo.util.widgets.StyleRangeUtils;
-import com.mocktpo.util.widgets.StyledTextSet;
+import com.mocktpo.util.widgets.*;
 import com.mocktpo.vo.StyleRangeVo;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
@@ -22,9 +19,9 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.*;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView {
 
@@ -40,6 +37,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
     private StyledText choiceBTextWidget;
     private StyledText choiceCTextWidget;
     private StyledText choiceDTextWidget;
+    private Label footnoteLabel;
 
     /*
      * ==================================================
@@ -182,15 +180,76 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         KeyBindingSet.bind(choiceDTextWidget).selectAll();
         choiceDTextWidget.addModifyListener(new ChoiceDTextModifyListener());
 
+        final CLabel footnotePreLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(footnotePreLabel).atLeft().atTopTo(choiceDTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(footnotePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("footnote"));
+
+        footnoteLabel = new Label(c, SWT.NONE);
+        FormDataSet.attach(footnoteLabel).atLeft().atTopTo(footnotePreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        LabelSet.decorate(footnoteLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setText(vo.getStyledTextContent("footnote"));
+
         rsc.setContent(c);
         rsc.addPaintListener(new PaintListener() {
             @Override
             public void paintControl(PaintEvent e) {
                 int wh = rsc.getBounds().width;
-                int hh = choiceDTextWidget.getBounds().y + choiceDTextWidget.getBounds().height + 100;
+                int hh = footnoteLabel.getBounds().y + footnoteLabel.getBounds().height + 100;
                 rsc.setMinSize(c.computeSize(wh, hh));
             }
         });
+    }
+
+    private void updateHeading() {
+        StyledTextVo headingTextVo = vo.getStyledTextVo("heading");
+        if (headingTextVo == null) {
+            headingTextVo = new StyledTextVo();
+        }
+        headingTextVo.setText(headingTextWidget.getText());
+        vo.setStyledTextVo("heading", headingTextVo);
+        page.edit();
+    }
+
+    private void updatePasasge() {
+        StyledTextVo passageTextVo = vo.getStyledTextVo("passage");
+        if (passageTextVo == null) {
+            passageTextVo = new StyledTextVo();
+        }
+        passageTextVo.setText(passageTextWidget.getText());
+        vo.setStyledTextVo("passage", passageTextVo);
+        page.edit();
+    }
+
+    private void updateFootnote() {
+        if (passageTextWidget == null) {
+            return;
+        }
+        String text = passageTextWidget.getText();
+        Map<Integer, Integer> markedParagraphIndices = new HashMap<Integer, Integer>();
+        int number = 1;
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == MT.STRING_LINEFEED.charAt(0)) {
+                number++;
+            }
+            if (text.charAt(i) == MT.STRING_ARROW.charAt(0)) {
+                markedParagraphIndices.put(number, i);
+            }
+        }
+        logger.info("marked: {}", markedParagraphIndices);
+
+        StringJoiner joiner = new StringJoiner(MT.STRING_COMMA + MT.STRING_SPACE);
+        Iterator<Map.Entry<Integer, Integer>> it = markedParagraphIndices.entrySet().iterator();
+        while (it.hasNext()) {
+            joiner.add(it.next().getKey().toString());
+        }
+        String footnote = "Paragraph " + joiner + " is marked with ➤.";
+        footnoteLabel.setText(footnote);
+        StyledTextVo footnoteTextVo = vo.getStyledTextVo("footnote");
+        if (footnoteTextVo == null) {
+            footnoteTextVo = new StyledTextVo();
+        }
+        footnoteTextVo.setText(footnote);
+        vo.setStyledTextVo("footnote", footnoteTextVo);
+        page.edit();
     }
 
     /*
@@ -205,10 +264,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
-            StyledTextVo headingTextVo = new StyledTextVo();
-            headingTextVo.setText(headingTextWidget.getText());
-            vo.setStyledTextVo("heading", headingTextVo);
-            page.edit();
+            updateHeading();
         }
     }
 
@@ -217,23 +273,46 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         @Override
         public void mouseDown(MouseEvent e) {
             String text = passageTextWidget.getText();
-            logger.info("before: {}", text);
-            for (int i = passageTextWidget.getCaretOffset() - 1; i >= 0; i--) {
-                if (text.charAt(i) == '\n') {
-                    if (text.charAt(i + 1) != MT.STRING_ARROW.charAt(0)) {
+            int start = passageTextWidget.getCaretOffset() - 1;
+
+            for (int i = start; i >= 0; i--) {
+                if (text.charAt(i) == MT.STRING_LINEFEED.charAt(0)) {
+                    boolean arrowExists = false;
+                    for (int j = i + 1; j < text.length(); j++) {
+                        if (text.charAt(j) == MT.STRING_LINEFEED.charAt(0)) {
+                            break;
+                        }
+                        if (text.charAt(j) == MT.STRING_ARROW.charAt(0)) {
+                            arrowExists = true;
+                            break;
+                        }
+                    }
+                    if (!arrowExists) {
                         passageTextWidget.setCaretOffset(i + 1);
                         passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
                     }
                     break;
                 }
                 if (i == 0) {
-                    passageTextWidget.setCaretOffset(i);
-                    passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
+                    boolean arrowExists = false;
+                    for (int j = i; j < text.length(); j++) {
+                        if (text.charAt(j) == MT.STRING_LINEFEED.charAt(0)) {
+                            break;
+                        }
+                        if (text.charAt(j) == MT.STRING_ARROW.charAt(0)) {
+                            arrowExists = true;
+                            break;
+                        }
+                    }
+                    if (!arrowExists) {
+                        passageTextWidget.setCaretOffset(i);
+                        passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
+                    }
                     break;
                 }
             }
-            text = passageTextWidget.getText();
-            logger.info("after: {}", text);
+
+            updateFootnote();
         }
     }
 
@@ -261,13 +340,8 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
-            StyledTextVo passageTextVo = vo.getStyledTextVo("passage");
-            if (passageTextVo == null) {
-                passageTextVo = new StyledTextVo();
-            }
-            passageTextVo.setText(passageTextWidget.getText());
-            vo.setStyledTextVo("passage", passageTextVo);
-            page.edit();
+            updatePasasge();
+            updateFootnote();
         }
     }
 
@@ -339,7 +413,10 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
-            StyledTextVo choiceATextVo = new StyledTextVo();
+            StyledTextVo choiceATextVo = vo.getStyledTextVo("choiceA");
+            if (choiceATextVo == null) {
+                choiceATextVo = new StyledTextVo();
+            }
             choiceATextVo.setText(choiceATextWidget.getText());
             vo.setStyledTextVo("choiceA", choiceATextVo);
             page.edit();
@@ -350,7 +427,10 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
-            StyledTextVo choiceBTextVo = new StyledTextVo();
+            StyledTextVo choiceBTextVo = vo.getStyledTextVo("choiceB");
+            if (choiceBTextVo == null) {
+                choiceBTextVo = new StyledTextVo();
+            }
             choiceBTextVo.setText(choiceBTextWidget.getText());
             vo.setStyledTextVo("choiceB", choiceBTextVo);
             page.edit();
@@ -361,7 +441,10 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
-            StyledTextVo choiceCTextVo = new StyledTextVo();
+            StyledTextVo choiceCTextVo = vo.getStyledTextVo("choiceC");
+            if (choiceCTextVo == null) {
+                choiceCTextVo = new StyledTextVo();
+            }
             choiceCTextVo.setText(choiceCTextWidget.getText());
             vo.setStyledTextVo("choiceC", choiceCTextVo);
             page.edit();
@@ -372,7 +455,10 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
-            StyledTextVo choiceDTextVo = new StyledTextVo();
+            StyledTextVo choiceDTextVo = vo.getStyledTextVo("choiceD");
+            if (choiceDTextVo == null) {
+                choiceDTextVo = new StyledTextVo();
+            }
             choiceDTextVo.setText(choiceDTextWidget.getText());
             vo.setStyledTextVo("choiceD", choiceDTextVo);
             page.edit();
