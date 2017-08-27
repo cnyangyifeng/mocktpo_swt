@@ -39,6 +39,7 @@ public class TestViewVo implements Serializable {
     private int questionNumberInSection;
     private boolean answerable;
     private int totalAnswerCount;
+    private String answerKey;
 
     public Map<String, StyledTextVo> getBody() {
         return body;
@@ -246,6 +247,14 @@ public class TestViewVo implements Serializable {
 
     public void setTotalAnswerCount(int totalAnswerCount) {
         this.totalAnswerCount = totalAnswerCount;
+    }
+
+    public String getAnswerKey() {
+        return answerKey;
+    }
+
+    public void setAnswerKey(String answerKey) {
+        this.answerKey = answerKey;
     }
 
     /*

@@ -143,15 +143,39 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         GridDataSet.attach(viewPort).topCenter().withWidth(ScreenUtils.getViewPort(d).x);
         FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(0).spacing(0);
 
+        /*
+         * ==================================================
+         *
+         * Directions
+         *
+         * ==================================================
+         */
+
         final StyledText directionsTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(directionsTextWidget).atLeft().atTop(5).atRight();
         StyledTextSet.decorate(directionsTextWidget).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setText(vo.getStyledTextContent("directions"));
         StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledTextStyles("directions"));
 
+        /*
+         * ==================================================
+         *
+         * Tips
+         *
+         * ==================================================
+         */
+
         final StyledText tipsTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(tipsTextWidget).atLeft().atTopTo(directionsTextWidget, 5).atRight();
         StyledTextSet.decorate(tipsTextWidget).setAlignment(SWT.CENTER).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledTextContent("tips"));
         StyleRangeUtils.decorate(tipsTextWidget, vo.getStyledTextStyles("tips"));
+
+        /*
+         * ==================================================
+         *
+         * Answer Composite
+         *
+         * ==================================================
+         */
 
         final Composite ac = new Composite(viewPort, SWT.CENTER);
         FormDataSet.attach(ac).fromLeft(50, -ScreenUtils.getClientWidth(d) / 4).atTopTo(tipsTextWidget, 10).withWidth(ScreenUtils.getClientWidth(d) / 2);
@@ -191,6 +215,14 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         AnswerCompositeDropTargetSet.drop(blank3);
         blank3.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
         blank3.addMouseListener(new AnswerCompositeMouseAdapter());
+
+        /*
+         * ==================================================
+         *
+         * Answer Choices
+         *
+         * ==================================================
+         */
 
         final CLabel l = new CLabel(viewPort, SWT.CENTER);
         FormDataSet.attach(l).atLeft().atTopTo(ac, 10).atRight();

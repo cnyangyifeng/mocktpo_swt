@@ -8,7 +8,10 @@ import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.*;
+import com.mocktpo.util.widgets.CLabelSet;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
+import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.vo.StyleRangeVo;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
@@ -19,7 +22,6 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.*;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 
 import java.util.*;
 
@@ -37,7 +39,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
     private StyledText choiceBTextWidget;
     private StyledText choiceCTextWidget;
     private StyledText choiceDTextWidget;
-    private Label footnoteLabel;
+    private StyledText footnoteTextWidget;
 
     /*
      * ==================================================
@@ -184,16 +186,17 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         FormDataSet.attach(footnotePreLabel).atLeft().atTopTo(choiceDTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(footnotePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("footnote"));
 
-        footnoteLabel = new Label(c, SWT.NONE);
-        FormDataSet.attach(footnoteLabel).atLeft().atTopTo(footnotePreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        LabelSet.decorate(footnoteLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setText(vo.getStyledTextContent("footnote"));
+        footnoteTextWidget = new StyledText(c, SWT.SINGLE);
+        FormDataSet.attach(footnoteTextWidget).atLeft().atTopTo(footnotePreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(footnoteTextWidget).setBackground(MT.COLOR_WHITE_SMOKE).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setNoCaret().setText(vo.getStyledTextContent("footnote"));
+        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         rsc.setContent(c);
         rsc.addPaintListener(new PaintListener() {
             @Override
             public void paintControl(PaintEvent e) {
                 int wh = rsc.getBounds().width;
-                int hh = footnoteLabel.getBounds().y + footnoteLabel.getBounds().height + 100;
+                int hh = footnoteTextWidget.getBounds().y + footnoteTextWidget.getBounds().height + 100;
                 rsc.setMinSize(c.computeSize(wh, hh));
             }
         });
@@ -237,12 +240,16 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         logger.info("marked: {}", markedParagraphIndices);
 
         StringJoiner joiner = new StringJoiner(MT.STRING_COMMA + MT.STRING_SPACE);
-        Iterator<Map.Entry<Integer, Integer>> it = markedParagraphIndices.entrySet().iterator();
-        while (it.hasNext()) {
-            joiner.add(it.next().getKey().toString());
+        for (Map.Entry<Integer, Integer> entry : markedParagraphIndices.entrySet()) {
+            joiner.add(entry.getKey().toString());
         }
-        String footnote = "Paragraph " + joiner + " is marked with ➤.";
-        footnoteLabel.setText(footnote);
+        String footnote;
+        if (joiner.length() > 0) {
+            footnote = "Paragraph " + joiner + " is marked with ➤.";
+        } else {
+            footnote = "";
+        }
+        footnoteTextWidget.setText(footnote);
         StyledTextVo footnoteTextVo = vo.getStyledTextVo("footnote");
         if (footnoteTextVo == null) {
             footnoteTextVo = new StyledTextVo();
