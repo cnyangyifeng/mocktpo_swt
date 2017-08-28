@@ -1,9 +1,11 @@
 package com.mocktpo.modules.test.views;
 
+import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
+import com.mocktpo.modules.test.widgets.VolumeControl;
 import com.mocktpo.util.KeyBindingSet;
 import com.mocktpo.util.PersistenceUtils;
-import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.WordCountUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -12,8 +14,6 @@ import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.StyleRangeUtils;
 import com.mocktpo.util.widgets.StyledTextSet;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.VolumeControl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;
@@ -91,10 +91,11 @@ public class IndependentWritingTaskView extends SashTestView {
 
     @Override
     public void updateLeft() {
-        final StyledText directionsTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP);
+        final StyledText directionsTextWidget = new StyledText(left, SWT.WRAP);
         FormDataSet.attach(directionsTextWidget).atLeft(10).atTop(10).atRight(10);
         StyledTextSet.decorate(directionsTextWidget).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledTextContent("directions"));
         StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledTextStyles("directions"));
+        directionsTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY60));
 
         final StyledText questionTextWidget = new StyledText(left, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeftTo(directionsTextWidget, 0, SWT.LEFT).atTopTo(directionsTextWidget, 10).atRightTo(directionsTextWidget, 0, SWT.RIGHT);

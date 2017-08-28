@@ -1,9 +1,11 @@
 package com.mocktpo.modules.test.views;
 
+import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
+import com.mocktpo.modules.test.widgets.VolumeControl;
 import com.mocktpo.util.KeyBindingSet;
 import com.mocktpo.util.PersistenceUtils;
-import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.WordCountUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -13,8 +15,6 @@ import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.StyleRangeUtils;
 import com.mocktpo.util.widgets.StyledTextSet;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.VolumeControl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -94,10 +94,11 @@ public class IntegratedWritingTaskView extends SashTestView2 {
 
     @Override
     public void updateTop() {
-        final StyledText directionsTextWidget = new StyledText(top, SWT.BORDER | SWT.WRAP);
+        final StyledText directionsTextWidget = new StyledText(top, SWT.WRAP);
         FormDataSet.attach(directionsTextWidget).atLeft().atTop().atRight();
         StyledTextSet.decorate(directionsTextWidget).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledTextContent("directions"));
         StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledTextStyles("directions"));
+        directionsTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY60));
 
         final StyledText questionTextWidget = new StyledText(top, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft(5).atTopTo(directionsTextWidget, 5).atRight(5);
@@ -113,7 +114,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
         lsc.setExpandVertical(true);
 
         final Composite c = new Composite(lsc, SWT.NONE);
-        FormLayoutSet.layout(c).marginWidth(10).marginTop(10).marginBottom(0);
+        FormLayoutSet.layout(c).marginLeft(10).marginTop(10).marginRight(20).marginBottom(0);
 
         final StyledText passageTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(passageTextWidget).atLeft().atTop().atRight();
