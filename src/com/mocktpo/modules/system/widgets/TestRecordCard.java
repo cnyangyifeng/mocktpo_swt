@@ -16,7 +16,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
@@ -39,10 +38,6 @@ public class TestRecordCard extends Composite {
     /* Display */
 
     private Display d;
-
-    /* Widgets */
-
-    private CLabel deleteLabel;
 
     /* Properties */
 
@@ -86,11 +81,9 @@ public class TestRecordCard extends Composite {
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, userTestSession.getStars());
         FormDataSet.attach(starsComposite).atLeftTo(titleLabel).atBottomTo(titleLabel, 0, SWT.BOTTOM);
 
-        deleteLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(deleteLabel).atBottomTo(titleLabel, 0, SWT.BOTTOM).atRight();
-        CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_GRAY60).setFont(MT.FONT_SMALL).setText(msgs.getString("delete_this_record"));
-        deleteLabel.addMouseListener(new DeleteLabelMouseAdapter());
-        deleteLabel.addMouseTrackListener(new DeleteLabelMouseTrackAdapter());
+        final ImageButton trashButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_TRASH, MT.IMAGE_SYSTEM_TRASH_HOVER);
+        FormDataSet.attach(trashButton).atTop().atRight();
+        trashButton.addMouseListener(new TrashButtonMouseAdapter());
 
         final CLabel startTimePreLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(startTimePreLabel).atLeft().atTopTo(titleLabel, 10);
@@ -185,23 +178,12 @@ public class TestRecordCard extends Composite {
         }
     }
 
-    private class DeleteLabelMouseAdapter extends MouseAdapter {
+    private class TrashButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             PersistenceUtils.deleteSession(userTestSession);
             MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
-        }
-    }
-
-    public class DeleteLabelMouseTrackAdapter extends MouseTrackAdapter {
-
-        public void mouseEnter(MouseEvent e) {
-            CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_BLACK);
-        }
-
-        public void mouseExit(MouseEvent e) {
-            CLabelSet.decorate(deleteLabel).setForeground(MT.COLOR_GRAY60);
         }
     }
 }

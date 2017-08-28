@@ -25,10 +25,6 @@ import java.util.ResourceBundle;
 
 public class TestPaperCard extends Composite {
 
-    /* Constants */
-
-    private static final int TITLE_WIDTH = 200;
-
     /* Logger and Messages */
 
     protected static final Logger logger = LogManager.getLogger();
@@ -75,8 +71,12 @@ public class TestPaperCard extends Composite {
         FormDataSet.attach(header).atLeft().atTop().atRight();
         FormLayoutSet.layout(header).marginWidth(0).marginHeight(0).spacing(0);
 
+        final ImageButton trashButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_TRASH, MT.IMAGE_SYSTEM_TRASH_HOVER);
+        FormDataSet.attach(trashButton).atTop().atRight();
+        trashButton.addMouseListener(new TrashButtonMouseAdapter());
+
         final CLabel titleLabel = new CLabel(header, SWT.MULTI);
-        FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
+        FormDataSet.attach(titleLabel).atLeft().atTop().atRightTo(trashButton);
         CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testVo.getStars());
@@ -126,6 +126,14 @@ public class TestPaperCard extends Composite {
      *
      * ==================================================
      */
+
+    private class TrashButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            logger.info("Test paper deleted.");
+        }
+    }
 
     private class EditButtonMouseAdapter extends MouseAdapter {
 
