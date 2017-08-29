@@ -282,6 +282,22 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
             String text = passageTextWidget.getText();
             int start = passageTextWidget.getCaretOffset() - 1;
 
+            if (passageTextWidget.getCaretOffset() == 0) {
+                boolean arrowExists = false;
+                for (int k = 0; k < text.length(); k++) {
+                    if (text.charAt(k) == MT.STRING_LINEFEED.charAt(0)) {
+                        break;
+                    }
+                    if (text.charAt(k) == MT.STRING_ARROW.charAt(0)) {
+                        arrowExists = true;
+                        break;
+                    }
+                }
+                if (!arrowExists) {
+                    passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
+                }
+            }
+
             for (int i = start; i >= 0; i--) {
                 if (text.charAt(i) == MT.STRING_LINEFEED.charAt(0)) {
                     boolean arrowExists = false;
