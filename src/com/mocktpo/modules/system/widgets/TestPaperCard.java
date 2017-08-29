@@ -4,12 +4,14 @@ import com.mocktpo.MyApplication;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.TimeUtils;
 import com.mocktpo.util.constants.MT;
+import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.vo.TestEditorVo;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +22,10 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 
+import java.io.File;
+import java.net.URLDecoder;
 import java.util.ResourceBundle;
 
 public class TestPaperCard extends Composite {
@@ -131,7 +136,19 @@ public class TestPaperCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            logger.info("Test paper deleted.");
+            MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
+            box.setText(msgs.getString("delete"));
+            box.setMessage(msgs.getString("delete_test_paper_or_not"));
+            int response = box.open();
+            if (response == SWT.YES) {
+                try {
+                    File dir = new File(this.getClass().getResource(URLDecoder.decode(RC.WORKS_DATA_DIR + fileAlias, "utf-8")).toURI());
+                    FileUtils.deleteDirectory(dir);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                MyApplication.get().getWindow().toMainPageAndToTestPapersView();
+            }
         }
     }
 

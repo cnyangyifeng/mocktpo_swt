@@ -19,6 +19,7 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 
 import java.util.ResourceBundle;
 
@@ -182,8 +183,14 @@ public class TestRecordCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            PersistenceUtils.deleteSession(userTestSession);
-            MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
+            MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
+            box.setText(msgs.getString("delete"));
+            box.setMessage(msgs.getString("delete_test_record_or_not"));
+            int response = box.open();
+            if (response == SWT.YES) {
+                PersistenceUtils.deleteSession(userTestSession);
+                MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
+            }
         }
     }
 }

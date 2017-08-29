@@ -8,7 +8,7 @@ import com.mocktpo.modules.report.views.WritingReportView;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
-import com.mocktpo.util.PDFUtils;
+import com.mocktpo.util.ExportUtils;
 import com.mocktpo.util.TimeUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -272,11 +272,11 @@ public class TestReportPage extends Composite {
                         box.setMessage("\"" + userTestSession.getFileAlias() + ".pdf\" " + msgs.getString("replace_or_not"));
                         int response = box.open();
                         if (response == SWT.YES) {
-                            PDFUtils.save(absoluteFileName);
+                            ExportUtils.exportTestRecordAsPdf(absoluteFileName);
                             done = true;
                         }
                     } else {
-                        PDFUtils.save(absoluteFileName);
+                        ExportUtils.exportTestRecordAsPdf(absoluteFileName);
                         done = true;
                     }
                 } else {

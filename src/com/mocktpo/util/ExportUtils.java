@@ -7,9 +7,9 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import java.io.IOException;
 
-public class PDFUtils {
+public class ExportUtils {
 
-    public static void save(String absoluteFileName) {
+    public static void exportTestRecordAsPdf(String absoluteFileName) {
         PDDocument doc = new PDDocument();
         try {
             PDPage page = new PDPage();
@@ -26,5 +26,9 @@ public class PDFUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void exportTestPaperAsZip(String absoluteFileName) {
+
     }
 }

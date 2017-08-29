@@ -3,7 +3,7 @@ package com.mocktpo.modules.editor.layers;
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.util.PDFUtils;
+import com.mocktpo.util.ExportUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -326,7 +326,7 @@ public abstract class TestEditorLayer extends Composite {
             dialog.setText(msgs.getString("export"));
             dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
             dialog.setFilterExtensions(new String[]{"*.zip"});
-            dialog.setFileName("xx.zip");
+            dialog.setFileName(titleLabel.getText() + ".zip");
             boolean done = false;
             while (!done) {
                 String absoluteFileName = dialog.open();
@@ -335,14 +335,14 @@ public abstract class TestEditorLayer extends Composite {
                     if (file.exists()) {
                         MessageBox box = new MessageBox(dialog.getParent(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
                         box.setText(msgs.getString("file_exists"));
-                        box.setMessage("\"xx.zip\" " + msgs.getString("replace_or_not"));
+                        box.setMessage("\"" + titleLabel.getText() + ".zip\" " + msgs.getString("replace_or_not"));
                         int response = box.open();
                         if (response == SWT.YES) {
-                            PDFUtils.save(absoluteFileName);
+                            ExportUtils.exportTestPaperAsZip(absoluteFileName);
                             done = true;
                         }
                     } else {
-                        PDFUtils.save(absoluteFileName);
+                        ExportUtils.exportTestPaperAsZip(absoluteFileName);
                         done = true;
                     }
                 } else {
