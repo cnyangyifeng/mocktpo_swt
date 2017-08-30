@@ -56,7 +56,7 @@ public class TestPaperCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testVo = ConfigUtils.loadFormWorks(fileAlias, TestEditorVo.class);
+        this.testVo = ConfigUtils.pullFromWorks(fileAlias, TestEditorVo.class);
         init();
     }
 

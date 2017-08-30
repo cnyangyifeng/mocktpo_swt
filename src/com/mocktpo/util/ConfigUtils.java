@@ -20,7 +20,7 @@ public class ConfigUtils {
     private ConfigUtils() {
     }
 
-    public static <T> T load(String fileAlias, Class<T> clazz) {
+    public static <T> T pullFromTests(String fileAlias, Class<T> clazz) {
         if (fileAlias == null) {
             return null;
         }
@@ -34,7 +34,7 @@ public class ConfigUtils {
         return null;
     }
 
-    public static <T> T loadFormWorks(String fileAlias, Class<T> clazz) {
+    public static <T> T pullFromWorks(String fileAlias, Class<T> clazz) {
         if (fileAlias == null) {
             return null;
         }
@@ -66,5 +66,9 @@ public class ConfigUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void pushToOutputs() {
+
     }
 }

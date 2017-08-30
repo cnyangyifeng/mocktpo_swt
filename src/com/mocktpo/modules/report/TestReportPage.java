@@ -82,7 +82,7 @@ public class TestReportPage extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
-        this.testVo = ConfigUtils.load(this.userTestSession.getFileAlias(), TestVo.class);
+        this.testVo = ConfigUtils.pullFromTests(this.userTestSession.getFileAlias(), TestVo.class);
         init();
     }
 
