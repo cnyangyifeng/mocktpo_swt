@@ -1,5 +1,5 @@
 1. Reading Fill in a Table Question 不能保存答案；
 2. Listening Sort Events Question 不能取消可选项然后重新排序；不能保存答案；
 3. Reading Multiple Choice Question View 中修改 Passage 文字，会使之前标记的 highlight 文本错位；
-4. TestEditorPage 导出 works 到 tests
+4. TestEditorLayer 导出 works 到 tests
 5. Activation Code

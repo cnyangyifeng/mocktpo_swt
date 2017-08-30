@@ -258,7 +258,7 @@ public abstract class TestEditorLayer extends Composite {
             if (page.isUnsaved()) {
                 MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
                 box.setText(msgs.getString("test_paper_unsaved"));
-                box.setMessage(msgs.getString("save_or_not"));
+                box.setMessage(msgs.getString("save_or_not_before_leaving"));
                 int response = box.open();
                 if (response == SWT.YES) {
                     page.save();
@@ -322,6 +322,18 @@ public abstract class TestEditorLayer extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
+            if (page.isUnsaved()) {
+                MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
+                box.setText(msgs.getString("test_paper_unsaved"));
+                box.setMessage(msgs.getString("save_or_not_before_exporting"));
+                int response = box.open();
+                if (response == SWT.YES) {
+                    page.save();
+                } else {
+                    return;
+                }
+            }
+
             FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.SAVE);
             dialog.setText(msgs.getString("export"));
             dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
@@ -338,11 +350,11 @@ public abstract class TestEditorLayer extends Composite {
                         box.setMessage("\"" + titleLabel.getText() + ".zip\" " + msgs.getString("replace_or_not"));
                         int response = box.open();
                         if (response == SWT.YES) {
-                            ExportUtils.exportTestPaperAsZip(absoluteFileName);
+                            ExportUtils.exportTestPaperAsZip(absoluteFileName, page.getTestEditorVo().getTid());
                             done = true;
                         }
                     } else {
-                        ExportUtils.exportTestPaperAsZip(absoluteFileName);
+                        ExportUtils.exportTestPaperAsZip(absoluteFileName, page.getTestEditorVo().getTid());
                         done = true;
                     }
                 } else {

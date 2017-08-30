@@ -48,7 +48,7 @@ public class ConfigUtils {
         return null;
     }
 
-    public static void push(String fileAlias, Object object) {
+    public static void pushToWorks(String fileAlias, Object object) {
         if (fileAlias == null) {
             return;
         }

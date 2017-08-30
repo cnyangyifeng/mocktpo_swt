@@ -180,7 +180,7 @@ public class TestEditorPage extends Composite {
      */
 
     public void save() {
-        ConfigUtils.push(testEditorVo.getTid(), testEditorVo);
+        ConfigUtils.pushToWorks(testEditorVo.getTid(), testEditorVo);
         setFirstRun(false);
         enterSavedMode();
     }

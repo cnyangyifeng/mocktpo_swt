@@ -168,6 +168,9 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_APP_ICON, ImageUtils.load(d, "app_icon"));
         caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, "logo"));
         caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, "splash"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT, ImageUtils.load(d, "sys_add_an_insertion_point"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT_DISABLED, ImageUtils.load(d, "sys_add_an_insertion_point_d"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT_HOVER, ImageUtils.load(d, "sys_add_an_insertion_point_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK, ImageUtils.load(d, "sys_back"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK_DISABLED, ImageUtils.load(d, "sys_back_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK_HOVER, ImageUtils.load(d, "sys_back_h"));
@@ -189,9 +192,9 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_ZIP, ImageUtils.load(d, "sys_export_as_zip"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_DISABLED, ImageUtils.load(d, "sys_export_as_zip_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_HOVER, ImageUtils.load(d, "sys_export_as_zip_h"));
-        caches.putIfAbsent(MT.IMAGE_SYSTEM_HIGHLIGHT, ImageUtils.load(d, "sys_highlight"));
-        caches.putIfAbsent(MT.IMAGE_SYSTEM_HIGHLIGHT_DISABLED, ImageUtils.load(d, "sys_highlight_d"));
-        caches.putIfAbsent(MT.IMAGE_SYSTEM_HIGHLIGHT_HOVER, ImageUtils.load(d, "sys_highlight_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT, ImageUtils.load(d, "sys_highlight_selected_text"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_DISABLED, ImageUtils.load(d, "sys_highlight_selected_text_d"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_HOVER, ImageUtils.load(d, "sys_highlight_selected_text_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_IMPORT, ImageUtils.load(d, "sys_import"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_IMPORT_HOVER, ImageUtils.load(d, "sys_import_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_MARK_PARAGRAPHS, ImageUtils.load(d, "sys_mark_paragraphs"));

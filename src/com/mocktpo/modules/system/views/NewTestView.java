@@ -4,7 +4,7 @@ import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.system.widgets.TestCard;
 import com.mocktpo.util.ConfigUtils;
-import com.mocktpo.util.UnzipUtils;
+import com.mocktpo.util.ZipUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.layout.FormDataSet;
@@ -175,7 +175,7 @@ public class NewTestView extends Composite {
             dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
             dialog.setFilterExtensions(new String[]{"*.zip"});
             String absoluteFileName = dialog.open();
-            UnzipUtils.unzip(absoluteFileName);
+            ZipUtils.unzip(absoluteFileName);
             String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(absoluteFileName));
             if (fileAlias != null) {
                 refreshCards();
