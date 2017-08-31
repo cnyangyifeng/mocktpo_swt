@@ -341,20 +341,20 @@ public abstract class TestEditorLayer extends Composite {
             dialog.setFileName(titleLabel.getText() + ".zip");
             boolean done = false;
             while (!done) {
-                String absoluteFileName = dialog.open();
-                if (!StringUtils.isEmpty(absoluteFileName)) {
-                    File file = new File(absoluteFileName);
+                String fullDestFileName = dialog.open();
+                if (!StringUtils.isEmpty(fullDestFileName)) {
+                    File file = new File(fullDestFileName);
                     if (file.exists()) {
                         MessageBox box = new MessageBox(dialog.getParent(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
                         box.setText(msgs.getString("file_exists"));
                         box.setMessage("\"" + titleLabel.getText() + ".zip\" " + msgs.getString("replace_or_not"));
                         int response = box.open();
                         if (response == SWT.YES) {
-                            ExportUtils.exportTestPaperAsZip(absoluteFileName, page.getTestEditorVo().getTid());
+                            ExportUtils.exportTestPaperAsZip(fullDestFileName, page.getTestEditorVo().getTid());
                             done = true;
                         }
                     } else {
-                        ExportUtils.exportTestPaperAsZip(absoluteFileName, page.getTestEditorVo().getTid());
+                        ExportUtils.exportTestPaperAsZip(fullDestFileName, page.getTestEditorVo().getTid());
                         done = true;
                     }
                 } else {

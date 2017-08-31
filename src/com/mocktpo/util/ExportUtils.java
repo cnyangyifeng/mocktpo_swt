@@ -1,6 +1,5 @@
 package com.mocktpo.util;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -16,7 +15,7 @@ public class ExportUtils {
 
     protected static final Logger logger = LogManager.getLogger();
 
-    public static void exportTestRecordAsPdf(String absoluteFileName) {
+    public static void exportTestRecordAsPdf(String fullDestFileName) {
         PDDocument doc = new PDDocument();
         try {
             PDPage page = new PDPage();
@@ -28,16 +27,16 @@ public class ExportUtils {
             cs.showText("HELLO WORLD");
             cs.endText();
             cs.close();
-            doc.save(absoluteFileName);
+            doc.save(fullDestFileName);
             doc.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void exportTestPaperAsZip(String absoluteFileName, String fileAlias) {
+    public static void exportTestPaperAsZip(String fullDestFileName, String fileAlias) {
         outputDirectories(fileAlias);
-        logger.info(absoluteFileName);
+        logger.info(fullDestFileName);
     }
 
     private static void outputDirectories(String fileAlias) {

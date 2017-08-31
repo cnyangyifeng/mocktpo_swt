@@ -263,20 +263,20 @@ public class TestReportPage extends Composite {
             dialog.setFileName(userTestSession.getFileAlias() + ".pdf");
             boolean done = false;
             while (!done) {
-                String absoluteFileName = dialog.open();
-                if (!StringUtils.isEmpty(absoluteFileName)) {
-                    File file = new File(absoluteFileName);
+                String fullDestFileName = dialog.open();
+                if (!StringUtils.isEmpty(fullDestFileName)) {
+                    File file = new File(fullDestFileName);
                     if (file.exists()) {
                         MessageBox box = new MessageBox(dialog.getParent(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
                         box.setText(msgs.getString("file_exists"));
                         box.setMessage("\"" + userTestSession.getFileAlias() + ".pdf\" " + msgs.getString("replace_or_not"));
                         int response = box.open();
                         if (response == SWT.YES) {
-                            ExportUtils.exportTestRecordAsPdf(absoluteFileName);
+                            ExportUtils.exportTestRecordAsPdf(fullDestFileName);
                             done = true;
                         }
                     } else {
-                        ExportUtils.exportTestRecordAsPdf(absoluteFileName);
+                        ExportUtils.exportTestRecordAsPdf(fullDestFileName);
                         done = true;
                     }
                 } else {
