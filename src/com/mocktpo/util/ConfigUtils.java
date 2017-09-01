@@ -53,12 +53,12 @@ public class ConfigUtils {
             return;
         }
         try {
-            File rootPath = new File(ConfigUtils.class.getResource(URLDecoder.decode(RC.WORKS_DATA_DIR, "utf-8")).toURI());
-            File packagePath = new File(rootPath.toString() + MT.STRING_SLASH + fileAlias);
-            if (!packagePath.exists()) {
-                logger.info("Test package folder created: {}.", packagePath.mkdir());
+            File rootDir = new File(ConfigUtils.class.getResource(URLDecoder.decode(RC.WORKS_DATA_DIR, "utf-8")).toURI());
+            File packageDir = new File(rootDir.toString() + MT.STRING_SLASH + fileAlias);
+            if (!packageDir.exists()) {
+                logger.info("Test package folder created: {}.", packageDir.mkdir());
             }
-            File file = new File(packagePath.toString() + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX);
+            File file = new File(packageDir.toString() + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX);
             if (!file.exists()) {
                 logger.info("Test description file created: {}.", file.createNewFile());
             }

@@ -20,7 +20,7 @@ public class ZipUtils {
 
     protected static final Logger logger = LogManager.getLogger();
 
-    private List<String> sourceFileNames;
+    private List<String> srcFileNames;
 
     private ZipUtils() {
     }
@@ -39,17 +39,17 @@ public class ZipUtils {
         }
         try {
             ZipInputStream zis = new ZipInputStream(new FileInputStream(zipFileName));
-            String testsRootPath = ZipUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).getPath();
-            unzip(zis, testsRootPath);
+            String rootDir = ZipUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).getPath();
+            unzip(zis, rootDir);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static void unzip(ZipInputStream zipInputStream, String testsRootPath) throws Exception {
+    private static void unzip(ZipInputStream zipInputStream, String packageDirName) throws Exception {
         ZipEntry entry = zipInputStream.getNextEntry();
         while (entry != null) {
-            File file = new File(testsRootPath, entry.getName());
+            File file = new File(packageDirName, entry.getName());
             if (entry.isDirectory()) {
                 logger.debug("Directory created for unzipping the file: {}.", file.mkdirs());
             } else {
@@ -71,7 +71,7 @@ public class ZipUtils {
      */
 
     public static void zip(String fileAlias, String zipFileName) {
-//        String testPaperRootPath = UnzipUtils.class.getResource(URLDecoder.decode(RC.OUTPUTS_DATA_DIR, "utf-8")).getPath();
+//        String packageDir = UnzipUtils.class.getResource(URLDecoder.decode(RC.OUTPUTS_DATA_DIR, "utf-8")).getPath();
 //
 //        generateFileList(sourcePath);
 //

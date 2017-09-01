@@ -8,7 +8,6 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.Display;
 
 import java.io.File;
-import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -53,24 +52,24 @@ public class FontUtils {
             @Override
             public void run() {
                 try {
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-Black.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-BlackItalic.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-Bold.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-BoldItalic.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-Italic.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-Light.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-LightItalic.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-Medium.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-MediumItalic.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-Regular.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-Thin.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "Roboto-ThinItalic.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "RobotoCondensed-Bold.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "RobotoCondensed-BoldItalic.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "RobotoCondensed-Italic.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "RobotoCondensed-Light.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "RobotoCondensed-LightItalic.ttf"));
-                    d.loadFont(getAbsoluteFontFile("roboto", "RobotoCondensed-Regular.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-Black.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-BlackItalic.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-Bold.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-BoldItalic.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-Italic.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-Light.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-LightItalic.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-Medium.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-MediumItalic.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-Regular.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-Thin.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "Roboto-ThinItalic.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Bold.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-BoldItalic.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Italic.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Light.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-LightItalic.ttf"));
+                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Regular.ttf"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -78,7 +77,7 @@ public class FontUtils {
         });
     }
 
-    private static String getAbsoluteFontFile(String fontDir, String fontName) {
+    private static String getfullFontFileName(String fontDir, String fontName) {
         try {
             File f = new File(FontUtils.class.getResource(URLDecoder.decode(RC.FONTS_DIR + fontDir + MT.STRING_SLASH + fontName, "utf-8")).toURI());
             return f.getAbsolutePath();
