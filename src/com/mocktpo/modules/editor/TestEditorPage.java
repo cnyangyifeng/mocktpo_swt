@@ -1,7 +1,7 @@
 package com.mocktpo.modules.editor;
 
 import com.mocktpo.modules.editor.layers.*;
-import com.mocktpo.util.ConfigUtils;
+import com.mocktpo.util.JSONUtils;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.vo.TestEditorVo;
 import org.apache.commons.lang3.StringUtils;
@@ -180,7 +180,7 @@ public class TestEditorPage extends Composite {
      */
 
     public void save() {
-        ConfigUtils.pushToWorks(testEditorVo.getTid(), testEditorVo);
+        JSONUtils.pushToWorks(testEditorVo.getTid(), testEditorVo);
         setFirstRun(false);
         enterSavedMode();
     }

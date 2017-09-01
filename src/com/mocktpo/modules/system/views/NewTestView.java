@@ -3,8 +3,8 @@ package com.mocktpo.modules.system.views;
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.system.widgets.TestCard;
-import com.mocktpo.util.ConfigUtils;
-import com.mocktpo.util.ZipUtils;
+import com.mocktpo.util.ImportUtils;
+import com.mocktpo.util.JSONUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.layout.FormDataSet;
@@ -144,8 +144,8 @@ public class NewTestView extends Composite {
                 }
             });
             for (File testDir : testDirs) {
-                String testDirName = testDir.getName();
-                URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + testDirName + MT.STRING_SLASH + testDirName + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
+                String fileAlias = testDir.getName();
+                URL url = JSONUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
                 if (url != null) {
                     TestCard card = new TestCard(body, SWT.NONE, testDir.getName());
                     GridDataSet.attach(card).fillHorizontal();
@@ -174,9 +174,9 @@ public class NewTestView extends Composite {
             FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.OPEN);
             dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
             dialog.setFilterExtensions(new String[]{"*.zip"});
-            String fullDestFileName = dialog.open();
-            ZipUtils.unzip(fullDestFileName);
-            String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(fullDestFileName));
+            String fullSrcFileName = dialog.open();
+            ImportUtils.unzip(fullSrcFileName);
+            String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(fullSrcFileName));
             if (fileAlias != null) {
                 refreshCards();
             }
