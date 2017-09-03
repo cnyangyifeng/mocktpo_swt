@@ -39,7 +39,7 @@ public interface RC {
     String IMAGES_DIR = "/resources/images/";
     String TESTS_DATA_DIR = "/data/tests/";
     String REPORTS_DATA_DIR = "/data/reports/";
-    String WORKS_DATA_DIR = "/data/works/";
+    String PROJECTS_DATA_DIR = "/data/projects/";
     String OUTPUTS_DATA_DIR = "/data/outputs/";
 
     /*
@@ -52,15 +52,15 @@ public interface RC {
 
     String HIDPI_SUFFIX = "@2x";
     String PNG_FILE_TYPE_SUFFIX = ".png";
-    String GIF_FILE_TYPE_SUFFIX = ".gif";
 
     /*
      * ==================================================
      *
-     * Test Files
+     * Test Paper Files
      *
      * ==================================================
      */
 
     String JSON_FILE_TYPE_SUFFIX = ".json";
+    String README_FILE = "README.txt";
 }

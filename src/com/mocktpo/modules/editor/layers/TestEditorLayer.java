@@ -3,7 +3,6 @@ package com.mocktpo.modules.editor.layers;
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.util.ExportUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -341,20 +340,20 @@ public abstract class TestEditorLayer extends Composite {
             dialog.setFileName(titleLabel.getText() + ".zip");
             boolean done = false;
             while (!done) {
-                String fullDestFileName = dialog.open();
-                if (!StringUtils.isEmpty(fullDestFileName)) {
-                    File file = new File(fullDestFileName);
+                String fullDestZipFileName = dialog.open();
+                if (!StringUtils.isEmpty(fullDestZipFileName)) {
+                    File file = new File(fullDestZipFileName);
                     if (file.exists()) {
                         MessageBox box = new MessageBox(dialog.getParent(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
                         box.setText(msgs.getString("file_exists"));
                         box.setMessage("\"" + titleLabel.getText() + ".zip\" " + msgs.getString("replace_or_not"));
                         int response = box.open();
                         if (response == SWT.YES) {
-                            ExportUtils.exportTestPaperAsZip(page.getTestEditorVo().getTid(), fullDestFileName);
+                            page.export(fullDestZipFileName);
                             done = true;
                         }
                     } else {
-                        ExportUtils.exportTestPaperAsZip(page.getTestEditorVo().getTid(), fullDestFileName);
+                        page.export(fullDestZipFileName);
                         done = true;
                     }
                 } else {

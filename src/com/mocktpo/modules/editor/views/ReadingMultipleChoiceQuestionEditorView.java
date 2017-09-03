@@ -350,7 +350,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         public void mouseDown(MouseEvent e) {
             List<StyleRangeVo> styles = new ArrayList<StyleRangeVo>();
             Point p = passageTextWidget.getSelectionRange();
-            styles.add(new StyleRangeVo(p.x, p.y, 0, 0, 91, false, null));
+            styles.add(new StyleRangeVo(p.x, p.y, 0, 0, MT.COLOR_HIGHLIGHTED, false, null));
             StyleRangeUtils.decorate(passageTextWidget, styles);
             passageTextWidget.setSelection(p.x + p.y);
 
@@ -394,7 +394,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         public void mouseDown(MouseEvent e) {
             List<StyleRangeVo> styles = new ArrayList<StyleRangeVo>();
             Point p = questionTextWidget.getSelectionRange();
-            styles.add(new StyleRangeVo(p.x, p.y, 0, 0, 91, false, null));
+            styles.add(new StyleRangeVo(p.x, p.y, 0, 0, MT.COLOR_HIGHLIGHTED, false, null));
             StyleRangeUtils.decorate(questionTextWidget, styles);
             questionTextWidget.setSelection(p.x + p.y);
 

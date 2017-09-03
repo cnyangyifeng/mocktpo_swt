@@ -136,7 +136,7 @@ public class TestPapersView extends Composite {
 
     private void initCards() {
         try {
-            File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.WORKS_DATA_DIR, "utf-8")).toURI()).listFiles(new FileFilter() {
+            File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.PROJECTS_DATA_DIR, "utf-8")).toURI()).listFiles(new FileFilter() {
                 @Override
                 public boolean accept(File file) {
                     return file.isDirectory();
@@ -144,7 +144,7 @@ public class TestPapersView extends Composite {
             });
             for (File testDir : testDirs) {
                 String fileAlias = testDir.getName();
-                URL url = JSONUtils.class.getResource(URLDecoder.decode(RC.WORKS_DATA_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
+                URL url = JSONUtils.class.getResource(URLDecoder.decode(RC.PROJECTS_DATA_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
                 if (url != null) {
                     TestPaperCard card = new TestPaperCard(body, SWT.NONE, testDir.getName());
                     GridDataSet.attach(card).fillHorizontal();

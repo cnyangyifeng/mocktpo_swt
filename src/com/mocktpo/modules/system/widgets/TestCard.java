@@ -60,7 +60,7 @@ public class TestCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testVo = JSONUtils.pullFromTests(fileAlias, TestVo.class);
+        this.testVo = JSONUtils.pullFromTest(fileAlias, TestVo.class);
         init();
     }
 

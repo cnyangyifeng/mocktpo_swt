@@ -2,6 +2,7 @@ package com.mocktpo.modules.editor;
 
 import com.mocktpo.modules.editor.layers.*;
 import com.mocktpo.util.JSONUtils;
+import com.mocktpo.util.ProjectUtils;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.vo.TestEditorVo;
 import org.apache.commons.lang3.StringUtils;
@@ -180,7 +181,8 @@ public class TestEditorPage extends Composite {
      */
 
     public void save() {
-        JSONUtils.pushToWorks(testEditorVo.getTid(), testEditorVo);
+        ProjectUtils.validate(testEditorVo.getTid());
+        JSONUtils.pushToProject(testEditorVo.getTid(), testEditorVo);
         setFirstRun(false);
         enterSavedMode();
     }
@@ -218,6 +220,19 @@ public class TestEditorPage extends Composite {
         if (previewEditorLayer != null) {
             previewEditorLayer.updateTitleLabel();
         }
+    }
+
+    /*
+     * ==================================================
+     *
+     * Export
+     *
+     * ==================================================
+     */
+
+    public void export(String fullDestZipFileName) {
+        ProjectUtils.validate(testEditorVo.getTid());
+        ProjectUtils.export(testEditorVo.getTid(), fullDestZipFileName);
     }
 
     /*

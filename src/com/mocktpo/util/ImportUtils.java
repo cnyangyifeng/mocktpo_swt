@@ -36,19 +36,23 @@ public class ImportUtils {
         }
         try {
             ZipInputStream zis = new ZipInputStream(new FileInputStream(fullSrcZipFileName));
-            String testsDirName = ImportUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).getPath();
-            ZipEntry entry = zis.getNextEntry();
-            while (entry != null) {
-                File file = new File(testsDirName, entry.getName());
-                if (entry.isDirectory()) {
-                    logger.debug("Directory created for unzipping the file: {}.", file.mkdirs());
+            File testsDir = new File(ImportUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).toURI());
+            ZipEntry ze = zis.getNextEntry();
+            while (ze != null) {
+                File file = new File(testsDir, ze.getName());
+                if (file.isDirectory()) {
+                    logger.debug("Directory created: {}.", file.mkdirs());
                 } else {
+                    if (!file.exists()) {
+                        file.getParentFile().mkdirs();
+                        file.createNewFile();
+                    }
                     OutputStream fos = new FileOutputStream(file);
                     IOUtils.copy(zis, fos);
                     IOUtils.closeQuietly(fos);
                 }
                 zis.closeEntry();
-                entry = zis.getNextEntry();
+                ze = zis.getNextEntry();
             }
         } catch (Exception e) {
             e.printStackTrace();

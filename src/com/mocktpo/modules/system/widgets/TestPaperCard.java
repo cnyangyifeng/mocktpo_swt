@@ -56,7 +56,7 @@ public class TestPaperCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testVo = JSONUtils.pullFromWorks(fileAlias, TestEditorVo.class);
+        this.testVo = JSONUtils.pullFromProject(fileAlias, TestEditorVo.class);
         init();
     }
 
@@ -142,7 +142,7 @@ public class TestPaperCard extends Composite {
             int response = box.open();
             if (response == SWT.YES) {
                 try {
-                    File dir = new File(this.getClass().getResource(URLDecoder.decode(RC.WORKS_DATA_DIR + fileAlias, "utf-8")).toURI());
+                    File dir = new File(this.getClass().getResource(URLDecoder.decode(RC.PROJECTS_DATA_DIR + fileAlias, "utf-8")).toURI());
                     FileUtils.deleteDirectory(dir);
                 } catch (Exception ex) {
                     ex.printStackTrace();

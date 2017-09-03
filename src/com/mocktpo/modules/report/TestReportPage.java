@@ -8,7 +8,7 @@ import com.mocktpo.modules.report.views.WritingReportView;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.JSONUtils;
-import com.mocktpo.util.ExportUtils;
+import com.mocktpo.util.ReportUtils;
 import com.mocktpo.util.TimeUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -82,7 +82,7 @@ public class TestReportPage extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
-        this.testVo = JSONUtils.pullFromTests(this.userTestSession.getFileAlias(), TestVo.class);
+        this.testVo = JSONUtils.pullFromTest(this.userTestSession.getFileAlias(), TestVo.class);
         init();
     }
 
@@ -263,20 +263,20 @@ public class TestReportPage extends Composite {
             dialog.setFileName(userTestSession.getFileAlias() + ".pdf");
             boolean done = false;
             while (!done) {
-                String fullDestFileName = dialog.open();
-                if (!StringUtils.isEmpty(fullDestFileName)) {
-                    File file = new File(fullDestFileName);
+                String fullDestPDFFileName = dialog.open();
+                if (!StringUtils.isEmpty(fullDestPDFFileName)) {
+                    File file = new File(fullDestPDFFileName);
                     if (file.exists()) {
                         MessageBox box = new MessageBox(dialog.getParent(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
                         box.setText(msgs.getString("file_exists"));
                         box.setMessage("\"" + userTestSession.getFileAlias() + ".pdf\" " + msgs.getString("replace_or_not"));
                         int response = box.open();
                         if (response == SWT.YES) {
-                            ExportUtils.exportTestRecordAsPdf(fullDestFileName);
+                            ReportUtils.export(fullDestPDFFileName);
                             done = true;
                         }
                     } else {
-                        ExportUtils.exportTestRecordAsPdf(fullDestFileName);
+                        ReportUtils.export(fullDestPDFFileName);
                         done = true;
                     }
                 } else {
