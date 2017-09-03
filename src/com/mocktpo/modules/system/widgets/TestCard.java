@@ -2,7 +2,7 @@ package com.mocktpo.modules.system.widgets;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.util.JSONUtils;
+import com.mocktpo.util.JSONSUtils;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -60,7 +60,7 @@ public class TestCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testVo = JSONUtils.pullFromTest(fileAlias, TestVo.class);
+        this.testVo = JSONSUtils.pullFromTest(fileAlias, TestVo.class);
         init();
     }
 
