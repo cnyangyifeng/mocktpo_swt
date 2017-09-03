@@ -32,7 +32,7 @@ public class ProjectUtils {
             return;
         }
         try {
-            File projectsDir = new File(JSONSUtils.class.getResource(URLDecoder.decode(RC.PROJECTS_DATA_DIR, "utf-8")).toURI());
+            File projectsDir = new File(JSONUtils.class.getResource(URLDecoder.decode(RC.PROJECTS_DATA_DIR, "utf-8")).toURI());
             File projectDir = new File(projectsDir.toString() + MT.STRING_SLASH + fileAlias);
             if (!projectDir.exists()) {
                 logger.info("Test paper directory created: {}.", projectDir.mkdir());
@@ -93,7 +93,7 @@ public class ProjectUtils {
     }
 
     private static void format(String fileAlias) {
-        TestEditorVo testEditorVo = JSONSUtils.pullFromOutput(fileAlias, TestEditorVo.class);
+        TestEditorVo testEditorVo = JSONUtils.pullFromOutput(fileAlias, TestEditorVo.class);
         TestVo testVo = new TestVo();
         testVo.setTid(testEditorVo.getTid());
         testVo.setTitle(testEditorVo.getTitle());
@@ -145,7 +145,7 @@ public class ProjectUtils {
         viewVos.add(TestViewUtils.initTestEndView(++viewId));
 
         testVo.setViewVos(viewVos);
-        JSONSUtils.pushToOutput(testVo.getTid(), testVo);
+        JSONUtils.pushToOutput(testVo.getTid(), testVo);
     }
 
     private static void collect(File parent, List<File> fileList) {

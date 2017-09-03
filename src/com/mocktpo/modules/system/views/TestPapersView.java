@@ -3,7 +3,7 @@ package com.mocktpo.modules.system.views;
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.system.widgets.TestPaperCard;
-import com.mocktpo.util.JSONSUtils;
+import com.mocktpo.util.JSONUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.layout.FormDataSet;
@@ -144,7 +144,7 @@ public class TestPapersView extends Composite {
             });
             for (File testDir : testDirs) {
                 String fileAlias = testDir.getName();
-                URL url = JSONSUtils.class.getResource(URLDecoder.decode(RC.PROJECTS_DATA_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
+                URL url = JSONUtils.class.getResource(URLDecoder.decode(RC.PROJECTS_DATA_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
                 if (url != null) {
                     TestPaperCard card = new TestPaperCard(body, SWT.NONE, testDir.getName());
                     GridDataSet.attach(card).fillHorizontal();

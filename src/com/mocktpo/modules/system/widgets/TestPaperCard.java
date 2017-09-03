@@ -1,7 +1,7 @@
 package com.mocktpo.modules.system.widgets;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.util.JSONSUtils;
+import com.mocktpo.util.JSONUtils;
 import com.mocktpo.util.TimeUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
@@ -56,7 +56,7 @@ public class TestPaperCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testVo = JSONSUtils.pullFromProject(fileAlias, TestEditorVo.class);
+        this.testVo = JSONUtils.pullFromProject(fileAlias, TestEditorVo.class);
         init();
     }
 
