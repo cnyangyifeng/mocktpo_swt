@@ -1,5 +1,6 @@
 package com.mocktpo.modules.editor.layers;
 
+import com.mocktpo.MyApplication;
 import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.modules.editor.views.ReadingMultipleChoiceQuestionEditorView;
 import com.mocktpo.modules.editor.views.ReadingPassageEditorView;
@@ -17,6 +18,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.MessageBox;
 
 import java.util.Iterator;
 import java.util.List;
@@ -129,26 +131,31 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
     @Override
     public void trash() {
-        List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
-        Iterator<TestViewVo> it = viewVos.iterator();
-        while (it.hasNext()) {
-            TestViewVo viewVo = it.next();
-            if (viewVo.getViewId() == currentViewId) {
-                it.remove();
-                break;
+        MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
+        box.setText(msgs.getString("delete"));
+        box.setMessage(msgs.getString("delete_test_view_or_not"));
+        int response = box.open();
+        if (response == SWT.YES) {
+            List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
+            Iterator<TestViewVo> it = viewVos.iterator();
+            while (it.hasNext()) {
+                TestViewVo viewVo = it.next();
+                if (viewVo.getViewId() == currentViewId) {
+                    it.remove();
+                    break;
+                }
             }
+            for (int i = currentViewId; i < viewVos.size(); i++) {
+                TestViewVo eachAfter = viewVos.get(i);
+                eachAfter.setViewId(i);
+            }
+            if (currentViewId == viewVos.size()) {
+                currentViewId--;
+            }
+            setRefreshRequired(true);
+            page.toReadingEditorLayer();
+            page.save();
         }
-        for (int i = currentViewId; i < viewVos.size(); i++) {
-            TestViewVo eachAfter = viewVos.get(i);
-            eachAfter.setViewId(i);
-        }
-        if (currentViewId == viewVos.size()) {
-            currentViewId--;
-        }
-        setRefreshRequired(true);
-
-        page.toReadingEditorLayer();
-        page.save();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.mocktpo.modules.system.widgets;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.PersistenceUtils;
@@ -72,7 +73,7 @@ public class TestCard extends Composite {
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(this).marginWidth(10).marginHeight(10).spacing(0);
-        // this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
     }
 
     private void initWidgets() {

@@ -1,6 +1,7 @@
 package com.mocktpo.modules.system.widgets;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.TimeUtils;
@@ -67,7 +68,7 @@ public class TestRecordCard extends Composite {
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(this).marginWidth(10).marginHeight(10).spacing(0);
-        // this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
     }
 
     private void initWidgets() {
@@ -82,25 +83,25 @@ public class TestRecordCard extends Composite {
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, userTestSession.getStars());
         FormDataSet.attach(starsComposite).atLeftTo(titleLabel).atBottomTo(titleLabel, 0, SWT.BOTTOM);
 
-        final ImageButton trashButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_TRASH, MT.IMAGE_SYSTEM_TRASH_HOVER);
-        FormDataSet.attach(trashButton).atTop().atRight();
-        trashButton.addMouseListener(new TrashButtonMouseAdapter());
+        final ImageButton deleteButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_DELETE, MT.IMAGE_SYSTEM_DELETE_HOVER);
+        FormDataSet.attach(deleteButton).atTop().atRight();
+        deleteButton.addMouseListener(new DeleteButtonMouseAdapter());
 
         final CLabel startTimePreLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(startTimePreLabel).atLeft().atTopTo(titleLabel, 10);
-        CLabelSet.decorate(startTimePreLabel).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("start_time"));
+        CLabelSet.decorate(startTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("start_time"));
 
         final CLabel startTimeLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(startTimeLabel).atLeftTo(startTimePreLabel, 5).atTopTo(startTimePreLabel, 0, SWT.TOP);
-        CLabelSet.decorate(startTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getStartTime()));
+        CLabelSet.decorate(startTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getStartTime()));
 
         final CLabel lastVisitedTimePreLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(lastVisitedTimePreLabel).atLeftTo(startTimeLabel, 40).atTopTo(startTimePreLabel, 0, SWT.TOP);
-        CLabelSet.decorate(lastVisitedTimePreLabel).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("last_visited_time"));
+        CLabelSet.decorate(lastVisitedTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("last_visited_time"));
 
         final CLabel lastVisitedTimeLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(lastVisitedTimeLabel).atLeftTo(lastVisitedTimePreLabel, 5).atTopTo(startTimePreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(lastVisitedTimeLabel).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getLastVisitedTime()));
+        CLabelSet.decorate(lastVisitedTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getLastVisitedTime()));
 
         final Label divider1 = new Label(header, SWT.NONE);
         FormDataSet.attach(divider1).atLeft().atTopTo(startTimePreLabel, 10).atRight().withHeight(1);
@@ -179,7 +180,7 @@ public class TestRecordCard extends Composite {
         }
     }
 
-    private class TrashButtonMouseAdapter extends MouseAdapter {
+    private class DeleteButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {

@@ -1,6 +1,7 @@
 package com.mocktpo.modules.system.widgets;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.TimeUtils;
 import com.mocktpo.util.constants.MT;
@@ -29,6 +30,12 @@ import java.net.URLDecoder;
 import java.util.ResourceBundle;
 
 public class TestPaperCard extends Composite {
+
+    /* Constants */
+
+    private static final int SUPERSCRIPT_WIDTH = 120;
+    private static final int SUPERSCRIPT_HEIGHT = 24;
+    private static final int TITLE_WIDTH = 200;
 
     /* Logger and Messages */
 
@@ -68,7 +75,7 @@ public class TestPaperCard extends Composite {
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(this).marginWidth(10).marginHeight(10).spacing(0);
-        // this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
     }
 
     private void initWidgets() {
@@ -76,12 +83,16 @@ public class TestPaperCard extends Composite {
         FormDataSet.attach(header).atLeft().atTop().atRight();
         FormLayoutSet.layout(header).marginWidth(0).marginHeight(0).spacing(0);
 
-        final ImageButton trashButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_TRASH, MT.IMAGE_SYSTEM_TRASH_HOVER);
-        FormDataSet.attach(trashButton).atTop().atRight();
-        trashButton.addMouseListener(new TrashButtonMouseAdapter());
+        final CLabel superscriptLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(superscriptLabel).atLeft().atTop().withWidth(SUPERSCRIPT_WIDTH).withHeight(SUPERSCRIPT_HEIGHT);
+        CLabelSet.decorate(superscriptLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("test_paper"));
 
-        final CLabel titleLabel = new CLabel(header, SWT.MULTI);
-        FormDataSet.attach(titleLabel).atLeft().atTop().atRightTo(trashButton);
+        final ImageButton deleteButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_DELETE, MT.IMAGE_SYSTEM_DELETE_HOVER);
+        FormDataSet.attach(deleteButton).atTop().atRight();
+        deleteButton.addMouseListener(new DeleteButtonMouseAdapter());
+
+        final CLabel titleLabel = new CLabel(header, SWT.NONE);
+        FormDataSet.attach(titleLabel).atLeft().atTopTo(superscriptLabel, 10).withWidth(TITLE_WIDTH);
         CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testVo.getStars());
@@ -132,7 +143,7 @@ public class TestPaperCard extends Composite {
      * ==================================================
      */
 
-    private class TrashButtonMouseAdapter extends MouseAdapter {
+    private class DeleteButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {

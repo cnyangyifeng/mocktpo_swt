@@ -185,6 +185,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_COPY_HOVER, ImageUtils.load(d, "sys_copy_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CUT, ImageUtils.load(d, "sys_cut"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CUT_HOVER, ImageUtils.load(d, "sys_cut_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_DELETE, ImageUtils.load(d, "sys_delete"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_DELETE_HOVER, ImageUtils.load(d, "sys_delete_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EDIT, ImageUtils.load(d, "sys_edit"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EDIT_HOVER, ImageUtils.load(d, "sys_edit_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_PDF, ImageUtils.load(d, "sys_export_as_pdf"));
