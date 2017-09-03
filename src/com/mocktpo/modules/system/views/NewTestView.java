@@ -174,9 +174,9 @@ public class NewTestView extends Composite {
             FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.OPEN);
             dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
             dialog.setFilterExtensions(new String[]{"*.zip"});
-            String fullSrcFileName = dialog.open();
-            ImportUtils.unzip(fullSrcFileName);
-            String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(fullSrcFileName));
+            String fullSrcZipFileName = dialog.open();
+            ImportUtils.unzip(fullSrcZipFileName);
+            String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(fullSrcZipFileName));
             if (fileAlias != null) {
                 refreshCards();
             }

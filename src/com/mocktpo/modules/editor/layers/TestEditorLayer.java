@@ -350,11 +350,11 @@ public abstract class TestEditorLayer extends Composite {
                         box.setMessage("\"" + titleLabel.getText() + ".zip\" " + msgs.getString("replace_or_not"));
                         int response = box.open();
                         if (response == SWT.YES) {
-                            ExportUtils.exportTestPaperAsZip(fullDestFileName, page.getTestEditorVo().getTid());
+                            ExportUtils.exportTestPaperAsZip(page.getTestEditorVo().getTid(), fullDestFileName);
                             done = true;
                         }
                     } else {
-                        ExportUtils.exportTestPaperAsZip(fullDestFileName, page.getTestEditorVo().getTid());
+                        ExportUtils.exportTestPaperAsZip(page.getTestEditorVo().getTid(), fullDestFileName);
                         done = true;
                     }
                 } else {

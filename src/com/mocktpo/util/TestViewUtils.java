@@ -21,7 +21,7 @@ public class TestViewUtils {
 
     private TestViewUtils() {
     }
-//
+
 //    private static List<TestViewVo> initViewVos() {
 //        List<TestViewVo> viewVos = new ArrayList<TestViewVo>();
 //        int viewId = 0;
@@ -95,7 +95,7 @@ public class TestViewUtils {
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText("EDUCATIONAL TESTING SERVICE, ETS, the ETS logo, TOEFL and TOEFL iBT are registered trademarks of Educational Testing Service (ETS) in the United States and other countries.\n\nClick on Continue to go on.");
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(bold(183, 8));
+            add(new StyleRangeVo(183, 8, 0, 0, 91, false, null));
         }};
         descriptionVo.setStyles(descriptionStyleVos);
 
@@ -120,12 +120,12 @@ public class TestViewUtils {
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText("This test measures your ability to use English in an academic context. There are 4 sections.\n\nIn the Reading section, you will read several passages and answer questions about them.\n\nIn the Listening section, you will hear several conversations and lectures and answer questions about them.\n\nIn the Speaking section, you will answer 6 questions. Some of the questions ask you to speak about your own experience. Other questions ask you to speak about lectures and reading passages.\n\nIn the Writing section, you will answer 2 questions. The first question asks you to write about the relationship between a lecture you will hear and a passage you will read. The second question asks you to write an essay about a topic of general interest based on your experience.\n\nDuring this practice test, you may click Pause icon at any time. This will stop the test until you decide to continue. You may continue the test in a few minutes, or at any time during the period that your test is activated.\n\nThere will be directions for each section which explain how to answer the questions in that section.\n\nYou should work quickly but carefully on the Reading and Listening questions. Some questions are more difficult than others, but try to answer every one to the best of your ability. If you are not sure of the answer to a question, make the best guess that you can. The questions that you answer by speaking and by writing are each separately timed. Try to answer every one of these questions as completely as possible in the time allowed.\n\nClick on Continue to go on.");
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(bold(101, 7));
-            add(bold(190, 9));
-            add(bold(299, 8));
-            add(bold(490, 7));
-            add(bold(806, 5));
-            add(bold(1542, 8));
+            add(new StyleRangeVo(101, 7, 0, 0, 91, false, null));
+            add(new StyleRangeVo(190, 9, 0, 0, 91, false, null));
+            add(new StyleRangeVo(299, 8, 0, 0, 91, false, null));
+            add(new StyleRangeVo(490, 7, 0, 0, 91, false, null));
+            add(new StyleRangeVo(806, 5, 0, 0, 91, false, null));
+            add(new StyleRangeVo(1542, 8, 0, 0, 91, false, null));
         }};
         descriptionVo.setStyles(descriptionStyleVos);
 
@@ -148,8 +148,8 @@ public class TestViewUtils {
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText("You may now take a break. In an actual test there is a ten-minute break at this point.\n\nClick on Continue when you are ready to go on to the next section.\n\nIf you do not wish to take a break, click on Continue now.");
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(bold(97, 8));
-            add(bold(201, 8));
+            add(new StyleRangeVo(97, 8, 0, 0, 91, false, null));
+            add(new StyleRangeVo(201, 8, 0, 0, 91, false, null));
         }};
         descriptionVo.setStyles(descriptionStyleVos);
 
@@ -200,13 +200,13 @@ public class TestViewUtils {
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText("In this part of the Reading section, you will read 3 passages. In the test you will have 60 minutes to read the passage and answer the questions.\n\nMost questions are worth 1 point but the last question in each set is worth more than 1 point. The directions indicate how many points you may receive.\n\nSome passages include a word or phrase that is underlined in blue. Click on the word or phrase to see a definition or an explanation.\n\nWhen you want to move to the next question. click on Next. You may skip questions and go back to them later if you want to return to previous questions. click on Back.\n\nYou can click on Review at any time and the review screen will show you which questions you have answered and which you have not answered. From this review screen, you may go directly to any question you have already seen in the Reading section.\n\nClick on Continue to go on.");
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(bold(51, 10));
-            add(bold(89, 10));
-            add(bold(347, 10));
-            add(bold(488, 4));
-            add(bold(597, 4));
-            add(bold(621, 6));
-            add(bold(860, 8));
+            add(new StyleRangeVo(51, 10, 0, 0, 91, false, null));
+            add(new StyleRangeVo(89, 10, 0, 0, 91, false, null));
+            add(new StyleRangeVo(347, 10, 0, 0, 91, false, null));
+            add(new StyleRangeVo(488, 4, 0, 0, 91, false, null));
+            add(new StyleRangeVo(597, 4, 0, 0, 91, false, null));
+            add(new StyleRangeVo(621, 6, 0, 0, 91, false, null));
+            add(new StyleRangeVo(860, 8, 0, 0, 91, false, null));
         }};
         descriptionVo.setStyles(descriptionStyleVos);
 
@@ -219,7 +219,7 @@ public class TestViewUtils {
         return viewVo;
     }
 
-    public static TestViewVo newReadingPassageViewVo(int viewId) {
+    public static TestViewVo initRawReadingPassageViewVo(int viewId) {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(VT.VIEW_TYPE_READING_PASSAGE);
@@ -231,31 +231,7 @@ public class TestViewUtils {
         return viewVo;
     }
 
-    public static TestViewVo initReadingPassageView(int viewId, String heading, String passage, boolean firstPassage) {
-        TestViewVo viewVo = new TestViewVo();
-        viewVo.setViewId(viewId);
-        viewVo.setViewType(VT.VIEW_TYPE_READING_PASSAGE);
-        viewVo.setSectionType(ST.SECTION_TYPE_READING);
-        viewVo.setSectionTypeName(msgs.getString("reading"));
-        viewVo.setFirstPassage(firstPassage);
-        viewVo.setTimed(true);
-
-        final StyledTextVo headingVo = new StyledTextVo();
-        headingVo.setText(heading);
-
-        final StyledTextVo passageVo = new StyledTextVo();
-        passageVo.setText(passage);
-
-        Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
-            put("heading", headingVo);
-            put("passage", passageVo);
-        }};
-        viewVo.setBody(body);
-
-        return viewVo;
-    }
-
-    public static TestViewVo newReadingMultipleChoiceQuestionViewVo(int viewId) {
+    public static TestViewVo initRawReadingMultipleChoiceQuestionViewVo(int viewId) {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION);
