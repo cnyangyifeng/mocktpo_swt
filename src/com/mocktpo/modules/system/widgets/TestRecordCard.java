@@ -113,7 +113,7 @@ public class TestRecordCard extends Composite {
 
         final CLabel progressLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(progressLabel).atLeft().atTop(10).atRight();
-        CLabelSet.decorate(progressLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("progress"));
+        CLabelSet.decorate(progressLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("progress"));
 
         int selection = 100 * userTestSession.getVisitedViewCount() / userTestSession.getTotalViewCount();
         if (userTestSession.isTestComplete() || selection > 100) {
@@ -128,7 +128,7 @@ public class TestRecordCard extends Composite {
 
         final CLabel sectionsLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(sectionsLabel).atLeft().atTopTo(progressBar, 20).atRight();
-        CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("selected_sections"));
+        CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("selected_sections"));
 
         final SectionsComposite sectionsComposite = new SectionsComposite(body, SWT.NONE, 4, false, userTestSession.isReadingSelected(), userTestSession.isListeningSelected(), userTestSession.isSpeakingSelected(), userTestSession.isWritingSelected());
         FormDataSet.attach(sectionsComposite).atLeft().atTopTo(sectionsLabel, 10).atRight();

@@ -85,7 +85,7 @@ public class TestPaperCard extends Composite {
 
         final CLabel superscriptLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(superscriptLabel).atLeft().atTop().withWidth(SUPERSCRIPT_WIDTH).withHeight(SUPERSCRIPT_HEIGHT);
-        CLabelSet.decorate(superscriptLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("test_paper"));
+        CLabelSet.decorate(superscriptLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("test_paper"));
 
         final ImageButton deleteButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_DELETE, MT.IMAGE_SYSTEM_DELETE_HOVER);
         FormDataSet.attach(deleteButton).atTop().atRight();
