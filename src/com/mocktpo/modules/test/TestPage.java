@@ -2,7 +2,7 @@ package com.mocktpo.modules.test;
 
 import com.mocktpo.modules.test.views.*;
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.util.JSONUtils;
+import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.ST;
 import com.mocktpo.util.constants.VT;
@@ -49,7 +49,7 @@ public class TestPage extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
-        this.testVo = JSONUtils.pullFromTest(this.userTestSession.getFileAlias(), TestVo.class);
+        this.testVo = ConfigUtils.pullFromTest(this.userTestSession.getFileAlias(), TestVo.class);
         init();
     }
 
@@ -71,7 +71,7 @@ public class TestPage extends Composite {
      */
 
     public void resume() {
-        this.testVo = JSONUtils.pullFromTest(userTestSession.getFileAlias(), TestVo.class);
+        this.testVo = ConfigUtils.pullFromTest(userTestSession.getFileAlias(), TestVo.class);
         if (testVo != null) {
             stack.topControl = getLastTestView();
             this.layout();

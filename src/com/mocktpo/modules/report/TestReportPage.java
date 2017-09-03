@@ -7,7 +7,7 @@ import com.mocktpo.modules.report.views.SpeakingReportView;
 import com.mocktpo.modules.report.views.WritingReportView;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.orm.domain.UserTestSession;
-import com.mocktpo.util.JSONUtils;
+import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.ReportUtils;
 import com.mocktpo.util.TimeUtils;
 import com.mocktpo.util.constants.MT;
@@ -82,7 +82,7 @@ public class TestReportPage extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
-        this.testVo = JSONUtils.pullFromTest(this.userTestSession.getFileAlias(), TestVo.class);
+        this.testVo = ConfigUtils.pullFromTest(this.userTestSession.getFileAlias(), TestVo.class);
         init();
     }
 

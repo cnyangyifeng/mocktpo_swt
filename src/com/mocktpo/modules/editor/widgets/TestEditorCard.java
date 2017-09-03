@@ -206,7 +206,7 @@ public class TestEditorCard extends Composite {
                 inner.removePaintListener(borderPaintListener);
                 borderPaintListener = hoveredBorderPaintListener;
                 inner.addPaintListener(borderPaintListener);
-                TestEditorCard.this.redraw();
+                inner.redraw();
             }
         }
 
@@ -216,7 +216,7 @@ public class TestEditorCard extends Composite {
                 inner.removePaintListener(borderPaintListener);
                 borderPaintListener = defaultBorderPaintListener;
                 inner.addPaintListener(borderPaintListener);
-                TestEditorCard.this.redraw();
+                inner.redraw();
             }
         }
     }
@@ -276,7 +276,7 @@ public class TestEditorCard extends Composite {
                 bringForwardButton.setVisible(true);
             }
 
-            TestEditorCard.this.redraw();
+            inner.redraw();
         } else {
             inner.removePaintListener(borderPaintListener);
             borderPaintListener = defaultBorderPaintListener;
@@ -286,7 +286,7 @@ public class TestEditorCard extends Composite {
             sendBackwardButton.setVisible(false);
             bringForwardButton.setVisible(false);
 
-            TestEditorCard.this.redraw();
+            inner.redraw();
         }
     }
 }
