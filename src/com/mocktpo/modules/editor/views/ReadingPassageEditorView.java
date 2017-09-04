@@ -49,7 +49,7 @@ public class ReadingPassageEditorView extends SashTestEditorView {
 
     @Override
     protected void updateTestViewVo() {
-        vo.setFirstPassage(true);
+        vo.setFirstPassage(false);
         vo.setTimed(true);
     }
 

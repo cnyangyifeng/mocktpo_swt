@@ -308,6 +308,25 @@ public class TestViewUtils {
         return viewVo;
     }
 
+    public static TestViewVo initRawReadingInsertTextQuestionView(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION);
+        viewVo.setSectionType(ST.SECTION_TYPE_READING);
+        viewVo.setSectionTypeName(msgs.getString("reading"));
+        viewVo.setTimed(true);
+        viewVo.setQuestionCaptionVisible(true);
+        viewVo.setAnswerable(true);
+        final StyledTextVo footnoteVo = new StyledTextVo();
+        footnoteVo.setText("Where would the sentence best fit? Click on a square to add the sentence to the passage.");
+        Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
+            put("footnote", footnoteVo);
+        }};
+        viewVo.setBody(body);
+
+        return viewVo;
+    }
+
     public static TestViewVo initReadingInsertTextQuestionView(int viewId, int questionNumberInSection, String heading, String passage, int passageOffset, String insertText, final String insertPointA, final String insertPointB, final String insertPointC, final String insertPointD) {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
@@ -373,6 +392,40 @@ public class TestViewUtils {
             put("insertPointC", insertPointCVo);
             put("insertPointD", insertPointDVo);
             put("footnote", footnoteVo);
+        }};
+        viewVo.setBody(body);
+
+        return viewVo;
+    }
+
+    public static TestViewVo initRawReadingProseSummaryQuestionView(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION);
+        viewVo.setSectionType(ST.SECTION_TYPE_READING);
+        viewVo.setSectionTypeName(msgs.getString("reading"));
+        viewVo.setTimed(true);
+        viewVo.setQuestionCaptionVisible(true);
+        viewVo.setAnswerable(true);
+
+        final StyledTextVo directionsVo = new StyledTextVo();
+        directionsVo.setText("Directions: An introductory sentence for a brief summary of the passage is provided below. Complete the summary by selecting the THREE answer choices that express the most important ideas in the passage. Some sentences do not belong in the summary because they express ideas that are not presented in the passage or are minor ideas in the passage. This question is worth 2 points.");
+        List<StyleRangeVo> directionsStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(bold(0, 11));
+            add(bold(348, 32));
+        }};
+        directionsVo.setStyles(directionsStyleVos);
+
+        final StyledTextVo tipsVo = new StyledTextVo();
+        tipsVo.setText("Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\nTo review the passage, click VIEW TEXT.");
+        List<StyleRangeVo> tipsStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(bold(128, 9));
+        }};
+        tipsVo.setStyles(tipsStyleVos);
+
+        Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
+            put("directions", directionsVo);
+            put("tips", tipsVo);
         }};
         viewVo.setBody(body);
 

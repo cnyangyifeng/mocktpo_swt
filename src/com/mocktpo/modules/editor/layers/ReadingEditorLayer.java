@@ -2,9 +2,7 @@ package com.mocktpo.modules.editor.layers;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.editor.TestEditorPage;
-import com.mocktpo.modules.editor.views.ReadingMultipleChoiceQuestionEditorView;
-import com.mocktpo.modules.editor.views.ReadingPassageEditorView;
-import com.mocktpo.modules.editor.views.TestEditorView;
+import com.mocktpo.modules.editor.views.*;
 import com.mocktpo.modules.editor.widgets.TestEditorCard;
 import com.mocktpo.modules.editor.windows.NewReadingQuestionWindow;
 import com.mocktpo.modules.system.widgets.ImageButton;
@@ -116,11 +114,31 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
     }
 
     public void newReadingInsertTextQuestion() {
-
+        List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
+        TestViewVo viewVo = TestViewUtils.initRawReadingInsertTextQuestionView(++currentViewId);
+        updateReadingPassageForQuestionView(viewVo, viewVos);
+        viewVos.add(currentViewId, viewVo);
+        for (int i = currentViewId + 1; i < viewVos.size(); i++) {
+            TestViewVo eachAfter = viewVos.get(i);
+            eachAfter.setViewId(i);
+        }
+        setRefreshRequired(true);
+        page.toReadingEditorLayer();
+        page.save();
     }
 
     public void newReadingProseSummaryQuestion() {
-
+        List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
+        TestViewVo viewVo = TestViewUtils.initRawReadingProseSummaryQuestionView(++currentViewId);
+        updateReadingPassageForQuestionView(viewVo, viewVos);
+        viewVos.add(currentViewId, viewVo);
+        for (int i = currentViewId + 1; i < viewVos.size(); i++) {
+            TestViewVo eachAfter = viewVos.get(i);
+            eachAfter.setViewId(i);
+        }
+        setRefreshRequired(true);
+        page.toReadingEditorLayer();
+        page.save();
     }
 
     public void newReadingFillInATableQuestion() {
@@ -145,6 +163,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
                 StyledTextVo passageTextVo = new StyledTextVo();
                 passageTextVo.setText(tmp.getStyledTextContent("passage"));
                 viewVo.setStyledTextVo("passage", passageTextVo);
+                break;
             }
         }
     }
@@ -267,6 +286,12 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
                     break;
                 case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
                     view = new ReadingMultipleChoiceQuestionEditorView(this, SWT.NONE, viewVo);
+                    break;
+                case VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION:
+                    view = new ReadingInsertTextQuestionEditorView(this, SWT.NONE, viewVo);
+                    break;
+                case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
+                    view = new ReadingProseSummaryQuestionEditorView(this, SWT.NONE, viewVo);
                     break;
             }
             views.add(view);

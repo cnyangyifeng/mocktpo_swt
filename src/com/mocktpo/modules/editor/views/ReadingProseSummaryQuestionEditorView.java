@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import java.util.*;
 
-public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView {
+public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
     /* Widgets */
 
@@ -49,7 +49,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
      * ==================================================
      */
 
-    public ReadingMultipleChoiceQuestionEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
+    public ReadingProseSummaryQuestionEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
         super(layer, style, vo);
     }
 

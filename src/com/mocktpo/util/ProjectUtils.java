@@ -112,15 +112,23 @@ public class ProjectUtils {
         viewVos.add(TestViewUtils.initGeneralTestInfoView(++viewId));
         viewVos.add(TestViewUtils.initReadingSectionDirectionsView(++viewId));
         /* Adds readingViewVos to viewVos */
+        boolean firstPassage = false;
         int readingQuestionNumber = 0;
         for (TestViewVo vo : readingViewVos) {
             vo.setViewId(++viewId);
             switch (vo.getViewType()) {
+                case VT.VIEW_TYPE_READING_PASSAGE:
+                    if (!firstPassage) {
+                        vo.setFirstPassage(true);
+                        firstPassage = true;
+                    }
+                    break;
                 case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
                 case VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION:
                 case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
                 case VT.VIEW_TYPE_READING_FILL_IN_A_TABLE_QUESTION:
                     vo.setQuestionNumberInSection(++readingQuestionNumber);
+                    break;
             }
             viewVos.add(vo);
         }
