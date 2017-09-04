@@ -317,9 +317,15 @@ public class TestViewUtils {
         viewVo.setTimed(true);
         viewVo.setQuestionCaptionVisible(true);
         viewVo.setAnswerable(true);
+
+        final StyledTextVo questionVo = new StyledTextVo();
+        questionVo.setText("Look at the four squares [ \u2588 ] that indicate where the following sentence could be added to the passage.");
+
         final StyledTextVo footnoteVo = new StyledTextVo();
         footnoteVo.setText("Where would the sentence best fit? Click on a square to add the sentence to the passage.");
+
         Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
+            put("question", questionVo);
             put("footnote", footnoteVo);
         }};
         viewVo.setBody(body);

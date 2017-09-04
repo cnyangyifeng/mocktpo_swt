@@ -12,7 +12,6 @@ import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.StyleRangeUtils;
 import com.mocktpo.util.widgets.StyledTextSet;
-import com.mocktpo.vo.StyleRangeVo;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
@@ -20,26 +19,16 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.*;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
-
-import java.util.*;
 
 public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
 
     /* Widgets */
 
     private StyledText headingTextWidget;
-    private ImageButton markParagraphsButton;
-    private ImageButton highlightPassageButton;
+    private ImageButton addAnInsertionPointButton;
     private StyledText passageTextWidget;
-    private ImageButton highlightQuestionButton;
-    private StyledText questionTextWidget;
-    private StyledText choiceATextWidget;
-    private StyledText choiceBTextWidget;
-    private StyledText choiceCTextWidget;
-    private StyledText choiceDTextWidget;
-    private StyledText footnoteTextWidget;
+    private StyledText insertTextTextWidget;
 
     /*
      * ==================================================
@@ -94,18 +83,13 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("passage") + MT.STRING_TAB + MT.STRING_STAR);
 
-        markParagraphsButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_HOVER, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_DISABLED);
-        FormDataSet.attach(markParagraphsButton).atLeft().atTopTo(passagePreLabel);
-        markParagraphsButton.addMouseListener(new MarkParagraphsButtonMouseListener());
-        markParagraphsButton.setEnabled(false);
-
-        highlightPassageButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_HOVER, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_DISABLED);
-        FormDataSet.attach(highlightPassageButton).atLeftTo(markParagraphsButton).atTopTo(passagePreLabel);
-        highlightPassageButton.addMouseListener(new HighlightPassageButtonMouseListener());
-        highlightPassageButton.setEnabled(false);
+        addAnInsertionPointButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT, MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT_HOVER, MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT_DISABLED);
+        FormDataSet.attach(addAnInsertionPointButton).atLeft().atTopTo(passagePreLabel);
+        addAnInsertionPointButton.addMouseListener(new AddAnInsertionPointButtonMouseListener());
+        addAnInsertionPointButton.setEnabled(false);
 
         passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(markParagraphsButton).atRight().atBottom();
+        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(addAnInsertionPointButton).atRight().atBottom();
         StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
         KeyBindingSet.bind(passageTextWidget).selectAll();
@@ -124,83 +108,24 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         CompositeSet.decorate(c).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         FormLayoutSet.layout(c).marginWidth(20).marginHeight(20).spacing(10);
 
-        final CLabel questionPreLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(questionPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(questionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("question") + MT.STRING_TAB + MT.STRING_STAR);
+        final CLabel insertTextPreLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(insertTextPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(insertTextPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("insert_text") + MT.STRING_TAB + MT.STRING_STAR);
 
-        highlightQuestionButton = new ImageButton(c, SWT.NONE, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_HOVER, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_DISABLED);
-        FormDataSet.attach(highlightQuestionButton).atLeftTo(markParagraphsButton).atTopTo(questionPreLabel);
-        highlightQuestionButton.addMouseListener(new HighlightQuestionButtonMouseListener());
-        highlightQuestionButton.setEnabled(false);
-
-        questionTextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(questionTextWidget).atLeft().atTopTo(highlightQuestionButton).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(questionTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("question"));
-        StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
-        KeyBindingSet.bind(questionTextWidget).selectAll();
-        questionTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
-        questionTextWidget.addModifyListener(new QuestionTextModifyListener());
-        questionTextWidget.addFocusListener(new QuestionTextFocusListener());
-
-        final CLabel choiceAPreLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(choiceAPreLabel).atLeft().atTopTo(questionTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(choiceAPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("choice_a") + MT.STRING_TAB + MT.STRING_STAR);
-
-        choiceATextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(choiceATextWidget).atLeft().atTopTo(choiceAPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceATextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceA"));
-        KeyBindingSet.bind(choiceATextWidget).selectAll();
-        choiceATextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
-        choiceATextWidget.addModifyListener(new ChoiceATextModifyListener());
-
-        final CLabel choiceBPreLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(choiceBPreLabel).atLeft().atTopTo(choiceATextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(choiceBPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("choice_b") + MT.STRING_TAB + MT.STRING_STAR);
-
-        choiceBTextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(choiceBTextWidget).atLeft().atTopTo(choiceBPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceBTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceB"));
-        KeyBindingSet.bind(choiceBTextWidget).selectAll();
-        choiceBTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
-        choiceBTextWidget.addModifyListener(new ChoiceBTextModifyListener());
-
-        final CLabel choiceCPreLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(choiceCPreLabel).atLeft().atTopTo(choiceBTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(choiceCPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("choice_c") + MT.STRING_TAB + MT.STRING_STAR);
-
-        choiceCTextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(choiceCTextWidget).atLeft().atTopTo(choiceCPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceCTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceC"));
-        KeyBindingSet.bind(choiceCTextWidget).selectAll();
-        choiceCTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
-        choiceCTextWidget.addModifyListener(new ChoiceCTextModifyListener());
-
-        final CLabel choiceDPreLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(choiceDPreLabel).atLeft().atTopTo(choiceCTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(choiceDPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("choice_d") + MT.STRING_TAB + MT.STRING_STAR);
-
-        choiceDTextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(choiceDTextWidget).atLeft().atTopTo(choiceDPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceDTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceD"));
-        KeyBindingSet.bind(choiceDTextWidget).selectAll();
-        choiceDTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
-        choiceDTextWidget.addModifyListener(new ChoiceDTextModifyListener());
-
-        final CLabel footnotePreLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(footnotePreLabel).atLeft().atTopTo(choiceDTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(footnotePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("footnote"));
-
-        footnoteTextWidget = new StyledText(c, SWT.SINGLE);
-        FormDataSet.attach(footnoteTextWidget).atLeft().atTopTo(footnotePreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(footnoteTextWidget).setBackground(MT.COLOR_WHITE_SMOKE).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setNoCaret().setText(vo.getStyledTextContent("footnote"));
-        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        insertTextTextWidget = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(insertTextTextWidget).atLeft().atTopTo(insertTextPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(insertTextTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("insertText"));
+        StyleRangeUtils.decorate(insertTextTextWidget, vo.getStyledTextStyles("insertText"));
+        KeyBindingSet.bind(insertTextTextWidget).selectAll();
+        insertTextTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        insertTextTextWidget.addModifyListener(new InsertTextTextModifyListener());
 
         rsc.setContent(c);
         rsc.addPaintListener(new PaintListener() {
             @Override
             public void paintControl(PaintEvent e) {
                 int wh = rsc.getBounds().width;
-                int hh = footnoteTextWidget.getBounds().y + footnoteTextWidget.getBounds().height + 100;
+                int hh = insertTextTextWidget.getBounds().y + insertTextTextWidget.getBounds().height + 100;
                 rsc.setMinSize(c.computeSize(wh, hh));
             }
         });
@@ -226,43 +151,6 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         page.edit();
     }
 
-    private void updateFootnote() {
-        if (passageTextWidget == null) {
-            return;
-        }
-        String text = passageTextWidget.getText();
-        Map<Integer, Integer> markedParagraphIndices = new HashMap<Integer, Integer>();
-        int number = 1;
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) == MT.STRING_LINEFEED.charAt(0)) {
-                number++;
-            }
-            if (text.charAt(i) == MT.STRING_ARROW.charAt(0)) {
-                markedParagraphIndices.put(number, i);
-            }
-        }
-        logger.info("marked: {}", markedParagraphIndices);
-
-        StringJoiner joiner = new StringJoiner(MT.STRING_COMMA + MT.STRING_SPACE);
-        for (Map.Entry<Integer, Integer> entry : markedParagraphIndices.entrySet()) {
-            joiner.add(entry.getKey().toString());
-        }
-        String footnote;
-        if (joiner.length() > 0) {
-            footnote = "Paragraph " + joiner + " is marked with ➤.";
-        } else {
-            footnote = "";
-        }
-        footnoteTextWidget.setText(footnote);
-        StyledTextVo footnoteTextVo = vo.getStyledTextVo("footnote");
-        if (footnoteTextVo == null) {
-            footnoteTextVo = new StyledTextVo();
-        }
-        footnoteTextVo.setText(footnote);
-        vo.setStyledTextVo("footnote", footnoteTextVo);
-        page.edit();
-    }
-
     /*
      * ==================================================
      *
@@ -279,7 +167,7 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         }
     }
 
-    private class MarkParagraphsButtonMouseListener extends MouseAdapter {
+    private class AddAnInsertionPointButtonMouseListener extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -338,28 +226,6 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
                     break;
                 }
             }
-
-            updateFootnote();
-        }
-    }
-
-    private class HighlightPassageButtonMouseListener extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            List<StyleRangeVo> styles = new ArrayList<StyleRangeVo>();
-            Point p = passageTextWidget.getSelectionRange();
-            styles.add(new StyleRangeVo(p.x, p.y, 0, 0, MT.COLOR_HIGHLIGHTED, false, null));
-            StyleRangeUtils.decorate(passageTextWidget, styles);
-            passageTextWidget.setSelection(p.x + p.y);
-
-            StyledTextVo passageTextVo = vo.getStyledTextVo("passage");
-            if (passageTextVo == null) {
-                passageTextVo = new StyledTextVo();
-            }
-            passageTextVo.setStyles(styles);
-            vo.setStyledTextVo("passage", passageTextVo);
-            page.edit();
         }
     }
 
@@ -368,7 +234,6 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         @Override
         public void modifyText(ModifyEvent e) {
             updatePasasge();
-            updateFootnote();
         }
     }
 
@@ -376,118 +241,27 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
 
         @Override
         public void focusGained(FocusEvent e) {
-            markParagraphsButton.setEnabled(true);
-            highlightPassageButton.setEnabled(true);
+            addAnInsertionPointButton.setEnabled(true);
         }
 
         @Override
         public void focusLost(FocusEvent e) {
-            markParagraphsButton.setEnabled(false);
-            highlightPassageButton.setEnabled(false);
+            addAnInsertionPointButton.setEnabled(false);
         }
     }
 
-    private class HighlightQuestionButtonMouseListener extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            List<StyleRangeVo> styles = new ArrayList<StyleRangeVo>();
-            Point p = questionTextWidget.getSelectionRange();
-            styles.add(new StyleRangeVo(p.x, p.y, 0, 0, MT.COLOR_HIGHLIGHTED, false, null));
-            StyleRangeUtils.decorate(questionTextWidget, styles);
-            questionTextWidget.setSelection(p.x + p.y);
-
-            StyledTextVo questionTextVo = vo.getStyledTextVo("question");
-            if (questionTextVo == null) {
-                questionTextVo = new StyledTextVo();
-            }
-            questionTextVo.setStyles(styles);
-            vo.setStyledTextVo("question", questionTextVo);
-            page.edit();
-        }
-    }
-
-    private class QuestionTextModifyListener implements ModifyListener {
+    private class InsertTextTextModifyListener implements ModifyListener {
 
         @Override
         public void modifyText(ModifyEvent e) {
-            layer.updateDescription(questionTextWidget.getText());
+            layer.updateDescription(insertTextTextWidget.getText());
 
-            StyledTextVo questionTextVo = vo.getStyledTextVo("question");
-            if (questionTextVo == null) {
-                questionTextVo = new StyledTextVo();
+            StyledTextVo insertTextTextVo = vo.getStyledTextVo("insertText");
+            if (insertTextTextVo == null) {
+                insertTextTextVo = new StyledTextVo();
             }
-            questionTextVo.setText(questionTextWidget.getText());
-            vo.setStyledTextVo("question", questionTextVo);
-            page.edit();
-        }
-    }
-
-    private class QuestionTextFocusListener implements FocusListener {
-
-        @Override
-        public void focusGained(FocusEvent e) {
-            highlightQuestionButton.setEnabled(true);
-        }
-
-        @Override
-        public void focusLost(FocusEvent e) {
-            highlightQuestionButton.setEnabled(false);
-        }
-    }
-
-    private class ChoiceATextModifyListener implements ModifyListener {
-
-        @Override
-        public void modifyText(ModifyEvent e) {
-            StyledTextVo choiceATextVo = vo.getStyledTextVo("choiceA");
-            if (choiceATextVo == null) {
-                choiceATextVo = new StyledTextVo();
-            }
-            choiceATextVo.setText(choiceATextWidget.getText());
-            vo.setStyledTextVo("choiceA", choiceATextVo);
-            page.edit();
-        }
-    }
-
-    private class ChoiceBTextModifyListener implements ModifyListener {
-
-        @Override
-        public void modifyText(ModifyEvent e) {
-            StyledTextVo choiceBTextVo = vo.getStyledTextVo("choiceB");
-            if (choiceBTextVo == null) {
-                choiceBTextVo = new StyledTextVo();
-            }
-            choiceBTextVo.setText(choiceBTextWidget.getText());
-            vo.setStyledTextVo("choiceB", choiceBTextVo);
-            page.edit();
-        }
-    }
-
-    private class ChoiceCTextModifyListener implements ModifyListener {
-
-        @Override
-        public void modifyText(ModifyEvent e) {
-            StyledTextVo choiceCTextVo = vo.getStyledTextVo("choiceC");
-            if (choiceCTextVo == null) {
-                choiceCTextVo = new StyledTextVo();
-            }
-            choiceCTextVo.setText(choiceCTextWidget.getText());
-            vo.setStyledTextVo("choiceC", choiceCTextVo);
-            page.edit();
-        }
-    }
-
-    private class ChoiceDTextModifyListener implements ModifyListener {
-
-        @Override
-        public void modifyText(ModifyEvent e) {
-            StyledTextVo choiceDTextVo = vo.getStyledTextVo("choiceD");
-            if (choiceDTextVo == null) {
-                choiceDTextVo = new StyledTextVo();
-            }
-            choiceDTextVo.setText(choiceDTextWidget.getText());
-            vo.setStyledTextVo("choiceD", choiceDTextVo);
+            insertTextTextVo.setText(insertTextTextWidget.getText());
+            vo.setStyledTextVo("insertText", insertTextTextVo);
             page.edit();
         }
     }
