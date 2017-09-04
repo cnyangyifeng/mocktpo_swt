@@ -2,7 +2,6 @@ package com.mocktpo.modules.editor.views;
 
 import com.mocktpo.modules.editor.layers.SashTestEditorLayer;
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
-import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.KeyBindingSet;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -23,23 +22,22 @@ import org.eclipse.swt.events.*;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
     /* Widgets */
 
     private StyledText headingTextWidget;
-    private ImageButton markParagraphsButton;
-    private ImageButton highlightPassageButton;
     private StyledText passageTextWidget;
-    private ImageButton highlightQuestionButton;
     private StyledText questionTextWidget;
     private StyledText choiceATextWidget;
     private StyledText choiceBTextWidget;
     private StyledText choiceCTextWidget;
     private StyledText choiceDTextWidget;
-    private StyledText footnoteTextWidget;
+    private StyledText choiceETextWidget;
+    private StyledText choiceFTextWidget;
 
     /*
      * ==================================================
@@ -94,23 +92,12 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
         FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("passage") + MT.STRING_TAB + MT.STRING_STAR);
 
-        markParagraphsButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_HOVER, MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_DISABLED);
-        FormDataSet.attach(markParagraphsButton).atLeft().atTopTo(passagePreLabel);
-        markParagraphsButton.addMouseListener(new MarkParagraphsButtonMouseListener());
-        markParagraphsButton.setEnabled(false);
-
-        highlightPassageButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_HOVER, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_DISABLED);
-        FormDataSet.attach(highlightPassageButton).atLeftTo(markParagraphsButton).atTopTo(passagePreLabel);
-        highlightPassageButton.addMouseListener(new HighlightPassageButtonMouseListener());
-        highlightPassageButton.setEnabled(false);
-
         passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(markParagraphsButton).atRight().atBottom();
+        FormDataSet.attach(passageTextWidget).atLeft().atTopTo(passagePreLabel).atRight().atBottom();
         StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
         KeyBindingSet.bind(passageTextWidget).selectAll();
         passageTextWidget.addModifyListener(new PassageTextModifyListener());
-        passageTextWidget.addFocusListener(new PassageTextFocusListener());
     }
 
     @Override
@@ -128,19 +115,13 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
         FormDataSet.attach(questionPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(questionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("question") + MT.STRING_TAB + MT.STRING_STAR);
 
-        highlightQuestionButton = new ImageButton(c, SWT.NONE, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_HOVER, MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_DISABLED);
-        FormDataSet.attach(highlightQuestionButton).atLeftTo(markParagraphsButton).atTopTo(questionPreLabel);
-        highlightQuestionButton.addMouseListener(new HighlightQuestionButtonMouseListener());
-        highlightQuestionButton.setEnabled(false);
-
         questionTextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(questionTextWidget).atLeft().atTopTo(highlightQuestionButton).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(questionTextWidget).atLeft().atTopTo(questionPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(questionTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("question"));
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
         KeyBindingSet.bind(questionTextWidget).selectAll();
         questionTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         questionTextWidget.addModifyListener(new QuestionTextModifyListener());
-        questionTextWidget.addFocusListener(new QuestionTextFocusListener());
 
         final CLabel choiceAPreLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(choiceAPreLabel).atLeft().atTopTo(questionTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
@@ -186,21 +167,34 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
         choiceDTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         choiceDTextWidget.addModifyListener(new ChoiceDTextModifyListener());
 
-        final CLabel footnotePreLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(footnotePreLabel).atLeft().atTopTo(choiceDTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(footnotePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("footnote"));
+        final CLabel choiceEPreLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(choiceEPreLabel).atLeft().atTopTo(choiceDTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(choiceEPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("choice_e") + MT.STRING_TAB + MT.STRING_STAR);
 
-        footnoteTextWidget = new StyledText(c, SWT.SINGLE);
-        FormDataSet.attach(footnoteTextWidget).atLeft().atTopTo(footnotePreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(footnoteTextWidget).setBackground(MT.COLOR_WHITE_SMOKE).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setNoCaret().setText(vo.getStyledTextContent("footnote"));
-        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        choiceETextWidget = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(choiceETextWidget).atLeft().atTopTo(choiceEPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(choiceETextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceE"));
+        KeyBindingSet.bind(choiceETextWidget).selectAll();
+        choiceETextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        choiceETextWidget.addModifyListener(new ChoiceETextModifyListener());
+
+        final CLabel choiceFPreLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(choiceFPreLabel).atLeft().atTopTo(choiceETextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(choiceFPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("choice_f") + MT.STRING_TAB + MT.STRING_STAR);
+
+        choiceFTextWidget = new StyledText(c, SWT.WRAP);
+        FormDataSet.attach(choiceFTextWidget).atLeft().atTopTo(choiceFPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(choiceFTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceF"));
+        KeyBindingSet.bind(choiceFTextWidget).selectAll();
+        choiceFTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        choiceFTextWidget.addModifyListener(new ChoiceFTextModifyListener());
 
         rsc.setContent(c);
         rsc.addPaintListener(new PaintListener() {
             @Override
             public void paintControl(PaintEvent e) {
                 int wh = rsc.getBounds().width;
-                int hh = footnoteTextWidget.getBounds().y + footnoteTextWidget.getBounds().height + 100;
+                int hh = choiceFTextWidget.getBounds().y + choiceFTextWidget.getBounds().height + 100;
                 rsc.setMinSize(c.computeSize(wh, hh));
             }
         });
@@ -226,43 +220,6 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
         page.edit();
     }
 
-    private void updateFootnote() {
-        if (passageTextWidget == null) {
-            return;
-        }
-        String text = passageTextWidget.getText();
-        Map<Integer, Integer> markedParagraphIndices = new HashMap<Integer, Integer>();
-        int number = 1;
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) == MT.STRING_LINEFEED.charAt(0)) {
-                number++;
-            }
-            if (text.charAt(i) == MT.STRING_ARROW.charAt(0)) {
-                markedParagraphIndices.put(number, i);
-            }
-        }
-        logger.info("marked: {}", markedParagraphIndices);
-
-        StringJoiner joiner = new StringJoiner(MT.STRING_COMMA + MT.STRING_SPACE);
-        for (Map.Entry<Integer, Integer> entry : markedParagraphIndices.entrySet()) {
-            joiner.add(entry.getKey().toString());
-        }
-        String footnote;
-        if (joiner.length() > 0) {
-            footnote = "Paragraph " + joiner + " is marked with ➤.";
-        } else {
-            footnote = "";
-        }
-        footnoteTextWidget.setText(footnote);
-        StyledTextVo footnoteTextVo = vo.getStyledTextVo("footnote");
-        if (footnoteTextVo == null) {
-            footnoteTextVo = new StyledTextVo();
-        }
-        footnoteTextVo.setText(footnote);
-        vo.setStyledTextVo("footnote", footnoteTextVo);
-        page.edit();
-    }
-
     /*
      * ==================================================
      *
@@ -279,131 +236,11 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
         }
     }
 
-    private class MarkParagraphsButtonMouseListener extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            String text = passageTextWidget.getText();
-            int start = passageTextWidget.getCaretOffset() - 1;
-
-            if (passageTextWidget.getCaretOffset() == 0) {
-                boolean arrowExists = false;
-                for (int k = 0; k < text.length(); k++) {
-                    if (text.charAt(k) == MT.STRING_LINEFEED.charAt(0)) {
-                        break;
-                    }
-                    if (text.charAt(k) == MT.STRING_ARROW.charAt(0)) {
-                        arrowExists = true;
-                        break;
-                    }
-                }
-                if (!arrowExists) {
-                    passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
-                }
-            }
-
-            for (int i = start; i >= 0; i--) {
-                if (text.charAt(i) == MT.STRING_LINEFEED.charAt(0)) {
-                    boolean arrowExists = false;
-                    for (int j = i + 1; j < text.length(); j++) {
-                        if (text.charAt(j) == MT.STRING_LINEFEED.charAt(0)) {
-                            break;
-                        }
-                        if (text.charAt(j) == MT.STRING_ARROW.charAt(0)) {
-                            arrowExists = true;
-                            break;
-                        }
-                    }
-                    if (!arrowExists) {
-                        passageTextWidget.setCaretOffset(i + 1);
-                        passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
-                    }
-                    break;
-                }
-                if (i == 0) {
-                    boolean arrowExists = false;
-                    for (int j = i; j < text.length(); j++) {
-                        if (text.charAt(j) == MT.STRING_LINEFEED.charAt(0)) {
-                            break;
-                        }
-                        if (text.charAt(j) == MT.STRING_ARROW.charAt(0)) {
-                            arrowExists = true;
-                            break;
-                        }
-                    }
-                    if (!arrowExists) {
-                        passageTextWidget.setCaretOffset(i);
-                        passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
-                    }
-                    break;
-                }
-            }
-
-            updateFootnote();
-        }
-    }
-
-    private class HighlightPassageButtonMouseListener extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            List<StyleRangeVo> styles = new ArrayList<StyleRangeVo>();
-            Point p = passageTextWidget.getSelectionRange();
-            styles.add(new StyleRangeVo(p.x, p.y, 0, 0, MT.COLOR_HIGHLIGHTED, false, null));
-            StyleRangeUtils.decorate(passageTextWidget, styles);
-            passageTextWidget.setSelection(p.x + p.y);
-
-            StyledTextVo passageTextVo = vo.getStyledTextVo("passage");
-            if (passageTextVo == null) {
-                passageTextVo = new StyledTextVo();
-            }
-            passageTextVo.setStyles(styles);
-            vo.setStyledTextVo("passage", passageTextVo);
-            page.edit();
-        }
-    }
-
     private class PassageTextModifyListener implements ModifyListener {
 
         @Override
         public void modifyText(ModifyEvent e) {
             updatePasasge();
-            updateFootnote();
-        }
-    }
-
-    private class PassageTextFocusListener implements FocusListener {
-
-        @Override
-        public void focusGained(FocusEvent e) {
-            markParagraphsButton.setEnabled(true);
-            highlightPassageButton.setEnabled(true);
-        }
-
-        @Override
-        public void focusLost(FocusEvent e) {
-            markParagraphsButton.setEnabled(false);
-            highlightPassageButton.setEnabled(false);
-        }
-    }
-
-    private class HighlightQuestionButtonMouseListener extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            List<StyleRangeVo> styles = new ArrayList<StyleRangeVo>();
-            Point p = questionTextWidget.getSelectionRange();
-            styles.add(new StyleRangeVo(p.x, p.y, 0, 0, MT.COLOR_HIGHLIGHTED, false, null));
-            StyleRangeUtils.decorate(questionTextWidget, styles);
-            questionTextWidget.setSelection(p.x + p.y);
-
-            StyledTextVo questionTextVo = vo.getStyledTextVo("question");
-            if (questionTextVo == null) {
-                questionTextVo = new StyledTextVo();
-            }
-            questionTextVo.setStyles(styles);
-            vo.setStyledTextVo("question", questionTextVo);
-            page.edit();
         }
     }
 
@@ -420,19 +257,6 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
             questionTextVo.setText(questionTextWidget.getText());
             vo.setStyledTextVo("question", questionTextVo);
             page.edit();
-        }
-    }
-
-    private class QuestionTextFocusListener implements FocusListener {
-
-        @Override
-        public void focusGained(FocusEvent e) {
-            highlightQuestionButton.setEnabled(true);
-        }
-
-        @Override
-        public void focusLost(FocusEvent e) {
-            highlightQuestionButton.setEnabled(false);
         }
     }
 
@@ -488,6 +312,34 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
             }
             choiceDTextVo.setText(choiceDTextWidget.getText());
             vo.setStyledTextVo("choiceD", choiceDTextVo);
+            page.edit();
+        }
+    }
+
+    private class ChoiceETextModifyListener implements ModifyListener {
+
+        @Override
+        public void modifyText(ModifyEvent e) {
+            StyledTextVo choiceETextVo = vo.getStyledTextVo("choiceE");
+            if (choiceETextVo == null) {
+                choiceETextVo = new StyledTextVo();
+            }
+            choiceETextVo.setText(choiceETextWidget.getText());
+            vo.setStyledTextVo("choiceE", choiceETextVo);
+            page.edit();
+        }
+    }
+
+    private class ChoiceFTextModifyListener implements ModifyListener {
+
+        @Override
+        public void modifyText(ModifyEvent e) {
+            StyledTextVo choiceFTextVo = vo.getStyledTextVo("choiceF");
+            if (choiceFTextVo == null) {
+                choiceFTextVo = new StyledTextVo();
+            }
+            choiceFTextVo.setText(choiceFTextWidget.getText());
+            vo.setStyledTextVo("choiceF", choiceFTextVo);
             page.edit();
         }
     }

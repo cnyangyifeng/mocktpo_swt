@@ -580,25 +580,25 @@
         "footnote": {
           "text": "Where would the sentence best fit? Click on a square to add the sentence to the passage."
         },
-        "insertPointA": {
+        "insertionPointA": {
           "text": "\u2588",
           "styles": [
             { "start": 1597 }
           ]
         },
-        "insertPointB": {
+        "insertionPointB": {
           "text": "\u2588",
           "styles": [
             { "start": 1717 }
           ]
         },
-        "insertPointC": {
+        "insertionPointC": {
           "text": "\u2588",
           "styles": [
             { "start": 1798 }
           ]
         },
-        "insertPointD": {
+        "insertionPointD": {
           "text": "\u2588",
           "styles": [
             { "start": 2129 }
@@ -1132,25 +1132,25 @@
         "footnote": {
           "text": "Where would the sentence best fit? Click on a square to add the sentence to the passage."
         },
-        "insertPointA": {
+        "insertionPointA": {
           "text": "\u2588",
           "styles": [
             { "start": 430 }
           ]
         },
-        "insertPointB": {
+        "insertionPointB": {
           "text": "\u2588",
           "styles": [
             { "start": 584 }
           ]
         },
-        "insertPointC": {
+        "insertionPointC": {
           "text": "\u2588",
           "styles": [
             { "start": 663 }
           ]
         },
-        "insertPointD": {
+        "insertionPointD": {
           "text": "\u2588",
           "styles": [
             { "start": 737 }
@@ -1725,25 +1725,25 @@
         "footnote": {
           "text": "Where would the sentence best fit? Click on a square to add the sentence to the passage."
         },
-        "insertPointA": {
+        "insertionPointA": {
           "text": "\u2588",
           "styles": [
             { "start": 632 }
           ]
         },
-        "insertPointB": {
+        "insertionPointB": {
           "text": "\u2588",
           "styles": [
             { "start": 759 }
           ]
         },
-        "insertPointC": {
+        "insertionPointC": {
           "text": "\u2588",
           "styles": [
             { "start": 856 }
           ]
         },
-        "insertPointD": {
+        "insertionPointD": {
           "text": "\u2588",
           "styles": [
             { "start": 1040 }

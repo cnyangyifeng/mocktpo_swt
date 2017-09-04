@@ -333,7 +333,7 @@ public class TestViewUtils {
         return viewVo;
     }
 
-    public static TestViewVo initReadingInsertTextQuestionView(int viewId, int questionNumberInSection, String heading, String passage, int passageOffset, String insertText, final String insertPointA, final String insertPointB, final String insertPointC, final String insertPointD) {
+    public static TestViewVo initReadingInsertTextQuestionView(int viewId, int questionNumberInSection, String heading, String passage, int passageOffset, String insertText, final String insertionPointA, final String insertionPointB, final String insertionPointC, final String insertionPointD) {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
         viewVo.setViewType(VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION);
@@ -357,33 +357,33 @@ public class TestViewUtils {
         final StyledTextVo insertTextVo = new StyledTextVo();
         insertTextVo.setText(insertText);
 
-        final StyledTextVo insertPointAVo = new StyledTextVo();
-        insertPointAVo.setText("\u2588");
-        List<StyleRangeVo> insertPointAStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(insertPoint(insertPointA));
+        final StyledTextVo insertionPointAVo = new StyledTextVo();
+        insertionPointAVo.setText("\u2588");
+        List<StyleRangeVo> insertionPointAStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(insertionPoint(insertionPointA));
         }};
-        insertPointAVo.setStyles(insertPointAStyleVos);
+        insertionPointAVo.setStyles(insertionPointAStyleVos);
 
-        final StyledTextVo insertPointBVo = new StyledTextVo();
-        insertPointBVo.setText("\u2588");
-        List<StyleRangeVo> insertPointBStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(insertPoint(insertPointB));
+        final StyledTextVo insertionPointBVo = new StyledTextVo();
+        insertionPointBVo.setText("\u2588");
+        List<StyleRangeVo> insertionPointBStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(insertionPoint(insertionPointB));
         }};
-        insertPointBVo.setStyles(insertPointBStyleVos);
+        insertionPointBVo.setStyles(insertionPointBStyleVos);
 
-        final StyledTextVo insertPointCVo = new StyledTextVo();
-        insertPointCVo.setText("\u2588");
-        List<StyleRangeVo> insertPointCStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(insertPoint(insertPointC));
+        final StyledTextVo insertionPointCVo = new StyledTextVo();
+        insertionPointCVo.setText("\u2588");
+        List<StyleRangeVo> insertionPointCStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(insertionPoint(insertionPointC));
         }};
-        insertPointCVo.setStyles(insertPointCStyleVos);
+        insertionPointCVo.setStyles(insertionPointCStyleVos);
 
-        final StyledTextVo insertPointDVo = new StyledTextVo();
-        insertPointDVo.setText("\u2588");
-        List<StyleRangeVo> insertPointDStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(insertPoint(insertPointD));
+        final StyledTextVo insertionPointDVo = new StyledTextVo();
+        insertionPointDVo.setText("\u2588");
+        List<StyleRangeVo> insertionPointDStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(insertionPoint(insertionPointD));
         }};
-        insertPointDVo.setStyles(insertPointDStyleVos);
+        insertionPointDVo.setStyles(insertionPointDStyleVos);
 
         final StyledTextVo footnoteVo = new StyledTextVo();
         footnoteVo.setText("Where would the sentence best fit? Click on a square to add the sentence to the passage.");
@@ -393,10 +393,10 @@ public class TestViewUtils {
             put("passage", passageVo);
             put("question", questionVo);
             put("insertText", insertTextVo);
-            put("insertPointA", insertPointAVo);
-            put("insertPointB", insertPointBVo);
-            put("insertPointC", insertPointCVo);
-            put("insertPointD", insertPointDVo);
+            put("insertionPointA", insertionPointAVo);
+            put("insertionPointB", insertionPointBVo);
+            put("insertionPointC", insertionPointCVo);
+            put("insertionPointD", insertionPointDVo);
             put("footnote", footnoteVo);
         }};
         viewVo.setBody(body);
@@ -417,15 +417,15 @@ public class TestViewUtils {
         final StyledTextVo directionsVo = new StyledTextVo();
         directionsVo.setText("Directions: An introductory sentence for a brief summary of the passage is provided below. Complete the summary by selecting the THREE answer choices that express the most important ideas in the passage. Some sentences do not belong in the summary because they express ideas that are not presented in the passage or are minor ideas in the passage. This question is worth 2 points.");
         List<StyleRangeVo> directionsStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(bold(0, 11));
-            add(bold(348, 32));
+            add(new StyleRangeVo(0, 11, 1, 0, 0, false, null));
+            add(new StyleRangeVo(348, 32, 1, 0, 0, false, null));
         }};
         directionsVo.setStyles(directionsStyleVos);
 
         final StyledTextVo tipsVo = new StyledTextVo();
         tipsVo.setText("Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\nTo review the passage, click VIEW TEXT.");
         List<StyleRangeVo> tipsStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(bold(128, 9));
+            add(new StyleRangeVo(128, 9, 1, 0, 0, false, null));
         }};
         tipsVo.setStyles(tipsStyleVos);
 
@@ -458,15 +458,15 @@ public class TestViewUtils {
         final StyledTextVo directionsVo = new StyledTextVo();
         directionsVo.setText("Directions: An introductory sentence for a brief summary of the passage is provided below. Complete the summary by selecting the THREE answer choices that express the most important ideas in the passage. Some sentences do not belong in the summary because they express ideas that are not presented in the passage or are minor ideas in the passage. This question is worth 2 points.");
         List<StyleRangeVo> directionsStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(bold(0, 11));
-            add(bold(348, 32));
+            add(new StyleRangeVo(0, 11, 1, 0, 0, false, null));
+            add(new StyleRangeVo(348, 32, 1, 0, 0, false, null));
         }};
         directionsVo.setStyles(directionsStyleVos);
 
         final StyledTextVo tipsVo = new StyledTextVo();
         tipsVo.setText("Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\nTo review the passage, click VIEW TEXT.");
         List<StyleRangeVo> tipsStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(bold(128, 9));
+            add(new StyleRangeVo(128, 9, 1, 0, 0, false, null));
         }};
         tipsVo.setStyles(tipsStyleVos);
 
@@ -528,19 +528,7 @@ public class TestViewUtils {
         return viewVo;
     }
 
-    private static StyleRangeVo bold(int start, int length) {
-        StyleRangeVo styleRangeVo = new StyleRangeVo();
-        styleRangeVo.setStart(start);
-        styleRangeVo.setLength(length);
-        styleRangeVo.setFontStyle(1);
-        styleRangeVo.setForeground(0);
-        styleRangeVo.setBackground(0);
-        styleRangeVo.setUnderline(false);
-        styleRangeVo.setImage(null);
-        return styleRangeVo;
-    }
-
-    private static StyleRangeVo insertPoint(String text) {
+    private static StyleRangeVo insertionPoint(String text) {
         StyleRangeVo styleRangeVo = new StyleRangeVo();
         if (!StringUtils.isEmpty(text)) {
             styleRangeVo.setStart(Integer.parseInt(text));
