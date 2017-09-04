@@ -84,11 +84,17 @@ public class SectionsComposite extends Composite {
             if (enabled) {
                 checkLabel.addMouseListener(chooseAnswerAdapter);
                 checkLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
-            }
-            if (selected) {
-                LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_BOXED);
+                if (selected) {
+                    LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_BOXED);
+                } else {
+                    LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_UNBOXED);
+                }
             } else {
-                LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_UNBOXED);
+                if (selected) {
+                    LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_BOXED_DISABLED);
+                } else {
+                    LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_UNBOXED_DISABLED);
+                }
             }
 
             choiceLabel = new Label(this, SWT.WRAP);
@@ -99,7 +105,7 @@ public class SectionsComposite extends Composite {
                 choiceLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
             } else {
                 if (selected) {
-                    LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY40);
+                    LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40);
                 } else {
                     LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL_ITALIC).setForeground(MT.COLOR_GRAY60);
                 }

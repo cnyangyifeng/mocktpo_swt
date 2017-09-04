@@ -256,7 +256,7 @@ public abstract class TestEditorLayer extends Composite {
         public void mouseDown(MouseEvent e) {
             if (page.isUnsaved()) {
                 MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
-                box.setText(msgs.getString("test_paper_unsaved"));
+                box.setText(msgs.getString("saved"));
                 box.setMessage(msgs.getString("save_or_not_before_leaving"));
                 int response = box.open();
                 if (response == SWT.YES) {
@@ -323,7 +323,7 @@ public abstract class TestEditorLayer extends Composite {
         public void mouseDown(MouseEvent e) {
             if (page.isUnsaved()) {
                 MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
-                box.setText(msgs.getString("test_paper_unsaved"));
+                box.setText(msgs.getString("saved"));
                 box.setMessage(msgs.getString("save_or_not_before_exporting"));
                 int response = box.open();
                 if (response == SWT.YES) {

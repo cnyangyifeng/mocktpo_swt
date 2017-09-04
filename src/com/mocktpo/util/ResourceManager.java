@@ -175,6 +175,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK_DISABLED, ImageUtils.load(d, "sys_back_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BACK_HOVER, ImageUtils.load(d, "sys_back_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BOXED, ImageUtils.load(d, "sys_boxed"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_BOXED_DISABLED, ImageUtils.load(d, "sys_boxed_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BRING_FORWARD, ImageUtils.load(d, "sys_bring_forward"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BRING_FORWARD_HOVER, ImageUtils.load(d, "sys_bring_forward_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_WIDE, ImageUtils.load(d, "sys_cancel_wide"));
@@ -280,6 +281,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_TRASH, ImageUtils.load(d, "sys_trash"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_TRASH_HOVER, ImageUtils.load(d, "sys_trash_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_UNBOXED, ImageUtils.load(d, "sys_unboxed"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_UNBOXED_DISABLED, ImageUtils.load(d, "sys_unboxed_d"));
     }
 
     public static void dispose() {
