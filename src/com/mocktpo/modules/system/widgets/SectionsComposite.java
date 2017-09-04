@@ -96,7 +96,6 @@ public class SectionsComposite extends Composite {
                     LabelSet.decorate(checkLabel).setImage(MT.IMAGE_SYSTEM_UNBOXED_DISABLED);
                 }
             }
-
             choiceLabel = new Label(this, SWT.WRAP);
             LabelSet.decorate(choiceLabel).setText(text);
             if (enabled) {
