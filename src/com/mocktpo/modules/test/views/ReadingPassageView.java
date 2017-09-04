@@ -4,6 +4,7 @@ import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
 import com.mocktpo.modules.test.windows.MoreTextWindow;
 import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -96,7 +97,8 @@ public class ReadingPassageView extends SashTestView {
             @Override
             public void paintControl(PaintEvent e) {
                 int wh = rsc.getBounds().width;
-                int hh = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
+                int ph = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
+                int hh = ph > LC.READING_PASSAGE_TEXT_WIDGET_HINT ? ph : LC.READING_PASSAGE_TEXT_WIDGET_HINT;
                 rsc.setMinSize(c.computeSize(wh, hh));
             }
         });
