@@ -93,6 +93,7 @@ public class ProjectUtils {
     }
 
     private static void format(String fileAlias) {
+        /* Initializes a testEditorVo and a testVo */
         TestEditorVo testEditorVo = ConfigUtils.pullFromOutput(fileAlias, TestEditorVo.class);
         TestVo testVo = new TestVo();
         testVo.setTid(testEditorVo.getTid());
@@ -100,18 +101,17 @@ public class ProjectUtils {
         testVo.setStars(testEditorVo.getStars());
         testVo.setAuthor(testEditorVo.getAuthor());
         testVo.setCreatedTime(testEditorVo.getCreatedTime());
-
         List<TestViewVo> readingViewVos = testEditorVo.getReadingViewVos();
         List<TestViewVo> listeningViewVos = testEditorVo.getListeningViewVos();
         List<TestViewVo> speakingViewVos = testEditorVo.getSpeakingViewVos();
         List<TestViewVo> writingViewVos = testEditorVo.getWritingViewVos();
+        /* Generates viewVos */
         List<TestViewVo> viewVos = new ArrayList<TestViewVo>();
-
         int viewId = 0;
         viewVos.add(TestViewUtils.initTestIntroView(++viewId));
         viewVos.add(TestViewUtils.initGeneralTestInfoView(++viewId));
         viewVos.add(TestViewUtils.initReadingSectionDirectionsView(++viewId));
-
+        /* Adds readingViewVos to viewVos */
         int readingQuestionNumber = 0;
         for (TestViewVo vo : readingViewVos) {
             vo.setViewId(++viewId);
@@ -125,26 +125,26 @@ public class ProjectUtils {
             viewVos.add(vo);
         }
         viewVos.add(TestViewUtils.initReadingSectionEndView(++viewId));
-
+        /* Adds listeningViewVos to viewVos */
         for (TestViewVo vo : listeningViewVos) {
             vo.setViewId(++viewId);
             viewVos.add(vo);
         }
-
         viewVos.add(TestViewUtils.initBreakPointView(++viewId));
-
+        /* Adds speakingViewVos to viewVos */
         for (TestViewVo vo : speakingViewVos) {
             vo.setViewId(++viewId);
             viewVos.add(vo);
         }
+        /* Adds writingViewVos to viewVos */
         for (TestViewVo vo : writingViewVos) {
             vo.setViewId(++viewId);
             viewVos.add(vo);
         }
-
         viewVos.add(TestViewUtils.initTestEndView(++viewId));
-
+        /* Sets viewVos to testVo */
         testVo.setViewVos(viewVos);
+        /* Save testVo */
         ConfigUtils.pushToOutput(testVo.getTid(), testVo);
     }
 

@@ -332,7 +332,6 @@ public abstract class TestEditorLayer extends Composite {
                     return;
                 }
             }
-
             FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.SAVE);
             dialog.setText(msgs.getString("export"));
             dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});

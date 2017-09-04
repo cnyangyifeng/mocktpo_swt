@@ -13,6 +13,7 @@ import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.GridDataSet;
+import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
@@ -96,7 +97,6 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
             eachAfter.setViewId(i);
         }
         setRefreshRequired(true);
-
         page.toReadingEditorLayer();
         page.save();
     }
@@ -104,15 +104,13 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
     public void newReadingMultipleChoiceQuestion() {
         List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
         TestViewVo viewVo = TestViewUtils.initRawReadingMultipleChoiceQuestionViewVo(++currentViewId);
-        viewVos.add(viewVo);
-        for (int i = viewVos.size() - 1; i > currentViewId; i--) {
-            TestViewVo eachAfter = viewVos.get(i - 1);
+        updateReadingPassageForQuestionView(viewVo, viewVos);
+        viewVos.add(currentViewId, viewVo);
+        for (int i = currentViewId + 1; i < viewVos.size(); i++) {
+            TestViewVo eachAfter = viewVos.get(i);
             eachAfter.setViewId(i);
-            viewVos.set(i, eachAfter);
         }
-        viewVos.set(currentViewId, viewVo);
         setRefreshRequired(true);
-
         page.toReadingEditorLayer();
         page.save();
     }
@@ -127,6 +125,28 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
     public void newReadingFillInATableQuestion() {
 
+    }
+
+    private void updateReadingPassageForQuestionView(TestViewVo viewVo, List<TestViewVo> readingViewVos) {
+        if (viewVo.getViewType() != VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION &&
+                viewVo.getViewType() != VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION &&
+                viewVo.getViewType() != VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION &&
+                viewVo.getViewType() != VT.VIEW_TYPE_READING_FILL_IN_A_TABLE_QUESTION) {
+            return;
+        }
+        for (int i = viewVo.getViewId() - 1; i >= 0; i--) {
+            TestViewVo tmp = readingViewVos.get(i);
+            if (tmp.getViewType() == VT.VIEW_TYPE_READING_PASSAGE) {
+                /* Sets headingTextVo */
+                StyledTextVo headingTextVo = new StyledTextVo();
+                headingTextVo.setText(tmp.getStyledTextContent("heading"));
+                viewVo.setStyledTextVo("heading", headingTextVo);
+                /* Sets passageTextVo */
+                StyledTextVo passageTextVo = new StyledTextVo();
+                passageTextVo.setText(tmp.getStyledTextContent("passage"));
+                viewVo.setStyledTextVo("passage", passageTextVo);
+            }
+        }
     }
 
     @Override
