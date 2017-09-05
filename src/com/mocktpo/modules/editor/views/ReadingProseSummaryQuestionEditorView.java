@@ -79,7 +79,7 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
         headingTextWidget = new StyledText(left, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("heading"));
+        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("heading"));
         KeyBindingSet.bind(headingTextWidget).selectAll();
         headingTextWidget.addModifyListener(new HeadingTextModifyListener());
         headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -90,7 +90,7 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
         passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(passagePreLabel).atRight().atBottom();
-        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("passage"));
+        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
         KeyBindingSet.bind(passageTextWidget).selectAll();
         passageTextWidget.addModifyListener(new PassageTextModifyListener());
@@ -113,7 +113,7 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
         questionTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft().atTopTo(questionPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(questionTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("question"));
+        StyledTextSet.decorate(questionTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("question"));
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
         KeyBindingSet.bind(questionTextWidget).selectAll();
         questionTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -125,7 +125,7 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
         choiceATextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(choiceATextWidget).atLeft().atTopTo(choiceAPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceATextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceA"));
+        StyledTextSet.decorate(choiceATextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceA"));
         KeyBindingSet.bind(choiceATextWidget).selectAll();
         choiceATextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         choiceATextWidget.addModifyListener(new ChoiceATextModifyListener());
@@ -136,7 +136,7 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
         choiceBTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(choiceBTextWidget).atLeft().atTopTo(choiceBPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceBTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceB"));
+        StyledTextSet.decorate(choiceBTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceB"));
         KeyBindingSet.bind(choiceBTextWidget).selectAll();
         choiceBTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         choiceBTextWidget.addModifyListener(new ChoiceBTextModifyListener());
@@ -147,7 +147,7 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
         choiceCTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(choiceCTextWidget).atLeft().atTopTo(choiceCPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceCTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceC"));
+        StyledTextSet.decorate(choiceCTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceC"));
         KeyBindingSet.bind(choiceCTextWidget).selectAll();
         choiceCTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         choiceCTextWidget.addModifyListener(new ChoiceCTextModifyListener());
@@ -158,7 +158,7 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
         choiceDTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(choiceDTextWidget).atLeft().atTopTo(choiceDPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceDTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceD"));
+        StyledTextSet.decorate(choiceDTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceD"));
         KeyBindingSet.bind(choiceDTextWidget).selectAll();
         choiceDTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         choiceDTextWidget.addModifyListener(new ChoiceDTextModifyListener());
@@ -169,7 +169,7 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
         choiceETextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(choiceETextWidget).atLeft().atTopTo(choiceEPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceETextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceE"));
+        StyledTextSet.decorate(choiceETextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceE"));
         KeyBindingSet.bind(choiceETextWidget).selectAll();
         choiceETextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         choiceETextWidget.addModifyListener(new ChoiceETextModifyListener());
@@ -180,7 +180,7 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
         choiceFTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(choiceFTextWidget).atLeft().atTopTo(choiceFPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(choiceFTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceF"));
+        StyledTextSet.decorate(choiceFTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("choiceF"));
         KeyBindingSet.bind(choiceFTextWidget).selectAll();
         choiceFTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         choiceFTextWidget.addModifyListener(new ChoiceFTextModifyListener());

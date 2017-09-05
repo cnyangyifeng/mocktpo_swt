@@ -8,10 +8,7 @@ import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.CLabelSet;
-import com.mocktpo.util.widgets.CompositeSet;
-import com.mocktpo.util.widgets.StyleRangeUtils;
-import com.mocktpo.util.widgets.StyledTextSet;
+import com.mocktpo.util.widgets.*;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
@@ -20,6 +17,7 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.*;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 
 public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
 
@@ -74,7 +72,7 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
 
         headingTextWidget = new StyledText(left, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("heading"));
+        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("heading"));
         KeyBindingSet.bind(headingTextWidget).selectAll();
         headingTextWidget.addModifyListener(new HeadingTextModifyListener());
         headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -90,7 +88,7 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
 
         passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(addAnInsertionPointButton).atRight().atBottom();
-        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("passage"));
+        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
         KeyBindingSet.bind(passageTextWidget).selectAll();
         passageTextWidget.addModifyListener(new PassageTextModifyListener());
@@ -108,22 +106,30 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         CompositeSet.decorate(c).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         FormLayoutSet.layout(c).marginWidth(20).marginHeight(20).spacing(10);
 
-        final CLabel insertTextPreLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(insertTextPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(insertTextPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("insert_text") + MT.STRING_TAB + MT.STRING_STAR);
+        final CLabel questionPreLabel = new CLabel(c, SWT.NONE);
+        FormDataSet.attach(questionPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        CLabelSet.decorate(questionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("question") + MT.STRING_TAB + MT.STRING_STAR);
+
+        final Label questionLabel = new Label(c, SWT.WRAP);
+        FormDataSet.attach(questionLabel).atLeft().atTopTo(questionPreLabel).atRight();
+        LabelSet.decorate(questionLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setText(MT.STRING_READING_INSERT_TEXT_QUESTION_VIEW_QUESTION);
 
         insertTextTextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(insertTextTextWidget).atLeft().atTopTo(insertTextPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(insertTextTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("insertText"));
+        FormDataSet.attach(insertTextTextWidget).atLeft().atTopTo(questionLabel, 10).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(insertTextTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("insertText"));
         StyleRangeUtils.decorate(insertTextTextWidget, vo.getStyledTextStyles("insertText"));
         KeyBindingSet.bind(insertTextTextWidget).selectAll();
         insertTextTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
         insertTextTextWidget.addModifyListener(new InsertTextTextModifyListener());
 
+        final Label footnoteLabel = new Label(c, SWT.WRAP);
+        FormDataSet.attach(footnoteLabel).atLeft().atTopTo(insertTextTextWidget, 10).atRight();
+        LabelSet.decorate(footnoteLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setText(MT.STRING_READING_INSERT_TEXT_QUESTION_VIEW_FOOTNOTE);
+
         rsc.setContent(c);
         rsc.addPaintListener((e) -> {
             int wh = rsc.getBounds().width;
-            int hh = insertTextTextWidget.getBounds().y + insertTextTextWidget.getBounds().height + 100;
+            int hh = footnoteLabel.getBounds().y + footnoteLabel.getBounds().height + 100;
             rsc.setMinSize(c.computeSize(wh, hh));
         });
     }

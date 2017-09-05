@@ -319,6 +319,7 @@ public interface MT {
     String STRING_CLOSED_BRACKET = ")";
     String STRING_COLON = ":";
     String STRING_COMMA = ",";
+    String STRING_FULL_BLOCK = "█"; // \u2588
     String STRING_LINEFEED = "\n"; // LF, \\u00a
     String STRING_OF = "of";
     String STRING_OPEN_BRACKET = "(";
@@ -330,6 +331,9 @@ public interface MT {
     String STRING_SQUARE = "\u2588";
     String STRING_STAR = "*";
     String STRING_TAB = "\t"; // HT, Horizontal Tab, \\u009
+
+    String STRING_READING_INSERT_TEXT_QUESTION_VIEW_QUESTION = "Look at the four squares [ █ ] that indicate where the following sentence could be added to the passage.";
+    String STRING_READING_INSERT_TEXT_QUESTION_VIEW_FOOTNOTE = "Where would the sentence best fit? Click on a square to add the sentence to the passage.";
 
     /*
      * ==================================================

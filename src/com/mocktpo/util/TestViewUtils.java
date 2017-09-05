@@ -1,5 +1,6 @@
 package com.mocktpo.util;
 
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.ST;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.vo.StyleRangeVo;
@@ -319,13 +320,45 @@ public class TestViewUtils {
         viewVo.setAnswerable(true);
 
         final StyledTextVo questionVo = new StyledTextVo();
-        questionVo.setText("Look at the four squares [ \u2588 ] that indicate where the following sentence could be added to the passage.");
+        questionVo.setText(MT.STRING_READING_INSERT_TEXT_QUESTION_VIEW_QUESTION);
+
+        final StyledTextVo insertionPointAVo = new StyledTextVo();
+        insertionPointAVo.setText(MT.STRING_FULL_BLOCK);
+        List<StyleRangeVo> insertionPointAStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(0, 0, 0, 0, 0, false, null));
+        }};
+        insertionPointAVo.setStyles(insertionPointAStyleVos);
+
+        final StyledTextVo insertionPointBVo = new StyledTextVo();
+        insertionPointBVo.setText(MT.STRING_FULL_BLOCK);
+        List<StyleRangeVo> insertionPointBStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(0, 0, 0, 0, 0, false, null));
+        }};
+        insertionPointBVo.setStyles(insertionPointBStyleVos);
+
+        final StyledTextVo insertionPointCVo = new StyledTextVo();
+        insertionPointCVo.setText(MT.STRING_FULL_BLOCK);
+        List<StyleRangeVo> insertionPointCStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(0, 0, 0, 0, 0, false, null));
+        }};
+        insertionPointCVo.setStyles(insertionPointCStyleVos);
+
+        final StyledTextVo insertionPointDVo = new StyledTextVo();
+        insertionPointDVo.setText(MT.STRING_FULL_BLOCK);
+        List<StyleRangeVo> insertionPointDStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(0, 0, 0, 0, 0, false, null));
+        }};
+        insertionPointDVo.setStyles(insertionPointDStyleVos);
 
         final StyledTextVo footnoteVo = new StyledTextVo();
-        footnoteVo.setText("Where would the sentence best fit? Click on a square to add the sentence to the passage.");
+        footnoteVo.setText(MT.STRING_READING_INSERT_TEXT_QUESTION_VIEW_FOOTNOTE);
 
         Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
             put("question", questionVo);
+            put("insertionPointA", insertionPointAVo);
+            put("insertionPointB", insertionPointBVo);
+            put("insertionPointC", insertionPointCVo);
+            put("insertionPointD", insertionPointDVo);
             put("footnote", footnoteVo);
         }};
         viewVo.setBody(body);

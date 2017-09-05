@@ -301,6 +301,7 @@ public class ReadingReviewView extends Composite {
         UserTestAnswer userTestAnswer = PersistenceUtils.findAnswer(page.getUserTestSession(), viewId);
         if (userTestAnswer != null) {
             String readingAnswer = userTestAnswer.getAnswer();
+            // TODO answered bugs
             if (!StringUtils.isEmpty(readingAnswer)) {
                 text = STATUS_TEXT_ANSWERED;
             } else {

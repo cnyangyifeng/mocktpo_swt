@@ -43,6 +43,6 @@ public class LoadingEditorLayer extends Composite {
 
         CLabel label = new CLabel(this, SWT.NONE);
         GridDataSet.attach(label).centerBoth();
-        CLabelSet.decorate(label).setForeground(MT.COLOR_GRAY20).setFont(MT.FONT_LARGE).setText(msgs.getString("loading_please_wait"));
+        CLabelSet.decorate(label).setForeground(MT.COLOR_BLACK).setFont(MT.FONT_LARGE).setText(msgs.getString("loading_please_wait"));
     }
 }
