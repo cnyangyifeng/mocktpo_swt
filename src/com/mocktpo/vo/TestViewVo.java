@@ -12,7 +12,7 @@ public class TestViewVo implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final int INITIAL_CACHE_SIZE = 64;
 
-    private Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>(INITIAL_CACHE_SIZE);
+    private Map<String, StyledTextVo> body = new HashMap<>(INITIAL_CACHE_SIZE);
 
     private int viewId;
     private int viewType;

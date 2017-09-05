@@ -22,7 +22,7 @@ public class StyleRangeUtils {
         if (srvs == null) {
             return;
         }
-        List<StyleRange> srs = new ArrayList<StyleRange>();
+        List<StyleRange> srs = new ArrayList<>();
         for (StyleRangeVo srv : srvs) {
             StyleRange sr = new StyleRange();
             sr.start = srv.getStart();

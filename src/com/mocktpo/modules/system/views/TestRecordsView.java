@@ -93,11 +93,8 @@ public class TestRecordsView extends Composite {
             c.dispose();
         }
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    initCards();
-                }
+            d.asyncExec(() -> {
+                initCards();
             });
         }
     }

@@ -329,22 +329,12 @@ public abstract class TestView extends Composite {
         public void run() {
             if (!d.isDisposed()) {
                 PersistenceUtils.saveRemainingViewTime(TestView.this);
-                d.asyncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        LabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(countDown--));
-                    }
-                });
+                d.asyncExec(() -> LabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(countDown--)));
                 if (countDown <= 0) {
                     release();
                     int lastViewId = page.getTestVo().findNextViewIdWhileTimeOut(vo.getViewId());
                     PersistenceUtils.saveToView(page.getUserTestSession(), lastViewId);
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
-                            page.resume();
-                        }
-                    });
+                    d.asyncExec(page::resume);
                 }
             }
         }
@@ -362,12 +352,7 @@ public abstract class TestView extends Composite {
         if (vo.isWithAudio()) {
             audioPlayer = new TestAudioPlayer(page.getUserTestSession(), vo.getAudio(), false);
             audioPlayer.setVolume(page.getUserTestSession().getVolume());
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    audioPlayer.play();
-                }
-            }).start();
+            new Thread(audioPlayer::play).start();
         }
     }
 

@@ -17,10 +17,10 @@ public class TestEditorVo implements Serializable {
 
     /* Properties */
 
-    private List<TestViewVo> readingViewVos = new ArrayList<TestViewVo>();
-    private List<TestViewVo> listeningViewVos = new ArrayList<TestViewVo>();
-    private List<TestViewVo> speakingViewVos = new ArrayList<TestViewVo>();
-    private List<TestViewVo> writingViewVos = new ArrayList<TestViewVo>();
+    private List<TestViewVo> readingViewVos = new ArrayList<>();
+    private List<TestViewVo> listeningViewVos = new ArrayList<>();
+    private List<TestViewVo> speakingViewVos = new ArrayList<>();
+    private List<TestViewVo> writingViewVos = new ArrayList<>();
 
     private String tid;
     private String title;

@@ -84,7 +84,7 @@ public class ProjectUtils {
             }
             FileUtils.copyDirectory(projectDir, outputDir);
             format(fileAlias);
-            List<File> fileList = new ArrayList<File>();
+            List<File> fileList = new ArrayList<>();
             collect(outputDir, fileList);
             zip(outputDir, fileList, fullDestZipFileName);
         } catch (Exception e) {
@@ -106,7 +106,7 @@ public class ProjectUtils {
         List<TestViewVo> speakingViewVos = testEditorVo.getSpeakingViewVos();
         List<TestViewVo> writingViewVos = testEditorVo.getWritingViewVos();
         /* Generates viewVos */
-        List<TestViewVo> viewVos = new ArrayList<TestViewVo>();
+        List<TestViewVo> viewVos = new ArrayList<>();
         int viewId = 0;
         viewVos.add(TestViewUtils.initTestIntroView(++viewId));
         viewVos.add(TestViewUtils.initGeneralTestInfoView(++viewId));

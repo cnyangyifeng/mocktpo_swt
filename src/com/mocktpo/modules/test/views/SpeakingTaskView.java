@@ -1,21 +1,23 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
+import com.mocktpo.modules.test.widgets.VolumeControl;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.widgets.*;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.VolumeControl;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.*;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Scale;
@@ -208,12 +210,9 @@ public class SpeakingTaskView extends ResponsiveTestView {
         audioPlayer.play();
 
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    CLabelSet.decorate(timerHeader).setText("PREPARATION TIME");
-                    CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(preparationCountDown));
-                }
+            d.asyncExec(() -> {
+                CLabelSet.decorate(timerHeader).setText("PREPARATION TIME");
+                CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(preparationCountDown));
             });
         }
 
@@ -235,12 +234,9 @@ public class SpeakingTaskView extends ResponsiveTestView {
             preparationTimer.purge();
         }
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    CLabelSet.decorate(timerHeader).setText("");
-                    CLabelSet.decorate(timerLabel).setText("");
-                }
+            d.asyncExec(() -> {
+                CLabelSet.decorate(timerHeader).setText("");
+                CLabelSet.decorate(timerLabel).setText("");
             });
         }
     }
@@ -255,12 +251,9 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
         /* Audio Recorder */
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                audioRecorder = new UserAudioRecorder("am");
-                audioRecorder.start();
-            }
+        new Thread(() -> {
+            audioRecorder = new UserAudioRecorder("am");
+            audioRecorder.start();
         }).start();
 
         /* Beep Audio */
@@ -270,12 +263,9 @@ public class SpeakingTaskView extends ResponsiveTestView {
         audioPlayer.play();
 
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    CLabelSet.decorate(timerHeader).setText("RESPONSE TIME");
-                    CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown));
-                }
+            d.asyncExec(() -> {
+                CLabelSet.decorate(timerHeader).setText("RESPONSE TIME");
+                CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown));
             });
         }
 
@@ -301,13 +291,10 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
     private void goToNextTestView() {
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    release();
-                    PersistenceUtils.saveToNextView(SpeakingTaskView.this);
-                    page.resume();
-                }
+            d.asyncExec(() -> {
+                release();
+                PersistenceUtils.saveToNextView(SpeakingTaskView.this);
+                page.resume();
             });
         }
     }
@@ -348,12 +335,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
         public void propertyChange(PropertyChangeEvent e) {
             if (audioPlayer.isStopped()) {
                 if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
-                            CompositeSet.decorate(timerContainer).setVisible(true);
-                        }
-                    });
+                    d.asyncExec(() -> CompositeSet.decorate(timerContainer).setVisible(true));
                 }
                 startPreparation();
             }
@@ -373,12 +355,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
         @Override
         public void run() {
             if (!d.isDisposed()) {
-                d.asyncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(preparationCountDown--));
-                    }
-                });
+                d.asyncExec(() -> CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(preparationCountDown--)));
             }
             if (preparationCountDown <= 0) {
                 stopPreparation();
@@ -400,12 +377,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
         @Override
         public void run() {
             if (!d.isDisposed()) {
-                d.asyncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown--));
-                    }
-                });
+                d.asyncExec(() -> CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown--)));
             }
             if (recorderCountDown <= 0) {
                 stopAudioRecording();

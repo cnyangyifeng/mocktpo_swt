@@ -407,24 +407,14 @@ public class ReadingReviewView extends Composite {
                 final UserTestSession userTestSession = page.getUserTestSession();
                 TestViewVo vo = page.getTestVo().getViewVo(page.getUserTestSession().getLastViewId());
                 PersistenceUtils.saveRemainingViewTime(userTestSession, vo, countDown);
-                d.asyncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        LabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(countDown--));
-                    }
-                });
+                d.asyncExec(() -> LabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(countDown--)));
                 if (countDown <= 0) {
                     if (timed) {
                         stopTimer();
                     }
                     int lastViewId = page.getTestVo().findNextViewIdWhileTimeOut(page.getUserTestSession().getLastViewId());
                     PersistenceUtils.saveToView(userTestSession, lastViewId);
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
-                            page.resume();
-                        }
-                    });
+                    d.asyncExec(() -> page.resume());
                 }
             }
         }

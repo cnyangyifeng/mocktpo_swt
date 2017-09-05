@@ -122,11 +122,8 @@ public class NewReadingQuestionWindow {
 
     public void close() {
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    s.dispose();
-                }
+            d.asyncExec(() -> {
+                s.dispose();
             });
         }
     }

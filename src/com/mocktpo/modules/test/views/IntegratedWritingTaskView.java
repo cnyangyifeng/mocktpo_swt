@@ -122,13 +122,10 @@ public class IntegratedWritingTaskView extends SashTestView2 {
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
 
         lsc.setContent(c);
-        lsc.addPaintListener(new PaintListener() {
-            @Override
-            public void paintControl(PaintEvent e) {
-                int wh = lsc.getBounds().width;
-                int hh = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
-                lsc.setMinSize(c.computeSize(wh, hh));
-            }
+        lsc.addPaintListener((e) -> {
+            int wh = lsc.getBounds().width;
+            int hh = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
+            lsc.setMinSize(c.computeSize(wh, hh));
         });
     }
 

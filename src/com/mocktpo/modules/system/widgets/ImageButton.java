@@ -5,7 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackAdapter;
-import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -120,12 +119,7 @@ public class ImageButton extends Composite {
         if (this.paintListener != null) {
             this.removePaintListener(this.paintListener);
         }
-        this.paintListener = new PaintListener() {
-            @Override
-            public void paintControl(PaintEvent e) {
-                e.gc.drawImage(image, 0, 0);
-            }
-        };
+        this.paintListener = (e) -> e.gc.drawImage(image, 0, 0);
         this.addPaintListener(paintListener);
         this.redraw();
     }

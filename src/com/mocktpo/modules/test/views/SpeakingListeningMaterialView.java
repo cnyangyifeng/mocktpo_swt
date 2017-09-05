@@ -1,18 +1,23 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.util.IllustrationUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.*;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.util.widgets.ProgressBarSet;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.*;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -181,40 +186,27 @@ public class SpeakingListeningMaterialView extends ResponsiveTestView {
                 if (location == timeElapsed / 1000) {
                     rl.set(location);
                     if (!d.isDisposed()) {
-                        d.asyncExec(new Runnable() {
-                            @Override
-                            public void run() {
-                                LabelSet.decorate(illustrationLabel).setImage(illustrations.get(rl.get()));
-                            }
-                        });
+                        d.asyncExec(() -> LabelSet.decorate(illustrationLabel).setImage(illustrations.get(rl.get())));
                     }
                 }
             }
-            final AtomicReference<Long> rv = new AtomicReference<Long>();
+            final AtomicReference<Long> rv = new AtomicReference<>();
             long duration = vo.getAudioDuration() * 1000;
             long val = 100 * timeElapsed / duration;
             rv.set(val);
             if (!d.isDisposed()) {
-                d.asyncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        audioBar.setSelection(rv.get().intValue());
-                    }
-                });
+                d.asyncExec(() -> audioBar.setSelection(rv.get().intValue()));
             }
             if (audioPlayer.isStopped()) {
                 if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
-                            audioBar.setSelection(100);
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException ex) {
-                                ex.printStackTrace();
-                            }
-                            LabelSet.decorate(illustrationLabel).setImage(MT.IMAGE_READY_TO_ANSWER_2);
+                    d.asyncExec(() -> {
+                        audioBar.setSelection(100);
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
                         }
+                        LabelSet.decorate(illustrationLabel).setImage(MT.IMAGE_READY_TO_ANSWER_2);
                     });
                 }
                 try {
@@ -224,12 +216,9 @@ public class SpeakingListeningMaterialView extends ResponsiveTestView {
                 }
                 release();
                 if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
-                            PersistenceUtils.saveToNextView(SpeakingListeningMaterialView.this);
-                            page.resume();
-                        }
+                    d.asyncExec(() -> {
+                        PersistenceUtils.saveToNextView(SpeakingListeningMaterialView.this);
+                        page.resume();
                     });
                 }
             }

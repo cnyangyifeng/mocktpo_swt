@@ -12,7 +12,7 @@ public class ChoiceLabelDragSourceSet {
 
     private ChoiceLabelDragSourceSet(final Label c) {
         DragSource dragSource = new DragSource(c, DND.DROP_MOVE);
-        dragSource.setTransfer(new Transfer[]{TextTransfer.getInstance()});
+        dragSource.setTransfer(TextTransfer.getInstance());
         dragSource.addDragListener(new DragSourceAdapter() {
             @Override
             public void dragStart(DragSourceEvent e) {

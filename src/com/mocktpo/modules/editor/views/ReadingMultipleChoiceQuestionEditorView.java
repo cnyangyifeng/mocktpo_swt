@@ -196,13 +196,10 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         rsc.setContent(c);
-        rsc.addPaintListener(new PaintListener() {
-            @Override
-            public void paintControl(PaintEvent e) {
-                int wh = rsc.getBounds().width;
-                int hh = footnoteTextWidget.getBounds().y + footnoteTextWidget.getBounds().height + 100;
-                rsc.setMinSize(c.computeSize(wh, hh));
-            }
+        rsc.addPaintListener((e) -> {
+            int wh = rsc.getBounds().width;
+            int hh = footnoteTextWidget.getBounds().y + footnoteTextWidget.getBounds().height + 100;
+            rsc.setMinSize(c.computeSize(wh, hh));
         });
     }
 
@@ -231,7 +228,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
             return;
         }
         String text = passageTextWidget.getText();
-        Map<Integer, Integer> markedParagraphIndices = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> markedParagraphIndices = new HashMap<>();
         int number = 1;
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == MT.STRING_LINEFEED.charAt(0)) {
@@ -347,7 +344,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void mouseDown(MouseEvent e) {
-            List<StyleRangeVo> styles = new ArrayList<StyleRangeVo>();
+            List<StyleRangeVo> styles = new ArrayList<>();
             Point p = passageTextWidget.getSelectionRange();
             styles.add(new StyleRangeVo(p.x, p.y, 0, 0, MT.COLOR_HIGHLIGHTED, false, null));
             StyleRangeUtils.decorate(passageTextWidget, styles);
@@ -391,7 +388,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void mouseDown(MouseEvent e) {
-            List<StyleRangeVo> styles = new ArrayList<StyleRangeVo>();
+            List<StyleRangeVo> styles = new ArrayList<>();
             Point p = questionTextWidget.getSelectionRange();
             styles.add(new StyleRangeVo(p.x, p.y, 0, 0, MT.COLOR_HIGHLIGHTED, false, null));
             StyleRangeUtils.decorate(questionTextWidget, styles);

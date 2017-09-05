@@ -121,13 +121,10 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         insertTextTextWidget.addModifyListener(new InsertTextTextModifyListener());
 
         rsc.setContent(c);
-        rsc.addPaintListener(new PaintListener() {
-            @Override
-            public void paintControl(PaintEvent e) {
-                int wh = rsc.getBounds().width;
-                int hh = insertTextTextWidget.getBounds().y + insertTextTextWidget.getBounds().height + 100;
-                rsc.setMinSize(c.computeSize(wh, hh));
-            }
+        rsc.addPaintListener((e) -> {
+            int wh = rsc.getBounds().width;
+            int hh = insertTextTextWidget.getBounds().y + insertTextTextWidget.getBounds().height + 100;
+            rsc.setMinSize(c.computeSize(wh, hh));
         });
     }
 

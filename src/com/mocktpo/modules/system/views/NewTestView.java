@@ -3,8 +3,8 @@ package com.mocktpo.modules.system.views;
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.system.widgets.TestCard;
-import com.mocktpo.util.ImportUtils;
 import com.mocktpo.util.ConfigUtils;
+import com.mocktpo.util.ImportUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.layout.FormDataSet;
@@ -126,11 +126,8 @@ public class NewTestView extends Composite {
             c.dispose();
         }
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    initCards();
-                }
+            d.asyncExec(() -> {
+                initCards();
             });
         }
     }

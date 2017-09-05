@@ -3,8 +3,6 @@ package com.mocktpo.util;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ST;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.TraverseEvent;
-import org.eclipse.swt.events.TraverseListener;
 
 public class KeyBindingSet {
 
@@ -24,12 +22,9 @@ public class KeyBindingSet {
     }
 
     public KeyBindingSet traverse() {
-        c.addTraverseListener(new TraverseListener() {
-            @Override
-            public void keyTraversed(TraverseEvent e) {
-                if (e.detail == SWT.TRAVERSE_TAB_NEXT || e.detail == SWT.TRAVERSE_TAB_PREVIOUS) {
-                    e.doit = true;
-                }
+        c.addTraverseListener(e -> {
+            if (e.detail == SWT.TRAVERSE_TAB_NEXT || e.detail == SWT.TRAVERSE_TAB_PREVIOUS) {
+                e.doit = true;
             }
         });
         return this;

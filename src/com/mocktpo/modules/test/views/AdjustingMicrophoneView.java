@@ -300,13 +300,10 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         /* Audio Recorder */
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // TODO Rename user audio recording file
-                audioRecorder = new UserAudioRecorder("am");
-                audioRecorder.start();
-            }
+        new Thread(() -> {
+            // TODO Rename user audio recording file
+            audioRecorder = new UserAudioRecorder("am");
+            audioRecorder.start();
         }).start();
 
         /* Beep Audio */
@@ -322,12 +319,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         audioRecorderTimer.scheduleAtFixedRate(audioRecorderTimerTask, 0, 1000);
 
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    stopRecordingButton.setVisible(true);
-                }
-            });
+            d.asyncExec(() -> stopRecordingButton.setVisible(true));
         }
     }
 
@@ -343,17 +335,14 @@ public class AdjustingMicrophoneView extends StackTestView {
         }
         if (subViewId == SUB_VIEW_RECORDING) {
             if (!d.isDisposed()) {
-                d.asyncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        stopRecordingButton.setVisible(false);
-                        continueButton.setEnabled(true);
-                        recordAgainButton.setEnabled(true);
-                        playbackResponseButton.setEnabled(true);
-                        subViewId = SUB_VIEW_RESPONSE;
-                        stack.topControl = getSubView(subViewId);
-                        body.layout();
-                    }
+                d.asyncExec(() -> {
+                    stopRecordingButton.setVisible(false);
+                    continueButton.setEnabled(true);
+                    recordAgainButton.setEnabled(true);
+                    playbackResponseButton.setEnabled(true);
+                    subViewId = SUB_VIEW_RESPONSE;
+                    stack.topControl = getSubView(subViewId);
+                    body.layout();
                 });
             }
         }
@@ -406,27 +395,19 @@ public class AdjustingMicrophoneView extends StackTestView {
         public void mouseDown(MouseEvent e) {
             if (subViewId == SUB_VIEW_RESPONSE) {
                 if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
-                            continueButton.setEnabled(false);
-                            recordAgainButton.setEnabled(false);
-                            playbackResponseButton.setEnabled(false);
-                            recorderCountDown = vo.getResponseTime();
-                            CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown));
-                            subViewId = SUB_VIEW_RECORDING;
-                            stack.topControl = getSubView(subViewId);
-                            body.layout();
-                        }
+                    d.asyncExec(() -> {
+                        continueButton.setEnabled(false);
+                        recordAgainButton.setEnabled(false);
+                        playbackResponseButton.setEnabled(false);
+                        recorderCountDown = vo.getResponseTime();
+                        CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown));
+                        subViewId = SUB_VIEW_RECORDING;
+                        stack.topControl = getSubView(subViewId);
+                        body.layout();
                     });
                 }
             }
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    startAudioRecording();
-                }
-            }).start();
+            new Thread(AdjustingMicrophoneView.this::startAudioRecording).start();
         }
     }
 
@@ -436,12 +417,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         public void mouseDown(MouseEvent e) {
             audioPlayer = new TestAudioPlayer(page.getUserTestSession(), "am", true);
             audioPlayer.setVolume(page.getUserTestSession().getVolume());
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    audioPlayer.play();
-                }
-            }).start();
+            new Thread(audioPlayer::play).start();
         }
     }
 
@@ -459,12 +435,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         public void propertyChange(PropertyChangeEvent e) {
             if (audioPlayer.isStopped()) {
                 if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
-                            CompositeSet.decorate(timerPanel).setVisible(true);
-                        }
-                    });
+                    d.asyncExec(() -> CompositeSet.decorate(timerPanel).setVisible(true));
                 }
                 startAudioRecording();
             }
@@ -484,12 +455,7 @@ public class AdjustingMicrophoneView extends StackTestView {
         @Override
         public void run() {
             if (!d.isDisposed()) {
-                d.asyncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown--));
-                    }
-                });
+                d.asyncExec(() -> CLabelSet.decorate(timerLabel).setText(TimeUtils.displayTimePeriod(recorderCountDown--)));
             }
             if (recorderCountDown <= 0) {
                 stopAudioRecording();

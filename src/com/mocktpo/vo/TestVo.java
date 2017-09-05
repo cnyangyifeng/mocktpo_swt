@@ -19,7 +19,7 @@ public class TestVo implements Serializable {
 
     /* Properties */
 
-    private List<TestViewVo> viewVos = new ArrayList<TestViewVo>();
+    private List<TestViewVo> viewVos = new ArrayList<>();
 
     private String tid;
     private String title;

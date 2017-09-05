@@ -41,11 +41,11 @@ public class ImportUtils {
             while (ze != null) {
                 File file = new File(testsDir, ze.getName());
                 if (file.isDirectory()) {
-                    logger.debug("Directory created: {}.", file.mkdirs());
+                    logger.info("Directory created: {}.", file.mkdirs());
                 } else {
                     if (!file.exists()) {
-                        file.getParentFile().mkdirs();
-                        file.createNewFile();
+                        logger.info("Parent directory created: {}.", file.getParentFile().mkdirs());
+                        logger.info("File created: {}.", file.createNewFile());
                     }
                     OutputStream fos = new FileOutputStream(file);
                     IOUtils.copy(zis, fos);

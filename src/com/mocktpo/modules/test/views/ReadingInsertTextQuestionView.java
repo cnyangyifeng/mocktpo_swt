@@ -17,8 +17,6 @@ import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.PaintEvent;
-import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 
@@ -138,21 +136,18 @@ public class ReadingInsertTextQuestionView extends SashTestView {
         updateWidgetsForAnswers();
 
         rsc.setContent(c);
-        rsc.addPaintListener(new PaintListener() {
-            @Override
-            public void paintControl(PaintEvent e) {
-                int wh = rsc.getBounds().width;
-                int hh = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
-                rsc.setMinSize(c.computeSize(wh, hh));
-                if (autoScrollRequired) {
-                    Rectangle bounds = passageTextWidget.getBounds();
-                    int quarter = rsc.getBounds().height / 4;
-                    int offsetY = bounds.y + passageTextWidget.getLocationAtOffset(vo.getPassageOffset()).y;
-                    if (offsetY > quarter) {
-                        rsc.setOrigin(0, offsetY - quarter);
-                    }
-                    autoScrollRequired = false;
+        rsc.addPaintListener((e) -> {
+            int wh = rsc.getBounds().width;
+            int hh = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
+            rsc.setMinSize(c.computeSize(wh, hh));
+            if (autoScrollRequired) {
+                Rectangle bounds = passageTextWidget.getBounds();
+                int quarter = rsc.getBounds().height / 4;
+                int offsetY = bounds.y + passageTextWidget.getLocationAtOffset(vo.getPassageOffset()).y;
+                if (offsetY > quarter) {
+                    rsc.setOrigin(0, offsetY - quarter);
                 }
+                autoScrollRequired = false;
             }
         });
     }

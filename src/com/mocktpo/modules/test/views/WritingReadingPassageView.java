@@ -1,19 +1,23 @@
 package com.mocktpo.modules.test.views;
 
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.*;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
+import com.mocktpo.util.widgets.StyledTextSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.*;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Scale;
 
@@ -95,13 +99,10 @@ public class WritingReadingPassageView extends SashTestView2 {
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
 
         lsc.setContent(c);
-        lsc.addPaintListener(new PaintListener() {
-            @Override
-            public void paintControl(PaintEvent e) {
-                int wh = lsc.getBounds().width;
-                int hh = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
-                lsc.setMinSize(c.computeSize(wh, hh));
-            }
+        lsc.addPaintListener((e) -> {
+            int wh = lsc.getBounds().width;
+            int hh = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
+            lsc.setMinSize(c.computeSize(wh, hh));
         });
     }
 

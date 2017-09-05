@@ -1,10 +1,11 @@
 package com.mocktpo.modules.system.windows;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.util.*;
-import com.mocktpo.util.widgets.CLabelSet;
+import com.mocktpo.util.ImageUtils;
+import com.mocktpo.util.WindowUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
+import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.LabelSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -96,11 +97,8 @@ public class SplashWindow {
 
     public void close() {
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    s.dispose();
-                }
+            d.asyncExec(() -> {
+                s.dispose();
             });
         }
     }

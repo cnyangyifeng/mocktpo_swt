@@ -52,8 +52,8 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
     public SashTestEditorLayer(TestEditorPage page, int style) {
         super(page, style);
-        this.cards = new ArrayList<TestEditorCard>();
-        this.views = new ArrayList<TestEditorView>();
+        this.cards = new ArrayList<>();
+        this.views = new ArrayList<>();
         this.currentViewId = -1;
         this.refreshRequired = true;
     }
@@ -187,14 +187,6 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
     public Composite getRight() {
         return right;
-    }
-
-    public int getCurrentViewId() {
-        return currentViewId;
-    }
-
-    public void setCurrentViewId(int currentViewId) {
-        this.currentViewId = currentViewId;
     }
 
     public boolean isRefreshRequired() {

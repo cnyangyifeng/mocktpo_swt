@@ -19,8 +19,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.PaintEvent;
-import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -80,16 +78,13 @@ public class MoreTextWindow {
         CLabelSet.decorate(background).setGradientBackground(MT.COLOR_INDIGO, MT.COLOR_WHITE_SMOKE, true);
         FormLayoutSet.layout(background).marginWidth(0).marginHeight(20).spacing(0);
 
-        background.addPaintListener(new PaintListener() {
-            @Override
-            public void paintControl(PaintEvent e) {
-                GC gc = e.gc;
-                gc.setFont(ResourceManager.getFont(MT.FONT_MEDIUM_BOLD));
-                gc.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
-                Point p = gc.textExtent(msgs.getString("more_text"));
-                gc.drawString(msgs.getString("more_text"), (s.getBounds().width - p.x) / 2, 20, true);
-                gc.dispose();
-            }
+        background.addPaintListener((e) -> {
+            GC gc = e.gc;
+            gc.setFont(ResourceManager.getFont(MT.FONT_MEDIUM_BOLD));
+            gc.setForeground(ResourceManager.getColor(MT.COLOR_WHITE));
+            Point p = gc.textExtent(msgs.getString("more_text"));
+            gc.drawString(msgs.getString("more_text"), (s.getBounds().width - p.x) / 2, 20, true);
+            gc.dispose();
         });
     }
 
@@ -119,12 +114,7 @@ public class MoreTextWindow {
 
     public void close() {
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    s.dispose();
-                }
-            });
+            d.asyncExec(s::dispose);
         }
     }
 

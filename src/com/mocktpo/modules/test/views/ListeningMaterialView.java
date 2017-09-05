@@ -1,16 +1,18 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.util.IllustrationUtils;
+import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.*;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.util.widgets.ProgressBarSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
@@ -179,37 +181,24 @@ public class ListeningMaterialView extends ResponsiveTestView {
         @Override
         public void propertyChange(PropertyChangeEvent e) {
             long timeElapsed = (Long) e.getNewValue();
-            final AtomicReference<Integer> rl = new AtomicReference<Integer>();
+            final AtomicReference<Integer> rl = new AtomicReference<>();
             for (Integer location : illustrations.keySet()) {
                 if (location == timeElapsed / 1000) {
                     rl.set(location);
                     if (!d.isDisposed()) {
-                        d.asyncExec(new Runnable() {
-                            @Override
-                            public void run() {
-                                LabelSet.decorate(illustrationLabel).setImage(illustrations.get(rl.get()));
-                            }
-                        });
+                        d.asyncExec(() -> LabelSet.decorate(illustrationLabel).setImage(illustrations.get(rl.get())));
                     }
                 }
-            }
-            final AtomicReference<Long> rv = new AtomicReference<Long>();
-            long duration = vo.getAudioDuration() * 1000;
-            long val = 100 * timeElapsed / duration;
-            rv.set(val);
-            if (!d.isDisposed()) {
-                d.asyncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        audioBar.setSelection(rv.get().intValue());
-                    }
-                });
-            }
-            if (audioPlayer.isStopped()) {
+                final AtomicReference<Long> rv = new AtomicReference<>();
+                long duration = vo.getAudioDuration() * 1000;
+                long val = 100 * timeElapsed / duration;
+                rv.set(val);
                 if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
+                    d.asyncExec(() -> audioBar.setSelection(rv.get().intValue()));
+                }
+                if (audioPlayer.isStopped()) {
+                    if (!d.isDisposed()) {
+                        d.asyncExec(() -> {
                             audioBar.setSelection(100);
                             try {
                                 Thread.sleep(2000);
@@ -217,23 +206,20 @@ public class ListeningMaterialView extends ResponsiveTestView {
                                 ex.printStackTrace();
                             }
                             LabelSet.decorate(illustrationLabel).setImage(MT.IMAGE_READY_TO_ANSWER);
-                        }
-                    });
-                }
-                try {
-                    Thread.sleep(4000);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                }
-                release();
-                if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
+                        });
+                    }
+                    try {
+                        Thread.sleep(4000);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                    release();
+                    if (!d.isDisposed()) {
+                        d.asyncExec(() -> {
                             PersistenceUtils.saveToNextView(ListeningMaterialView.this);
                             page.resume();
-                        }
-                    });
+                        });
+                    }
                 }
             }
         }

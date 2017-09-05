@@ -10,8 +10,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.events.PaintEvent;
-import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Rectangle;
@@ -86,17 +84,14 @@ public class ReadingReviewTableRow extends Composite {
         } else {
             CompositeSet.decorate(this).setBackground(MT.COLOR_TOUPE);
         }
-        addPaintListener(new PaintListener() {
-            @Override
-            public void paintControl(PaintEvent e) {
-                GC gc = e.gc;
-                Rectangle c = ((Control) e.widget).getBounds();
-                gc.setForeground(ResourceManager.getColor(MT.COLOR_GRAY60));
-                gc.drawLine(0, 0, 0, c.height); // left
-                gc.drawLine(0, 0, c.width, 0); // top
-                gc.drawLine(c.width - 1, 0, c.width - 1, c.height); // right
-                gc.dispose();
-            }
+        addPaintListener((e) -> {
+            GC gc = e.gc;
+            Rectangle c = ((Control) e.widget).getBounds();
+            gc.setForeground(ResourceManager.getColor(MT.COLOR_GRAY60));
+            gc.drawLine(0, 0, 0, c.height); // left
+            gc.drawLine(0, 0, c.width, 0); // top
+            gc.drawLine(c.width - 1, 0, c.width - 1, c.height); // right
+            gc.dispose();
         });
         FormLayoutSet.layout(this).marginWidth(0).marginHeight(0).spacing(0);
     }

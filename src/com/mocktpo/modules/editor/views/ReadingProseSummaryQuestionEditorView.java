@@ -11,19 +11,15 @@ import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.StyleRangeUtils;
 import com.mocktpo.util.widgets.StyledTextSet;
-import com.mocktpo.vo.StyleRangeVo;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.*;
-import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
@@ -190,13 +186,10 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
         choiceFTextWidget.addModifyListener(new ChoiceFTextModifyListener());
 
         rsc.setContent(c);
-        rsc.addPaintListener(new PaintListener() {
-            @Override
-            public void paintControl(PaintEvent e) {
-                int wh = rsc.getBounds().width;
-                int hh = choiceFTextWidget.getBounds().y + choiceFTextWidget.getBounds().height + 100;
-                rsc.setMinSize(c.computeSize(wh, hh));
-            }
+        rsc.addPaintListener((e) -> {
+            int wh = rsc.getBounds().width;
+            int hh = choiceFTextWidget.getBounds().y + choiceFTextWidget.getBounds().height + 100;
+            rsc.setMinSize(c.computeSize(wh, hh));
         });
     }
 

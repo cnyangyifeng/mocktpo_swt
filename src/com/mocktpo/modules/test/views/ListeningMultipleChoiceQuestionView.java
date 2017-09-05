@@ -1,18 +1,21 @@
 package com.mocktpo.modules.test.views;
 
-import com.mocktpo.modules.test.windows.RequiredAnswerWindow;
 import com.mocktpo.modules.system.listeners.StyledTextPaintImageListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.modules.test.windows.RequiredAnswerWindow;
+import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
-import com.mocktpo.util.widgets.*;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
+import com.mocktpo.util.widgets.StyledTextSet;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
@@ -198,12 +201,7 @@ public class ListeningMultipleChoiceQuestionView extends ResponsiveTestView {
     @Override
     public void startAudioAsyncExecution() {
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    timerButton.setEnabled(false);
-                }
-            });
+            d.asyncExec(() -> timerButton.setEnabled(false));
         }
         listener = new AudioAsyncExecutionListener();
         audioPlayer.addPropertyChangeListener(listener);
@@ -342,20 +340,17 @@ public class ListeningMultipleChoiceQuestionView extends ResponsiveTestView {
         public void propertyChange(PropertyChangeEvent e) {
             if (audioPlayer.isStopped()) {
                 if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
-                            nextOvalButton.setEnabled(true);
-                            okOvalButton.setEnabled(false);
-                            LabelSet.decorate(checkLabelA).setVisible(true);
-                            LabelSet.decorate(choiceLabelA).setVisible(true);
-                            LabelSet.decorate(checkLabelB).setVisible(true);
-                            LabelSet.decorate(choiceLabelB).setVisible(true);
-                            LabelSet.decorate(checkLabelC).setVisible(true);
-                            LabelSet.decorate(choiceLabelC).setVisible(true);
-                            LabelSet.decorate(checkLabelD).setVisible(true);
-                            LabelSet.decorate(choiceLabelD).setVisible(true);
-                        }
+                    d.asyncExec(() -> {
+                        nextOvalButton.setEnabled(true);
+                        okOvalButton.setEnabled(false);
+                        LabelSet.decorate(checkLabelA).setVisible(true);
+                        LabelSet.decorate(choiceLabelA).setVisible(true);
+                        LabelSet.decorate(checkLabelB).setVisible(true);
+                        LabelSet.decorate(choiceLabelB).setVisible(true);
+                        LabelSet.decorate(checkLabelC).setVisible(true);
+                        LabelSet.decorate(choiceLabelC).setVisible(true);
+                        LabelSet.decorate(checkLabelD).setVisible(true);
+                        LabelSet.decorate(choiceLabelD).setVisible(true);
                     });
                 }
                 /*
@@ -369,12 +364,7 @@ public class ListeningMultipleChoiceQuestionView extends ResponsiveTestView {
                  */
                 if (vo.isTimerTaskDelayed()) {
                     if (!d.isDisposed()) {
-                        d.asyncExec(new Runnable() {
-                            @Override
-                            public void run() {
-                                timerButton.setEnabled(true);
-                            }
-                        });
+                        d.asyncExec(() -> timerButton.setEnabled(true));
                     }
                     countDown = page.getUserTestSession().getRemainingViewTime(vo);
                     timer = new Timer();

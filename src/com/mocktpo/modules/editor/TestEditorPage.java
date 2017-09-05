@@ -117,13 +117,10 @@ public class TestEditorPage extends Composite {
         if (readingEditorLayer.isRefreshRequired()) {
             toLoadingEditorLayer();
             if (!d.isDisposed()) {
-                d.asyncExec(new Runnable() {
-                    @Override
-                    public void run() {
-                        readingEditorLayer.refreshCards();
-                        stack.topControl = readingEditorLayer;
-                        TestEditorPage.this.layout();
-                    }
+                d.asyncExec(() -> {
+                    readingEditorLayer.refreshCards();
+                    stack.topControl = readingEditorLayer;
+                    TestEditorPage.this.layout();
                 });
             }
         } else {
