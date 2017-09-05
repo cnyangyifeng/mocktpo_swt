@@ -124,8 +124,15 @@ public class ProjectUtils {
                     }
                     break;
                 case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
+                    vo.setQuestionNumberInSection(++readingQuestionNumber);
+                    break;
                 case VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION:
+                    vo.setQuestionNumberInSection(++readingQuestionNumber);
+                    TestViewUtils.updateInsertionPoints(vo);
+                    break;
                 case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
+                    vo.setQuestionNumberInSection(++readingQuestionNumber);
+                    break;
                 case VT.VIEW_TYPE_READING_FILL_IN_A_TABLE_QUESTION:
                     vo.setQuestionNumberInSection(++readingQuestionNumber);
                     break;

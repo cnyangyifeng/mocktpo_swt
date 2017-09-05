@@ -322,48 +322,65 @@ public class TestViewUtils {
         final StyledTextVo questionVo = new StyledTextVo();
         questionVo.setText(MT.STRING_READING_INSERT_TEXT_QUESTION_VIEW_QUESTION);
 
-        final StyledTextVo insertionPointAVo = new StyledTextVo();
-        insertionPointAVo.setText(MT.STRING_FULL_BLOCK);
-        List<StyleRangeVo> insertionPointAStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(0, 0, 0, 0, 0, false, null));
-        }};
-        insertionPointAVo.setStyles(insertionPointAStyleVos);
-
-        final StyledTextVo insertionPointBVo = new StyledTextVo();
-        insertionPointBVo.setText(MT.STRING_FULL_BLOCK);
-        List<StyleRangeVo> insertionPointBStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(0, 0, 0, 0, 0, false, null));
-        }};
-        insertionPointBVo.setStyles(insertionPointBStyleVos);
-
-        final StyledTextVo insertionPointCVo = new StyledTextVo();
-        insertionPointCVo.setText(MT.STRING_FULL_BLOCK);
-        List<StyleRangeVo> insertionPointCStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(0, 0, 0, 0, 0, false, null));
-        }};
-        insertionPointCVo.setStyles(insertionPointCStyleVos);
-
-        final StyledTextVo insertionPointDVo = new StyledTextVo();
-        insertionPointDVo.setText(MT.STRING_FULL_BLOCK);
-        List<StyleRangeVo> insertionPointDStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(0, 0, 0, 0, 0, false, null));
-        }};
-        insertionPointDVo.setStyles(insertionPointDStyleVos);
-
         final StyledTextVo footnoteVo = new StyledTextVo();
         footnoteVo.setText(MT.STRING_READING_INSERT_TEXT_QUESTION_VIEW_FOOTNOTE);
 
         Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
             put("question", questionVo);
-            put("insertionPointA", insertionPointAVo);
-            put("insertionPointB", insertionPointBVo);
-            put("insertionPointC", insertionPointCVo);
-            put("insertionPointD", insertionPointDVo);
             put("footnote", footnoteVo);
         }};
         viewVo.setBody(body);
 
         return viewVo;
+    }
+
+    public static void updateInsertionPoints(TestViewVo viewVo) {
+        /* Full Block Locations */
+        int[] arr = new int[]{0, 0, 0, 0};
+        String text = viewVo.getStyledTextContent("passage");
+        int p = 0;
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == MT.STRING_FULL_BLOCK.charAt(0)) {
+                arr[p++] = i;
+            }
+            if (p == 4) {
+                break;
+            }
+        }
+        /* Insertion Point A */
+        final StyledTextVo insertionPointAVo = new StyledTextVo();
+        insertionPointAVo.setText(MT.STRING_FULL_BLOCK);
+        List<StyleRangeVo> insertionPointAStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(arr[0], 0, 0, 0, 0, false, null));
+        }};
+        insertionPointAVo.setStyles(insertionPointAStyleVos);
+        /* Insertion Point B */
+        final StyledTextVo insertionPointBVo = new StyledTextVo();
+        insertionPointBVo.setText(MT.STRING_FULL_BLOCK);
+        List<StyleRangeVo> insertionPointBStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(arr[1], 0, 0, 0, 0, false, null));
+        }};
+        insertionPointBVo.setStyles(insertionPointBStyleVos);
+        /* Insertion Point C */
+        final StyledTextVo insertionPointCVo = new StyledTextVo();
+        insertionPointCVo.setText(MT.STRING_FULL_BLOCK);
+        List<StyleRangeVo> insertionPointCStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(arr[2], 0, 0, 0, 0, false, null));
+        }};
+        insertionPointCVo.setStyles(insertionPointCStyleVos);
+        /* Insertion Point D */
+        final StyledTextVo insertionPointDVo = new StyledTextVo();
+        insertionPointDVo.setText(MT.STRING_FULL_BLOCK);
+        List<StyleRangeVo> insertionPointDStyleVos = new ArrayList<StyleRangeVo>() {{
+            add(new StyleRangeVo(arr[3], 0, 0, 0, 0, false, null));
+        }};
+        insertionPointDVo.setStyles(insertionPointDStyleVos);
+        /* Body */
+        Map<String, StyledTextVo> body = viewVo.getBody();
+        body.put("insertionPointA", insertionPointAVo);
+        body.put("insertionPointB", insertionPointBVo);
+        body.put("insertionPointC", insertionPointCVo);
+        body.put("insertionPointD", insertionPointDVo);
     }
 
     public static TestViewVo initReadingInsertTextQuestionView(int viewId, int questionNumberInSection, String heading, String passage, int passageOffset, String insertText, final String insertionPointA, final String insertionPointB, final String insertionPointC, final String insertionPointD) {

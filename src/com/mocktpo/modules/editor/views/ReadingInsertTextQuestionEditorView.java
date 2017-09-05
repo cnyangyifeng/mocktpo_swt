@@ -11,6 +11,7 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.*;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -27,6 +28,10 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
     private ImageButton addAnInsertionPointButton;
     private StyledText passageTextWidget;
     private StyledText insertTextTextWidget;
+
+    /* Properties */
+
+    private int insertionPointCount;
 
     /*
      * ==================================================
@@ -93,6 +98,7 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         KeyBindingSet.bind(passageTextWidget).selectAll();
         passageTextWidget.addModifyListener(new PassageTextModifyListener());
         passageTextWidget.addFocusListener(new PassageTextFocusListener());
+        insertionPointCount = StringUtils.countMatches(vo.getStyledTextContent("passage"), MT.STRING_FULL_BLOCK);
     }
 
     @Override
@@ -174,61 +180,13 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            String text = passageTextWidget.getText();
-            int start = passageTextWidget.getCaretOffset() - 1;
-
-            if (passageTextWidget.getCaretOffset() == 0) {
-                boolean arrowExists = false;
-                for (int k = 0; k < text.length(); k++) {
-                    if (text.charAt(k) == MT.STRING_LINEFEED.charAt(0)) {
-                        break;
-                    }
-                    if (text.charAt(k) == MT.STRING_ARROW.charAt(0)) {
-                        arrowExists = true;
-                        break;
-                    }
-                }
-                if (!arrowExists) {
-                    passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
-                }
+            if (insertionPointCount >= 4) {
+                return;
             }
-
-            for (int i = start; i >= 0; i--) {
-                if (text.charAt(i) == MT.STRING_LINEFEED.charAt(0)) {
-                    boolean arrowExists = false;
-                    for (int j = i + 1; j < text.length(); j++) {
-                        if (text.charAt(j) == MT.STRING_LINEFEED.charAt(0)) {
-                            break;
-                        }
-                        if (text.charAt(j) == MT.STRING_ARROW.charAt(0)) {
-                            arrowExists = true;
-                            break;
-                        }
-                    }
-                    if (!arrowExists) {
-                        passageTextWidget.setCaretOffset(i + 1);
-                        passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
-                    }
-                    break;
-                }
-                if (i == 0) {
-                    boolean arrowExists = false;
-                    for (int j = i; j < text.length(); j++) {
-                        if (text.charAt(j) == MT.STRING_LINEFEED.charAt(0)) {
-                            break;
-                        }
-                        if (text.charAt(j) == MT.STRING_ARROW.charAt(0)) {
-                            arrowExists = true;
-                            break;
-                        }
-                    }
-                    if (!arrowExists) {
-                        passageTextWidget.setCaretOffset(i);
-                        passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
-                    }
-                    break;
-                }
-            }
+            insertionPointCount++;
+            passageTextWidget.insert(MT.STRING_FULL_BLOCK);
+            int caretOffset = passageTextWidget.getCaretOffset();
+            passageTextWidget.setCaretOffset(caretOffset + 1);
         }
     }
 
@@ -237,6 +195,7 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         @Override
         public void modifyText(ModifyEvent e) {
             updatePasasge();
+            insertionPointCount = StringUtils.countMatches(vo.getStyledTextContent("passage"), MT.STRING_FULL_BLOCK);
         }
     }
 
@@ -258,7 +217,6 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         @Override
         public void modifyText(ModifyEvent e) {
             layer.updateDescription(insertTextTextWidget.getText());
-
             StyledTextVo insertTextTextVo = vo.getStyledTextVo("insertText");
             if (insertTextTextVo == null) {
                 insertTextTextVo = new StyledTextVo();
