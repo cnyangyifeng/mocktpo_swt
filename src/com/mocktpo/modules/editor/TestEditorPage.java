@@ -133,8 +133,19 @@ public class TestEditorPage extends Composite {
         if (listeningEditorLayer == null) {
             listeningEditorLayer = new ListeningEditorLayer(TestEditorPage.this, SWT.NONE);
         }
-        stack.topControl = listeningEditorLayer;
-        this.layout();
+        if (listeningEditorLayer.isRefreshRequired()) {
+            toLoadingEditorLayer();
+            if (!d.isDisposed()) {
+                d.asyncExec(() -> {
+                    listeningEditorLayer.refreshCards();
+                    stack.topControl = listeningEditorLayer;
+                    TestEditorPage.this.layout();
+                });
+            }
+        } else {
+            stack.topControl = listeningEditorLayer;
+            this.layout();
+        }
     }
 
     public void toSpeakingEditorLayer() {

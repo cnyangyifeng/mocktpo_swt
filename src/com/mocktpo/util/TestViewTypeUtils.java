@@ -75,14 +75,14 @@ public class TestViewTypeUtils {
             case VT.VIEW_TYPE_LISTENING_MATERIAL:
                 viewTypeName = "Listening Material";
                 break;
-            case VT.VIEW_TYPE_LISTENING_REPLAY:
-                viewTypeName = "Listening Replay";
-                break;
             case VT.VIEW_TYPE_LISTENING_MULTIPLE_CHOICE_QUESTION:
                 viewTypeName = "Listening Multiple Choice Question";
                 break;
             case VT.VIEW_TYPE_LISTENING_MULTIPLE_RESPONSE_QUESTION:
                 viewTypeName = "Listening Multiple Response Question";
+                break;
+            case VT.VIEW_TYPE_LISTENING_REPLAY:
+                viewTypeName = "Listening Replay";
                 break;
             case VT.VIEW_TYPE_LISTENING_SORT_EVENTS_QUESTION:
                 viewTypeName = "Listening Sort Events Question";

@@ -294,14 +294,14 @@ public class TestViewVo implements Serializable {
             case VT.VIEW_TYPE_LISTENING_MATERIAL:
                 viewDescription = getAudio();
                 break;
-            case VT.VIEW_TYPE_LISTENING_REPLAY:
-                viewDescription = getAudio();
-                break;
             case VT.VIEW_TYPE_LISTENING_MULTIPLE_CHOICE_QUESTION:
                 viewDescription = getStyledTextContent("question");
                 break;
             case VT.VIEW_TYPE_LISTENING_MULTIPLE_RESPONSE_QUESTION:
                 viewDescription = getStyledTextContent("question");
+                break;
+            case VT.VIEW_TYPE_LISTENING_REPLAY:
+                viewDescription = getAudio();
                 break;
             case VT.VIEW_TYPE_LISTENING_SORT_EVENTS_QUESTION:
                 viewDescription = getStyledTextContent("question");

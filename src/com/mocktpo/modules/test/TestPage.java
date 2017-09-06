@@ -206,14 +206,14 @@ public class TestPage extends Composite {
             case VT.VIEW_TYPE_LISTENING_MATERIAL:
                 tv = new ListeningMaterialView(this, SWT.NONE);
                 break;
-            case VT.VIEW_TYPE_LISTENING_REPLAY:
-                tv = new ListeningReplayView(this, SWT.NONE);
-                break;
             case VT.VIEW_TYPE_LISTENING_MULTIPLE_CHOICE_QUESTION:
                 tv = new ListeningMultipleChoiceQuestionView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_LISTENING_MULTIPLE_RESPONSE_QUESTION:
                 tv = new ListeningMultipleResponseQuestionView(this, SWT.NONE);
+                break;
+            case VT.VIEW_TYPE_LISTENING_REPLAY:
+                tv = new ListeningReplayView(this, SWT.NONE);
                 break;
             case VT.VIEW_TYPE_LISTENING_SORT_EVENTS_QUESTION:
                 tv = new ListeningSortEventsQuestionView(this, SWT.NONE);

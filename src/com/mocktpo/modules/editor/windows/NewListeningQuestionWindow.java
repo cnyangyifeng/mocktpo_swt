@@ -1,7 +1,7 @@
 package com.mocktpo.modules.editor.windows;
 
 import com.mocktpo.MyApplication;
-import com.mocktpo.modules.editor.layers.ReadingEditorLayer;
+import com.mocktpo.modules.editor.layers.ListeningEditorLayer;
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.ResourceManager;
@@ -23,21 +23,21 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.util.ResourceBundle;
 
-public class NewReadingQuestionWindow {
+public class NewListeningQuestionWindow {
 
     /* Constants */
 
     private static final int WINDOW_WIDTH = 340;
-    private static final int WINDOW_HEIGHT = 310;
+    private static final int WINDOW_HEIGHT = 364;
 
     /* Logger and Messages */
 
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Reading Editor Layer */
+    /* Listening Editor Layer */
 
-    private ReadingEditorLayer layer;
+    private ListeningEditorLayer layer;
 
     /* Display and Shell */
 
@@ -57,7 +57,7 @@ public class NewReadingQuestionWindow {
      * ==================================================
      */
 
-    public NewReadingQuestionWindow(ReadingEditorLayer layer, int leftBottomX, int leftBottomY) {
+    public NewListeningQuestionWindow(ListeningEditorLayer layer, int leftBottomX, int leftBottomY) {
         this.d = MyApplication.get().getDisplay();
         this.layer = layer;
         this.x = leftBottomX;
@@ -86,24 +86,28 @@ public class NewReadingQuestionWindow {
         body.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY20, 2));
         FormLayoutSet.layout(body).marginWidth(20).marginHeight(20).spacing(20);
 
-        final ImageButton newReadingMulitipleChoiceQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION_HOVER);
-        FormDataSet.attach(newReadingMulitipleChoiceQuestionButton).atLeft().atTop();
-        newReadingMulitipleChoiceQuestionButton.addMouseListener(new NewReadingMultipleChoiceQuestionButtonMouseAdapter());
+        final ImageButton newListeningMulitipleChoiceQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION_HOVER);
+        FormDataSet.attach(newListeningMulitipleChoiceQuestionButton).atLeft().atTop();
+        newListeningMulitipleChoiceQuestionButton.addMouseListener(new NewListeningMultipleChoiceQuestionButtonMouseAdapter());
 
-        final ImageButton newReadingInsertTextQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION, MT.IMAGE_SYSTEM_NEW_INSERT_TEXT_QUESTION_HOVER);
-        FormDataSet.attach(newReadingInsertTextQuestionButton).atLeft().atTopTo(newReadingMulitipleChoiceQuestionButton);
-        newReadingInsertTextQuestionButton.addMouseListener(new NewReadingInsertTextQuestionButtonMouseAdapter());
+        final ImageButton newListeningMultipleResponseQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_MULTIPLE_RESPONSE_QUESTION, MT.IMAGE_SYSTEM_NEW_MULTIPLE_RESPONSE_QUESTION_HOVER);
+        FormDataSet.attach(newListeningMultipleResponseQuestionButton).atLeft().atTopTo(newListeningMulitipleChoiceQuestionButton);
+        newListeningMultipleResponseQuestionButton.addMouseListener(new NewListeningMultipleResponseQuestionButtonMouseAdapter());
 
-        final ImageButton newReadingProseSummaryQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION, MT.IMAGE_SYSTEM_NEW_PROSE_SUMMARY_QUESTION_HOVER);
-        FormDataSet.attach(newReadingProseSummaryQuestionButton).atLeft().atTopTo(newReadingInsertTextQuestionButton);
-        newReadingProseSummaryQuestionButton.addMouseListener(new NewReadingProseSummaryQuestionButtonMouseAdapter());
+        final ImageButton newListeningReplayQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_LISTENING_REPLAY_QUESTION, MT.IMAGE_SYSTEM_NEW_LISTENING_REPLAY_QUESTION_HOVER);
+        FormDataSet.attach(newListeningReplayQuestionButton).atLeft().atTopTo(newListeningMultipleResponseQuestionButton);
+        newListeningReplayQuestionButton.addMouseListener(new NewListeningReplayQuestionButtonMouseAdapter());
 
-        final ImageButton newReadingFillInATableQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION, MT.IMAGE_SYSTEM_NEW_FILL_IN_A_TABLE_QUESTION_HOVER);
-        FormDataSet.attach(newReadingFillInATableQuestionButton).atLeft().atTopTo(newReadingProseSummaryQuestionButton);
-        newReadingFillInATableQuestionButton.addMouseListener(new NewReadingFillInATableQuestionButtonMouseAdapter());
+        final ImageButton newListeningSortEventsQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_SORT_EVENTS_QUESTION, MT.IMAGE_SYSTEM_NEW_SORT_EVENTS_QUESTION_HOVER);
+        FormDataSet.attach(newListeningSortEventsQuestionButton).atLeft().atTopTo(newListeningReplayQuestionButton);
+        newListeningSortEventsQuestionButton.addMouseListener(new NewListeningSortEventsQuestionButtonMouseAdapter());
+
+        final ImageButton newListeningCategorizeObjectsQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_CATEGORIZE_OBJECTS_QUESTION, MT.IMAGE_SYSTEM_NEW_CATEGORIZE_OBJECTS_QUESTION_HOVER);
+        FormDataSet.attach(newListeningCategorizeObjectsQuestionButton).atLeft().atTopTo(newListeningSortEventsQuestionButton);
+        newListeningCategorizeObjectsQuestionButton.addMouseListener(new NewListeningCategorizeObjectsQuestionButtonMouseAdapter());
 
         final Label divider = new Label(body, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(newReadingFillInATableQuestionButton).atRight().withHeight(1);
+        FormDataSet.attach(divider).atLeft().atTopTo(newListeningCategorizeObjectsQuestionButton).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
         final ImageButton cancelButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_CANCEL_WIDE, MT.IMAGE_SYSTEM_CANCEL_WIDE_HOVER);
@@ -134,39 +138,48 @@ public class NewReadingQuestionWindow {
      * ==================================================
      */
 
-    private class NewReadingMultipleChoiceQuestionButtonMouseAdapter extends MouseAdapter {
+    private class NewListeningMultipleChoiceQuestionButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             close();
-            layer.newReadingMultipleChoiceQuestion();
+            layer.newListeningMultipleChoiceQuestion();
         }
     }
 
-    private class NewReadingInsertTextQuestionButtonMouseAdapter extends MouseAdapter {
+    private class NewListeningMultipleResponseQuestionButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             close();
-            layer.newReadingInsertTextQuestion();
+            layer.newListeningMultipleResponseQuestion();
         }
     }
 
-    private class NewReadingProseSummaryQuestionButtonMouseAdapter extends MouseAdapter {
+    private class NewListeningReplayQuestionButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             close();
-            layer.newReadingProseSummaryQuestion();
+            layer.newListeningReplayQuestion();
         }
     }
 
-    private class NewReadingFillInATableQuestionButtonMouseAdapter extends MouseAdapter {
+    private class NewListeningSortEventsQuestionButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
             close();
-            layer.newReadingFillInATableQuestion();
+            layer.newListeningSortEventsQuestion();
+        }
+    }
+
+    private class NewListeningCategorizeObjectsQuestionButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            close();
+            layer.newListeningCategorizeObjectsQuestion();
         }
     }
 
