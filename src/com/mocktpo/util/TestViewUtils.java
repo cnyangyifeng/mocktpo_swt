@@ -310,19 +310,21 @@ public class TestViewUtils {
     }
 
     public static void updatePassageOffset(TestViewVo viewVo) {
-        /* Full Block Locations */
-        int[] arr = new int[]{0, 0, 0, 0};
+        int passageOffset = 0;
         String text = viewVo.getStyledTextContent("passage");
-        int p = 0;
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) == MT.STRING_FULL_BLOCK.charAt(0)) {
-                arr[p++] = i;
-            }
-            if (p == 4) {
-                break;
+        List<StyleRangeVo> styles = viewVo.getStyledTextStyles("passage");
+        if (styles != null && styles.size() > 0) {
+            StyleRangeVo styleRangeVo = styles.get(0);
+            passageOffset = styleRangeVo.getStart();
+        } else {
+            for (int i = 0; i < text.length(); i++) {
+                if (text.charAt(i) == MT.STRING_ARROW.charAt(0)) {
+                    passageOffset = i;
+                    break;
+                }
             }
         }
-
+        viewVo.setPassageOffset(passageOffset);
     }
 
     public static TestViewVo initRawReadingInsertTextQuestionView(int viewId) {

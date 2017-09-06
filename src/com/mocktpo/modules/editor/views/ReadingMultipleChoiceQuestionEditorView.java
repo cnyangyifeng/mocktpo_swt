@@ -33,6 +33,8 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
     private ImageButton markParagraphsButton;
     private ImageButton highlightPassageButton;
     private StyledText passageTextWidget;
+
+    private ScrolledComposite rsc;
     private ImageButton highlightQuestionButton;
     private StyledText questionTextWidget;
     private StyledText choiceATextWidget;
@@ -115,7 +117,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
     @Override
     protected void updateRight() {
-        final ScrolledComposite rsc = new ScrolledComposite(right, SWT.V_SCROLL);
+        rsc = new ScrolledComposite(right, SWT.V_SCROLL);
         FormDataSet.attach(rsc).atLeft().atTop().atRight().atBottom();
         rsc.setExpandHorizontal(true);
         rsc.setExpandVertical(true);
@@ -258,6 +260,8 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         footnoteTextVo.setText(footnote);
         vo.setStyledTextVo("footnote", footnoteTextVo);
         page.edit();
+
+        rsc.setOrigin(0, footnoteTextWidget.getLocation().y);
     }
 
     /*
@@ -295,7 +299,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
                     }
                 }
                 if (!arrowExists) {
-                    passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
+                    passageTextWidget.insert(MT.STRING_ARROW);
                 }
             }
 
@@ -313,7 +317,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
                     }
                     if (!arrowExists) {
                         passageTextWidget.setCaretOffset(i + 1);
-                        passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
+                        passageTextWidget.insert(MT.STRING_ARROW);
                     }
                     break;
                 }
@@ -330,7 +334,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
                     }
                     if (!arrowExists) {
                         passageTextWidget.setCaretOffset(i);
-                        passageTextWidget.insert(MT.STRING_ARROW + MT.STRING_SPACE);
+                        passageTextWidget.insert(MT.STRING_ARROW);
                     }
                     break;
                 }
