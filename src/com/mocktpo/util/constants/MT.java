@@ -334,6 +334,8 @@ public interface MT {
 
     String STRING_READING_INSERT_TEXT_QUESTION_VIEW_QUESTION = "Look at the four squares [ █ ] that indicate where the following sentence could be added to the passage.";
     String STRING_READING_INSERT_TEXT_QUESTION_VIEW_FOOTNOTE = "Where would the sentence best fit? Click on a square to add the sentence to the passage.";
+    String STRING_READING_PROSE_SUMMARY_QUESTION_VIEW_DIRECTIONS = "Directions: An introductory sentence for a brief summary of the passage is provided below. Complete the summary by selecting the THREE answer choices that express the most important ideas in the passage. Some sentences do not belong in the summary because they express ideas that are not presented in the passage or are minor ideas in the passage. This question is worth 2 points.";
+    String STRING_READING_PROSE_SUMMARY_QUESTION_VIEW_TIPS = "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\nTo review the passage, click VIEW TEXT.";
 
     /*
      * ==================================================

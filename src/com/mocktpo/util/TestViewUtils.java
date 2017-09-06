@@ -483,7 +483,7 @@ public class TestViewUtils {
         viewVo.setAnswerable(true);
 
         final StyledTextVo directionsVo = new StyledTextVo();
-        directionsVo.setText("Directions: An introductory sentence for a brief summary of the passage is provided below. Complete the summary by selecting the THREE answer choices that express the most important ideas in the passage. Some sentences do not belong in the summary because they express ideas that are not presented in the passage or are minor ideas in the passage. This question is worth 2 points.");
+        directionsVo.setText(MT.STRING_READING_PROSE_SUMMARY_QUESTION_VIEW_DIRECTIONS);
         List<StyleRangeVo> directionsStyleVos = new ArrayList<StyleRangeVo>() {{
             add(new StyleRangeVo(0, 11, 1, 0, 0, false, null));
             add(new StyleRangeVo(348, 32, 1, 0, 0, false, null));
@@ -491,7 +491,7 @@ public class TestViewUtils {
         directionsVo.setStyles(directionsStyleVos);
 
         final StyledTextVo tipsVo = new StyledTextVo();
-        tipsVo.setText("Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\nTo review the passage, click VIEW TEXT.");
+        tipsVo.setText(MT.STRING_READING_PROSE_SUMMARY_QUESTION_VIEW_TIPS);
         List<StyleRangeVo> tipsStyleVos = new ArrayList<StyleRangeVo>() {{
             add(new StyleRangeVo(128, 9, 1, 0, 0, false, null));
         }};

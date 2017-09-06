@@ -103,7 +103,7 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         body.layout();
     }
 
-    protected Composite getSubView(int subViewId) {
+    private Composite getSubView(int subViewId) {
         switch (subViewId) {
             case SUB_VIEW_QUESTION:
                 if (questionView == null) {
@@ -364,7 +364,12 @@ public class ReadingProseSummaryQuestionView extends StackTestView {
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
 
         sc.setContent(c);
-        sc.setMinSize(c.computeSize(c.getBounds().width, SWT.DEFAULT));
+        sc.addPaintListener((e) -> {
+            int wh = sc.getBounds().width;
+            int ph = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
+            int hh = ph > LC.READING_PASSAGE_TEXT_WIDGET_HINT ? ph : LC.READING_PASSAGE_TEXT_WIDGET_HINT;
+            sc.setMinSize(c.computeSize(wh, hh));
+        });
     }
 
     /*

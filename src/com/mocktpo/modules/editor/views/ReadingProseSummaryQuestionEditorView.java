@@ -7,10 +7,7 @@ import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.CLabelSet;
-import com.mocktpo.util.widgets.CompositeSet;
-import com.mocktpo.util.widgets.StyleRangeUtils;
-import com.mocktpo.util.widgets.StyledTextSet;
+import com.mocktpo.util.widgets.*;
 import com.mocktpo.vo.StyledTextVo;
 import com.mocktpo.vo.TestViewVo;
 import org.eclipse.swt.SWT;
@@ -20,6 +17,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 
 public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
 
@@ -111,8 +109,16 @@ public class ReadingProseSummaryQuestionEditorView extends SashTestEditorView {
         FormDataSet.attach(questionPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(questionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("question") + MT.STRING_TAB + MT.STRING_STAR);
 
+        final Label directionsLabel = new Label(c, SWT.WRAP);
+        FormDataSet.attach(directionsLabel).atLeft().atTopTo(questionPreLabel).atRight();
+        LabelSet.decorate(directionsLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setText(MT.STRING_READING_PROSE_SUMMARY_QUESTION_VIEW_DIRECTIONS);
+
+        final Label tipsLabel = new Label(c, SWT.WRAP);
+        FormDataSet.attach(tipsLabel).atLeft().atTopTo(directionsLabel).atRight();
+        LabelSet.decorate(tipsLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setText(MT.STRING_READING_PROSE_SUMMARY_QUESTION_VIEW_TIPS);
+
         questionTextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(questionTextWidget).atLeft().atTopTo(questionPreLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(questionTextWidget).atLeft().atTopTo(tipsLabel).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(questionTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("question"));
         StyleRangeUtils.decorate(questionTextWidget, vo.getStyledTextStyles("question"));
         KeyBindingSet.bind(questionTextWidget).selectAll();

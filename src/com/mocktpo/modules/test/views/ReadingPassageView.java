@@ -93,14 +93,11 @@ public class ReadingPassageView extends SashTestView {
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
 
         rsc.setContent(c);
-        rsc.addPaintListener(new PaintListener() {
-            @Override
-            public void paintControl(PaintEvent e) {
-                int wh = rsc.getBounds().width;
-                int ph = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
-                int hh = ph > LC.READING_PASSAGE_TEXT_WIDGET_HINT ? ph : LC.READING_PASSAGE_TEXT_WIDGET_HINT;
-                rsc.setMinSize(c.computeSize(wh, hh));
-            }
+        rsc.addPaintListener((e) -> {
+            int wh = rsc.getBounds().width;
+            int ph = passageTextWidget.getBounds().y + passageTextWidget.getBounds().height + 100;
+            int hh = ph > LC.READING_PASSAGE_TEXT_WIDGET_HINT ? ph : LC.READING_PASSAGE_TEXT_WIDGET_HINT;
+            rsc.setMinSize(c.computeSize(wh, hh));
         });
     }
 
