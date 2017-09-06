@@ -125,6 +125,7 @@ public class ProjectUtils {
                     break;
                 case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
                     vo.setQuestionNumberInSection(++readingQuestionNumber);
+                    TestViewUtils.updatePassageOffset(vo);
                     break;
                 case VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION:
                     vo.setQuestionNumberInSection(++readingQuestionNumber);

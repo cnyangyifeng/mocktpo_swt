@@ -309,6 +309,22 @@ public class TestViewUtils {
         return viewVo;
     }
 
+    public static void updatePassageOffset(TestViewVo viewVo) {
+        /* Full Block Locations */
+        int[] arr = new int[]{0, 0, 0, 0};
+        String text = viewVo.getStyledTextContent("passage");
+        int p = 0;
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) == MT.STRING_FULL_BLOCK.charAt(0)) {
+                arr[p++] = i;
+            }
+            if (p == 4) {
+                break;
+            }
+        }
+
+    }
+
     public static TestViewVo initRawReadingInsertTextQuestionView(int viewId) {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
