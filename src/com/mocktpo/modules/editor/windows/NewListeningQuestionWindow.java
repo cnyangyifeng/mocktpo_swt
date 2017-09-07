@@ -162,6 +162,7 @@ public class NewListeningQuestionWindow {
         public void mouseDown(MouseEvent e) {
             close();
             layer.newListeningReplayQuestion();
+            layer.newListeningMultipleChoiceQuestion();
         }
     }
 

@@ -142,22 +142,42 @@ public class ProjectUtils {
             viewVos.add(vo);
         }
         viewVos.add(TestViewVoUtils.initReadingSectionEndViewVo(++viewId));
+        viewVos.add(TestViewVoUtils.initListeningHeadsetOnViewVo(++viewId));
+        viewVos.add(TestViewVoUtils.initChangingVolumeViewVo(++viewId));
+        viewVos.add(TestViewVoUtils.initListeningSectionDirectionsViewVo(++viewId));
         /* Adds listeningViewVos to viewVos */
         for (TestViewVo vo : listeningViewVos) {
             vo.setViewId(++viewId);
             viewVos.add(vo);
         }
+        // TODO START
+        viewVos.add(TestViewVoUtils.initListeningDirectionsViewVo(++viewId));
+        // TODO END
+        viewVos.add(TestViewVoUtils.initListeningSectionEndViewVo(++viewId));
         viewVos.add(TestViewVoUtils.initBreakPointViewVo(++viewId));
+        viewVos.add(TestViewVoUtils.initSpeakingHeadsetOnViewVo(++viewId));
+        viewVos.add(TestViewVoUtils.initAdjustingMicrophoneViewVo(++viewId));
+        viewVos.add(TestViewVoUtils.initSpeakingSectionDirectionsViewVo(++viewId));
         /* Adds speakingViewVos to viewVos */
         for (TestViewVo vo : speakingViewVos) {
             vo.setViewId(++viewId);
             viewVos.add(vo);
         }
+        viewVos.add(TestViewVoUtils.initSpeakingSectionEndViewVo(++viewId));
+        viewVos.add(TestViewVoUtils.initWritingSectionDirectionsViewVo(++viewId));
+        // TODO START
+        viewVos.add(TestViewVoUtils.initIntegratedWritingDirectionsViewVo(++viewId));
+        viewVos.add(TestViewVoUtils.initIntegratedWritingTaskEndViewVo(++viewId));
+        // TODO END
         /* Adds writingViewVos to viewVos */
         for (TestViewVo vo : writingViewVos) {
             vo.setViewId(++viewId);
             viewVos.add(vo);
         }
+        // TODO START
+        viewVos.add(TestViewVoUtils.initIndependentWritingDirectionsViewVo(++viewId));
+        viewVos.add(TestViewVoUtils.initIndependentWritingTaskEndViewVo(++viewId));
+        // TODO END
         viewVos.add(TestViewVoUtils.initTestEndViewVo(++viewId));
         /* Sets viewVos to testVo */
         testVo.setViewVos(viewVos);

@@ -315,6 +315,7 @@ public interface MT {
      * ==================================================
      */
 
+    String STRING_AUDIO_INDICATOR = "[Audio]";
     String STRING_ARROW = "➤"; // \ \u27a4
     String STRING_CLOSED_BRACKET = ")";
     String STRING_COLON = ":";
@@ -332,11 +333,18 @@ public interface MT {
     String STRING_STAR = "*";
     String STRING_TAB = "\t"; // HT, Horizontal Tab, \\u009
 
+    String STRING_TEST_INTRO_VIEW_DESCRIPTION = "EDUCATIONAL TESTING SERVICE, ETS, the ETS logo, TOEFL and TOEFL iBT are registered trademarks of Educational Testing Service (ETS) in the United States and other countries.\n\nClick on Continue to go on.";
+    String STRING_GENERAL_TEST_INFO_VIEW_HEADING = "General Test Information";
+    String STRING_GENERAL_TEST_INFO_VIEW_DESCRIPTION = "This test measures your ability to use English in an academic context. There are 4 sections.\n\nIn the Reading section, you will read several passages and answer questions about them.\n\nIn the Listening section, you will hear several conversations and lectures and answer questions about them.\n\nIn the Speaking section, you will answer 6 questions. Some of the questions ask you to speak about your own experience. Other questions ask you to speak about lectures and reading passages.\n\nIn the Writing section, you will answer 2 questions. The first question asks you to write about the relationship between a lecture you will hear and a passage you will read. The second question asks you to write an essay about a topic of general interest based on your experience.\n\nDuring this practice test, you may click Pause icon at any time. This will stop the test until you decide to continue. You may continue the test in a few minutes, or at any time during the period that your test is activated.\n\nThere will be directions for each section which explain how to answer the questions in that section.\n\nYou should work quickly but carefully on the Reading and Listening questions. Some questions are more difficult than others, but try to answer every one to the best of your ability. If you are not sure of the answer to a question, make the best guess that you can. The questions that you answer by speaking and by writing are each separately timed. Try to answer every one of these questions as completely as possible in the time allowed.\n\nClick on Continue to go on.";
+    String STRING_BREAK_POINT_VIEW_DESCRIPTION = "You may now take a break. In an actual test there is a ten-minute break at this point.\n\nClick on Continue when you are ready to go on to the next section.\n\nIf you do not wish to take a break, click on Continue now.";
+    String STRING_TEST_END_VIEW_DESCRIPTION = "The testing session is complete.\n\nClick on Continue to see your Score Report.";
+    String STRING_READING_SECTION_DIRECTIONS_VIEW_HEADING = "Reading Section Directions";
+    String STRING_READING_SECTION_DIRECTIONS_VIEW_DESCRIPTION = "In this part of the Reading section, you will read 3 passages. In the test you will have 60 minutes to read the passage and answer the questions.\n\nMost questions are worth 1 point but the last question in each set is worth more than 1 point. The directions indicate how many points you may receive.\n\nSome passages include a word or phrase that is underlined in blue. Click on the word or phrase to see a definition or an explanation.\n\nWhen you want to move to the next question. click on Next. You may skip questions and go back to them later if you want to return to previous questions. click on Back.\n\nYou can click on Review at any time and the review screen will show you which questions you have answered and which you have not answered. From this review screen, you may go directly to any question you have already seen in the Reading section.\n\nClick on Continue to go on.";
     String STRING_READING_INSERT_TEXT_QUESTION_VIEW_QUESTION = "Look at the four squares [ █ ] that indicate where the following sentence could be added to the passage.";
     String STRING_READING_INSERT_TEXT_QUESTION_VIEW_FOOTNOTE = "Where would the sentence best fit? Click on a square to add the sentence to the passage.";
     String STRING_READING_PROSE_SUMMARY_QUESTION_VIEW_DIRECTIONS = "Directions: An introductory sentence for a brief summary of the passage is provided below. Complete the summary by selecting the THREE answer choices that express the most important ideas in the passage. Some sentences do not belong in the summary because they express ideas that are not presented in the passage or are minor ideas in the passage. This question is worth 2 points.";
     String STRING_READING_PROSE_SUMMARY_QUESTION_VIEW_TIPS = "Drag your answer choices to the spaces where they belong. To remove an answer choice, click on it.\nTo review the passage, click VIEW TEXT.";
-
+    String STRING_READING_SECTION_END_VIEW_DESCRIPTION = "You have seen all of the questions in the Reading section. You may go back and review. As long as there is time remaining. You can check your work.\n\nClick on Return to go back to the last question.\n\nClick on Review to go to the Review screen.\n\nClick on Continue to go on to the next section of the test.\n\nOnce you leave the Reading section, you WILL NOT be able to return to it.";
     /*
      * ==================================================
      *

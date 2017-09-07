@@ -37,7 +37,7 @@ public class TestViewVoUtils {
         viewVo.setSectionTypeName("");
 
         final StyledTextVo descriptionVo = new StyledTextVo();
-        descriptionVo.setText("EDUCATIONAL TESTING SERVICE, ETS, the ETS logo, TOEFL and TOEFL iBT are registered trademarks of Educational Testing Service (ETS) in the United States and other countries.\n\nClick on Continue to go on.");
+        descriptionVo.setText(MT.STRING_TEST_INTRO_VIEW_DESCRIPTION);
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
             add(new StyleRangeVo(183, 8, 1, 0, 0, false, null));
         }};
@@ -59,10 +59,10 @@ public class TestViewVoUtils {
         viewVo.setSectionTypeName("");
 
         final StyledTextVo headingVo = new StyledTextVo();
-        headingVo.setText("General Test Information");
+        headingVo.setText(MT.STRING_GENERAL_TEST_INFO_VIEW_HEADING);
 
         final StyledTextVo descriptionVo = new StyledTextVo();
-        descriptionVo.setText("This test measures your ability to use English in an academic context. There are 4 sections.\n\nIn the Reading section, you will read several passages and answer questions about them.\n\nIn the Listening section, you will hear several conversations and lectures and answer questions about them.\n\nIn the Speaking section, you will answer 6 questions. Some of the questions ask you to speak about your own experience. Other questions ask you to speak about lectures and reading passages.\n\nIn the Writing section, you will answer 2 questions. The first question asks you to write about the relationship between a lecture you will hear and a passage you will read. The second question asks you to write an essay about a topic of general interest based on your experience.\n\nDuring this practice test, you may click Pause icon at any time. This will stop the test until you decide to continue. You may continue the test in a few minutes, or at any time during the period that your test is activated.\n\nThere will be directions for each section which explain how to answer the questions in that section.\n\nYou should work quickly but carefully on the Reading and Listening questions. Some questions are more difficult than others, but try to answer every one to the best of your ability. If you are not sure of the answer to a question, make the best guess that you can. The questions that you answer by speaking and by writing are each separately timed. Try to answer every one of these questions as completely as possible in the time allowed.\n\nClick on Continue to go on.");
+        descriptionVo.setText(MT.STRING_GENERAL_TEST_INFO_VIEW_DESCRIPTION);
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
             add(new StyleRangeVo(101, 7, 1, 0, 0, false, null));
             add(new StyleRangeVo(190, 9, 1, 0, 0, false, null));
@@ -90,7 +90,7 @@ public class TestViewVoUtils {
         viewVo.setSectionTypeName("");
 
         final StyledTextVo descriptionVo = new StyledTextVo();
-        descriptionVo.setText("You may now take a break. In an actual test there is a ten-minute break at this point.\n\nClick on Continue when you are ready to go on to the next section.\n\nIf you do not wish to take a break, click on Continue now.");
+        descriptionVo.setText(MT.STRING_BREAK_POINT_VIEW_DESCRIPTION);
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
             add(new StyleRangeVo(97, 8, 1, 0, 0, false, null));
             add(new StyleRangeVo(201, 8, 1, 0, 0, false, null));
@@ -113,7 +113,7 @@ public class TestViewVoUtils {
         viewVo.setSectionTypeName("");
 
         final StyledTextVo descriptionVo = new StyledTextVo();
-        descriptionVo.setText("The testing session is complete.\n\nClick on Continue to see your Score Report.");
+        descriptionVo.setText(MT.STRING_TEST_END_VIEW_DESCRIPTION);
 
         Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
             put("description", descriptionVo);
@@ -139,10 +139,10 @@ public class TestViewVoUtils {
         viewVo.setSectionTypeName(msgs.getString("reading"));
 
         final StyledTextVo headingVo = new StyledTextVo();
-        headingVo.setText("Reading Section Directions");
+        headingVo.setText(MT.STRING_READING_SECTION_DIRECTIONS_VIEW_HEADING);
 
         final StyledTextVo descriptionVo = new StyledTextVo();
-        descriptionVo.setText("In this part of the Reading section, you will read 3 passages. In the test you will have 60 minutes to read the passage and answer the questions.\n\nMost questions are worth 1 point but the last question in each set is worth more than 1 point. The directions indicate how many points you may receive.\n\nSome passages include a word or phrase that is underlined in blue. Click on the word or phrase to see a definition or an explanation.\n\nWhen you want to move to the next question. click on Next. You may skip questions and go back to them later if you want to return to previous questions. click on Back.\n\nYou can click on Review at any time and the review screen will show you which questions you have answered and which you have not answered. From this review screen, you may go directly to any question you have already seen in the Reading section.\n\nClick on Continue to go on.");
+        descriptionVo.setText(MT.STRING_READING_SECTION_DIRECTIONS_VIEW_DESCRIPTION);
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
             add(new StyleRangeVo(51, 10, 1, 0, 0, false, null));
             add(new StyleRangeVo(89, 10, 1, 0, 0, false, null));
@@ -333,7 +333,7 @@ public class TestViewVoUtils {
         viewVo.setTimed(true);
 
         final StyledTextVo descriptionVo = new StyledTextVo();
-        descriptionVo.setText("You have seen all of the questions in the Reading section. You may go back and review. As long as there is time remaining. You can check your work.\n\nClick on Return to go back to the last question.\n\nClick on Review to go to the Review screen.\n\nClick on Continue to go on to the next section of the test.\n\nOnce you leave the Reading section, you WILL NOT be able to return to it.");
+        descriptionVo.setText(MT.STRING_READING_SECTION_END_VIEW_DESCRIPTION);
 
         Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
             put("description", descriptionVo);
@@ -351,34 +351,190 @@ public class TestViewVoUtils {
      * ==================================================
      */
 
+    public static TestViewVo initListeningHeadsetOnViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initChangingVolumeViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initListeningSectionDirectionsViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
     public static TestViewVo initRawListeningMaterialViewVo(int viewId) {
         TestViewVo viewVo = new TestViewVo();
         viewVo.setViewId(viewId);
-        viewVo.setViewType(VT.VIEW_TYPE_READING_SECTION_DIRECTIONS);
-        viewVo.setSectionType(ST.SECTION_TYPE_READING);
-        viewVo.setSectionTypeName(msgs.getString("reading"));
+        viewVo.setViewType(VT.VIEW_TYPE_LISTENING_MATERIAL);
+        viewVo.setSectionType(ST.SECTION_TYPE_LISTENING);
+        viewVo.setSectionTypeName(msgs.getString("listening"));
+        viewVo.setWithAudio(true);
 
-        final StyledTextVo headingVo = new StyledTextVo();
-        headingVo.setText("Reading Section Directions");
+        return viewVo;
+    }
 
-        final StyledTextVo descriptionVo = new StyledTextVo();
-        descriptionVo.setText("In this part of the Reading section, you will read 3 passages. In the test you will have 60 minutes to read the passage and answer the questions.\n\nMost questions are worth 1 point but the last question in each set is worth more than 1 point. The directions indicate how many points you may receive.\n\nSome passages include a word or phrase that is underlined in blue. Click on the word or phrase to see a definition or an explanation.\n\nWhen you want to move to the next question. click on Next. You may skip questions and go back to them later if you want to return to previous questions. click on Back.\n\nYou can click on Review at any time and the review screen will show you which questions you have answered and which you have not answered. From this review screen, you may go directly to any question you have already seen in the Reading section.\n\nClick on Continue to go on.");
-        List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(51, 10, 1, 0, 0, false, null));
-            add(new StyleRangeVo(89, 10, 1, 0, 0, false, null));
-            add(new StyleRangeVo(347, 10, 1, 0, 0, false, null));
-            add(new StyleRangeVo(488, 4, 1, 0, 0, false, null));
-            add(new StyleRangeVo(597, 4, 1, 0, 0, false, null));
-            add(new StyleRangeVo(621, 6, 1, 0, 0, false, null));
-            add(new StyleRangeVo(860, 8, 1, 0, 0, false, null));
-        }};
-        descriptionVo.setStyles(descriptionStyleVos);
+    public static TestViewVo initRawListeningMultipleChoiceQuestionViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(VT.VIEW_TYPE_LISTENING_MULTIPLE_CHOICE_QUESTION);
+        viewVo.setSectionType(ST.SECTION_TYPE_LISTENING);
+        viewVo.setSectionTypeName(msgs.getString("listening"));
+        viewVo.setWithAudio(true);
+        viewVo.setTimed(true);
+        viewVo.setTimerTaskDelayed(true);
+        viewVo.setQuestionCaptionVisible(true);
+        viewVo.setAnswerable(true);
+        viewVo.setBody(new HashMap<>());
 
-        Map<String, StyledTextVo> body = new HashMap<String, StyledTextVo>() {{
-            put("heading", headingVo);
-            put("description", descriptionVo);
-        }};
-        viewVo.setBody(body);
+        return viewVo;
+    }
+
+    public static TestViewVo initRawListeningMultipleResponseQuestionViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(VT.VIEW_TYPE_LISTENING_MULTIPLE_RESPONSE_QUESTION);
+        viewVo.setSectionType(ST.SECTION_TYPE_LISTENING);
+        viewVo.setSectionTypeName(msgs.getString("listening"));
+        viewVo.setWithAudio(true);
+        viewVo.setTimed(true);
+        viewVo.setTimerTaskDelayed(true);
+        viewVo.setQuestionCaptionVisible(true);
+        viewVo.setAnswerable(true);
+        viewVo.setBody(new HashMap<>());
+
+        return viewVo;
+    }
+
+    public static TestViewVo initRawListeningReplayViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(VT.VIEW_TYPE_LISTENING_REPLAY);
+        viewVo.setSectionType(ST.SECTION_TYPE_LISTENING);
+        viewVo.setSectionTypeName(msgs.getString("listening"));
+        viewVo.setWithAudio(true);
+        viewVo.setQuestionCaptionVisible(true);
+
+        return viewVo;
+    }
+
+    public static TestViewVo initRawListeningSortEventsQuestionViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(VT.VIEW_TYPE_LISTENING_SORT_EVENTS_QUESTION);
+        viewVo.setSectionType(ST.SECTION_TYPE_LISTENING);
+        viewVo.setSectionTypeName(msgs.getString("listening"));
+        viewVo.setWithAudio(true);
+        viewVo.setTimed(true);
+        viewVo.setTimerTaskDelayed(true);
+        viewVo.setQuestionCaptionVisible(true);
+        viewVo.setAnswerable(true);
+        viewVo.setBody(new HashMap<>());
+
+        return viewVo;
+    }
+
+    public static TestViewVo initRawListeningCategorizeObjectsQuestionViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+        viewVo.setViewId(viewId);
+        viewVo.setViewType(VT.VIEW_TYPE_LISTENING_CATEGORIZE_OBJECTS_QUESTION);
+        viewVo.setSectionType(ST.SECTION_TYPE_LISTENING);
+        viewVo.setSectionTypeName(msgs.getString("listening"));
+        viewVo.setWithAudio(true);
+        viewVo.setTimed(true);
+        viewVo.setTimerTaskDelayed(true);
+        viewVo.setQuestionCaptionVisible(true);
+        viewVo.setAnswerable(true);
+        viewVo.setBody(new HashMap<>());
+
+        return viewVo;
+    }
+
+    public static TestViewVo initListeningSectionEndViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initListeningDirectionsViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Speaking Section View Types
+     *
+     * ==================================================
+     */
+
+    public static TestViewVo initSpeakingHeadsetOnViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initAdjustingMicrophoneViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initSpeakingSectionDirectionsViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initSpeakingSectionEndViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    /*
+     * ==================================================
+     *
+     * Writing Section View Types
+     *
+     * ==================================================
+     */
+
+    public static TestViewVo initWritingSectionDirectionsViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initIntegratedWritingDirectionsViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initIntegratedWritingTaskEndViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+
+    public static TestViewVo initIndependentWritingDirectionsViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initIndependentWritingTaskEndViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
 
         return viewVo;
     }

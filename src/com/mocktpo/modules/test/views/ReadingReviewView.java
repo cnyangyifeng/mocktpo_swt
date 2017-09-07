@@ -155,7 +155,7 @@ public class ReadingReviewView extends Composite {
 
         final Label titleLabel = new Label(header, SWT.WRAP);
         FormDataSet.attach(titleLabel).atLeft(10).atTop(10);
-        LabelSet.decorate(titleLabel).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestVo().getTitle() + MT.STRING_SPACE + msgs.getString("reading"));
+        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestVo().getTitle() + MT.STRING_SPACE + msgs.getString("reading"));
 
         /*
          * ==================================================

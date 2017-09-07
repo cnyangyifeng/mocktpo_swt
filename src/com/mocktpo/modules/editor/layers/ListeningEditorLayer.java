@@ -86,7 +86,7 @@ public class ListeningEditorLayer extends SashTestEditorLayer {
      */
 
     public void newListeningMaterial() {
-        List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
+        List<TestViewVo> viewVos = page.getTestEditorVo().getListeningViewVos();
         TestViewVo viewVo = TestViewVoUtils.initRawListeningMaterialViewVo(++currentViewId);
         viewVos.add(currentViewId, viewVo);
         for (int i = currentViewId + 1; i < viewVos.size(); i++) {
@@ -99,23 +99,68 @@ public class ListeningEditorLayer extends SashTestEditorLayer {
     }
 
     public void newListeningMultipleChoiceQuestion() {
-
+        List<TestViewVo> viewVos = page.getTestEditorVo().getListeningViewVos();
+        TestViewVo viewVo = TestViewVoUtils.initRawListeningMultipleChoiceQuestionViewVo(++currentViewId);
+        viewVos.add(currentViewId, viewVo);
+        for (int i = currentViewId + 1; i < viewVos.size(); i++) {
+            TestViewVo eachAfter = viewVos.get(i);
+            eachAfter.setViewId(i);
+        }
+        setRefreshRequired(true);
+        page.toListeningEditorLayer();
+        page.save();
     }
 
     public void newListeningMultipleResponseQuestion() {
-
+        List<TestViewVo> viewVos = page.getTestEditorVo().getListeningViewVos();
+        TestViewVo viewVo = TestViewVoUtils.initRawListeningMultipleResponseQuestionViewVo(++currentViewId);
+        viewVos.add(currentViewId, viewVo);
+        for (int i = currentViewId + 1; i < viewVos.size(); i++) {
+            TestViewVo eachAfter = viewVos.get(i);
+            eachAfter.setViewId(i);
+        }
+        setRefreshRequired(true);
+        page.toListeningEditorLayer();
+        page.save();
     }
 
     public void newListeningReplayQuestion() {
-
+        List<TestViewVo> viewVos = page.getTestEditorVo().getListeningViewVos();
+        TestViewVo viewVo = TestViewVoUtils.initRawListeningReplayViewVo(++currentViewId);
+        viewVos.add(currentViewId, viewVo);
+        for (int i = currentViewId + 1; i < viewVos.size(); i++) {
+            TestViewVo eachAfter = viewVos.get(i);
+            eachAfter.setViewId(i);
+        }
+        setRefreshRequired(true);
+        page.toListeningEditorLayer();
+        page.save();
     }
 
     public void newListeningSortEventsQuestion() {
-
+        List<TestViewVo> viewVos = page.getTestEditorVo().getListeningViewVos();
+        TestViewVo viewVo = TestViewVoUtils.initRawListeningSortEventsQuestionViewVo(++currentViewId);
+        viewVos.add(currentViewId, viewVo);
+        for (int i = currentViewId + 1; i < viewVos.size(); i++) {
+            TestViewVo eachAfter = viewVos.get(i);
+            eachAfter.setViewId(i);
+        }
+        setRefreshRequired(true);
+        page.toListeningEditorLayer();
+        page.save();
     }
 
     public void newListeningCategorizeObjectsQuestion() {
-
+        List<TestViewVo> viewVos = page.getTestEditorVo().getListeningViewVos();
+        TestViewVo viewVo = TestViewVoUtils.initRawListeningCategorizeObjectsQuestionViewVo(++currentViewId);
+        viewVos.add(currentViewId, viewVo);
+        for (int i = currentViewId + 1; i < viewVos.size(); i++) {
+            TestViewVo eachAfter = viewVos.get(i);
+            eachAfter.setViewId(i);
+        }
+        setRefreshRequired(true);
+        page.toListeningEditorLayer();
+        page.save();
     }
 
     @Override

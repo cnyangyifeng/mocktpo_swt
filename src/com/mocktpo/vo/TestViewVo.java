@@ -1,5 +1,6 @@
 package com.mocktpo.vo;
 
+import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.VT;
 
 import java.io.Serializable;
@@ -292,7 +293,7 @@ public class TestViewVo implements Serializable {
             /* Listening Section View Types */
 
             case VT.VIEW_TYPE_LISTENING_MATERIAL:
-                viewDescription = getAudio();
+                viewDescription = MT.STRING_AUDIO_INDICATOR;
                 break;
             case VT.VIEW_TYPE_LISTENING_MULTIPLE_CHOICE_QUESTION:
                 viewDescription = getStyledTextContent("question");
@@ -301,7 +302,7 @@ public class TestViewVo implements Serializable {
                 viewDescription = getStyledTextContent("question");
                 break;
             case VT.VIEW_TYPE_LISTENING_REPLAY:
-                viewDescription = getAudio();
+                viewDescription = MT.STRING_AUDIO_INDICATOR;
                 break;
             case VT.VIEW_TYPE_LISTENING_SORT_EVENTS_QUESTION:
                 viewDescription = getStyledTextContent("question");
