@@ -215,7 +215,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         page.edit();
     }
 
-    private void updatePasasge() {
+    private void updatePassage() {
         StyledTextVo passageTextVo = vo.getStyledTextVo("passage");
         if (passageTextVo == null) {
             passageTextVo = new StyledTextVo();
@@ -368,7 +368,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
-            updatePasasge();
+            updatePassage();
             updateFootnote();
         }
     }

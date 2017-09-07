@@ -108,9 +108,9 @@ public class ProjectUtils {
         /* Generates viewVos */
         List<TestViewVo> viewVos = new ArrayList<>();
         int viewId = 0;
-        viewVos.add(TestViewUtils.initTestIntroView(++viewId));
-        viewVos.add(TestViewUtils.initGeneralTestInfoView(++viewId));
-        viewVos.add(TestViewUtils.initReadingSectionDirectionsView(++viewId));
+        viewVos.add(TestViewVoUtils.initTestIntroViewVo(++viewId));
+        viewVos.add(TestViewVoUtils.initGeneralTestInfoViewVo(++viewId));
+        viewVos.add(TestViewVoUtils.initReadingSectionDirectionsViewVo(++viewId));
         /* Adds readingViewVos to viewVos */
         boolean firstPassage = false;
         int readingQuestionNumber = 0;
@@ -125,11 +125,12 @@ public class ProjectUtils {
                     break;
                 case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
                     vo.setQuestionNumberInSection(++readingQuestionNumber);
-                    TestViewUtils.updatePassageOffset(vo);
+                    TestViewVoUtils.updatePassageOffset(vo);
                     break;
                 case VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION:
                     vo.setQuestionNumberInSection(++readingQuestionNumber);
-                    TestViewUtils.updateInsertionPoints(vo);
+                    TestViewVoUtils.updateInsertionPoints(vo);
+                    TestViewVoUtils.updatePassageOffset(vo);
                     break;
                 case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
                     vo.setQuestionNumberInSection(++readingQuestionNumber);
@@ -140,13 +141,13 @@ public class ProjectUtils {
             }
             viewVos.add(vo);
         }
-        viewVos.add(TestViewUtils.initReadingSectionEndView(++viewId));
+        viewVos.add(TestViewVoUtils.initReadingSectionEndViewVo(++viewId));
         /* Adds listeningViewVos to viewVos */
         for (TestViewVo vo : listeningViewVos) {
             vo.setViewId(++viewId);
             viewVos.add(vo);
         }
-        viewVos.add(TestViewUtils.initBreakPointView(++viewId));
+        viewVos.add(TestViewVoUtils.initBreakPointViewVo(++viewId));
         /* Adds speakingViewVos to viewVos */
         for (TestViewVo vo : speakingViewVos) {
             vo.setViewId(++viewId);
@@ -157,7 +158,7 @@ public class ProjectUtils {
             vo.setViewId(++viewId);
             viewVos.add(vo);
         }
-        viewVos.add(TestViewUtils.initTestEndView(++viewId));
+        viewVos.add(TestViewVoUtils.initTestEndViewVo(++viewId));
         /* Sets viewVos to testVo */
         testVo.setViewVos(viewVos);
         /* Save testVo */

@@ -6,6 +6,7 @@ import com.mocktpo.modules.editor.views.*;
 import com.mocktpo.modules.editor.widgets.TestEditorCard;
 import com.mocktpo.modules.editor.windows.NewListeningQuestionWindow;
 import com.mocktpo.modules.system.widgets.ImageButton;
+import com.mocktpo.util.TestViewVoUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -85,7 +86,16 @@ public class ListeningEditorLayer extends SashTestEditorLayer {
      */
 
     public void newListeningMaterial() {
-
+        List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
+        TestViewVo viewVo = TestViewVoUtils.initRawListeningMaterialViewVo(++currentViewId);
+        viewVos.add(currentViewId, viewVo);
+        for (int i = currentViewId + 1; i < viewVos.size(); i++) {
+            TestViewVo eachAfter = viewVos.get(i);
+            eachAfter.setViewId(i);
+        }
+        setRefreshRequired(true);
+        page.toListeningEditorLayer();
+        page.save();
     }
 
     public void newListeningMultipleChoiceQuestion() {

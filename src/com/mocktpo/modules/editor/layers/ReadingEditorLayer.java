@@ -6,7 +6,7 @@ import com.mocktpo.modules.editor.views.*;
 import com.mocktpo.modules.editor.widgets.TestEditorCard;
 import com.mocktpo.modules.editor.windows.NewReadingQuestionWindow;
 import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.util.TestViewUtils;
+import com.mocktpo.util.TestViewVoUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.VT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -88,7 +88,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
     public void newReadingPassage() {
         List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
-        TestViewVo viewVo = TestViewUtils.initRawReadingPassageViewVo(++currentViewId);
+        TestViewVo viewVo = TestViewVoUtils.initRawReadingPassageViewVo(++currentViewId);
         viewVos.add(currentViewId, viewVo);
         for (int i = currentViewId + 1; i < viewVos.size(); i++) {
             TestViewVo eachAfter = viewVos.get(i);
@@ -101,7 +101,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
     public void newReadingMultipleChoiceQuestion() {
         List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
-        TestViewVo viewVo = TestViewUtils.initRawReadingMultipleChoiceQuestionViewVo(++currentViewId);
+        TestViewVo viewVo = TestViewVoUtils.initRawReadingMultipleChoiceQuestionViewVo(++currentViewId);
         updateReadingPassageForQuestionView(viewVo, viewVos);
         viewVos.add(currentViewId, viewVo);
         for (int i = currentViewId + 1; i < viewVos.size(); i++) {
@@ -115,7 +115,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
     public void newReadingInsertTextQuestion() {
         List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
-        TestViewVo viewVo = TestViewUtils.initRawReadingInsertTextQuestionView(++currentViewId);
+        TestViewVo viewVo = TestViewVoUtils.initRawReadingInsertTextQuestionViewVo(++currentViewId);
         updateReadingPassageForQuestionView(viewVo, viewVos);
         viewVos.add(currentViewId, viewVo);
         for (int i = currentViewId + 1; i < viewVos.size(); i++) {
@@ -129,7 +129,7 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
     public void newReadingProseSummaryQuestion() {
         List<TestViewVo> viewVos = page.getTestEditorVo().getReadingViewVos();
-        TestViewVo viewVo = TestViewUtils.initRawReadingProseSummaryQuestionView(++currentViewId);
+        TestViewVo viewVo = TestViewVoUtils.initRawReadingProseSummaryQuestionViewVo(++currentViewId);
         updateReadingPassageForQuestionView(viewVo, viewVos);
         viewVos.add(currentViewId, viewVo);
         for (int i = currentViewId + 1; i < viewVos.size(); i++) {
