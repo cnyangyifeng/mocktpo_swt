@@ -494,6 +494,30 @@ public class TestViewVoUtils {
         return viewVo;
     }
 
+    public static TestViewVo initRawSpeakingTaskDirectionsViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initRawSpeakingTaskViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initRawSpeakingReadingPassageViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initRawSpeakingListeningMaterialViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
     public static TestViewVo initSpeakingSectionEndViewVo(int viewId) {
         TestViewVo viewVo = new TestViewVo();
 
@@ -520,6 +544,24 @@ public class TestViewVoUtils {
         return viewVo;
     }
 
+    public static TestViewVo initRawWritingReadingPassageViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initRawWritingListeningMaterialViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initRawIntegratedWritingTaskViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
     public static TestViewVo initIntegratedWritingTaskEndViewVo(int viewId) {
         TestViewVo viewVo = new TestViewVo();
 
@@ -528,6 +570,12 @@ public class TestViewVoUtils {
 
 
     public static TestViewVo initIndependentWritingDirectionsViewVo(int viewId) {
+        TestViewVo viewVo = new TestViewVo();
+
+        return viewVo;
+    }
+
+    public static TestViewVo initRawIndependentWritingTaskViewVo(int viewId) {
         TestViewVo viewVo = new TestViewVo();
 
         return viewVo;

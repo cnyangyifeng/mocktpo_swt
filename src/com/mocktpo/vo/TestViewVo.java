@@ -315,7 +315,6 @@ public class TestViewVo implements Serializable {
 
             case VT.VIEW_TYPE_SPEAKING_TASK:
                 viewDescription = getStyledTextContent("question");
-                ;
                 break;
             case VT.VIEW_TYPE_SPEAKING_READING_PASSAGE:
                 viewDescription = getStyledTextContent("heading");
@@ -330,13 +329,13 @@ public class TestViewVo implements Serializable {
                 viewDescription = getStyledTextContent("heading");
                 break;
             case VT.VIEW_TYPE_WRITING_LISTENING_MATERIAL:
-                viewDescription = getAudio();
+                viewDescription = MT.STRING_AUDIO_INDICATOR;
                 break;
             case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK:
-                viewDescription = getStyledTextContent("question");
+                viewDescription = getStyledTextContent("heading");
                 break;
             case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK:
-                viewDescription = getStyledTextContent("question");
+                viewDescription = getStyledTextContent("heading");
                 break;
             default:
                 viewDescription = "";

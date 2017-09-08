@@ -152,16 +152,38 @@ public class TestEditorPage extends Composite {
         if (speakingEditorLayer == null) {
             speakingEditorLayer = new SpeakingEditorLayer(TestEditorPage.this, SWT.NONE);
         }
-        stack.topControl = speakingEditorLayer;
-        this.layout();
+        if (speakingEditorLayer.isRefreshRequired()) {
+            toLoadingEditorLayer();
+            if (!d.isDisposed()) {
+                d.asyncExec(() -> {
+                    speakingEditorLayer.refreshCards();
+                    stack.topControl = speakingEditorLayer;
+                    TestEditorPage.this.layout();
+                });
+            }
+        } else {
+            stack.topControl = speakingEditorLayer;
+            this.layout();
+        }
     }
 
     public void toWritingEditorLayer() {
         if (writingEditorLayer == null) {
             writingEditorLayer = new WritingEditorLayer(TestEditorPage.this, SWT.NONE);
         }
-        stack.topControl = writingEditorLayer;
-        this.layout();
+        if (writingEditorLayer.isRefreshRequired()) {
+            toLoadingEditorLayer();
+            if (!d.isDisposed()) {
+                d.asyncExec(() -> {
+                    writingEditorLayer.refreshCards();
+                    stack.topControl = writingEditorLayer;
+                    TestEditorPage.this.layout();
+                });
+            }
+        } else {
+            stack.topControl = writingEditorLayer;
+            this.layout();
+        }
     }
 
     public void toPreviewEditorLayer() {
