@@ -1,5 +1,6 @@
 package com.mocktpo.util;
 
+import com.mocktpo.orm.mapper.ActivationCodeMapper;
 import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import com.mocktpo.util.constants.RC;
@@ -23,6 +24,7 @@ public class DbUtils {
             Configuration c = factory.getConfiguration();
             c.addMapper(UserTestSessionMapper.class);
             c.addMapper(UserTestAnswerMapper.class);
+            c.addMapper(ActivationCodeMapper.class);
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(-1);

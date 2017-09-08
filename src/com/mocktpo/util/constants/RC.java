@@ -8,23 +8,28 @@ public interface RC {
     /*
      * ==================================================
      *
-     * Audios
+     * File Type Suffixes
      *
      * ==================================================
      */
 
+    String HIDPI_SUFFIX = "@2x";
+    String JSON_FILE_TYPE_SUFFIX = ".json";
     String MP3_FILE_TYPE_SUFFIX = ".mp3";
+    String PNG_FILE_TYPE_SUFFIX = ".png";
     String WAV_FILE_TYPE_SUFFIX = ".wav";
 
     /*
      * ==================================================
      *
-     * Database Configuration File
+     * Files
      *
      * ==================================================
      */
 
     String DATABASE_CONFIG_FILE = "data.xml";
+    String PUBRING_FILE = "pubring.gpg";
+    String README_FILE = "README.txt";
 
     /*
      * ==================================================
@@ -41,26 +46,4 @@ public interface RC {
     String REPORTS_DATA_DIR = "/data/reports/";
     String PROJECTS_DATA_DIR = "/data/projects/";
     String OUTPUTS_DATA_DIR = "/data/outputs/";
-
-    /*
-     * ==================================================
-     *
-     * Images
-     *
-     * ==================================================
-     */
-
-    String HIDPI_SUFFIX = "@2x";
-    String PNG_FILE_TYPE_SUFFIX = ".png";
-
-    /*
-     * ==================================================
-     *
-     * Test Paper Files
-     *
-     * ==================================================
-     */
-
-    String JSON_FILE_TYPE_SUFFIX = ".json";
-    String README_FILE = "README.txt";
 }

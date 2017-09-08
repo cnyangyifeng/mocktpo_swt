@@ -53,8 +53,11 @@ public interface LC {
     int TEST_HEADER_HEIGHT = 90;
     int VOLUME_CONTROL_WIDTH = 100;
 
-    /* Editor Module */
+    /* System Module */
 
+    int BUTTON_WIDTH_HINT = 100;
+    int BUTTON_HEIGHT_HINT = 40;
+    int BUTTON_HEIGHT_HINT_2 = 36;
     int SINGLE_LINE_TEXT_WIDGET_HEIGHT = 22;
     int TRIPLE_LINES_TEXT_WIDGET_HEIGHT = 60;
 
