@@ -74,7 +74,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
         FormLayoutSet.layout(viewPort).marginWidth(0).marginHeight(50).spacing(10);
 
         titleTextWidget = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(titleTextWidget).atLeft(PRE_LABEL_WIDTH).atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(titleTextWidget).atLeft(PRE_LABEL_WIDTH).atTop().atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(titleTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestEditorVo().getTitle());
         KeyBindingSet.bind(titleTextWidget).traverse().selectAll();
         titleTextWidget.addModifyListener(new TitleTextWidgetModifyListener());
@@ -86,7 +86,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
         CLabelSet.decorate(titlePreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("title"));
 
         starsTextWidget = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(starsTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(titleTextWidget).withWidth(STARS_TEXT_WIDGET_WIDTH).withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(starsTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(titleTextWidget).withWidth(STARS_TEXT_WIDGET_WIDTH).withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(starsTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getTestEditorVo().getStars()));
         KeyBindingSet.bind(starsTextWidget).traverse().selectAll();
         starsTextWidget.addModifyListener(new StarsTextWidgetModifyListener());
@@ -97,7 +97,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
         CLabelSet.decorate(starsPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("stars"));
 
         authorTextWidget = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(authorTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(starsTextWidget).withWidth(AUTHOR_TEXT_WIDGET_WIDTH).withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(authorTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(starsTextWidget).withWidth(AUTHOR_TEXT_WIDGET_WIDTH).withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(authorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestEditorVo().getAuthor());
         KeyBindingSet.bind(authorTextWidget).traverse().selectAll();
         authorTextWidget.addModifyListener(new AuthorTextWidgetModifyListener());

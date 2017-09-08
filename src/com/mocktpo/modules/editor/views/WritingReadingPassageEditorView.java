@@ -67,18 +67,18 @@ public class WritingReadingPassageEditorView extends SashTestEditorView {
         FormLayoutSet.layout(left).marginWidth(20).marginHeight(20).spacing(10);
 
         final CLabel headingPreLabel = new CLabel(left, SWT.NONE);
-        FormDataSet.attach(headingPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(headingPreLabel).atLeft().atTop().atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(headingPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("heading") + MT.STRING_TAB + MT.STRING_STAR);
 
         headingTextWidget = new StyledText(left, SWT.SINGLE);
-        FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("heading"));
         KeyBindingSet.bind(headingTextWidget).selectAll();
         headingTextWidget.addModifyListener(new HeadingTextModifyListener());
         headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel passagePreLabel = new CLabel(left, SWT.NONE);
-        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("passage") + MT.STRING_TAB + MT.STRING_STAR);
 
         passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
@@ -94,18 +94,18 @@ public class WritingReadingPassageEditorView extends SashTestEditorView {
         FormLayoutSet.layout(right).marginWidth(20).marginHeight(20).spacing(10);
 
         final CLabel headingPreLabel = new CLabel(right, SWT.NONE);
-        FormDataSet.attach(headingPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(headingPreLabel).atLeft().atTop().atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(headingPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("heading") + MT.STRING_SPACE + MT.STRING_OPEN_BRACKET + msgs.getString("translation") + MT.STRING_CLOSED_BRACKET);
 
         headingTranslationTextWidget = new StyledText(right, SWT.SINGLE);
-        FormDataSet.attach(headingTranslationTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(headingTranslationTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(headingTranslationTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("headingTranslation"));
         KeyBindingSet.bind(headingTranslationTextWidget).selectAll();
         headingTranslationTextWidget.addModifyListener(new HeadingTranslationTextModifyListener());
         headingTranslationTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel passagePreLabel = new CLabel(right, SWT.NONE);
-        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTranslationTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTranslationTextWidget, 10).atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("passage") + MT.STRING_SPACE + MT.STRING_OPEN_BRACKET + msgs.getString("translation") + MT.STRING_CLOSED_BRACKET);
 
         passageTranslationTextWidget = new StyledText(right, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);

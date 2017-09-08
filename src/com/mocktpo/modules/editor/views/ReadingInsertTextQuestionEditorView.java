@@ -72,18 +72,18 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         FormLayoutSet.layout(left).marginWidth(20).marginHeight(20).spacing(10);
 
         final CLabel headingPreLabel = new CLabel(left, SWT.NONE);
-        FormDataSet.attach(headingPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(headingPreLabel).atLeft().atTop().atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(headingPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("heading") + MT.STRING_TAB + MT.STRING_STAR);
 
         headingTextWidget = new StyledText(left, SWT.SINGLE);
-        FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("heading"));
         KeyBindingSet.bind(headingTextWidget).selectAll();
         headingTextWidget.addModifyListener(new HeadingTextModifyListener());
         headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel passagePreLabel = new CLabel(left, SWT.NONE);
-        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("passage") + MT.STRING_TAB + MT.STRING_STAR);
 
         addAnInsertionPointButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT, MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT_HOVER, MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT_DISABLED);
@@ -113,7 +113,7 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         FormLayoutSet.layout(c).marginWidth(20).marginHeight(20).spacing(10);
 
         final CLabel questionPreLabel = new CLabel(c, SWT.NONE);
-        FormDataSet.attach(questionPreLabel).atLeft().atTop().atRight().withHeight(LC.SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(questionPreLabel).atLeft().atTop().atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         CLabelSet.decorate(questionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("question") + MT.STRING_TAB + MT.STRING_STAR);
 
         final Label questionLabel = new Label(c, SWT.WRAP);
@@ -121,7 +121,7 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
         LabelSet.decorate(questionLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setText(MT.STRING_READING_INSERT_TEXT_QUESTION_VIEW_QUESTION);
 
         insertTextTextWidget = new StyledText(c, SWT.WRAP);
-        FormDataSet.attach(insertTextTextWidget).atLeft().atTopTo(questionLabel, 10).atRight().withHeight(LC.TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
+        FormDataSet.attach(insertTextTextWidget).atLeft().atTopTo(questionLabel, 10).atRight().withHeight(LC.SYSTEM_TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
         StyledTextSet.decorate(insertTextTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("insertText"));
         StyleRangeUtils.decorate(insertTextTextWidget, vo.getStyledTextStyles("insertText"));
         KeyBindingSet.bind(insertTextTextWidget).selectAll();

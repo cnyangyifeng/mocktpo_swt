@@ -168,6 +168,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_APP_ICON, ImageUtils.load(d, "app_icon"));
         caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, "logo"));
         caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, "splash"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_ACTIVATE, ImageUtils.load(d, "sys_activate"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_ACTIVATE_HOVER, ImageUtils.load(d, "sys_activate_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT, ImageUtils.load(d, "sys_add_an_insertion_point"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT_DISABLED, ImageUtils.load(d, "sys_add_an_insertion_point_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT_HOVER, ImageUtils.load(d, "sys_add_an_insertion_point_h"));
@@ -178,6 +180,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BOXED_DISABLED, ImageUtils.load(d, "sys_boxed_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BRING_FORWARD, ImageUtils.load(d, "sys_bring_forward"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BRING_FORWARD_HOVER, ImageUtils.load(d, "sys_bring_forward_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL, ImageUtils.load(d, "sys_cancel"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_HOVER, ImageUtils.load(d, "sys_cancel_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_WIDE, ImageUtils.load(d, "sys_cancel_wide"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_WIDE_HOVER, ImageUtils.load(d, "sys_cancel_wide_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE, ImageUtils.load(d, "sys_continue"));
