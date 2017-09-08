@@ -92,9 +92,7 @@ public class MainWindow {
 
     public void close() {
         if (!d.isDisposed()) {
-            d.asyncExec(() -> {
-                s.dispose();
-            });
+            d.asyncExec(s::dispose);
         }
     }
 
@@ -134,20 +132,17 @@ public class MainWindow {
     }
 
     public void toTestReportPage(UserTestSession userTestSession) {
-        final TestReportPage testReportPage = new TestReportPage(s, SWT.NONE, userTestSession);
-        stack.topControl = testReportPage;
+        stack.topControl = new TestReportPage(s, SWT.NONE, userTestSession);
         s.layout();
     }
 
     public void toTestEditorPage() {
-        final TestEditorPage testEditorPage = new TestEditorPage(s, SWT.NONE);
-        stack.topControl = testEditorPage;
+        stack.topControl = new TestEditorPage(s, SWT.NONE);
         s.layout();
     }
 
     public void toTestEditorPage(TestEditorVo testVo) {
-        final TestEditorPage testEditorPage = new TestEditorPage(s, SWT.NONE, testVo);
-        stack.topControl = testEditorPage;
+        stack.topControl = new TestEditorPage(s, SWT.NONE, testVo);
         s.layout();
     }
 

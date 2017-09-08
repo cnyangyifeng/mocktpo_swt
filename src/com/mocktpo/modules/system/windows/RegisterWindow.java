@@ -71,7 +71,7 @@ public class RegisterWindow {
     }
 
     private void init() {
-        s = new Shell(d, SWT.TOP);
+        s = new Shell(d, SWT.TOOL);
         global();
         initHeader();
         initFooter();
@@ -81,10 +81,9 @@ public class RegisterWindow {
     private void global() {
         s.setText(msgs.getString("app_name"));
         s.setImage(ResourceManager.getImage(MT.IMAGE_APP_ICON));
-        // WindowUtils.setDefaultWindowSize(s);
+        WindowUtils.setModalWindowBoundsToCenter(s);
         s.setBackground(ResourceManager.getColor(MT.COLOR_WHITE));
         s.setBackgroundMode(SWT.INHERIT_FORCE);
-        WindowUtils.disableFullscreen(s);
         FormLayoutSet.layout(s);
     }
 
@@ -94,17 +93,13 @@ public class RegisterWindow {
         FormDataSet.attach(header).atLeft().atTop().atRight();
         FormLayoutSet.layout(header);
 
-        final StyledText bt = new StyledText(header, SWT.SINGLE);
-        FormDataSet.attach(bt).atLeft(20).atTop(20);
-        StyledTextSet.decorate(bt).setEditable(false).setEnabled(false).setFont(MT.FONT_LARGE).setText(msgs.getString("register"));
+        final StyledText titleLabel = new StyledText(header, SWT.SINGLE);
+        FormDataSet.attach(titleLabel).atLeft(20).atTop(20);
+        StyledTextSet.decorate(titleLabel).setEditable(false).setEnabled(false).setFont(MT.FONT_LARGE).setText(msgs.getString("register"));
 
-        final StyledText dt = new StyledText(header, SWT.WRAP);
-        FormDataSet.attach(dt).atLeft(20).atTopTo(bt, 20).fromRight(20).atBottom(20);
-        StyledTextSet.decorate(dt).setEditable(false).setEnabled(false).setLineSpacing(10).setText(msgs.getString("register_desc"));
-
-        final Label ll = new Label(header, SWT.NONE);
-        FormDataSet.attach(ll).atTop(20).atRight(20);
-        LabelSet.decorate(ll).setImage(MT.IMAGE_LOGO);
+        final Label logoLabel = new Label(header, SWT.NONE);
+        FormDataSet.attach(logoLabel).atTop(20).atRight(20);
+        LabelSet.decorate(logoLabel).setImage(MT.IMAGE_LOGO);
     }
 
     private void initFooter() {

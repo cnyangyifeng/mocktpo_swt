@@ -181,7 +181,7 @@ public class SpeakingListeningMaterialView extends ResponsiveTestView {
         @Override
         public void propertyChange(PropertyChangeEvent e) {
             long timeElapsed = (Long) e.getNewValue();
-            final AtomicReference<Integer> rl = new AtomicReference<Integer>();
+            final AtomicReference<Integer> rl = new AtomicReference<>();
             for (Integer location : illustrations.keySet()) {
                 if (location == timeElapsed / 1000) {
                     rl.set(location);

@@ -122,7 +122,7 @@ public class NewReadingQuestionWindow {
 
     public void close() {
         if (!d.isDisposed()) {
-            d.asyncExec(() -> s.dispose());
+            d.asyncExec(s::dispose);
         }
     }
 

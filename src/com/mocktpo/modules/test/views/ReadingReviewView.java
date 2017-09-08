@@ -415,7 +415,7 @@ public class ReadingReviewView extends Composite {
                     }
                     int lastViewId = page.getTestVo().findNextViewIdWhileTimeOut(page.getUserTestSession().getLastViewId());
                     PersistenceUtils.saveToView(userTestSession, lastViewId);
-                    d.asyncExec(() -> page.resume());
+                    d.asyncExec(page::resume);
                 }
             }
         }

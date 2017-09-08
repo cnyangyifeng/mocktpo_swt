@@ -27,13 +27,8 @@ public class FontUtils {
     }
 
     public static Font getFont(final Display d, final String name, final int height, final int style) {
-        final AtomicReference<FontData> arf = new AtomicReference<FontData>();
-        d.syncExec(new Runnable() {
-            @Override
-            public void run() {
-                arf.set(d.getSystemFont().getFontData()[0]);
-            }
-        });
+        final AtomicReference<FontData> arf = new AtomicReference<>();
+        d.syncExec(() -> arf.set(d.getSystemFont().getFontData()[0]));
         FontData fd = arf.get();
         if (name != null) {
             fd.setName(name);
@@ -48,31 +43,28 @@ public class FontUtils {
     }
 
     public static void loadExternalFonts(final Display d) {
-        d.asyncExec(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-Black.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-BlackItalic.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-Bold.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-BoldItalic.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-Italic.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-Light.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-LightItalic.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-Medium.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-MediumItalic.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-Regular.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-Thin.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "Roboto-ThinItalic.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Bold.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-BoldItalic.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Italic.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Light.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-LightItalic.ttf"));
-                    d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Regular.ttf"));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        d.asyncExec(() -> {
+            try {
+                d.loadFont(getfullFontFileName("roboto", "Roboto-Black.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "Roboto-BlackItalic.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "Roboto-Bold.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "Roboto-BoldItalic.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "Roboto-Italic.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "Roboto-Light.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "Roboto-LightItalic.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "Roboto-Medium.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "Roboto-MediumItalic.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "Roboto-Regular.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "Roboto-Thin.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "Roboto-ThinItalic.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Bold.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-BoldItalic.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Italic.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Light.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-LightItalic.ttf"));
+                d.loadFont(getfullFontFileName("roboto", "RobotoCondensed-Regular.ttf"));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -88,17 +80,13 @@ public class FontUtils {
     }
 
     private static int pixelsToPoints(final Display d, final int pixels) {
-        final AtomicReference<Integer> ari = new AtomicReference<Integer>();
-        d.syncExec(new Runnable() {
-            @Override
-            public void run() {
+        final AtomicReference<Integer> ari = new AtomicReference<>();
+        d.syncExec(() ->
                 /*
                  * Windows DPI: 96 (100%), 120 (125%), 144 (150%), 192 (200%)
                  * Mac OS X DPI: 72
                  */
-                ari.set(d.getDPI().y);
-            }
-        });
+                ari.set(d.getDPI().y));
         return Math.round(pixels * 72 / ari.get());
     }
 }

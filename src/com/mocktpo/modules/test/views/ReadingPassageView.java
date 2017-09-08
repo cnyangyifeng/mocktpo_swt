@@ -15,7 +15,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.*;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ScrollBar;
 
@@ -142,7 +145,7 @@ public class ReadingPassageView extends SashTestView {
         @Override
         public void widgetSelected(SelectionEvent e) {
             ScrollBar bar = (ScrollBar) e.widget;
-            int selection = bar.getSelection(), maximum = bar.getMaximum(), increment = bar.getIncrement(), thumb = bar.getThumb();
+            int selection = bar.getSelection(), /* maximum = bar.getMaximum(), */ increment = bar.getIncrement()/*, thumb = bar.getThumb() */;
             int reserved = increment * 2;
             if (selection <= 0) {
                 indicator.setText("");

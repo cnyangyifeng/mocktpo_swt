@@ -97,21 +97,16 @@ public class SplashWindow {
 
     public void close() {
         if (!d.isDisposed()) {
-            d.asyncExec(() -> {
-                s.dispose();
-            });
+            d.asyncExec(s::dispose);
         }
     }
 
     public void setVisible(final boolean v) {
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    s.setVisible(v);
-                    if (v) {
-                        s.setFocus();
-                    }
+            d.asyncExec(() -> {
+                s.setVisible(v);
+                if (v) {
+                    s.setFocus();
                 }
             });
         }
@@ -119,12 +114,7 @@ public class SplashWindow {
 
     public void proceed(final String text) {
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    message.setText(text);
-                }
-            });
+            d.asyncExec(() -> message.setText(text));
         }
     }
 

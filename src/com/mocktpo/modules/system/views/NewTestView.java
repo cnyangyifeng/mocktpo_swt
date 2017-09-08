@@ -23,7 +23,6 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.*;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ResourceBundle;
@@ -126,20 +125,13 @@ public class NewTestView extends Composite {
             c.dispose();
         }
         if (!d.isDisposed()) {
-            d.asyncExec(() -> {
-                initCards();
-            });
+            d.asyncExec(this::initCards);
         }
     }
 
     private void initCards() {
         try {
-            File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).toURI()).listFiles(new FileFilter() {
-                @Override
-                public boolean accept(File file) {
-                    return file.isDirectory();
-                }
-            });
+            File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).toURI()).listFiles(File::isDirectory);
             for (File testDir : testDirs) {
                 String fileAlias = testDir.getName();
                 URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
