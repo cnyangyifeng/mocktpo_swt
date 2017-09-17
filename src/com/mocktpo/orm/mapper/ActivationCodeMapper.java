@@ -11,10 +11,8 @@ public interface ActivationCodeMapper {
 
     @Update({
             "CREATE TABLE IF NOT EXISTS MT_ACTIVATION_CODE (",
-            "MT_EMAIL VARCHAR(64),",
-            "MT_CONTENT VARCHAR(1024),",
-            "MT_DATE_CREATED TIMESTAMP,",
-            "MT_DATE_UPDATED TIMESTAMP",
+            "MT_EMAIL VARCHAR(255),",
+            "MT_CONTENT VARCHAR(1024)",
             ")"
     })
     void schema();
@@ -33,9 +31,7 @@ public interface ActivationCodeMapper {
             "MT_DATE_UPDATED",
             ") VALUES (",
             "#{email},",
-            "#{content},",
-            "#{dateCreated},",
-            "#{dateUpdated}",
+            "#{content}",
             ")"
     })
     void insert(ActivationCode lic);
@@ -43,9 +39,7 @@ public interface ActivationCodeMapper {
     @Select({
             "SELECT",
             "MT_EMAIL AS email,",
-            "MT_CONTENT AS content,",
-            "MT_DATE_CREATED AS dateCreated,",
-            "MT_DATE_UPDATED AS dateUpdated",
+            "MT_CONTENT AS content",
             "FROM MT_ACTIVATION_CODE",
             "ORDER BY MT_DATE_UPDATED DESC"
     })
@@ -55,9 +49,7 @@ public interface ActivationCodeMapper {
             "UPDATE MT_ACTIVATION_CODE",
             "SET",
             "MT_EMAIL = #{email},",
-            "MT_CONTENT = #{content},",
-            "MT_DATE_CREATED = #{dateCreated},",
-            "MT_DATE_UPDATED = #{dateUpdated}"
+            "MT_CONTENT = #{content}"
     })
     int update(ActivationCode lic);
 

@@ -67,7 +67,7 @@ public class AppLoader extends Thread {
                     codes = activationCodeMapper.find();
                 }
                 email = codes.get(0).getEmail();
-                licensed = ActivationCodeUtils.isLicensed(email, codes.get(0).getContent());
+                licensed = ActivationUtils.isLicensed(email, codes.get(0).getContent());
                 latch.countDown();
             });
         }

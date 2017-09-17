@@ -2,7 +2,7 @@ package com.mocktpo.util;
 
 import com.alibaba.fastjson.JSON;
 import com.mocktpo.util.constants.RC;
-import com.mocktpo.vo.RequireActivationVo;
+import com.mocktpo.vo.ActivationVo;
 import com.verhas.licensor.License;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,24 +12,24 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 
-public class ActivationCodeUtils {
+public class ActivationUtils {
 
     /* Constants */
 
     public static final int NETWORK_FAILURE = 0;
-    public static final int EMAIL_HARDWARE_OK = 1;
-    public static final int REGISTERED_EMAIL_NOT_FOUND = 2;
+    public static final int ACTIVATION_CODE_HARDWARE_OK = 1;
+    public static final int ACTIVATION_CODE_NOT_FOUND = 2;
     public static final int REGISTERED_HARDWARE_UNMATCHED = 3;
-    public static final String REMOTE_SERVICE = "http://cnmengma.com/cmp/api/licenses/require";
+    private static final String REMOTE_SERVICE = "http://localhost:8080/website/api/license/activate";
 
     /* Logger */
 
     protected static final Logger logger = LogManager.getLogger();
 
-    private ActivationCodeUtils() {
+    private ActivationUtils() {
     }
 
-    public static int post(RequireActivationVo vo) {
+    public static int post(ActivationVo vo) {
         try {
             URL url = new URL(REMOTE_SERVICE);
             HttpURLConnection c = (HttpURLConnection) url.openConnection();
@@ -47,9 +47,9 @@ public class ActivationCodeUtils {
             logger.info("Http Response Code: " + code + "; message: " + message);
             switch (code) {
                 case 200:
-                    return EMAIL_HARDWARE_OK;
+                    return ACTIVATION_CODE_HARDWARE_OK;
                 case 404:
-                    return REGISTERED_EMAIL_NOT_FOUND;
+                    return ACTIVATION_CODE_NOT_FOUND;
                 case 409:
                     return REGISTERED_HARDWARE_UNMATCHED;
                 default:
@@ -63,7 +63,7 @@ public class ActivationCodeUtils {
 
     public static boolean isLicensed(String email, String ac) {
         boolean licensed = false;
-        String path = ActivationCodeUtils.class.getResource(RC.CONFIG_DIR).getPath();
+        String path = ActivationUtils.class.getResource(RC.CONFIG_DIR).getPath();
         try {
             final License lic;
             final String pubring = URLDecoder.decode(path + RC.PUBRING_FILE, "utf-8");
@@ -71,7 +71,7 @@ public class ActivationCodeUtils {
                 String licensedEmail = lic.getFeature("email");
                 String licensedHardware = lic.getFeature("hardware");
                 String hardware = HardwareBinderUtils.uuid();
-                if (null != hardware && hardware.equals(licensedHardware) && email.equals(licensedEmail)) {
+                if (hardware != null && hardware.equals(licensedHardware) && email.equals(licensedEmail)) {
                     licensed = true;
                 }
             }

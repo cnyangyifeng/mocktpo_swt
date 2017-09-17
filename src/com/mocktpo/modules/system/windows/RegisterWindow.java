@@ -3,14 +3,13 @@ package com.mocktpo.modules.system.windows;
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.util.KeyBindingSet;
-import com.mocktpo.util.ResourceManager;
-import com.mocktpo.util.WindowUtils;
+import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.*;
+import com.mocktpo.vo.ActivationVo;
 import com.mocktpo.vo.StyleRangeVo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,7 +34,7 @@ public class RegisterWindow {
 
     /* Application */
 
-    protected MyApplication app;
+    private MyApplication app;
 
     /* Display and Shell */
 
@@ -192,68 +191,59 @@ public class RegisterWindow {
         }
     }
 
-    private class SendSelectionAdapter extends SelectionAdapter {
-
-        @Override
-        public void widgetSelected(SelectionEvent e) {
-//            d.asyncExec(() -> {
-//                em.setText("");
-//                eb.setEnabled(false);
-//            });
-//            String email = et.getText();
-//            String hardware = HardwareBinderUtils.uuid();
-//            final RequireActivationVo vo = new RequireActivationVo();
-//            vo.setEmail(email);
-//            vo.setHardware(hardware);
-//            new Thread() {
-//                @Override
-//                public void run() {
-//                    switch (ActivationCodeUtils.post(vo)) {
-//                        case ActivationCodeUtils.EMAIL_HARDWARE_OK:
-//                            d.asyncExec(() -> {
-//                                em.setText(msgs.getString("email_hardware_ok"));
-//                                em.setForeground(ResourceManager.getColor(MT.COLOR_GREEN));
-//                                eb.setEnabled(true);
-//                            });
-//                            break;
-//                        case ActivationCodeUtils.REGISTERED_EMAIL_NOT_FOUND:
-//                            d.asyncExec(() -> {
-//                                em.setText(msgs.getString("registered_email_not_found"));
-//                                em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
-//                                // eb.setEnabled(true);
-//                            });
-//                            break;
-//                        case ActivationCodeUtils.REGISTERED_HARDWARE_UNMATCHED:
-//                            d.asyncExec(() -> {
-//                                em.setText(msgs.getString("registered_hardware_unmatched"));
-//                                em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
-//                                eb.setEnabled(true);
-//                            });
-//                            break;
-//                        case ActivationCodeUtils.NETWORK_FAILURE:
-//                        default:
-//                            d.asyncExec(() -> {
-//                                em.setText(msgs.getString("network_failure"));
-//                                em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
-//                                eb.setEnabled(true);
-//                            });
-//                    }
-//                }
-//            }.start();
-        }
-    }
-
     private class ActivateButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
+            String activationCode = activationCodeTextWidget.getText();
+            String hardware = HardwareBinderUtils.uuid();
+            final ActivationVo vo = new ActivationVo();
+            vo.setActivationCode(activationCode);
+            vo.setHardware(hardware);
+            new Thread(() -> {
+                switch (ActivationUtils.post(vo)) {
+                    case ActivationUtils.ACTIVATION_CODE_HARDWARE_OK:
+                        d.asyncExec(() -> {
+//                            em.setText(msgs.getString("email_hardware_ok"));
+//                            em.setForeground(ResourceManager.getColor(MT.COLOR_GREEN));
+//                            eb.setEnabled(true);
+                            logger.info("ok");
+                            close();
+                        });
+                        break;
+                    case ActivationUtils.ACTIVATION_CODE_NOT_FOUND:
+                        d.asyncExec(() -> {
+//                            em.setText(msgs.getString("registered_email_not_found"));
+//                            em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
+                            // eb.setEnabled(true);
+                            logger.info("activation code not found");
+                        });
+                        break;
+                    case ActivationUtils.REGISTERED_HARDWARE_UNMATCHED:
+                        d.asyncExec(() -> {
+//                            em.setText(msgs.getString("registered_hardware_unmatched"));
+//                            em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
+//                            eb.setEnabled(true);
+                            logger.info("hardware unmatched");
+                        });
+                        break;
+                    case ActivationUtils.NETWORK_FAILURE:
+                    default:
+                        d.asyncExec(() -> {
+//                            em.setText(msgs.getString("network_failure"));
+//                            em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
+//                            eb.setEnabled(true);
+                            logger.info("network_failure");
+                        });
+                }
+            }).start();
 //            d.asyncExec(() -> {
 //                am.setText("");
 //                activateButton.setEnabled(false);
 //            });
 //            String email = et.getText();
 //            String acc = at.getText();
-//            if (ActivationCodeUtils.isLicensed(email, acc)) {
+//            if (ActivationUtils.isLicensed(email, acc)) {
 //                SqlSession sqlSession = app.getSqlSession();
 //                ActivationCodeMapper mapper = sqlSession.getMapper(ActivationCodeMapper.class);
 //                ActivationCode ac = new ActivationCode();

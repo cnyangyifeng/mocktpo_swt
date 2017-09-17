@@ -2,19 +2,19 @@ package com.mocktpo.vo;
 
 import java.io.Serializable;
 
-public class RequireActivationVo implements Serializable {
+public class ActivationVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String email;
+    private String activationCode;
     private String hardware;
 
-    public String getEmail() {
-        return email;
+    public String getActivationCode() {
+        return activationCode;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 
     public String getHardware() {
