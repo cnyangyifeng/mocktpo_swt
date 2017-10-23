@@ -1,8 +1,11 @@
 package com.mocktpo.modules.system.windows;
 
+import com.alibaba.fastjson.JSON;
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.modules.system.widgets.ImageButton;
+import com.mocktpo.orm.domain.LicenseCode;
+import com.mocktpo.orm.mapper.LicenseCodeMapper;
 import com.mocktpo.util.*;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
@@ -11,17 +14,24 @@ import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.*;
 import com.mocktpo.vo.ActivationVo;
 import com.mocktpo.vo.StyleRangeVo;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.swt.events.*;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -31,6 +41,16 @@ public class RegisterWindow {
 
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
+
+    /* Constants */
+
+    private static final int HTTP_STATUS_OK = 200;
+    private static final int HTTP_STATUS_ACCEPTED = 202;
+    private static final int HTTP_STATUS_BAD_REQUEST = 400;
+    private static final int HTTP_STATUS_NOT_FOUND = 404;
+    private static final int HTTP_STATUS_CONFLICT = 409;
+
+    private static final String ACTIVATION_URL = "http://localhost:8080/website/api/v1/licenses/activate";
 
     /* Application */
 
@@ -156,40 +176,65 @@ public class RegisterWindow {
     /*
      * ==================================================
      *
-     * Listeners
+     * Activation
      *
      * ==================================================
      */
 
-    private class EmailTextKeyAdapter extends KeyAdapter {
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-//            if (RegexUtils.isValidEmail(et.getText())) {
-//                 eb.setEnabled(true);
-//                if (!StringUtils.isNullOrEmpty(at.getText())) {
-//                    activateButton.setEnabled(true);
-//                } else {
-//                    activateButton.setEnabled(false);
-//                }
-//            } else {
-//                 eb.setEnabled(false);
-//                activateButton.setEnabled(false);
-//            }
+    public void activate(ActivationVo activationVo) {
+        try {
+            URL url = new URL(ACTIVATION_URL);
+            HttpURLConnection c = (HttpURLConnection) url.openConnection();
+            c.setRequestMethod("POST");
+            c.setRequestProperty("Content-Type", "application/json");
+            c.setRequestProperty("charset", "utf-8");
+            c.setUseCaches(false);
+            c.setAllowUserInteraction(false);
+            c.setConnectTimeout(10000);
+            c.setReadTimeout(10000);
+            c.setDoOutput(true);
+            c.connect();
+            OutputStreamWriter w = new OutputStreamWriter(c.getOutputStream());
+            w.write(JSON.toJSONString(activationVo));
+            w.flush();
+            w.close();
+            int code = c.getResponseCode();
+            switch (code) {
+                case HTTP_STATUS_OK:
+                    logger.info("ok");
+                case HTTP_STATUS_ACCEPTED:
+                    logger.info("accepted");
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(c.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line).append("\n");
+                    }
+                    reader.close();
+                    String data = sb.toString();
+                    logger.info("License code:\n{}", data);
+                    if (ActivationUtils.isLicensed(data)) {
+                        SqlSession sqlSession = app.getSqlSession();
+                        sqlSession.getMapper(LicenseCodeMapper.class).insert(new LicenseCode(data));
+                        sqlSession.commit();
+                        close();
+                    }
+                    break;
+                default:
+                    logger.info(code);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
-    private class ActivationCodeTextKeyAdapter extends KeyAdapter {
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-//            if (!StringUtils.isNullOrEmpty(at.getText()) && RegexUtils.isValidEmail(et.getText())) {
-//                activateButton.setEnabled(true);
-//            } else {
-//                activateButton.setEnabled(false);
-//            }
-        }
-    }
+    /*
+     * ==================================================
+     *
+     * Listeners
+     *
+     * ==================================================
+     */
 
     private class ActivateButtonMouseAdapter extends MouseAdapter {
 
@@ -197,46 +242,8 @@ public class RegisterWindow {
         public void mouseDown(MouseEvent e) {
             String activationCode = activationCodeTextWidget.getText();
             String hardware = HardwareBinderUtils.uuid();
-            final ActivationVo vo = new ActivationVo();
-            vo.setActivationCode(activationCode);
-            vo.setHardware(hardware);
-            new Thread(() -> {
-                switch (ActivationUtils.post(vo)) {
-                    case ActivationUtils.ACTIVATION_CODE_HARDWARE_OK:
-                        d.asyncExec(() -> {
-//                            em.setText(msgs.getString("email_hardware_ok"));
-//                            em.setForeground(ResourceManager.getColor(MT.COLOR_GREEN));
-//                            eb.setEnabled(true);
-                            logger.info("ok");
-                            close();
-                        });
-                        break;
-                    case ActivationUtils.ACTIVATION_CODE_NOT_FOUND:
-                        d.asyncExec(() -> {
-//                            em.setText(msgs.getString("registered_email_not_found"));
-//                            em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
-                            // eb.setEnabled(true);
-                            logger.info("activation code not found");
-                        });
-                        break;
-                    case ActivationUtils.REGISTERED_HARDWARE_UNMATCHED:
-                        d.asyncExec(() -> {
-//                            em.setText(msgs.getString("registered_hardware_unmatched"));
-//                            em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
-//                            eb.setEnabled(true);
-                            logger.info("hardware unmatched");
-                        });
-                        break;
-                    case ActivationUtils.NETWORK_FAILURE:
-                    default:
-                        d.asyncExec(() -> {
-//                            em.setText(msgs.getString("network_failure"));
-//                            em.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
-//                            eb.setEnabled(true);
-                            logger.info("network_failure");
-                        });
-                }
-            }).start();
+            activate(new ActivationVo(activationCode, hardware));
+
 //            d.asyncExec(() -> {
 //                am.setText("");
 //                activateButton.setEnabled(false);

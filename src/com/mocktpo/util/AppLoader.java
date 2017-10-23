@@ -3,8 +3,8 @@ package com.mocktpo.util;
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.windows.RegisterWindow;
 import com.mocktpo.modules.system.windows.SplashWindow;
-import com.mocktpo.orm.domain.ActivationCode;
-import com.mocktpo.orm.mapper.ActivationCodeMapper;
+import com.mocktpo.orm.domain.LicenseCode;
+import com.mocktpo.orm.mapper.LicenseCodeMapper;
 import com.mocktpo.orm.mapper.UserTestAnswerMapper;
 import com.mocktpo.orm.mapper.UserTestSessionMapper;
 import org.apache.logging.log4j.LogManager;
@@ -31,7 +31,6 @@ public class AppLoader extends Thread {
     protected Display d;
     protected SplashWindow splash;
 
-    private String email;
     private boolean licensed;
     private CountDownLatch latch;
 
@@ -50,8 +49,8 @@ public class AppLoader extends Thread {
         splash.proceed(msgs.getString("initializing_database"));
         DbUtils.init();
         app.setSqlSession(DbUtils.getSqlSession());
-        final ActivationCodeMapper activationCodeMapper = app.getSqlSession().getMapper(ActivationCodeMapper.class);
-        activationCodeMapper.schema();
+        final LicenseCodeMapper licenseCodeMapper = app.getSqlSession().getMapper(LicenseCodeMapper.class);
+        licenseCodeMapper.schema();
         final UserTestSessionMapper userTestSessionMapper = app.getSqlSession().getMapper(UserTestSessionMapper.class);
         userTestSessionMapper.schema();
         final UserTestAnswerMapper userTestAnswerMapper = app.getSqlSession().getMapper(UserTestAnswerMapper.class);
@@ -59,15 +58,14 @@ public class AppLoader extends Thread {
         splash.proceed(msgs.getString("validating"));
         if (!d.isDisposed()) {
             d.asyncExec(() -> {
-                List<ActivationCode> codes = activationCodeMapper.find();
+                List<LicenseCode> codes = licenseCodeMapper.find();
                 while (codes.isEmpty()) {
                     splash.setVisible(false);
                     RegisterWindow register = new RegisterWindow();
                     register.openAndWaitForDisposal();
-                    codes = activationCodeMapper.find();
+                    codes = licenseCodeMapper.find();
                 }
-                email = codes.get(0).getEmail();
-                licensed = ActivationUtils.isLicensed(email, codes.get(0).getContent());
+                licensed = ActivationUtils.isLicensed(codes.get(0).getContent());
                 latch.countDown();
             });
         }

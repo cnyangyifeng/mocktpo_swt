@@ -38,9 +38,4 @@ public class UserTestAnswer {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
-
-    @Override
-    public String toString() {
-        return "{\nsid:" + this.getSid() + ",\nviewId:" + this.getViewId() + ",\nsectionType:" + this.getSectionType() + ",\nanswer:" + this.getAnswer() + "\n}";
-    }
 }

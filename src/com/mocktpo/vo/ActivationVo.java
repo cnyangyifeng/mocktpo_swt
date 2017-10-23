@@ -9,6 +9,11 @@ public class ActivationVo implements Serializable {
     private String activationCode;
     private String hardware;
 
+    public ActivationVo(String activationCode, String hardware) {
+        this.activationCode = activationCode;
+        this.hardware = hardware;
+    }
+
     public String getActivationCode() {
         return activationCode;
     }
