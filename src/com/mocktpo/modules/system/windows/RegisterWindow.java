@@ -27,8 +27,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -182,50 +180,45 @@ public class RegisterWindow {
      */
 
     public void activate(ActivationVo activationVo) {
-        try {
-            URL url = new URL(ACTIVATION_URL);
-            HttpURLConnection c = (HttpURLConnection) url.openConnection();
-            c.setRequestMethod("POST");
-            c.setRequestProperty("Content-Type", "application/json");
-            c.setRequestProperty("charset", "utf-8");
-            c.setUseCaches(false);
-            c.setAllowUserInteraction(false);
-            c.setConnectTimeout(10000);
-            c.setReadTimeout(10000);
-            c.setDoOutput(true);
-            c.connect();
-            OutputStreamWriter w = new OutputStreamWriter(c.getOutputStream());
-            w.write(JSON.toJSONString(activationVo));
-            w.flush();
-            w.close();
-            int code = c.getResponseCode();
-            switch (code) {
-                case HTTP_STATUS_OK:
-                    logger.info("ok");
-                case HTTP_STATUS_ACCEPTED:
-                    logger.info("accepted");
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line).append("\n");
-                    }
-                    reader.close();
-                    String data = sb.toString();
-                    logger.info("License code:\n{}", data);
-                    if (ActivationUtils.isLicensed(data)) {
-                        SqlSession sqlSession = app.getSqlSession();
-                        sqlSession.getMapper(LicenseCodeMapper.class).insert(new LicenseCode(data));
-                        sqlSession.commit();
-                        close();
-                    }
-                    break;
-                default:
-                    logger.info(code);
+        new Thread(() -> {
+            try {
+                URL url = new URL(ACTIVATION_URL);
+                HttpURLConnection c = (HttpURLConnection) url.openConnection();
+                c.setRequestMethod("POST");
+                c.setRequestProperty("Content-Type", "application/json");
+                c.setRequestProperty("charset", "utf-8");
+                c.setUseCaches(false);
+                c.setAllowUserInteraction(false);
+                c.setConnectTimeout(3000);
+                c.setReadTimeout(3000);
+                c.setDoOutput(true);
+                c.connect();
+                OutputStreamWriter w = new OutputStreamWriter(c.getOutputStream());
+                w.write(JSON.toJSONString(activationVo));
+                w.flush();
+                w.close();
+                int httpStatus = c.getResponseCode();
+                switch (httpStatus) {
+                    case HTTP_STATUS_OK:
+                        logger.info("ok");
+                    case HTTP_STATUS_ACCEPTED:
+                        logger.info("accepted");
+                        String data = JSON.parseObject(c.getInputStream(), String.class);
+                        logger.info("License code:\n{}", data);
+                        if (ActivationUtils.isLicensed(data)) {
+                            SqlSession sqlSession = app.getSqlSession();
+                            sqlSession.getMapper(LicenseCodeMapper.class).insert(new LicenseCode(data));
+                            sqlSession.commit();
+                            close();
+                        }
+                        break;
+                    default:
+                        logger.info(httpStatus);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        }).start();
     }
 
     /*

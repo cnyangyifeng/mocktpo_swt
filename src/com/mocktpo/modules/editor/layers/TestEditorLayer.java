@@ -214,7 +214,7 @@ public abstract class TestEditorLayer extends Composite {
         }
         if (page.isUnsaved()) {
             title = title + MT.STRING_SPACE + MT.STRING_STAR;
-            CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_ORANGE_RED).setText(title);
+            CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_PINK).setText(title);
         } else {
             CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_GRAY40).setText(title);
         }

@@ -5,8 +5,6 @@ import com.verhas.licensor.License;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.net.URLDecoder;
-
 public class ActivationUtils {
 
     /* Logger */
@@ -16,13 +14,12 @@ public class ActivationUtils {
     private ActivationUtils() {
     }
 
-    public static boolean isLicensed(String codeText) {
+    public static boolean isLicensed(String encodedText) {
         boolean licensed = false;
         String path = ActivationUtils.class.getResource(RC.CONFIG_DIR).getPath();
         try {
             final License lic;
-            final String pubring = URLDecoder.decode(path + RC.PUBRING_FILE, "utf-8");
-            if ((lic = new License()).loadKeyRing(pubring, null).setLicenseEncoded(codeText).isVerified()) {
+            if ((lic = new License()).loadKeyRing(path + RC.PUBRING_FILE, null).setLicenseEncoded(encodedText).isVerified()) {
                 String licensedHardware = lic.getFeature("hardware");
                 String hardware = HardwareBinderUtils.uuid();
                 if (hardware != null && hardware.equals(licensedHardware)) {

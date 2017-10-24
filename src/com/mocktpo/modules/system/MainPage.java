@@ -108,7 +108,7 @@ public class MainPage extends Composite {
 
         testPapersLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testPapersLabel).atLeft().atTopTo(testRecordsLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_GRAY20).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_ORANGE).setLeftMargin(20).setText(msgs.getString("test_papers"));
+        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_GRAY20).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("test_papers"));
         testPapersLabel.addMouseListener(new TestPapersLabelMouseAdapter());
     }
 

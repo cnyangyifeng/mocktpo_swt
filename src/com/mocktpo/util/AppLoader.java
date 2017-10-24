@@ -58,14 +58,14 @@ public class AppLoader extends Thread {
         splash.proceed(msgs.getString("validating"));
         if (!d.isDisposed()) {
             d.asyncExec(() -> {
-                List<LicenseCode> codes = licenseCodeMapper.find();
-                while (codes.isEmpty()) {
+                List<LicenseCode> licenseCodes = licenseCodeMapper.find();
+                while (licenseCodes.isEmpty()) {
                     splash.setVisible(false);
                     RegisterWindow register = new RegisterWindow();
                     register.openAndWaitForDisposal();
-                    codes = licenseCodeMapper.find();
+                    licenseCodes = licenseCodeMapper.find();
                 }
-                licensed = ActivationUtils.isLicensed(codes.get(0).getContent());
+                licensed = ActivationUtils.isLicensed(licenseCodes.get(0).getContent());
                 latch.countDown();
             });
         }
