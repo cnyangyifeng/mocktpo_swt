@@ -52,11 +52,11 @@ public interface MT {
     int COLOR_GRAY20 = 6;
     int COLOR_GRAY40 = 7;
     int COLOR_GRAY60 = 8;
-    int COLOR_GREEN = 9;
+    // int COLOR_GREEN = 9;
     int COLOR_INDIGO = 10;
     // int COLOR_ORANGE = 11;
     // int COLOR_ORANGE_RED = 12;
-    int COLOR_OXFORD_BLUE = 13;
+    // int COLOR_OXFORD_BLUE = 13;
     int COLOR_PINK = 12;
     int COLOR_ROSY_BROWN = 14;
     int COLOR_TOUPE = 15;
