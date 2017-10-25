@@ -27,17 +27,12 @@ public class ResourceManager {
         caches.putIfAbsent(MT.COLOR_BEIGE, new Color(d, 242, 232, 200)); // #f2e8c8
         caches.putIfAbsent(MT.COLOR_BLACK, new Color(d, 38, 50, 56)); // #000000(rgb 0,0,0), #263238(rgb 38,50,56)
         caches.putIfAbsent(MT.COLOR_BURGUNDY, new Color(d, 132, 0, 50)); // #840032
-        // caches.putIfAbsent(MT.COLOR_DARK_ORANGE, new Color(d, 255, 140, 0)); // #ff8c00
         caches.putIfAbsent(MT.COLOR_DARK_BLUE, new Color(d, 13, 71, 161)); // #2f528c(47,82,140), #0d47a1(rgb 13,71,161)
         caches.putIfAbsent(MT.COLOR_GRAY20, new Color(d, 55, 71, 79)); // #333333, #37474f(rgb 55,71,79)
         caches.putIfAbsent(MT.COLOR_GRAY40, new Color(d, 102, 102, 102)); // #666666
         caches.putIfAbsent(MT.COLOR_GRAY60, new Color(d, 153, 153, 153)); // #999999
-        // caches.putIfAbsent(MT.COLOR_GREEN, new Color(d, 0, 128, 0)); // #008000
         caches.putIfAbsent(MT.COLOR_INDIGO, new Color(d, 55, 50, 125)); // #37327d
-        // caches.putIfAbsent(MT.COLOR_ORANGE, new Color(d, 255, 165, 0)); // #ffa500
-        // caches.putIfAbsent(MT.COLOR_ORANGE_RED, new Color(d, 255, 69, 0)); // #ff4500
-        // caches.putIfAbsent(MT.COLOR_OXFORD_BLUE, new Color(d, 0, 38, 66)); // #002642
-        // caches.putIfAbsent(MT.COLOR_PINK, new Color(d, 233, 30, 99)); // #e91e63
+        caches.putIfAbsent(MT.COLOR_PINK, new Color(d, 233, 30, 99)); // #e91e63
         caches.putIfAbsent(MT.COLOR_ROSY_BROWN, new Color(d, 218, 192, 200)); // #dac0c8
         caches.putIfAbsent(MT.COLOR_TOUPE, new Color(d, 179, 139, 109)); // #b38b6d
         caches.putIfAbsent(MT.COLOR_WHITE, new Color(d, 255, 255, 255)); // #ffffff
@@ -170,6 +165,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_LOGO, ImageUtils.load(d, "logo"));
         caches.putIfAbsent(MT.IMAGE_SPLASH, ImageUtils.load(d, "splash"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_ACTIVATE, ImageUtils.load(d, "sys_activate"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_ACTIVATE_DISABLED, ImageUtils.load(d, "sys_activate_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_ACTIVATE_HOVER, ImageUtils.load(d, "sys_activate_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT, ImageUtils.load(d, "sys_add_an_insertion_point"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT_DISABLED, ImageUtils.load(d, "sys_add_an_insertion_point_d"));
@@ -182,6 +178,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BRING_FORWARD, ImageUtils.load(d, "sys_bring_forward"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_BRING_FORWARD_HOVER, ImageUtils.load(d, "sys_bring_forward_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL, ImageUtils.load(d, "sys_cancel"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_DISABLED, ImageUtils.load(d, "sys_cancel_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_HOVER, ImageUtils.load(d, "sys_cancel_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_WIDE, ImageUtils.load(d, "sys_cancel_wide"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_WIDE_HOVER, ImageUtils.load(d, "sys_cancel_wide_h"));

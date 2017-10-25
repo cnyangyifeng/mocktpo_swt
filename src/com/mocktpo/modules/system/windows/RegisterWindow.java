@@ -11,9 +11,11 @@ import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.widgets.*;
+import com.mocktpo.util.widgets.CLabelSet;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.vo.ActivationVo;
-import com.mocktpo.vo.StyleRangeVo;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,8 +31,8 @@ import org.eclipse.swt.widgets.Shell;
 
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RegisterWindow {
@@ -44,7 +46,6 @@ public class RegisterWindow {
 
     private static final int HTTP_STATUS_OK = 200;
     private static final int HTTP_STATUS_ACCEPTED = 202;
-    private static final int HTTP_STATUS_BAD_REQUEST = 400;
     private static final int HTTP_STATUS_NOT_FOUND = 404;
     private static final int HTTP_STATUS_CONFLICT = 409;
 
@@ -66,6 +67,7 @@ public class RegisterWindow {
 
     private StyledText activationCodeTextWidget;
     private ImageButton activateButton;
+    private StyledText messageTextWidget;
 
     /*
      * ==================================================
@@ -106,7 +108,7 @@ public class RegisterWindow {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop().withHeight(48);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_LARGE).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("register"));
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_LARGE).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("app_name"));
 
         final Label logoLabel = new Label(header, SWT.NONE);
         FormDataSet.attach(logoLabel).atTop().atRight();
@@ -119,11 +121,11 @@ public class RegisterWindow {
         CompositeSet.decorate(footer).setBackground(MT.COLOR_WINDOW_BACKGROUND);
         FormLayoutSet.layout(footer).marginWidth(0).marginHeight(20).spacing(0);
 
-        activateButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_ACTIVATE, MT.IMAGE_SYSTEM_ACTIVATE_HOVER);
+        activateButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_ACTIVATE, MT.IMAGE_SYSTEM_ACTIVATE_HOVER, MT.IMAGE_SYSTEM_ACTIVATE_DISABLED);
         FormDataSet.attach(activateButton).fromLeft(50, -LC.SYSTEM_BUTTON_WIDTH_HINT - 10);
         activateButton.addMouseListener(new ActivateButtonMouseAdapter());
 
-        final ImageButton cancelButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_CANCEL, MT.IMAGE_SYSTEM_CANCEL_HOVER);
+        final ImageButton cancelButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_CANCEL, MT.IMAGE_SYSTEM_CANCEL_HOVER, MT.IMAGE_SYSTEM_CANCEL_DISABLED);
         FormDataSet.attach(cancelButton).fromLeft(50, 10);
         cancelButton.addMouseListener(new CancelButtonMouseAdapter());
     }
@@ -132,14 +134,11 @@ public class RegisterWindow {
         final Composite body = new Composite(s, SWT.NONE);
         FormDataSet.attach(body).atLeft(60).atTopTo(header, 20).atRight(60).atBottomTo(footer, 20);
         CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE);
-        FormLayoutSet.layout(body).marginWidth(0).marginHeight(60).spacing(40);
+        FormLayoutSet.layout(body).marginWidth(0).marginHeight(20).spacing(10);
 
         final StyledText descriptionTextWidget = new StyledText(body, SWT.WRAP);
         FormDataSet.attach(descriptionTextWidget).atLeft().atTop().atRight();
-        StyledTextSet.decorate(descriptionTextWidget).setNoCaret().setEditable(false).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText("Please copy and paste your activation code.");
-        StyleRangeUtils.decorate(descriptionTextWidget, new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(27, 15, MT.FONT_MEDIUM_ITALIC, MT.COLOR_DARK_BLUE, 0, false, null));
-        }});
+        StyledTextSet.decorate(descriptionTextWidget).setNoCaret().setEditable(false).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setLineSpacing(10).setText("Please enter your activation code.");
 
         activationCodeTextWidget = new StyledText(body, SWT.SINGLE);
         FormDataSet.attach(activationCodeTextWidget).atLeft().atTopTo(descriptionTextWidget).atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
@@ -147,12 +146,9 @@ public class RegisterWindow {
         StyledTextSet.decorate(activationCodeTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10);
         activationCodeTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
-        final StyledText footnoteTextWidget = new StyledText(body, SWT.NONE);
-        FormDataSet.attach(footnoteTextWidget).atLeft().atTopTo(activationCodeTextWidget).atRight();
-        StyledTextSet.decorate(footnoteTextWidget).setNoCaret().setEditable(false).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText("Have questions? Contact us.");
-        StyleRangeUtils.decorate(footnoteTextWidget, new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(16, 10, MT.FONT_MEDIUM_ITALIC, MT.COLOR_DARK_BLUE, 0, false, null));
-        }});
+        messageTextWidget = new StyledText(body, SWT.WRAP);
+        FormDataSet.attach(messageTextWidget).atLeft().atTopTo(activationCodeTextWidget, 10).atRight();
+        StyledTextSet.decorate(messageTextWidget).setNoCaret().setEditable(false).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_PINK).setText("");
     }
 
     public void openAndWaitForDisposal() {
@@ -181,6 +177,15 @@ public class RegisterWindow {
 
     public void activate(ActivationVo activationVo) {
         new Thread(() -> {
+            d.asyncExec(() -> {
+                activateButton.setEnabled(false);
+                StyledTextSet.decorate(messageTextWidget).setText("Activating...");
+            });
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
             try {
                 URL url = new URL(ACTIVATION_URL);
                 HttpURLConnection c = (HttpURLConnection) url.openConnection();
@@ -189,7 +194,7 @@ public class RegisterWindow {
                 c.setRequestProperty("charset", "utf-8");
                 c.setUseCaches(false);
                 c.setAllowUserInteraction(false);
-                c.setConnectTimeout(3000);
+                c.setConnectTimeout(6000);
                 c.setReadTimeout(3000);
                 c.setDoOutput(true);
                 c.connect();
@@ -202,7 +207,7 @@ public class RegisterWindow {
                     case HTTP_STATUS_OK:
                         logger.info("ok");
                     case HTTP_STATUS_ACCEPTED:
-                        logger.info("accepted");
+                        d.asyncExec(() -> StyledTextSet.decorate(messageTextWidget).setText("MockTPO activated."));
                         String data = JSON.parseObject(c.getInputStream(), String.class);
                         logger.info("License code:\n{}", data);
                         if (ActivationUtils.isLicensed(data)) {
@@ -212,11 +217,24 @@ public class RegisterWindow {
                             close();
                         }
                         break;
+                    case HTTP_STATUS_NOT_FOUND:
+                        d.asyncExec(() -> StyledTextSet.decorate(messageTextWidget).setText("Activation code not found."));
+                        break;
+                    case HTTP_STATUS_CONFLICT:
+                        d.asyncExec(() -> StyledTextSet.decorate(messageTextWidget).setText("Activation code has been used in other computers."));
+                        break;
                     default:
                         logger.info(httpStatus);
                 }
+            } catch (SocketTimeoutException stex) {
+                d.asyncExec(() -> StyledTextSet.decorate(messageTextWidget).setText("Network failure."));
             } catch (Exception ex) {
+                d.asyncExec(() -> StyledTextSet.decorate(messageTextWidget).setText("Client error occurred."));
                 ex.printStackTrace();
+            } finally {
+                if (!activateButton.isDisposed()) {
+                    d.asyncExec(() -> activateButton.setEnabled(true));
+                }
             }
         }).start();
     }
