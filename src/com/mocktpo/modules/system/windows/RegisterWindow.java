@@ -16,6 +16,7 @@ import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import com.mocktpo.util.widgets.StyledTextSet;
 import com.mocktpo.vo.ActivationVo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -205,36 +206,63 @@ public class RegisterWindow {
                 int httpStatus = c.getResponseCode();
                 switch (httpStatus) {
                     case HTTP_STATUS_OK:
-                        logger.info("ok");
+                        logger.info("Http status: OK");
                     case HTTP_STATUS_ACCEPTED:
-                        d.asyncExec(() -> StyledTextSet.decorate(messageTextWidget).setText("MockTPO activated."));
+                        logger.info("Http status: Accepted");
                         String data = JSON.parseObject(c.getInputStream(), String.class);
                         logger.info("License code:\n{}", data);
                         if (ActivationUtils.isLicensed(data)) {
                             SqlSession sqlSession = app.getSqlSession();
-                            sqlSession.getMapper(LicenseCodeMapper.class).insert(new LicenseCode(data));
+                            LicenseCodeMapper mapper = sqlSession.getMapper(LicenseCodeMapper.class);
+                            mapper.deleteAll();
+                            mapper.insert(new LicenseCode(data));
                             sqlSession.commit();
+                            d.asyncExec(() -> {
+                                activateButton.setEnabled(true);
+                                StyledTextSet.decorate(activationCodeTextWidget).setText("");
+                                StyledTextSet.decorate(messageTextWidget).setText("MockTPO activated.");
+                            });
                             close();
+                        } else {
+                            d.asyncExec(() -> {
+                                activateButton.setEnabled(true);
+                                StyledTextSet.decorate(activationCodeTextWidget).setText("");
+                                StyledTextSet.decorate(messageTextWidget).setText("MockTPO deactivated.");
+                            });
                         }
                         break;
                     case HTTP_STATUS_NOT_FOUND:
-                        d.asyncExec(() -> StyledTextSet.decorate(messageTextWidget).setText("Activation code not found."));
+                        logger.info("Http status: Not found");
+                        d.asyncExec(() -> {
+                            activateButton.setEnabled(true);
+                            StyledTextSet.decorate(activationCodeTextWidget).setText("");
+                            StyledTextSet.decorate(messageTextWidget).setText("Activation code not found.");
+                        });
                         break;
                     case HTTP_STATUS_CONFLICT:
-                        d.asyncExec(() -> StyledTextSet.decorate(messageTextWidget).setText("Activation code has been used in other computers."));
+                        logger.info("Http status: Conflict");
+                        d.asyncExec(() -> {
+                            activateButton.setEnabled(true);
+                            StyledTextSet.decorate(activationCodeTextWidget).setText("");
+                            StyledTextSet.decorate(messageTextWidget).setText("Activation code has been used in other computers.");
+                        });
                         break;
                     default:
-                        logger.info(httpStatus);
+                        logger.info("Http status: {}", httpStatus);
                 }
             } catch (SocketTimeoutException stex) {
-                d.asyncExec(() -> StyledTextSet.decorate(messageTextWidget).setText("Network failure."));
+                d.asyncExec(() -> {
+                    activateButton.setEnabled(true);
+                    StyledTextSet.decorate(activationCodeTextWidget).setText("");
+                    StyledTextSet.decorate(messageTextWidget).setText("Network failure.");
+                });
             } catch (Exception ex) {
-                d.asyncExec(() -> StyledTextSet.decorate(messageTextWidget).setText("Client error occurred."));
+                d.asyncExec(() -> {
+                    activateButton.setEnabled(true);
+                    StyledTextSet.decorate(activationCodeTextWidget).setText("");
+                    StyledTextSet.decorate(messageTextWidget).setText("Client error occurred.");
+                });
                 ex.printStackTrace();
-            } finally {
-                if (!activateButton.isDisposed()) {
-                    d.asyncExec(() -> activateButton.setEnabled(true));
-                }
             }
         }).start();
     }
@@ -251,36 +279,9 @@ public class RegisterWindow {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            String activationCode = activationCodeTextWidget.getText();
+            String activationCode = StringUtils.upperCase(StringUtils.trim(activationCodeTextWidget.getText()));
             String hardware = HardwareBinderUtils.uuid();
             activate(new ActivationVo(activationCode, hardware));
-
-//            d.asyncExec(() -> {
-//                am.setText("");
-//                activateButton.setEnabled(false);
-//            });
-//            String email = et.getText();
-//            String acc = at.getText();
-//            if (ActivationUtils.isLicensed(email, acc)) {
-//                SqlSession sqlSession = app.getSqlSession();
-//                ActivationCodeMapper mapper = sqlSession.getMapper(ActivationCodeMapper.class);
-//                ActivationCode ac = new ActivationCode();
-//                ac.setEmail(email);
-//                ac.setContent(acc);
-//                mapper.insert(ac);
-//                sqlSession.commit();
-//                d.asyncExec(() -> {
-//                    am.setText("");
-//                    activateButton.setEnabled(true);
-//                    close();
-//                });
-//            } else {
-//                d.asyncExec(() -> {
-//                    am.setText(msgs.getString("register_failure"));
-//                    am.setForeground(ResourceManager.getColor(MT.COLOR_ORANGE_RED));
-//                    activateButton.setEnabled(true);
-//                });
-//            }
         }
     }
 

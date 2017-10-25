@@ -1,6 +1,7 @@
 package com.mocktpo.orm.mapper;
 
 import com.mocktpo.orm.domain.LicenseCode;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -49,4 +50,9 @@ public interface LicenseCodeMapper {
             "SELECT COUNT(*) FROM MT_LICENSE_CODE"
     )
     long count();
+
+    @Delete({
+            "DELETE FROM MT_LICENSE_CODE"
+    })
+    void deleteAll();
 }
