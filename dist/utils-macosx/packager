@@ -35,7 +35,7 @@ mkdir $DIST_DIR/MockTPO.app/Contents/MacOS
 echo "MockTPO.app/Contents/MacOS created."
 
 cp -a $BIN_DIR/. $DIST_DIR/MockTPO.app/Contents/MacOS
-echo "MockTPO.app/Contents/MacOS/[binaries and configurations] copyed."
+echo "MockTPO.app/Contents/MacOS/* copyed."
 cp $BASE_DIR/mocktpo $DIST_DIR/MockTPO.app/Contents/MacOS
 echo "MockTPO.app/Contents/MacOS/mocktpo copyed."
 cp -r $BASE_DIR/jre $DIST_DIR/MockTPO.app/Contents/MacOS
