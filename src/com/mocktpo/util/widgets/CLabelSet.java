@@ -40,7 +40,7 @@ public class CLabelSet {
      * ==================================================
      */
 
-    public CLabelSet setBackground(int i) {
+    public CLabelSet setBackground(String i) {
         c.setBackground(ResourceManager.getColor(i));
         return this;
     }
@@ -50,7 +50,7 @@ public class CLabelSet {
         return this;
     }
 
-    public CLabelSet setGradientBackground(int start, int end, boolean vertical) {
+    public CLabelSet setGradientBackground(String start, String end, boolean vertical) {
         Color sc = ResourceManager.getColor(start);
         Color ec = ResourceManager.getColor(end);
         c.setBackground(new Color[]{sc, ec}, new int[]{100}, vertical);
@@ -70,7 +70,7 @@ public class CLabelSet {
      * ==================================================
      */
 
-    public CLabelSet setCursor(int i) {
+    public CLabelSet setCursor(String i) {
         c.setCursor(ResourceManager.getCursor(i));
         return this;
     }
@@ -127,7 +127,7 @@ public class CLabelSet {
      * ==================================================
      */
 
-    public CLabelSet setFont(int i) {
+    public CLabelSet setFont(String i) {
         c.setFont(ResourceManager.getFont(i));
         return this;
     }
@@ -145,7 +145,7 @@ public class CLabelSet {
      * ==================================================
      */
 
-    public CLabelSet setForeground(int i) {
+    public CLabelSet setForeground(String i) {
         c.setForeground(ResourceManager.getColor(i));
         return this;
     }
@@ -163,7 +163,7 @@ public class CLabelSet {
      * ==================================================
      */
 
-    public CLabelSet setImage(int i) {
+    public CLabelSet setImage(String i) {
         c.setImage(ResourceManager.getImage(i));
         return this;
     }

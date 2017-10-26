@@ -12,7 +12,7 @@ public class ResourceManager {
 
     private static final int INITIAL_CACHE_SIZE = 64;
 
-    private static final ConcurrentMap<Integer, Resource> caches = new ConcurrentHashMap<Integer, Resource>(INITIAL_CACHE_SIZE);
+    private static final ConcurrentMap<String, Resource> caches = new ConcurrentHashMap<>(INITIAL_CACHE_SIZE);
 
     public static void alloc(Display d) {
 
@@ -83,7 +83,6 @@ public class ResourceManager {
         /* 32px, 24pt, 200% */
         caches.putIfAbsent(MT.FONT_XX_LARGE, FontUtils.getFont(d, 32));
         /* Others */
-        caches.putIfAbsent(MT.FONT_ACTIVATION_CODE, FontUtils.getFont(d, "Courier New", 12, SWT.NORMAL));
         caches.putIfAbsent(MT.FONT_SERIF_HEADING, FontUtils.getFont(d, "Georgia", 20, SWT.BOLD));
         caches.putIfAbsent(MT.FONT_SERIF_ITALIC_TEXT, FontUtils.getFont(d, "Georgia", 16, SWT.ITALIC));
 
@@ -287,26 +286,26 @@ public class ResourceManager {
     }
 
     public static void dispose() {
-        for (int key : caches.keySet()) {
+        for (String key : caches.keySet()) {
             Resource r = caches.get(key);
             caches.remove(key);
             r.dispose();
         }
     }
 
-    public static Color getColor(int key) {
+    public static Color getColor(String key) {
         return (Color) caches.get(key);
     }
 
-    public static Cursor getCursor(int key) {
+    public static Cursor getCursor(String key) {
         return (Cursor) caches.get(key);
     }
 
-    public static Font getFont(int key) {
+    public static Font getFont(String key) {
         return (Font) caches.get(key);
     }
 
-    public static Image getImage(int key) {
+    public static Image getImage(String key) {
         return (Image) caches.get(key);
     }
 }

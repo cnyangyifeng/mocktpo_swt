@@ -27,7 +27,7 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setBackground(int i) {
+    public CompositeSet setBackground(String i) {
         c.setBackground(ResourceManager.getColor(i));
         return this;
     }
@@ -45,7 +45,7 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setBackgroundImage(int i) {
+    public CompositeSet setBackgroundImage(String i) {
         c.setBackgroundImage(ResourceManager.getImage(i));
         return this;
     }
@@ -63,7 +63,7 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setCursor(int i) {
+    public CompositeSet setCursor(String i) {
         c.setCursor(ResourceManager.getCursor(i));
         return this;
     }
@@ -120,7 +120,7 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setFont(int i) {
+    public CompositeSet setFont(String i) {
         c.setFont(ResourceManager.getFont(i));
         return this;
     }
@@ -138,7 +138,7 @@ public class CompositeSet {
      * ==================================================
      */
 
-    public CompositeSet setForeground(int i) {
+    public CompositeSet setForeground(String i) {
         c.setForeground(ResourceManager.getColor(i));
         return this;
     }

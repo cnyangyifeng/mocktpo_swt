@@ -10,16 +10,12 @@ mv $JRE_DIR/java $JRE_DIR/bin
 rm -rf $JRE_DIR/lib/applet
 rm -rf $JRE_DIR/lib/calendars.properties
 rm -rf $JRE_DIR/lib/charsets.jar
-# rm -rf $JRE_DIR/lib/classlist
-# rm -rf $JRE_DIR/lib/cmm
-# rm -rf $JRE_DIR/lib/content-types.properties
-# rm -rf $JRE_DIR/lib/currency.data
 rm -rf $JRE_DIR/lib/ext
 rm -rf $JRE_DIR/lib/flavormap.properties
 rm -rf $JRE_DIR/lib/fontconfig*
 rm -rf $JRE_DIR/lib/fonts
 rm -rf $JRE_DIR/lib/hijrah-config-umalqura.properties
-# rm -rf $JRE_DIR/lib/images
+rm -rf $JRE_DIR/lib/images
 rm -rf $JRE_DIR/lib/javafx.properties
 rm -rf $JRE_DIR/lib/jfr
 rm -rf $JRE_DIR/lib/jfr.jar

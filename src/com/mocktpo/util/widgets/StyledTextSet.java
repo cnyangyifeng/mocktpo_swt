@@ -40,7 +40,7 @@ public class StyledTextSet {
      * ==================================================
      */
 
-    public StyledTextSet setBackground(int i) {
+    public StyledTextSet setBackground(String i) {
         c.setBackground(ResourceManager.getColor(i));
         return this;
     }
@@ -76,7 +76,7 @@ public class StyledTextSet {
      * ==================================================
      */
 
-    public StyledTextSet setCursor(int i) {
+    public StyledTextSet setCursor(String i) {
         c.setCursor(ResourceManager.getCursor(i));
         return this;
     }
@@ -146,7 +146,7 @@ public class StyledTextSet {
      * ==================================================
      */
 
-    public StyledTextSet setFont(int i) {
+    public StyledTextSet setFont(String i) {
         c.setFont(ResourceManager.getFont(i));
         return this;
     }
@@ -164,7 +164,7 @@ public class StyledTextSet {
      * ==================================================
      */
 
-    public StyledTextSet setForeground(int i) {
+    public StyledTextSet setForeground(String i) {
         c.setForeground(ResourceManager.getColor(i));
         return this;
     }

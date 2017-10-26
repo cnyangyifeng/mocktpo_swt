@@ -26,7 +26,7 @@ public class ScaleSet {
      * ==================================================
      */
 
-    public ScaleSet setBackground(int i) {
+    public ScaleSet setBackground(String i) {
         c.setBackground(ResourceManager.getColor(i));
         return this;
     }
@@ -44,7 +44,7 @@ public class ScaleSet {
      * ==================================================
      */
 
-    public ScaleSet setCursor(int i) {
+    public ScaleSet setCursor(String i) {
         c.setCursor(ResourceManager.getCursor(i));
         return this;
     }
@@ -101,7 +101,7 @@ public class ScaleSet {
      * ==================================================
      */
 
-    public ScaleSet setFont(int i) {
+    public ScaleSet setFont(String i) {
         c.setFont(ResourceManager.getFont(i));
         return this;
     }
@@ -119,7 +119,7 @@ public class ScaleSet {
      * ==================================================
      */
 
-    public ScaleSet setForeground(int i) {
+    public ScaleSet setForeground(String i) {
         c.setForeground(ResourceManager.getColor(i));
         return this;
     }

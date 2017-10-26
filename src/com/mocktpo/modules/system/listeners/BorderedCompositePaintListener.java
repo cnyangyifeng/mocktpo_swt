@@ -9,15 +9,15 @@ import org.eclipse.swt.widgets.Control;
 
 public class BorderedCompositePaintListener implements PaintListener {
 
-    private int color;
+    private String color;
     private int lineWidth;
 
-    public BorderedCompositePaintListener(int color) {
+    public BorderedCompositePaintListener(String color) {
         this.color = color;
         this.lineWidth = 1;
     }
 
-    public BorderedCompositePaintListener(int color, int lineWidth) {
+    public BorderedCompositePaintListener(String color, int lineWidth) {
         this.color = color;
         this.lineWidth = lineWidth;
     }

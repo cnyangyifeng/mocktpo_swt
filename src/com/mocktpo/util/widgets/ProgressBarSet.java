@@ -26,7 +26,7 @@ public class ProgressBarSet {
      * ==================================================
      */
 
-    public ProgressBarSet setBackground(int i) {
+    public ProgressBarSet setBackground(String i) {
         c.setBackground(ResourceManager.getColor(i));
         return this;
     }
@@ -44,7 +44,7 @@ public class ProgressBarSet {
      * ==================================================
      */
 
-    public ProgressBarSet setCursor(int i) {
+    public ProgressBarSet setCursor(String i) {
         c.setCursor(ResourceManager.getCursor(i));
         return this;
     }
@@ -88,7 +88,7 @@ public class ProgressBarSet {
      * ==================================================
      */
 
-    public ProgressBarSet setFont(int i) {
+    public ProgressBarSet setFont(String i) {
         c.setFont(ResourceManager.getFont(i));
         return this;
     }
@@ -106,7 +106,7 @@ public class ProgressBarSet {
      * ==================================================
      */
 
-    public ProgressBarSet setForeground(int i) {
+    public ProgressBarSet setForeground(String i) {
         c.setForeground(ResourceManager.getColor(i));
         return this;
     }

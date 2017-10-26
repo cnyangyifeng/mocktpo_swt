@@ -32,11 +32,11 @@ public class StyleRangeUtils {
                 sr.fontStyle = srv.getFontStyle();
             }
             /* Foreground */
-            if (srv.getForeground() != 0) {
+            if (!StringUtils.isEmpty(srv.getForeground())) {
                 sr.foreground = ResourceManager.getColor(srv.getForeground());
             }
             /* Background */
-            if (srv.getBackground() != 0) {
+            if (!StringUtils.isEmpty(srv.getBackground())) {
                 sr.background = ResourceManager.getColor(srv.getBackground());
             }
             /* Underline */

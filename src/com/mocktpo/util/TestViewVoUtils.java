@@ -39,7 +39,7 @@ public class TestViewVoUtils {
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText(MT.STRING_TEST_INTRO_VIEW_DESCRIPTION);
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(183, 8, 1, 0, 0, false, null));
+            add(new StyleRangeVo(183, 8, 1, "", "", false, null));
         }};
         descriptionVo.setStyles(descriptionStyleVos);
 
@@ -64,12 +64,12 @@ public class TestViewVoUtils {
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText(MT.STRING_GENERAL_TEST_INFO_VIEW_DESCRIPTION);
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(101, 7, 1, 0, 0, false, null));
-            add(new StyleRangeVo(190, 9, 1, 0, 0, false, null));
-            add(new StyleRangeVo(299, 8, 1, 0, 0, false, null));
-            add(new StyleRangeVo(490, 7, 1, 0, 0, false, null));
-            add(new StyleRangeVo(806, 5, 1, 0, 0, false, null));
-            add(new StyleRangeVo(1542, 8, 1, 0, 0, false, null));
+            add(new StyleRangeVo(101, 7, 1, "", "", false, null));
+            add(new StyleRangeVo(190, 9, 1, "", "", false, null));
+            add(new StyleRangeVo(299, 8, 1, "", "", false, null));
+            add(new StyleRangeVo(490, 7, 1, "", "", false, null));
+            add(new StyleRangeVo(806, 5, 1, "", "", false, null));
+            add(new StyleRangeVo(1542, 8, 1, "", "", false, null));
         }};
         descriptionVo.setStyles(descriptionStyleVos);
 
@@ -92,8 +92,8 @@ public class TestViewVoUtils {
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText(MT.STRING_BREAK_POINT_VIEW_DESCRIPTION);
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(97, 8, 1, 0, 0, false, null));
-            add(new StyleRangeVo(201, 8, 1, 0, 0, false, null));
+            add(new StyleRangeVo(97, 8, 1, "", "", false, null));
+            add(new StyleRangeVo(201, 8, 1, "", "", false, null));
         }};
         descriptionVo.setStyles(descriptionStyleVos);
 
@@ -144,13 +144,13 @@ public class TestViewVoUtils {
         final StyledTextVo descriptionVo = new StyledTextVo();
         descriptionVo.setText(MT.STRING_READING_SECTION_DIRECTIONS_VIEW_DESCRIPTION);
         List<StyleRangeVo> descriptionStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(51, 10, 1, 0, 0, false, null));
-            add(new StyleRangeVo(89, 10, 1, 0, 0, false, null));
-            add(new StyleRangeVo(347, 10, 1, 0, 0, false, null));
-            add(new StyleRangeVo(488, 4, 1, 0, 0, false, null));
-            add(new StyleRangeVo(597, 4, 1, 0, 0, false, null));
-            add(new StyleRangeVo(621, 6, 1, 0, 0, false, null));
-            add(new StyleRangeVo(860, 8, 1, 0, 0, false, null));
+            add(new StyleRangeVo(51, 10, 1, "", "", false, null));
+            add(new StyleRangeVo(89, 10, 1, "", "", false, null));
+            add(new StyleRangeVo(347, 10, 1, "", "", false, null));
+            add(new StyleRangeVo(488, 4, 1, "", "", false, null));
+            add(new StyleRangeVo(597, 4, 1, "", "", false, null));
+            add(new StyleRangeVo(621, 6, 1, "", "", false, null));
+            add(new StyleRangeVo(860, 8, 1, "", "", false, null));
         }};
         descriptionVo.setStyles(descriptionStyleVos);
 
@@ -258,28 +258,28 @@ public class TestViewVoUtils {
         final StyledTextVo insertionPointAVo = new StyledTextVo();
         insertionPointAVo.setText(MT.STRING_FULL_BLOCK);
         List<StyleRangeVo> insertionPointAStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(arr[0], 0, 0, 0, 0, false, null));
+            add(new StyleRangeVo(arr[0], 0, 0, "", "", false, null));
         }};
         insertionPointAVo.setStyles(insertionPointAStyleVos);
         /* Insertion Point B */
         final StyledTextVo insertionPointBVo = new StyledTextVo();
         insertionPointBVo.setText(MT.STRING_FULL_BLOCK);
         List<StyleRangeVo> insertionPointBStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(arr[1], 0, 0, 0, 0, false, null));
+            add(new StyleRangeVo(arr[1], 0, 0, "", "", false, null));
         }};
         insertionPointBVo.setStyles(insertionPointBStyleVos);
         /* Insertion Point C */
         final StyledTextVo insertionPointCVo = new StyledTextVo();
         insertionPointCVo.setText(MT.STRING_FULL_BLOCK);
         List<StyleRangeVo> insertionPointCStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(arr[2], 0, 0, 0, 0, false, null));
+            add(new StyleRangeVo(arr[2], 0, 0, "", "", false, null));
         }};
         insertionPointCVo.setStyles(insertionPointCStyleVos);
         /* Insertion Point D */
         final StyledTextVo insertionPointDVo = new StyledTextVo();
         insertionPointDVo.setText(MT.STRING_FULL_BLOCK);
         List<StyleRangeVo> insertionPointDStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(arr[3], 0, 0, 0, 0, false, null));
+            add(new StyleRangeVo(arr[3], 0, 0, "", "", false, null));
         }};
         insertionPointDVo.setStyles(insertionPointDStyleVos);
         /* Body */
@@ -303,15 +303,15 @@ public class TestViewVoUtils {
         final StyledTextVo directionsVo = new StyledTextVo();
         directionsVo.setText(MT.STRING_READING_PROSE_SUMMARY_QUESTION_VIEW_DIRECTIONS);
         List<StyleRangeVo> directionsStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(0, 11, 1, 0, 0, false, null));
-            add(new StyleRangeVo(348, 32, 1, 0, 0, false, null));
+            add(new StyleRangeVo(0, 11, 1, "", "", false, null));
+            add(new StyleRangeVo(348, 32, 1, "", "", false, null));
         }};
         directionsVo.setStyles(directionsStyleVos);
 
         final StyledTextVo tipsVo = new StyledTextVo();
         tipsVo.setText(MT.STRING_READING_PROSE_SUMMARY_QUESTION_VIEW_TIPS);
         List<StyleRangeVo> tipsStyleVos = new ArrayList<StyleRangeVo>() {{
-            add(new StyleRangeVo(128, 9, 1, 0, 0, false, null));
+            add(new StyleRangeVo(128, 9, 1, "", "", false, null));
         }};
         tipsVo.setStyles(tipsStyleVos);
 

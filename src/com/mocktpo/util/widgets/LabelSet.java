@@ -40,7 +40,7 @@ public class LabelSet {
      * ==================================================
      */
 
-    public LabelSet setBackground(int i) {
+    public LabelSet setBackground(String i) {
         c.setBackground(ResourceManager.getColor(i));
         return this;
     }
@@ -63,7 +63,7 @@ public class LabelSet {
      * ==================================================
      */
 
-    public LabelSet setCursor(int i) {
+    public LabelSet setCursor(String i) {
         c.setCursor(ResourceManager.getCursor(i));
         return this;
     }
@@ -120,7 +120,7 @@ public class LabelSet {
      * ==================================================
      */
 
-    public LabelSet setFont(int i) {
+    public LabelSet setFont(String i) {
         c.setFont(ResourceManager.getFont(i));
         return this;
     }
@@ -138,7 +138,7 @@ public class LabelSet {
      * ==================================================
      */
 
-    public LabelSet setForeground(int i) {
+    public LabelSet setForeground(String i) {
         c.setForeground(ResourceManager.getColor(i));
         return this;
     }
@@ -156,7 +156,7 @@ public class LabelSet {
      * ==================================================
      */
 
-    public LabelSet setImage(int i) {
+    public LabelSet setImage(String i) {
         c.setImage(ResourceManager.getImage(i));
         return this;
     }

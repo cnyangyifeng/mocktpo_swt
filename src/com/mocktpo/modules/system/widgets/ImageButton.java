@@ -35,11 +35,11 @@ public class ImageButton extends Composite {
 
     private PaintListener paintListener;
 
-    public ImageButton(Composite parent, int style, int normal, int hover) {
+    public ImageButton(Composite parent, int style, String normal, String hover) {
         this(parent, style, ResourceManager.getImage(normal), ResourceManager.getImage(hover), null);
     }
 
-    public ImageButton(Composite parent, int style, int normal, int hover, int disabled) {
+    public ImageButton(Composite parent, int style, String normal, String hover, String disabled) {
         this(parent, style, ResourceManager.getImage(normal), ResourceManager.getImage(hover), ResourceManager.getImage(disabled));
     }
 
@@ -96,11 +96,11 @@ public class ImageButton extends Composite {
      * ==================================================
      */
 
-    public void setBackgroundImages(int normal, int hover) {
+    public void setBackgroundImages(String normal, String hover) {
         this.setBackgroundImages(ResourceManager.getImage(normal), ResourceManager.getImage(hover), null);
     }
 
-    public void setBackgroundImages(int normal, int hover, int disabled) {
+    public void setBackgroundImages(String normal, String hover, String disabled) {
         this.setBackgroundImages(ResourceManager.getImage(normal), ResourceManager.getImage(hover), ResourceManager.getImage(disabled));
     }
 
