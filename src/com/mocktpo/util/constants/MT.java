@@ -202,8 +202,12 @@ public interface MT {
     String IMAGE_SYSTEM_CUT_HOVER = "image_system_cut_hover";
     String IMAGE_SYSTEM_DELETE = "image_system_delete";
     String IMAGE_SYSTEM_DELETE_HOVER = "image_system_delete_hover";
+    String IMAGE_SYSTEM_DOWNLOAD = "image_system_download";
+    String IMAGE_SYSTEM_DOWNLOAD_HOVER = "image_system_download_hover";
     String IMAGE_SYSTEM_EDIT = "image_system_edit";
     String IMAGE_SYSTEM_EDIT_HOVER = "image_system_edit_hover";
+    String IMAGE_SYSTEM_EXPORT = "image_system_export";
+    String IMAGE_SYSTEM_EXPORT_HOVER = "image_system_export_hover";
     String IMAGE_SYSTEM_EXPORT_AS_PDF = "image_system_export_as_pdf";
     String IMAGE_SYSTEM_EXPORT_AS_PDF_HOVER = "image_system_export_as_pdf_hover";
     String IMAGE_SYSTEM_EXPORT_AS_ZIP = "image_system_export_as_zip";
@@ -214,6 +218,7 @@ public interface MT {
     String IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_HOVER = "image_system_highlight_selected_text_hover";
     String IMAGE_SYSTEM_IMPORT = "image_system_import";
     String IMAGE_SYSTEM_IMPORT_HOVER = "image_system_import_hover";
+    String IMAGE_SYSTEM_INSTALLED = "image_system_installed";
     String IMAGE_SYSTEM_MARK_PARAGRAPHS = "image_system_mark_paragraphs";
     String IMAGE_SYSTEM_MARK_PARAGRAPHS_DISABLED = "image_system_mark_paragraphs_disabled";
     String IMAGE_SYSTEM_MARK_PARAGRAPHS_HOVER = "image_system_mark_paragraphs_hover";
@@ -259,6 +264,7 @@ public interface MT {
     String IMAGE_SYSTEM_NEW_TEST_PAPER_HOVER = "image_system_new_test_paper_hover";
     String IMAGE_SYSTEM_PASTE = "image_system_paste";
     String IMAGE_SYSTEM_PASTE_HOVER = "image_system_paste_hover";
+    String IMAGE_SYSTEM_PLEASE_WAIT = "image_system_please_wait";
     String IMAGE_SYSTEM_REPORT = "image_system_report";
     String IMAGE_SYSTEM_REPORT_HOVER = "image_system_report_hover";
     String IMAGE_SYSTEM_SAVE = "image_system_save";
@@ -296,6 +302,8 @@ public interface MT {
     String IMAGE_SYSTEM_TRASH_HOVER = "image_system_trash_hover";
     String IMAGE_SYSTEM_UNBOXED = "image_system_unboxed";
     String IMAGE_SYSTEM_UNBOXED_DISABLED = "image_system_unboxed_disabled";
+    String IMAGE_SYSTEM_UPDATE = "image_system_update";
+    String IMAGE_SYSTEM_UPDATE_HOVER = "image_system_update_hover";
 
     /*
      * ==================================================

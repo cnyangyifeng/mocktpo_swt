@@ -78,7 +78,7 @@ public class TestEditorPage extends Composite {
         testEditorVo.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
         testEditorVo.setTitle("");
         testEditorVo.setStars(3);
-        testEditorVo.setAuthor("");
+        testEditorVo.setCreator("");
         testEditorVo.setCreatedTime(System.currentTimeMillis());
     }
 

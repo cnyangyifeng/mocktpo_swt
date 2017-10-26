@@ -189,8 +189,12 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CUT_HOVER, ImageUtils.load(d, "sys_cut_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_DELETE, ImageUtils.load(d, "sys_delete"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_DELETE_HOVER, ImageUtils.load(d, "sys_delete_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_DOWNLOAD, ImageUtils.load(d, "sys_download"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_DOWNLOAD_HOVER, ImageUtils.load(d, "sys_download_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EDIT, ImageUtils.load(d, "sys_edit"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EDIT_HOVER, ImageUtils.load(d, "sys_edit_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT, ImageUtils.load(d, "sys_export"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_HOVER, ImageUtils.load(d, "sys_export_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_PDF, ImageUtils.load(d, "sys_export_as_pdf"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_PDF_HOVER, ImageUtils.load(d, "sys_export_as_pdf_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_EXPORT_AS_ZIP, ImageUtils.load(d, "sys_export_as_zip"));
@@ -201,6 +205,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_HOVER, ImageUtils.load(d, "sys_highlight_selected_text_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_IMPORT, ImageUtils.load(d, "sys_import"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_IMPORT_HOVER, ImageUtils.load(d, "sys_import_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_INSTALLED, ImageUtils.load(d, "sys_installed"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_MARK_PARAGRAPHS, ImageUtils.load(d, "sys_mark_paragraphs"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_DISABLED, ImageUtils.load(d, "sys_mark_paragraphs_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_HOVER, ImageUtils.load(d, "sys_mark_paragraphs_h"));
@@ -246,6 +251,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_TEST_PAPER_HOVER, ImageUtils.load(d, "sys_new_test_paper_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_PASTE, ImageUtils.load(d, "sys_paste"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_PASTE_HOVER, ImageUtils.load(d, "sys_paste_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_PLEASE_WAIT, ImageUtils.load(d, "sys_please_wait"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT, ImageUtils.load(d, "sys_report"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT_HOVER, ImageUtils.load(d, "sys_report_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_SAVE, ImageUtils.load(d, "sys_save"));
@@ -283,6 +289,8 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_TRASH_HOVER, ImageUtils.load(d, "sys_trash_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_UNBOXED, ImageUtils.load(d, "sys_unboxed"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_UNBOXED_DISABLED, ImageUtils.load(d, "sys_unboxed_d"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_UPDATE, ImageUtils.load(d, "sys_update"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_UPDATE_HOVER, ImageUtils.load(d, "sys_update_h"));
     }
 
     public static void dispose() {

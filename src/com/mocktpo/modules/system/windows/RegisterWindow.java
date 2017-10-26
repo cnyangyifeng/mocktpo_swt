@@ -139,7 +139,7 @@ public class RegisterWindow {
 
         final StyledText descriptionTextWidget = new StyledText(body, SWT.WRAP);
         FormDataSet.attach(descriptionTextWidget).atLeft().atTop().atRight();
-        StyledTextSet.decorate(descriptionTextWidget).setNoCaret().setEditable(false).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setLineSpacing(10).setText("Please enter your activation code.");
+        StyledTextSet.decorate(descriptionTextWidget).setNoCaret().setEditable(false).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setLineSpacing(10).setText(msgs.getString("enter_activation_code"));
 
         activationCodeTextWidget = new StyledText(body, SWT.SINGLE);
         FormDataSet.attach(activationCodeTextWidget).atLeft().atTopTo(descriptionTextWidget).atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
@@ -180,7 +180,7 @@ public class RegisterWindow {
         new Thread(() -> {
             d.asyncExec(() -> {
                 activateButton.setEnabled(false);
-                StyledTextSet.decorate(messageTextWidget).setText("Activating...");
+                StyledTextSet.decorate(messageTextWidget).setText(msgs.getString("activating"));
             });
             try {
                 Thread.sleep(1000);
@@ -220,14 +220,14 @@ public class RegisterWindow {
                             d.asyncExec(() -> {
                                 activateButton.setEnabled(true);
                                 StyledTextSet.decorate(activationCodeTextWidget).setText("");
-                                StyledTextSet.decorate(messageTextWidget).setText("MockTPO activated.");
+                                StyledTextSet.decorate(messageTextWidget).setText(msgs.getString("activated"));
                             });
                             close();
                         } else {
                             d.asyncExec(() -> {
                                 activateButton.setEnabled(true);
                                 StyledTextSet.decorate(activationCodeTextWidget).setText("");
-                                StyledTextSet.decorate(messageTextWidget).setText("MockTPO deactivated.");
+                                StyledTextSet.decorate(messageTextWidget).setText(msgs.getString("deactivated"));
                             });
                         }
                         break;
@@ -236,7 +236,7 @@ public class RegisterWindow {
                         d.asyncExec(() -> {
                             activateButton.setEnabled(true);
                             StyledTextSet.decorate(activationCodeTextWidget).setText("");
-                            StyledTextSet.decorate(messageTextWidget).setText("Activation code not found.");
+                            StyledTextSet.decorate(messageTextWidget).setText(msgs.getString("activation_code_not_found"));
                         });
                         break;
                     case HTTP_STATUS_CONFLICT:
@@ -244,7 +244,7 @@ public class RegisterWindow {
                         d.asyncExec(() -> {
                             activateButton.setEnabled(true);
                             StyledTextSet.decorate(activationCodeTextWidget).setText("");
-                            StyledTextSet.decorate(messageTextWidget).setText("Activation code has been used in other computers.");
+                            StyledTextSet.decorate(messageTextWidget).setText(msgs.getString("activation_code_has_been_used"));
                         });
                         break;
                     default:
@@ -254,13 +254,13 @@ public class RegisterWindow {
                 d.asyncExec(() -> {
                     activateButton.setEnabled(true);
                     StyledTextSet.decorate(activationCodeTextWidget).setText("");
-                    StyledTextSet.decorate(messageTextWidget).setText("Network failure.");
+                    StyledTextSet.decorate(messageTextWidget).setText(msgs.getString("network_failure"));
                 });
             } catch (Exception ex) {
                 d.asyncExec(() -> {
                     activateButton.setEnabled(true);
                     StyledTextSet.decorate(activationCodeTextWidget).setText("");
-                    StyledTextSet.decorate(messageTextWidget).setText("Client error occurred.");
+                    StyledTextSet.decorate(messageTextWidget).setText(msgs.getString("client_error"));
                 });
                 ex.printStackTrace();
             }

@@ -25,7 +25,7 @@ public class TestEditorVo implements Serializable {
     private String tid;
     private String title;
     private int stars;
-    private String author;
+    private String creator;
     private long createdTime;
 
     public List<TestViewVo> getReadingViewVos() {
@@ -84,12 +84,12 @@ public class TestEditorVo implements Serializable {
         this.stars = stars;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getCreator() {
+        return creator;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
     public long getCreatedTime() {
@@ -102,6 +102,6 @@ public class TestEditorVo implements Serializable {
 
     @Override
     public String toString() {
-        return "{\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nstars:" + this.getStars() + ",\nauthor:" + this.getAuthor() + ",\ncreatedTime:" + this.getCreatedTime() + ",\nreadingViewVos:" + this.getReadingViewVos() + ",\nlisteningViewVos:" + this.getListeningViewVos() + ",\nspeakingViewVos:" + this.getSpeakingViewVos() + ",\nwritingViewVos:" + this.getWritingViewVos() + "\n}";
+        return "{\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nstars:" + this.getStars() + ",\ncreator:" + this.getCreator() + ",\ncreatedTime:" + this.getCreatedTime() + ",\nreadingViewVos:" + this.getReadingViewVos() + ",\nlisteningViewVos:" + this.getListeningViewVos() + ",\nspeakingViewVos:" + this.getSpeakingViewVos() + ",\nwritingViewVos:" + this.getWritingViewVos() + "\n}";
     }
 }

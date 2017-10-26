@@ -99,7 +99,7 @@ public class ProjectUtils {
         testVo.setTid(testEditorVo.getTid());
         testVo.setTitle(testEditorVo.getTitle());
         testVo.setStars(testEditorVo.getStars());
-        testVo.setAuthor(testEditorVo.getAuthor());
+        testVo.setCreator(testEditorVo.getCreator());
         testVo.setCreatedTime(testEditorVo.getCreatedTime());
         List<TestViewVo> readingViewVos = testEditorVo.getReadingViewVos();
         List<TestViewVo> listeningViewVos = testEditorVo.getListeningViewVos();

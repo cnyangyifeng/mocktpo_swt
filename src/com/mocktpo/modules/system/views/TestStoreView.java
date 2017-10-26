@@ -2,7 +2,7 @@ package com.mocktpo.modules.system.views;
 
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.system.widgets.TestCard;
+import com.mocktpo.modules.system.widgets.TestSyncCard;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.ImportUtils;
 import com.mocktpo.util.constants.MT;
@@ -136,7 +136,7 @@ public class TestStoreView extends Composite {
                 String fileAlias = testDir.getName();
                 URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
                 if (url != null) {
-                    TestCard card = new TestCard(body, SWT.NONE, testDir.getName());
+                    TestSyncCard card = new TestSyncCard(body, SWT.NONE, testDir.getName());
                     GridDataSet.attach(card).fillHorizontal();
                 }
             }

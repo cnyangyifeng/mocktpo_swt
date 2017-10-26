@@ -22,13 +22,13 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
 
     private static final int PRE_LABEL_WIDTH = 120;
     private static final int STARS_TEXT_WIDGET_WIDTH = 40;
-    private static final int AUTHOR_TEXT_WIDGET_WIDTH = 240;
+    private static final int CREATOR_TEXT_WIDGET_WIDTH = 240;
 
     /* Widgets */
 
     private StyledText titleTextWidget;
     private StyledText starsTextWidget;
-    private StyledText authorTextWidget;
+    private StyledText creatorTextWidget;
 
     /*
      * ==================================================
@@ -83,7 +83,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
 
         final CLabel titlePreLabel = new CLabel(viewPort, SWT.NONE);
         FormDataSet.attach(titlePreLabel).atLeft().atTopTo(titleTextWidget, 0, SWT.TOP).atRightTo(titleTextWidget, 0, SWT.LEFT).atBottomTo(titleTextWidget, 0, SWT.BOTTOM);
-        CLabelSet.decorate(titlePreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("title"));
+        CLabelSet.decorate(titlePreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("title"));
 
         starsTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(starsTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(titleTextWidget).withWidth(STARS_TEXT_WIDGET_WIDTH).withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
@@ -94,18 +94,18 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
 
         final CLabel starsPreLabel = new CLabel(viewPort, SWT.NONE);
         FormDataSet.attach(starsPreLabel).atLeft().atTopTo(starsTextWidget, 0, SWT.TOP).atRightTo(starsTextWidget, 0, SWT.LEFT).atBottomTo(starsTextWidget, 0, SWT.BOTTOM);
-        CLabelSet.decorate(starsPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("stars"));
+        CLabelSet.decorate(starsPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("stars"));
 
-        authorTextWidget = new StyledText(viewPort, SWT.SINGLE);
-        FormDataSet.attach(authorTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(starsTextWidget).withWidth(AUTHOR_TEXT_WIDGET_WIDTH).withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(authorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestEditorVo().getAuthor());
-        KeyBindingSet.bind(authorTextWidget).traverse().selectAll();
-        authorTextWidget.addModifyListener(new AuthorTextWidgetModifyListener());
-        authorTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
+        creatorTextWidget = new StyledText(viewPort, SWT.SINGLE);
+        FormDataSet.attach(creatorTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(starsTextWidget).withWidth(CREATOR_TEXT_WIDGET_WIDTH).withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
+        StyledTextSet.decorate(creatorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10).setText(page.getTestEditorVo().getCreator());
+        KeyBindingSet.bind(creatorTextWidget).traverse().selectAll();
+        creatorTextWidget.addModifyListener(new CreatorTextWidgetModifyListener());
+        creatorTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
-        final CLabel authorPreLabel = new CLabel(viewPort, SWT.NONE);
-        FormDataSet.attach(authorPreLabel).atLeft().atTopTo(authorTextWidget, 0, SWT.TOP).atRightTo(authorTextWidget, 0, SWT.LEFT).atBottomTo(authorTextWidget, 0, SWT.BOTTOM);
-        CLabelSet.decorate(authorPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("author"));
+        final CLabel creatorPreLabel = new CLabel(viewPort, SWT.NONE);
+        FormDataSet.attach(creatorPreLabel).atLeft().atTopTo(creatorTextWidget, 0, SWT.TOP).atRightTo(creatorTextWidget, 0, SWT.LEFT).atBottomTo(creatorTextWidget, 0, SWT.BOTTOM);
+        CLabelSet.decorate(creatorPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("creator"));
     }
 
     /*
@@ -147,11 +147,11 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
         }
     }
 
-    private class AuthorTextWidgetModifyListener implements ModifyListener {
+    private class CreatorTextWidgetModifyListener implements ModifyListener {
 
         @Override
         public void modifyText(ModifyEvent e) {
-            page.getTestEditorVo().setAuthor(authorTextWidget.getText());
+            page.getTestEditorVo().setCreator(creatorTextWidget.getText());
             page.edit();
         }
     }

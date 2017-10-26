@@ -85,7 +85,7 @@ public class TestPaperCard extends Composite {
 
         final CLabel superscriptLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(superscriptLabel).atLeft().atTop().withWidth(SUPERSCRIPT_WIDTH).withHeight(SUPERSCRIPT_HEIGHT);
-        CLabelSet.decorate(superscriptLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("test_paper"));
+        CLabelSet.decorate(superscriptLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("test_paper"));
 
         final ImageButton deleteButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_DELETE, MT.IMAGE_SYSTEM_DELETE_HOVER);
         FormDataSet.attach(deleteButton).atTop().atRight();
@@ -106,17 +106,17 @@ public class TestPaperCard extends Composite {
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight();
         FormLayoutSet.layout(body).marginWidth(0).marginHeight(0).spacing(0);
 
-        final CLabel authorPreLabel = new CLabel(body, SWT.NONE);
-        FormDataSet.attach(authorPreLabel).atLeft().atTop(10);
-        CLabelSet.decorate(authorPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("author"));
+        final CLabel creatorPreLabel = new CLabel(body, SWT.NONE);
+        FormDataSet.attach(creatorPreLabel).atLeft().atTop(10);
+        CLabelSet.decorate(creatorPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("creator"));
 
-        final CLabel authorLabel = new CLabel(body, SWT.NONE);
-        FormDataSet.attach(authorLabel).atLeftTo(authorPreLabel, 10).atTopTo(authorPreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(authorLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(getAuthor());
+        final CLabel creatorLabel = new CLabel(body, SWT.NONE);
+        FormDataSet.attach(creatorLabel).atLeftTo(creatorPreLabel, 10).atTopTo(creatorPreLabel, 0, SWT.TOP).atRight();
+        CLabelSet.decorate(creatorLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(getCreator());
 
         final CLabel createdTimePreLabel = new CLabel(body, SWT.NONE);
-        FormDataSet.attach(createdTimePreLabel).atLeft().atTopTo(authorPreLabel, 10);
-        CLabelSet.decorate(createdTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("created"));
+        FormDataSet.attach(createdTimePreLabel).atLeft().atTopTo(creatorPreLabel, 10);
+        CLabelSet.decorate(createdTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("created_at"));
 
         final CLabel createTimeLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(createTimeLabel).atLeftTo(createdTimePreLabel, 10).atTopTo(createdTimePreLabel, 0, SWT.TOP).atRight();
@@ -133,6 +133,10 @@ public class TestPaperCard extends Composite {
         final ImageButton editButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_EDIT, MT.IMAGE_SYSTEM_EDIT_HOVER);
         FormDataSet.attach(editButton).atLeft().atTop(10);
         editButton.addMouseListener(new EditButtonMouseAdapter());
+
+        final ImageButton exportButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT, MT.IMAGE_SYSTEM_EXPORT_HOVER);
+        FormDataSet.attach(exportButton).atLeftTo(editButton, 10).atTop(10);
+        exportButton.addMouseListener(new ExportButtonMouseAdapter());
     }
 
     /*
@@ -171,6 +175,14 @@ public class TestPaperCard extends Composite {
         }
     }
 
+    private class ExportButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            MyApplication.get().getWindow().toTestEditorPage(testVo);
+        }
+    }
+
     /*
      * ==================================================
      *
@@ -195,12 +207,12 @@ public class TestPaperCard extends Composite {
         return title;
     }
 
-    public String getAuthor() {
-        String author = testVo.getAuthor();
-        if (StringUtils.isEmpty(author)) {
-            author = msgs.getString("anonymous");
+    public String getCreator() {
+        String creator = testVo.getCreator();
+        if (StringUtils.isEmpty(creator)) {
+            creator = msgs.getString("anonymous");
         }
-        return author;
+        return creator;
     }
 
     public String getCreatedTime() {
