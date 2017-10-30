@@ -211,9 +211,4 @@ public class TestVo implements Serializable {
         logger.info("Total view count: {}", count);
         return count;
     }
-
-    @Override
-    public String toString() {
-        return "{\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nstars:" + this.getStars() + ",\ncreator:" + this.getCreator() + ",\ncreatedTime:" + this.getCreatedTime() + ",\nupdatedTime:" + this.getUpdatedTime() + ",\nversion:" + this.getVersion() + ",\nviewVos:" + this.getViewVos() + "\n}";
-    }
 }

@@ -410,7 +410,7 @@ public abstract class TestView extends Composite {
         public void mouseDown(MouseEvent e) {
             release();
             PersistenceUtils.saveToView(TestView.this);
-            MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
+            MyApplication.get().getWindow().toMainPageAndToTestReportNavContent();
         }
     }
 

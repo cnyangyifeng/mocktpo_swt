@@ -78,7 +78,7 @@ public class MainWindow {
     private void initViews() {
         stack = new StackLayout();
         s.setLayout(stack);
-        toMainPageAndToNewTestView();
+        toMainPageAndToNewTestNavContent();
     }
 
     public void openAndWaitForDisposal() {
@@ -104,22 +104,22 @@ public class MainWindow {
      * ==================================================
      */
 
-    public void toMainPageAndToNewTestView() {
+    public void toMainPageAndToNewTestNavContent() {
         mainPage = new MainPage(s, SWT.NONE);
         stack.topControl = mainPage;
         s.layout();
     }
 
-    public void toMainPageAndToTestRecordsView() {
+    public void toMainPageAndToTestReportNavContent() {
         mainPage = new MainPage(s, SWT.NONE);
-        mainPage.toTestRecordsView();
+        mainPage.toTestReportView();
         stack.topControl = mainPage;
         s.layout();
     }
 
-    public void toMainPageAndToTestPapersView() {
+    public void toMainPageAndToTestEditorNavContent() {
         mainPage = new MainPage(s, SWT.NONE);
-        mainPage.toTestPapersView();
+        mainPage.toTestEditorView();
         stack.topControl = mainPage;
         s.layout();
     }

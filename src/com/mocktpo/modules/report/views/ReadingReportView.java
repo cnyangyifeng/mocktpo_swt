@@ -1,6 +1,6 @@
 package com.mocktpo.modules.report.views;
 
-import com.mocktpo.modules.system.widgets.TestRecordCard;
+import com.mocktpo.modules.system.widgets.TestReportCard;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.MT;
@@ -75,7 +75,7 @@ public class ReadingReportView extends Composite {
     private void initRows() {
         List<UserTestSession> sessions = PersistenceUtils.findSessions();
         for (UserTestSession session : sessions) {
-            TestRecordCard row = new TestRecordCard(body, SWT.NONE, session);
+            TestReportCard row = new TestReportCard(body, SWT.NONE, session);
             GridDataSet.attach(row).fillHorizontal();
         }
         body.layout();

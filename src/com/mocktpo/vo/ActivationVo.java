@@ -10,8 +10,8 @@ public class ActivationVo implements Serializable {
     private String hardware;
 
     public ActivationVo(String activationCode, String hardware) {
-        this.activationCode = activationCode;
-        this.hardware = hardware;
+        this.setActivationCode(activationCode);
+        this.setHardware(hardware);
     }
 
     public String getActivationCode() {

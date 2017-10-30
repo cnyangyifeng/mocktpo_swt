@@ -29,7 +29,7 @@ import java.io.File;
 import java.net.URLDecoder;
 import java.util.ResourceBundle;
 
-public class TestPaperCard extends Composite {
+public class TestEditorCard extends Composite {
 
     /* Constants */
 
@@ -59,7 +59,7 @@ public class TestPaperCard extends Composite {
      * ==================================================
      */
 
-    public TestPaperCard(Composite parent, int style, String fileAlias) {
+    public TestEditorCard(Composite parent, int style, String fileAlias) {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
@@ -178,7 +178,7 @@ public class TestPaperCard extends Composite {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-                MyApplication.get().getWindow().toMainPageAndToTestPapersView();
+                MyApplication.get().getWindow().toMainPageAndToTestEditorNavContent();
             }
         }
     }

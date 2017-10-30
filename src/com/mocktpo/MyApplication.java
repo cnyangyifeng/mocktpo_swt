@@ -1,9 +1,9 @@
 package com.mocktpo;
 
-import com.mocktpo.util.AppLoader;
-import com.mocktpo.util.ResourceManager;
 import com.mocktpo.modules.system.windows.MainWindow;
 import com.mocktpo.modules.system.windows.SplashWindow;
+import com.mocktpo.util.AppLoader;
+import com.mocktpo.util.ResourceManager;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

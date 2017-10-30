@@ -27,7 +27,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ResourceBundle;
 
-public class TestStoreView extends Composite {
+public class TestStoreNavContent extends Composite {
 
     /* Logger and Messages */
 
@@ -52,7 +52,7 @@ public class TestStoreView extends Composite {
      * ==================================================
      */
 
-    public TestStoreView(Composite parent, int style) {
+    public TestStoreNavContent(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();

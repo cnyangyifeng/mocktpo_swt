@@ -248,7 +248,7 @@ public class TestReportPage extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
+            MyApplication.get().getWindow().toMainPageAndToTestReportNavContent();
         }
     }
 

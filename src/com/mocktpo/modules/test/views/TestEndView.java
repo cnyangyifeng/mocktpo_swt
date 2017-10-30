@@ -76,7 +76,7 @@ public class TestEndView extends ResponsiveTestView {
         public void mouseDown(MouseEvent e) {
             release();
             PersistenceUtils.saveToTestEnd(TestEndView.this);
-            MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
+            MyApplication.get().getWindow().toMainPageAndToTestReportNavContent();
         }
     }
 }

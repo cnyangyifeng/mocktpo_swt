@@ -261,10 +261,10 @@ public abstract class TestEditorLayer extends Composite {
                 int response = box.open();
                 if (response == SWT.YES) {
                     page.save();
-                    MyApplication.get().getWindow().toMainPageAndToTestPapersView();
+                    MyApplication.get().getWindow().toMainPageAndToTestEditorNavContent();
                 }
             } else {
-                MyApplication.get().getWindow().toMainPageAndToTestPapersView();
+                MyApplication.get().getWindow().toMainPageAndToTestEditorNavContent();
             }
         }
     }

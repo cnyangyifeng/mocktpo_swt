@@ -434,7 +434,7 @@ public class ReadingReviewView extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             release();
-            MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
+            MyApplication.get().getWindow().toMainPageAndToTestReportNavContent();
         }
     }
 

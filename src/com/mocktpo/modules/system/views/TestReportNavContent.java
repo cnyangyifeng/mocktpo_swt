@@ -1,6 +1,6 @@
 package com.mocktpo.modules.system.views;
 
-import com.mocktpo.modules.system.widgets.TestRecordCard;
+import com.mocktpo.modules.system.widgets.TestReportCard;
 import com.mocktpo.orm.domain.UserTestSession;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.constants.MT;
@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Display;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class TestRecordsView extends Composite {
+public class TestReportNavContent extends Composite {
 
     /* Logger and Messages */
 
@@ -44,7 +44,7 @@ public class TestRecordsView extends Composite {
      * ==================================================
      */
 
-    public TestRecordsView(Composite parent, int style) {
+    public TestReportNavContent(Composite parent, int style) {
         super(parent, style);
         this.d = parent.getDisplay();
         init();
@@ -100,7 +100,7 @@ public class TestRecordsView extends Composite {
     private void initCards() {
         List<UserTestSession> sessions = PersistenceUtils.findSessions();
         for (UserTestSession session : sessions) {
-            TestRecordCard card = new TestRecordCard(body, SWT.NONE, session);
+            TestReportCard card = new TestReportCard(body, SWT.NONE, session);
             GridDataSet.attach(card).fillHorizontal();
         }
         body.layout();

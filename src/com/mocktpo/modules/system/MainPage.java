@@ -1,9 +1,9 @@
 package com.mocktpo.modules.system;
 
-import com.mocktpo.modules.system.views.NewTestView;
-import com.mocktpo.modules.system.views.TestPapersView;
-import com.mocktpo.modules.system.views.TestRecordsView;
-import com.mocktpo.modules.system.views.TestStoreView;
+import com.mocktpo.modules.system.views.NewTestNavContent;
+import com.mocktpo.modules.system.views.TestEditorNavContent;
+import com.mocktpo.modules.system.views.TestReportNavContent;
+import com.mocktpo.modules.system.views.TestStoreNavContent;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -42,15 +42,15 @@ public class MainPage extends Composite {
 
     private Composite sidebar;
     private CLabel newTestLabel;
-    private CLabel testRecordsLabel;
-    private CLabel testPapersLabel;
+    private CLabel testReportLabel;
+    private CLabel testEditorLabel;
     private CLabel testStoreLabel;
 
     private Composite body;
-    private NewTestView newTestView;
-    private TestRecordsView testRecordsView;
-    private TestPapersView testPapersView;
-    private TestStoreView testStoreView;
+    private NewTestNavContent newTestView;
+    private TestReportNavContent testReportView;
+    private TestEditorNavContent testEditorView;
+    private TestStoreNavContent testStoreView;
 
     /*
      * ==================================================
@@ -104,13 +104,13 @@ public class MainPage extends Composite {
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("new_test"));
         newTestLabel.addMouseListener(new NewTestLabelMouseAdapter());
 
-        testRecordsLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(testRecordsLabel).atLeft().atTopTo(newTestLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("test_records"));
-        testRecordsLabel.addMouseListener(new TestRecordsLabelMouseAdapter());
+        testReportLabel = new CLabel(sidebar, SWT.NONE);
+        FormDataSet.attach(testReportLabel).atLeft().atTopTo(newTestLabel).atRight().withHeight(60);
+        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("test_reports"));
+        testReportLabel.addMouseListener(new TestReportLabelMouseAdapter());
 
         final CLabel storeSectionLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(storeSectionLabel).atLeft().atTopTo(testRecordsLabel).atRight().withHeight(60);
+        FormDataSet.attach(storeSectionLabel).atLeft().atTopTo(testReportLabel).atRight().withHeight(60);
         CLabelSet.decorate(storeSectionLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY60).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("store"));
 
         testStoreLabel = new CLabel(sidebar, SWT.NONE);
@@ -118,10 +118,10 @@ public class MainPage extends Composite {
         CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("test_store"));
         testStoreLabel.addMouseListener(new TestStoreLabelMouseAdapter());
 
-        testPapersLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(testPapersLabel).atLeft().atTopTo(testStoreLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("test_papers"));
-        testPapersLabel.addMouseListener(new TestPapersLabelMouseAdapter());
+        testEditorLabel = new CLabel(sidebar, SWT.NONE);
+        FormDataSet.attach(testEditorLabel).atLeft().atTopTo(testStoreLabel).atRight().withHeight(60);
+        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setLeftMargin(20).setText(msgs.getString("test_editor"));
+        testEditorLabel.addMouseListener(new TestEditorLabelMouseAdapter());
     }
 
     /*
@@ -150,57 +150,57 @@ public class MainPage extends Composite {
 
     public void toNewTestView() {
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_GRAY20);
-        CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_BLACK);
 
         if (newTestView == null) {
-            newTestView = new NewTestView(body, SWT.NONE);
+            newTestView = new NewTestNavContent(body, SWT.NONE);
         }
         newTestView.refreshCards();
         stack.topControl = newTestView;
         body.layout();
     }
 
-    public void toTestRecordsView() {
+    public void toTestReportView() {
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_GRAY20);
-        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_GRAY20);
+        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_BLACK);
 
-        if (testRecordsView == null) {
-            testRecordsView = new TestRecordsView(body, SWT.NONE);
+        if (testReportView == null) {
+            testReportView = new TestReportNavContent(body, SWT.NONE);
         }
-        testRecordsView.refreshCards();
-        stack.topControl = testRecordsView;
+        testReportView.refreshCards();
+        stack.topControl = testReportView;
         body.layout();
     }
 
     public void toTestStoreView() {
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_BLACK);
         CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_GRAY20);
 
         if (testStoreView == null) {
-            testStoreView = new TestStoreView(body, SWT.NONE);
+            testStoreView = new TestStoreNavContent(body, SWT.NONE);
         }
         testStoreView.refreshCards();
         stack.topControl = testStoreView;
         body.layout();
     }
 
-    public void toTestPapersView() {
+    public void toTestEditorView() {
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(testRecordsLabel).setBackground(MT.COLOR_BLACK);
-        CLabelSet.decorate(testPapersLabel).setBackground(MT.COLOR_GRAY20);
+        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_BLACK);
+        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_GRAY20);
         CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_BLACK);
 
-        if (testPapersView == null) {
-            testPapersView = new TestPapersView(body, SWT.NONE);
+        if (testEditorView == null) {
+            testEditorView = new TestEditorNavContent(body, SWT.NONE);
         }
-        testPapersView.refreshCards();
-        stack.topControl = testPapersView;
+        testEditorView.refreshCards();
+        stack.topControl = testEditorView;
         body.layout();
     }
 
@@ -228,11 +228,11 @@ public class MainPage extends Composite {
         }
     }
 
-    private class TestRecordsLabelMouseAdapter extends MouseAdapter {
+    private class TestReportLabelMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            toTestRecordsView();
+            toTestReportView();
         }
     }
 
@@ -244,11 +244,11 @@ public class MainPage extends Composite {
         }
     }
 
-    private class TestPapersLabelMouseAdapter extends MouseAdapter {
+    private class TestEditorLabelMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            toTestPapersView();
+            toTestEditorView();
         }
     }
 }

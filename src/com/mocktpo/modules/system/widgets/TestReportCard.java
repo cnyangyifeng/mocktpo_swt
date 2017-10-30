@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.MessageBox;
 
 import java.util.ResourceBundle;
 
-public class TestRecordCard extends Composite {
+public class TestReportCard extends Composite {
 
     /* Constants */
 
@@ -53,7 +53,7 @@ public class TestRecordCard extends Composite {
      * ==================================================
      */
 
-    public TestRecordCard(Composite parent, int style, UserTestSession userTestSession) {
+    public TestReportCard(Composite parent, int style, UserTestSession userTestSession) {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
@@ -190,7 +190,7 @@ public class TestRecordCard extends Composite {
             int response = box.open();
             if (response == SWT.YES) {
                 PersistenceUtils.deleteSession(userTestSession);
-                MyApplication.get().getWindow().toMainPageAndToTestRecordsView();
+                MyApplication.get().getWindow().toMainPageAndToTestReportNavContent();
             }
         }
     }
