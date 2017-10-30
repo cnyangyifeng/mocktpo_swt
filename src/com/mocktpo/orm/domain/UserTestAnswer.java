@@ -2,20 +2,20 @@ package com.mocktpo.orm.domain;
 
 public class UserTestAnswer {
 
-    private int sid;
+    private long sid;
     private int viewId;
     private int sectionType;
     private String answer;
 
-    public int getSid() {
+    public long getSid() {
         return sid;
     }
 
-    public void setSid(int sid) {
+    public void setSid(long sid) {
         this.sid = sid;
     }
 
-    public int getViewId() {
+    public long getViewId() {
         return viewId;
     }
 

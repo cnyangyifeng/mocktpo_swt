@@ -26,14 +26,9 @@ public class UserTestAnswerMapperTest {
     }
 
     @Test
-    public void testDrop() {
-        mapper.drop();
-    }
-
-    @Test
     public void testInsert() {
         UserTestAnswer userTestAnswer = new UserTestAnswer();
-        userTestAnswer.setSid(0);
+        userTestAnswer.setSid(0L);
         userTestAnswer.setViewId(1);
         userTestAnswer.setSectionType(ST.SECTION_TYPE_WRITING);
         userTestAnswer.setAnswer("Hello, TPO1.");

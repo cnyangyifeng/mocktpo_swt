@@ -8,19 +8,13 @@ public interface UserTestAnswerMapper {
 
     @Update({
             "CREATE TABLE IF NOT EXISTS MT_USER_TEST_ANSWER (",
-            "MT_SID INT,",
+            "MT_SID BIGINT,",
             "MT_VIEW_ID INT,",
             "MT_SECTION_TYPE INT,",
             "MT_ANSWER VARCHAR",
             ")"
     })
     void schema();
-
-
-    @Update({
-            "DROP TABLE MT_USER_TEST_ANSWER IF EXISTS"
-    })
-    void drop();
 
     @Insert({
             "INSERT INTO MT_USER_TEST_ANSWER (",

@@ -143,4 +143,20 @@ public class TestCard extends Composite {
             }
         }
     }
+
+    /*
+     * ==================================================
+     *
+     * Getters and Setters
+     *
+     * ==================================================
+     */
+
+    public String getFileAlias() {
+        return fileAlias;
+    }
+
+    public void setFileAlias(String fileAlias) {
+        this.fileAlias = fileAlias;
+    }
 }

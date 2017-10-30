@@ -26,6 +26,8 @@ public class TestVo implements Serializable {
     private int stars;
     private String creator;
     private long createdTime;
+    private long updatedTime;
+    private double version;
 
     public TestViewVo getViewVo(int viewId) {
         for (TestViewVo v : viewVos) {
@@ -82,6 +84,22 @@ public class TestVo implements Serializable {
 
     public void setCreatedTime(long createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public long getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(long updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
+    public double getVersion() {
+        return version;
+    }
+
+    public void setVersion(double version) {
+        this.version = version;
     }
 
     /*
@@ -196,6 +214,6 @@ public class TestVo implements Serializable {
 
     @Override
     public String toString() {
-        return "{\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nstars:" + this.getStars() + ",\ncreator:" + this.getCreator() + ",\ncreatedTime:" + this.getCreatedTime() + ",\nviewVos:" + this.getViewVos() + "\n}";
+        return "{\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nstars:" + this.getStars() + ",\ncreator:" + this.getCreator() + ",\ncreatedTime:" + this.getCreatedTime() + ",\nupdatedTime:" + this.getUpdatedTime() + ",\nversion:" + this.getVersion() + ",\nviewVos:" + this.getViewVos() + "\n}";
     }
 }

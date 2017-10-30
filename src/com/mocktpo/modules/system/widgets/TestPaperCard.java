@@ -49,7 +49,7 @@ public class TestPaperCard extends Composite {
     /* Properties */
 
     private String fileAlias;
-    private TestEditorVo testVo;
+    private TestEditorVo testEditorVo;
 
     /*
      * ==================================================
@@ -63,7 +63,7 @@ public class TestPaperCard extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
-        this.testVo = ConfigUtils.pullFromProject(fileAlias, TestEditorVo.class);
+        this.testEditorVo = ConfigUtils.pullFromProject(fileAlias, TestEditorVo.class);
         init();
     }
 
@@ -95,7 +95,7 @@ public class TestPaperCard extends Composite {
         FormDataSet.attach(titleLabel).atLeft().atTopTo(superscriptLabel, 10).withWidth(TITLE_WIDTH);
         CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(getTitle());
 
-        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testVo.getStars());
+        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testEditorVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
 
         final Label divider1 = new Label(header, SWT.NONE);
@@ -118,12 +118,28 @@ public class TestPaperCard extends Composite {
         FormDataSet.attach(createdTimePreLabel).atLeft().atTopTo(creatorPreLabel, 10);
         CLabelSet.decorate(createdTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("created_at"));
 
-        final CLabel createTimeLabel = new CLabel(body, SWT.NONE);
-        FormDataSet.attach(createTimeLabel).atLeftTo(createdTimePreLabel, 10).atTopTo(createdTimePreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(createTimeLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(getCreatedTime());
+        final CLabel createdTimeLabel = new CLabel(body, SWT.NONE);
+        FormDataSet.attach(createdTimeLabel).atLeftTo(createdTimePreLabel, 10).atTopTo(createdTimePreLabel, 0, SWT.TOP).atRight();
+        CLabelSet.decorate(createdTimeLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(getCreatedTime());
+
+        final CLabel updatedTimePreLabel = new CLabel(body, SWT.NONE);
+        FormDataSet.attach(updatedTimePreLabel).atLeft().atTopTo(createdTimePreLabel, 10);
+        CLabelSet.decorate(updatedTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("updated_at"));
+
+        final CLabel updatedTimeLabel = new CLabel(body, SWT.NONE);
+        FormDataSet.attach(updatedTimeLabel).atLeftTo(updatedTimePreLabel, 10).atTopTo(updatedTimePreLabel, 0, SWT.TOP).atRight();
+        CLabelSet.decorate(updatedTimeLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(getUpdatedTime());
+
+        final CLabel versionPreLabel = new CLabel(body, SWT.NONE);
+        FormDataSet.attach(versionPreLabel).atLeft().atTopTo(updatedTimePreLabel, 10);
+        CLabelSet.decorate(versionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("version"));
+
+        final CLabel versionLabel = new CLabel(body, SWT.NONE);
+        FormDataSet.attach(versionLabel).atLeftTo(versionPreLabel, 10).atTopTo(versionPreLabel, 0, SWT.TOP).atRight();
+        CLabelSet.decorate(versionLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(Double.toString(getVersion()));
 
         final Label divider2 = new Label(body, SWT.NONE);
-        FormDataSet.attach(divider2).atLeft().atTopTo(createdTimePreLabel, 10).atRight().withHeight(1);
+        FormDataSet.attach(divider2).atLeft().atTopTo(versionPreLabel, 10).atRight().withHeight(1);
         LabelSet.decorate(divider2).setBackground(MT.COLOR_WHITE_SMOKE);
 
         final Composite footer = new Composite(this, SWT.NONE);
@@ -171,7 +187,7 @@ public class TestPaperCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toTestEditorPage(testVo);
+            MyApplication.get().getWindow().toTestEditorPage(testEditorVo);
         }
     }
 
@@ -179,7 +195,7 @@ public class TestPaperCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toTestEditorPage(testVo);
+            MyApplication.get().getWindow().toTestEditorPage(testEditorVo);
         }
     }
 
@@ -200,7 +216,7 @@ public class TestPaperCard extends Composite {
     }
 
     private String getTitle() {
-        String title = testVo.getTitle();
+        String title = testEditorVo.getTitle();
         if (StringUtils.isEmpty(title)) {
             title = msgs.getString("untitled");
         }
@@ -208,19 +224,37 @@ public class TestPaperCard extends Composite {
     }
 
     public String getCreator() {
-        String creator = testVo.getCreator();
+        String creator = testEditorVo.getCreator();
         if (StringUtils.isEmpty(creator)) {
-            creator = msgs.getString("anonymous");
+            creator = msgs.getString("unknown");
         }
         return creator;
     }
 
     public String getCreatedTime() {
-        long createdTime = testVo.getCreatedTime();
+        long createdTime = testEditorVo.getCreatedTime();
         if (createdTime == 0) {
             return msgs.getString("unknown");
         } else {
             return TimeUtils.displayClockTime(createdTime);
+        }
+    }
+
+    public String getUpdatedTime() {
+        long updatedTime = testEditorVo.getUpdatedTime();
+        if (updatedTime == 0) {
+            return msgs.getString("unknown");
+        } else {
+            return TimeUtils.displayClockTime(updatedTime);
+        }
+    }
+
+    public double getVersion() {
+        double version = testEditorVo.getVersion();
+        if (version == 0) {
+            return 1.0;
+        } else {
+            return version;
         }
     }
 }

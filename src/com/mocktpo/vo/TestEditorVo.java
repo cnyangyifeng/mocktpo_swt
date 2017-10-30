@@ -27,6 +27,8 @@ public class TestEditorVo implements Serializable {
     private int stars;
     private String creator;
     private long createdTime;
+    private long updatedTime;
+    private double version;
 
     public List<TestViewVo> getReadingViewVos() {
         return readingViewVos;
@@ -100,8 +102,19 @@ public class TestEditorVo implements Serializable {
         this.createdTime = createdTime;
     }
 
-    @Override
-    public String toString() {
-        return "{\ntid:" + this.getTid() + ",\ntitle:" + this.getTitle() + ",\nstars:" + this.getStars() + ",\ncreator:" + this.getCreator() + ",\ncreatedTime:" + this.getCreatedTime() + ",\nreadingViewVos:" + this.getReadingViewVos() + ",\nlisteningViewVos:" + this.getListeningViewVos() + ",\nspeakingViewVos:" + this.getSpeakingViewVos() + ",\nwritingViewVos:" + this.getWritingViewVos() + "\n}";
+    public long getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(long updatedTime) {
+        this.updatedTime = updatedTime;
+    }
+
+    public double getVersion() {
+        return version;
+    }
+
+    public void setVersion(double version) {
+        this.version = version;
     }
 }

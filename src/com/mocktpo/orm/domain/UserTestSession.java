@@ -6,7 +6,7 @@ import com.mocktpo.vo.TestViewVo;
 
 public class UserTestSession {
 
-    private int sid;
+    private long sid;
     private String tid;
     private String title;
     private String fileAlias;
@@ -34,11 +34,11 @@ public class UserTestSession {
     private int totalViewCount;
     private boolean testComplete;
 
-    public int getSid() {
+    public long getSid() {
         return sid;
     }
 
-    public void setSid(int sid) {
+    public void setSid(long sid) {
         this.sid = sid;
     }
 

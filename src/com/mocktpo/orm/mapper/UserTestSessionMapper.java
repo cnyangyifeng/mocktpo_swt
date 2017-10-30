@@ -9,8 +9,8 @@ public interface UserTestSessionMapper {
 
     @Update({
             "CREATE TABLE IF NOT EXISTS MT_USER_TEST_SESSION (",
-            "MT_SID INT PRIMARY KEY AUTO_INCREMENT,",
-            "MT_TID UUID,",
+            "MT_SID BIGINT PRIMARY KEY AUTO_INCREMENT,",
+            "MT_TID CHAR(32),",
             "MT_TITLE VARCHAR(64),",
             "MT_FILE_ALIAS VARCHAR(64),",
             "MT_STARS INT,",
@@ -39,11 +39,6 @@ public interface UserTestSessionMapper {
             ")"
     })
     void schema();
-
-    @Update({
-            "DROP TABLE MT_USER_TEST_SESSION IF EXISTS"
-    })
-    void drop();
 
     @Insert({
             "INSERT INTO MT_USER_TEST_SESSION (",

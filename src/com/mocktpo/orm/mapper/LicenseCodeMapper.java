@@ -17,12 +17,6 @@ public interface LicenseCodeMapper {
     })
     void schema();
 
-
-    @Update({
-            "DROP TABLE MT_LICENSE_CODE IF EXISTS"
-    })
-    void drop();
-
     @Insert({
             "INSERT INTO MT_LICENSE_CODE (",
             "MT_CONTENT",

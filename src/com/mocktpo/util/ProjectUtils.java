@@ -101,6 +101,8 @@ public class ProjectUtils {
         testVo.setStars(testEditorVo.getStars());
         testVo.setCreator(testEditorVo.getCreator());
         testVo.setCreatedTime(testEditorVo.getCreatedTime());
+        testVo.setCreatedTime(testEditorVo.getUpdatedTime());
+        testVo.setVersion(testEditorVo.getVersion());
         List<TestViewVo> readingViewVos = testEditorVo.getReadingViewVos();
         List<TestViewVo> listeningViewVos = testEditorVo.getListeningViewVos();
         List<TestViewVo> speakingViewVos = testEditorVo.getSpeakingViewVos();
