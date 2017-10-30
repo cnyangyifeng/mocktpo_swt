@@ -87,8 +87,7 @@ public class LingoesLd2Reader {
 
     private static void extract(final String inflatedFile, final String indexFile,
                                 final String extractedWordsFile, final String extractedXmlFile, final String extractedOutputFile,
-                                final int[] idxArray, final int offsetDefs, final int offsetXml) throws IOException, FileNotFoundException,
-            UnsupportedEncodingException {
+                                final int[] idxArray, final int offsetDefs, final int offsetXml) throws IOException {
         System.out.println("写入'" + extractedOutputFile + "'。。。");
 
         FileWriter indexWriter = new FileWriter(indexFile);
@@ -214,7 +213,7 @@ public class LingoesLd2Reader {
     }
 
     private static void readDictionary(final String ld2File, final ByteBuffer dataRawBytes,
-                                       final int offsetWithIndex) throws IOException, FileNotFoundException, UnsupportedEncodingException {
+                                       final int offsetWithIndex) throws IOException {
         System.out.println("词典类型：0x" + Integer.toHexString(dataRawBytes.getInt(offsetWithIndex)));
         int limit = dataRawBytes.getInt(offsetWithIndex + 4) + offsetWithIndex + 8;
         int offsetIndex = offsetWithIndex + 0x1C;

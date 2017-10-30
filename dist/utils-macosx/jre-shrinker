@@ -10,6 +10,7 @@ mv $JRE_DIR/java $JRE_DIR/bin
 rm -rf $JRE_DIR/lib/applet
 rm -rf $JRE_DIR/lib/calendars.properties
 rm -rf $JRE_DIR/lib/charsets.jar
+rm -rf $JRE_DIR/lib/content-types.properties
 rm -rf $JRE_DIR/lib/ext
 rm -rf $JRE_DIR/lib/flavormap.properties
 rm -rf $JRE_DIR/lib/fontconfig*
@@ -37,4 +38,5 @@ rm -rf $JRE_DIR/lib/libprism_es2.dylib
 rm -rf $JRE_DIR/lib/libprism_sw.dylib
 rm -rf $JRE_DIR/lib/management
 rm -rf $JRE_DIR/lib/management-agent.jar
+rm -rf $JRE_DIR/lib/psfontj2d.properties
 echo "Done."

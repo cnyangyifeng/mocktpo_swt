@@ -245,12 +245,7 @@ public class ListeningMultipleResponseQuestionView extends ResponsiveTestView {
     @Override
     public void startAudioAsyncExecution() {
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    timerButton.setEnabled(false);
-                }
-            });
+            d.asyncExec(() -> timerButton.setEnabled(false));
         }
         listener = new AudioAsyncExecutionListener();
         audioPlayer.addPropertyChangeListener(listener);
@@ -513,24 +508,21 @@ public class ListeningMultipleResponseQuestionView extends ResponsiveTestView {
         public void propertyChange(PropertyChangeEvent e) {
             if (audioPlayer.isStopped()) {
                 if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
-                            nextOvalButton.setEnabled(true);
-                            okOvalButton.setEnabled(false);
-                            StyledTextSet.decorate(tipsTextWidget).setVisible(true);
-                            LabelSet.decorate(boxLabelA).setVisible(true);
-                            LabelSet.decorate(choiceLabelA).setVisible(true);
-                            LabelSet.decorate(boxLabelB).setVisible(true);
-                            LabelSet.decorate(choiceLabelB).setVisible(true);
-                            LabelSet.decorate(boxLabelC).setVisible(true);
-                            LabelSet.decorate(choiceLabelC).setVisible(true);
-                            LabelSet.decorate(boxLabelD).setVisible(true);
-                            LabelSet.decorate(choiceLabelD).setVisible(true);
-                            if (vo.getTotalAnswerCount() == 3) {
-                                LabelSet.decorate(checkLabelE).setVisible(true);
-                                LabelSet.decorate(choiceLabelE).setVisible(true);
-                            }
+                    d.asyncExec(() -> {
+                        nextOvalButton.setEnabled(true);
+                        okOvalButton.setEnabled(false);
+                        StyledTextSet.decorate(tipsTextWidget).setVisible(true);
+                        LabelSet.decorate(boxLabelA).setVisible(true);
+                        LabelSet.decorate(choiceLabelA).setVisible(true);
+                        LabelSet.decorate(boxLabelB).setVisible(true);
+                        LabelSet.decorate(choiceLabelB).setVisible(true);
+                        LabelSet.decorate(boxLabelC).setVisible(true);
+                        LabelSet.decorate(choiceLabelC).setVisible(true);
+                        LabelSet.decorate(boxLabelD).setVisible(true);
+                        LabelSet.decorate(choiceLabelD).setVisible(true);
+                        if (vo.getTotalAnswerCount() == 3) {
+                            LabelSet.decorate(checkLabelE).setVisible(true);
+                            LabelSet.decorate(choiceLabelE).setVisible(true);
                         }
                     });
                 }
@@ -545,12 +537,7 @@ public class ListeningMultipleResponseQuestionView extends ResponsiveTestView {
                  */
                 if (vo.isTimerTaskDelayed()) {
                     if (!d.isDisposed()) {
-                        d.asyncExec(new Runnable() {
-                            @Override
-                            public void run() {
-                                timerButton.setEnabled(true);
-                            }
-                        });
+                        d.asyncExec(() -> timerButton.setEnabled(true));
                     }
                     countDown = page.getUserTestSession().getRemainingViewTime(vo);
                     timer = new Timer();

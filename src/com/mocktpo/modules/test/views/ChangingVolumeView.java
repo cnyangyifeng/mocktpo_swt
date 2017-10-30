@@ -1,17 +1,19 @@
 package com.mocktpo.modules.test.views;
 
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
-import com.mocktpo.util.*;
+import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.util.PersistenceUtils;
+import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.constants.LC;
 import com.mocktpo.util.constants.MT;
-import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
-import com.mocktpo.util.widgets.*;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.util.widgets.CompositeSet;
+import com.mocktpo.util.widgets.StyleRangeUtils;
+import com.mocktpo.util.widgets.StyledTextSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.MouseAdapter;

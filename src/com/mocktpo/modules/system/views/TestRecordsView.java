@@ -93,9 +93,7 @@ public class TestRecordsView extends Composite {
             c.dispose();
         }
         if (!d.isDisposed()) {
-            d.asyncExec(() -> {
-                initCards();
-            });
+            d.asyncExec(this::initCards);
         }
     }
 

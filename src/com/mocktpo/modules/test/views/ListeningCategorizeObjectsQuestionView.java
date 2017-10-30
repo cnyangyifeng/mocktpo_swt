@@ -2,7 +2,10 @@ package com.mocktpo.modules.test.views;
 
 import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.modules.system.listeners.StyledTextPaintImageListener;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.test.TestPage;
+import com.mocktpo.modules.test.widgets.VolumeControl;
+import com.mocktpo.modules.test.windows.RequiredAnswerWindow;
 import com.mocktpo.util.PersistenceUtils;
 import com.mocktpo.util.ScreenUtils;
 import com.mocktpo.util.constants.LC;
@@ -11,9 +14,6 @@ import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.layout.GridDataSet;
 import com.mocktpo.util.widgets.*;
-import com.mocktpo.modules.system.widgets.ImageButton;
-import com.mocktpo.modules.test.widgets.VolumeControl;
-import com.mocktpo.modules.test.windows.RequiredAnswerWindow;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -297,12 +297,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
     @Override
     public void startAudioAsyncExecution() {
         if (!d.isDisposed()) {
-            d.asyncExec(new Runnable() {
-                @Override
-                public void run() {
-                    timerButton.setEnabled(false);
-                }
-            });
+            d.asyncExec(() -> timerButton.setEnabled(false));
         }
         listener = new AudioAsyncExecutionListener();
         audioPlayer.addPropertyChangeListener(listener);
@@ -470,14 +465,11 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
         public void propertyChange(PropertyChangeEvent e) {
             if (audioPlayer.isStopped()) {
                 if (!d.isDisposed()) {
-                    d.asyncExec(new Runnable() {
-                        @Override
-                        public void run() {
-                            nextOvalButton.setEnabled(true);
-                            okOvalButton.setEnabled(false);
-                            StyledTextSet.decorate(tipsTextWidget).setVisible(true);
-                            ac.setVisible(true);
-                        }
+                    d.asyncExec(() -> {
+                        nextOvalButton.setEnabled(true);
+                        okOvalButton.setEnabled(false);
+                        StyledTextSet.decorate(tipsTextWidget).setVisible(true);
+                        ac.setVisible(true);
                     });
                 }
                 /*
@@ -491,12 +483,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
                  */
                 if (vo.isTimerTaskDelayed()) {
                     if (!d.isDisposed()) {
-                        d.asyncExec(new Runnable() {
-                            @Override
-                            public void run() {
-                                timerButton.setEnabled(true);
-                            }
-                        });
+                        d.asyncExec(() -> timerButton.setEnabled(true));
                     }
                     countDown = page.getUserTestSession().getRemainingViewTime(vo);
                     timer = new Timer();
