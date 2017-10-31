@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Label;
 
 import java.util.ResourceBundle;
 
-public class TestEditorCard extends Composite {
+public class TestViewEditorCard extends Composite {
 
     /* Constants */
 
@@ -67,7 +67,7 @@ public class TestEditorCard extends Composite {
      * ==================================================
      */
 
-    public TestEditorCard(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
+    public TestViewEditorCard(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
         super(layer.getLeftBody(), style);
         this.layer = layer;
         initViewVo(viewVo);
@@ -253,7 +253,7 @@ public class TestEditorCard extends Composite {
      * ==================================================
      */
 
-    public boolean isChecked() {
+    private boolean isChecked() {
         return checked;
     }
 

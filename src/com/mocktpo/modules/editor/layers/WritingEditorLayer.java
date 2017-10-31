@@ -3,7 +3,7 @@ package com.mocktpo.modules.editor.layers;
 import com.mocktpo.MyApplication;
 import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.modules.editor.views.*;
-import com.mocktpo.modules.editor.widgets.TestEditorCard;
+import com.mocktpo.modules.editor.widgets.TestViewEditorCard;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.util.TestViewVoUtils;
 import com.mocktpo.util.constants.MT;
@@ -227,7 +227,7 @@ public class WritingEditorLayer extends SashTestEditorLayer {
 
         cards.clear();
         for (TestViewVo viewVo : viewVos) {
-            TestEditorCard card = new TestEditorCard(this, SWT.NONE, viewVo);
+            TestViewEditorCard card = new TestViewEditorCard(this, SWT.NONE, viewVo);
             GridDataSet.attach(card).fillHorizontal();
             cards.add(card);
         }

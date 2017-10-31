@@ -162,7 +162,7 @@ public class RemoteTestCard extends Composite {
         return title;
     }
 
-    public String getCreator() {
+    private String getCreator() {
         String creator = testVo.getCreator();
         if (StringUtils.isEmpty(creator)) {
             creator = msgs.getString("unknown");
@@ -170,7 +170,7 @@ public class RemoteTestCard extends Composite {
         return creator;
     }
 
-    public double getVersion() {
+    private double getVersion() {
         double version = testVo.getVersion();
         if (version == 0) {
             return 1.0;

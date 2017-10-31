@@ -2,7 +2,7 @@ package com.mocktpo.modules.editor.layers;
 
 import com.mocktpo.modules.editor.TestEditorPage;
 import com.mocktpo.modules.editor.views.TestEditorView;
-import com.mocktpo.modules.editor.widgets.TestEditorCard;
+import com.mocktpo.modules.editor.widgets.TestViewEditorCard;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -31,7 +31,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     protected Composite left;
     protected ScrolledComposite lsc;
     protected Composite leftBody;
-    protected List<TestEditorCard> cards;
+    protected List<TestViewEditorCard> cards;
 
     protected Composite right;
     protected StackLayout rightViewStack;
@@ -123,7 +123,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
     protected abstract void updateRight();
 
     public void updateDescription(String text) {
-        TestEditorCard card = cards.get(currentViewId);
+        TestViewEditorCard card = cards.get(currentViewId);
         card.updateDescription(text);
     }
 
@@ -151,10 +151,10 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
     public void check(int viewId) {
         if (viewId >= 0) {
-            TestEditorCard previousCard = cards.get(currentViewId);
+            TestViewEditorCard previousCard = cards.get(currentViewId);
             previousCard.setChecked(false);
             currentViewId = viewId;
-            TestEditorCard currentCard = cards.get(currentViewId);
+            TestViewEditorCard currentCard = cards.get(currentViewId);
             currentCard.setChecked(true);
 
             rightViewStack.topControl = views.get(currentViewId);
