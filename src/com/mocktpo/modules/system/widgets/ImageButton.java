@@ -10,7 +10,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 
 import java.util.ResourceBundle;
 
@@ -20,10 +19,6 @@ public class ImageButton extends Composite {
 
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
-
-    /* Display and Application */
-
-    private Display d;
 
     /* Widgets */
 
@@ -49,7 +44,6 @@ public class ImageButton extends Composite {
 
     public ImageButton(Composite parent, int style, Image normal, Image hover, Image disabled) {
         super(parent, style);
-        this.d = parent.getDisplay();
         this.normal = normal;
         this.hover = hover;
         this.disabled = disabled;

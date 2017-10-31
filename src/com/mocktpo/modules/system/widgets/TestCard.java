@@ -19,7 +19,6 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 
@@ -35,10 +34,6 @@ public class TestCard extends Composite {
 
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
-
-    /* Display */
-
-    private Display d;
 
     /* Widgets */
 
@@ -59,7 +54,6 @@ public class TestCard extends Composite {
 
     public TestCard(Composite parent, int style, String fileAlias) {
         super(parent, style);
-        this.d = parent.getDisplay();
         this.fileAlias = fileAlias;
         this.testVo = ConfigUtils.pullFromTest(fileAlias, TestVo.class);
         init();

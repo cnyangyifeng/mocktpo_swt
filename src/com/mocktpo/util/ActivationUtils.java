@@ -22,6 +22,8 @@ public class ActivationUtils {
             if ((lic = new License()).loadKeyRing(path + RC.PUBRING_FILE, null).setLicenseEncoded(encodedText).isVerified()) {
                 String licensedHardware = lic.getFeature("hardware");
                 String hardware = HardwareBinderUtils.uuid();
+                logger.debug("licensed hardware: {}", licensedHardware);
+                logger.debug("hardware: {}", hardware);
                 if (hardware != null && hardware.equals(licensedHardware)) {
                     licensed = true;
                 }

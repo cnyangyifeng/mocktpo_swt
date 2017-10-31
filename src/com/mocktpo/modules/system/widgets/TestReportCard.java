@@ -18,7 +18,6 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 
@@ -37,10 +36,6 @@ public class TestReportCard extends Composite {
     protected static final Logger logger = LogManager.getLogger();
     protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
-    /* Display */
-
-    private Display d;
-
     /* Properties */
 
     private UserTestSession userTestSession;
@@ -55,7 +50,6 @@ public class TestReportCard extends Composite {
 
     public TestReportCard(Composite parent, int style, UserTestSession userTestSession) {
         super(parent, style);
-        this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
         init();
     }
@@ -119,7 +113,7 @@ public class TestReportCard extends Composite {
         if (userTestSession.isTestComplete() || selection > 100) {
             selection = 100;
         }
-        final TestRecordProgressBar progressBar = new TestRecordProgressBar(body, SWT.NONE, PROGRESS_BAR_WIDTH, PROGRESS_BAR_HEIGHT, selection);
+        final TestReportProgressBar progressBar = new TestReportProgressBar(body, SWT.NONE, PROGRESS_BAR_WIDTH, PROGRESS_BAR_HEIGHT, selection);
         FormDataSet.attach(progressBar).atLeft().atTopTo(progressLabel, 10);
 
         final CLabel selectionLabel = new CLabel(body, SWT.NONE);

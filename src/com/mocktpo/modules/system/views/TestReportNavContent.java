@@ -83,7 +83,7 @@ public class TestReportNavContent extends Composite {
     /*
      * ==================================================
      *
-     * Test Record Card Operations
+     * Test Report Card Operations
      *
      * ==================================================
      */

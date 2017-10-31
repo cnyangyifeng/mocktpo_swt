@@ -206,9 +206,8 @@ public class RegisterWindow {
                 int httpStatus = c.getResponseCode();
                 switch (httpStatus) {
                     case HTTP_STATUS_OK:
-                        logger.info("Http status: OK");
                     case HTTP_STATUS_ACCEPTED:
-                        logger.info("Http status: Accepted");
+                        logger.info("Http status: OK/Accepted");
                         String data = JSON.parseObject(c.getInputStream(), String.class);
                         logger.info("License code:\n{}", data);
                         if (ActivationUtils.isLicensed(data)) {
