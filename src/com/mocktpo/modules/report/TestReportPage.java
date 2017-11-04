@@ -35,8 +35,8 @@ public class TestReportPage extends Composite {
     /* Constants */
 
     private static final int TITLE_WIDTH = 300;
-    private static final int SECTION_LABEL_WIDTH = 90;
-    private static final int SECTION_LABEL_HEIGHT = 30;
+    private static final int TAB_LABEL_WIDTH = 90;
+    private static final int TAB_LABEL_HEIGHT = 30;
 
     /* Logger and Messages */
 
@@ -135,24 +135,24 @@ public class TestReportPage extends Composite {
         CLabelSet.decorate(startTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("start_time"));
 
         readingLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(readingLabel).fromLeft(50, -SECTION_LABEL_WIDTH * 2).atTopTo(titleLabel, 10).withWidth(SECTION_LABEL_WIDTH).withHeight(SECTION_LABEL_HEIGHT);
+        FormDataSet.attach(readingLabel).fromLeft(50, -TAB_LABEL_WIDTH * 2).atTopTo(titleLabel, 10).withWidth(TAB_LABEL_WIDTH).withHeight(TAB_LABEL_HEIGHT);
         CLabelSet.decorate(readingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
-        readingLabel.addMouseListener(new SectionTabItemMouseAdapter());
+        readingLabel.addMouseListener(new TabLabelMouseAdapter());
 
         listeningLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(listeningLabel).fromLeft(50, -SECTION_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(SECTION_LABEL_WIDTH).withHeight(SECTION_LABEL_HEIGHT);
+        FormDataSet.attach(listeningLabel).fromLeft(50, -TAB_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(TAB_LABEL_WIDTH).withHeight(TAB_LABEL_HEIGHT);
         CLabelSet.decorate(listeningLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("listening"));
-        listeningLabel.addMouseListener(new SectionTabItemMouseAdapter());
+        listeningLabel.addMouseListener(new TabLabelMouseAdapter());
 
         speakingLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(speakingLabel).fromLeft(50).atTopTo(readingLabel, 0, SWT.TOP).withWidth(SECTION_LABEL_WIDTH).withHeight(SECTION_LABEL_HEIGHT);
+        FormDataSet.attach(speakingLabel).fromLeft(50).atTopTo(readingLabel, 0, SWT.TOP).withWidth(TAB_LABEL_WIDTH).withHeight(TAB_LABEL_HEIGHT);
         CLabelSet.decorate(speakingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("speaking"));
-        speakingLabel.addMouseListener(new SectionTabItemMouseAdapter());
+        speakingLabel.addMouseListener(new TabLabelMouseAdapter());
 
         writingLabel = new CLabel(header, SWT.NONE);
-        FormDataSet.attach(writingLabel).fromLeft(50, SECTION_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(SECTION_LABEL_WIDTH).withHeight(SECTION_LABEL_HEIGHT);
+        FormDataSet.attach(writingLabel).fromLeft(50, TAB_LABEL_WIDTH).atTopTo(readingLabel, 0, SWT.TOP).withWidth(TAB_LABEL_WIDTH).withHeight(TAB_LABEL_HEIGHT);
         CLabelSet.decorate(writingLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("writing"));
-        writingLabel.addMouseListener(new SectionTabItemMouseAdapter());
+        writingLabel.addMouseListener(new TabLabelMouseAdapter());
     }
 
     /*
@@ -286,7 +286,7 @@ public class TestReportPage extends Composite {
         }
     }
 
-    private class SectionTabItemMouseAdapter extends MouseAdapter {
+    private class TabLabelMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {

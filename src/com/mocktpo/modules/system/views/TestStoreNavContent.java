@@ -1,22 +1,22 @@
 package com.mocktpo.modules.system.views;
 
 import com.mocktpo.MyApplication;
+import com.mocktpo.modules.report.TestReportPage;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.system.widgets.RemoteTestCard;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.ImportUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
-import com.mocktpo.util.layout.FormDataSet;
-import com.mocktpo.util.layout.FormLayoutSet;
-import com.mocktpo.util.layout.GridDataSet;
-import com.mocktpo.util.layout.GridLayoutSet;
+import com.mocktpo.util.layout.*;
+import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
@@ -28,6 +28,11 @@ import java.net.URLDecoder;
 import java.util.ResourceBundle;
 
 public class TestStoreNavContent extends Composite {
+
+    /* Constants */
+
+    private static final int TAG_LABEL_WIDTH = 90;
+    private static final int TAG_LABEL_HEIGHT = 30;
 
     /* Logger and Messages */
 
@@ -80,27 +85,18 @@ public class TestStoreNavContent extends Composite {
         toolBar = new Composite(this, SWT.NONE);
         FormDataSet.attach(toolBar).atLeft().atTop().atRight();
         CompositeSet.decorate(toolBar).setBackground(MT.COLOR_WHITE_SMOKE);
-        FormLayoutSet.layout(toolBar).marginWidth(20).marginHeight(10).spacing(0);
+        RowLayoutSet.layout(toolBar).marginWidth(20).marginHeight(10).spacing(10);
 
         final Label divider = new Label(this, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final ImageButton category1Button = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
-        FormDataSet.attach(category1Button).atLeft().atTop();
-        category1Button.addMouseListener(new ImportButtonMouseAdapter());
-
-        final ImageButton category2Button = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
-        FormDataSet.attach(category2Button).atLeftTo(category1Button).atTop();
-        category2Button.addMouseListener(new ImportButtonMouseAdapter());
-
-        final ImageButton category3Button = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
-        FormDataSet.attach(category3Button).atLeftTo(category2Button).atTop();
-        category3Button.addMouseListener(new ImportButtonMouseAdapter());
-
-        final ImageButton category4Button = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
-        FormDataSet.attach(category4Button).atLeftTo(category3Button).atTop();
-        category4Button.addMouseListener(new ImportButtonMouseAdapter());
+        for (int i = 0; i < 4; i++) {
+            final CLabel tagLabel = new CLabel(toolBar, SWT.NONE);
+            RowDataSet.attach(tagLabel).withWidth(TAG_LABEL_WIDTH).withHeight(TAG_LABEL_HEIGHT);
+            CLabelSet.decorate(tagLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
+            tagLabel.addMouseListener(new TagLabelMouseAdapter());
+        }
     }
 
     /*
@@ -168,18 +164,19 @@ public class TestStoreNavContent extends Composite {
      * ==================================================
      */
 
-    private class ImportButtonMouseAdapter extends MouseAdapter {
+    private class TagLabelMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.OPEN);
-            dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
-            dialog.setFilterExtensions(new String[]{"*.zip"});
-            String fullSrcZipFileName = dialog.open();
-            ImportUtils.unzip(fullSrcZipFileName);
-            String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(fullSrcZipFileName));
-            if (fileAlias != null) {
-                refreshCards();
+            String text = ((CLabel) e.widget).getText();
+            if (msgs.getString("reading").equals(text)) {
+                // toReadingReportView();
+            } else if (msgs.getString("listening").equals(text)) {
+                // toListeningReportView();
+            } else if (msgs.getString("speaking").equals(text)) {
+                // toSpeakingReportView();
+            } else if (msgs.getString("writing").equals(text)) {
+                // toWritingReportView();
             }
         }
     }
