@@ -1,18 +1,13 @@
 package com.mocktpo.modules.system.views;
 
-import com.mocktpo.MyApplication;
-import com.mocktpo.modules.report.TestReportPage;
-import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.system.widgets.RemoteTestCard;
 import com.mocktpo.util.ConfigUtils;
-import com.mocktpo.util.ImportUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.constants.RC;
 import com.mocktpo.util.layout.*;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -20,7 +15,10 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.widgets.*;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 
 import java.io.File;
 import java.net.URL;

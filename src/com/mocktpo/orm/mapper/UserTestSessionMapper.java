@@ -10,7 +10,7 @@ public interface UserTestSessionMapper {
     @Update({
             "CREATE TABLE IF NOT EXISTS MT_USER_TEST_SESSION (",
             "MT_SID BIGINT PRIMARY KEY AUTO_INCREMENT,",
-            "MT_TID CHAR(32),",
+            "MT_TID CHAR(33),",
             "MT_TITLE VARCHAR(64),",
             "MT_FILE_ALIAS VARCHAR(64),",
             "MT_STARS INT,",
