@@ -86,9 +86,21 @@ public class TestStoreNavContent extends Composite {
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final ImageButton importButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
-        FormDataSet.attach(importButton).atLeft().atTop();
-        importButton.addMouseListener(new ImportButtonMouseAdapter());
+        final ImageButton category1Button = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
+        FormDataSet.attach(category1Button).atLeft().atTop();
+        category1Button.addMouseListener(new ImportButtonMouseAdapter());
+
+        final ImageButton category2Button = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
+        FormDataSet.attach(category2Button).atLeftTo(category1Button).atTop();
+        category2Button.addMouseListener(new ImportButtonMouseAdapter());
+
+        final ImageButton category3Button = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
+        FormDataSet.attach(category3Button).atLeftTo(category2Button).atTop();
+        category3Button.addMouseListener(new ImportButtonMouseAdapter());
+
+        final ImageButton category4Button = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
+        FormDataSet.attach(category4Button).atLeftTo(category3Button).atTop();
+        category4Button.addMouseListener(new ImportButtonMouseAdapter());
     }
 
     /*
