@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Display;
 
 import java.util.ResourceBundle;
 
-public abstract class TestEditorView extends Composite {
+public abstract class TestViewEditorView extends Composite {
 
     /* Logger and Messages */
 
@@ -39,7 +39,7 @@ public abstract class TestEditorView extends Composite {
      * ==================================================
      */
 
-    public TestEditorView(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
+    public TestViewEditorView(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
         super(layer.getRight(), style);
         this.d = layer.getDisplay();
         this.layer = layer;

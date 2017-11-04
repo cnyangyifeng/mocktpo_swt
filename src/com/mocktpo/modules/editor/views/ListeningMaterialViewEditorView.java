@@ -18,7 +18,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 
-public class ListeningReplayEditorView extends SashTestEditorView {
+public class ListeningMaterialViewEditorView extends SashTestViewEditorView {
 
     /* Widgets */
 
@@ -35,7 +35,7 @@ public class ListeningReplayEditorView extends SashTestEditorView {
      * ==================================================
      */
 
-    public ListeningReplayEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
+    public ListeningMaterialViewEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
         super(layer, style, vo);
     }
 

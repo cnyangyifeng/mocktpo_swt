@@ -1,7 +1,7 @@
 package com.mocktpo.modules.editor.layers;
 
 import com.mocktpo.modules.editor.TestEditorPage;
-import com.mocktpo.modules.editor.views.TestEditorView;
+import com.mocktpo.modules.editor.views.TestViewEditorView;
 import com.mocktpo.modules.editor.widgets.TestViewEditorCard;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
@@ -35,7 +35,7 @@ public abstract class SashTestEditorLayer extends TestEditorLayer {
 
     protected Composite right;
     protected StackLayout rightViewStack;
-    protected List<TestEditorView> views;
+    protected List<TestViewEditorView> views;
 
     /* Properties */
 

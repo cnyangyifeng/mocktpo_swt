@@ -247,19 +247,19 @@ public class WritingEditorLayer extends SashTestEditorLayer {
 
         views.clear();
         for (TestViewVo viewVo : viewVos) {
-            TestEditorView view = null;
+            TestViewEditorView view = null;
             switch (viewVo.getViewType()) {
                 case VT.VIEW_TYPE_WRITING_READING_PASSAGE:
-                    view = new WritingReadingPassageEditorView(this, SWT.NONE, viewVo);
+                    view = new WritingReadingPassageViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_WRITING_LISTENING_MATERIAL:
-                    view = new WritingListeningMaterialEditorView(this, SWT.NONE, viewVo);
+                    view = new WritingListeningMaterialViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_INTEGRATED_WRITING_TASK:
-                    view = new IntegratedWritingTaskEditorView(this, SWT.NONE, viewVo);
+                    view = new IntegratedWritingTaskViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_INDEPENDENT_WRITING_TASK:
-                    view = new IndependentWritingTaskEditorView(this, SWT.NONE, viewVo);
+                    view = new IndependentWritingTaskViewEditorView(this, SWT.NONE, viewVo);
                     break;
             }
             views.add(view);

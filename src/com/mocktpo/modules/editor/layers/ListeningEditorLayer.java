@@ -274,25 +274,25 @@ public class ListeningEditorLayer extends SashTestEditorLayer {
 
         views.clear();
         for (TestViewVo viewVo : viewVos) {
-            TestEditorView view = null;
+            TestViewEditorView view = null;
             switch (viewVo.getViewType()) {
                 case VT.VIEW_TYPE_LISTENING_MATERIAL:
-                    view = new ListeningMaterialEditorView(this, SWT.NONE, viewVo);
+                    view = new ListeningMaterialViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_LISTENING_MULTIPLE_CHOICE_QUESTION:
-                    view = new ListeningMultipleChoiceQuestionEditorView(this, SWT.NONE, viewVo);
+                    view = new ListeningMultipleChoiceQuestionViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_LISTENING_MULTIPLE_RESPONSE_QUESTION:
-                    view = new ListeningMultipleResponseQuestionEditorView(this, SWT.NONE, viewVo);
+                    view = new ListeningMultipleResponseQuestionViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_LISTENING_REPLAY:
-                    view = new ListeningReplayEditorView(this, SWT.NONE, viewVo);
+                    view = new ListeningReplayViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_LISTENING_SORT_EVENTS_QUESTION:
-                    view = new ListeningSortEventsQuestionEditorView(this, SWT.NONE, viewVo);
+                    view = new ListeningSortEventsQuestionViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_LISTENING_CATEGORIZE_OBJECTS_QUESTION:
-                    view = new ListeningCategorizeObjectsQuestionEditorView(this, SWT.NONE, viewVo);
+                    view = new ListeningCategorizeObjectsQuestionViewEditorView(this, SWT.NONE, viewVo);
                     break;
             }
             views.add(view);

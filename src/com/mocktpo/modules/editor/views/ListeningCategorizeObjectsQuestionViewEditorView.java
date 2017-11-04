@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import java.util.*;
 
-public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView {
+public class ListeningCategorizeObjectsQuestionViewEditorView extends SashTestViewEditorView {
 
     /* Widgets */
 
@@ -51,7 +51,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
      * ==================================================
      */
 
-    public ReadingMultipleChoiceQuestionEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
+    public ListeningCategorizeObjectsQuestionViewEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
         super(layer, style, vo);
     }
 
@@ -215,7 +215,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
         page.edit();
     }
 
-    private void updatePassage() {
+    private void updatePasasge() {
         StyledTextVo passageTextVo = vo.getStyledTextVo("passage");
         if (passageTextVo == null) {
             passageTextVo = new StyledTextVo();
@@ -368,7 +368,7 @@ public class ReadingMultipleChoiceQuestionEditorView extends SashTestEditorView 
 
         @Override
         public void modifyText(ModifyEvent e) {
-            updatePassage();
+            updatePasasge();
             updateFootnote();
         }
     }

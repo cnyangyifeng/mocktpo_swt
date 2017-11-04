@@ -20,7 +20,7 @@ import org.eclipse.swt.events.*;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
+public class ReadingInsertTextQuestionViewEditorView extends SashTestViewEditorView {
 
     /* Widgets */
 
@@ -41,7 +41,7 @@ public class ReadingInsertTextQuestionEditorView extends SashTestEditorView {
      * ==================================================
      */
 
-    public ReadingInsertTextQuestionEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
+    public ReadingInsertTextQuestionViewEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
         super(layer, style, vo);
     }
 

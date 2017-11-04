@@ -18,7 +18,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 
-public class IntegratedWritingTaskEditorView extends SashTestEditorView {
+public class ListeningReplayViewEditorView extends SashTestViewEditorView {
 
     /* Widgets */
 
@@ -35,7 +35,7 @@ public class IntegratedWritingTaskEditorView extends SashTestEditorView {
      * ==================================================
      */
 
-    public IntegratedWritingTaskEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
+    public ListeningReplayViewEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
         super(layer, style, vo);
     }
 

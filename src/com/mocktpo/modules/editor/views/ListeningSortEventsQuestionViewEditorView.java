@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import java.util.*;
 
-public class ListeningCategorizeObjectsQuestionEditorView extends SashTestEditorView {
+public class ListeningSortEventsQuestionViewEditorView extends SashTestViewEditorView {
 
     /* Widgets */
 
@@ -51,7 +51,7 @@ public class ListeningCategorizeObjectsQuestionEditorView extends SashTestEditor
      * ==================================================
      */
 
-    public ListeningCategorizeObjectsQuestionEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
+    public ListeningSortEventsQuestionViewEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
         super(layer, style, vo);
     }
 

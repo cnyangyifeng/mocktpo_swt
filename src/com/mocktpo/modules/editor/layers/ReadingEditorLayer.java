@@ -279,19 +279,19 @@ public class ReadingEditorLayer extends SashTestEditorLayer {
 
         views.clear();
         for (TestViewVo viewVo : viewVos) {
-            TestEditorView view = null;
+            TestViewEditorView view = null;
             switch (viewVo.getViewType()) {
                 case VT.VIEW_TYPE_READING_PASSAGE:
-                    view = new ReadingPassageEditorView(this, SWT.NONE, viewVo);
+                    view = new ReadingPassageViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_READING_MULTIPLE_CHOICE_QUESTION:
-                    view = new ReadingMultipleChoiceQuestionEditorView(this, SWT.NONE, viewVo);
+                    view = new ReadingMultipleChoiceQuestionViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_READING_INSERT_TEXT_QUESTION:
-                    view = new ReadingInsertTextQuestionEditorView(this, SWT.NONE, viewVo);
+                    view = new ReadingInsertTextQuestionViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_READING_PROSE_SUMMARY_QUESTION:
-                    view = new ReadingProseSummaryQuestionEditorView(this, SWT.NONE, viewVo);
+                    view = new ReadingProseSummaryQuestionViewEditorView(this, SWT.NONE, viewVo);
                     break;
             }
             views.add(view);

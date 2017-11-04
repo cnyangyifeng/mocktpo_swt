@@ -18,7 +18,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 
-public class SpeakingTaskEditorView extends SashTestEditorView {
+public class SpeakingListeningMaterialViewEditorView extends SashTestViewEditorView {
 
     /* Widgets */
 
@@ -35,7 +35,7 @@ public class SpeakingTaskEditorView extends SashTestEditorView {
      * ==================================================
      */
 
-    public SpeakingTaskEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
+    public SpeakingListeningMaterialViewEditorView(SashTestEditorLayer layer, int style, TestViewVo vo) {
         super(layer, style, vo);
     }
 

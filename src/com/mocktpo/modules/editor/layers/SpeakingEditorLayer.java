@@ -248,19 +248,19 @@ public class SpeakingEditorLayer extends SashTestEditorLayer {
 
         views.clear();
         for (TestViewVo viewVo : viewVos) {
-            TestEditorView view = null;
+            TestViewEditorView view = null;
             switch (viewVo.getViewType()) {
                 case VT.VIEW_TYPE_SPEAKING_TASK_DIRECTIONS:
-                    view = new SpeakingTaskDirectionsEditorView(this, SWT.NONE, viewVo);
+                    view = new SpeakingTaskDirectionsViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_SPEAKING_TASK:
-                    view = new SpeakingTaskEditorView(this, SWT.NONE, viewVo);
+                    view = new SpeakingTaskViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_SPEAKING_READING_PASSAGE:
-                    view = new SpeakingReadingPassageEditorView(this, SWT.NONE, viewVo);
+                    view = new SpeakingReadingPassageViewEditorView(this, SWT.NONE, viewVo);
                     break;
                 case VT.VIEW_TYPE_SPEAKING_LISTENING_MATERIAL:
-                    view = new SpeakingListeningMaterialEditorView(this, SWT.NONE, viewVo);
+                    view = new SpeakingListeningMaterialViewEditorView(this, SWT.NONE, viewVo);
                     break;
             }
             views.add(view);

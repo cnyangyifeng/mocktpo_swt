@@ -10,7 +10,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public abstract class SashTestEditorView extends TestEditorView {
+public abstract class SashTestViewEditorView extends TestViewEditorView {
 
     /* Widgets */
 
@@ -25,7 +25,7 @@ public abstract class SashTestEditorView extends TestEditorView {
      * ==================================================
      */
 
-    public SashTestEditorView(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
+    public SashTestViewEditorView(SashTestEditorLayer layer, int style, TestViewVo viewVo) {
         super(layer, style, viewVo);
     }
 
