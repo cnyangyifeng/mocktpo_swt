@@ -52,7 +52,7 @@ public class GeneralTestInfoView extends ResponsiveTestView {
 
         final StyledText headingTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledTextContent("heading"));
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_BLUE_DARKEN_4).setText(vo.getStyledTextContent("heading"));
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(descriptionTextWidget).atLeft().atTopTo(headingTextWidget, 50).atRight();

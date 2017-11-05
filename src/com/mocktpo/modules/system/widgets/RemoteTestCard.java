@@ -36,7 +36,7 @@ public class RemoteTestCard extends Composite {
 
     /* Widgets */
 
-    private ImageButton downloadButton;
+    private ImageButton installButton;
 
     /* Properties */
 
@@ -76,11 +76,11 @@ public class RemoteTestCard extends Composite {
 
         final CLabel superscriptLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(superscriptLabel).atLeft().atTop().withWidth(SUPERSCRIPT_WIDTH).withHeight(SUPERSCRIPT_HEIGHT);
-        CLabelSet.decorate(superscriptLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("test_paper"));
+        CLabelSet.decorate(superscriptLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_BLUE_GREY_DARKEN_3).setText(msgs.getString("test_paper"));
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTopTo(superscriptLabel, 10).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setText(getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
@@ -95,31 +95,31 @@ public class RemoteTestCard extends Composite {
 
         final CLabel creatorPreLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(creatorPreLabel).atLeft().atTop(10);
-        CLabelSet.decorate(creatorPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("creator"));
+        CLabelSet.decorate(creatorPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(msgs.getString("creator"));
 
         final CLabel creatorLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(creatorLabel).atLeftTo(creatorPreLabel, 10).atTopTo(creatorPreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(creatorLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(getCreator());
+        CLabelSet.decorate(creatorLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(getCreator());
 
         final CLabel versionPreLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(versionPreLabel).atLeft().atTopTo(creatorPreLabel, 10);
-        CLabelSet.decorate(versionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("version"));
+        CLabelSet.decorate(versionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(msgs.getString("version"));
 
         final CLabel versionLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(versionLabel).atLeftTo(versionPreLabel, 10).atTopTo(versionPreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(versionLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(Double.toString(getVersion()));
+        CLabelSet.decorate(versionLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(Double.toString(getVersion()));
 
         final Label divider2 = new Label(body, SWT.NONE);
         FormDataSet.attach(divider2).atLeft().atTopTo(versionPreLabel, 10).atRight().withHeight(1);
-        LabelSet.decorate(divider2).setBackground(MT.COLOR_WHITE_SMOKE);
+        LabelSet.decorate(divider2).setBackground(MT.COLOR_GREY_LIGHTEN_4);
 
         final Composite footer = new Composite(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atTopTo(body).atRight();
         FormLayoutSet.layout(footer).marginWidth(0).marginHeight(10).spacing(0);
 
-        downloadButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_DOWNLOAD, MT.IMAGE_SYSTEM_DOWNLOAD_HOVER, MT.IMAGE_SYSTEM_PLEASE_WAIT);
-        FormDataSet.attach(downloadButton).atLeft().atTop(10);
-        downloadButton.addMouseListener(new DownloadButtonMouseAdapter());
+        installButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_INSTALL, MT.IMAGE_SYSTEM_INSTALL_HOVER, MT.IMAGE_SYSTEM_PLEASE_WAIT);
+        FormDataSet.attach(installButton).atLeft().atTop(10);
+        installButton.addMouseListener(new DownloadButtonMouseAdapter());
     }
 
     /*
@@ -134,7 +134,7 @@ public class RemoteTestCard extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            downloadButton.setEnabled(false);
+            installButton.setEnabled(false);
         }
     }
 

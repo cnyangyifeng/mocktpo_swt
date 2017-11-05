@@ -97,8 +97,8 @@ public class TestViewEditorCard extends Composite {
 
     private void initListeners() {
         this.defaultBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED);
-        this.hoveredBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_GRAY60);
-        this.checkedBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_DARK_BLUE, 2);
+        this.hoveredBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_GRAY);
+        this.checkedBorderPaintListener = new BorderedCompositePaintListener(MT.COLOR_BLUE_DARKEN_4, 2);
     }
 
     /*
@@ -130,13 +130,13 @@ public class TestViewEditorCard extends Composite {
 
         final Label viewTypeNameLabel = new Label(inner, SWT.WRAP);
         FormDataSet.attach(viewTypeNameLabel).atLeft(10).atTop(10).atRight(10);
-        LabelSet.decorate(viewTypeNameLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY20).setText(TestViewTypeUtils.getViewTypeName(viewVo.getViewType()));
+        LabelSet.decorate(viewTypeNameLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_BLUE_GREY_DARKEN_3).setText(TestViewTypeUtils.getViewTypeName(viewVo.getViewType()));
         viewTypeNameLabel.addMouseListener(new CardInnerMouseAdapter());
         viewTypeNameLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
 
         final CLabel serialNumberLabel = new CLabel(inner, SWT.NONE);
         FormDataSet.attach(serialNumberLabel).atLeft(10).atBottom(10);
-        CLabelSet.decorate(serialNumberLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(Integer.toString(viewVo.getViewId() + 1));
+        CLabelSet.decorate(serialNumberLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(Integer.toString(viewVo.getViewId() + 1));
         serialNumberLabel.addMouseListener(new CardInnerMouseAdapter());
         serialNumberLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
 
@@ -172,7 +172,7 @@ public class TestViewEditorCard extends Composite {
 
         viewDescriptionLabel = new Label(inner, SWT.WRAP);
         FormDataSet.attach(viewDescriptionLabel).atLeft(10).atTopTo(viewTypeNameLabel, 5).atRight(10).atBottomTo(trashButton, 5);
-        LabelSet.decorate(viewDescriptionLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(viewVo.getViewDescription());
+        LabelSet.decorate(viewDescriptionLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(viewVo.getViewDescription());
         viewDescriptionLabel.addMouseListener(new CardInnerMouseAdapter());
         viewDescriptionLabel.addMouseTrackListener(new CardInnerMouseTrackAdapter());
     }

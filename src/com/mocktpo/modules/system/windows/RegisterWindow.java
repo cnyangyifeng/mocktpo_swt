@@ -109,7 +109,7 @@ public class RegisterWindow {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop().withHeight(48);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_LARGE).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("app_name"));
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_LARGE).setForeground(MT.COLOR_BLUE_GREY_DARKEN_3).setText(msgs.getString("app_name"));
 
         final Label logoLabel = new Label(header, SWT.NONE);
         FormDataSet.attach(logoLabel).atTop().atRight();
@@ -139,12 +139,12 @@ public class RegisterWindow {
 
         final StyledText descriptionTextWidget = new StyledText(body, SWT.WRAP);
         FormDataSet.attach(descriptionTextWidget).atLeft().atTop().atRight();
-        StyledTextSet.decorate(descriptionTextWidget).setNoCaret().setEditable(false).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GRAY20).setLineSpacing(10).setText(msgs.getString("enter_activation_code"));
+        StyledTextSet.decorate(descriptionTextWidget).setNoCaret().setEditable(false).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_3).setLineSpacing(10).setText(msgs.getString("enter_activation_code"));
 
         activationCodeTextWidget = new StyledText(body, SWT.SINGLE);
         FormDataSet.attach(activationCodeTextWidget).atLeft().atTopTo(descriptionTextWidget).atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
         KeyBindingSet.bind(activationCodeTextWidget).selectAll();
-        StyledTextSet.decorate(activationCodeTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(10, 10, 10, 10);
+        StyledTextSet.decorate(activationCodeTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setMargins(10, 10, 10, 10);
         activationCodeTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         messageTextWidget = new StyledText(body, SWT.WRAP);

@@ -103,7 +103,7 @@ public abstract class TestEditorLayer extends Composite {
 
         header = new Composite(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight();
-        CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE_SMOKE);
+        CompositeSet.decorate(header).setBackground(MT.COLOR_GREY_LIGHTEN_4);
         FormLayoutSet.layout(header).marginWidth(10).marginHeight(10).spacing(0);
 
         final Label divider = new Label(this, SWT.NONE);
@@ -176,7 +176,7 @@ public abstract class TestEditorLayer extends Composite {
     private void initFooter() {
         footer = new Composite(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atRight().atBottom();
-        CompositeSet.decorate(footer).setBackground(MT.COLOR_WHITE_SMOKE);
+        CompositeSet.decorate(footer).setBackground(MT.COLOR_GREY_LIGHTEN_4);
         FormLayoutSet.layout(footer).marginWidth(10).marginHeight(10).spacing(10);
 
         final Label divider = new Label(this, SWT.NONE);
@@ -193,7 +193,7 @@ public abstract class TestEditorLayer extends Composite {
 
         titleLabel = new CLabel(footer, SWT.NONE);
         FormDataSet.attach(titleLabel).atTopTo(exportAsZipButton, 0, SWT.TOP).atRightTo(saveButton, 10).atBottomTo(exportAsZipButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GRAY40);
+        CLabelSet.decorate(titleLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GRAY_DARKEN_2);
         updateTitleLabel();
 
         /*
@@ -216,7 +216,7 @@ public abstract class TestEditorLayer extends Composite {
             title = title + MT.STRING_SPACE + MT.STRING_STAR;
             CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_PINK).setText(title);
         } else {
-            CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_GRAY40).setText(title);
+            CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(title);
         }
     }
 

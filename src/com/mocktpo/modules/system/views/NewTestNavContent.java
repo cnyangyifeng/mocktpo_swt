@@ -79,7 +79,7 @@ public class NewTestNavContent extends Composite {
     private void initToolBar() {
         toolBar = new Composite(this, SWT.NONE);
         FormDataSet.attach(toolBar).atLeft().atTop().atRight();
-        CompositeSet.decorate(toolBar).setBackground(MT.COLOR_WHITE_SMOKE);
+        CompositeSet.decorate(toolBar).setBackground(MT.COLOR_GREY_LIGHTEN_4);
         FormLayoutSet.layout(toolBar).marginWidth(20).marginHeight(10).spacing(0);
 
         final Label divider = new Label(this, SWT.NONE);

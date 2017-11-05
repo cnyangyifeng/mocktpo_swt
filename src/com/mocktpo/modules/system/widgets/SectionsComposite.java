@@ -99,14 +99,14 @@ public class SectionsComposite extends Composite {
             choiceLabel = new Label(this, SWT.WRAP);
             LabelSet.decorate(choiceLabel).setText(text);
             if (enabled) {
-                LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40);
+                LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2);
                 choiceLabel.addMouseListener(chooseAnswerAdapter);
                 choiceLabel.addMouseTrackListener(checkWidgetMouseTrackAdapter);
             } else {
                 if (selected) {
-                    LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40);
+                    LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2);
                 } else {
-                    LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL_ITALIC).setForeground(MT.COLOR_GRAY60);
+                    LabelSet.decorate(choiceLabel).setFont(MT.FONT_SMALL_ITALIC).setForeground(MT.COLOR_GRAY);
                 }
             }
         }
@@ -131,11 +131,11 @@ public class SectionsComposite extends Composite {
         private class CheckWidgetMouseTrackAdapter extends MouseTrackAdapter {
 
             public void mouseEnter(MouseEvent e) {
-                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_DARK_BLUE);
+                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_BLUE_DARKEN_4);
             }
 
             public void mouseExit(MouseEvent e) {
-                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_GRAY40);
+                LabelSet.decorate(choiceLabel).setForeground(MT.COLOR_GRAY_DARKEN_2);
             }
         }
     }

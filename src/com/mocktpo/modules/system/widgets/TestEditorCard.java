@@ -79,7 +79,7 @@ public class TestEditorCard extends Composite {
 
         final CLabel superscriptLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(superscriptLabel).atLeft().atTop().withWidth(SUPERSCRIPT_WIDTH).withHeight(SUPERSCRIPT_HEIGHT);
-        CLabelSet.decorate(superscriptLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY20).setText(msgs.getString("test_paper"));
+        CLabelSet.decorate(superscriptLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_BLUE_GREY_DARKEN_3).setText(msgs.getString("test_paper"));
 
         final ImageButton deleteButton = new ImageButton(header, SWT.NONE, MT.IMAGE_SYSTEM_DELETE, MT.IMAGE_SYSTEM_DELETE_HOVER);
         FormDataSet.attach(deleteButton).atTop().atRight();
@@ -87,7 +87,7 @@ public class TestEditorCard extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTopTo(superscriptLabel, 10).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setText(getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testEditorVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
@@ -102,39 +102,39 @@ public class TestEditorCard extends Composite {
 
         final CLabel creatorPreLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(creatorPreLabel).atLeft().atTop(10);
-        CLabelSet.decorate(creatorPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("creator"));
+        CLabelSet.decorate(creatorPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(msgs.getString("creator"));
 
         final CLabel creatorLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(creatorLabel).atLeftTo(creatorPreLabel, 10).atTopTo(creatorPreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(creatorLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(getCreator());
+        CLabelSet.decorate(creatorLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(getCreator());
 
         final CLabel createdTimePreLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(createdTimePreLabel).atLeft().atTopTo(creatorPreLabel, 10);
-        CLabelSet.decorate(createdTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("created_at"));
+        CLabelSet.decorate(createdTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(msgs.getString("created_at"));
 
         final CLabel createdTimeLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(createdTimeLabel).atLeftTo(createdTimePreLabel, 10).atTopTo(createdTimePreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(createdTimeLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(getCreatedTime());
+        CLabelSet.decorate(createdTimeLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(getCreatedTime());
 
         final CLabel updatedTimePreLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(updatedTimePreLabel).atLeft().atTopTo(createdTimePreLabel, 10);
-        CLabelSet.decorate(updatedTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("updated_at"));
+        CLabelSet.decorate(updatedTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(msgs.getString("updated_at"));
 
         final CLabel updatedTimeLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(updatedTimeLabel).atLeftTo(updatedTimePreLabel, 10).atTopTo(updatedTimePreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(updatedTimeLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(getUpdatedTime());
+        CLabelSet.decorate(updatedTimeLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(getUpdatedTime());
 
         final CLabel versionPreLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(versionPreLabel).atLeft().atTopTo(updatedTimePreLabel, 10);
-        CLabelSet.decorate(versionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("version"));
+        CLabelSet.decorate(versionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(msgs.getString("version"));
 
         final CLabel versionLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(versionLabel).atLeftTo(versionPreLabel, 10).atTopTo(versionPreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(versionLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(Double.toString(getVersion()));
+        CLabelSet.decorate(versionLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(Double.toString(getVersion()));
 
         final Label divider2 = new Label(body, SWT.NONE);
         FormDataSet.attach(divider2).atLeft().atTopTo(versionPreLabel, 10).atRight().withHeight(1);
-        LabelSet.decorate(divider2).setBackground(MT.COLOR_WHITE_SMOKE);
+        LabelSet.decorate(divider2).setBackground(MT.COLOR_GREY_LIGHTEN_4);
 
         final Composite footer = new Composite(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atTopTo(body).atRight();

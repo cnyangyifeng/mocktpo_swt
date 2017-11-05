@@ -44,21 +44,20 @@ public interface MT {
      * ==================================================
      */
 
-    String COLOR_BEIGE = "color_beige";
-    String COLOR_BLACK = "color_black";
-    String COLOR_BURGUNDY = "color_burgundy";
-    String COLOR_DARK_BLUE = "color_dark_blue";
-    String COLOR_GRAY20 = "color_gray20";
-    String COLOR_GRAY40 = "color_gray40";
-    String COLOR_GRAY60 = "color_gray60";
-    String COLOR_INDIGO = "color_indigo";
+    String COLOR_BLUE_DARKEN_4 = "color_blue_darken_4";
+    String COLOR_BLUE_GREY_DARKEN_3 = "color_gray20";
+    String COLOR_BLUE_GREY_DARKEN_4 = "color_black";
+    String COLOR_GREY_LIGHTEN_4 = "color_white_smoke";
+    String COLOR_GRAY = "color_gray60";
+    String COLOR_GRAY_DARKEN_2 = "color_gray40";
     String COLOR_PINK = "color_pink";
+    String COLOR_WHITE = "color_white";
+
+    String COLOR_BEIGE = "color_beige";
+    String COLOR_BURGUNDY = "color_burgundy";
+    String COLOR_INDIGO = "color_indigo";
     String COLOR_ROSY_BROWN = "color_rosy_brown";
     String COLOR_TOUPE = "color_toupe";
-    String COLOR_WHITE = "color_white";
-    String COLOR_WHITE_SMOKE = "color_white_smoke";
-
-    /* Others */
 
     String COLOR_HIGHLIGHTED = "color_highlighted";
     String COLOR_WINDOW_BACKGROUND = "color_window_background";
@@ -202,8 +201,6 @@ public interface MT {
     String IMAGE_SYSTEM_CUT_HOVER = "image_system_cut_hover";
     String IMAGE_SYSTEM_DELETE = "image_system_delete";
     String IMAGE_SYSTEM_DELETE_HOVER = "image_system_delete_hover";
-    String IMAGE_SYSTEM_DOWNLOAD = "image_system_download";
-    String IMAGE_SYSTEM_DOWNLOAD_HOVER = "image_system_download_hover";
     String IMAGE_SYSTEM_EDIT = "image_system_edit";
     String IMAGE_SYSTEM_EDIT_HOVER = "image_system_edit_hover";
     String IMAGE_SYSTEM_EXPORT = "image_system_export";
@@ -218,7 +215,8 @@ public interface MT {
     String IMAGE_SYSTEM_HIGHLIGHT_SELECTED_TEXT_HOVER = "image_system_highlight_selected_text_hover";
     String IMAGE_SYSTEM_IMPORT = "image_system_import";
     String IMAGE_SYSTEM_IMPORT_HOVER = "image_system_import_hover";
-    String IMAGE_SYSTEM_INSTALLED = "image_system_installed";
+    String IMAGE_SYSTEM_INSTALL = "image_system_install";
+    String IMAGE_SYSTEM_INSTALL_HOVER = "image_system_install_hover";
     String IMAGE_SYSTEM_MARK_PARAGRAPHS = "image_system_mark_paragraphs";
     String IMAGE_SYSTEM_MARK_PARAGRAPHS_DISABLED = "image_system_mark_paragraphs_disabled";
     String IMAGE_SYSTEM_MARK_PARAGRAPHS_HOVER = "image_system_mark_paragraphs_hover";
@@ -267,6 +265,8 @@ public interface MT {
     String IMAGE_SYSTEM_PLEASE_WAIT = "image_system_please_wait";
     String IMAGE_SYSTEM_REPORT = "image_system_report";
     String IMAGE_SYSTEM_REPORT_HOVER = "image_system_report_hover";
+    String IMAGE_SYSTEM_REFRESH = "image_system_refresh";
+    String IMAGE_SYSTEM_REFRESH_HOVER = "image_system_refresh_hover";
     String IMAGE_SYSTEM_SAVE = "image_system_save";
     String IMAGE_SYSTEM_SAVE_DISABLED = "image_system_save_disabled";
     String IMAGE_SYSTEM_SAVE_HOVER = "image_system_save_hover";
@@ -298,12 +298,14 @@ public interface MT {
     String IMAGE_SYSTEM_STEP_WRITING_CHECKED = "image_system_step_writing_checked";
     String IMAGE_SYSTEM_STEP_WRITING_DISABLED = "image_system_step_writing_disabled";
     String IMAGE_SYSTEM_STEP_WRITING_HOVER = "image_system_step_writing_hover";
+    String IMAGE_SYSTEM_TAGS = "image_system_tags";
     String IMAGE_SYSTEM_TRASH = "image_system_trash";
     String IMAGE_SYSTEM_TRASH_HOVER = "image_system_trash_hover";
     String IMAGE_SYSTEM_UNBOXED = "image_system_unboxed";
     String IMAGE_SYSTEM_UNBOXED_DISABLED = "image_system_unboxed_disabled";
     String IMAGE_SYSTEM_UPDATE = "image_system_update";
     String IMAGE_SYSTEM_UPDATE_HOVER = "image_system_update_hover";
+    String IMAGE_SYSTEM_VIEW = "image_system_view";
 
     /*
      * ==================================================

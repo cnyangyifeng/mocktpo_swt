@@ -183,7 +183,7 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         final StyledText headingTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledTextContent("heading"));
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_BLUE_DARKEN_4).setText(vo.getStyledTextContent("heading"));
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(descriptionTextWidget).atLeft().atTopTo(headingTextWidget, 30).atRight();
@@ -192,23 +192,23 @@ public class AdjustingMicrophoneView extends StackTestView {
 
         final StyledText footnoteTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(footnoteTextWidget).fromLeft(50, -FOOTNOTE_TEXT_WIDTH / 2).atTopTo(descriptionTextWidget, 20).withWidth(FOOTNOTE_TEXT_WIDTH);
-        StyledTextSet.decorate(footnoteTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_ITALIC_TEXT).setForeground(MT.COLOR_DARK_BLUE).setLineSpacing(5).setMarginHeight(20).setText(vo.getStyledTextContent("footnote"));
-        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
+        StyledTextSet.decorate(footnoteTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_ITALIC_TEXT).setForeground(MT.COLOR_BLUE_DARKEN_4).setLineSpacing(5).setMarginHeight(20).setText(vo.getStyledTextContent("footnote"));
+        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY_DARKEN_2));
 
         timerPanel = new Composite(viewPort, SWT.NONE);
         FormDataSet.attach(timerPanel).fromLeft(50, -TIMER_PANEL_WIDTH / 2).atTopTo(footnoteTextWidget, 20).withWidth(TIMER_PANEL_WIDTH);
         CompositeSet.decorate(timerPanel).setVisible(false);
         FormLayoutSet.layout(timerPanel).marginWidth(1).marginHeight(1).spacing(0);
-        timerPanel.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
+        timerPanel.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY_DARKEN_2));
 
         final CLabel timerHeader = new CLabel(timerPanel, SWT.CENTER);
         FormDataSet.attach(timerHeader).atLeft().atTop().atRight();
-        CLabelSet.decorate(timerHeader).setBackground(MT.COLOR_BLACK).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_WHITE).setMargins(5).setText("RESPONSE TIME");
+        CLabelSet.decorate(timerHeader).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_WHITE).setMargins(5).setText("RESPONSE TIME");
 
         timerLabel = new CLabel(timerPanel, SWT.CENTER);
         FormDataSet.attach(timerLabel).atLeft().atTopTo(timerHeader).atRight();
         recorderCountDown = vo.getResponseTime();
-        CLabelSet.decorate(timerLabel).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLACK).setMargins(5).setText(TimeUtils.displayTimePeriod(recorderCountDown));
+        CLabelSet.decorate(timerLabel).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setMargins(5).setText(TimeUtils.displayTimePeriod(recorderCountDown));
 
         stopRecordingButton = new ImageButton(viewPort, SWT.NONE, MT.IMAGE_STOP_RECORDING, MT.IMAGE_STOP_RECORDING_HOVER);
         FormDataSet.attach(stopRecordingButton).fromLeft(50, -STOP_RECORDING_BUTTON_WIDTH / 2).atTopTo(timerPanel, 20);

@@ -46,13 +46,13 @@ public class TestFooter extends Composite {
     }
 
     private void golbal() {
-        CompositeSet.decorate(this).setBackground(MT.COLOR_DARK_BLUE);
+        CompositeSet.decorate(this).setBackground(MT.COLOR_BLUE_DARKEN_4);
         GridLayoutSet.layout(this).marginWidth(0).marginHeight(0);
     }
 
     private void initCopyright() {
         final Label copyright = new Label(this, SWT.WRAP | SWT.CENTER);
         GridDataSet.attach(copyright).centerBoth().withWidth(ScreenUtils.getViewPort(d).x);
-        LabelSet.decorate(copyright).setForeground(MT.COLOR_WHITE_SMOKE).setFont(MT.FONT_SMALL).setText(msgs.getString("copyright"));
+        LabelSet.decorate(copyright).setForeground(MT.COLOR_GREY_LIGHTEN_4).setFont(MT.FONT_SMALL).setText(msgs.getString("copyright"));
     }
 }

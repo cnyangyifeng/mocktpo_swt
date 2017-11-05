@@ -48,12 +48,12 @@ public class TestReportProgressBar extends Composite {
     private void initBody() {
         final Composite background = new Composite(this, SWT.NONE);
         RowDataSet.attach(background).withWidth(this.width).withHeight(this.height);
-        CompositeSet.decorate(background).setBackground(MT.COLOR_WHITE_SMOKE);
+        CompositeSet.decorate(background).setBackground(MT.COLOR_GREY_LIGHTEN_4);
         FormLayoutSet.layout(background).marginWidth(0).marginHeight(0).spacing(0);
 
         final Label selectionLabel = new Label(background, SWT.NONE);
         int selectionWidth = this.width * this.selection / 100;
         FormDataSet.attach(selectionLabel).atLeft().atTop().atBottom().withWidth(selectionWidth);
-        LabelSet.decorate(selectionLabel).setBackground(MT.COLOR_DARK_BLUE);
+        LabelSet.decorate(selectionLabel).setBackground(MT.COLOR_BLUE_DARKEN_4);
     }
 }

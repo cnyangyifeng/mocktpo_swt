@@ -80,7 +80,7 @@ public class ChangingVolumeView extends ResponsiveTestView {
 
         final StyledText headingTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTop(VIEW_PORT_PADDING_TOP).atRight();
-        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_DARK_BLUE).setText(vo.getStyledTextContent("heading"));
+        StyledTextSet.decorate(headingTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_HEADING).setForeground(MT.COLOR_BLUE_DARKEN_4).setText(vo.getStyledTextContent("heading"));
 
         final StyledText descriptionTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(descriptionTextWidget).atLeft().atTopTo(headingTextWidget, 50).atRight();
@@ -89,8 +89,8 @@ public class ChangingVolumeView extends ResponsiveTestView {
 
         final StyledText footnoteTextWidget = new StyledText(viewPort, SWT.WRAP);
         FormDataSet.attach(footnoteTextWidget).fromLeft(50, -FOOTNOTE_TEXT_WIDTH / 2).atTopTo(descriptionTextWidget, 50).withWidth(FOOTNOTE_TEXT_WIDTH);
-        StyledTextSet.decorate(footnoteTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_ITALIC_TEXT).setForeground(MT.COLOR_DARK_BLUE).setLineSpacing(5).setMarginHeight(50).setText(vo.getStyledTextContent("footnote"));
-        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY40));
+        StyledTextSet.decorate(footnoteTextWidget).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SERIF_ITALIC_TEXT).setForeground(MT.COLOR_BLUE_DARKEN_4).setLineSpacing(5).setMarginHeight(50).setText(vo.getStyledTextContent("footnote"));
+        footnoteTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY_DARKEN_2));
     }
 
     /*

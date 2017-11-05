@@ -155,7 +155,7 @@ public class ReadingReviewView extends Composite {
 
         final Label titleLabel = new Label(header, SWT.WRAP);
         FormDataSet.attach(titleLabel).atLeft(10).atTop(10);
-        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestVo().getTitle() + MT.STRING_SPACE + msgs.getString("reading"));
+        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setText(page.getTestVo().getTitle() + MT.STRING_SPACE + msgs.getString("reading"));
 
         /*
          * ==================================================
@@ -241,7 +241,7 @@ public class ReadingReviewView extends Composite {
         if (vo.isQuestionCaptionVisible()) {
             caption = new StyledText(header, SWT.SINGLE);
             FormDataSet.attach(caption).fromLeft(50, -LC.CAPTION_WIDTH / 2).atBottomTo(pauseTestButton, 0, SWT.BOTTOM).withWidth(LC.CAPTION_WIDTH);
-            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestVo().findTotalQuestionCountInSection(ST.SECTION_TYPE_READING));
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + page.getTestVo().findTotalQuestionCountInSection(ST.SECTION_TYPE_READING));
         }
 
         final ImageButton goToQuestionButton = new ImageButton(header, SWT.NONE, MT.IMAGE_GO_TO_QUESTION, MT.IMAGE_GO_TO_QUESTION_HOVER);
@@ -283,7 +283,7 @@ public class ReadingReviewView extends Composite {
 
         final Label bottomTableBorder = new Label(viewPort, SWT.NONE);
         GridDataSet.attach(bottomTableBorder).fillBoth().withHeight(1);
-        LabelSet.decorate(bottomTableBorder).setBackground(MT.COLOR_GRAY60);
+        LabelSet.decorate(bottomTableBorder).setBackground(MT.COLOR_GRAY);
     }
 
     private String getDescriptionText(TestViewVo vo) {

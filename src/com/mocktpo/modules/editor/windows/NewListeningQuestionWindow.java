@@ -82,8 +82,8 @@ public class NewListeningQuestionWindow {
     private void initBody() {
         final Composite body = new Composite(s, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTop().atRight().atBottom();
-        CompositeSet.decorate(body).setBackground(MT.COLOR_WHITE_SMOKE);
-        body.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY20, 2));
+        CompositeSet.decorate(body).setBackground(MT.COLOR_GREY_LIGHTEN_4);
+        body.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_BLUE_GREY_DARKEN_3, 2));
         FormLayoutSet.layout(body).marginWidth(20).marginHeight(20).spacing(20);
 
         final ImageButton newListeningMulitipleChoiceQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION_HOVER);

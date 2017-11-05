@@ -80,7 +80,7 @@ public class RequiredAnswerWindow {
     private void initBackground() {
         background = new CLabel(s, SWT.NONE);
         FormDataSet.attach(background).atLeft().atTop().atRight().atBottom();
-        CLabelSet.decorate(background).setGradientBackground(MT.COLOR_INDIGO, MT.COLOR_WHITE_SMOKE, true);
+        CLabelSet.decorate(background).setGradientBackground(MT.COLOR_INDIGO, MT.COLOR_GREY_LIGHTEN_4, true);
         FormLayoutSet.layout(background).marginWidth(0).marginHeight(20).spacing(0);
 
         background.addPaintListener((e) -> {

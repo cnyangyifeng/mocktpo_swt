@@ -1,5 +1,7 @@
 package com.mocktpo.modules.system.views;
 
+import com.mocktpo.MyApplication;
+import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.system.widgets.RemoteTestCard;
 import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.constants.MT;
@@ -30,7 +32,7 @@ public class TestStoreNavContent extends Composite {
     /* Constants */
 
     private static final int TAG_LABEL_WIDTH = 90;
-    private static final int TAG_LABEL_HEIGHT = 30;
+    private static final int TAG_LABEL_HEIGHT = 28;
 
     /* Logger and Messages */
 
@@ -82,17 +84,29 @@ public class TestStoreNavContent extends Composite {
     private void initToolBar() {
         toolBar = new Composite(this, SWT.NONE);
         FormDataSet.attach(toolBar).atLeft().atTop().atRight();
-        CompositeSet.decorate(toolBar).setBackground(MT.COLOR_WHITE_SMOKE);
-        RowLayoutSet.layout(toolBar).marginWidth(20).marginHeight(10).spacing(10);
+        CompositeSet.decorate(toolBar).setBackground(MT.COLOR_GREY_LIGHTEN_4);
+        FormLayoutSet.layout(toolBar).marginWidth(20).marginHeight(10).spacing(0);
 
         final Label divider = new Label(this, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
+        final ImageButton refreshButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_REFRESH, MT.IMAGE_SYSTEM_REFRESH_HOVER);
+        FormDataSet.attach(refreshButton).atLeft().atTop();
+        refreshButton.addMouseListener(new RefreshButtonMouseAdapter());
+
+        final Composite tagsComposite = new Composite(toolBar, SWT.WRAP);
+        FormDataSet.attach(tagsComposite).atLeftTo(refreshButton, 20).atRight();
+        RowLayoutSet.layout(tagsComposite).marginWidth(0).marginHeight(0).spacing(0).wrap(false);
+
+        final Label tagsLabel = new Label(tagsComposite, SWT.NONE);
+        RowDataSet.attach(tagsLabel).withWidth(40).withHeight(TAG_LABEL_HEIGHT);
+        LabelSet.decorate(tagsLabel).setImage(MT.IMAGE_SYSTEM_TAGS);
+
         for (int i = 0; i < 4; i++) {
-            final CLabel tagLabel = new CLabel(toolBar, SWT.NONE);
+            final CLabel tagLabel = new CLabel(tagsComposite, SWT.NONE);
             RowDataSet.attach(tagLabel).withWidth(TAG_LABEL_WIDTH).withHeight(TAG_LABEL_HEIGHT);
-            CLabelSet.decorate(tagLabel).setAlignment(SWT.CENTER).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
+            CLabelSet.decorate(tagLabel).setAlignment(SWT.CENTER).setBackground(MT.COLOR_BLUE_GREY_DARKEN_3).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
             tagLabel.addMouseListener(new TagLabelMouseAdapter());
         }
     }
@@ -176,6 +190,14 @@ public class TestStoreNavContent extends Composite {
             } else if (msgs.getString("writing").equals(text)) {
                 // toWritingReportView();
             }
+        }
+    }
+
+    private class RefreshButtonMouseAdapter extends MouseAdapter {
+
+        @Override
+        public void mouseDown(MouseEvent e) {
+            MyApplication.get().getWindow().toTestEditorPage();
         }
     }
 }

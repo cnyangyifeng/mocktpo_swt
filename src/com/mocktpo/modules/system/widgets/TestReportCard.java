@@ -72,7 +72,7 @@ public class TestReportCard extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(userTestSession.getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setText(userTestSession.getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, userTestSession.getStars());
         FormDataSet.attach(starsComposite).atLeftTo(titleLabel).atBottomTo(titleLabel, 0, SWT.BOTTOM);
@@ -83,23 +83,23 @@ public class TestReportCard extends Composite {
 
         final CLabel startTimePreLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(startTimePreLabel).atLeft().atTopTo(titleLabel, 10);
-        CLabelSet.decorate(startTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("start_time"));
+        CLabelSet.decorate(startTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(msgs.getString("start_time"));
 
         final CLabel startTimeLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(startTimeLabel).atLeftTo(startTimePreLabel, 5).atTopTo(startTimePreLabel, 0, SWT.TOP);
-        CLabelSet.decorate(startTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getStartTime()));
+        CLabelSet.decorate(startTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(TimeUtils.displaySocialTime(userTestSession.getStartTime()));
 
         final CLabel lastVisitedTimePreLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(lastVisitedTimePreLabel).atLeftTo(startTimeLabel, 40).atTopTo(startTimePreLabel, 0, SWT.TOP);
-        CLabelSet.decorate(lastVisitedTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY60).setText(msgs.getString("last_visited_time"));
+        CLabelSet.decorate(lastVisitedTimePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(msgs.getString("last_visited_time"));
 
         final CLabel lastVisitedTimeLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(lastVisitedTimeLabel).atLeftTo(lastVisitedTimePreLabel, 5).atTopTo(startTimePreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(lastVisitedTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(TimeUtils.displaySocialTime(userTestSession.getLastVisitedTime()));
+        CLabelSet.decorate(lastVisitedTimeLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(TimeUtils.displaySocialTime(userTestSession.getLastVisitedTime()));
 
         final Label divider1 = new Label(header, SWT.NONE);
         FormDataSet.attach(divider1).atLeft().atTopTo(startTimePreLabel, 10).atRight().withHeight(1);
-        LabelSet.decorate(divider1).setBackground(MT.COLOR_WHITE_SMOKE);
+        LabelSet.decorate(divider1).setBackground(MT.COLOR_GREY_LIGHTEN_4);
 
         final Composite body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight();
@@ -107,7 +107,7 @@ public class TestReportCard extends Composite {
 
         final CLabel progressLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(progressLabel).atLeft().atTop(10).atRight();
-        CLabelSet.decorate(progressLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("progress"));
+        CLabelSet.decorate(progressLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(msgs.getString("progress"));
 
         int selection = 100 * userTestSession.getVisitedViewCount() / userTestSession.getTotalViewCount();
         if (userTestSession.isTestComplete() || selection > 100) {
@@ -118,18 +118,18 @@ public class TestReportCard extends Composite {
 
         final CLabel selectionLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(selectionLabel).atLeftTo(progressBar, 10).atTopTo(progressBar, -5, SWT.TOP);
-        CLabelSet.decorate(selectionLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(Integer.toString(selection) + MT.STRING_PERCENTAGE);
+        CLabelSet.decorate(selectionLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(Integer.toString(selection) + MT.STRING_PERCENTAGE);
 
         final CLabel sectionsLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(sectionsLabel).atLeft().atTopTo(progressBar, 20).atRight();
-        CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("selected_sections"));
+        CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(msgs.getString("selected_sections"));
 
         final SectionsComposite sectionsComposite = new SectionsComposite(body, SWT.NONE, 4, false, userTestSession.isReadingSelected(), userTestSession.isListeningSelected(), userTestSession.isSpeakingSelected(), userTestSession.isWritingSelected());
         FormDataSet.attach(sectionsComposite).atLeft().atTopTo(sectionsLabel, 10).atRight();
 
         final Label divider2 = new Label(body, SWT.NONE);
         FormDataSet.attach(divider2).atLeft().atTopTo(sectionsComposite, 15).atRight().withHeight(1);
-        LabelSet.decorate(divider2).setBackground(MT.COLOR_WHITE_SMOKE);
+        LabelSet.decorate(divider2).setBackground(MT.COLOR_GREY_LIGHTEN_4);
 
         final Composite footer = new Composite(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atTopTo(body).atRight();

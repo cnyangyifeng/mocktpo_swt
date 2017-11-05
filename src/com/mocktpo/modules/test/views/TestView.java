@@ -134,7 +134,7 @@ public abstract class TestView extends Composite {
 
         final Label titleLabel = new Label(header, SWT.WRAP);
         FormDataSet.attach(titleLabel).atLeft(10).atTop(10);
-        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(page.getTestVo().getTitle() + MT.STRING_SPACE + vo.getSectionTypeName());
+        LabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setText(page.getTestVo().getTitle() + MT.STRING_SPACE + vo.getSectionTypeName());
 
         /*
          * ==================================================
@@ -165,7 +165,7 @@ public abstract class TestView extends Composite {
             } else {
                 totalQuestionCount = page.getTestVo().findTotalQuestionCountInSection(vo.getSectionType());
             }
-            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_WHITE_SMOKE).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + totalQuestionCount);
+            StyledTextSet.decorate(caption).setAlignment(SWT.CENTER).setEditable(false).setEnabled(false).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setText(MT.STRING_QUESTION + MT.STRING_SPACE + vo.getQuestionNumberInSection() + MT.STRING_SPACE + MT.STRING_OF + MT.STRING_SPACE + totalQuestionCount);
         }
 
         /*

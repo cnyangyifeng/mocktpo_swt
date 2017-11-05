@@ -77,14 +77,14 @@ public class TestCard extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLACK).setText(testVo.getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setText(testVo.getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
 
         final Label divider1 = new Label(header, SWT.NONE);
         FormDataSet.attach(divider1).atLeft().atTopTo(starsComposite, 10).atRight().withHeight(1);
-        LabelSet.decorate(divider1).setBackground(MT.COLOR_WHITE_SMOKE);
+        LabelSet.decorate(divider1).setBackground(MT.COLOR_GREY_LIGHTEN_4);
 
         final Composite body = new Composite(this, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTopTo(header).atRight();
@@ -92,14 +92,14 @@ public class TestCard extends Composite {
 
         final CLabel sectionsLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(sectionsLabel).atLeft().atTop(10).atRight();
-        CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY40).setText(msgs.getString("select_sections"));
+        CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(msgs.getString("select_sections"));
 
         sectionsComposite = new SectionsComposite(body, SWT.NONE, 2, true, false, false, false, false);
         FormDataSet.attach(sectionsComposite).atLeft().atTopTo(sectionsLabel, 10).atRight();
 
         final Label divider2 = new Label(body, SWT.NONE);
         FormDataSet.attach(divider2).atLeft().atTopTo(sectionsComposite, 10).atRight().withHeight(1);
-        LabelSet.decorate(divider2).setBackground(MT.COLOR_WHITE_SMOKE);
+        LabelSet.decorate(divider2).setBackground(MT.COLOR_GREY_LIGHTEN_4);
 
         final Composite footer = new Composite(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atTopTo(body).atRight();
