@@ -1,6 +1,7 @@
 package com.mocktpo.modules.system.views;
 
-import com.mocktpo.MyApplication;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.mocktpo.modules.system.widgets.ImageButton;
 import com.mocktpo.modules.system.widgets.RemoteTestCard;
 import com.mocktpo.util.ConfigUtils;
@@ -10,6 +11,8 @@ import com.mocktpo.util.layout.*;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
+import com.mocktpo.vo.TestTagVo;
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.swt.SWT;
@@ -23,8 +26,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
 import java.io.File;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TestStoreNavContent extends Composite {
@@ -33,6 +38,9 @@ public class TestStoreNavContent extends Composite {
 
     private static final int TAG_LABEL_WIDTH = 90;
     private static final int TAG_LABEL_HEIGHT = 28;
+
+    private static final int HTTP_STATUS_OK = 200;
+    private static final String TEST_TAGS_URL = "http://localhost:8080/website/api/v1/test-tags";
 
     /* Logger and Messages */
 
@@ -46,6 +54,8 @@ public class TestStoreNavContent extends Composite {
     /* Widgets */
 
     private Composite toolBar;
+    private ImageButton refreshButton;
+
     private ScrolledComposite sc;
     private Composite body;
 
@@ -91,7 +101,7 @@ public class TestStoreNavContent extends Composite {
         FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
         LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
-        final ImageButton refreshButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_REFRESH, MT.IMAGE_SYSTEM_REFRESH_HOVER);
+        refreshButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_REFRESH, MT.IMAGE_SYSTEM_REFRESH_HOVER);
         FormDataSet.attach(refreshButton).atLeft().atTop();
         refreshButton.addMouseListener(new RefreshButtonMouseAdapter());
 
@@ -197,7 +207,45 @@ public class TestStoreNavContent extends Composite {
 
         @Override
         public void mouseDown(MouseEvent e) {
-            MyApplication.get().getWindow().toTestEditorPage();
+            refresh();
         }
+    }
+
+    private void refresh() {
+        new Thread(() -> {
+            d.asyncExec(() -> {
+                refreshButton.setEnabled(false);
+            });
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                URL url = new URL(TEST_TAGS_URL);
+                HttpURLConnection c = (HttpURLConnection) url.openConnection();
+                c.setRequestMethod("GET");
+                c.setUseCaches(false);
+                c.setAllowUserInteraction(false);
+                c.setConnectTimeout(6000);
+                c.setReadTimeout(3000);
+                c.setDoOutput(true);
+                c.connect();
+                int httpStatus = c.getResponseCode();
+                switch (httpStatus) {
+                    case HTTP_STATUS_OK:
+                        logger.info("Http status: OK");
+                        List<TestTagVo> testTagVos = JSON.parseObject(IOUtils.toString(c.getInputStream(), "utf-8"), new TypeReference<List<TestTagVo>>() {
+                        });
+                        logger.info("TestTagVos:\n{}", testTagVos);
+                        break;
+                    default:
+                        logger.info("Http status: {}", httpStatus);
+                }
+            } catch (Exception ex) {
+                d.asyncExec(() -> refreshButton.setEnabled(true));
+                ex.printStackTrace();
+            }
+        }).start();
     }
 }

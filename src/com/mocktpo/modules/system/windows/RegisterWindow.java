@@ -38,19 +38,18 @@ import java.util.ResourceBundle;
 
 public class RegisterWindow {
 
-    /* Logger and Messages */
-
-    protected static final Logger logger = LogManager.getLogger();
-    protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
-
     /* Constants */
 
     private static final int HTTP_STATUS_OK = 200;
     private static final int HTTP_STATUS_ACCEPTED = 202;
     private static final int HTTP_STATUS_NOT_FOUND = 404;
     private static final int HTTP_STATUS_CONFLICT = 409;
-
     private static final String ACTIVATION_URL = "http://localhost:8080/website/api/v1/licenses/activate";
+
+    /* Logger and Messages */
+
+    protected static final Logger logger = LogManager.getLogger();
+    protected static final ResourceBundle msgs = ResourceBundle.getBundle("config.msgs");
 
     /* Application */
 
@@ -255,6 +254,7 @@ public class RegisterWindow {
                     StyledTextSet.decorate(activationCodeTextWidget).setText("");
                     StyledTextSet.decorate(messageTextWidget).setText(msgs.getString("network_failure"));
                 });
+                stex.printStackTrace();
             } catch (Exception ex) {
                 d.asyncExec(() -> {
                     activateButton.setEnabled(true);
