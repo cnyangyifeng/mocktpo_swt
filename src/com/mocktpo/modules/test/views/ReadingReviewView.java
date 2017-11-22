@@ -283,7 +283,7 @@ public class ReadingReviewView extends Composite {
 
         final Label bottomTableBorder = new Label(viewPort, SWT.NONE);
         GridDataSet.attach(bottomTableBorder).fillBoth().withHeight(1);
-        LabelSet.decorate(bottomTableBorder).setBackground(MT.COLOR_GRAY);
+        LabelSet.decorate(bottomTableBorder).setBackground(MT.COLOR_GREY_DARKEN_1);
     }
 
     private String getDescriptionText(TestViewVo vo) {

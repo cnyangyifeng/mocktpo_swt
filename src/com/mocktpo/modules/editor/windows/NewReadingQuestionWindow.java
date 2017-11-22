@@ -83,7 +83,7 @@ public class NewReadingQuestionWindow {
         final Composite body = new Composite(s, SWT.NONE);
         FormDataSet.attach(body).atLeft().atTop().atRight().atBottom();
         CompositeSet.decorate(body).setBackground(MT.COLOR_GREY_LIGHTEN_4);
-        body.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_BLUE_GREY_DARKEN_3, 2));
+        body.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GREY_DARKEN_4, 2));
         FormLayoutSet.layout(body).marginWidth(20).marginHeight(20).spacing(20);
 
         final ImageButton newReadingMulitipleChoiceQuestionButton = new ImageButton(body, SWT.NONE, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION, MT.IMAGE_SYSTEM_NEW_MULTIPLE_CHOICE_QUESTION_HOVER);

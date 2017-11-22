@@ -44,18 +44,17 @@ public interface MT {
      * ==================================================
      */
 
-    String COLOR_BLUE_DARKEN_4 = "color_blue_darken_4";
-    String COLOR_BLUE_GREY_DARKEN_3 = "color_gray20";
-    String COLOR_BLUE_GREY_DARKEN_4 = "color_black";
-    String COLOR_GREY_LIGHTEN_4 = "color_white_smoke";
-    String COLOR_GRAY = "color_gray60";
-    String COLOR_GRAY_DARKEN_2 = "color_gray40";
-    String COLOR_PINK = "color_pink";
+    String COLOR_GREY_DARKEN_1 = "COLOR_GREY_DARKEN_1";
+    String COLOR_GREY_DARKEN_4 = "color_grey_darken_4";
+    String COLOR_GREY_LIGHTEN_4 = "color_grey_lighten_4";
+    String COLOR_INDIGO = "color_indigo";
+    String COLOR_INDIGO_DARKEN_2 = "color_indigo_darken_2";
+    String COLOR_INDIGO_LIGHTEN_4 = "color_indigo_lighten_4";
+    String COLOR_PINK_ACCENT_2 = "color_pink_accent_2";
     String COLOR_WHITE = "color_white";
 
     String COLOR_BEIGE = "color_beige";
     String COLOR_BURGUNDY = "color_burgundy";
-    String COLOR_INDIGO = "color_indigo";
     String COLOR_ROSY_BROWN = "color_rosy_brown";
     String COLOR_TOUPE = "color_toupe";
 

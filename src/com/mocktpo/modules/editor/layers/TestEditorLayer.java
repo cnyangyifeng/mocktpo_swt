@@ -193,7 +193,7 @@ public abstract class TestEditorLayer extends Composite {
 
         titleLabel = new CLabel(footer, SWT.NONE);
         FormDataSet.attach(titleLabel).atTopTo(exportAsZipButton, 0, SWT.TOP).atRightTo(saveButton, 10).atBottomTo(exportAsZipButton, 0, SWT.BOTTOM).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GRAY_DARKEN_2);
+        CLabelSet.decorate(titleLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_DARKEN_4);
         updateTitleLabel();
 
         /*
@@ -214,9 +214,9 @@ public abstract class TestEditorLayer extends Composite {
         }
         if (page.isUnsaved()) {
             title = title + MT.STRING_SPACE + MT.STRING_STAR;
-            CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_PINK).setText(title);
+            CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_PINK_ACCENT_2).setText(title);
         } else {
-            CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(title);
+            CLabelSet.decorate(titleLabel).setForeground(MT.COLOR_GREY_DARKEN_4).setText(title);
         }
     }
 

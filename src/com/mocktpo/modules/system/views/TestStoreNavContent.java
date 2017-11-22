@@ -116,7 +116,7 @@ public class TestStoreNavContent extends Composite {
         for (int i = 0; i < 4; i++) {
             final CLabel tagLabel = new CLabel(tagsComposite, SWT.NONE);
             RowDataSet.attach(tagLabel).withWidth(TAG_LABEL_WIDTH).withHeight(TAG_LABEL_HEIGHT);
-            CLabelSet.decorate(tagLabel).setAlignment(SWT.CENTER).setBackground(MT.COLOR_BLUE_GREY_DARKEN_3).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
+            CLabelSet.decorate(tagLabel).setAlignment(SWT.CENTER).setBackground(MT.COLOR_GREY_DARKEN_4).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
             tagLabel.addMouseListener(new TagLabelMouseAdapter());
         }
     }

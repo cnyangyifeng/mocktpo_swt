@@ -24,18 +24,17 @@ public class ResourceManager {
          * ==================================================
          */
 
-        caches.putIfAbsent(MT.COLOR_BLUE_DARKEN_4, new Color(d, 13, 71, 161)); // #0d47a1(rgb 13,71,161)
-        caches.putIfAbsent(MT.COLOR_BLUE_GREY_DARKEN_3, new Color(d, 55, 71, 79)); // #37474f(rgb 55,71,79)
-        caches.putIfAbsent(MT.COLOR_BLUE_GREY_DARKEN_4, new Color(d, 38, 50, 56)); // #263238(rgb 38,50,56)
+        caches.putIfAbsent(MT.COLOR_GREY_DARKEN_1, new Color(d, 117, 117, 117)); // #757575(rgb 117,117,117)
+        caches.putIfAbsent(MT.COLOR_GREY_DARKEN_4, new Color(d, 33, 33, 33)); // #212121(rgb 33,33,33)
         caches.putIfAbsent(MT.COLOR_GREY_LIGHTEN_4, new Color(d, 245, 245, 245)); // #f5f5f5(rgb 245,245,245)
-        caches.putIfAbsent(MT.COLOR_GRAY, new Color(d, 158, 158, 158)); // #9e9e9e(rgb 158,158,158)
-        caches.putIfAbsent(MT.COLOR_GRAY_DARKEN_2, new Color(d, 97, 97, 97)); // #616161(rgb 97,97,97)
-        caches.putIfAbsent(MT.COLOR_PINK, new Color(d, 233, 30, 99)); // #e91e63(rgb 233,30,99)
+        caches.putIfAbsent(MT.COLOR_INDIGO, new Color(d, 63, 81, 181)); // #3f51b5(rgb 63,81,181)
+        caches.putIfAbsent(MT.COLOR_INDIGO_DARKEN_2, new Color(d, 48, 63, 159)); // #303f9f(rgb 48,63,159)
+        caches.putIfAbsent(MT.COLOR_INDIGO_LIGHTEN_4, new Color(d, 197, 202, 233)); // #c5cae9(rgb 197,202,233)
+        caches.putIfAbsent(MT.COLOR_PINK_ACCENT_2, new Color(d, 255, 64, 129)); // #ff4081(rgb 255,64,129)
         caches.putIfAbsent(MT.COLOR_WHITE, new Color(d, 255, 255, 255)); // #ffffff(rgb 255,255,255)
 
         caches.putIfAbsent(MT.COLOR_BEIGE, new Color(d, 242, 232, 200)); // #f2e8c8
         caches.putIfAbsent(MT.COLOR_BURGUNDY, new Color(d, 132, 0, 50)); // #840032
-        caches.putIfAbsent(MT.COLOR_INDIGO, new Color(d, 55, 50, 125)); // #37327d
         caches.putIfAbsent(MT.COLOR_ROSY_BROWN, new Color(d, 218, 192, 200)); // #dac0c8
         caches.putIfAbsent(MT.COLOR_TOUPE, new Color(d, 179, 139, 109)); // #b38b6d
 

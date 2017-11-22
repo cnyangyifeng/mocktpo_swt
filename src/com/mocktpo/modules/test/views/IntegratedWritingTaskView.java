@@ -98,7 +98,7 @@ public class IntegratedWritingTaskView extends SashTestView2 {
         FormDataSet.attach(directionsTextWidget).atLeft().atTop().atRight();
         StyledTextSet.decorate(directionsTextWidget).setBackground(MT.COLOR_HIGHLIGHTED).setEditable(false).setEnabled(false).setFont(MT.FONT_MEDIUM).setLineSpacing(5).setMargins(5).setText(vo.getStyledTextContent("directions"));
         StyleRangeUtils.decorate(directionsTextWidget, vo.getStyledTextStyles("directions"));
-        directionsTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY));
+        directionsTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GREY_DARKEN_1));
 
         final StyledText questionTextWidget = new StyledText(top, SWT.WRAP);
         FormDataSet.attach(questionTextWidget).atLeft(5).atTopTo(directionsTextWidget, 5).atRight(5);
