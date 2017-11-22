@@ -73,18 +73,18 @@ public class ReadingInsertTextQuestionViewEditorView extends SashTestViewEditorV
 
         final CLabel headingPreLabel = new CLabel(left, SWT.NONE);
         FormDataSet.attach(headingPreLabel).atLeft().atTop().atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(headingPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(msgs.getString("heading") + MT.STRING_TAB + MT.STRING_STAR);
+        CLabelSet.decorate(headingPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GREY_DARKEN_4).setText(msgs.getString("heading") + MT.STRING_TAB + MT.STRING_STAR);
 
         headingTextWidget = new StyledText(left, SWT.SINGLE);
         FormDataSet.attach(headingTextWidget).atLeft().atTopTo(headingPreLabel).atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("heading"));
+        StyledTextSet.decorate(headingTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("heading"));
         KeyBindingSet.bind(headingTextWidget).selectAll();
         headingTextWidget.addModifyListener(new HeadingTextModifyListener());
         headingTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel passagePreLabel = new CLabel(left, SWT.NONE);
         FormDataSet.attach(passagePreLabel).atLeft().atTopTo(headingTextWidget, 10).atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(msgs.getString("passage") + MT.STRING_TAB + MT.STRING_STAR);
+        CLabelSet.decorate(passagePreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GREY_DARKEN_4).setText(msgs.getString("passage") + MT.STRING_TAB + MT.STRING_STAR);
 
         addAnInsertionPointButton = new ImageButton(left, SWT.NONE, MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT, MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT_HOVER, MT.IMAGE_SYSTEM_ADD_AN_INSERTION_POINT_DISABLED);
         FormDataSet.attach(addAnInsertionPointButton).atLeft().atTopTo(passagePreLabel);
@@ -93,7 +93,7 @@ public class ReadingInsertTextQuestionViewEditorView extends SashTestViewEditorV
 
         passageTextWidget = new StyledText(left, SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
         FormDataSet.attach(passageTextWidget).atLeft().atTopTo(addAnInsertionPointButton).atRight().atBottom();
-        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("passage"));
+        StyledTextSet.decorate(passageTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("passage"));
         StyleRangeUtils.decorate(passageTextWidget, vo.getStyledTextStyles("passage"));
         KeyBindingSet.bind(passageTextWidget).selectAll();
         passageTextWidget.addModifyListener(new PassageTextModifyListener());
@@ -114,15 +114,15 @@ public class ReadingInsertTextQuestionViewEditorView extends SashTestViewEditorV
 
         final CLabel questionPreLabel = new CLabel(c, SWT.NONE);
         FormDataSet.attach(questionPreLabel).atLeft().atTop().atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        CLabelSet.decorate(questionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(msgs.getString("question") + MT.STRING_TAB + MT.STRING_STAR);
+        CLabelSet.decorate(questionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GREY_DARKEN_4).setText(msgs.getString("question") + MT.STRING_TAB + MT.STRING_STAR);
 
         final Label questionLabel = new Label(c, SWT.WRAP);
         FormDataSet.attach(questionLabel).atLeft().atTopTo(questionPreLabel).atRight();
-        LabelSet.decorate(questionLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setText(MT.STRING_READING_INSERT_TEXT_QUESTION_VIEW_QUESTION);
+        LabelSet.decorate(questionLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setText(MT.STRING_READING_INSERT_TEXT_QUESTION_VIEW_QUESTION);
 
         insertTextTextWidget = new StyledText(c, SWT.WRAP);
         FormDataSet.attach(insertTextTextWidget).atLeft().atTopTo(questionLabel, 10).atRight().withHeight(LC.SYSTEM_TRIPLE_LINES_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(insertTextTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("insertText"));
+        StyledTextSet.decorate(insertTextTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(vo.getStyledTextContent("insertText"));
         StyleRangeUtils.decorate(insertTextTextWidget, vo.getStyledTextStyles("insertText"));
         KeyBindingSet.bind(insertTextTextWidget).selectAll();
         insertTextTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -130,7 +130,7 @@ public class ReadingInsertTextQuestionViewEditorView extends SashTestViewEditorV
 
         final Label footnoteLabel = new Label(c, SWT.WRAP);
         FormDataSet.attach(footnoteLabel).atLeft().atTopTo(insertTextTextWidget, 10).atRight();
-        LabelSet.decorate(footnoteLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setText(MT.STRING_READING_INSERT_TEXT_QUESTION_VIEW_FOOTNOTE);
+        LabelSet.decorate(footnoteLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setText(MT.STRING_READING_INSERT_TEXT_QUESTION_VIEW_FOOTNOTE);
 
         rsc.setContent(c);
         rsc.addPaintListener((e) -> {

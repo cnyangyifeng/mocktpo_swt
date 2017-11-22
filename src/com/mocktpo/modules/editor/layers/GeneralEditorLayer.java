@@ -75,7 +75,7 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
 
         titleTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(titleTextWidget).atLeft(PRE_LABEL_WIDTH).atTop().atRight().withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(titleTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(page.getTestEditorVo().getTitle());
+        StyledTextSet.decorate(titleTextWidget).setBackground(MT.COLOR_WHITE).setFocus().setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(page.getTestEditorVo().getTitle());
         KeyBindingSet.bind(titleTextWidget).traverse().selectAll();
         titleTextWidget.addModifyListener(new TitleTextWidgetModifyListener());
         titleTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
@@ -83,29 +83,29 @@ public class GeneralEditorLayer extends ResponsiveTestEditorLayer {
 
         final CLabel titlePreLabel = new CLabel(viewPort, SWT.NONE);
         FormDataSet.attach(titlePreLabel).atLeft().atTopTo(titleTextWidget, 0, SWT.TOP).atRightTo(titleTextWidget, 0, SWT.LEFT).atBottomTo(titleTextWidget, 0, SWT.BOTTOM);
-        CLabelSet.decorate(titlePreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_3).setText(msgs.getString("title"));
+        CLabelSet.decorate(titlePreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setText(msgs.getString("title"));
 
         starsTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(starsTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(titleTextWidget).withWidth(STARS_TEXT_WIDGET_WIDTH).withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(starsTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getTestEditorVo().getStars()));
+        StyledTextSet.decorate(starsTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(Integer.toString(page.getTestEditorVo().getStars()));
         KeyBindingSet.bind(starsTextWidget).traverse().selectAll();
         starsTextWidget.addModifyListener(new StarsTextWidgetModifyListener());
         starsTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel starsPreLabel = new CLabel(viewPort, SWT.NONE);
         FormDataSet.attach(starsPreLabel).atLeft().atTopTo(starsTextWidget, 0, SWT.TOP).atRightTo(starsTextWidget, 0, SWT.LEFT).atBottomTo(starsTextWidget, 0, SWT.BOTTOM);
-        CLabelSet.decorate(starsPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_3).setText(msgs.getString("stars"));
+        CLabelSet.decorate(starsPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setText(msgs.getString("stars"));
 
         creatorTextWidget = new StyledText(viewPort, SWT.SINGLE);
         FormDataSet.attach(creatorTextWidget).atLeft(PRE_LABEL_WIDTH).atTopTo(starsTextWidget).withWidth(CREATOR_TEXT_WIDGET_WIDTH).withHeight(LC.SYSTEM_SINGLE_LINE_TEXT_WIDGET_HEIGHT);
-        StyledTextSet.decorate(creatorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(page.getTestEditorVo().getCreator());
+        StyledTextSet.decorate(creatorTextWidget).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setMargins(10, 10, 10, 10).setText(page.getTestEditorVo().getCreator());
         KeyBindingSet.bind(creatorTextWidget).traverse().selectAll();
         creatorTextWidget.addModifyListener(new CreatorTextWidgetModifyListener());
         creatorTextWidget.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
 
         final CLabel creatorPreLabel = new CLabel(viewPort, SWT.NONE);
         FormDataSet.attach(creatorPreLabel).atLeft().atTopTo(creatorTextWidget, 0, SWT.TOP).atRightTo(creatorTextWidget, 0, SWT.LEFT).atBottomTo(creatorTextWidget, 0, SWT.BOTTOM);
-        CLabelSet.decorate(creatorPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_3).setText(msgs.getString("creator"));
+        CLabelSet.decorate(creatorPreLabel).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setText(msgs.getString("creator"));
     }
 
     /*

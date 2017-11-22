@@ -88,39 +88,39 @@ public class MainPage extends Composite {
     private void initSideBar() {
         sidebar = new Composite(this, SWT.NONE);
         FormDataSet.attach(sidebar).atLeft().atTop().atBottom().withWidth(this.getBounds().width / 6);
-        CompositeSet.decorate(sidebar).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
+        CompositeSet.decorate(sidebar).setBackground(MT.COLOR_INDIGO_DARKEN_2);
         FormLayoutSet.layout(sidebar).marginWidth(0).marginHeight(0).spacing(0);
 
         final CLabel brandLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(brandLabel).atLeft().atTop().atRight().withHeight(80);
-        CLabelSet.decorate(brandLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4).setFont(MT.FONT_X_LARGE_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_LOGO).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("app_name_alt"));
+        CLabelSet.decorate(brandLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_X_LARGE_BOLD).setForeground(MT.COLOR_WHITE).setImage(MT.IMAGE_LOGO).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("app_name_alt"));
 
         final CLabel testSectionLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testSectionLabel).atLeft().atTopTo(brandLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testSectionLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("test"));
+        CLabelSet.decorate(testSectionLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_INDIGO_LIGHTEN_4).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("test"));
 
         newTestLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(newTestLabel).atLeft().atTopTo(testSectionLabel).atRight().withHeight(60);
-        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("new_test"));
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("new_test"));
         newTestLabel.addMouseListener(new NewTestLabelMouseAdapter());
 
         testReportLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testReportLabel).atLeft().atTopTo(newTestLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("test_reports"));
+        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("test_reports"));
         testReportLabel.addMouseListener(new TestReportLabelMouseAdapter());
 
         final CLabel storeSectionLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(storeSectionLabel).atLeft().atTopTo(testReportLabel).atRight().withHeight(60);
-        CLabelSet.decorate(storeSectionLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_GRAY).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("store"));
+        CLabelSet.decorate(storeSectionLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_INDIGO_LIGHTEN_4).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("store"));
 
         testStoreLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testStoreLabel).atLeft().atTopTo(storeSectionLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("test_store"));
+        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("test_store"));
         testStoreLabel.addMouseListener(new TestStoreLabelMouseAdapter());
 
         testEditorLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testEditorLabel).atLeft().atTopTo(testStoreLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("test_editor"));
+        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("test_editor"));
         testEditorLabel.addMouseListener(new TestEditorLabelMouseAdapter());
     }
 
@@ -149,10 +149,10 @@ public class MainPage extends Composite {
      */
 
     public void toNewTestView() {
-        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_3);
-        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
-        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
-        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_INDIGO);
+        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
+        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
+        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
 
         if (newTestView == null) {
             newTestView = new NewTestNavContent(body, SWT.NONE);
@@ -163,10 +163,10 @@ public class MainPage extends Composite {
     }
 
     public void toTestReportView() {
-        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
-        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_3);
-        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
-        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
+        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO);
+        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
+        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
 
         if (testReportView == null) {
             testReportView = new TestReportNavContent(body, SWT.NONE);
@@ -177,10 +177,10 @@ public class MainPage extends Composite {
     }
 
     public void toTestStoreView() {
-        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
-        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
-        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
-        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_3);
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
+        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
+        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
+        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO);
 
         if (testStoreView == null) {
             testStoreView = new TestStoreNavContent(body, SWT.NONE);
@@ -191,10 +191,10 @@ public class MainPage extends Composite {
     }
 
     public void toTestEditorView() {
-        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
-        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
-        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_3);
-        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
+        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
+        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO);
+        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
 
         if (testEditorView == null) {
             testEditorView = new TestEditorNavContent(body, SWT.NONE);

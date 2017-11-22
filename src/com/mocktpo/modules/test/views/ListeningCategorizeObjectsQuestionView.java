@@ -135,7 +135,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
         FormDataSet.attach(ac).atLeft().atTopTo(tipsTextWidget, 20).atRight();
         CompositeSet.decorate(ac).setVisible(false);
         FormLayoutSet.layout(ac).marginWidth(1).marginHeight(1).spacing(0);
-        ac.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY_DARKEN_2));
+        ac.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GREY_DARKEN_4));
 
         final StyledText questionTextHeader = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextHeader).atLeft().atTop().fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
@@ -143,7 +143,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final Label verticalDivider1 = new Label(ac, SWT.VERTICAL);
         FormDataSet.attach(verticalDivider1).atLeftTo(questionTextHeader).atTop().atBottom().withWidth(1);
-        LabelSet.decorate(verticalDivider1).setBackground(MT.COLOR_GRAY_DARKEN_2);
+        LabelSet.decorate(verticalDivider1).setBackground(MT.COLOR_GREY_DARKEN_4);
 
         final CLabel yesTextHeader = new CLabel(ac, SWT.CENTER);
         FormDataSet.attach(yesTextHeader).atLeftTo(verticalDivider1).atTopTo(questionTextHeader, 0, SWT.TOP).atBottomTo(questionTextHeader, 0, SWT.BOTTOM).withWidth(CHECK_MARK_LABEL_WIDTH);
@@ -152,7 +152,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final Label verticalDivider2 = new Label(ac, SWT.VERTICAL);
         FormDataSet.attach(verticalDivider2).atLeftTo(yesTextHeader).atTop().atBottom().withWidth(1);
-        LabelSet.decorate(verticalDivider2).setBackground(MT.COLOR_GRAY_DARKEN_2);
+        LabelSet.decorate(verticalDivider2).setBackground(MT.COLOR_GREY_DARKEN_4);
 
         final CLabel noTextHeader = new CLabel(ac, SWT.CENTER);
         FormDataSet.attach(noTextHeader).atLeftTo(verticalDivider2).atTopTo(questionTextHeader, 0, SWT.TOP).atBottomTo(questionTextHeader, 0, SWT.BOTTOM).atRight();
@@ -161,7 +161,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final Label divider1 = new Label(ac, SWT.NONE);
         FormDataSet.attach(divider1).atLeft().atTopTo(questionTextHeader).atRight().withHeight(1);
-        LabelSet.decorate(divider1).setBackground(MT.COLOR_GRAY_DARKEN_2);
+        LabelSet.decorate(divider1).setBackground(MT.COLOR_GREY_DARKEN_4);
 
         final StyledText questionTextWidget1 = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget1).atLeft().atTopTo(divider1).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
@@ -179,7 +179,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final Label divider2 = new Label(ac, SWT.NONE);
         FormDataSet.attach(divider2).atLeft().atTopTo(questionTextWidget1).atRight().withHeight(1);
-        LabelSet.decorate(divider2).setBackground(MT.COLOR_GRAY_DARKEN_2);
+        LabelSet.decorate(divider2).setBackground(MT.COLOR_GREY_DARKEN_4);
 
         final StyledText questionTextWidget2 = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget2).atLeft().atTopTo(divider2).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
@@ -197,7 +197,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final Label divider3 = new Label(ac, SWT.NONE);
         FormDataSet.attach(divider3).atLeft().atTopTo(questionTextWidget2).atRight().withHeight(1);
-        LabelSet.decorate(divider3).setBackground(MT.COLOR_GRAY_DARKEN_2);
+        LabelSet.decorate(divider3).setBackground(MT.COLOR_GREY_DARKEN_4);
 
         final StyledText questionTextWidget3 = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget3).atLeft().atTopTo(divider3).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
@@ -215,7 +215,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final Label divider4 = new Label(ac, SWT.NONE);
         FormDataSet.attach(divider4).atLeft().atTopTo(questionTextWidget3).atRight().withHeight(1);
-        LabelSet.decorate(divider4).setBackground(MT.COLOR_GRAY_DARKEN_2);
+        LabelSet.decorate(divider4).setBackground(MT.COLOR_GREY_DARKEN_4);
 
         final StyledText questionTextWidget4 = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget4).atLeft().atTopTo(divider4).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);
@@ -233,7 +233,7 @@ public class ListeningCategorizeObjectsQuestionView extends ResponsiveTestView {
 
         final Label divider5 = new Label(ac, SWT.NONE);
         FormDataSet.attach(divider5).atLeft().atTopTo(questionTextWidget4).atRight().withHeight(1);
-        LabelSet.decorate(divider5).setBackground(MT.COLOR_GRAY_DARKEN_2);
+        LabelSet.decorate(divider5).setBackground(MT.COLOR_GREY_DARKEN_4);
 
         final StyledText questionTextWidget5 = new StyledText(ac, SWT.WRAP);
         FormDataSet.attach(questionTextWidget5).atLeft().atTopTo(divider5).fromRight(0, CHECK_MARK_LABEL_WIDTH * 2);

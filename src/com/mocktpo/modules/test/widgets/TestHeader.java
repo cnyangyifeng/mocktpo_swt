@@ -54,7 +54,7 @@ public class TestHeader extends Composite {
         backgroundImage = new Image(d, ScreenUtils.getClientWidth(d), LC.TEST_HEADER_HEIGHT);
         GC gc = new GC(backgroundImage);
 
-        Color start = ResourceManager.getColor(MT.COLOR_BLUE_DARKEN_4);
+        Color start = ResourceManager.getColor(MT.COLOR_INDIGO);
         Color end = ResourceManager.getColor(MT.COLOR_BURGUNDY);
 
         gc.setForeground(start);

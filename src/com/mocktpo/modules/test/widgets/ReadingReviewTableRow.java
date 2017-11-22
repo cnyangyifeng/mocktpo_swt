@@ -87,7 +87,7 @@ public class ReadingReviewTableRow extends Composite {
         addPaintListener((e) -> {
             GC gc = e.gc;
             Rectangle c = ((Control) e.widget).getBounds();
-            gc.setForeground(ResourceManager.getColor(MT.COLOR_GRAY));
+            gc.setForeground(ResourceManager.getColor(MT.COLOR_GREY_DARKEN_1));
             gc.drawLine(0, 0, 0, c.height); // left
             gc.drawLine(0, 0, c.width, 0); // top
             gc.drawLine(c.width - 1, 0, c.width - 1, c.height); // right
@@ -106,7 +106,7 @@ public class ReadingReviewTableRow extends Composite {
 
         final Label divider1 = new Label(this, SWT.VERTICAL);
         FormDataSet.attach(divider1).atLeftTo(numberCell).atTop().atBottom().withWidth(1);
-        LabelSet.decorate(divider1).setBackground(MT.COLOR_GRAY);
+        LabelSet.decorate(divider1).setBackground(MT.COLOR_GREY_DARKEN_1);
 
         statusCell = new Label(this, SWT.CENTER);
         FormDataSet.attach(statusCell).atTop(1).atRight(1).atBottom().withWidth(STATUS_CELL_WIDTH);
@@ -117,7 +117,7 @@ public class ReadingReviewTableRow extends Composite {
 
         final Label divider2 = new Label(this, SWT.VERTICAL);
         FormDataSet.attach(divider2).atTop().atRightTo(statusCell).atBottom().withWidth(1);
-        LabelSet.decorate(divider2).setBackground(MT.COLOR_GRAY);
+        LabelSet.decorate(divider2).setBackground(MT.COLOR_GREY_DARKEN_1);
 
         descriptionCell = new Label(this, SWT.NONE);
         FormDataSet.attach(descriptionCell).atLeftTo(divider1).atTop(1).atRightTo(divider2).atBottom();
@@ -151,9 +151,9 @@ public class ReadingReviewTableRow extends Composite {
     @Override
     public void setEnabled(boolean enabled) {
         if (!enabled) {
-            LabelSet.decorate(numberCell).setForeground(MT.COLOR_GRAY);
-            LabelSet.decorate(descriptionCell).setForeground(MT.COLOR_GRAY);
-            LabelSet.decorate(statusCell).setForeground(MT.COLOR_GRAY);
+            LabelSet.decorate(numberCell).setForeground(MT.COLOR_GREY_DARKEN_1);
+            LabelSet.decorate(descriptionCell).setForeground(MT.COLOR_GREY_DARKEN_1);
+            LabelSet.decorate(statusCell).setForeground(MT.COLOR_GREY_DARKEN_1);
         }
     }
 

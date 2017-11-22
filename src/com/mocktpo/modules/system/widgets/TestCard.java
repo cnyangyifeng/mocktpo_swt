@@ -67,7 +67,6 @@ public class TestCard extends Composite {
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(this).marginWidth(10).marginHeight(10).spacing(0);
-        this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
     }
 
     private void initWidgets() {
@@ -77,7 +76,7 @@ public class TestCard extends Composite {
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTop().withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setText(testVo.getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_DARKEN_4).setText(testVo.getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
@@ -92,7 +91,7 @@ public class TestCard extends Composite {
 
         final CLabel sectionsLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(sectionsLabel).atLeft().atTop(10).atRight();
-        CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(msgs.getString("select_sections"));
+        CLabelSet.decorate(sectionsLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GREY_DARKEN_1).setText(msgs.getString("select_sections"));
 
         sectionsComposite = new SectionsComposite(body, SWT.NONE, 2, true, false, false, false, false);
         FormDataSet.attach(sectionsComposite).atLeft().atTopTo(sectionsLabel, 10).atRight();

@@ -56,7 +56,7 @@
           "styles": [
             { "start": 51, "length": 10, "fontStyle": 1 },
             { "start": 89, "length": 10, "fontStyle": 1 },
-            { "start": 347, "length": 10, "underline": true, "foreground": "color_blue_darken_4" },
+            { "start": 347, "length": 10, "underline": true, "foreground": "color_indigo" },
             { "start": 488, "length": 4, "fontStyle": 1 },
             { "start": 597, "length": 4, "fontStyle": 1 },
             { "start": 621, "length": 6, "fontStyle": 1 },

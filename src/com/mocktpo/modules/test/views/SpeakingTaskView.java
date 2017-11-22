@@ -124,7 +124,7 @@ public class SpeakingTaskView extends ResponsiveTestView {
 
         final Label divider = new Label(timerContainer, SWT.NONE);
         FormDataSet.attach(divider).atLeft().atTop().atRight().withHeight(2);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4);
+        LabelSet.decorate(divider).setBackground(MT.COLOR_GREY_DARKEN_4);
 
         final CLabel preparationTimeLabel = new CLabel(timerContainer, SWT.NONE);
         FormDataSet.attach(preparationTimeLabel).fromLeft(50, -FOOTNOTE_WIDTH / 2).atTopTo(divider, 20).withWidth(FOOTNOTE_WIDTH);
@@ -137,16 +137,16 @@ public class SpeakingTaskView extends ResponsiveTestView {
         Composite timerPanel = new Composite(timerContainer, SWT.NONE);
         FormDataSet.attach(timerPanel).fromLeft(50, -TIMER_PANEL_WIDTH / 2).atTopTo(responseTimeLabel, 30).withWidth(TIMER_PANEL_WIDTH);
         FormLayoutSet.layout(timerPanel).marginWidth(1).marginHeight(1).spacing(0);
-        timerPanel.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY_DARKEN_2));
+        timerPanel.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GREY_DARKEN_4));
 
         timerHeader = new CLabel(timerPanel, SWT.CENTER);
         FormDataSet.attach(timerHeader).atLeft().atTop().atRight();
-        CLabelSet.decorate(timerHeader).setBackground(MT.COLOR_BLUE_GREY_DARKEN_4).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_WHITE).setMargins(5).setText("");
+        CLabelSet.decorate(timerHeader).setBackground(MT.COLOR_GREY_DARKEN_4).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_WHITE).setMargins(5).setText("");
 
         timerLabel = new CLabel(timerPanel, SWT.CENTER);
         FormDataSet.attach(timerLabel).atLeft().atTopTo(timerHeader).atRight();
         preparationCountDown = vo.getPreparationTime();
-        CLabelSet.decorate(timerLabel).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setMargins(5).setText("");
+        CLabelSet.decorate(timerLabel).setBackground(MT.COLOR_WHITE).setFont(MT.FONT_MEDIUM).setForeground(MT.COLOR_GREY_DARKEN_4).setMargins(5).setText("");
     }
 
     /*

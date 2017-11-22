@@ -66,7 +66,6 @@ public class RemoteTestCard extends Composite {
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(this).marginWidth(10).marginHeight(10).spacing(0);
-        this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
     }
 
     private void initWidgets() {
@@ -76,11 +75,11 @@ public class RemoteTestCard extends Composite {
 
         final CLabel superscriptLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(superscriptLabel).atLeft().atTop().withWidth(SUPERSCRIPT_WIDTH).withHeight(SUPERSCRIPT_HEIGHT);
-        CLabelSet.decorate(superscriptLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_BLUE_GREY_DARKEN_3).setText(msgs.getString("test_paper"));
+        CLabelSet.decorate(superscriptLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GREY_DARKEN_1).setText(msgs.getString("test_paper"));
 
         final CLabel titleLabel = new CLabel(header, SWT.NONE);
         FormDataSet.attach(titleLabel).atLeft().atTopTo(superscriptLabel, 10).withWidth(TITLE_WIDTH);
-        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_BLUE_GREY_DARKEN_4).setText(getTitle());
+        CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_DARKEN_4).setText(getTitle());
 
         final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
@@ -95,19 +94,19 @@ public class RemoteTestCard extends Composite {
 
         final CLabel creatorPreLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(creatorPreLabel).atLeft().atTop(10);
-        CLabelSet.decorate(creatorPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(msgs.getString("creator"));
+        CLabelSet.decorate(creatorPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GREY_DARKEN_1).setText(msgs.getString("creator"));
 
         final CLabel creatorLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(creatorLabel).atLeftTo(creatorPreLabel, 10).atTopTo(creatorPreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(creatorLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(getCreator());
+        CLabelSet.decorate(creatorLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GREY_DARKEN_4).setText(getCreator());
 
         final CLabel versionPreLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(versionPreLabel).atLeft().atTopTo(creatorPreLabel, 10);
-        CLabelSet.decorate(versionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY).setText(msgs.getString("version"));
+        CLabelSet.decorate(versionPreLabel).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GREY_DARKEN_1).setText(msgs.getString("version"));
 
         final CLabel versionLabel = new CLabel(body, SWT.NONE);
         FormDataSet.attach(versionLabel).atLeftTo(versionPreLabel, 10).atTopTo(versionPreLabel, 0, SWT.TOP).atRight();
-        CLabelSet.decorate(versionLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GRAY_DARKEN_2).setText(Double.toString(getVersion()));
+        CLabelSet.decorate(versionLabel).setAlignment(SWT.RIGHT).setFont(MT.FONT_SMALL).setForeground(MT.COLOR_GREY_DARKEN_4).setText(Double.toString(getVersion()));
 
         final Label divider2 = new Label(body, SWT.NONE);
         FormDataSet.attach(divider2).atLeft().atTopTo(versionPreLabel, 10).atRight().withHeight(1);

@@ -38,6 +38,6 @@ public class PreviewEditorLayer extends ResponsiveTestEditorLayer {
 
     @Override
     protected void updateBody() {
-        CompositeSet.decorate(body).setBackground(MT.COLOR_BLUE_DARKEN_4);
+        CompositeSet.decorate(body).setBackground(MT.COLOR_INDIGO);
     }
 }

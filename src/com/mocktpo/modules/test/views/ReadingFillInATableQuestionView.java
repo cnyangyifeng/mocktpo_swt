@@ -183,7 +183,7 @@ public class ReadingFillInATableQuestionView extends StackTestView {
         final Composite ac = new Composite(viewPort, SWT.CENTER);
         FormDataSet.attach(ac).fromLeft(50, -ScreenUtils.getClientWidth(d) / 4).atTopTo(tipsTextWidget, 10).withWidth(ScreenUtils.getClientWidth(d) / 2);
         FormLayoutSet.layout(ac).marginWidth(0).marginHeight(10).spacing(10);
-        ac.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY_DARKEN_2));
+        ac.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GREY_DARKEN_4));
 
         String question = vo.getStyledTextContent("question");
         String[] questions = question.split(MT.STRING_SEMICOLON);
@@ -209,7 +209,7 @@ public class ReadingFillInATableQuestionView extends StackTestView {
         }
         final Label divider1 = new Label(ac, SWT.NONE);
         FormDataSet.attach(divider1).atLeft(0).atTopTo(cl1, totalAnswerCountInCategory1 * LC.READING_DND_QUESTION_HEIGHT, SWT.TOP).atRight().withHeight(1);
-        LabelSet.decorate(divider1).setBackground(MT.COLOR_GRAY_DARKEN_2);
+        LabelSet.decorate(divider1).setBackground(MT.COLOR_GREY_DARKEN_4);
 
         /* Category 2 */
 

@@ -140,21 +140,21 @@ public class ListeningSortEventsQuestionView extends ResponsiveTestView {
         final DroppableAnswerComposite blank1 = new DroppableAnswerComposite(ac, SWT.WRAP | SWT.TOP, ANSWER_1);
         FormDataSet.attach(blank1).atLeft().atTop().atRight().withHeight(LC.LISTENING_DND_QUESTION_HEIGHT);
         AnswerCompositeDropTargetSet.drop(blank1);
-        blank1.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY_DARKEN_2));
+        blank1.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GREY_DARKEN_4));
         blank1.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
         blank1.addMouseListener(new AnswerCompositeMouseAdapter());
 
         final DroppableAnswerComposite blank2 = new DroppableAnswerComposite(ac, SWT.WRAP, ANSWER_2);
         FormDataSet.attach(blank2).atLeft().atTopTo(blank1, 10).atRight().withHeight(LC.LISTENING_DND_QUESTION_HEIGHT);
         AnswerCompositeDropTargetSet.drop(blank2);
-        blank2.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY_DARKEN_2));
+        blank2.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GREY_DARKEN_4));
         blank2.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
         blank2.addMouseListener(new AnswerCompositeMouseAdapter());
 
         final DroppableAnswerComposite blank3 = new DroppableAnswerComposite(ac, SWT.WRAP, ANSWER_3);
         FormDataSet.attach(blank3).atLeft().atTopTo(blank2, 10).atRight().withHeight(LC.LISTENING_DND_QUESTION_HEIGHT);
         AnswerCompositeDropTargetSet.drop(blank3);
-        blank3.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GRAY_DARKEN_2));
+        blank3.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_GREY_DARKEN_4));
         blank3.addPropertyChangeListener(new AnswerCompositePropertyChangeListener());
         blank3.addMouseListener(new AnswerCompositeMouseAdapter());
 
