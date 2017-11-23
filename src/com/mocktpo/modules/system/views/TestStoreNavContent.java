@@ -94,12 +94,8 @@ public class TestStoreNavContent extends Composite {
     private void initToolBar() {
         toolBar = new Composite(this, SWT.NONE);
         FormDataSet.attach(toolBar).atLeft().atTop().atRight();
-        CompositeSet.decorate(toolBar).setBackground(MT.COLOR_GREY_LIGHTEN_4);
-        FormLayoutSet.layout(toolBar).marginWidth(20).marginHeight(10).spacing(0);
-
-        final Label divider = new Label(this, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
+        CompositeSet.decorate(toolBar).setBackground(MT.COLOR_WHITE);
+        FormLayoutSet.layout(toolBar).marginWidth(10).marginHeight(10).spacing(0);
 
         refreshButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_REFRESH, MT.IMAGE_SYSTEM_REFRESH_HOVER);
         FormDataSet.attach(refreshButton).atLeft().atTop();
@@ -137,7 +133,7 @@ public class TestStoreNavContent extends Composite {
 
         body = new Composite(sc, SWT.NONE);
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-        GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(20).marginHeight(20).horizontalSpacing(20).verticalSpacing(20);
+        GridLayoutSet.layout(body).numColumns(4).makeColumnsEqualWidth(true).marginWidth(10).marginHeight(10).horizontalSpacing(10).verticalSpacing(10);
 
         sc.setContent(body);
     }

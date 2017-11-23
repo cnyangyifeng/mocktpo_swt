@@ -26,6 +26,7 @@ public class ResourceManager {
 
         caches.putIfAbsent(MT.COLOR_GREY_DARKEN_1, new Color(d, 117, 117, 117)); // #757575(rgb 117,117,117)
         caches.putIfAbsent(MT.COLOR_GREY_DARKEN_4, new Color(d, 33, 33, 33)); // #212121(rgb 33,33,33)
+        caches.putIfAbsent(MT.COLOR_GREY_LIGHTEN_1, new Color(d, 189, 189, 189)); // #bdbdbd(rgb 189,189,189)
         caches.putIfAbsent(MT.COLOR_GREY_LIGHTEN_4, new Color(d, 245, 245, 245)); // #f5f5f5(rgb 245,245,245)
         caches.putIfAbsent(MT.COLOR_INDIGO, new Color(d, 63, 81, 181)); // #3f51b5(rgb 63,81,181)
         caches.putIfAbsent(MT.COLOR_INDIGO_DARKEN_2, new Color(d, 48, 63, 159)); // #303f9f(rgb 48,63,159)
@@ -40,6 +41,7 @@ public class ResourceManager {
 
         caches.putIfAbsent(MT.COLOR_HIGHLIGHTED, new Color(d, 220, 220, 220)); // #dcdcdc
         caches.putIfAbsent(MT.COLOR_WINDOW_BACKGROUND, new Color(d, 239, 239, 239)); // #efefef
+        // caches.putIfAbsent(MT.COLOR_WINDOW_BACKGROUND, new Color(d, 245, 245, 245));
 
         /*
          * ==================================================
@@ -205,6 +207,7 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_IMPORT_HOVER, ImageUtils.load(d, "sys_import_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_INSTALL, ImageUtils.load(d, "sys_install"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_INSTALL_HOVER, ImageUtils.load(d, "sys_install_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_INSTALLING, ImageUtils.load(d, "sys_installing"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_MARK_PARAGRAPHS, ImageUtils.load(d, "sys_mark_paragraphs"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_DISABLED, ImageUtils.load(d, "sys_mark_paragraphs_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_MARK_PARAGRAPHS_HOVER, ImageUtils.load(d, "sys_mark_paragraphs_h"));
@@ -248,9 +251,9 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_TEST_HOVER, ImageUtils.load(d, "sys_new_test_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_TEST_PAPER, ImageUtils.load(d, "sys_new_test_paper"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_NEW_TEST_PAPER_HOVER, ImageUtils.load(d, "sys_new_test_paper_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_OPEN, ImageUtils.load(d, "sys_open"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_PASTE, ImageUtils.load(d, "sys_paste"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_PASTE_HOVER, ImageUtils.load(d, "sys_paste_h"));
-        caches.putIfAbsent(MT.IMAGE_SYSTEM_PLEASE_WAIT, ImageUtils.load(d, "sys_please_wait"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT, ImageUtils.load(d, "sys_report"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT_HOVER, ImageUtils.load(d, "sys_report_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REFRESH, ImageUtils.load(d, "sys_refresh"));
@@ -293,7 +296,6 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_UNBOXED_DISABLED, ImageUtils.load(d, "sys_unboxed_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_UPDATE, ImageUtils.load(d, "sys_update"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_UPDATE_HOVER, ImageUtils.load(d, "sys_update_h"));
-        caches.putIfAbsent(MT.IMAGE_SYSTEM_VIEW, ImageUtils.load(d, "sys_view"));
     }
 
     public static void dispose() {

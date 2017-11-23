@@ -46,6 +46,7 @@ public interface MT {
 
     String COLOR_GREY_DARKEN_1 = "COLOR_GREY_DARKEN_1";
     String COLOR_GREY_DARKEN_4 = "color_grey_darken_4";
+    String COLOR_GREY_LIGHTEN_1 = "color_grey_lighten_1";
     String COLOR_GREY_LIGHTEN_4 = "color_grey_lighten_4";
     String COLOR_INDIGO = "color_indigo";
     String COLOR_INDIGO_DARKEN_2 = "color_indigo_darken_2";
@@ -216,6 +217,7 @@ public interface MT {
     String IMAGE_SYSTEM_IMPORT_HOVER = "image_system_import_hover";
     String IMAGE_SYSTEM_INSTALL = "image_system_install";
     String IMAGE_SYSTEM_INSTALL_HOVER = "image_system_install_hover";
+    String IMAGE_SYSTEM_INSTALLING = "image_system_installing";
     String IMAGE_SYSTEM_MARK_PARAGRAPHS = "image_system_mark_paragraphs";
     String IMAGE_SYSTEM_MARK_PARAGRAPHS_DISABLED = "image_system_mark_paragraphs_disabled";
     String IMAGE_SYSTEM_MARK_PARAGRAPHS_HOVER = "image_system_mark_paragraphs_hover";
@@ -259,9 +261,9 @@ public interface MT {
     String IMAGE_SYSTEM_NEW_TEST_HOVER = "image_system_new_test_hover";
     String IMAGE_SYSTEM_NEW_TEST_PAPER = "image_system_new_test_paper";
     String IMAGE_SYSTEM_NEW_TEST_PAPER_HOVER = "image_system_new_test_paper_hover";
+    String IMAGE_SYSTEM_OPEN = "image_system_open";
     String IMAGE_SYSTEM_PASTE = "image_system_paste";
     String IMAGE_SYSTEM_PASTE_HOVER = "image_system_paste_hover";
-    String IMAGE_SYSTEM_PLEASE_WAIT = "image_system_please_wait";
     String IMAGE_SYSTEM_REPORT = "image_system_report";
     String IMAGE_SYSTEM_REPORT_HOVER = "image_system_report_hover";
     String IMAGE_SYSTEM_REFRESH = "image_system_refresh";
@@ -304,7 +306,6 @@ public interface MT {
     String IMAGE_SYSTEM_UNBOXED_DISABLED = "image_system_unboxed_disabled";
     String IMAGE_SYSTEM_UPDATE = "image_system_update";
     String IMAGE_SYSTEM_UPDATE_HOVER = "image_system_update_hover";
-    String IMAGE_SYSTEM_VIEW = "image_system_view";
 
     /*
      * ==================================================

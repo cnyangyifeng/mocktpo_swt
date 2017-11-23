@@ -75,7 +75,7 @@ public class TestReportNavContent extends Composite {
 
         body = new Composite(sc, SWT.NONE);
         CompositeSet.decorate(body).setBackground(MT.COLOR_WINDOW_BACKGROUND);
-        GridLayoutSet.layout(body).marginWidth(0).marginHeight(0).horizontalSpacing(0).verticalSpacing(10);
+        GridLayoutSet.layout(body).marginWidth(10).marginHeight(10).horizontalSpacing(10).verticalSpacing(10);
 
         sc.setContent(body);
     }

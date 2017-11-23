@@ -116,7 +116,7 @@ public class RemoteTestCard extends Composite {
         FormDataSet.attach(footer).atLeft().atTopTo(body).atRight();
         FormLayoutSet.layout(footer).marginWidth(0).marginHeight(10).spacing(0);
 
-        installButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_INSTALL, MT.IMAGE_SYSTEM_INSTALL_HOVER, MT.IMAGE_SYSTEM_PLEASE_WAIT);
+        installButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_INSTALL, MT.IMAGE_SYSTEM_INSTALL_HOVER, MT.IMAGE_SYSTEM_INSTALLING);
         FormDataSet.attach(installButton).atLeft().atTop(10);
         installButton.addMouseListener(new DownloadButtonMouseAdapter());
     }
