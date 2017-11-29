@@ -41,7 +41,6 @@ public class ResourceManager {
 
         caches.putIfAbsent(MT.COLOR_HIGHLIGHTED, new Color(d, 220, 220, 220)); // #dcdcdc
         caches.putIfAbsent(MT.COLOR_WINDOW_BACKGROUND, new Color(d, 239, 239, 239)); // #efefef
-        // caches.putIfAbsent(MT.COLOR_WINDOW_BACKGROUND, new Color(d, 245, 245, 245));
 
         /*
          * ==================================================

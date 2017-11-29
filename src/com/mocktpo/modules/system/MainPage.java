@@ -101,12 +101,12 @@ public class MainPage extends Composite {
 
         newTestLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(newTestLabel).atLeft().atTopTo(testSectionLabel).atRight().withHeight(60);
-        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("new_test"));
+        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("new_test"));
         newTestLabel.addMouseListener(new NewTestLabelMouseAdapter());
 
         testReportLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testReportLabel).atLeft().atTopTo(newTestLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("test_reports"));
+        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("test_reports"));
         testReportLabel.addMouseListener(new TestReportLabelMouseAdapter());
 
         final CLabel storeSectionLabel = new CLabel(sidebar, SWT.NONE);
@@ -115,12 +115,12 @@ public class MainPage extends Composite {
 
         testStoreLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testStoreLabel).atLeft().atTopTo(storeSectionLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("test_store"));
+        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("test_store"));
         testStoreLabel.addMouseListener(new TestStoreLabelMouseAdapter());
 
         testEditorLabel = new CLabel(sidebar, SWT.NONE);
         FormDataSet.attach(testEditorLabel).atLeft().atTopTo(testStoreLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_LIGHTEN_4).setLeftMargin(20).setText(msgs.getString("test_editor"));
+        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("test_editor"));
         testEditorLabel.addMouseListener(new TestEditorLabelMouseAdapter());
     }
 

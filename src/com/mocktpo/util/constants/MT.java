@@ -44,7 +44,7 @@ public interface MT {
      * ==================================================
      */
 
-    String COLOR_GREY_DARKEN_1 = "COLOR_GREY_DARKEN_1";
+    String COLOR_GREY_DARKEN_1 = "color_grey_darken_1";
     String COLOR_GREY_DARKEN_4 = "color_grey_darken_4";
     String COLOR_GREY_LIGHTEN_1 = "color_grey_lighten_1";
     String COLOR_GREY_LIGHTEN_4 = "color_grey_lighten_4";

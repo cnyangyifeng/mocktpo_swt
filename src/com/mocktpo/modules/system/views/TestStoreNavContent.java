@@ -55,6 +55,7 @@ public class TestStoreNavContent extends Composite {
 
     private Composite toolBar;
     private ImageButton refreshButton;
+    private Composite tagsComposite;
 
     private ScrolledComposite sc;
     private Composite body;
@@ -101,7 +102,7 @@ public class TestStoreNavContent extends Composite {
         FormDataSet.attach(refreshButton).atLeft().atTop();
         refreshButton.addMouseListener(new RefreshButtonMouseAdapter());
 
-        final Composite tagsComposite = new Composite(toolBar, SWT.WRAP);
+        tagsComposite = new Composite(toolBar, SWT.WRAP);
         FormDataSet.attach(tagsComposite).atLeftTo(refreshButton, 20).atRight();
         RowLayoutSet.layout(tagsComposite).marginWidth(0).marginHeight(0).spacing(0).wrap(false);
 
@@ -112,7 +113,7 @@ public class TestStoreNavContent extends Composite {
         for (int i = 0; i < 4; i++) {
             final CLabel tagLabel = new CLabel(tagsComposite, SWT.NONE);
             RowDataSet.attach(tagLabel).withWidth(TAG_LABEL_WIDTH).withHeight(TAG_LABEL_HEIGHT);
-            CLabelSet.decorate(tagLabel).setAlignment(SWT.CENTER).setBackground(MT.COLOR_GREY_DARKEN_4).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
+            CLabelSet.decorate(tagLabel).setAlignment(SWT.CENTER).setBackground(MT.COLOR_GREY_LIGHTEN_1).setFont(MT.FONT_SMALL).setText(msgs.getString("reading"));
             tagLabel.addMouseListener(new TagLabelMouseAdapter());
         }
     }
@@ -209,9 +210,7 @@ public class TestStoreNavContent extends Composite {
 
     private void refresh() {
         new Thread(() -> {
-            d.asyncExec(() -> {
-                refreshButton.setEnabled(false);
-            });
+            d.asyncExec(() -> refreshButton.setEnabled(false));
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {

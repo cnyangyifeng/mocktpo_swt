@@ -103,12 +103,8 @@ public abstract class TestEditorLayer extends Composite {
 
         header = new Composite(this, SWT.NONE);
         FormDataSet.attach(header).atLeft().atTop().atRight();
-        CompositeSet.decorate(header).setBackground(MT.COLOR_GREY_LIGHTEN_4);
+        CompositeSet.decorate(header).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(header).marginWidth(10).marginHeight(10).spacing(0);
-
-        final Label divider = new Label(this, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atTopTo(header).atRight().withHeight(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
         /*
          * ==================================================
@@ -176,12 +172,8 @@ public abstract class TestEditorLayer extends Composite {
     private void initFooter() {
         footer = new Composite(this, SWT.NONE);
         FormDataSet.attach(footer).atLeft().atRight().atBottom();
-        CompositeSet.decorate(footer).setBackground(MT.COLOR_GREY_LIGHTEN_4);
+        CompositeSet.decorate(footer).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(footer).marginWidth(10).marginHeight(10).spacing(10);
-
-        final Label divider = new Label(this, SWT.NONE);
-        FormDataSet.attach(divider).atLeft().atRight().atBottomTo(footer, 0, SWT.TOP).withHeight(1);
-        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
         exportAsZipButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_HOVER, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_DISABLED);
         FormDataSet.attach(exportAsZipButton).atTop().atRight();
