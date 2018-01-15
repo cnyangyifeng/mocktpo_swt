@@ -2,7 +2,7 @@ package com.mocktpo.modules.editor;
 
 import com.mocktpo.modules.editor.layers.*;
 import com.mocktpo.util.ConfigUtils;
-import com.mocktpo.util.ProjectUtils;
+import com.mocktpo.util.EditorUtils;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.vo.TestEditorVo;
 import org.apache.commons.lang3.StringUtils;
@@ -75,6 +75,7 @@ public class TestEditorPage extends Composite {
         this.testEditorVo = new TestEditorVo();
         testEditorVo.setTid(StringUtils.replace(UUID.randomUUID().toString(), "-", ""));
         testEditorVo.setTitle("");
+
         testEditorVo.setStars(3);
         testEditorVo.setCreator("");
         testEditorVo.setCreatedTime(System.currentTimeMillis());
@@ -210,8 +211,8 @@ public class TestEditorPage extends Composite {
      */
 
     public void save() {
-        ProjectUtils.validate(testEditorVo.getTid());
-        ConfigUtils.pushToProject(testEditorVo.getTid(), testEditorVo);
+        EditorUtils.validate(testEditorVo.getTid());
+        ConfigUtils.pushToEditorBaseDir(testEditorVo.getTid(), testEditorVo);
         setFirstRun(false);
         enterSavedMode();
     }
@@ -260,8 +261,8 @@ public class TestEditorPage extends Composite {
      */
 
     public void export(String fullDestZipFileName) {
-        ProjectUtils.validate(testEditorVo.getTid());
-        ProjectUtils.export(testEditorVo.getTid(), fullDestZipFileName);
+        EditorUtils.validate(testEditorVo.getTid());
+        EditorUtils.export(testEditorVo.getTid(), fullDestZipFileName);
     }
 
     /*

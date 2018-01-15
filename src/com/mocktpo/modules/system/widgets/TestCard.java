@@ -55,7 +55,7 @@ public class TestCard extends Composite {
     public TestCard(Composite parent, int style, String fileAlias) {
         super(parent, style);
         this.fileAlias = fileAlias;
-        this.testVo = ConfigUtils.pullFromTest(fileAlias, TestVo.class);
+        this.testVo = ConfigUtils.pullFromTestBaseDir(fileAlias, TestVo.class);
         init();
     }
 

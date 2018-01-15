@@ -46,7 +46,7 @@ public class PersistenceUtils {
         userTestSession.setTestComplete(false);
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
-        sqlSession.getMapper(UserTestSessionMapper.class).insert(userTestSession);
+        sqlSession.getMapper(UserTestSessionMapper.class).create(userTestSession);
         sqlSession.commit();
 
         return userTestSession;
@@ -214,7 +214,7 @@ public class PersistenceUtils {
         userTestAnswer.setAnswer("");
 
         SqlSession sqlSession = MyApplication.get().getSqlSession();
-        sqlSession.getMapper(UserTestAnswerMapper.class).insert(userTestAnswer);
+        sqlSession.getMapper(UserTestAnswerMapper.class).create(userTestAnswer);
         sqlSession.commit();
 
         return userTestAnswer;

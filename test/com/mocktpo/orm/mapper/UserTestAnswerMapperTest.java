@@ -26,13 +26,13 @@ public class UserTestAnswerMapperTest {
     }
 
     @Test
-    public void testInsert() {
+    public void testCreate() {
         UserTestAnswer userTestAnswer = new UserTestAnswer();
         userTestAnswer.setSid(0L);
         userTestAnswer.setViewId(1);
         userTestAnswer.setSectionType(ST.SECTION_TYPE_WRITING);
         userTestAnswer.setAnswer("Hello, TPO1.");
-        mapper.insert(userTestAnswer);
+        mapper.create(userTestAnswer);
     }
 
     @Test

@@ -22,7 +22,7 @@ public class UserAudioRecorder {
 
     public UserAudioRecorder(String fileAlias) {
         try {
-            File rootDir = new File(this.getClass().getResource(URLDecoder.decode(RC.REPORTS_DATA_DIR, "utf-8")).toURI());
+            File rootDir = new File(this.getClass().getResource(URLDecoder.decode(RC.REPORT_BASE_DIR, "utf-8")).toURI());
             file = new File(rootDir.toString() + MT.STRING_SLASH + fileAlias + RC.WAV_FILE_TYPE_SUFFIX);
             if (!file.exists()) {
                 logger.info("User audio file created: {}.", file.createNewFile());

@@ -24,7 +24,7 @@ public interface LicenseCodeMapper {
             "#{content}",
             ")"
     })
-    void insert(LicenseCode lic);
+    void create(LicenseCode lic);
 
     @Select({
             "SELECT",

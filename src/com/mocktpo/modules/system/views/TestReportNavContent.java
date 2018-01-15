@@ -83,12 +83,12 @@ public class TestReportNavContent extends Composite {
     /*
      * ==================================================
      *
-     * Test Report Card Operations
+     * Refresh
      *
      * ==================================================
      */
 
-    public void refreshCards() {
+    public void refresh() {
         for (Control c : body.getChildren()) {
             c.dispose();
         }

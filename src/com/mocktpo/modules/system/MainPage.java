@@ -157,7 +157,7 @@ public class MainPage extends Composite {
         if (newTestView == null) {
             newTestView = new NewTestNavContent(body, SWT.NONE);
         }
-        newTestView.refreshCards();
+        newTestView.refresh();
         stack.topControl = newTestView;
         body.layout();
     }
@@ -171,7 +171,7 @@ public class MainPage extends Composite {
         if (testReportView == null) {
             testReportView = new TestReportNavContent(body, SWT.NONE);
         }
-        testReportView.refreshCards();
+        testReportView.refresh();
         stack.topControl = testReportView;
         body.layout();
     }
@@ -185,7 +185,7 @@ public class MainPage extends Composite {
         if (testStoreView == null) {
             testStoreView = new TestStoreNavContent(body, SWT.NONE);
         }
-        testStoreView.refreshCards();
+        testStoreView.refresh();
         stack.topControl = testStoreView;
         body.layout();
     }
@@ -199,7 +199,7 @@ public class MainPage extends Composite {
         if (testEditorView == null) {
             testEditorView = new TestEditorNavContent(body, SWT.NONE);
         }
-        testEditorView.refreshCards();
+        testEditorView.refresh();
         stack.topControl = testEditorView;
         body.layout();
     }

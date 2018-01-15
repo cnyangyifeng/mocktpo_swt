@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class ProjectUtils {
+public class EditorUtils {
 
     /* Logger and Messages */
 
@@ -32,16 +32,16 @@ public class ProjectUtils {
             return;
         }
         try {
-            File projectsDir = new File(ConfigUtils.class.getResource(URLDecoder.decode(RC.PROJECTS_DATA_DIR, "utf-8")).toURI());
-            File projectDir = new File(projectsDir.toString() + MT.STRING_SLASH + fileAlias);
-            if (!projectDir.exists()) {
-                logger.info("Test paper directory created: {}.", projectDir.mkdir());
+            File editorDataDir = new File(ConfigUtils.class.getResource(URLDecoder.decode(RC.EDITOR_BASE_DIR, "utf-8")).toURI());
+            File testPaperDir = new File(editorDataDir.toString() + MT.STRING_SLASH + fileAlias);
+            if (!testPaperDir.exists()) {
+                logger.info("Test paper directory created: {}.", testPaperDir.mkdir());
             }
-            File descFile = new File(projectDir.toString() + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX);
+            File descFile = new File(testPaperDir.toString() + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX);
             if (!descFile.exists()) {
                 logger.info(" Test paper description file created: {}.", descFile.createNewFile());
             }
-            File listeningDir = new File(projectDir.toString() + MT.STRING_SLASH + msgs.getString("listening"));
+            File listeningDir = new File(testPaperDir.toString() + MT.STRING_SLASH + msgs.getString("listening"));
             if (!listeningDir.exists()) {
                 logger.info(" Listening directory created: {}.", listeningDir.mkdir());
                 File readmeFile = new File(listeningDir.toString() + MT.STRING_SLASH + RC.README_FILE);
@@ -49,7 +49,7 @@ public class ProjectUtils {
                     logger.info("  Listening directory readme file created: {}.", readmeFile.createNewFile());
                 }
             }
-            File speakingDir = new File(projectDir.toString() + MT.STRING_SLASH + msgs.getString("speaking"));
+            File speakingDir = new File(testPaperDir.toString() + MT.STRING_SLASH + msgs.getString("speaking"));
             if (!speakingDir.exists()) {
                 logger.info(" Speaking directory created: {}.", speakingDir.mkdir());
                 File readmeFile = new File(speakingDir.toString() + MT.STRING_SLASH + RC.README_FILE);
@@ -57,7 +57,7 @@ public class ProjectUtils {
                     logger.info("  Speaking directory readme file created: {}.", readmeFile.createNewFile());
                 }
             }
-            File writingDir = new File(projectDir.toString() + MT.STRING_SLASH + msgs.getString("writing"));
+            File writingDir = new File(testPaperDir.toString() + MT.STRING_SLASH + msgs.getString("writing"));
             if (!writingDir.exists()) {
                 logger.info(" Writing directory created: {}.", writingDir.mkdir());
                 File readmeFile = new File(writingDir.toString() + MT.STRING_SLASH + RC.README_FILE);
@@ -72,17 +72,17 @@ public class ProjectUtils {
 
     public static void export(String fileAlias, String fullDestZipFileName) {
         try {
-            File projectsDir = new File(ProjectUtils.class.getResource(URLDecoder.decode(RC.PROJECTS_DATA_DIR, "utf-8")).toURI());
-            File projectDir = new File(projectsDir.toString() + MT.STRING_SLASH + fileAlias);
-            if (!projectDir.exists()) {
+            File editorDataDir = new File(EditorUtils.class.getResource(URLDecoder.decode(RC.EDITOR_BASE_DIR, "utf-8")).toURI());
+            File testPaperDir = new File(editorDataDir.toString() + MT.STRING_SLASH + fileAlias);
+            if (!testPaperDir.exists()) {
                 return;
             }
-            File outputsDir = new File(ProjectUtils.class.getResource(URLDecoder.decode(RC.OUTPUTS_DATA_DIR, "utf-8")).toURI());
-            File outputDir = new File(outputsDir.toString() + MT.STRING_SLASH + fileAlias);
+            File storeDataDir = new File(EditorUtils.class.getResource(URLDecoder.decode(RC.STORE_BASE_DIR, "utf-8")).toURI());
+            File outputDir = new File(storeDataDir.toString() + MT.STRING_SLASH + fileAlias);
             if (!outputDir.exists()) {
                 logger.info("Test paper directory created: {}.", outputDir.mkdir());
             }
-            FileUtils.copyDirectory(projectDir, outputDir);
+            FileUtils.copyDirectory(testPaperDir, outputDir);
             format(fileAlias);
             List<File> fileList = new ArrayList<>();
             collect(outputDir, fileList);
@@ -94,9 +94,10 @@ public class ProjectUtils {
 
     private static void format(String fileAlias) {
         /* Initializes a testEditorVo and a testVo */
-        TestEditorVo testEditorVo = ConfigUtils.pullFromOutput(fileAlias, TestEditorVo.class);
+        TestEditorVo testEditorVo = ConfigUtils.pullFromStoreBaseDir(fileAlias, TestEditorVo.class);
         TestVo testVo = new TestVo();
         testVo.setTid(testEditorVo.getTid());
+        testVo.setTagId(testEditorVo.getTagId());
         testVo.setTitle(testEditorVo.getTitle());
         testVo.setStars(testEditorVo.getStars());
         testVo.setCreator(testEditorVo.getCreator());
@@ -183,8 +184,8 @@ public class ProjectUtils {
         viewVos.add(TestViewVoUtils.initTestEndViewVo(++viewId));
         /* Sets viewVos to testVo */
         testVo.setViewVos(viewVos);
-        /* Save testVo */
-        ConfigUtils.pushToOutput(testVo.getTid(), testVo);
+        /* Saves testVo */
+        ConfigUtils.pushToTestBaseDir(testVo.getTid(), testVo);
     }
 
     private static void collect(File parent, List<File> fileList) {

@@ -29,7 +29,7 @@ public interface UserTestAnswerMapper {
             "#{answer}",
             ")"
     })
-    void insert(UserTestAnswer userTestAnswer);
+    void create(UserTestAnswer userTestAnswer);
 
     @Update({
             "UPDATE MT_USER_TEST_ANSWER",

@@ -213,7 +213,7 @@ public class RegisterWindow {
                             SqlSession sqlSession = app.getSqlSession();
                             LicenseCodeMapper mapper = sqlSession.getMapper(LicenseCodeMapper.class);
                             mapper.deleteAll();
-                            mapper.insert(new LicenseCode(data));
+                            mapper.create(new LicenseCode(data));
                             sqlSession.commit();
                             d.asyncExec(() -> {
                                 activateButton.setEnabled(true);

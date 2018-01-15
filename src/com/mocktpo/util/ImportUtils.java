@@ -36,7 +36,7 @@ public class ImportUtils {
         }
         try {
             ZipInputStream zis = new ZipInputStream(new FileInputStream(fullSrcZipFileName));
-            File testsDir = new File(ImportUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).toURI());
+            File testsDir = new File(ImportUtils.class.getResource(URLDecoder.decode(RC.TEST_BASE_DIR, "utf-8")).toURI());
             ZipEntry ze = zis.getNextEntry();
             while (ze != null) {
                 File file = new File(testsDir, ze.getName());

@@ -49,7 +49,7 @@ public class TestPage extends Composite {
         super(parent, style);
         this.d = parent.getDisplay();
         this.userTestSession = userTestSession;
-        this.testVo = ConfigUtils.pullFromTest(this.userTestSession.getFileAlias(), TestVo.class);
+        this.testVo = ConfigUtils.pullFromTestBaseDir(this.userTestSession.getFileAlias(), TestVo.class);
         init();
     }
 
@@ -71,7 +71,7 @@ public class TestPage extends Composite {
      */
 
     public void resume() {
-        this.testVo = ConfigUtils.pullFromTest(userTestSession.getFileAlias(), TestVo.class);
+        this.testVo = ConfigUtils.pullFromTestBaseDir(userTestSession.getFileAlias(), TestVo.class);
         if (testVo != null) {
             stack.topControl = getLastTestView();
             this.layout();

@@ -30,6 +30,8 @@ public interface RC {
     String DATABASE_CONFIG_FILE = "data.xml";
     String PUBRING_FILE = "pubring.gpg";
     String README_FILE = "README.txt";
+    String REMOTE_TESTS_FILE = "remote_tests.json";
+    String TEST_TAGS_FILE = "test_tags.json";
 
     /*
      * ==================================================
@@ -42,8 +44,8 @@ public interface RC {
     String CONFIG_DIR = "/config/";
     String FONTS_DIR = "/resources/fonts/";
     String IMAGES_DIR = "/resources/images/";
-    String TESTS_DATA_DIR = "/data/tests/";
-    String REPORTS_DATA_DIR = "/data/reports/";
-    String PROJECTS_DATA_DIR = "/data/projects/";
-    String OUTPUTS_DATA_DIR = "/data/outputs/";
+    String TEST_BASE_DIR = "/data/test/";
+    String REPORT_BASE_DIR = "/data/report/";
+    String STORE_BASE_DIR = "/data/store/";
+    String EDITOR_BASE_DIR = "/data/editor/";
 }

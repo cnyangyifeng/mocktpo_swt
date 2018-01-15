@@ -79,8 +79,12 @@ public class NewTestNavContent extends Composite {
     private void initToolBar() {
         toolBar = new Composite(this, SWT.NONE);
         FormDataSet.attach(toolBar).atLeft().atTop().atRight();
-        CompositeSet.decorate(toolBar).setBackground(MT.COLOR_WHITE);
+        CompositeSet.decorate(toolBar).setBackground(MT.COLOR_GREY_LIGHTEN_4);
         FormLayoutSet.layout(toolBar).marginWidth(10).marginHeight(10).spacing(0);
+
+        final Label divider = new Label(this, SWT.NONE);
+        FormDataSet.attach(divider).atLeft().atTopTo(toolBar).atRight().withHeight(1);
+        LabelSet.decorate(divider).setBackground(MT.COLOR_HIGHLIGHTED);
 
         final ImageButton importButton = new ImageButton(toolBar, SWT.NONE, MT.IMAGE_SYSTEM_IMPORT, MT.IMAGE_SYSTEM_IMPORT_HOVER);
         FormDataSet.attach(importButton).atLeft().atTop();
@@ -111,12 +115,12 @@ public class NewTestNavContent extends Composite {
     /*
      * ==================================================
      *
-     * Test Card Operations
+     * Refresh
      *
      * ==================================================
      */
 
-    public void refreshCards() {
+    public void refresh() {
         for (Control c : body.getChildren()) {
             c.dispose();
         }
@@ -127,10 +131,10 @@ public class NewTestNavContent extends Composite {
 
     private void initCards() {
         try {
-            File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.TESTS_DATA_DIR, "utf-8")).toURI()).listFiles(File::isDirectory);
+            File[] testDirs = new File(this.getClass().getResource(URLDecoder.decode(RC.TEST_BASE_DIR, "utf-8")).toURI()).listFiles(File::isDirectory);
             for (File testDir : testDirs) {
                 String fileAlias = testDir.getName();
-                URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TESTS_DATA_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
+                URL url = ConfigUtils.class.getResource(URLDecoder.decode(RC.TEST_BASE_DIR + fileAlias + MT.STRING_SLASH + fileAlias + RC.JSON_FILE_TYPE_SUFFIX, "utf-8"));
                 if (url != null) {
                     TestCard card = new TestCard(body, SWT.NONE, testDir.getName());
                     GridDataSet.attach(card).fillHorizontal();
@@ -163,7 +167,7 @@ public class NewTestNavContent extends Composite {
             ImportUtils.unzip(fullSrcZipFileName);
             String fileAlias = FilenameUtils.removeExtension(FilenameUtils.getName(fullSrcZipFileName));
             if (fileAlias != null) {
-                refreshCards();
+                refresh();
             }
         }
     }

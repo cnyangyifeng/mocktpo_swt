@@ -98,7 +98,7 @@ public interface UserTestSessionMapper {
             ")"
     })
     @Options(useGeneratedKeys = true, keyProperty = "sid")
-    void insert(UserTestSession userTestSession);
+    void create(UserTestSession userTestSession);
 
     @Update({
             "UPDATE MT_USER_TEST_SESSION",

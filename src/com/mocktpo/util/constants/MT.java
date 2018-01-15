@@ -193,6 +193,9 @@ public interface MT {
     String IMAGE_SYSTEM_CANCEL_HOVER = "image_system_cancel_hover";
     String IMAGE_SYSTEM_CANCEL_WIDE = "image_system_cancel_wide";
     String IMAGE_SYSTEM_CANCEL_WIDE_HOVER = "image_system_cancel_wide_hover";
+    String IMAGE_SYSTEM_CHECK_UPDATES = "image_system_check_updates";
+    String IMAGE_SYSTEM_CHECK_UPDATES_HOVER = "image_system_check_updates_hover";
+    String IMAGE_SYSTEM_CHECK_UPDATES_DISABLED = "image_system_check_updates_disabled";
     String IMAGE_SYSTEM_CONTINUE = "image_system_continue";
     String IMAGE_SYSTEM_CONTINUE_HOVER = "image_system_continue_hover";
     String IMAGE_SYSTEM_COPY = "image_system_copy";
@@ -266,8 +269,6 @@ public interface MT {
     String IMAGE_SYSTEM_PASTE_HOVER = "image_system_paste_hover";
     String IMAGE_SYSTEM_REPORT = "image_system_report";
     String IMAGE_SYSTEM_REPORT_HOVER = "image_system_report_hover";
-    String IMAGE_SYSTEM_REFRESH = "image_system_refresh";
-    String IMAGE_SYSTEM_REFRESH_HOVER = "image_system_refresh_hover";
     String IMAGE_SYSTEM_SAVE = "image_system_save";
     String IMAGE_SYSTEM_SAVE_DISABLED = "image_system_save_disabled";
     String IMAGE_SYSTEM_SAVE_HOVER = "image_system_save_hover";

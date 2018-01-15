@@ -18,9 +18,9 @@ public class ResourceManager {
 
         /*
          * ==================================================
-         * 
+         *
          * Colors
-         * 
+         *
          * ==================================================
          */
 
@@ -44,9 +44,9 @@ public class ResourceManager {
 
         /*
          * ==================================================
-         * 
+         *
          * Cursors
-         * 
+         *
          * ==================================================
          */
 
@@ -55,9 +55,9 @@ public class ResourceManager {
 
         /*
          * ==================================================
-         * 
+         *
          * Fonts
-         * 
+         *
          * ==================================================
          */
 
@@ -89,9 +89,9 @@ public class ResourceManager {
 
         /*
          * ==================================================
-         * 
+         *
          * Images
-         * 
+         *
          * ==================================================
          */
 
@@ -182,6 +182,9 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_HOVER, ImageUtils.load(d, "sys_cancel_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_WIDE, ImageUtils.load(d, "sys_cancel_wide"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CANCEL_WIDE_HOVER, ImageUtils.load(d, "sys_cancel_wide_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CHECK_UPDATES, ImageUtils.load(d, "sys_check_updates"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CHECK_UPDATES_HOVER, ImageUtils.load(d, "sys_check_updates_h"));
+        caches.putIfAbsent(MT.IMAGE_SYSTEM_CHECK_UPDATES_DISABLED, ImageUtils.load(d, "sys_check_updates_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE, ImageUtils.load(d, "sys_continue"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_CONTINUE_HOVER, ImageUtils.load(d, "sys_continue_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_COPY, ImageUtils.load(d, "sys_copy"));
@@ -255,8 +258,6 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_PASTE_HOVER, ImageUtils.load(d, "sys_paste_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT, ImageUtils.load(d, "sys_report"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_REPORT_HOVER, ImageUtils.load(d, "sys_report_h"));
-        caches.putIfAbsent(MT.IMAGE_SYSTEM_REFRESH, ImageUtils.load(d, "sys_refresh"));
-        caches.putIfAbsent(MT.IMAGE_SYSTEM_REFRESH_HOVER, ImageUtils.load(d, "sys_refresh_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_SAVE, ImageUtils.load(d, "sys_save"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_SAVE_DISABLED, ImageUtils.load(d, "sys_save_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_SAVE_HOVER, ImageUtils.load(d, "sys_save_h"));

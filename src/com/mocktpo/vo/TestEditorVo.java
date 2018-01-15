@@ -23,6 +23,7 @@ public class TestEditorVo implements Serializable {
     private List<TestViewVo> writingViewVos = new ArrayList<>();
 
     private String tid;
+    private int tagId;
     private String title;
     private int stars;
     private String creator;
@@ -68,6 +69,14 @@ public class TestEditorVo implements Serializable {
 
     public void setTid(String tid) {
         this.tid = tid;
+    }
+
+    public int getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(int tagId) {
+        this.tagId = tagId;
     }
 
     public String getTitle() {

@@ -57,7 +57,7 @@ public class TestEditorCard extends Composite {
     public TestEditorCard(Composite parent, int style, String fileAlias) {
         super(parent, style);
         this.fileAlias = fileAlias;
-        this.testEditorVo = ConfigUtils.pullFromProject(fileAlias, TestEditorVo.class);
+        this.testEditorVo = ConfigUtils.pullFromEditorBaseDir(fileAlias, TestEditorVo.class);
         init();
     }
 
@@ -166,7 +166,7 @@ public class TestEditorCard extends Composite {
             int response = box.open();
             if (response == SWT.YES) {
                 try {
-                    File dir = new File(this.getClass().getResource(URLDecoder.decode(RC.PROJECTS_DATA_DIR + fileAlias, "utf-8")).toURI());
+                    File dir = new File(this.getClass().getResource(URLDecoder.decode(RC.EDITOR_BASE_DIR + fileAlias, "utf-8")).toURI());
                     FileUtils.deleteDirectory(dir);
                 } catch (Exception ex) {
                     ex.printStackTrace();

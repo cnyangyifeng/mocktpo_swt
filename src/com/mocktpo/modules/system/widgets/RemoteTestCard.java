@@ -1,14 +1,12 @@
 package com.mocktpo.modules.system.widgets;
 
-import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
-import com.mocktpo.util.ConfigUtils;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
 import com.mocktpo.util.widgets.CLabelSet;
 import com.mocktpo.util.widgets.CompositeSet;
 import com.mocktpo.util.widgets.LabelSet;
-import com.mocktpo.vo.TestVo;
+import com.mocktpo.vo.RemoteTestInfoVo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,8 +38,7 @@ public class RemoteTestCard extends Composite {
 
     /* Properties */
 
-    private String fileAlias;
-    private TestVo testVo;
+    private RemoteTestInfoVo remoteTestInfoVo;
 
     /*
      * ==================================================
@@ -51,10 +48,9 @@ public class RemoteTestCard extends Composite {
      * ==================================================
      */
 
-    public RemoteTestCard(Composite parent, int style, String fileAlias) {
+    public RemoteTestCard(Composite parent, int style, RemoteTestInfoVo remoteTestInfoVo) {
         super(parent, style);
-        this.fileAlias = fileAlias;
-        this.testVo = ConfigUtils.pullFromTest(fileAlias, TestVo.class);
+        this.remoteTestInfoVo = remoteTestInfoVo;
         init();
     }
 
@@ -81,7 +77,7 @@ public class RemoteTestCard extends Composite {
         FormDataSet.attach(titleLabel).atLeft().atTopTo(superscriptLabel, 10).withWidth(TITLE_WIDTH);
         CLabelSet.decorate(titleLabel).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_GREY_DARKEN_4).setText(getTitle());
 
-        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, testVo.getStars());
+        final StarsComposite starsComposite = new StarsComposite(header, SWT.NONE, remoteTestInfoVo.getStars());
         FormDataSet.attach(starsComposite).atLeft().atTopTo(titleLabel, 10).atRight();
 
         final Label divider1 = new Label(header, SWT.NONE);
@@ -118,7 +114,7 @@ public class RemoteTestCard extends Composite {
 
         installButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_INSTALL, MT.IMAGE_SYSTEM_INSTALL_HOVER, MT.IMAGE_SYSTEM_INSTALLING);
         FormDataSet.attach(installButton).atLeft().atTop(10);
-        installButton.addMouseListener(new DownloadButtonMouseAdapter());
+        installButton.addMouseListener(new InstallButtonMouseAdapter());
     }
 
     /*
@@ -129,7 +125,7 @@ public class RemoteTestCard extends Composite {
      * ==================================================
      */
 
-    private class DownloadButtonMouseAdapter extends MouseAdapter {
+    private class InstallButtonMouseAdapter extends MouseAdapter {
 
         @Override
         public void mouseDown(MouseEvent e) {
@@ -145,16 +141,8 @@ public class RemoteTestCard extends Composite {
      * ==================================================
      */
 
-    public String getFileAlias() {
-        return fileAlias;
-    }
-
-    public void setFileAlias(String fileAlias) {
-        this.fileAlias = fileAlias;
-    }
-
     private String getTitle() {
-        String title = testVo.getTitle();
+        String title = remoteTestInfoVo.getTitle();
         if (StringUtils.isEmpty(title)) {
             title = msgs.getString("untitled");
         }
@@ -162,7 +150,7 @@ public class RemoteTestCard extends Composite {
     }
 
     private String getCreator() {
-        String creator = testVo.getCreator();
+        String creator = remoteTestInfoVo.getCreator();
         if (StringUtils.isEmpty(creator)) {
             creator = msgs.getString("unknown");
         }
@@ -170,7 +158,7 @@ public class RemoteTestCard extends Composite {
     }
 
     private double getVersion() {
-        double version = testVo.getVersion();
+        double version = remoteTestInfoVo.getVersion();
         if (version == 0) {
             return 1.0;
         } else {
