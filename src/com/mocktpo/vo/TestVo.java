@@ -29,6 +29,7 @@ public class TestVo implements Serializable {
     private long createdTime;
     private long updatedTime;
     private double version;
+    private int status;
 
     public TestViewVo getViewVo(int viewId) {
         for (TestViewVo v : viewVos) {
@@ -109,6 +110,14 @@ public class TestVo implements Serializable {
 
     public void setVersion(double version) {
         this.version = version;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     /*
