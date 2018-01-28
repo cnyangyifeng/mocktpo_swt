@@ -255,19 +255,6 @@ public class TestEditorPage extends Composite {
     /*
      * ==================================================
      *
-     * Export
-     *
-     * ==================================================
-     */
-
-    public void export(String fullDestZipFileName) {
-        EditorUtils.validate(testEditorVo.getTid());
-        EditorUtils.export(testEditorVo.getTid(), fullDestZipFileName);
-    }
-
-    /*
-     * ==================================================
-     *
      * Getters and Setters
      *
      * ==================================================

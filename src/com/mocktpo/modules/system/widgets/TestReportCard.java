@@ -62,6 +62,7 @@ public class TestReportCard extends Composite {
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(this).marginWidth(10).marginHeight(10).spacing(0);
+        this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
     }
 
     private void initWidgets() {

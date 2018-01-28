@@ -175,10 +175,6 @@ public abstract class TestEditorLayer extends Composite {
         CompositeSet.decorate(footer).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(footer).marginWidth(10).marginHeight(10).spacing(10);
 
-        exportAsZipButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_HOVER, MT.IMAGE_SYSTEM_EXPORT_AS_ZIP_DISABLED);
-        FormDataSet.attach(exportAsZipButton).atTop().atRight();
-        exportAsZipButton.addMouseListener(new ExportAsZipButtonMouseAdapter());
-
         saveButton = new ImageButton(footer, SWT.NONE, MT.IMAGE_SYSTEM_SAVE, MT.IMAGE_SYSTEM_SAVE_HOVER, MT.IMAGE_SYSTEM_SAVE_DISABLED);
         FormDataSet.attach(saveButton).atTopTo(exportAsZipButton, 0, SWT.TOP).atRightTo(exportAsZipButton);
         saveButton.addMouseListener(new SaveButtonMouseAdapter());
@@ -306,51 +302,6 @@ public abstract class TestEditorLayer extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             page.toPreviewEditorLayer();
-        }
-    }
-
-    private class ExportAsZipButtonMouseAdapter extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            if (page.isUnsaved()) {
-                MessageBox box = new MessageBox(MyApplication.get().getWindow().getShell(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
-                box.setText(msgs.getString("save"));
-                box.setMessage(msgs.getString("save_or_not_before_exporting"));
-                int response = box.open();
-                if (response == SWT.YES) {
-                    page.save();
-                } else {
-                    return;
-                }
-            }
-            FileDialog dialog = new FileDialog(MyApplication.get().getWindow().getShell(), SWT.SAVE);
-            dialog.setText(msgs.getString("export"));
-            dialog.setFilterNames(new String[]{"Zip Archive (*.zip)"});
-            dialog.setFilterExtensions(new String[]{"*.zip"});
-            dialog.setFileName(titleLabel.getText() + ".zip");
-            boolean done = false;
-            while (!done) {
-                String fullDestZipFileName = dialog.open();
-                if (!StringUtils.isEmpty(fullDestZipFileName)) {
-                    File file = new File(fullDestZipFileName);
-                    if (file.exists()) {
-                        MessageBox box = new MessageBox(dialog.getParent(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
-                        box.setText(msgs.getString("file_exists"));
-                        box.setMessage("\"" + titleLabel.getText() + ".zip\" " + msgs.getString("replace_or_not"));
-                        int response = box.open();
-                        if (response == SWT.YES) {
-                            page.export(fullDestZipFileName);
-                            done = true;
-                        }
-                    } else {
-                        page.export(fullDestZipFileName);
-                        done = true;
-                    }
-                } else {
-                    done = true;
-                }
-            }
         }
     }
 

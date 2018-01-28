@@ -76,7 +76,8 @@ public class AppLoader extends Thread {
         }
         splash.setVisible(true);
         if (licensed) {
-            // splash.proceed(msgs.getString("configuring_data"));
+            splash.proceed(msgs.getString("configuring_data"));
+
             splash.proceed(msgs.getString("complete"));
             splash.close();
         } else {

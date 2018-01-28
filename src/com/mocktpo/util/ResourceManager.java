@@ -289,7 +289,6 @@ public class ResourceManager {
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_WRITING_CHECKED, ImageUtils.load(d, "sys_step_writing_c"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_WRITING_DISABLED, ImageUtils.load(d, "sys_step_writing_d"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_STEP_WRITING_HOVER, ImageUtils.load(d, "sys_step_writing_h"));
-        caches.putIfAbsent(MT.IMAGE_SYSTEM_TAGS, ImageUtils.load(d, "sys_tags"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_TRASH, ImageUtils.load(d, "sys_trash"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_TRASH_HOVER, ImageUtils.load(d, "sys_trash_h"));
         caches.putIfAbsent(MT.IMAGE_SYSTEM_UNBOXED, ImageUtils.load(d, "sys_unboxed"));

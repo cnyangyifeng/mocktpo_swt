@@ -46,6 +46,5 @@ public interface RC {
     String IMAGES_DIR = "/resources/images/";
     String TEST_BASE_DIR = "/data/test/";
     String REPORT_BASE_DIR = "/data/report/";
-    String STORE_BASE_DIR = "/data/store/";
     String EDITOR_BASE_DIR = "/data/editor/";
 }

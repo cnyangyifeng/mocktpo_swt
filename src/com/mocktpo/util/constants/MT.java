@@ -300,7 +300,6 @@ public interface MT {
     String IMAGE_SYSTEM_STEP_WRITING_CHECKED = "image_system_step_writing_checked";
     String IMAGE_SYSTEM_STEP_WRITING_DISABLED = "image_system_step_writing_disabled";
     String IMAGE_SYSTEM_STEP_WRITING_HOVER = "image_system_step_writing_hover";
-    String IMAGE_SYSTEM_TAGS = "image_system_tags";
     String IMAGE_SYSTEM_TRASH = "image_system_trash";
     String IMAGE_SYSTEM_TRASH_HOVER = "image_system_trash_hover";
     String IMAGE_SYSTEM_UNBOXED = "image_system_unboxed";

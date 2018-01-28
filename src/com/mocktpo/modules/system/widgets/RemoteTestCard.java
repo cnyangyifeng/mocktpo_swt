@@ -1,5 +1,6 @@
 package com.mocktpo.modules.system.widgets;
 
+import com.mocktpo.modules.system.listeners.BorderedCompositePaintListener;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -62,6 +63,7 @@ public class RemoteTestCard extends Composite {
     private void golbal() {
         CompositeSet.decorate(this).setBackground(MT.COLOR_WHITE);
         FormLayoutSet.layout(this).marginWidth(10).marginHeight(10).spacing(0);
+        this.addPaintListener(new BorderedCompositePaintListener(MT.COLOR_HIGHLIGHTED));
     }
 
     private void initWidgets() {

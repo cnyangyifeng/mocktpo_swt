@@ -3,7 +3,6 @@ package com.mocktpo.modules.system;
 import com.mocktpo.modules.system.views.NewTestNavContent;
 import com.mocktpo.modules.system.views.TestEditorNavContent;
 import com.mocktpo.modules.system.views.TestReportNavContent;
-import com.mocktpo.modules.system.views.TestStoreNavContent;
 import com.mocktpo.util.constants.MT;
 import com.mocktpo.util.layout.FormDataSet;
 import com.mocktpo.util.layout.FormLayoutSet;
@@ -44,13 +43,11 @@ public class MainPage extends Composite {
     private CLabel newTestLabel;
     private CLabel testReportLabel;
     private CLabel testEditorLabel;
-    private CLabel testStoreLabel;
 
     private Composite body;
     private NewTestNavContent newTestView;
     private TestReportNavContent testReportView;
     private TestEditorNavContent testEditorView;
-    private TestStoreNavContent testStoreView;
 
     /*
      * ==================================================
@@ -109,17 +106,12 @@ public class MainPage extends Composite {
         CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("test_reports"));
         testReportLabel.addMouseListener(new TestReportLabelMouseAdapter());
 
-        final CLabel storeSectionLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(storeSectionLabel).atLeft().atTopTo(testReportLabel).atRight().withHeight(60);
-        CLabelSet.decorate(storeSectionLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_INDIGO_LIGHTEN_4).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("store"));
-
-        testStoreLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(testStoreLabel).atLeft().atTopTo(storeSectionLabel).atRight().withHeight(60);
-        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("test_store"));
-        testStoreLabel.addMouseListener(new TestStoreLabelMouseAdapter());
+        final CLabel editorSectionLabel = new CLabel(sidebar, SWT.NONE);
+        FormDataSet.attach(editorSectionLabel).atLeft().atTopTo(testReportLabel).atRight().withHeight(60);
+        CLabelSet.decorate(editorSectionLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_SMALL_BOLD).setForeground(MT.COLOR_INDIGO_LIGHTEN_4).setLeftMargin(10).setRightMargin(20).setText(msgs.getString("editor"));
 
         testEditorLabel = new CLabel(sidebar, SWT.NONE);
-        FormDataSet.attach(testEditorLabel).atLeft().atTopTo(testStoreLabel).atRight().withHeight(60);
+        FormDataSet.attach(testEditorLabel).atLeft().atTopTo(editorSectionLabel).atRight().withHeight(60);
         CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2).setFont(MT.FONT_MEDIUM_BOLD).setForeground(MT.COLOR_WHITE).setLeftMargin(20).setText(msgs.getString("test_editor"));
         testEditorLabel.addMouseListener(new TestEditorLabelMouseAdapter());
     }
@@ -152,8 +144,6 @@ public class MainPage extends Composite {
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_INDIGO);
         CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
         CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
-        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
-
         if (newTestView == null) {
             newTestView = new NewTestNavContent(body, SWT.NONE);
         }
@@ -166,7 +156,6 @@ public class MainPage extends Composite {
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
         CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO);
         CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
-        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
 
         if (testReportView == null) {
             testReportView = new TestReportNavContent(body, SWT.NONE);
@@ -176,25 +165,10 @@ public class MainPage extends Composite {
         body.layout();
     }
 
-    public void toTestStoreView() {
-        CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
-        CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
-        CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
-        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO);
-
-        if (testStoreView == null) {
-            testStoreView = new TestStoreNavContent(body, SWT.NONE);
-        }
-        testStoreView.refresh();
-        stack.topControl = testStoreView;
-        body.layout();
-    }
-
     public void toTestEditorView() {
         CLabelSet.decorate(newTestLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
         CLabelSet.decorate(testReportLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
         CLabelSet.decorate(testEditorLabel).setBackground(MT.COLOR_INDIGO);
-        CLabelSet.decorate(testStoreLabel).setBackground(MT.COLOR_INDIGO_DARKEN_2);
 
         if (testEditorView == null) {
             testEditorView = new TestEditorNavContent(body, SWT.NONE);
@@ -233,14 +207,6 @@ public class MainPage extends Composite {
         @Override
         public void mouseDown(MouseEvent e) {
             toTestReportView();
-        }
-    }
-
-    private class TestStoreLabelMouseAdapter extends MouseAdapter {
-
-        @Override
-        public void mouseDown(MouseEvent e) {
-            toTestStoreView();
         }
     }
 
